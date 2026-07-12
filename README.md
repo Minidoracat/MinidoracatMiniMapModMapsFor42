@@ -23,14 +23,14 @@
 ## 專案結構
 
 ```
-MinidoracatMiniMapMapsFor42/
+MinidoracatMiniMapModMapsFor42/
 ├── link_workshop.bat              # Workshop 符號連結管理（雙擊啟動）
 ├── PZ_Test.bat                    # PZ 本地測試啟動器（雙擊啟動）
 ├── scripts/                       # PowerShell 腳本
-└── MOD/MinidoracatMiniMapMapsFor42/Contents/mods/MinidoracatMiniMapMapsFor42/42/
+└── MOD/MinidoracatMiniMapModMapsFor42/Contents/mods/MinidoracatMiniMapModMapsFor42/42/
     ├── mod.info                   # require=MinidoracatMiniMapFor42
     └── media/
-        ├── lua/client/MinidoracatMiniMapMaps.lua   # 向主 MOD 註冊地圖清單
+        ├── lua/client/MinidoracatMiniMapModMaps.lua   # 向主 MOD 註冊地圖清單
         ├── lua/shared/Translate/{CH,CN,EN,JP}/UI.json
         └── minimap/               # pyramid zip（渲染產物，不進版控）
 ```
@@ -39,5 +39,5 @@ MinidoracatMiniMapMapsFor42/
 
 1. pzmap Studio 選該地圖 MOD →「遊戲內小地圖」模式輸出 `<地圖名>.pyramid.zip`
    （預設輸出名，免改名）放進 `media/minimap/`
-2. `MinidoracatMiniMapMaps.lua` 註冊清單加一行（bounds 抄渲染輸出 pyramid.txt）
+2. `MinidoracatMiniMapModMaps.lua` 註冊清單加一行（bounds 抄渲染輸出 pyramid.txt）
 3. `Translate/*/UI.json` 加地圖名翻譯鍵

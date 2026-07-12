@@ -1,5 +1,5 @@
 # Project Zomboid MOD 測試啟動器
-# MinidoracatMiniMapMapsFor42 小地圖模組
+# MinidoracatMiniMapModMapsFor42 小地圖模組
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
@@ -90,13 +90,13 @@ function Stop-AllPZ {
 # ============================================
 # 主選單
 # ============================================
-$Host.UI.RawUI.WindowTitle = "PZ Mod Test Launcher - MinidoracatMiniMapMapsFor42"
+$Host.UI.RawUI.WindowTitle = "PZ Mod Test Launcher - MinidoracatMiniMapModMapsFor42"
 
 while ($true) {
     Clear-Host
     Write-Host "========================================" -ForegroundColor Cyan
     Write-Host "  Project Zomboid MOD 測試啟動器" -ForegroundColor Cyan
-    Write-Host "  MinidoracatMiniMapMapsFor42 小地圖模組" -ForegroundColor Cyan
+    Write-Host "  MinidoracatMiniMapModMapsFor42 小地圖模組" -ForegroundColor Cyan
     Write-Host "========================================" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "  [1] 啟動客戶端"

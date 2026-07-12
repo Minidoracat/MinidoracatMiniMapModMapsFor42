@@ -1,4 +1,4 @@
-# MinidoracatMiniMapMapsFor42 Workshop 符號連結管理
+# MinidoracatMiniMapModMapsFor42 Workshop 符號連結管理
 # 用途：將開發目錄連結到 Zomboid Workshop 和 mods 目錄，方便本地測試和 Workshop 上傳
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -17,16 +17,16 @@ if ($env:PROJECT_ROOT) {
     # Fallback：使用目前工作目錄
     $ProjectRoot = (Get-Location).Path
 }
-$ModSource = Join-Path $ProjectRoot "MOD\MinidoracatMiniMapMapsFor42"
-$ModContent = Join-Path $ModSource "Contents\mods\MinidoracatMiniMapMapsFor42"
+$ModSource = Join-Path $ProjectRoot "MOD\MinidoracatMiniMapModMapsFor42"
+$ModContent = Join-Path $ModSource "Contents\mods\MinidoracatMiniMapModMapsFor42"
 
 # Workshop 符號連結（用於上傳）
 $WorkshopDir = Join-Path $env:UserProfile "Zomboid\Workshop"
-$WorkshopLink = Join-Path $WorkshopDir "MinidoracatMiniMapMapsFor42"
+$WorkshopLink = Join-Path $WorkshopDir "MinidoracatMiniMapModMapsFor42"
 
 # Mods 符號連結（用於遊戲載入，PZ 優先從此處讀取；連結名 = mod id）
 $ModsDir = Join-Path $env:UserProfile "Zomboid\mods"
-$ModsLink = Join-Path $ModsDir "MinidoracatMiniMapMapsFor42"
+$ModsLink = Join-Path $ModsDir "MinidoracatMiniMapModMapsFor42"
 
 # 驗證 MOD 來源目錄（以 mod.info 為準；workshop.txt 由 Workshop 上傳流程才會產生）
 if (-not (Test-Path (Join-Path $ModContent "42\mod.info"))) {
@@ -241,12 +241,12 @@ function Dismount-Workshop {
 # ============================================
 # 主選單
 # ============================================
-$Host.UI.RawUI.WindowTitle = "MinidoracatMiniMapMapsFor42 Workshop 連結管理"
+$Host.UI.RawUI.WindowTitle = "MinidoracatMiniMapModMapsFor42 Workshop 連結管理"
 
 while ($true) {
     Clear-Host
     Write-Host "============================================" -ForegroundColor Cyan
-    Write-Host "  MinidoracatMiniMapMapsFor42 符號連結管理" -ForegroundColor Cyan
+    Write-Host "  MinidoracatMiniMapModMapsFor42 符號連結管理" -ForegroundColor Cyan
     Write-Host "============================================" -ForegroundColor Cyan
     Write-Host ""
     Write-Host "  Workshop: $WorkshopLink"
