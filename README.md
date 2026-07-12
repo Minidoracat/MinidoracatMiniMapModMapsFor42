@@ -51,6 +51,11 @@ MinidoracatMiniMapModMapsFor42/
         └── minimap/               # pyramid zip（渲染產物，不進版控）
 ```
 
+## 授權
+
+程式碼與設定以 [MIT License](LICENSE) 釋出。地圖圖像（pyramid.zip）不進版控；
+其內容衍生自 Project Zomboid 遊戲資產與第三方地圖 MOD，發佈規範見上方授權清單。
+
 ## 新增支援地圖
 
 1. pzmap Studio 選該地圖 MOD →「遊戲內小地圖」模式輸出 `<地圖名>.pyramid.zip`
