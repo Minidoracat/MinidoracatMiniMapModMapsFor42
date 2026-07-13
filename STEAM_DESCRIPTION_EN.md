@@ -13,13 +13,9 @@ outline data for several map MODs.
 [*] Extra options that appear only with this pack installed: MOD map tiles toggle, outline toggle, outline color (green by default)
 [/list]
 
-[h2]🗺️ Included maps[/h2]
-[list]
-[*] Muldraugh Fire Department
-[*] Estate 39
-[*] Chinatown Expansion B42 (including the Less Traffic Jam variant)
-[/list]
-More to come — map requests welcome on Discord.
+[h2]🗺️ Included maps & requests[/h2]
+Currently supports 3 map MODs. The full list, credits to the original authors, and map
+requests all live in the [url=https://steamcommunity.com/sharedfiles/filedetails/discussions/3763914102]Discussions[/url] — come make a wish!
 
 [h2]📋 MOD info[/h2]
 [list]
@@ -27,15 +23,6 @@ More to come — map requests welcome on Discord.
 [*] [b]Required MOD:[/b] Minidoracat MiniMap for B42 (the main MOD; this pack does nothing without it)
 [*] [b]Supported version:[/b] Build 42.19.0+
 [*] Works in singleplayer / multiplayer (client-side images only, no world changes)
-[/list]
-
-[h2]🙏 Credits — original map MODs[/h2]
-The map images in this pack are rendered from the following map MODs — all map
-design and hard work belongs to their original authors:
-[list]
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3585472912]Muldraugh Fire Department[/url] by beek
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3606927986]Estate 39[/url]
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3703704638]Chinatown Expansion B42 version[/url]
 [/list]
 
 [h2]💬 Feedback & community[/h2]

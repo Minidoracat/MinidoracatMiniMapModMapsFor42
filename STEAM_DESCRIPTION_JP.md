@@ -13,13 +13,9 @@
 [*] 本パック導入時のみ現れる専用オプション：MOD マップ画像の表示切替・枠線切替・枠線色（デフォルト緑）
 [/list]
 
-[h2]🗺️ 収録マップ[/h2]
-[list]
-[*] Muldraugh Fire Department（マルドロー消防署）
-[*] Estate 39（エステート39）
-[*] Chinatown Expansion B42（チャイナタウン拡張、Less Traffic Jam 版を含む）
-[/list]
-今後も追加予定——リクエストは Discord へ。
+[h2]🗺️ 収録マップとリクエスト[/h2]
+現在 3 つのマップ MOD に対応。対応リスト・原作者クレジット・マップリクエストは
+[url=https://steamcommunity.com/sharedfiles/filedetails/discussions/3763914102]ディスカッション[/url]へどうぞ！
 
 [h2]📋 MOD 情報[/h2]
 [list]
@@ -27,15 +23,6 @@
 [*] [b]前提 MOD:[/b] Minidoracat MiniMap for B42（本体 MOD。無いと本パックは機能しません）
 [*] [b]対応バージョン:[/b] Build 42.19.0+
 [*] シングル / マルチ両対応（クライアントサイドの画像のみ、ワールドは変更しません）
-[/list]
-
-[h2]🙏 Credits — 元マップ MOD[/h2]
-本パックの地図画像は以下のマップ MOD からレンダリングしたものです。マップの
-デザインと労力はすべて原作者に帰属します：
-[list]
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3585472912]Muldraugh Fire Department[/url] by beek
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3606927986]Estate 39[/url]
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3703704638]Chinatown Expansion B42 version[/url]
 [/list]
 
 [h2]💬 不具合報告・交流[/h2]
