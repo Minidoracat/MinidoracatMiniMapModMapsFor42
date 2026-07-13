@@ -46,4 +46,5 @@ design and hard work belongs to their original authors:
 
 [b]#map #minimap #worldmap #Minidoracat[/b]
 
+Workshop ID: 3763914102
 Mod ID: MinidoracatMiniMapModMapsFor42
