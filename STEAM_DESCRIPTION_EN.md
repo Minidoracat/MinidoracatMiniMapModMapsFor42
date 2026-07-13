@@ -20,7 +20,7 @@ requests all live in the [url=https://steamcommunity.com/workshop/filedetails/di
 [h2]📋 MOD info[/h2]
 [list]
 [*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42
-[*] [b]Required MOD:[/b] Minidoracat MiniMap for B42 (the main MOD; this pack does nothing without it)
+[*] [b]Required MOD:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] (the main MOD; this pack does nothing without it)
 [*] [b]Load order:[/b] no manual sorting needed — the dependency is declared via require, the game always loads the main MOD first
 [*] [b]Supported version:[/b] Build 42.19.0+
 [*] Works in singleplayer / multiplayer (client-side images only, no world changes)
