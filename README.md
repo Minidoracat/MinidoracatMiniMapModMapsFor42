@@ -12,6 +12,10 @@
   - MOD 地圖框線顏色（預設綠，另有青/黃/紫/白）
 - 沒裝本地圖包時，上述選項不出現，主 MOD 行為不變
 
+## 截圖
+
+![MOD 地圖框線與名稱](docs/screenshots/mod-map-outlines.png)
+
 ## 收錄地圖
 
 | 地圖 | 對應 MOD（mod ID） | 範圍（世界 square） |
