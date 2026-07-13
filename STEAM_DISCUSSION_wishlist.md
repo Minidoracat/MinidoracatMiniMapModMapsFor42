@@ -1,5 +1,5 @@
 <!-- Steam 討論區貼文稿源（發文後把討論串網址記在下行）-->
-<!-- 討論串網址：（發文後填入） -->
+<!-- 討論串網址：https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/ -->
 <!-- 建議標題：📍 地圖許願＆支援清單 | Map Requests & Supported Maps | マップリクエスト -->
 
 [h1]🗺️ MOD 地圖許願區[/h1]

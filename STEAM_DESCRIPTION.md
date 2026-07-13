@@ -14,7 +14,7 @@
 
 [h2]🗺️ 收錄地圖與許願[/h2]
 目前支援 3 張地圖 MOD。完整清單、原作者致謝、以及「許願想要的地圖」都在
-[url=https://steamcommunity.com/sharedfiles/filedetails/discussions/3763914102]討論區[/url]——歡迎留言許願！
+[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]討論區[/url]——歡迎留言許願！
 
 [h2]📋 MOD 資訊[/h2]
 [list]

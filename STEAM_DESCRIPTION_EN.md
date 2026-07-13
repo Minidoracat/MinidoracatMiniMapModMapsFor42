@@ -15,7 +15,7 @@ outline data for several map MODs.
 
 [h2]🗺️ Included maps & requests[/h2]
 Currently supports 3 map MODs. The full list, credits to the original authors, and map
-requests all live in the [url=https://steamcommunity.com/sharedfiles/filedetails/discussions/3763914102]Discussions[/url] — come make a wish!
+requests all live in the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]Discussions[/url] — come make a wish!
 
 [h2]📋 MOD info[/h2]
 [list]

@@ -15,7 +15,7 @@
 
 [h2]🗺️ 収録マップとリクエスト[/h2]
 現在 3 つのマップ MOD に対応。対応リスト・原作者クレジット・マップリクエストは
-[url=https://steamcommunity.com/sharedfiles/filedetails/discussions/3763914102]ディスカッション[/url]へどうぞ！
+[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]ディスカッション[/url]へどうぞ！
 
 [h2]📋 MOD 情報[/h2]
 [list]
