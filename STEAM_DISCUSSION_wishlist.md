@@ -31,6 +31,7 @@
 [list]
 [*] [b]需要裝原地圖 MOD 嗎？[/b]——要。本包只在偵測到對應地圖 MOD 啟用時才顯示它的圖，沒裝不會誤畫
 [*] [b]需要主 MOD 嗎？[/b]——要，請先訂閱 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]
+[*] [b]載入順序要排嗎？[/b]——不用。本包透過 require 宣告依賴，遊戲自動先載主 MOD，清單怎麼排都行
 [*] [b]框線／MOD 地圖圖層可以關嗎？[/b]——可以。裝了本包後，ESC 選項頁與小地圖齒輪面板會多出開關（框線顏色也能換）
 [/list]
 

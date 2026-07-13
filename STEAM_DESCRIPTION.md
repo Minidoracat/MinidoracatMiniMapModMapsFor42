@@ -20,6 +20,7 @@
 [list]
 [*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42
 [*] [b]必要 MOD:[/b] Minidoracat MiniMap for B42（主 MOD，缺少時本包無作用）
+[*] [b]載入順序:[/b] 免手動調整——已透過 require 宣告依賴，遊戲自動先載主 MOD
 [*] [b]支援版本:[/b] Build 42.19.0+
 [*] 單機 / 多人皆可用（純客戶端圖資，不改世界內容）
 [/list]
