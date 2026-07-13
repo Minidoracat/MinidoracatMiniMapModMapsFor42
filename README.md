@@ -12,21 +12,6 @@
   - MOD 地圖框線顏色（預設綠，另有青/黃/紫/白）
 - 沒裝本地圖包時，上述選項不出現，主 MOD 行為不變
 
-## ⚠️ Workshop 上架前必辦：原作者授權
-
-本圖包內含**第三方地圖 MOD 的重渲圖像（衍生著作）**。依 The Indie Stone 的
-Workshop & Modding Policy，未經原作者許可不得發布他人作品的衍生內容。
-**上架 Workshop 前**須逐一取得下列作者同意（Workshop 留言或私訊，保留書面紀錄）：
-
-| 原 MOD | Workshop ID | 狀態 |
-|--------|-------------|------|
-| Muldraugh Fire Department（by beek） | 3585472912 | ⬜ 未取得 |
-| Estate 39 | 3606927986 | ⬜ 未取得 |
-| Chinatown Expansion B42 version（Less Traffic Jam 共用同一圖像） | 3703704638 | ⬜ 未取得 |
-
-任一作者拒絕或未回覆，該地圖須自圖包移除後才可上架。
-GitHub 開源不受此限制（pyramid.zip 已被 .gitignore 排除、不進版控）。
-
 ## 收錄地圖
 
 | 地圖 | 對應 MOD（mod ID） | 範圍（世界 square） |
