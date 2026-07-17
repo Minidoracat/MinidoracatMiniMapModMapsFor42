@@ -44,6 +44,14 @@ $LuaRegistry = Join-Path $ModContent "42\media\lua\client\MinidoracatMiniMapModM
 # Coryerdon 需在 Taylorsville 後（作者聲明）、Greenport 前（bg300 潛在雷）——列表順序即滿足
 $MapOrderFirst = @('AnruisiTown', 'Taylorsville', 'Coryerdon B42', 'RaccoonCity', 'Camden County B42', 'Clover Lake')  # Clover Lake：作者要求高於 Sector-7 公路（basement 衝突）
 
+# 伺服器排除清單（mod id）：選單 4/5 不建連結、不寫入 Mods=/Map=，且選單 4 會把既有
+# 條目順手拔掉（自癒）；選單 6/7 的移除照常涵蓋。想排除哪張圖就把它的 mod id 加進來。
+# 注意：已在存檔啟用過的圖拔掉會觸發 WorldDictionary 錯誤——排除請配合開新存檔。
+$MapModExclude = @('IrisEyot')  # 鳶尾島
+
+# 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）
+$MapFolderExclude = @('Greenport')  # GreenportB42 內的 B41 舊版資料夾（300 格座標）
+
 # 驗證 MOD 來源目錄（以 mod.info 為準；workshop.txt 由 Workshop 上傳流程才會產生）
 if (-not (Test-Path (Join-Path $ModContent "42\mod.info"))) {
     Write-Host ""
@@ -177,6 +185,20 @@ function Get-MapModInventory {
             }
         }
     }
+    # 排除清單分流：Excluded 不入 MapMods（加入路徑跳過），但保留供移除路徑清理
+    $excluded = @()
+    foreach ($xid in @($ids | Where-Object { $MapModExclude -contains $_ })) {
+        if ($installed.ContainsKey($xid)) {
+            $entry = $installed[$xid]
+            $excluded += [pscustomobject]@{
+                Id = $xid; Root = $entry.Root
+                LinkName = Split-Path -Leaf $entry.Root
+                MapFolders = @(Get-ModMapFolders $entry.Root)
+            }
+        }
+    }
+    $ids = @($ids | Where-Object { $MapModExclude -notcontains $_ })
+
     $mapMods = @(); $missing = @(); $depIds = @(); $seen = @{}
     $queue = New-Object System.Collections.Generic.Queue[string]
     foreach ($id in $ids) {
@@ -205,7 +227,7 @@ function Get-MapModInventory {
     $deps = @($depIds | ForEach-Object {
         [pscustomobject]@{ Id = $_; Root = $installed[$_].Root; LinkName = Split-Path -Leaf $installed[$_].Root }
     })
-    $script:MapModInventory = @{ MapMods = $mapMods; Deps = $deps; Missing = @($missing | Select-Object -Unique) }
+    $script:MapModInventory = @{ MapMods = $mapMods; Deps = $deps; Missing = @($missing | Select-Object -Unique); Excluded = $excluded }
     return $script:MapModInventory
 }
 
@@ -578,9 +600,9 @@ function Mount-MapModLinks {
 
 function Dismount-MapModLinks {
     param($Inventory)
-    # 只移除地圖 MOD 的連結；tile 依賴包可能被其他 MOD 共用，保留
+    # 只移除地圖 MOD 的連結（含排除清單的殘留）；tile 依賴包可能被其他 MOD 共用，保留
     $removed = 0
-    foreach ($m in @($Inventory.MapMods)) {
+    foreach ($m in (@($Inventory.MapMods) + @($Inventory.Excluded))) {
         $link = Join-Path $ModsDir $m.LinkName
         if (-not (Test-Path -LiteralPath $link)) { continue }
         if (-not (Test-IsSymlinkL $link)) {
@@ -606,21 +628,28 @@ function Invoke-MapModsServerWrite {
     if (-not $ini) { Write-Host "  [伺服器] 已取消，設定檔未變更" -ForegroundColor DarkGray; return }
     $mapIds  = @($Inventory.MapMods | ForEach-Object { $_.Id })
     $folders = @($Inventory.MapMods | ForEach-Object { $_.MapFolders } | Where-Object { $_ } |
-        Select-Object -Unique | Sort-Object)
+        Where-Object { $MapFolderExclude -notcontains $_ } | Select-Object -Unique | Sort-Object)
+    $exIds     = @($Inventory.Excluded | ForEach-Object { $_.Id })
+    $exFolders = @(@($Inventory.Excluded | ForEach-Object { $_.MapFolders } | Where-Object { $_ }) + $MapFolderExclude | Select-Object -Unique)
     if ($Remove) {
         Update-IniLists -IniPath $ini -Ops @(
-            @{ Key = 'Mods'; Remove = $mapIds; BackslashStyle = $true },
-            @{ Key = 'Map';  Remove = $folders; EnsureLast = 'Muldraugh, KY' }
+            @{ Key = 'Mods'; Remove = ($mapIds + $exIds); BackslashStyle = $true },
+            @{ Key = 'Map';  Remove = ($folders + $exFolders); EnsureLast = 'Muldraugh, KY' }
         )
         Write-Host "  [提示] tile 依賴包的 Mods= 條目保留（可能被其他 MOD 共用；純材質包無副作用）" -ForegroundColor DarkGray
     } else {
         $depIds = @($Inventory.Deps | ForEach-Object { $_.Id })
+        # Add 同時帶 Remove＝排除清單：既有殘留條目一併拔掉（自癒）
         Update-IniLists -IniPath $ini -Ops @(
-            @{ Key = 'Mods'; Add = @($ServerModIds) + $depIds + $mapIds; BackslashStyle = $true },
-            @{ Key = 'Map';  Add = $folders; OrderFirst = $MapOrderFirst; EnsureLast = 'Muldraugh, KY' }
+            @{ Key = 'Mods'; Add = @($ServerModIds) + $depIds + $mapIds; Remove = $exIds; BackslashStyle = $true },
+            @{ Key = 'Map';  Add = $folders; Remove = $exFolders; OrderFirst = $MapOrderFirst; EnsureLast = 'Muldraugh, KY' }
         )
         Write-Host "  [提示] Map= 順序＝優先序（先者為大、vanilla 墊底）；已自動把已知會" -ForegroundColor DarkGray
         Write-Host "         崩服的 bg300 肇事圖排到最前（詳見 check_map_conflicts.ps1）" -ForegroundColor DarkGray
+        if ($exIds.Count) {
+            Write-Host "  [排除] 未加入（`$MapModExclude）：$($exIds -join '、')——已在存檔啟用過的圖" -ForegroundColor Yellow
+            Write-Host "         拔掉會觸發 WorldDictionary 錯誤，請配合開新存檔" -ForegroundColor Yellow
+        }
     }
 }
 
@@ -629,6 +658,9 @@ function Show-MapModSummary {
     $folderCount = @($Inventory.MapMods | ForEach-Object { $_.MapFolders } | Where-Object { $_ }).Count
     Write-Host ""
     Write-Host "  地圖 MOD：$(@($Inventory.MapMods).Count) 個（地圖資料夾 $folderCount 個）＋ tile 依賴 $(@($Inventory.Deps).Count) 個" -ForegroundColor Cyan
+    if (@($Inventory.Excluded).Count -gt 0) {
+        Write-Host "  [排除] $(@($Inventory.Excluded | ForEach-Object { $_.Id }) -join '、')（`$MapModExclude；不加入伺服器）" -ForegroundColor Yellow
+    }
     if (@($Inventory.Missing).Count -gt 0) {
         Write-Host "  [警告] 未安裝（Workshop 未訂閱/未下載）：$($Inventory.Missing -join '、')" -ForegroundColor Yellow
     }
