@@ -79,8 +79,19 @@ True Music 框架，跟它漏宣告 tile 依賴同款粗糙），Debug 模式會
 **解法：多地圖測試一律用一般模式連線**——同樣的錯誤只會記 log 然後繼續，不影響遊玩
 （Taibeiroad 作者自己也聲明報錯不影響體驗）。
 
+## 附帶坑 2：移除地圖 MOD 後存檔無法載入（WorldDictionary）
+
+多數地圖 MOD 含自訂物品腳本；世界一旦在啟用狀態下運行過，物品就登記進該存檔的
+WorldDictionary。之後移除地圖 MOD（如 link_workshop 選單 7）再載入同一存檔，客戶端
+會在 `WorldDictionary.init` 拋致命錯誤（實例：移除鳶尾島後
+`Missing dictionary script on client: Base.ESWineCask` →「未知的意外錯誤」黑畫面）。
+**PZ 對既有存檔「加」內容 MOD 大致安全、「移除」不支援**。解法：開新存檔／重置伺服器
+世界（刪或改名 `Saves\Multiplayer\<servername>`，ini 不動），或把 MOD 掛回去。
+
 ## 玩家回報支援 SOP
 
-玩家回報「訂閱收藏後開服／讀檔 crash」且 log 含 `getZombieIntensityForChunk`／
-`lotHeader2 is null` → 不是本 MOD 的問題；請對方把上述四張圖移到伺服器 `Map=` 最前
-（單機為地圖 MOD 載入順序最上面），或告知其實際地圖組合後用偵測器算安全順序。
+- log 含 `getZombieIntensityForChunk`／`lotHeader2 is null` → 不是本 MOD 的問題；
+  請對方把上述肇事圖移到伺服器 `Map=` 最前（單機為地圖 MOD 載入順序最上面），
+  或告知其實際地圖組合後用偵測器算安全順序。
+- log 含 `WorldDictionaryException`／`Missing dictionary script` → 玩家從既有存檔
+  移除了地圖 MOD；引導開新存檔或把 MOD 加回（見附帶坑 2），同樣不是本 MOD 的問題。
