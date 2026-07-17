@@ -16,13 +16,71 @@
 [*] 大型地圖（圖檔數百 MB）可能做成獨立圖包發布，避免本包越長越肥
 [/list]
 
-[h2]✅ 目前支援（v0.1.0）[/h2]
+[h2]✅ 目前支援（v0.2.0：57 個地圖 MOD、72 張地圖）[/h2]
+完整清單與一鍵訂閱請看
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352][b]支援地圖收藏[/b][/url]
+（含全部地圖 MOD＋主 MOD＋本包；地圖名點進收藏頁即有連結）。收錄名單：
 [list]
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3585472912]Muldraugh Fire Department[/url] by beek — Muldraugh 市區消防局 overlay
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3606927986]Estate 39[/url] — Muldraugh 西側獨立莊園
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3703704638]Chinatown Expansion B42[/url]（含 Less Traffic Jam 版本）— Muldraugh 北緣唐人街
+[*] [B42 SP/MP] Dawn Town
+[*] [B42&MP] Fort Preston
+[*] AnruisiTown (Military Bastion)
+[*] Asakusa lake town
+[*] Ashenwood
+[*] Atlanta（含安全區擴充）
+[*] Atlanta Tower Survival
+[*] Blackpine County
+[*] Camden County
+[*] Cathaya Valley（含公路擴充）
+[*] Chinatown Expansion B42（含 Less Traffic Jam 變體）
+[*] Constown
+[*] Coryerdon
+[*] Daisy County
+[*] EchoCreek MilitaryBase
+[*] Ed's Auto Salvage
+[*] Erika's Furniture Store
+[*] Estate 39
+[*] Floatopia B42
+[*] Fort Benning B42
+[*] Fort Boonesborough
+[*] Fort JadeLake
+[*] Fort Waterfront B42
+[*] Grapeseed [B42 Unstable Remake]
+[*] Greenleaf
+[*] Hartburg
+[*] Hazelnut Manor（含簡樸版）
+[*] Iris Eyot
+[*] Kentucky Center Manor_Renovation
+[*] KillMingLake
+[*] Kingsmouth North
+[*] LittleTownship
+[*] Louisville Riverboat
+[*] Megurigaoka, Kanagawa, Japan - Project Gurashi
+[*] Meiya'sTown
+[*] Muldraugh 1993 B42
+[*] Muldraugh Fire Department
+[*] Muldraugh-Military checkpoint -Overpass (B42)
+[*] Nettle Township
+[*] New Coalfield
+[*] Path of Zenith, Louisville
+[*] RaccoonCity B42
+[*] Raven Creek
+[*] Riverside Mansion Unofficial
+[*] Safeharbor Garrison
+[*] SafeWayHamlet
+[*] SecretZ（12 個據點）
+[*] Sector-7 Breach-Meiya's City（含公路擴充）
+[*] Taibeiroad
+[*] Taylorsville [B41/B42]
+[*] Tikitown & PowerPlant (B41/B42)
+[*] Trapalaketown
+[*] Vila Z
+[*] West Point Expansion
+[*] White forest
+[*] WILDSTEEL - FORT SPIFFO
+[*] Willowbrook Bastion
 [/list]
-
+[b]備註：[/b]White Wolf Ridge 因原 MOD 已從 Workshop 下架未收錄；「亞特蘭大」與
+「亞特蘭大，大廈生存」為衝突二選一。
 [h2]🙏 感謝原作者[/h2]
 以上地圖的設計與心血皆屬原作者，本包僅提供「遊戲內小地圖圖像化」支援。
 若您是地圖原作者、對收錄方式有任何意見，請留言或私訊我，會立即處理（包含移除該地圖）。

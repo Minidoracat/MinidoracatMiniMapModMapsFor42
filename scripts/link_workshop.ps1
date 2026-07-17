@@ -34,6 +34,15 @@ $ServerIniDir = Join-Path $env:UserProfile "Zomboid\Server"
 $ServerModIds = @("MinidoracatMiniMapFor42", "MinidoracatMiniMapModMapsFor42")
 $ServerModIdsOwn = @("MinidoracatMiniMapModMapsFor42")
 
+# 地圖 MOD 清單的單一真相：Lua 註冊表（mapMod= 的 mod id）
+$LuaRegistry = Join-Path $ModContent "42\media\lua\client\MinidoracatMiniMapModMaps.lua"
+
+# 伺服器 Map= 順序約束（scripts/check_map_conflicts.ps1 推導）：引擎
+# getZombieIntensityForChunk 混用 300/256 兩種 cell 網格，這幾張圖的 bg300 覆蓋圖會
+# 「聲稱」蓋到鄰圖的 cell 卻拿不出 lotheader → NPE 崩服。排在最前面＝優先序最高，
+# 掃描（只往低優先方向走）就永遠不會經過它們。新增地圖後重跑 check_map_conflicts.ps1 驗證。
+$MapOrderFirst = @('AnruisiTown', 'Taylorsville', 'RaccoonCity', 'Camden County B42')
+
 # 驗證 MOD 來源目錄（以 mod.info 為準；workshop.txt 由 Workshop 上傳流程才會產生）
 if (-not (Test-Path (Join-Path $ModContent "42\mod.info"))) {
     Write-Host ""
@@ -61,6 +70,144 @@ function Test-IsSymlink {
     return ($null -ne $item.LinkType)
 }
 
+# 地圖 MOD 目錄名常含 [] 等萬用字元，一律走 -LiteralPath 版本
+function Test-IsSymlinkL {
+    param([string]$Path)
+    if (-not (Test-Path -LiteralPath $Path)) { return $false }
+    $item = Get-Item -LiteralPath $Path -Force -ErrorAction SilentlyContinue
+    return ($null -ne $item.LinkType)
+}
+
+# ============================================
+# 地圖 MOD 盤點（Lua 註冊表 → Workshop 安裝掃描 → require 依賴閉包）
+# ============================================
+
+function Get-WorkshopContentDir {
+    if ($script:WorkshopContentDir) { return $script:WorkshopContentDir }
+    $steam = $null
+    try { $steam = (Get-ItemProperty 'HKCU:\Software\Valve\Steam' -ErrorAction Stop).SteamPath } catch {}
+    if (-not $steam) { return $null }
+    $libs = @($steam)
+    $vdf = Join-Path $steam 'steamapps\libraryfolders.vdf'
+    if (Test-Path -LiteralPath $vdf) {
+        $libs += @((Select-String -Path $vdf -Pattern '"path"\s+"([^"]+)"' -AllMatches).Matches |
+            ForEach-Object { $_.Groups[1].Value -replace '\\\\', '\' })
+    }
+    foreach ($lib in ($libs | Select-Object -Unique)) {
+        $wc = Join-Path $lib 'steamapps\workshop\content\108600'
+        if (Test-Path -LiteralPath $wc) { $script:WorkshopContentDir = $wc; return $wc }
+    }
+    return $null
+}
+
+# mod.info 版本優先序（同引擎）：最高 42.x > common > root；回傳 @{ Id=..; Requires=@(..) }
+function Read-ModInfo {
+    param([string]$ModRoot)
+    $cands = @()
+    foreach ($d in (Get-ChildItem -LiteralPath $ModRoot -Directory -ErrorAction SilentlyContinue)) {
+        if ($d.Name -match '^\d+(\.\d+)?$') {
+            $cands += [pscustomobject]@{ v = [double]$d.Name; p = (Join-Path $d.FullName 'mod.info') }
+        }
+    }
+    $ordered = @($cands | Sort-Object v -Descending | ForEach-Object { $_.p })
+    $ordered += (Join-Path $ModRoot 'common\mod.info'), (Join-Path $ModRoot 'mod.info')
+    foreach ($p in $ordered) {
+        if (Test-Path -LiteralPath $p) {
+            $txt = Get-Content -LiteralPath $p -Raw -Encoding UTF8
+            $id = $null; $req = @()
+            if ($txt -match '(?m)^\s*id\s*=\s*(.+?)\s*$') { $id = $Matches[1] }
+            if ($txt -match '(?m)^\s*require\s*=\s*(.+?)\s*$') {
+                # 引擎會去掉 require 條目的 \ 前綴（B42 風格）
+                $req = @($Matches[1] -split '\s*,\s*' | ForEach-Object { $_.Trim().TrimStart('\') } | Where-Object { $_ })
+            }
+            return @{ Id = $id; Requires = $req }
+        }
+    }
+    return $null
+}
+
+# 有 lotheader 的地圖資料夾（伺服器 Map= 需要；純出生點資料夾不算）
+function Get-ModMapFolders {
+    param([string]$ModRoot)
+    $found = @()
+    $mapsDirs = @()
+    foreach ($sub in (Get-ChildItem -LiteralPath $ModRoot -Directory -ErrorAction SilentlyContinue)) {
+        $p = Join-Path $sub.FullName 'media\maps'
+        if (Test-Path -LiteralPath $p) { $mapsDirs += $p }
+    }
+    $rootMaps = Join-Path $ModRoot 'media\maps'
+    if (Test-Path -LiteralPath $rootMaps) { $mapsDirs += $rootMaps }
+    foreach ($md in $mapsDirs) {
+        foreach ($mf in (Get-ChildItem -LiteralPath $md -Directory -ErrorAction SilentlyContinue)) {
+            if ($found -contains $mf.Name) { continue }
+            $lot = Get-ChildItem -LiteralPath $mf.FullName -Filter *.lotheader -File -ErrorAction SilentlyContinue |
+                Select-Object -First 1
+            if ($lot) { $found += $mf.Name }
+        }
+    }
+    return $found
+}
+
+# 盤點結果（快取）：MapMods=地圖 MOD、Deps=require 閉包的依賴（tile 包等）、Missing=未安裝 id
+function Get-MapModInventory {
+    if ($script:MapModInventory) { return $script:MapModInventory }
+    if (-not (Test-Path -LiteralPath $LuaRegistry)) {
+        Write-Host "  [地圖MOD] 找不到註冊清單：$LuaRegistry" -ForegroundColor Red
+        return $null
+    }
+    $lua = Get-Content -LiteralPath $LuaRegistry -Raw -Encoding UTF8
+    $ids = @([regex]::Matches($lua, 'mapMod\s*=\s*"([^"]+)"') |
+        ForEach-Object { $_.Groups[1].Value } | Select-Object -Unique |
+        Where-Object { $ServerModIds -notcontains $_ })
+    $wc = Get-WorkshopContentDir
+    if (-not $wc) {
+        Write-Host "  [地圖MOD] 找不到 Steam Workshop 內容目錄（108600）" -ForegroundColor Red
+        return $null
+    }
+    Write-Host "  掃描已安裝 Workshop MOD（$wc）..." -ForegroundColor DarkGray
+    $installed = @{}   # id -> @{ Root=..; Requires=@(..) }
+    foreach ($item in (Get-ChildItem -LiteralPath $wc -Directory)) {
+        $mr = Join-Path $item.FullName 'mods'
+        if (-not (Test-Path -LiteralPath $mr)) { continue }
+        foreach ($modDir in (Get-ChildItem -LiteralPath $mr -Directory)) {
+            $info = Read-ModInfo $modDir.FullName
+            if ($info -and $info.Id -and -not $installed.ContainsKey($info.Id)) {
+                $installed[$info.Id] = @{ Root = $modDir.FullName; Requires = $info.Requires }
+            }
+        }
+    }
+    $mapMods = @(); $missing = @(); $depIds = @(); $seen = @{}
+    $queue = New-Object System.Collections.Generic.Queue[string]
+    foreach ($id in $ids) {
+        if (-not $installed.ContainsKey($id)) { $missing += $id; continue }
+        $entry = $installed[$id]
+        $mapMods += [pscustomobject]@{
+            Id = $id; Root = $entry.Root
+            LinkName = Split-Path -Leaf $entry.Root
+            MapFolders = @(Get-ModMapFolders $entry.Root)
+        }
+        $seen[$id] = $true
+        foreach ($r in $entry.Requires) { $queue.Enqueue($r) }
+    }
+    while ($queue.Count -gt 0) {
+        $rid = $queue.Dequeue()
+        if (-not $rid -or $seen.ContainsKey($rid)) { continue }
+        $seen[$rid] = $true
+        if ($ServerModIds -contains $rid) { continue }
+        if ($installed.ContainsKey($rid)) {
+            $depIds += $rid
+            foreach ($r2 in $installed[$rid].Requires) { $queue.Enqueue($r2) }
+        } else {
+            $missing += $rid
+        }
+    }
+    $deps = @($depIds | ForEach-Object {
+        [pscustomobject]@{ Id = $_; Root = $installed[$_].Root; LinkName = Split-Path -Leaf $installed[$_].Root }
+    })
+    $script:MapModInventory = @{ MapMods = $mapMods; Deps = $deps; Missing = @($missing | Select-Object -Unique) }
+    return $script:MapModInventory
+}
+
 function Show-Status {
     Write-Host ""
     Write-Host "=== MOD 來源 ===" -ForegroundColor Cyan
@@ -80,14 +227,22 @@ function Show-Status {
         }
     }
 
-    # 地圖包 pyramid zip 狀態（渲染產物不進版控，缺少時用 pzmap Studio 重渲）
-    $zips = @("Muldraugh_FireDept.pyramid.zip", "Estate 39.pyramid.zip", "Chinatown Expansion B42 version.pyramid.zip")
-    foreach ($z in $zips) {
-        if (Test-Path (Join-Path $ModContent "42\media\minimap\$z")) {
-            Write-Host "  [OK] $z" -ForegroundColor Green
+    # 地圖包 pyramid zip 狀態（以 Lua 註冊表為準；渲染產物不進版控，缺少時用 pzmap 重渲）
+    if (Test-Path -LiteralPath $LuaRegistry) {
+        $luaTxt = Get-Content -LiteralPath $LuaRegistry -Raw -Encoding UTF8
+        $zipNames = @([regex]::Matches($luaTxt, 'zip\s*=\s*"([^"]+)"') |
+            ForEach-Object { $_.Groups[1].Value } | Select-Object -Unique)
+        $missingZips = @($zipNames | Where-Object {
+            -not (Test-Path -LiteralPath (Join-Path $ModContent "42\media\minimap\$_")) })
+        if ($missingZips.Count -eq 0) {
+            Write-Host "  [OK] pyramid zip $($zipNames.Count)/$($zipNames.Count) 齊全" -ForegroundColor Green
         } else {
-            Write-Host "  [缺少] $z（pzmap Studio 遊戲內小地圖模式重渲）" -ForegroundColor Yellow
+            $preview = @($missingZips | Select-Object -First 5) -join '、'
+            if ($missingZips.Count -gt 5) { $preview += '…' }
+            Write-Host "  [缺少] pyramid zip 缺 $($missingZips.Count)/$($zipNames.Count)：$preview（pzmap 重渲）" -ForegroundColor Yellow
         }
+    } else {
+        Write-Host "  [缺少] Lua 註冊清單 $LuaRegistry" -ForegroundColor Red
     }
 
     Write-Host ""
@@ -113,6 +268,16 @@ function Show-Status {
         Write-Host "已掛載 -> $target" -ForegroundColor Green
     } else {
         Write-Host "實體資料夾（Steam 快取？）" -ForegroundColor Yellow
+    }
+
+    # 地圖 MOD 連結統計（不掃 Workshop——只數 mods 目錄裡指向 108600 的符號連結）
+    $mapLinks = @(Get-ChildItem -LiteralPath $ModsDir -Directory -Force -ErrorAction SilentlyContinue |
+        Where-Object { $_.LinkType -and (('' + $_.Target) -match 'workshop[\\/]content[\\/]108600') })
+    Write-Host "  [地圖MOD]  " -NoNewline
+    if ($mapLinks.Count -gt 0) {
+        Write-Host "mods 目錄內 Workshop 連結 $($mapLinks.Count) 個" -ForegroundColor Green
+    } else {
+        Write-Host "未掛載（選單 4/5 建立）" -ForegroundColor DarkGray
     }
     Write-Host ""
 }
@@ -200,8 +365,12 @@ function Select-ServerIni {
     return $null
 }
 
-function Update-ServerIniMods {
-    param([string]$IniPath, [switch]$Remove)
+# 通用 ini 清單更新：一次讀檔、套用多個鍵的加/移除、一次備份寫回。
+# $Ops = @(@{ Key='Mods'; Add=@(id..); Remove=@(id..); BackslashStyle=$true; EnsureLast='' }, ...)
+#   - BackslashStyle：B42 的 Mods= 條目帶 \ 前綴；比對去前綴，寫入沿用檔內既有風格
+#   - EnsureLast：Map= 用——確保該條目存在且墊底（vanilla 'Muldraugh, KY'）
+function Update-IniLists {
+    param([string]$IniPath, [array]$Ops)
 
     # 讀取失敗（檔案被伺服器程序鎖住等）必須中止：$null 流下去會變成破壞性改寫
     try {
@@ -228,40 +397,65 @@ function Update-ServerIniMods {
         Write-Host "  [伺服器] 讀取設定檔失敗，未變更: $($_.Exception.Message)" -ForegroundColor Red
         return
     }
-    $idx = -1
-    for ($i = 0; $i -lt $lines.Count; $i++) {
-        if ($lines[$i] -match '^\s*Mods\s*=') { $idx = $i; break }
-    }
-    $current = @()
-    if ($idx -ge 0) {
-        $current = @(($lines[$idx] -replace '^\s*Mods\s*=', '') -split ';' |
-            ForEach-Object { $_.Trim() } | Where-Object { $_ })
-    }
 
-    # B42 的 Mods= 條目帶 \ 前綴（如 \StarlitLibrary）：比對時去前綴，寫入時沿用檔內既有風格
-    $existingIds = @($current | ForEach-Object { $_.TrimStart('\') })
-    if ($Remove) {
-        # 只移除本 repo 擁有的 id，不動共用/主 MOD；大小寫寬鬆以順便清掉手打錯大小寫的殘留
-        $updated = @($current | Where-Object { $ServerModIdsOwn -notcontains $_.TrimStart('\') })
-    } else {
-        $prefix = '\'
-        if ($current.Count -gt 0 -and @($current | Where-Object { $_.StartsWith('\') }).Count -eq 0) {
-            $prefix = ''
+    $changed = $false
+    $report = @()
+    foreach ($op in $Ops) {
+        $key = $op.Key
+        $idx = -1
+        for ($i = 0; $i -lt $lines.Count; $i++) {
+            if ($lines[$i] -match "^\s*$key\s*=") { $idx = $i; break }
+        }
+        $current = @()
+        if ($idx -ge 0) {
+            $current = @(($lines[$idx] -replace "^\s*$key\s*=", '') -split ';' |
+                ForEach-Object { $_.Trim() } | Where-Object { $_ })
         }
         $updated = @($current)
-        # PZ 的 mod id 比對是 case-sensitive：大小寫不同視為不存在，補上正確大小寫的條目
-        foreach ($id in $ServerModIds) {
-            if ($existingIds -cnotcontains $id) { $updated += "$prefix$id" }
+
+        # 注意：hashtable 缺鍵時 $op.Add / $op.Remove 會解析成 .NET 方法（truthy），必須用 ContainsKey
+        if ($op.ContainsKey('Remove') -and @($op.Remove).Count -gt 0) {
+            $removeList = @($op.Remove)
+            # 大小寫寬鬆以順便清掉手打錯大小寫的殘留
+            $updated = @($updated | Where-Object { $removeList -notcontains $_.TrimStart('\') })
+        }
+        if ($op.ContainsKey('Add') -and @($op.Add).Count -gt 0) {
+            $prefix = ''
+            if ($op.BackslashStyle) {
+                $prefix = '\'
+                if ($updated.Count -gt 0 -and @($updated | Where-Object { $_.StartsWith('\') }).Count -eq 0) {
+                    $prefix = ''
+                }
+            }
+            $existingIds = @($updated | ForEach-Object { $_.TrimStart('\') })
+            # PZ 的 mod id 比對是 case-sensitive：大小寫不同視為不存在，補上正確大小寫的條目
+            foreach ($id in $op.Add) {
+                if ($existingIds -cnotcontains $id) { $updated += "$prefix$id" }
+            }
+        }
+        # OrderFirst：把指定條目拉到最前（順序照清單），其餘保持原相對順序——
+        # 純 Add 只會 append，既有錯序也要能矯正
+        if ($op.ContainsKey('OrderFirst') -and @($op.OrderFirst).Count -gt 0) {
+            $of = @($op.OrderFirst)
+            $updated = @($of | Where-Object { $updated -contains $_ }) +
+                @($updated | Where-Object { $of -notcontains $_ })
+        }
+        if ($op.EnsureLast -and $updated.Count -gt 0) {
+            $updated = @($updated | Where-Object { $_ -ne $op.EnsureLast }) + @($op.EnsureLast)
+        }
+
+        if (($updated -join ';') -ne ($current -join ';')) {
+            $changed = $true
+            $newLine = "$key=" + ($updated -join ';')
+            if ($idx -ge 0) { $lines[$idx] = $newLine } else { $lines += $newLine }
+            $report += $newLine
         }
     }
 
-    if (($updated -join ';') -eq ($current -join ';')) {
-        Write-Host "  [伺服器] $(Split-Path -Leaf $IniPath) 的 Mods= 無需變更" -ForegroundColor DarkGray
+    if (-not $changed) {
+        Write-Host "  [伺服器] $(Split-Path -Leaf $IniPath) 無需變更" -ForegroundColor DarkGray
         return
     }
-
-    $newLine = "Mods=" + ($updated -join ';')
-    if ($idx -ge 0) { $lines[$idx] = $newLine } else { $lines += $newLine }
 
     # 伺服器啟動/關閉時會整檔回寫 ini（AGENTS.md），執行中寫入必被覆蓋——同名伺服器在跑就拒絕（偵測失敗放行）
     $serverName = [IO.Path]::GetFileNameWithoutExtension($IniPath)
@@ -292,7 +486,20 @@ function Update-ServerIniMods {
         return
     }
     Write-Host "  [伺服器] 已更新 $(Split-Path -Leaf $IniPath)（原檔備份為 .ini.bak）" -ForegroundColor Green
-    Write-Host "           $newLine" -ForegroundColor DarkGray
+    foreach ($r in $report) {
+        $shown = if ($r.Length -gt 200) { $r.Substring(0, 200) + '...' } else { $r }
+        Write-Host "           $shown" -ForegroundColor DarkGray
+    }
+}
+
+function Update-ServerIniMods {
+    param([string]$IniPath, [switch]$Remove)
+    if ($Remove) {
+        # 只移除本 repo 擁有的 id，不動共用/主 MOD
+        Update-IniLists -IniPath $IniPath -Ops @(@{ Key = 'Mods'; Remove = $ServerModIdsOwn; BackslashStyle = $true })
+    } else {
+        Update-IniLists -IniPath $IniPath -Ops @(@{ Key = 'Mods'; Add = $ServerModIds; BackslashStyle = $true })
+    }
 }
 
 function Invoke-ServerIniPrompt {
@@ -309,6 +516,135 @@ function Invoke-ServerIniPrompt {
         Update-ServerIniMods -IniPath $ini -Remove:$Remove
     } else {
         Write-Host "  [伺服器] 已取消，設定檔未變更" -ForegroundColor DarkGray
+    }
+}
+
+# ============================================
+# 地圖 MOD 掛載／卸載（mods 連結 ＋ 伺服器 Mods=/Map=）
+# ============================================
+
+# MOD 目錄名常帶 []（New-Item 的 -Path 會當萬用字元）與彎引號 ’（單引號字串終結符）——
+# 一律走 cmd mklink：對這些字元完全無感，名稱不需要進任何 PowerShell 字串程式碼。
+# 用 junction（/j）不用 symlink（/d）：免管理員權限／開發人員模式，遊戲讀取無差別
+function New-DirSymlink {
+    param([string]$LinkPath, [string]$TargetPath)
+    & cmd.exe /d /c mklink /j "$LinkPath" "$TargetPath" 2>$null | Out-Null
+    return (Test-IsSymlinkL $LinkPath)
+}
+
+function Mount-MapModLinks {
+    param($Inventory)
+    # 地圖 MOD 與 tile 依賴包都要連（-nosteam 伺服器/客戶端只掃 Zomboid\mods）
+    $all = @($Inventory.MapMods) + @($Inventory.Deps)
+    $ok = 0; $skip = 0; $failed = @()
+    foreach ($m in $all) {
+        $link = Join-Path $ModsDir $m.LinkName
+        if (Test-Path -LiteralPath $link) {
+            if (Test-IsSymlinkL $link) { $skip++ } else {
+                Write-Host "  [連結] $($m.LinkName)：已有實體資料夾，跳過（手動安裝？）" -ForegroundColor Yellow
+            }
+            continue
+        }
+        if (New-DirSymlink -LinkPath $link -TargetPath $m.Root) { $ok++ } else { $failed += $m }
+    }
+    if ($failed.Count -gt 0) {
+        # 逐個 UAC 會按到手軟——寫「資料檔＋讀檔迴圈」一次提權批次建立
+        # （名稱只存在資料檔裡，不嵌入腳本程式碼 → 免除引號/萬用字元地雷）
+        Write-Host "  [連結] $($failed.Count) 個需要管理員權限，批次提權建立..." -ForegroundColor Yellow
+        $dataFile = Join-Path $env:TEMP "link_mapmods_$PID.txt"
+        # '|' 是 Windows 檔名非法字元，安全作分隔
+        $failed | ForEach-Object { (Join-Path $ModsDir $_.LinkName) + '|' + $_.Root } |
+            Set-Content -Path $dataFile -Encoding UTF8
+        $tmp = Join-Path $env:TEMP "link_mapmods_$PID.ps1"
+        @(
+            "`$lines = Get-Content -LiteralPath '$dataFile' -Encoding UTF8",
+            'foreach ($ln in $lines) {',
+            '    $p = $ln -split ''\|'', 2',
+            '    & cmd.exe /d /c mklink /d "$($p[0])" "$($p[1])" | Out-Null',
+            '}'
+        ) | Set-Content -Path $tmp -Encoding UTF8
+        try {
+            Start-Process powershell.exe -Verb RunAs -Wait -ArgumentList @(
+                "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $tmp)
+        } catch {}
+        Remove-Item $tmp, $dataFile -Force -ErrorAction SilentlyContinue
+        $stillFailed = @($failed | Where-Object { -not (Test-IsSymlinkL (Join-Path $ModsDir $_.LinkName)) })
+        $ok += ($failed.Count - $stillFailed.Count)
+        foreach ($m in $stillFailed) { Write-Host "  [連結] $($m.LinkName) 建立失敗" -ForegroundColor Red }
+    }
+    Write-Host "  [連結] 新建 $ok、已存在 $skip（共 $($all.Count) 個 MOD）" -ForegroundColor Green
+}
+
+function Dismount-MapModLinks {
+    param($Inventory)
+    # 只移除地圖 MOD 的連結；tile 依賴包可能被其他 MOD 共用，保留
+    $removed = 0
+    foreach ($m in @($Inventory.MapMods)) {
+        $link = Join-Path $ModsDir $m.LinkName
+        if (-not (Test-Path -LiteralPath $link)) { continue }
+        if (-not (Test-IsSymlinkL $link)) {
+            Write-Host "  [連結] $($m.LinkName)：實體資料夾，跳過（請手動處理）" -ForegroundColor Yellow
+            continue
+        }
+        # 保險絲：只刪指向 Workshop 內容目錄的連結
+        $target = (Get-Item -LiteralPath $link -Force).Target
+        if ($target -notmatch 'workshop[\\/]content[\\/]108600') {
+            Write-Host "  [連結] $($m.LinkName)：指向非 Workshop 目錄，跳過" -ForegroundColor Yellow
+            continue
+        }
+        try { (Get-Item -LiteralPath $link -Force).Delete(); $removed++ } catch {
+            Write-Host "  [連結] $($m.LinkName) 移除失敗: $($_.Exception.Message)" -ForegroundColor Red
+        }
+    }
+    Write-Host "  [連結] 已移除 $removed 個地圖 MOD 連結（tile 依賴包連結保留）" -ForegroundColor Green
+}
+
+function Invoke-MapModsServerWrite {
+    param($Inventory, [switch]$Remove)
+    $ini = Select-ServerIni
+    if (-not $ini) { Write-Host "  [伺服器] 已取消，設定檔未變更" -ForegroundColor DarkGray; return }
+    $mapIds  = @($Inventory.MapMods | ForEach-Object { $_.Id })
+    $folders = @($Inventory.MapMods | ForEach-Object { $_.MapFolders } | Where-Object { $_ } |
+        Select-Object -Unique | Sort-Object)
+    if ($Remove) {
+        Update-IniLists -IniPath $ini -Ops @(
+            @{ Key = 'Mods'; Remove = $mapIds; BackslashStyle = $true },
+            @{ Key = 'Map';  Remove = $folders; EnsureLast = 'Muldraugh, KY' }
+        )
+        Write-Host "  [提示] tile 依賴包的 Mods= 條目保留（可能被其他 MOD 共用；純材質包無副作用）" -ForegroundColor DarkGray
+    } else {
+        $depIds = @($Inventory.Deps | ForEach-Object { $_.Id })
+        Update-IniLists -IniPath $ini -Ops @(
+            @{ Key = 'Mods'; Add = @($ServerModIds) + $depIds + $mapIds; BackslashStyle = $true },
+            @{ Key = 'Map';  Add = $folders; OrderFirst = $MapOrderFirst; EnsureLast = 'Muldraugh, KY' }
+        )
+        Write-Host "  [提示] Map= 順序＝優先序（先者為大、vanilla 墊底）；已自動把已知會" -ForegroundColor DarkGray
+        Write-Host "         崩服的 bg300 肇事圖排到最前（詳見 check_map_conflicts.ps1）" -ForegroundColor DarkGray
+    }
+}
+
+function Show-MapModSummary {
+    param($Inventory)
+    $folderCount = @($Inventory.MapMods | ForEach-Object { $_.MapFolders } | Where-Object { $_ }).Count
+    Write-Host ""
+    Write-Host "  地圖 MOD：$(@($Inventory.MapMods).Count) 個（地圖資料夾 $folderCount 個）＋ tile 依賴 $(@($Inventory.Deps).Count) 個" -ForegroundColor Cyan
+    if (@($Inventory.Missing).Count -gt 0) {
+        Write-Host "  [警告] 未安裝（Workshop 未訂閱/未下載）：$($Inventory.Missing -join '、')" -ForegroundColor Yellow
+    }
+}
+
+function Invoke-MapMods {
+    param([string]$Mode)
+    Write-Host ""
+    $inv = Get-MapModInventory
+    if (-not $inv) { return }
+    Show-MapModSummary $inv
+    Write-Host ""
+    switch ($Mode) {
+        'link-only'     { Mount-MapModLinks $inv }
+        'link-server'   { Mount-MapModLinks $inv; Invoke-MapModsServerWrite $inv }
+        'server-remove' { Invoke-MapModsServerWrite $inv -Remove }
+        'remove-all'    { Invoke-MapModsServerWrite $inv -Remove; Dismount-MapModLinks $inv }
     }
 }
 
@@ -414,9 +750,15 @@ while ($true) {
     Write-Host "  Workshop: $WorkshopLink"
     Write-Host "  Mods:     $ModsLink"
     Write-Host ""
-    Write-Host "  [1] 掛載 - 建立符號連結（Workshop + Mods）"
-    Write-Host "  [2] 卸載 - 移除符號連結（Workshop + Mods）"
+    Write-Host "  [1] 掛載本包 - 建立符號連結（Workshop + Mods）"
+    Write-Host "  [2] 卸載本包 - 移除符號連結（Workshop + Mods）"
     Write-Host "  [3] 查看目前狀態"
+    Write-Host ""
+    Write-Host "  --- 支援的地圖 MOD（依 Lua 註冊清單）---" -ForegroundColor DarkCyan
+    Write-Host "  [4] 地圖 MOD：連結＋寫入伺服器（mods 連結 + Mods= + Map=）"
+    Write-Host "  [5] 地圖 MOD：只建 mods 連結（不動伺服器設定）"
+    Write-Host "  [6] 地圖 MOD：只從伺服器移除（Mods= + Map=；連結保留）"
+    Write-Host "  [7] 地圖 MOD：全部移除（伺服器設定＋連結）"
     Write-Host ""
     Write-Host "  [Q] 離開"
     Write-Host ""
@@ -426,6 +768,10 @@ while ($true) {
         "1" { Mount-Workshop; Read-Host "按 Enter 繼續" }
         "2" { Dismount-Workshop; Read-Host "按 Enter 繼續" }
         "3" { Show-Status; Read-Host "按 Enter 繼續" }
+        "4" { Invoke-MapMods -Mode 'link-server'; Read-Host "按 Enter 繼續" }
+        "5" { Invoke-MapMods -Mode 'link-only'; Read-Host "按 Enter 繼續" }
+        "6" { Invoke-MapMods -Mode 'server-remove'; Read-Host "按 Enter 繼續" }
+        "7" { Invoke-MapMods -Mode 'remove-all'; Read-Host "按 Enter 繼續" }
         "Q" { Write-Host ""; Write-Host "再見！"; exit 0 }
     }
 }
