@@ -16,7 +16,7 @@
 [*] 大型地圖（圖檔數百 MB）可能做成獨立圖包發布，避免本包越長越肥
 [/list]
 
-[h2]✅ 目前支援（v0.2.0：57 個地圖 MOD、72 張地圖）[/h2]
+[h2]✅ 目前支援（v0.3.0：64 個地圖 MOD、80 張地圖）[/h2]
 完整清單與一鍵訂閱請看
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352][b]支援地圖收藏[/b][/url]
 （含全部地圖 MOD＋主 MOD＋本包；地圖名點進收藏頁即有連結）。收錄名單：
@@ -78,12 +78,20 @@
 [*] White forest
 [*] WILDSTEEL - FORT SPIFFO
 [*] Willowbrook Bastion
+[*] Bunker 42
+[*] Clover Lake Farmhouse（四葉草湖畔農莊）
+[*] Greenport, KY
+[*] New Ellroy and Shadyside（2 張地圖）
+[*] WEST POINT: THE BRIDGE CITADEL
+[*] White forest ridge（白森岭）
+[*] Yanghu Town（楊湖鎮）
 [/list]
 [b]備註：[/b]White Wolf Ridge 因原 MOD 已從 Workshop 下架未收錄；「亞特蘭大」與
 「亞特蘭大，大廈生存」為衝突二選一。
 [h2]🙏 感謝原作者[/h2]
 以上地圖的設計與心血皆屬原作者，本包僅提供「遊戲內小地圖圖像化」支援。
 若您是地圖原作者、對收錄方式有任何意見，請留言或私訊我，會立即處理（包含移除該地圖）。
+[b]回報分流：[/b]小地圖圖像問題（圖對不上／框線錯位／翻譯錯）回報本包；地圖本身的 BUG（缺材質、建築問題、衝突）請向原地圖作者回報——本包只負責圖像渲染。
 
 [h2]❓ 常見問題[/h2]
 [list]

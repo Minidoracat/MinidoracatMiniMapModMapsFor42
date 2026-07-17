@@ -159,6 +159,22 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 14336, 5632, 14848, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_FortSpiffo" },
         { zip = "Willowbrook Bastion!.pyramid.zip", mapMod = "Willowbrook Bastion!",
             bounds = { 8448, 9472, 9728, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_WillowbrookBastion" },
+        { zip = "Clover Lake.pyramid.zip", mapMod = "Clover Lake",
+            bounds = { 9472, 8960, 9984, 9984 }, nameKey = "UI_MinidoracatMiniMapModMaps_CloverLake" },
+        { zip = "Bunker 42.pyramid.zip", mapMod = "Bunker42",
+            bounds = { 11008, 9728, 11520, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_Bunker42" },
+        { zip = "Greenport, KY.pyramid.zip", mapMod = "GreenportB42",
+            bounds = { 7936, 7168, 8704, 7936 }, nameKey = "UI_MinidoracatMiniMapModMaps_Greenport" },
+        { zip = "New Ellroy.pyramid.zip", mapMod = "NewEllroyShadysideB42",
+            bounds = { 4864, 9728, 5888, 10752 }, nameKey = "UI_MinidoracatMiniMapModMaps_NewEllroy" },
+        { zip = "Shadyside.pyramid.zip", mapMod = "NewEllroyShadysideB42",
+            bounds = { 5632, 9728, 6400, 10752 }, nameKey = "UI_MinidoracatMiniMapModMaps_Shadyside" },
+        { zip = "Blackmaze_wp.pyramid.zip", mapMod = "blackmaze_wp",
+            bounds = { 10752, 6144, 11264, 6656 }, nameKey = "UI_MinidoracatMiniMapModMaps_BridgeCitadel" },
+        { zip = "ningzi.pyramid.zip", mapMod = "White_forest_ridge",
+            bounds = { 8960, 11520, 9728, 12800 }, nameKey = "UI_MinidoracatMiniMapModMaps_WhiteForestRidge" },
+        { zip = "Yanghu Town.pyramid.zip", mapMod = "Yanghu Town",
+            bounds = { 8448, 8960, 9728, 9728 }, nameKey = "UI_MinidoracatMiniMapModMaps_YanghuTown" },
     })
 else
     print("[MinidoracatMiniMapModMaps] 找不到主 MOD API（MinidoracatMiniMapAPI）——請安裝並啟用 Minidoracat MiniMap for B42 主 MOD")

@@ -14,8 +14,15 @@ outline data for several map MODs.
 [/list]
 
 [h2]🗺️ Included maps & requests[/h2]
-Currently supports [b]57 map MODs (72 maps)[/b] — subscribe them all at once via the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
+Currently supports [b]64 map MODs (80 maps)[/b] — subscribe them all at once via the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
 requests all live in the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]Discussions[/url] — come make a wish!
+
+[h2]🔧 Support scope[/h2]
+This pack only provides the [b]minimap / world-map image rendering[/b].
+[list]
+[*] Image issues (misaligned imagery, outline position, name translations) → report here
+[*] Issues with the map MODs themselves (missing tiles, building bugs, map conflicts, save issues) → please report to the original map authors
+[/list]
 
 [h2]📋 MOD info[/h2]
 [list]

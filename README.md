@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **72 張**（57 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **80 張**（64 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 
 | 地圖 | 對應 MOD（mod ID) | 範圍（世界 square） |
 |------|--------------------|---------------------|
@@ -94,6 +94,15 @@
 | 西點擴張區 | `WestPointExpansionB42` | 11776,6400 – 13312,7680 |
 | 斯皮福堡（WILDSTEEL） | `WILDSTEEL` | 14336,5632 – 14848,6144 |
 | 柳溪堡壘 | `Willowbrook Bastion!` | 8448,9472 – 9728,10240 |
+
+| 四葉草湖畔農莊 | `Clover Lake` | 9472,8960 – 9984,9984 |
+| 42 號地堡 | `Bunker42` | 11008,9728 – 11520,10240 |
+| 綠港 | `GreenportB42` | 7936,7168 – 8704,7936 |
+| 新艾爾羅伊 | `NewEllroyShadysideB42` | 4864,9728 – 5888,10752 |
+| 沙德賽德 | `NewEllroyShadysideB42` | 5632,9728 – 6400,10752 |
+| 西點橋城 | `blackmaze_wp` | 10752,6144 – 11264,6656 |
+| 白森嶺 | `White_forest_ridge` | 8960,11520 – 9728,12800 |
+| 楊湖鎮 | `Yanghu Town` | 8448,8960 – 9728,9728 |
 
 ## 專案結構
 

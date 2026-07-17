@@ -13,8 +13,15 @@
 [/list]
 
 [h2]🗺️ 收錄地圖與許願[/h2]
-目前支援 **57 個地圖 MOD（72 張地圖）**，一鍵訂閱可用 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。完整清單、原作者致謝、以及「許願想要的地圖」都在
+目前支援 **64 個地圖 MOD（80 張地圖）**，一鍵訂閱可用 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。完整清單、原作者致謝、以及「許願想要的地圖」都在
 [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]討論區[/url]——歡迎留言許願！
+
+[h2]🔧 支援範圍說明[/h2]
+本包只負責[b]小地圖／世界地圖的圖像渲染[/b]。
+[list]
+[*] 圖像問題（圖對不上、框線位置錯、名稱翻譯錯）→ 歡迎在本頁回報
+[*] 地圖 MOD 本身的問題（缺材質、建築 BUG、地圖間衝突、存檔問題）→ 請向原地圖作者回報
+[/list]
 
 [h2]📋 MOD 資訊[/h2]
 [list]

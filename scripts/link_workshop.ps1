@@ -41,7 +41,8 @@ $LuaRegistry = Join-Path $ModContent "42\media\lua\client\MinidoracatMiniMapModM
 # getZombieIntensityForChunk 混用 300/256 兩種 cell 網格，這幾張圖的 bg300 覆蓋圖會
 # 「聲稱」蓋到鄰圖的 cell 卻拿不出 lotheader → NPE 崩服。排在最前面＝優先序最高，
 # 掃描（只往低優先方向走）就永遠不會經過它們。新增地圖後重跑 check_map_conflicts.ps1 驗證。
-$MapOrderFirst = @('AnruisiTown', 'Taylorsville', 'RaccoonCity', 'Camden County B42')
+# Coryerdon 需在 Taylorsville 後（作者聲明）、Greenport 前（bg300 潛在雷）——列表順序即滿足
+$MapOrderFirst = @('AnruisiTown', 'Taylorsville', 'Coryerdon B42', 'RaccoonCity', 'Camden County B42', 'Clover Lake')  # Clover Lake：作者要求高於 Sector-7 公路（basement 衝突）
 
 # 驗證 MOD 來源目錄（以 mod.info 為準；workshop.txt 由 Workshop 上傳流程才會產生）
 if (-not (Test-Path (Join-Path $ModContent "42\mod.info"))) {
