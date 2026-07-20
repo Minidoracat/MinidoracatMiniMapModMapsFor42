@@ -78,5 +78,9 @@
     "UI_MinidoracatMiniMapModMaps_Shadyside": "シェイディサイド",
     "UI_MinidoracatMiniMapModMaps_BridgeCitadel": "ウェストポイント橋上都市",
     "UI_MinidoracatMiniMapModMaps_WhiteForestRidge": "ホワイトフォレストリッジ",
-    "UI_MinidoracatMiniMapModMaps_YanghuTown": "ヤンフータウン"
+    "UI_MinidoracatMiniMapModMaps_YanghuTown": "ヤンフータウン",
+    "UI_MinidoracatMiniMapModMaps_BegoniaTown": "ベゴニアタウン",
+    "UI_MinidoracatMiniMapModMaps_Frogtown": "フロッグタウン",
+    "UI_MinidoracatMiniMapModMaps_HavenFall": "ヘイヴンフォール",
+    "UI_MinidoracatMiniMapModMaps_MaconTWD": "メイコン（TWD）"
 }

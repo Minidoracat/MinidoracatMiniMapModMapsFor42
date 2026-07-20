@@ -1,5 +1,23 @@
 # Changelog
 
+## [42.19.0-0.4.0] - 2026-07-20
+
+### 新增
+
+- 新增 **4 張地圖**（4 個 Workshop 項目，baker 於許願串點播）：海棠鎮
+  （`Begonia_Town`）、青蛙鎮（`Frogtown`）、海文弗爾（`HavenFall`）、
+  梅肯／陰屍路（`Macon`）；對應四語翻譯 4 組。累計 **68 個地圖 MOD／84 張地圖**。
+- 注意：Frogtown 與 Haven Fall 原作者仍在施工（Alpha／部分地圖），
+  日後地圖更新時需重渲對應 pyramid。
+
+### 修正
+
+- **SecretZ／NewEllroy+Shadyside 逐圖顯示**（玩家 baker 於許願串回報）：
+  這兩個「單一 mod 內含多張地圖」的項目，MP 伺服器可在 `Map=` 只挑部分地圖載入，
+  原本只看 mod ID 會把未載入的據點也畫出來。14 個條目（SecretZ 12 據點＋
+  New Ellroy＋Shadyside）逐條補上 `mapDir`（主 MOD 新增的選配欄位），
+  未載入的地圖不再誤畫；單機與其餘單地圖 MOD 行為不變。需搭配主 MOD 對應版本。
+
 ## [42.19.0-0.3.0] - 2026-07-17
 
 ### 新增

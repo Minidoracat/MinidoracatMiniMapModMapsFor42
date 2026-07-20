@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **80 張**（64 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **84 張**（68 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 
 | 地圖 | 對應 MOD（mod ID) | 範圍（世界 square） |
 |------|--------------------|---------------------|
@@ -103,6 +103,10 @@
 | 西點橋城 | `blackmaze_wp` | 10752,6144 – 11264,6656 |
 | 白森嶺 | `White_forest_ridge` | 8960,11520 – 9728,12800 |
 | 楊湖鎮 | `Yanghu Town` | 8448,8960 – 9728,9728 |
+| 海棠鎮 | `Begonia_Town` | 11264,7424 – 12544,7936 |
+| 青蛙鎮 | `Frogtown` | 2816,6656 – 4096,7680 |
+| 海文弗爾 | `HavenFall` | 4096,8448 – 5120,9472 |
+| 梅肯（陰屍路） | `Macon` | 3584,6400 – 4608,6912 |
 
 ## 專案結構
 
@@ -129,6 +133,8 @@ MinidoracatMiniMapModMapsFor42/
 
 1. pzmap Studio 選該地圖 MOD →「遊戲內小地圖」模式輸出 `<地圖名>.pyramid.zip`
    （預設輸出名，免改名）放進 `media/minimap/`
-2. `MinidoracatMiniMapModMaps.lua` 註冊清單加一行（bounds 抄渲染輸出 pyramid.txt）
+2. `MinidoracatMiniMapModMaps.lua` 註冊清單加一行（bounds 抄渲染輸出 pyramid.txt）；
+   一 mod 多地圖（SecretZ 類）逐條加 `mapDir`＝該 MOD `media/maps/` 下的資料夾名，
+   MP 伺服器 `Map=` 未載入的地圖才不會誤畫（單地圖 mod 免填）
 3. `Translate/*/UI.json` 加地圖名翻譯鍵
 

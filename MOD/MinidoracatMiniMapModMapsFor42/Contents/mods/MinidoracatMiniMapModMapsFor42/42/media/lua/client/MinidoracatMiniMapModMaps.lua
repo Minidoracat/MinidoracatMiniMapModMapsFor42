@@ -7,6 +7,9 @@
 -- 條目格式（同主 MOD MAPS manifest）：
 --   zip     = 本 MOD media/minimap/ 下的 pyramid zip 檔名（pzmap 渲染輸出）
 --   mapMod  = 對應地圖 MOD 的 mod ID（啟用才掛載）
+--   mapDir  = 選配，地圖目錄名（該 MOD media/maps/ 下資料夾）：一 mod 多地圖
+--             （SecretZ、NewEllroy+Shadyside）才指定——MP 伺服器 Map= 未載入
+--             該目錄就不顯示（未載入的據點不誤畫）；單地圖 mod 免填
 --   bounds  = 渲染時 pyramid.txt 的世界 square 座標（右/下排他）
 --   nameKey = UI.json 翻譯鍵（缺譯退 mapMod）
 if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
@@ -119,29 +122,31 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 9472, 7936, 10496, 9216 }, nameKey = "UI_MinidoracatMiniMapModMaps_Sector7Highway" },
         { zip = "Sector-7 Breach.pyramid.zip", mapMod = "Sector-7 Breach",
             bounds = { 8960, 6400, 9728, 7936 }, nameKey = "UI_MinidoracatMiniMapModMaps_Sector7Breach" },
-        { zip = "SZ_Bunker_3.pyramid.zip", mapMod = "Secretz42",
+        -- SecretZ：單一 mod 內 12 個獨立據點目錄，MP 伺服器常只挑部分進 Map=
+        -- ——逐條指定 mapDir，未載入的據點不畫（需主 MOD ≥ mapDir 支援版）
+        { zip = "SZ_Bunker_3.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Bunker_3",
             bounds = { 5888, 11520, 6400, 12032 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZBunker3" },
-        { zip = "SZ_Checkpoint1.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_Checkpoint1.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Checkpoint1",
             bounds = { 11776, 7936, 12544, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZCheckpoint1" },
-        { zip = "SZ_Checkpoint5.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_Checkpoint5.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Checkpoint5",
             bounds = { 10752, 11008, 11264, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZCheckpoint5" },
-        { zip = "SZ_Checkpoint6.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_Checkpoint6.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Checkpoint6",
             bounds = { 5632, 5632, 6144, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZCheckpoint6" },
-        { zip = "SZ_Checkpoint8.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_Checkpoint8.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Checkpoint8",
             bounds = { 6400, 11008, 6912, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZCheckpoint8" },
-        { zip = "SZ_DeerheadLake_Base.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_DeerheadLake_Base.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_DeerheadLake_Base",
             bounds = { 4352, 8192, 4864, 8704 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZDeerheadLake" },
-        { zip = "SZ_Louisville_Military_Complex.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_Louisville_Military_Complex.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Louisville_Military_Complex",
             bounds = { 13568, 1792, 15360, 3072 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZLouisvilleMilitary" },
-        { zip = "SZ_MarchRidge_ResearchFacility.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_MarchRidge_ResearchFacility.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_MarchRidge_ResearchFacility",
             bounds = { 9984, 11776, 10752, 12800 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZMarchRidgeResearch" },
-        { zip = "SZ_Muldraugh_Traindepot_Refugee.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_Muldraugh_Traindepot_Refugee.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Muldraugh_Traindepot_Refugee",
             bounds = { 11264, 9472, 12032, 10752 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZTrainDepot" },
-        { zip = "SZ_MuldraughCrossroads_Checkpoint.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_MuldraughCrossroads_Checkpoint.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_MuldraughCrossroads_Checkpoint",
             bounds = { 10496, 11008, 11008, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZCrossroads" },
-        { zip = "SZ_North_Checkpoint.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_North_Checkpoint.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_North_Checkpoint",
             bounds = { 3584, 6656, 4352, 7424 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZNorthCheckpoint" },
-        { zip = "SZ_The_Mall.pyramid.zip", mapMod = "Secretz42",
+        { zip = "SZ_The_Mall.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_The_Mall",
             bounds = { 13568, 5632, 14336, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZTheMall" },
         { zip = "taibeiroad.pyramid.zip", mapMod = "Taibeiroad4",
             bounds = { 7936, 9984, 9216, 11776 }, nameKey = "UI_MinidoracatMiniMapModMaps_Taibeiroad" },
@@ -165,9 +170,10 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 11008, 9728, 11520, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_Bunker42" },
         { zip = "Greenport, KY.pyramid.zip", mapMod = "GreenportB42",
             bounds = { 7936, 7168, 8704, 7936 }, nameKey = "UI_MinidoracatMiniMapModMaps_Greenport" },
-        { zip = "New Ellroy.pyramid.zip", mapMod = "NewEllroyShadysideB42",
+        -- NewEllroy+Shadyside：一 mod 兩鎮，同 SecretZ 逐條 mapDir
+        { zip = "New Ellroy.pyramid.zip", mapMod = "NewEllroyShadysideB42", mapDir = "New Ellroy",
             bounds = { 4864, 9728, 5888, 10752 }, nameKey = "UI_MinidoracatMiniMapModMaps_NewEllroy" },
-        { zip = "Shadyside.pyramid.zip", mapMod = "NewEllroyShadysideB42",
+        { zip = "Shadyside.pyramid.zip", mapMod = "NewEllroyShadysideB42", mapDir = "Shadyside",
             bounds = { 5632, 9728, 6400, 10752 }, nameKey = "UI_MinidoracatMiniMapModMaps_Shadyside" },
         { zip = "Blackmaze_wp.pyramid.zip", mapMod = "blackmaze_wp",
             bounds = { 10752, 6144, 11264, 6656 }, nameKey = "UI_MinidoracatMiniMapModMaps_BridgeCitadel" },
@@ -175,6 +181,14 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 8960, 11520, 9728, 12800 }, nameKey = "UI_MinidoracatMiniMapModMaps_WhiteForestRidge" },
         { zip = "Yanghu Town.pyramid.zip", mapMod = "Yanghu Town",
             bounds = { 8448, 8960, 9728, 9728 }, nameKey = "UI_MinidoracatMiniMapModMaps_YanghuTown" },
+        { zip = "Begonia_Town.pyramid.zip", mapMod = "Begonia_Town",
+            bounds = { 11264, 7424, 12544, 7936 }, nameKey = "UI_MinidoracatMiniMapModMaps_BegoniaTown" },
+        { zip = "Frogtown.pyramid.zip", mapMod = "Frogtown",
+            bounds = { 2816, 6656, 4096, 7680 }, nameKey = "UI_MinidoracatMiniMapModMaps_Frogtown" },
+        { zip = "HavenFall.pyramid.zip", mapMod = "HavenFall",
+            bounds = { 4096, 8448, 5120, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_HavenFall" },
+        { zip = "Macon.pyramid.zip", mapMod = "Macon",
+            bounds = { 3584, 6400, 4608, 6912 }, nameKey = "UI_MinidoracatMiniMapModMaps_MaconTWD" },
     })
 else
     print("[MinidoracatMiniMapModMaps] 找不到主 MOD API（MinidoracatMiniMapAPI）——請安裝並啟用 Minidoracat MiniMap for B42 主 MOD")

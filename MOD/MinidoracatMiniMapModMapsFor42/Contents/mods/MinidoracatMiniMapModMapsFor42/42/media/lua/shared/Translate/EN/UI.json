@@ -78,5 +78,9 @@
     "UI_MinidoracatMiniMapModMaps_Shadyside": "Shadyside",
     "UI_MinidoracatMiniMapModMaps_BridgeCitadel": "West Point: The Bridge Citadel",
     "UI_MinidoracatMiniMapModMaps_WhiteForestRidge": "White Forest Ridge",
-    "UI_MinidoracatMiniMapModMaps_YanghuTown": "Yanghu Town"
+    "UI_MinidoracatMiniMapModMaps_YanghuTown": "Yanghu Town",
+    "UI_MinidoracatMiniMapModMaps_BegoniaTown": "Begonia Town",
+    "UI_MinidoracatMiniMapModMaps_Frogtown": "Frogtown",
+    "UI_MinidoracatMiniMapModMaps_HavenFall": "Haven Fall",
+    "UI_MinidoracatMiniMapModMaps_MaconTWD": "Macon (TWD)"
 }

@@ -16,7 +16,7 @@
 [*] 大型地圖（圖檔數百 MB）可能做成獨立圖包發布，避免本包越長越肥
 [/list]
 
-[h2]✅ 目前支援（v0.3.0：64 個地圖 MOD、80 張地圖）[/h2]
+[h2]✅ 目前支援（v0.4.0：68 個地圖 MOD、84 張地圖）[/h2]
 完整清單與一鍵訂閱請看
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352][b]支援地圖收藏[/b][/url]
 （含全部地圖 MOD＋主 MOD＋本包；地圖名點進收藏頁即有連結）。收錄名單：
@@ -85,6 +85,10 @@
 [*] WEST POINT: THE BRIDGE CITADEL
 [*] White forest ridge（白森岭）
 [*] Yanghu Town（楊湖鎮）
+[*] Begonia Town（海棠鎮）
+[*] [42+] [MP] Frogtown by TwinCrows（青蛙鎮）
+[*] Haven Fall [B42]
+[*] Macon From TWD（陰屍路梅肯）
 [/list]
 [b]備註：[/b]White Wolf Ridge 因原 MOD 已從 Workshop 下架未收錄；「亞特蘭大」與
 「亞特蘭大，大廈生存」為衝突二選一。
