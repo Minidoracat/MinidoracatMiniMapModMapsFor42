@@ -24,6 +24,14 @@
 [*] マップMOD自体の不具合（タイル欠け・建物バグ・マップ間の競合・セーブ問題）→ 元のマップ作者へ報告してください
 [/list]
 
+[h2]🔗 シリーズ MOD[/h2]
+[list]
+[*] [b]本体 MOD（必須）[/b]：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]——地図画像化の本体
+[*] [b]このページ[/b]：MOD Maps——マップ MOD 用マップパック addon
+[*] [b]任意[/b]：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url]——サードパーティ MOD 互換パック（犬・馬などの動物アイコン）
+[*] [b]任意[/b]：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url]——サーバーカスタムゾーン表示
+[/list]
+
 [h2]📋 MOD 情報[/h2]
 [list]
 [*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42

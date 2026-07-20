@@ -24,6 +24,14 @@ This pack only provides the [b]minimap / world-map image rendering[/b].
 [*] Issues with the map MODs themselves (missing tiles, building bugs, map conflicts, save issues) → please report to the original map authors
 [/list]
 
+[h2]🔗 MOD series[/h2]
+[list]
+[*] [b]Main MOD (required)[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] — the image-based map core
+[*] [b]This page[/b]: MOD Maps — map pack addon for map MODs
+[*] [b]Optional[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url] — third-party compatibility pack (animal icons for dogs, horses, etc.)
+[*] [b]Optional[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url] — server custom-zone display
+[/list]
+
 [h2]📋 MOD info[/h2]
 [list]
 [*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42

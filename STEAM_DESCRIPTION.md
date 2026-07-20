@@ -23,6 +23,14 @@
 [*] 地圖 MOD 本身的問題（缺材質、建築 BUG、地圖間衝突、存檔問題）→ 請向原地圖作者回報
 [/list]
 
+[h2]🔗 系列 MOD[/h2]
+[list]
+[*] [b]主 MOD（必裝）[/b]：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]——地圖圖片化本體
+[*] [b]本頁[/b]：MOD Maps——地圖 MOD 圖像包
+[*] [b]選裝[/b]：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url]——第三方 MOD 相容包（狗、馬等動物圖標）
+[*] [b]選裝[/b]：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url]——伺服器自訂區域顯示
+[/list]
+
 [h2]📋 MOD 資訊[/h2]
 [list]
 [*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42

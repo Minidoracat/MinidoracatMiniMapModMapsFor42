@@ -27,6 +27,14 @@ description=[*] Image issues (misaligned imagery, outline position, name transla
 description=[*] Issues with the map MODs themselves (missing tiles, building bugs, map conflicts, save issues) → please report to the original map authors
 description=[/list]
 description=
+description=[h2]🔗 MOD series[/h2]
+description=[list]
+description=[*] [b]Main MOD (required)[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] — the image-based map core
+description=[*] [b]This page[/b]: MOD Maps — map pack addon for map MODs
+description=[*] [b]Optional[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url] — third-party compatibility pack (animal icons for dogs, horses, etc.)
+description=[*] [b]Optional[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url] — server custom-zone display
+description=[/list]
+description=
 description=[h2]📋 MOD info[/h2]
 description=[list]
 description=[*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42
@@ -44,6 +52,7 @@ description=[url=https://www.twitch.tv/minidoracat]🎬 Twitch channel[/url]
 description=
 description=[b]#map #minimap #worldmap #Minidoracat[/b]
 description=
+description=Workshop ID: 3763914102
 description=Mod ID: MinidoracatMiniMapModMapsFor42
 tags=Build 42;Interface;Map;Multiplayer
 visibility=public
