@@ -14,7 +14,7 @@
 [/list]
 
 [h2]🗺️ 収録マップとリクエスト[/h2]
-現在 [b]68 個のマップ MOD（84 マップ）[/b]に対応。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]から一括サブスクライブ可能。対応リスト・原作者クレジット・マップリクエストは
+現在 [b]66 個のマップ MOD（81 マップ）[/b]に対応。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]から一括サブスクライブ可能。対応リスト・原作者クレジット・マップリクエストは
 [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]ディスカッション[/url]へどうぞ！
 
 [h2]🔧 サポート範囲[/h2]

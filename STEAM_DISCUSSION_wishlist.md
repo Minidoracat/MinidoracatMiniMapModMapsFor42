@@ -55,7 +55,6 @@
 [*] LittleTownship
 [*] Louisville Riverboat
 [*] Megurigaoka, Kanagawa, Japan - Project Gurashi
-[*] Meiya'sTown
 [*] Muldraugh 1993 B42
 [*] Muldraugh Fire Department
 [*] Muldraugh-Military checkpoint -Overpass (B42)
@@ -68,7 +67,6 @@
 [*] Safeharbor Garrison
 [*] SafeWayHamlet
 [*] SecretZ（12 個據點）
-[*] Sector-7 Breach-Meiya's City（含公路擴充）
 [*] Taibeiroad
 [*] Taylorsville [B41/B42]
 [*] Tikitown & PowerPlant (B41/B42)

@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **84 張**（68 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **81 張**（66 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 
 | 地圖 | 對應 MOD（mod ID) | 範圍（世界 square） |
 |------|--------------------|---------------------|

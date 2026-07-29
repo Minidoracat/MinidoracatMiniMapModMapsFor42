@@ -94,8 +94,6 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 13056, 1024, 13312, 1280 }, nameKey = "UI_MinidoracatMiniMapModMaps_LouisvilleRiverboat" },
         { zip = "Megurigaoka City, Kanagawa.pyramid.zip", mapMod = "Project Gurashi",
             bounds = { 0, 2304, 1280, 4864 }, nameKey = "UI_MinidoracatMiniMapModMaps_Megurigaoka" },
-        { zip = "Meiya'sTown.pyramid.zip", mapMod = "Meiya'sTown",
-            bounds = { 7936, 10752, 8448, 11264 }, nameKey = "UI_MinidoracatMiniMapModMaps_MeiyasTown" },
         { zip = "Muldraugh 1993 B42.pyramid.zip", mapMod = "muldraugh1993b42",
             bounds = { 10496, 8960, 11264, 11008 }, nameKey = "UI_MinidoracatMiniMapModMaps_Muldraugh1993" },
         { zip = "Muldraugh-SouthernCheckpoint.pyramid.zip", mapMod = "Muldraugh-Checkpoint",
@@ -118,10 +116,6 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 11520, 10496, 12800, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SafeharborGarrison" },
         { zip = "SafeWayHamlet.pyramid.zip", mapMod = "SafeWayHamlet",
             bounds = { 12544, 10752, 13056, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SafeWayHamlet" },
-        { zip = "Sector-7 Breach Highway.pyramid.zip", mapMod = "Sector-7 Breach Highway",
-            bounds = { 9472, 7936, 10496, 9216 }, nameKey = "UI_MinidoracatMiniMapModMaps_Sector7Highway" },
-        { zip = "Sector-7 Breach.pyramid.zip", mapMod = "Sector-7 Breach",
-            bounds = { 8960, 6400, 9728, 7936 }, nameKey = "UI_MinidoracatMiniMapModMaps_Sector7Breach" },
         -- SecretZ：單一 mod 內 12 個獨立據點目錄，MP 伺服器常只挑部分進 Map=
         -- ——逐條指定 mapDir，未載入的據點不畫（需主 MOD ≥ mapDir 支援版）
         { zip = "SZ_Bunker_3.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Bunker_3",

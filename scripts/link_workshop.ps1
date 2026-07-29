@@ -42,7 +42,7 @@ $LuaRegistry = Join-Path $ModContent "42\media\lua\client\MinidoracatMiniMapModM
 # 「聲稱」蓋到鄰圖的 cell 卻拿不出 lotheader → NPE 崩服。排在最前面＝優先序最高，
 # 掃描（只往低優先方向走）就永遠不會經過它們。新增地圖後重跑 check_map_conflicts.ps1 驗證。
 # Coryerdon 需在 Taylorsville 後（作者聲明）、Greenport 前（bg300 潛在雷）——列表順序即滿足
-$MapOrderFirst = @('AnruisiTown', 'Taylorsville', 'Coryerdon B42', 'RaccoonCity', 'Camden County B42', 'Clover Lake')  # Clover Lake：作者要求高於 Sector-7 公路（basement 衝突）
+$MapOrderFirst = @('AnruisiTown', 'Taylorsville', 'Coryerdon B42', 'RaccoonCity', 'Camden County B42', 'Clover Lake')  # Clover Lake：作者要求優先（歷史：曾因 Sector-7 公路 basement 衝突；Sector-7 已下架移除）
 
 # 伺服器排除清單（mod id）：選單 4/5 不建連結、不寫入 Mods=/Map=，且選單 4 會把既有
 # 條目順手拔掉（自癒）；選單 6/7 的移除照常涵蓋。想排除哪張圖就把它的 mod id 加進來。
