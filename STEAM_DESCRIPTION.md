@@ -13,7 +13,7 @@
 [/list]
 
 [h2]🗺️ 收錄地圖與許願[/h2]
-目前支援 **68 個地圖 MOD（84 張地圖）**，一鍵訂閱可用 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。完整清單、原作者致謝、以及「許願想要的地圖」都在
+目前支援 [b]68 個地圖 MOD（84 張地圖）[/b]，一鍵訂閱可用 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。完整清單、原作者致謝、以及「許願想要的地圖」都在
 [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]討論區[/url]——歡迎留言許願！
 
 [h2]🔧 支援範圍說明[/h2]
@@ -36,7 +36,7 @@
 [*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42
 [*] [b]必要 MOD:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]（主 MOD，缺少時本包無作用）
 [*] [b]載入順序:[/b] 免手動調整——已透過 require 宣告依賴，遊戲自動先載主 MOD
-[*] [b]支援版本:[/b] Build 42.19.0+
+[*] [b]支援版本:[/b] Build 42.20.0+
 [*] 單機 / 多人皆可用（純客戶端圖資，不改世界內容）
 [/list]
 

@@ -37,7 +37,7 @@
 [*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42
 [*] [b]前提 MOD:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]（本体 MOD。無いと本パックは機能しません）
 [*] [b]ロード順:[/b] 手動調整は不要——require で依存を宣言済みのため、ゲームが自動的に本体を先に読み込みます
-[*] [b]対応バージョン:[/b] Build 42.19.0+
+[*] [b]対応バージョン:[/b] Build 42.20.0+
 [*] シングル / マルチ両対応（クライアントサイドの画像のみ、ワールドは変更しません）
 [/list]
 
