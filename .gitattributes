@@ -1,0 +1,2 @@
+# 伺服器端執行的 shell script 必須 LF（CRLF 會讓 heredoc 資料列尾欄帶 CR、算術直接炸）
+*.sh text eol=lf

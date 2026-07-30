@@ -1,0 +1,6 @@
+# 伺服器狀態產物（generate_server_artifacts.ps1 輸出／ssh 抓回）——不進 repo
+pzserver_map_lines.conf
+bounds_table.txt
+server_current_lines.txt
+*.bak
+*.bak-*
