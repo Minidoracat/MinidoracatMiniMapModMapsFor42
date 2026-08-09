@@ -1,2 +1,15 @@
 # 伺服器端執行的 shell script 必須 LF（CRLF 會讓 heredoc 資料列尾欄帶 CR、算術直接炸）
 *.sh text eol=lf
+
+# PZ Lua/JSON 對行尾敏感，統一 LF（CRLF 會讓翻譯檔被引擎靜默忽略）
+*.json text eol=lf
+*.lua text eol=lf
+*.txt text eol=lf
+*.py text eol=lf
+*.ps1 text eol=lf
+*.bat text eol=lf
+*.md text eol=lf
+mod.info text eol=lf
+
+# workshop.txt 例外：遊戲上傳會整檔回寫成 CRLF，跟著遊戲格式走以消除假差異（入庫仍 LF）
+MOD/*/workshop.txt text eol=crlf
