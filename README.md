@@ -18,7 +18,8 @@
 
 ## 收錄地圖
 
-共 **81 張**（66 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **84 張**（68 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 | 地圖 | 對應 MOD（mod ID) | 範圍（世界 square） |
 |------|--------------------|---------------------|
@@ -94,7 +95,6 @@
 | 西點擴張區 | `WestPointExpansionB42` | 11776,6400 – 13312,7680 |
 | 斯皮福堡（WILDSTEEL） | `WILDSTEEL` | 14336,5632 – 14848,6144 |
 | 柳溪堡壘 | `Willowbrook Bastion!` | 8448,9472 – 9728,10240 |
-
 | 四葉草湖畔農莊 | `Clover Lake` | 9472,8960 – 9984,9984 |
 | 42 號地堡 | `Bunker42` | 11008,9728 – 11520,10240 |
 | 綠港 | `GreenportB42` | 7936,7168 – 8704,7936 |
@@ -115,7 +115,9 @@ MinidoracatMiniMapModMapsFor42/
 ├── STEAM_DESCRIPTION.md           # Steam 商店頁描述（中文）——改動時必同步 _EN / _JP 版
 ├── link_workshop.bat              # Workshop 符號連結管理（雙擊啟動）
 ├── PZ_Test.bat                    # PZ 本地測試啟動器（雙擊啟動）
-├── scripts/                       # PowerShell 腳本
+├── .github/workflows/track_maps.yml  # 每日追蹤支援地圖更新，變動即開 issue
+├── scripts/                       # PowerShell / Python 腳本（map_tracker.py＝追蹤器本體）
+├── tracker-state/                 # 追蹤器基準（timestamps.json，進版控）
 └── MOD/MinidoracatMiniMapModMapsFor42/Contents/mods/MinidoracatMiniMapModMapsFor42/42/
     ├── mod.info                   # require=MinidoracatMiniMapFor42
     └── media/

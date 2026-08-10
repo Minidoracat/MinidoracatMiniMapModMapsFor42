@@ -1,0 +1,40 @@
+name: 🐛 圖像問題回報
+description: 回報小地圖／世界地圖的圖像問題（圖對不上、框線錯位、名稱翻譯錯）
+title: "[圖像問題] 地圖名稱"
+labels: ["image-issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        本包只負責**小地圖／世界地圖的圖像渲染**。
+        地圖 MOD 本身的問題（缺材質、建築 BUG、地圖間衝突、存檔問題）請向原地圖作者回報。
+  - type: input
+    id: map-name
+    attributes:
+      label: 哪張地圖
+      placeholder: "例：Raven Creek"
+    validations:
+      required: true
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: 問題類型
+      options:
+        - 圖對不上／內容過時（地圖 MOD 更新後圖沒跟上）
+        - 框線位置或範圍錯誤
+        - 地圖名稱／翻譯錯誤
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: 問題描述
+      description: 發生在地圖上的哪個位置？（座標或地標描述皆可）
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 截圖（選填，強烈建議）
+      description: 直接把圖片拖進這個欄位即可上傳（請先遮蔽伺服器 IP、帳號名稱等敏感資訊）

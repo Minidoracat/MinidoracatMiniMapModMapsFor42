@@ -14,13 +14,14 @@ outline data for several map MODs.
 [/list]
 
 [h2]🗺️ Included maps & requests[/h2]
-Currently supports [b]66 map MODs (81 maps)[/b] — subscribe them all at once via the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
+Currently supports [b]68 map MODs (84 maps)[/b] — subscribe them all at once via the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
 requests all live in the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]Discussions[/url] — come make a wish!
+You can also request a new map via the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (goes straight into the dev backlog — fastest turnaround).
 
 [h2]🔧 Support scope[/h2]
 This pack only provides the [b]minimap / world-map image rendering[/b].
 [list]
-[*] Image issues (misaligned imagery, outline position, name translations) → report here
+[*] Image issues (misaligned imagery, outline position, name translations) → report here, or use the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (screenshots welcome — fastest turnaround)
 [*] Issues with the map MODs themselves (missing tiles, building bugs, map conflicts, save issues) → please report to the original map authors
 [/list]
 
@@ -42,6 +43,7 @@ This pack only provides the [b]minimap / world-map image rendering[/b].
 [/list]
 
 [h2]💬 Feedback & community[/h2]
+[url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues]🐛 GitHub Issues[/url] — map request & image issue report forms
 [url=https://discord.gg/Gur2V67]👉 Join the Discord server[/url]
 
 [h2]📺 Follow the author[/h2]

@@ -14,13 +14,14 @@
 [/list]
 
 [h2]🗺️ 収録マップとリクエスト[/h2]
-現在 [b]66 個のマップ MOD（81 マップ）[/b]に対応。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]から一括サブスクライブ可能。対応リスト・原作者クレジット・マップリクエストは
+現在 [b]68 個のマップ MOD（84 マップ）[/b]に対応。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]から一括サブスクライブ可能。対応リスト・原作者クレジット・マップリクエストは
 [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]ディスカッション[/url]へどうぞ！
+[url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue フォーム[/url]からのリクエストも歓迎です（開発バックログに直行、対応が最速）。
 
 [h2]🔧 サポート範囲[/h2]
 本パックが担当するのは[b]ミニマップ／ワールドマップの画像描画のみ[/b]です。
 [list]
-[*] 画像の問題（表示ずれ・枠線位置・名前の翻訳）→ 本ページへどうぞ
+[*] 画像の問題（表示ずれ・枠線位置・名前の翻訳）→ 本ページ、または [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue フォーム[/url]へどうぞ（スクリーンショット添付可、対応が最速）
 [*] マップMOD自体の不具合（タイル欠け・建物バグ・マップ間の競合・セーブ問題）→ 元のマップ作者へ報告してください
 [/list]
 
@@ -42,6 +43,7 @@
 [/list]
 
 [h2]💬 不具合報告・交流[/h2]
+[url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues]🐛 GitHub Issues[/url]——マップリクエスト＆画像問題報告フォーム
 [url=https://discord.gg/Gur2V67]👉 Discord サーバーに参加[/url]
 
 [h2]📺 作者をフォロー[/h2]

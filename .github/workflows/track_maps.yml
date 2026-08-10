@@ -1,0 +1,77 @@
+# 支援地圖更新追蹤器（PZ B42 MiniMap MOD Maps）
+# 排程：每日 05:43 UTC（台灣 13:43）；手動 Run workflow 預設 dry_run=true 走 preview。
+#
+# watchlist＝Steam「支援地圖收藏」3766382352（發版流程本來就會維護，免手動清單），
+# 排除自家項目後比對 time_updated → 冪等開/更「[地圖更新]」「[地圖下架]」issue，
+# state（tracker-state/timestamps.json）commit 回 repo。免 Steam API key、免下載內容。
+#
+# ⚠️ GitHub Actions 對 60 天無活動的 repo 會自動停用排程工作流。
+#    無上游變更即無 state commit，故不能靠本工作流自身當「活動」來源。
+#    停用後 re-enable：repo → Actions 分頁點 "Enable"，或
+#    `gh workflow enable track_maps.yml`，再手動 Run（dry_run=false）確認恢復。
+
+name: track-maps
+
+on:
+  schedule:
+    # 每日 05:43 UTC（真實增量；僅 ~5 個 Steam API 請求，單輪 <1 分鐘。
+    # 注意：private repo 會計費 Actions 分鐘數，公開後才免費）
+    - cron: "43 5 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "只查 API 印計畫，不開 issue/不 commit"
+        type: boolean
+        default: true
+
+# 全域預設零權限；各 job 再逐一最小授權
+permissions: {}
+
+# 跨 cron 併發：同群組排隊、不取消進行中（state commit 交易不可被腰斬）
+concurrency:
+  group: track-maps
+  cancel-in-progress: false
+
+jobs:
+  # ---- 輕量預覽（workflow_dispatch 且 dry_run=true）：零 issue 零 commit ----
+  preview:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.event.repository.default_branch }} # 釘定 default branch，避免非預期 ref
+          persist-credentials: false # dry-run 不推送，不留憑證
+      - name: dry-run（查時間戳 + 印計畫）
+        env:
+          TRACKER_CI: "1" # 缺 baseline fail-fast（須先本機 --bootstrap 建立並 commit）
+        run: python3 scripts/map_tracker.py run --dry-run
+
+  # ---- track：查時間戳 → 冪等開/更 issue → commit state ----
+  track:
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      issues: write
+      contents: write
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.event.repository.default_branch }} # 釘定 default branch，避免非預期 ref
+          fetch-depth: 0 # rebase onto origin 需完整歷史
+      - name: self-test（零網路；壞掉的追蹤器 fail-fast，碰不到 issue 與 state）
+        run: python3 scripts/map_tracker.py self-test
+      - name: 設定 git 身分
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: 追蹤＋冪等 issue＋commit state
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TRACKER_BRANCH: ${{ github.event.repository.default_branch }}
+          TRACKER_CI: "1"
+        run: python3 scripts/map_tracker.py run

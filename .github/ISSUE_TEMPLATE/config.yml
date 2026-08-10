@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Discord 交流
+    url: https://discord.gg/Gur2V67
+    about: 一般討論與即時提問
+  - name: 🗺️ Steam 許願討論串
+    url: https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/
+    about: 不想用 GitHub？也可以在 Steam 討論區留言許願

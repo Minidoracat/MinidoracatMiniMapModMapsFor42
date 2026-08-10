@@ -1,0 +1,45 @@
+name: 🗺️ 地圖支援申請
+description: 申請將某張地圖 MOD 加入本圖包（小地圖圖像＋範圍框線）
+title: "[地圖申請] 地圖名稱"
+labels: ["map-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感謝申請！同一張圖申請／+1 的人越多，優先度越高。
+        大型地圖（圖檔數百 MB）可能做成獨立圖包發布，避免本包越長越肥。
+  - type: input
+    id: workshop-url
+    attributes:
+      label: Workshop 連結或 ID
+      placeholder: "https://steamcommunity.com/sharedfiles/filedetails/?id=XXXXXXXXXX"
+    validations:
+      required: true
+  - type: input
+    id: map-name
+    attributes:
+      label: 地圖名稱
+      placeholder: "例：Raven Creek"
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: 申請理由
+      description: 為什麼想要這張地圖的小地圖支援？（例：伺服器在用、B42 人氣圖）
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: 補充資訊（選填）
+      description: 已知的 B42 相容性、一個 MOD 含多張地圖（如 SecretZ 類）等
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 申請前確認
+      options:
+        - label: 該地圖 MOD 支援 B42，且 Workshop 頁面目前可訂閱
+          required: true
+        - label: 我了解大型地圖可能以獨立圖包形式發布
+          required: true
