@@ -5,7 +5,8 @@ watchlist＝Steam「支援地圖收藏」3766382352（發現來源，發版流�
 排除自家項目（creator=OWN_CREATOR 者）；state 是附加式帳本（merge、永不 prune），
 收藏瞬時異常不會毀基準。比對 time_updated：
   變動 → 冪等開/更「[地圖更新]」issue（提醒重渲染 pyramid）
-  下架（API result=9）→ 開「[地圖下架]」issue（人工確認處置）
+  下架（API result=9）→ 開「[地圖下架]」issue 一次；自下輪起不再查詢（tombstone 保留），
+    重新上架要恢復追蹤＝手動把 state 該項 removed 改回 false
   首次見到（含 --bootstrap 首建）→ 靜默記基準，零 issue
 state（tracker-state/timestamps.json）進版控；gh 任一步失敗即中止、state 不推進，
 下一輪由 issue body marker 冪等自癒（不會重複開）。
@@ -332,7 +333,9 @@ def build_removed_plan(wid: str, title: str) -> dict:
         "**處置確認**：",
         "",
         "- 圖像與註冊**預設保留**（既有訂閱者仍可用；未啟用該地圖 MOD 的玩家不受影響）。",
-        "- 若日後重新上架，追蹤器會自動恢復更新追蹤，屆時關閉本 issue 即可。",
+        "- 自下輪起本項目**停止每日查詢**（記錄保留於 tracker-state）；確認處置後關閉本 issue，",
+        "  並將該地圖補進 README「已下架地圖」表。",
+        "- 若日後重新上架：把 `tracker-state/timestamps.json` 該項 `removed` 改回 `false` 即恢復追蹤。",
         "- 若確認永久移除且要清理：自 `media/minimap/` 移除 pyramid、刪 Lua 註冊與翻譯鍵，",
         f"  並自[支援地圖收藏](https://steamcommunity.com/sharedfiles/filedetails/?id={COLLECTION_ID})移除該項目。",
     ])
@@ -532,25 +535,33 @@ def cmd_run(args) -> int:
         )
         return 1
 
+    state = load_json(STATE_JSON) if STATE_JSON.exists() else {"items": {}}
+    old_items = state.get("items", {})
+
     print("🔎 查詢支援地圖收藏…")
     children = fetch_collection_children()
-    details = fetch_details(children)
+    # 已標記下架的項目：記錄保留（tombstone）、每日追蹤不再查詢。
+    # 重新上架要恢復追蹤＝把 state 該項 removed 改回 false（或刪該 entry）
+    skipped_removed = [wid for wid in children if old_items.get(wid, {}).get("removed")]
+    if skipped_removed:
+        print(f"  ℹ️ 已下架、不查詢：{', '.join(skipped_removed)}")
+    query_ids = [wid for wid in children if wid not in skipped_removed]
+    details = fetch_details(query_ids)
 
     # creator 缺失（下架項目不回 creator）→ 當作外人保留追蹤：第三方地圖要下架 issue；
     # 自家項目誤中只是可關閉的噪音，方向刻意 fail-open
     map_ids = [
-        wid for wid in children
+        wid for wid in query_ids
         if details.get(wid, {}).get("creator") != OWN_CREATOR
     ]
-    print(f"  收藏 {len(children)} 項 → 追蹤地圖 {len(map_ids)} 項（排除自家 {len(children) - len(map_ids)} 項）")
+    print(f"  收藏 {len(children)} 項 → 追蹤地圖 {len(map_ids)} 項"
+          f"（排除自家 {len(query_ids) - len(map_ids)} 項、已下架 {len(skipped_removed)} 項）")
     if len(map_ids) < 10:
         print("❌ 追蹤地圖項目 < 10（疑似 API 異常或收藏被清空），中止。", file=sys.stderr)
         return 1
     coverage_guard(map_ids, details)
 
-    state = load_json(STATE_JSON) if STATE_JSON.exists() else {"items": {}}
-    old_items = state.get("items", {})
-    dropped = sorted(set(old_items) - set(map_ids))
+    dropped = sorted(set(old_items) - set(map_ids) - set(skipped_removed))
     if dropped:
         print(f"  ℹ️ 本輪不在收藏（基準保留、暫停查詢）：{', '.join(dropped)}")
     plans, meta, baselined = classify(map_ids, details, old_items)

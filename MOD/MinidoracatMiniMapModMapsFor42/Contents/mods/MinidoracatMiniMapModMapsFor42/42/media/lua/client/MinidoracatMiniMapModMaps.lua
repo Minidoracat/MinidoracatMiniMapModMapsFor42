@@ -112,6 +112,8 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 4096, 14336, 6656, 17920 }, nameKey = "UI_MinidoracatMiniMapModMaps_RavenCreek" },
         { zip = "RMSafeHouseUnofficial.pyramid.zip", mapMod = "RMSafeHouseUnofficial",
             bounds = { 5376, 4864, 5888, 5632 }, nameKey = "UI_MinidoracatMiniMapModMaps_RiversideMansion" },
+        -- 安泊戍鎮（Safeharbor Garrison，Workshop 3522517059）：上游 mod.info 真的是
+        -- id=modid（作者未改模板佔位符，2026-08-11 實查本機訂閱檔確認），勿「修正」此值
         { zip = "SafeharborGarrison.pyramid.zip", mapMod = "modid",
             bounds = { 11520, 10496, 12800, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SafeharborGarrison" },
         { zip = "SafeWayHamlet.pyramid.zip", mapMod = "SafeWayHamlet",
