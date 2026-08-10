@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **84 張**（68 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **81 張**（66 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 | 地圖 | 對應 MOD（mod ID) | 範圍（世界 square） |
@@ -61,7 +61,6 @@
 | 小鎮區 | `LittleTownshipB42` | 7936,8192 – 8448,8704 |
 | 路易斯維爾河船 | `Louisville_Riverboat` | 13056,1024 – 13312,1280 |
 | 巡之丘市（學園孤島） | `Project Gurashi` | 0,2304 – 1280,4864 |
-| 美雅鎮 | `Meiya'sTown` | 7936,10752 – 8448,11264 |
 | Muldraugh 1993 | `muldraugh1993b42` | 10496,8960 – 11264,11008 |
 | Muldraugh 軍事檢查站－天橋 | `Muldraugh-Checkpoint` | 10496,10752 – 11008,11520 |
 | 普雷斯頓堡 | `muldraughmilitarybaseas24` | 8448,10752 – 9472,11520 |
@@ -73,8 +72,6 @@
 | 河畔豪宅（非官方修改版） | `RMSafeHouseUnofficial` | 5376,4864 – 5888,5632 |
 | 安泊戍鎮 | `modid`（上游作者未改佔位符，非錯誤） | 11520,10496 – 12800,11520 |
 | 途安里 | `SafeWayHamlet` | 12544,10752 – 13056,11520 |
-| 7號淪陷區－公路 | `Sector-7 Breach Highway` | 9472,7936 – 10496,9216 |
-| 7號淪陷區 | `Sector-7 Breach` | 8960,6400 – 9728,7936 |
 | SecretZ 三號地堡 | `Secretz42` | 5888,11520 – 6400,12032 |
 | SecretZ 一號檢查站 | `Secretz42` | 11776,7936 – 12544,8448 |
 | SecretZ 五號檢查站 | `Secretz42` | 10752,11008 – 11264,11520 |
@@ -110,12 +107,12 @@
 
 ### 已下架地圖（記錄保留、每日追蹤不含）
 
-上游 Workshop 頁已無法存取，但圖包照常支援（圖像與註冊保留，已訂閱玩家的本地快取仍可用）：
+上游 Workshop 頁已無法存取，已自圖包移除支援（v42.20.0-0.4.1 起，見 CHANGELOG）：
 
 | 地圖 | Workshop ID | 下架時間 | 備註 |
 |------|-------------|----------|------|
-| 美雅鎮（Meiya'sTownB42） | 3478788261 | 2026-08 發現 | — |
-| 7號淪陷區（Sector-7 Breach，含 Highway） | 3513107552 | 2026-07-21 | 正式伺服器已移除（下架項目會讓開服崩潰） |
+| 美雅鎮（Meiya'sTownB42） | 3478788261 | 2026-07 | v0.4.1 移除支援 |
+| 7號淪陷區（Sector-7 Breach，含 Highway） | 3513107552 | 2026-07-21 | v0.4.1 移除支援；正式伺服器移除（下架項目會讓開服崩潰） |
 | White Wolf Ridge | 3499861271 | 收藏建立前 | 未收錄（無圖） |
 
 ## 專案結構

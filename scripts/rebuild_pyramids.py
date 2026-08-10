@@ -14,7 +14,7 @@ pzmap render-minimap 重渲到 42/media/minimap/。
   - 同 zip 的 alias 條目（互斥變體）只渲一次
 渲後驗證：輸出 zip 的 pyramid.txt bounds 必須與註冊 bounds 一致（不一致=Lua 要跟著改，列警告）。
 """
-import argparse, json, re, subprocess, sys, zipfile
+import argparse, json, re, subprocess, sys, time, zipfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -45,15 +45,17 @@ def parse_registrations(text):
 VERSION_DIR = re.compile(r"^42(\.\d+)*$")  # B42 版本資料夾：42、42.0、42.13…
 
 
-def index_workshop():
-    """id -> mod 根目錄（mods/<name>/）；同 id 首見為準。"""
+def index_workshop(extra_roots=()):
+    """id -> mod 根目錄（mods/<name>/）；同 id 首見為準——extra_roots 先掃、優先勝出
+    （steamcmd 下載的新鮮副本蓋過 Steam 客戶端的過期目錄）。"""
     idx, requires = {}, {}
-    for info in WORKSHOP.glob("*/mods/*/mod.info"):
-        _index_info(info, info.parent, idx, requires)
-    for info in WORKSHOP.glob("*/mods/*/*/mod.info"):
-        sub = info.parent.name
-        if sub.lower() == "common" or VERSION_DIR.match(sub):
-            _index_info(info, info.parent.parent, idx, requires)
+    for ws in [*extra_roots, WORKSHOP]:
+        for info in ws.glob("*/mods/*/mod.info"):
+            _index_info(info, info.parent, idx, requires)
+        for info in ws.glob("*/mods/*/*/mod.info"):
+            sub = info.parent.name
+            if sub.lower() == "common" or VERSION_DIR.match(sub):
+                _index_info(info, info.parent.parent, idx, requires)
     return idx, requires
 
 
@@ -105,10 +107,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--only", default="", help="zip 名子字串過濾")
+    ap.add_argument("--prefer", action="append", default=[],
+                    help="優先索引的額外 workshop content 根目錄（例：steamcmd 下載處）")
+    ap.add_argument("--skip-fresh-min", type=int, default=0,
+                    help="輸出 zip 在 N 分鐘內已更新者跳過（批次中斷後續跑用）")
     args = ap.parse_args()
 
     entries = parse_registrations(LUA.read_text(encoding="utf-8"))
-    idx, requires = index_workshop()
+    idx, requires = index_workshop([Path(p) for p in args.prefer])
     seen, plan, missing = set(), [], []
     for e in entries:
         if e["zip"] in seen or (args.only and args.only.lower() not in e["zip"].lower()):
@@ -145,6 +151,11 @@ def main():
     ok, bad = 0, []
     for i, p in enumerate(plan, 1):
         out = OUT_DIR / p["zip"]
+        if (args.skip_fresh_min and out.exists()
+                and time.time() - out.stat().st_mtime < args.skip_fresh_min * 60):
+            print(f"[{i}/{len(plan)}] {p['zip']} 略過（{args.skip_fresh_min} 分鐘內已渲）", flush=True)
+            ok += 1
+            continue
         cmd = [str(PZMAP), "render-minimap", "--game", str(GAME)]
         for d in p["deps"]:
             cmd += ["--mod", str(d)]
