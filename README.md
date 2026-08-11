@@ -128,7 +128,8 @@
 
 ```
 MinidoracatMiniMapModMapsFor42/
-├── STEAM_DESCRIPTION.md           # Steam 商店頁描述（中文）——改動時必同步 _EN / _JP 版
+├── STEAM_DESCRIPTION.md           # Steam 商店頁描述（繁中）——改動時必同步 _EN / _JP
+│                                  # 版；_CN 由 `opencc tw2sp` 自繁中轉出，勿手改
 ├── link_workshop.bat              # Workshop 符號連結管理（雙擊啟動）
 ├── PZ_Test.bat                    # PZ 本地測試啟動器（雙擊啟動）
 ├── .github/workflows/track_maps.yml  # 每日追蹤：地圖更新（含圖資 hash 重渲判定）＋遊戲 build
