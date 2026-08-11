@@ -3,7 +3,7 @@
     "build": "24574865",
     "detected_at": "2026-08-10T23:55:14Z"
   },
-  "generated_at": "2026-08-10T23:55:16Z",
+  "generated_at": "2026-08-11T08:42:18Z",
   "items": {
     "2463499011": {
       "last_result": 1,
@@ -397,6 +397,13 @@
       "time_updated": 1776090895,
       "title": "Muldraugh-Military checkpoint -Overpass (B42)"
     },
+    "3685508479": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1785507591,
+      "title": "[B42]Xixi's Serene Cottage"
+    },
     "3691773420": {
       "last_result": 1,
       "removed": false,
@@ -410,6 +417,13 @@
       "removed_at": null,
       "time_updated": 1776078845,
       "title": "Floatopia B42"
+    },
+    "3697082724": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1785332000,
+      "title": "VaultTec B42 version"
     },
     "3701164856": {
       "last_result": 1,

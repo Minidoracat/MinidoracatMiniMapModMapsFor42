@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T00:29:43Z",
+  "generated_at": "2026-08-11T08:42:18Z",
   "items": {
     "2463499011": {
       "assets": "edb79ec01aa4df992286162c5bc04656eb6b59e205744fd2b68a61987c64f7ec",
@@ -910,6 +910,20 @@
         }
       }
     },
+    "3685508479": {
+      "assets": "b2e951aba745110e979a5937c01d1dabda0b64de6b5cf6af70a0f827db1ff468",
+      "maps": {
+        "Xixi's Serene Cottage": {
+          "bounds": [
+            7424,
+            7936,
+            7936,
+            8448
+          ],
+          "hash": "034a4c7cda49e129e9be9ae852cfccb7c0bc33e4e4b1c1e744f400ae6ed478bf"
+        }
+      }
+    },
     "3691773420": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "maps": {
@@ -935,6 +949,47 @@
             5888
           ],
           "hash": "9ab046ff4a8188fde942c8133e827425022757e378d9564c5ab94881968bac74"
+        }
+      }
+    },
+    "3697082724": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "VaultTec_Louisville": {
+          "bounds": [
+            14336,
+            2560,
+            14848,
+            3072
+          ],
+          "hash": "bbc0a0a85912b0c82398cd081f61f88825e4f2d015f57f6abe622a7ecab0aacd"
+        },
+        "VaultTec_Muldraugh": {
+          "bounds": [
+            12288,
+            8960,
+            12800,
+            9472
+          ],
+          "hash": "8867f64509b0cb9c0bfb577350d184e076dc9fe6ac8119e69968265e5df80075"
+        },
+        "VaultTec_Rosewood": {
+          "bounds": [
+            5888,
+            10496,
+            6400,
+            11008
+          ],
+          "hash": "9c3e6160b6d96e206dcdb742bce1efd3e998975bfb3bfac680b6ddc0a2011feb"
+        },
+        "VaultTec_road": {
+          "bounds": [
+            11776,
+            8960,
+            12544,
+            9472
+          ],
+          "hash": "7bb92a9a764171034dc667ef4688bab83654eba1aa2a29de8e2f3fe42d82f79c"
         }
       }
     },
