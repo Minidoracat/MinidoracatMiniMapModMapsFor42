@@ -781,7 +781,9 @@ def commit_state_with_retry(
         if rc != 0:
             print(f"  ⚠️ git fetch 失敗：{err.strip()}", file=sys.stderr)
             return COMMIT_FAILED
-        rc, _out, err = git(["rebase", f"origin/{branch}"])
+        # --autostash：CI checkout 可能因行尾正規化出現幻影未暫存變更（實案：workshop.txt
+        # CRLF blob），不能讓它擋掉 state commit；拋棄式 runner 上 autostash 無副作用
+        rc, _out, err = git(["rebase", "--autostash", f"origin/{branch}"])
         if rc != 0:
             print(f"  ⚠️ git rebase 失敗，abort 復原：{err.strip()}", file=sys.stderr)
             git(["rebase", "--abort"])
