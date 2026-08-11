@@ -264,38 +264,55 @@ def _file_sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+_VERSION_DIR_RE = re.compile(r"^42(\.\d+)*$")  # B42 版本資料夾：42、42.0、42.13…
+
+
+def _mod_content_bases(root: Path) -> list[Path]:
+    """B42 有效內容基底。mods/<name>/ 有 42* 版本資料夾 → 只取 42*＋common
+    （排除 B41 根層副本——雙版本 mod 的根層 media/maps 是 B41 資料，混入會造成
+    假「需重渲」與錯誤 bounds）；無版本資料夾 → 取該 mod 根。無 mods/ 佈局時
+    以同一規則套用在 item 根（防禦性退路）。"""
+    def bases_for(mod: Path) -> list[Path]:
+        vers = sorted(d for d in mod.iterdir() if d.is_dir() and _VERSION_DIR_RE.match(d.name))
+        if not vers:
+            return [mod]
+        common = mod / "common"
+        return vers + ([common] if common.is_dir() else [])
+
+    mods_dirs = sorted(d for d in root.glob("mods/*") if d.is_dir())
+    if not mods_dirs:
+        return bases_for(root)
+    out: list[Path] = []
+    for mod in mods_dirs:
+        out += bases_for(mod)
+    return out
+
+
 def hash_mod_mapdata(root: Path) -> dict:
     """workshop item 根目錄 → {"maps": {mapDir: {"hash", "bounds"}}, "assets": <hash>}。
-    maps 只含 RENDER_EXTS（cell 圖資，僅靜態 hash、絕不執行）；bounds 由 lotheader
-    檔名 cell 座標推（×256、右/下排他，同 Lua 註冊表約定）。同名 mapDir 跨
-    42/42.x/common 版本資料夾時合併計算。"""
+    只掃 B42 有效內容基底的 media/maps/（錨定固定路徑，不用啟發式找 "maps" 片段——
+    上游資料夾名恰為 maps 時啟發式會讓整包圖資隱形）；maps 只含 RENDER_EXTS
+    （cell 圖資，僅靜態 hash、絕不執行）；bounds 由 lotheader 檔名 cell 座標推
+    （×256、右/下排他，同 Lua 註冊表約定）。路徑以基底為相對根（版本資料夾改名
+    不影響 hash）。"""
     per_map: dict[str, list] = {}
     cells: dict[str, list] = {}
     assets: list = []
-    for f in sorted(root.rglob("*")):
-        if not f.is_file():
-            continue
-        suffix = f.suffix.lower()
-        rel_parts = f.relative_to(root).parts
-        rel = "/".join(rel_parts).lower()
-        if suffix in ASSET_EXTS:
-            assets.append((rel, _file_sha256(f)))
-            continue
-        if suffix not in RENDER_EXTS:
-            continue
-        low = [p.lower() for p in rel_parts]
-        try:
-            i = low.index("maps")
-        except ValueError:
-            continue
-        # 需為 .../media/maps/<mapDir>/<file...> 結構
-        if i == 0 or low[i - 1] != "media" or i + 1 >= len(rel_parts) - 1:
-            continue
-        map_dir = rel_parts[i + 1]
-        per_map.setdefault(map_dir, []).append((rel, _file_sha256(f)))
-        m = _CELL_RE.match(f.name)
-        if m:
-            cells.setdefault(map_dir, []).append((int(m.group(1)), int(m.group(2))))
+    for base in _mod_content_bases(root):
+        maps_dir = base / "media" / "maps"
+        if maps_dir.is_dir():
+            for d in sorted(p for p in maps_dir.iterdir() if p.is_dir()):
+                for f in sorted(d.rglob("*")):
+                    if not f.is_file() or f.suffix.lower() not in RENDER_EXTS:
+                        continue
+                    rel = f.relative_to(base).as_posix().lower()
+                    per_map.setdefault(d.name, []).append((rel, _file_sha256(f)))
+                    m = _CELL_RE.match(f.name)
+                    if m:
+                        cells.setdefault(d.name, []).append((int(m.group(1)), int(m.group(2))))
+        for f in sorted(base.rglob("*")):
+            if f.is_file() and f.suffix.lower() in ASSET_EXTS:
+                assets.append((f.relative_to(base).as_posix().lower(), _file_sha256(f)))
     maps = {}
     for name, entries in per_map.items():
         digest = hashlib.sha256(json.dumps(sorted(entries)).encode("utf-8")).hexdigest()
@@ -322,7 +339,7 @@ def build_verdict(old: dict | None, new: dict) -> dict:
     for d in changed:
         ob = old_maps.get(d, {}).get("bounds")
         nb = new_maps.get(d, {}).get("bounds")
-        if ob and nb and ob != nb:
+        if ob != nb:  # 含 None 側：新增/移除/無法解析的轉移也要浮出，不可靜默
             bounds_changed[d] = [ob, nb]
     if old.get("assets") != new["assets"]:
         status = "assets"
@@ -341,7 +358,8 @@ def verdict_section(verdict: dict | None) -> list[str]:
     status = verdict.get("status")
     names = "、".join(f"`{neutralize(str(d))}`" for d in verdict.get("changed_maps", []))
     if status == "none":
-        lines.append("- ✅ **免重渲**：本次更新未動地圖圖資／材質（僅腳本、loot 等）。可直接關閉本 issue。")
+        lines.append("- ✅ **免重渲**：本次更新未動地圖圖資／材質（僅腳本、loot 等）。"
+                     "若下方無「尚未處置的先前判定」即可關閉本 issue。")
     elif status == "maps":
         lines.append(f"- 🔴 **需重渲**：圖資變更 mapDir {names}")
     elif status == "assets":
@@ -353,8 +371,55 @@ def verdict_section(verdict: dict | None) -> list[str]:
         note = neutralize(str(verdict.get("note", "")))
         lines.append(f"- ⚠️ **無法判定**：{note}——請依 Workshop 更新紀錄人工判斷。")
     for d, pair in sorted(verdict.get("bounds_changed", {}).items()):
-        lines.append(f"- ⚠️ bounds 變動 `{neutralize(str(d))}`：{pair[0]} → {pair[1]}（**記得同步 Lua 註冊表**）")
+        ob = pair[0] if pair[0] else "（無法解析）"
+        nb = pair[1] if pair[1] else "（無法解析）"
+        lines.append(f"- ⚠️ bounds 變動 `{neutralize(str(d))}`：{ob} → {nb}（**記得同步 Lua 註冊表**）")
     return lines
+
+
+_CARRY_LINE_RE = re.compile(r"^- (🔴|⚠️ bounds 變動)")
+
+
+def finalize_update_plan(plan: dict, verdict: dict | None, prev_body: str = "") -> dict:
+    """圖資判定併入 update plan。content_hash 綁 (tu, status, carry 集合)——
+    判定從 unknown 解決、或 carry 集合變動時 hash 變 → comment 路徑會更新 body。
+    carry＝既有 open issue body 內的 🔴/bounds 行（未處置的先前判定）：後續
+    「免重渲」增量不得覆寫掉還沒做的重渲工作，關閉 issue 才清空。"""
+    if verdict is None:
+        return plan
+    status = verdict.get("status", "unknown")
+    section = verdict_section(verdict)
+    current = {ln for ln in section if _CARRY_LINE_RE.match(ln)}
+    carried = sorted(
+        ln for ln in prev_body.split("\n")
+        if _CARRY_LINE_RE.match(ln) and ln not in current
+    )
+    new_hash = hashlib.sha256(
+        f"update|{plan['workshop_id']}|{plan['new_tu']}|{status}|{'|'.join(carried)}".encode("utf-8")
+    ).hexdigest()
+    lines = plan["body"].split("\n")
+    lines[0] = make_marker(TYPE_UPDATE, plan["workshop_id"], new_hash)
+    body_lines = lines + section
+    if carried:
+        body_lines += ["", "### 尚未處置的先前判定（處理完成後關閉本 issue）", "", *carried]
+    comment = plan["comment"] + f"（圖資判定：{status}" + (
+        f"；另有 {len(carried)} 項先前判定未處置）" if carried else "）")
+    return {**plan, "content_hash": new_hash, "body": "\n".join(body_lines), "comment": comment}
+
+
+def apply_verdict_state(old_items: dict, meta: dict, verdicts: dict) -> dict:
+    """unknown 判定（下載/hash 失敗）→ 撤回該項 timestamp 推進，明日 classify 重新
+    偵測到同一更新 → diff 重試（否則 unknown 成終局、失敗項永不重試）。
+    首見＋失敗 → 整項撤回（下輪仍視為首見）。"""
+    out = dict(meta)
+    for wid, v in verdicts.items():
+        if v.get("status") != "unknown":
+            continue
+        if wid not in old_items:
+            out.pop(wid, None)
+        elif wid in out:
+            out[wid] = {**out[wid], "time_updated": old_items[wid].get("time_updated")}
+    return out
 
 
 # ============================================================
@@ -379,12 +444,16 @@ def find_workshop_item(exe: str, wid: str) -> Path | None:
     return None
 
 
-def steamcmd_download(exe: str, wid: str, *, retries: int = 1) -> Path | None:
-    """下載單一 Workshop 項目，回傳內容根目錄；失敗回 None（單項失敗不拖垮整輪）。"""
+def steamcmd_download(exe: str, wid: str, *, retries: int = 1, timeout: float = 900.0) -> Path | None:
+    """下載單一 Workshop 項目，回傳內容根目錄；失敗回 None（單項失敗不拖垮整輪）。
+    逾時/exe 異常皆吞為 None——CI runner 是拋棄式 VM，逾時遺留的孤兒 steamcmd
+    隨 job 結束消滅，不做 process-group 清理。"""
     for _attempt in range(retries + 1):
         try:
-            rc, out = steamcmd_run(exe, ["+workshop_download_item", GAME_APPID, wid])
-        except subprocess.TimeoutExpired:
+            rc, out = steamcmd_run(exe, ["+workshop_download_item", GAME_APPID, wid],
+                                   timeout=timeout)
+        except (subprocess.TimeoutExpired, OSError):
+            time.sleep(5)  # 逾時後殘留行程可能還握著鎖，稍候再試
             continue
         if rc == 0 and f"Downloaded item {wid}" in out:
             root = find_workshop_item(exe, wid)
@@ -495,6 +564,7 @@ def build_update_plan(wid: str, title: str, old_tu, new_tu: int) -> dict:
         "type": TYPE_UPDATE,
         "workshop_id": wid,
         "content_hash": content_hash,
+        "new_tu": new_tu,
         "title": f"[地圖更新] {label}（{wid}）",
         "body": body,
         "comment": f"追蹤器偵測到再次更新：{fmt_ts(new_tu)}（上次記錄 {fmt_ts(old_tu)}）。",
@@ -621,13 +691,16 @@ class GhClient:
 
 
 def index_issues(issues: list[dict]) -> dict[tuple[str, str], dict]:
-    """open issue 清單 → {(類型, workshop_id): {number, hash}}。"""
+    """open issue 清單 → {(類型, workshop_id): {number, hash, body}}。
+    body 供 finalize_update_plan 萃取未處置的先前判定（carry）。"""
     index: dict[tuple[str, str], dict] = {}
     for issue in issues:
         parsed = parse_marker(issue.get("body", ""))
         if parsed:
             issue_type, wid, content_hash = parsed
-            index[(issue_type, wid)] = {"number": issue["number"], "hash": content_hash}
+            index[(issue_type, wid)] = {
+                "number": issue["number"], "hash": content_hash, "body": issue.get("body", ""),
+            }
     return index
 
 
@@ -810,10 +883,23 @@ def cmd_run(args) -> int:
     return 2
 
 
+ARTIFACT_SCHEMA = 2  # check→diff→issue 的 artifact 契約版本；不符即 fail-closed
+
+
+def _schema_guard(data: dict, stage: str) -> bool:
+    if data.get("schema") != ARTIFACT_SCHEMA:
+        print(f"❌ {stage}：artifact schema {data.get('schema')!r} != {ARTIFACT_SCHEMA}"
+              "（producer/consumer 版本錯配，中止）。", file=sys.stderr)
+        return False
+    return True
+
+
 def cmd_check(args) -> int:
     if not ci_baseline_guard():
         return 1
     data = collect()
+    data["schema"] = ARTIFACT_SCHEMA
+    data["source_sha"] = os.environ.get("GITHUB_SHA", "")
     write_json(Path(args.out), data)
     print(f"✅ check 完成 → {args.out}")
     return 0
@@ -821,30 +907,48 @@ def cmd_check(args) -> int:
 
 def cmd_diff(args) -> int:
     data = load_json(Path(args.infile))
+    if not _schema_guard(data, "diff"):
+        return 1
+    # 遊戲軸先跑：不受後面 MOD 項目吃光時間預算影響
+    game_build = fetch_game_build(args.steamcmd)
+    if game_build is None:
+        warn("取得遊戲 buildid 失敗（本輪略過遊戲軸，下輪再試）")
+
     update_ids = [p["workshop_id"] for p in data.get("plans", []) if p.get("type") == TYPE_UPDATE]
     todo = list(dict.fromkeys(update_ids + data.get("baseline_new", [])))
+    random.shuffle(todo)  # 每輪隨機序：單一慢項不會永久餓死其他項（unknown 明日重試）
     baseline = load_json(MAPDATA_JSON) if MAPDATA_JSON.exists() else {"items": {}}
+    # 全域時間預算：單項最壞 2×420s，預算擋在 job 30 分鐘上限之前——
+    # 超支項目以 unknown 收場（timestamp 會被 issue 階段撤回，明日重試），
+    # artifact 仍產出、其他項目與 issue job 不陪葬
+    deadline = time.monotonic() + float(os.environ.get("TRACKER_DIFF_BUDGET", "1200"))
     verdicts: dict[str, dict] = {}
     new_hashes: dict[str, dict] = {}
     for wid in todo:
         if not str(wid).isdigit():  # artifact 防禦：id 必為數字才進 argv
             warn(f"非法 workshop id（{wid!r}），略過")
             continue
-        print(f"  ⬇️ steamcmd 下載 {wid}…", flush=True)
-        root = steamcmd_download(args.steamcmd, str(wid))
-        if root is None:
-            verdicts[wid] = {"status": "unknown", "note": "steamcmd 下載失敗",
+        if time.monotonic() > deadline:
+            verdicts[wid] = {"status": "unknown", "note": "時間預算用盡（明日重試）",
                              "changed_maps": [], "bounds_changed": {}}
-            print("    下載失敗（本輪以無法判定處理，基準不推進）")
+            print(f"  ⏱️ {wid} 時間預算用盡，本輪略過")
             continue
-        new = hash_mod_mapdata(root)
+        print(f"  ⬇️ steamcmd 下載 {wid}…", flush=True)
+        try:
+            root = steamcmd_download(args.steamcmd, str(wid), timeout=420.0)
+            new = hash_mod_mapdata(root) if root is not None else None
+        except OSError as exc:  # 單項壞檔/IO 例外隔離，不拖垮其他項與遊戲軸
+            root, new = None, None
+            warn(f"處理 {wid} 例外：{exc}")
+        if new is None:
+            verdicts[wid] = {"status": "unknown", "note": "steamcmd 下載/讀取失敗",
+                             "changed_maps": [], "bounds_changed": {}}
+            print("    下載失敗（本輪以無法判定處理，timestamp 將撤回、明日重試）")
+            continue
         verdicts[wid] = build_verdict(baseline.get("items", {}).get(wid), new)
         new_hashes[wid] = new
         print(f"    判定：{verdicts[wid]['status']}"
               + (f"（{ '、'.join(verdicts[wid]['changed_maps']) }）" if verdicts[wid]["changed_maps"] else ""))
-    game_build = fetch_game_build(args.steamcmd)
-    if game_build is None:
-        warn("取得遊戲 buildid 失敗（本輪略過遊戲軸，下輪再試）")
     data["verdicts"] = verdicts
     data["new_hashes"] = new_hashes
     data["game_build"] = game_build
@@ -855,6 +959,8 @@ def cmd_diff(args) -> int:
 
 def cmd_issue(args) -> int:
     data = load_json(Path(args.infile))
+    if not _schema_guard(data, "issue"):
+        return 1
     plans = list(data.get("plans", []))
     verdicts = data.get("verdicts", {})
     meta = data.get("meta", {})
@@ -873,16 +979,20 @@ def cmd_issue(args) -> int:
         if prev_build != new_build:
             game_state = {"build": new_build, "detected_at": now_iso()}
 
-    # MOD 軸 update plan 附加圖資判定段
-    for plan in plans:
-        if plan.get("type") == TYPE_UPDATE:
-            v = verdicts.get(plan["workshop_id"])
-            if v:
-                plan["body"] = plan["body"] + "\n" + "\n".join(verdict_section(v))
+    # MOD 軸：unknown 撤回 timestamp 推進（明日重試）
+    meta = apply_verdict_state(old_items, meta, verdicts)
 
     gh = GhClient()
     gh.ensure_label()
     index = index_issues(gh.list_tracker_issues())
+    # 判定併入 plan（hash 綁 verdict＋carry；prev_body 供未處置判定累積）
+    plans = [
+        finalize_update_plan(
+            p, verdicts.get(p["workshop_id"]),
+            index.get((TYPE_UPDATE, p["workshop_id"]), {}).get("body", ""),
+        ) if p.get("type") == TYPE_UPDATE else p
+        for p in plans
+    ]
     for plan in plans:
         action = apply_issue_plan(plan, index, gh, dry_run=False)
         print(f"    {action}: {plan['title']}")
@@ -1061,21 +1171,27 @@ def cmd_self_test() -> int:
     # 不可恢復拒絕（protected branch 等）不得誤判為可重試
     assert not _is_non_fast_forward("! [rejected] protected branch hook declined")
 
-    # 6) 圖資 hash：檔案過濾、bounds 推導、變更/免重渲/材質/無基準判定
+    # 6) 圖資 hash：真實 workshop 佈局、檔案過濾、bounds 推導、B41 排除、判定分支
     with tempfile.TemporaryDirectory() as td:
         root = Path(td)
-        mp = root / "42" / "media" / "maps" / "TestTown"
+        mp = root / "mods" / "TestMod" / "42" / "media" / "maps" / "TestTown"
         mp.mkdir(parents=True)
         (mp / "10_20.lotheader").write_bytes(b"H1")
         (mp / "10_20.lotpack").write_bytes(b"P1")
         (mp / "11_20.lotheader").write_bytes(b"H2")
         (mp / "spawnpoints.lua").write_bytes(b"L1")  # 非圖資：不參與 hash
-        tp = root / "42" / "media" / "texturepacks"
+        tp = root / "mods" / "TestMod" / "42" / "media" / "texturepacks"
         tp.mkdir(parents=True)
         (tp / "x.pack").write_bytes(b"T1")
+        # B41 根層副本：有 42 版本資料夾時必須被排除（否則假需重渲＋錯誤 bounds）
+        b41 = root / "mods" / "TestMod" / "media" / "maps" / "TestTown"
+        b41.mkdir(parents=True)
+        (b41 / "37_40.lotheader").write_bytes(b"OLD")
         base = hash_mod_mapdata(root)
         assert set(base["maps"]) == {"TestTown"}
-        assert base["maps"]["TestTown"]["bounds"] == [2560, 5120, 3072, 5376]
+        assert base["maps"]["TestTown"]["bounds"] == [2560, 5120, 3072, 5376]  # 無 B41 cell 混入
+        (b41 / "37_40.lotheader").write_bytes(b"OLD2")  # B41-only 變更 → 免重渲
+        assert build_verdict(base, hash_mod_mapdata(root))["status"] == "none"
         # 改 .lua → 免重渲；改 .lotpack → maps；改 .pack → assets；無基準 → no_baseline
         (mp / "spawnpoints.lua").write_bytes(b"L2")
         assert build_verdict(base, hash_mod_mapdata(root))["status"] == "none"
@@ -1089,6 +1205,60 @@ def cmd_self_test() -> int:
         (mp / "12_20.lotheader").write_bytes(b"H3")
         v2 = build_verdict(base, hash_mod_mapdata(root))
         assert v2["bounds_changed"]["TestTown"][1] == [2560, 5120, 3328, 5376]
+        # mapDir 移除 → bounds 轉移含 None 側也要浮出
+        cur = hash_mod_mapdata(root)
+        v3 = build_verdict(cur, {"maps": {}, "assets": cur["assets"]})
+        assert v3["changed_maps"] == ["TestTown"] and v3["bounds_changed"]["TestTown"][1] is None
+    # mod 資料夾名恰為 maps（啟發式錨定的地雷佈局）→ 圖資仍須被看見
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td)
+        trap = root / "mods" / "maps" / "42" / "media" / "maps" / "RealTown"
+        trap.mkdir(parents=True)
+        (trap / "5_5.lotpack").write_bytes(b"X1")
+        assert set(hash_mod_mapdata(root)["maps"]) == {"RealTown"}
+    # 無版本資料夾的 mod → 根層內容即 B42 有效內容
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td)
+        flat = root / "mods" / "FlatMod" / "media" / "maps" / "FlatTown"
+        flat.mkdir(parents=True)
+        (flat / "1_1.lotheader").write_bytes(b"F1")
+        assert set(hash_mod_mapdata(root)["maps"]) == {"FlatTown"}
+
+    # 8) 管線契約：unknown 撤回 timestamp／首見失敗撤回整項／成功推進
+    old_items = {"2": {"time_updated": 150, "title": "B"}}
+    meta8 = {"2": {"time_updated": 200, "title": "B"}, "9": {"time_updated": 50, "title": "N"}}
+    vd = {"2": {"status": "unknown"}, "9": {"status": "unknown"}}
+    adj = apply_verdict_state(old_items, meta8, vd)
+    assert adj["2"]["time_updated"] == 150 and "9" not in adj  # 撤回＝明日重試
+    adj_ok = apply_verdict_state(old_items, meta8, {"2": {"status": "maps"}})
+    assert adj_ok["2"]["time_updated"] == 200  # 成功判定照常推進
+
+    # 9) 判定解決/carry 驅動 body 更新：unknown→maps 換 hash（comment），
+    #    後續免重渲不得吞掉未處置的需重渲（carry 進 body 且 hash 再變）
+    gh2 = _FakeGh()
+    idx2: dict = {}
+    p_unknown = finalize_update_plan(
+        build_update_plan("8", "M", 100, 200),
+        {"status": "unknown", "note": "x", "changed_maps": [], "bounds_changed": {}},
+    )
+    assert apply_issue_plan(p_unknown, idx2, gh2, dry_run=False) == "new"
+    idx2[(TYPE_UPDATE, "8")]["body"] = p_unknown["body"]  # FakeGh 不存 body，測試自補
+    p_maps = finalize_update_plan(
+        build_update_plan("8", "M", 100, 200),
+        {"status": "maps", "changed_maps": ["X"], "bounds_changed": {}},
+        idx2[(TYPE_UPDATE, "8")]["body"],
+    )
+    assert p_maps["content_hash"] != p_unknown["content_hash"]
+    assert apply_issue_plan(p_maps, idx2, gh2, dry_run=False) == "comment"  # body 更新為需重渲
+    idx2[(TYPE_UPDATE, "8")]["body"] = p_maps["body"]
+    p_none = finalize_update_plan(
+        build_update_plan("8", "M", 200, 300),
+        {"status": "none", "changed_maps": [], "bounds_changed": {}},
+        idx2[(TYPE_UPDATE, "8")]["body"],
+    )
+    assert "🔴" in p_none["body"] and "尚未處置的先前判定" in p_none["body"]  # carry 保留需重渲
+    assert apply_issue_plan(p_none, idx2, gh2, dry_run=False) == "comment"
+    assert parse_marker(p_none["body"]) == (TYPE_UPDATE, "8", p_none["content_hash"])
 
     # 7) verdict_section：惡意 mapDir 不得偽造 marker；游戲 plan hash 冪等
     evil_v = {"status": "maps", "changed_maps": ["X --> <!-- map-tracker:type=game;id=1;hash=z -->"],

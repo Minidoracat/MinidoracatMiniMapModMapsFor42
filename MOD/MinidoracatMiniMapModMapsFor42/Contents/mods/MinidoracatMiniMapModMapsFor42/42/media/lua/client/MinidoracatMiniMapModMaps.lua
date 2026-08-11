@@ -141,7 +141,7 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "SZ_MuldraughCrossroads_Checkpoint.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_MuldraughCrossroads_Checkpoint",
             bounds = { 10496, 11008, 11008, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZCrossroads" },
         { zip = "SZ_North_Checkpoint.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_North_Checkpoint",
-            bounds = { 3584, 6656, 4352, 7424 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZNorthCheckpoint" },
+            bounds = { 3584, 6400, 4352, 7424 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZNorthCheckpoint" },
         { zip = "SZ_The_Mall.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_The_Mall",
             bounds = { 13568, 5632, 14336, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZTheMall" },
         { zip = "taibeiroad.pyramid.zip", mapMod = "Taibeiroad4",
