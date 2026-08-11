@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **82 張**（66 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **84 張**（66 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 | 地圖 | 對應 MOD（mod ID) | 範圍（世界 square） |
@@ -85,6 +85,8 @@
 | SecretZ 北方檢查站 | `Secretz42` | 3584,6400 – 4352,7424 |
 | SecretZ 購物中心 | `Secretz42` | 13568,5632 – 14336,6144 |
 | SecretZ 西點大橋檢查站 | `Secretz42` | 12288,6400 – 12800,6912 |
+| SecretZ 河濱鎮一號檢查站 | `Secretz42` | 6400,6400 – 6912,6912 |
+| SecretZ 河濱鎮二號檢查站 | `Secretz42` | 5632,5632 – 6144,6144 |
 | 台北路 | `Taibeiroad4` | 7936,9984 – 9216,11776 |
 | 泰勒斯維爾 | `Taylorsville` | 8960,6144 – 10496,7680 |
 | 提基鎮＆發電廠 | `tikitown` | 6400,6656 – 7936,7936 |

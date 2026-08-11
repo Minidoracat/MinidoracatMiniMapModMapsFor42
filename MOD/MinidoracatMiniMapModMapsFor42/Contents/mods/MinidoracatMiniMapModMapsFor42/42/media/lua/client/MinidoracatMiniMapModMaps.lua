@@ -146,6 +146,11 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 13568, 5632, 14336, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZTheMall" },
         { zip = "SZ_Westpoint_Bridge_Checkpoint.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Westpoint_Bridge_Checkpoint",
             bounds = { 12288, 6400, 12800, 6912 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZWestpointBridge" },
+        { zip = "SZ_Riverside_Checkpoint_1.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Riverside_Checkpoint_1",
+            bounds = { 6400, 6400, 6912, 6912 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZRiverside1" },
+        -- Riverside_2 與六號檢查站同 bounds 但內容不同（作者重建版）：mapDir 閘門依伺服器載入者擇一顯示
+        { zip = "SZ_Riverside_Checkpoint_2.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Riverside_Checkpoint_2",
+            bounds = { 5632, 5632, 6144, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZRiverside2" },
         { zip = "taibeiroad.pyramid.zip", mapMod = "Taibeiroad4",
             bounds = { 7936, 9984, 9216, 11776 }, nameKey = "UI_MinidoracatMiniMapModMaps_Taibeiroad" },
         { zip = "Taylorsville.pyramid.zip", mapMod = "Taylorsville",
