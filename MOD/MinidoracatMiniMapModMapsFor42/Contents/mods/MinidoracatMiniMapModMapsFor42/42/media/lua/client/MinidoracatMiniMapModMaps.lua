@@ -110,6 +110,10 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 9728, 9728, 10496, 10752 }, nameKey = "UI_MinidoracatMiniMapModMaps_RaccoonCity" },
         { zip = "Raven Creek B42.pyramid.zip", mapMod = "RavenCreekB42",
             bounds = { 4096, 14336, 6656, 17920 }, nameKey = "UI_MinidoracatMiniMapModMaps_RavenCreek" },
+        -- Kardinal 團隊的另一個 B42 移植版：與上者同地圖資料夾名（二選一，勿同時啟用），
+        -- 但圖資內容不同且範圍更大，故獨立渲染；靠 mapMod 各自偵測
+        { zip = "Kardinal Raven Creek B42.pyramid.zip", mapMod = "kardinal_ravencreek_B42",
+            bounds = { 4096, 14336, 7168, 18176 }, nameKey = "UI_MinidoracatMiniMapModMaps_RavenCreekKardinal" },
         { zip = "RMSafeHouseUnofficial.pyramid.zip", mapMod = "RMSafeHouseUnofficial",
             bounds = { 5376, 4864, 5888, 5632 }, nameKey = "UI_MinidoracatMiniMapModMaps_RiversideMansion" },
         -- 安泊戍鎮（Safeharbor Garrison，Workshop 3522517059）：上游 mod.info 真的是

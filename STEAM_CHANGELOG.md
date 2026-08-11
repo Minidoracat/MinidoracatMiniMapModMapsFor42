@@ -1,3 +1,13 @@
+[h1]Minidoracat MiniMap - MOD Maps for B42 42.20.0-0.5.1[/h1]
+[i]2026-08-11[/i]
+
+[h3]✨ 新增[/h3]
+[list]
+[*] [b]渡鴉溪（Kardinal 移植版）[/b]（Kardinal Raven Creek B42，商店頁點播）：Kardinal 團隊的另一個 B42 移植版，範圍比原版往東南各多兩格 cell，已獨立渲染。與原版渡鴉溪[b]二選一[/b]（兩者地圖資料夾同名，勿同時啟用）——裝哪一版就顯示哪一版的圖。累計 [b]69 個地圖 MOD／90 張地圖[/b]。
+[/list]
+
+[hr][/hr]
+
 [h1]Minidoracat MiniMap - MOD Maps for B42 42.20.0-0.5.0[/h1]
 [i]2026-08-11[/i]
 

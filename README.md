@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **89 張**（68 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **90 張**（69 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 | 地圖 | 對應 MOD（mod ID) | 範圍（世界 square） |
@@ -69,6 +69,7 @@
 | 新煤田鎮 | `PZKNewCoalfieldTownMap` | 2816,8192 – 3584,8960 |
 | 浣熊市 | `RaccoonCityB42` | 9728,9728 – 10496,10752 |
 | 渡鴉溪 | `RavenCreekB42` | 4096,14336 – 6656,17920 |
+| 渡鴉溪（Kardinal 移植版） | `kardinal_ravencreek_B42` | 4096,14336 – 7168,18176 |
 | 河畔豪宅（非官方修改版） | `RMSafeHouseUnofficial` | 5376,4864 – 5888,5632 |
 | 安泊戍鎮 | `modid`（上游作者未改佔位符，非錯誤） | 11520,10496 – 12800,11520 |
 | 途安里 | `SafeWayHamlet` | 12544,10752 – 13056,11520 |
