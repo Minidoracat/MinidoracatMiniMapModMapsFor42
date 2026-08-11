@@ -1,5 +1,9 @@
 {
-  "generated_at": "2026-08-10T18:16:47Z",
+  "game": {
+    "build": "24574865",
+    "detected_at": "2026-08-10T23:55:14Z"
+  },
+  "generated_at": "2026-08-10T23:55:16Z",
   "items": {
     "2463499011": {
       "last_result": 1,

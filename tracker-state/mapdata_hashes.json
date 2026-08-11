@@ -1,0 +1,1109 @@
+{
+  "generated_at": "2026-08-11T00:01:17Z",
+  "items": {
+    "2463499011": {
+      "assets": "e206dbe3d4ef0dc2fef0de43629d46ef75c6d33bec4512df735e3ae01127f9e6",
+      "maps": {
+        "Grapeseed": {
+          "bounds": [
+            6144,
+            9472,
+            7680,
+            11776
+          ],
+          "hash": "d7edefe985e4c11851019aff881904d3359996f5f9c7146faa7e5f8acb954566"
+        }
+      }
+    },
+    "2963883586": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Louisville_Riverboat": {
+          "bounds": [
+            11008,
+            768,
+            13312,
+            1280
+          ],
+          "hash": "4dfa9198e5e451ab6b7b39c10fd2817f102776d14efb83b2481c76d6950b370a"
+        }
+      }
+    },
+    "2968421358": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Fort_Boonesborough": {
+          "bounds": [
+            11776,
+            1536,
+            14592,
+            2048
+          ],
+          "hash": "98b11f111926a008405a747e1ca2183fda379532657d1717ab77fc65eda94a50"
+        }
+      }
+    },
+    "3037854728": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Tikitown": {
+          "bounds": [
+            5888,
+            5888,
+            7936,
+            7936
+          ],
+          "hash": "c2829eb5c16b007fcb489de4719fc2c2219887c275fc80dd9ecbc94cc46e04f1"
+        }
+      }
+    },
+    "3134394569": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Taylorsville": {
+          "bounds": [
+            7680,
+            5376,
+            10496,
+            7680
+          ],
+          "hash": "b9af3737f415e93783f7fb9aa9d4b9712999ebe2aae88058c9ba4ba042458c24"
+        }
+      }
+    },
+    "3318210146": {
+      "assets": "a5590430604243f8ace21a774f3add9c563e3f49f5132c0bd692a2541ac19ea6",
+      "maps": {
+        "Megurigaoka City, Kanagawa": {
+          "bounds": [
+            0,
+            2304,
+            1280,
+            4864
+          ],
+          "hash": "9597d7705bd2856c06af07e06ca751332166651c6c9816db0c56aaf8afa84afa"
+        }
+      }
+    },
+    "3363546437": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Erikas_Furniture_Store": {
+          "bounds": [
+            9728,
+            6912,
+            11776,
+            8448
+          ],
+          "hash": "6e3db44a1450d6d8ba0e7535f234924a8184173c3c828596c5a9448d059ab586"
+        }
+      }
+    },
+    "3388468313": {
+      "assets": "dc670286c84cd82326ab11943db6ac41af117480d8e29797e474d1fd86b8579b",
+      "maps": {
+        "RaccoonCity": {
+          "bounds": [
+            9728,
+            9728,
+            10496,
+            10752
+          ],
+          "hash": "5253f193ae93850972ed1b4c2ebc41b149f1589a7a581cd3289b8b8ebccde76f"
+        }
+      }
+    },
+    "3390327877": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Trapalaketown": {
+          "bounds": [
+            8192,
+            11520,
+            9216,
+            12032
+          ],
+          "hash": "313f35e68439661c9dcebc11b0517524b67ad68b262d7b2933377274763e415c"
+        }
+      }
+    },
+    "3390753141": {
+      "assets": "18a0625a8a82fb85982df6d7cf3531decc137c27de7df83f0138cb8017568703",
+      "maps": {
+        "Daisy County": {
+          "bounds": [
+            9728,
+            7168,
+            10752,
+            8192
+          ],
+          "hash": "ef32b688c1598554fa86e5ead7feaa0665774bf1207b3dcae0075d21a85f6c27"
+        }
+      }
+    },
+    "3391349130": {
+      "assets": "6f34540049aa898b72e0b4556fbb2e94807a0eeec98b07511cfadf0b5b867e15",
+      "maps": {
+        "Nettle Township": {
+          "bounds": [
+            6400,
+            8960,
+            7424,
+            9728
+          ],
+          "hash": "6355c1e14ca40538625840a0861d2017a84024d624f275cc6a5dbeae7c9c26a7"
+        }
+      }
+    },
+    "3401261192": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "taibeiroad": {
+          "bounds": [
+            7936,
+            9984,
+            9216,
+            11776
+          ],
+          "hash": "ab49fc53e49521a2af012894d6778bacd95cfbfb17719a87f98e47b360ae00cb"
+        }
+      }
+    },
+    "3446958402": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "KillMingLake": {
+          "bounds": [
+            8192,
+            11776,
+            8704,
+            12544
+          ],
+          "hash": "7dca03514fda9c0cd608b347da2d2691c28f3f87795e23e418eaf65936c815ba"
+        }
+      }
+    },
+    "3449473111": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Frogtown": {
+          "bounds": [
+            2816,
+            6656,
+            4096,
+            7680
+          ],
+          "hash": "1e3162c900c04b8119e2feba8c72ad3bd5224f501f9c1a4641359705d23c5f73"
+        }
+      }
+    },
+    "3452917446": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "pzkNewCoalfield": {
+          "bounds": [
+            2816,
+            8192,
+            3584,
+            8960
+          ],
+          "hash": "b0e0ab6fa455e96c1a7a8e8e7d6eb36864c3d57f8d3a912f61dc54ef17220f59"
+        }
+      }
+    },
+    "3475754603": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "West Point Expansion_B42": {
+          "bounds": [
+            11776,
+            6400,
+            13312,
+            7680
+          ],
+          "hash": "4039c45d68eff647fad432f45326d6cb8d2d58aaf9f5ca339fde6ddf3a1da0ec"
+        }
+      }
+    },
+    "3476333350": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "EchoCreek MilitaryBase回音河 军事基地": {
+          "bounds": [
+            2816,
+            9984,
+            3840,
+            11008
+          ],
+          "hash": "41491522eabcbd38c356f8231092863e0a645f36347cca6d612bea2e8e1f905a"
+        }
+      }
+    },
+    "3477336014": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "LittleTownshipB42": {
+          "bounds": [
+            7936,
+            8192,
+            8448,
+            8704
+          ],
+          "hash": "4e67dd779b17ae88ffd8ffc6ad32c9bd7dd0cc65515f2f7f91fce0ebce7769f9"
+        }
+      }
+    },
+    "3478900814": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "EdsAutoSalvageB42": {
+          "bounds": [
+            8448,
+            8192,
+            9216,
+            8704
+          ],
+          "hash": "f63446ec10ae5c3364bcd735b4e35faf720ba26e486ff2f875261c271aa9eaa7"
+        }
+      }
+    },
+    "3479667649": {
+      "assets": "b5e51769a3a90b8fe3a50cead09eb191e04e42cda36a489b8497c9ab35b28e52",
+      "maps": {
+        "Willowbrook Bastion!": {
+          "bounds": [
+            8448,
+            9472,
+            9728,
+            10240
+          ],
+          "hash": "3bd46d3acc9cdb4b622b7c33292599f9c66f6a0404cf2030529587bcc0d5a7c5"
+        }
+      }
+    },
+    "3480990544": {
+      "assets": "57f857f6b537a043f78e42ad778e7b7e126eec6e0c6539dd2523654cee7c8ab8",
+      "maps": {
+        "Constown, KY": {
+          "bounds": [
+            4864,
+            10752,
+            6400,
+            11520
+          ],
+          "hash": "12d8134a35379baed392b90ab4632ef9be8ee78bd995378f18750cc694193d10"
+        }
+      }
+    },
+    "3482962418": {
+      "assets": "abcc692676ea16341354ec96d53b9eff6d63d40d990e641e851d82084e40aea6",
+      "maps": {
+        "Asakusa lake town": {
+          "bounds": [
+            10496,
+            11264,
+            11264,
+            12032
+          ],
+          "hash": "2811e1cd91b91fa553e901de9f2f3240c53f48417deb05ee7a92a8834f8e4b2b"
+        }
+      }
+    },
+    "3484263516": {
+      "assets": "37fca572e03da5353a7592d64d1b5b74bbb2ea7a28b7f3911dc09b8501b9149d",
+      "maps": {
+        "Raven Creek B42": {
+          "bounds": [
+            4096,
+            14336,
+            6656,
+            17920
+          ],
+          "hash": "ee40a9d2b0252e8c97e7097497efa071867a62c055da2dc17133c366de76331f"
+        }
+      }
+    },
+    "3485388592": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "RMSafeHouseUnofficial": {
+          "bounds": [
+            5376,
+            4864,
+            5888,
+            5632
+          ],
+          "hash": "40a46bb9904d839f7c9b9a2d4fbb24f21346bd036e384122b9ac069bb1a79b0e"
+        }
+      }
+    },
+    "3486814612": {
+      "assets": "b60ef12197fd361ee1332025768e8af9aaca4ea273059294c058d187b3da712c",
+      "maps": {
+        "Fort Waterfront B42": {
+          "bounds": [
+            9984,
+            10752,
+            10752,
+            11264
+          ],
+          "hash": "17ddde6f629d02dcea0cb39199f3d665cd403b9aebbbe4014b40bf6038a4aa7d"
+        }
+      }
+    },
+    "3490580478": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Fort Benning B42": {
+          "bounds": [
+            5888,
+            6656,
+            6400,
+            7424
+          ],
+          "hash": "29a86af3c0e6d3adeb3142f55135f7db703473658b36e96f5f02fa5219650dde"
+        }
+      }
+    },
+    "3493916941": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "AshenwoodNewB42": {
+          "bounds": [
+            11264,
+            11008,
+            11776,
+            11776
+          ],
+          "hash": "19475d24a0526908435983a4e5fd20874ed87006b20f986041f9bbdb1f30dc4f"
+        }
+      }
+    },
+    "3494374578": {
+      "assets": "50412a1256e5782052a97cc9cbd84046098a13329467488a7ce65c90b465f004",
+      "maps": {
+        "SZ_Bunker_3": {
+          "bounds": [
+            5888,
+            11520,
+            6400,
+            12032
+          ],
+          "hash": "b0c8d0d5ac9d2b8b2ca5aac7bd1e2d06068ce01a8f39cad8a0865de1d9a693df"
+        },
+        "SZ_Checkpoint1": {
+          "bounds": [
+            11776,
+            7936,
+            12544,
+            8448
+          ],
+          "hash": "e6cbf77185a5806e2b729a2f7b8739124f5ad18a07889de05d0a8057d0b90cde"
+        },
+        "SZ_Checkpoint5": {
+          "bounds": [
+            10752,
+            11008,
+            11264,
+            11520
+          ],
+          "hash": "e131a22333a55dd411de4eb402489902da5e6dc4b2b3238ed8e8b779bf73a786"
+        },
+        "SZ_Checkpoint6": {
+          "bounds": [
+            5632,
+            5632,
+            6144,
+            6144
+          ],
+          "hash": "b70def59dcc5f9ff5c6202c2fe7a76583b6fdc739b73f0ccc7da23b4e2b3c472"
+        },
+        "SZ_Checkpoint8": {
+          "bounds": [
+            6400,
+            11008,
+            6912,
+            11520
+          ],
+          "hash": "8e8d831bcdb61c2efe793a978ff68b16f6ff768f33a220b2076683e4cc379864"
+        },
+        "SZ_DeerheadLake_Base": {
+          "bounds": [
+            4352,
+            8192,
+            4864,
+            8704
+          ],
+          "hash": "e88332ba47c0086033bd10b27ba91451829becdb8c9f043b864b3f067b66c542"
+        },
+        "SZ_Louisville_Military_Complex": {
+          "bounds": [
+            13568,
+            1792,
+            15360,
+            3072
+          ],
+          "hash": "41646300569d9d089679a9bd2c2746eb4d0c269b177ec74a2aa5b64830d2db4b"
+        },
+        "SZ_MarchRidge_ResearchFacility": {
+          "bounds": [
+            9984,
+            11776,
+            10752,
+            12800
+          ],
+          "hash": "9b0c9961dc46be12dbd652ecf5c6bc314a90a9b2dabac9b25cb6083e270378d0"
+        },
+        "SZ_MuldraughCrossroads_Checkpoint": {
+          "bounds": [
+            10496,
+            11008,
+            11008,
+            11520
+          ],
+          "hash": "5966d8f042d1c63c3f9fd7a51958d4c984421484c11cb44b65c09bd094c16f54"
+        },
+        "SZ_Muldraugh_Traindepot_Refugee": {
+          "bounds": [
+            11264,
+            9472,
+            12032,
+            10752
+          ],
+          "hash": "a6b9128d36531355595dd584391c85f1176d79a5fa68b0b3d6e06e4533b6ef69"
+        },
+        "SZ_North_Checkpoint": {
+          "bounds": [
+            3584,
+            6400,
+            4352,
+            7424
+          ],
+          "hash": "4777647a6ce84edce22a020ff9017cfbcc0a13f97fb00d72a8b94cae86459495"
+        },
+        "SZ_Riverside_Checkpoint_1": {
+          "bounds": [
+            6400,
+            6400,
+            6912,
+            6912
+          ],
+          "hash": "f0e6577f3d2c757a6b24f95baa2be83e0431753b943f755a54a97df988dc26f7"
+        },
+        "SZ_Riverside_Checkpoint_2": {
+          "bounds": [
+            5632,
+            5632,
+            6144,
+            6144
+          ],
+          "hash": "b5fc978fa012bb9d3db235549da562db3c839a9b8d1ec18d5fe838b23f57604d"
+        },
+        "SZ_The_Mall": {
+          "bounds": [
+            13568,
+            5632,
+            14336,
+            6144
+          ],
+          "hash": "e8d2b359d354826b4ca646656fcb2668191f56ceededeb075dc1bdb93a5a9201"
+        },
+        "SZ_Westpoint_Bridge_Checkpoint": {
+          "bounds": [
+            12288,
+            6400,
+            12800,
+            6912
+          ],
+          "hash": "d586177c9f7517191266d8182b42bbf6ba7e919a51cc6c04f842b690c4e2af80"
+        }
+      }
+    },
+    "3494693499": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Kentucky Center Manor_Renovation_B42": {
+          "bounds": [
+            7936,
+            9472,
+            8448,
+            9984
+          ],
+          "hash": "bda0809a0d16ba0f9030300d7f3e1d256469d5951bf0a5d7df41a7b102cbd7eb"
+        }
+      }
+    },
+    "3495993590": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Hazelnut Manor": {
+          "bounds": [
+            12544,
+            5888,
+            13056,
+            6400
+          ],
+          "hash": "47314186c23f8258e18c6d40f231556936abd1b99ad0c7f481fe3227edc594f2"
+        },
+        "Hazelnut Manor[Poor Version]": {
+          "bounds": [
+            12544,
+            5888,
+            13056,
+            6400
+          ],
+          "hash": "ab3e9015954758ec64919bdf601c01e54820bab40e3ea9d7805b391fcb4c96af"
+        }
+      }
+    },
+    "3496507146": {
+      "assets": "83d094021693f0d3cbee43be62d15efc48a0d80a87da9dc1dae9fe18e23c3a54",
+      "maps": {
+        "muldraughmilitarybaseas24": {
+          "bounds": [
+            8448,
+            10752,
+            9472,
+            11520
+          ],
+          "hash": "707b7b5bb2268a68f7ce6a563d0b56f167abda0ddfee25dd12887fe04f86b999"
+        }
+      }
+    },
+    "3498573050": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Kingsmouth North B42": {
+          "bounds": [
+            0,
+            3840,
+            1280,
+            5120
+          ],
+          "hash": "fc513fb5e29acf312df175b3e3299925c8c4c9dc498a26180503ad841205a36e"
+        }
+      }
+    },
+    "3502623745": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Coryerdon B42": {
+          "bounds": [
+            7168,
+            5632,
+            10752,
+            7424
+          ],
+          "hash": "89c0d61b5fe35b476cf5ec4b7c16f8e5f032375ca1efe6a65005501c57d3029c"
+        }
+      }
+    },
+    "3504080284": {
+      "assets": "9c81816152d9db8fd0005ae72c5da7eb1060c41cd40912dd697f5604f1b831f7",
+      "maps": {
+        "Camden County B42": {
+          "bounds": [
+            12800,
+            8448,
+            19200,
+            14848
+          ],
+          "hash": "c36337dba169c69ff8fd0cec0b20e834d02a7d3e696a0a7dc4391edbb01f82da"
+        }
+      }
+    },
+    "3519054686": {
+      "assets": "7f360702462c9b74ec5bfc2b81f3c2573b36286d1b07588f21caffa68d20a1b1",
+      "maps": {
+        "linzi": {
+          "bounds": [
+            8960,
+            11008,
+            9728,
+            11776
+          ],
+          "hash": "cc7426eda1bdf250b4fbfa8da97852f98d6d5a454ff30c2f8c738f4364edecdd"
+        }
+      }
+    },
+    "3522517059": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "SafeharborGarrison": {
+          "bounds": [
+            11520,
+            10496,
+            12800,
+            11520
+          ],
+          "hash": "de2e0b3193e002a4c27d3cd10b992a8ad3faaffa11f7eec865d8a567ca6abc14"
+        }
+      }
+    },
+    "3524981481": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "vilaz": {
+          "bounds": [
+            9472,
+            9472,
+            9984,
+            9984
+          ],
+          "hash": "f1de805ff60a9c247f3e0ae31cbf867a5ee5c7ecb7be1a0b9ab5cef6efa009ae"
+        }
+      }
+    },
+    "3525104670": {
+      "assets": "5dc1692e97b6863e3e4948066e80ee64d767798b6fef8fc7f9a25bbffd44f625",
+      "maps": {
+        "Atlanta Tower Survival": {
+          "bounds": [
+            11008,
+            12544,
+            11520,
+            13056
+          ],
+          "hash": "c482a3016d6d1fc8990008e581e83941f79b8cb38fe5ad84b040a4f37a0939d9"
+        }
+      }
+    },
+    "3533315055": {
+      "assets": "f9c877907932d84bdaa297793e0f7beea8ff48080a138143e063077fda4253e5",
+      "maps": {
+        "SafeWayHamlet": {
+          "bounds": [
+            12544,
+            10752,
+            13056,
+            11520
+          ],
+          "hash": "13f13519ef1b606724f2ad1219351037c39225aee21c07f6c08737b7261816a8"
+        }
+      }
+    },
+    "3537326669": {
+      "assets": "29f5332e075cfacd61d1e7571952dfe76029da70b1ea60966711fd8f870b1543",
+      "maps": {
+        "Fort JadeLake": {
+          "bounds": [
+            11008,
+            8448,
+            11520,
+            9216
+          ],
+          "hash": "23a81d379e0c8f493ace1a9571d0bda7d7451ebeef0f741e4157a4cce6e68561"
+        }
+      }
+    },
+    "3545473388": {
+      "assets": "7f0da163f2e6870218143647ef2db4f7c4eb7a923a3b63dff7c296f67208f29f",
+      "maps": {
+        "IrisEyot": {
+          "bounds": [
+            4096,
+            11008,
+            4864,
+            11520
+          ],
+          "hash": "b751d6e89b1fa2ed7737b959f0751ba9237544f55fefad9829ad7c75a9374736"
+        }
+      }
+    },
+    "3565649631": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "BlackpineCounty": {
+          "bounds": [
+            9728,
+            14080,
+            11776,
+            15360
+          ],
+          "hash": "01612da9836ea74039fb2dd8ed5a48bc86063784fef96eee10d31f89fba92dde"
+        }
+      }
+    },
+    "3576150391": {
+      "assets": "879385dad2fef59ade3bab756677bc754976d4d4f1f9755d49016939634df26e",
+      "maps": {
+        "Cathaya Valley2.0": {
+          "bounds": [
+            7168,
+            12544,
+            7680,
+            13312
+          ],
+          "hash": "7fedc3e164d343e2fc2ccc0413509fac5a468535b80cab4cf739e8767d5d4ff5"
+        },
+        "Cathaya Valley2.0 highway": {
+          "bounds": [
+            7424,
+            12288,
+            7936,
+            13312
+          ],
+          "hash": "f83d64bf3503f2686299510321f32de524c95cdee153bcf2eea47b905a25c619"
+        }
+      }
+    },
+    "3576750203": {
+      "assets": "38e9cac20a938f941706fb40af99ff661004b6da3c687643fb75bc4a4896f552",
+      "maps": {
+        "Hartburg, KY": {
+          "bounds": [
+            6400,
+            11008,
+            6912,
+            11776
+          ],
+          "hash": "1b89e3fb03a365faff27a6ea3e29009e9512c33034c0f0c199fb6c0eeb6616d8"
+        }
+      }
+    },
+    "3580819781": {
+      "assets": "f1401b763068e020cc580ff331b75ee145d0cc56902fc318c757a602dbbd6476",
+      "maps": {
+        "Atlanta": {
+          "bounds": [
+            10496,
+            12288,
+            13056,
+            14592
+          ],
+          "hash": "91a59ff80e6952737931dff5087aef1d0f57a01cedec0988098b53608c5b4652"
+        },
+        "Atlanta - Safe Zone-Chinese Survivors’ Community": {
+          "bounds": [
+            8448,
+            7680,
+            9216,
+            8448
+          ],
+          "hash": "28109eaa2f0b3ffd6e4de5e1f714dc4e3ab8feffce006589f1809309517b1a26"
+        }
+      }
+    },
+    "3585472912": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Muldraugh_FireDept": {
+          "bounds": [
+            10496,
+            8960,
+            11008,
+            9472
+          ],
+          "hash": "24d363b4ace8d993ecb89f7437cce9693a0c001ec911978586fad9ebf30d729a"
+        }
+      }
+    },
+    "3589905072": {
+      "assets": "efef936f8bf1d1d2a1b1ddeaad7d8e5a3a1ffe03041b5eddfb540bc96c05daf8",
+      "maps": {
+        "Path of Zenith, Louisville": {
+          "bounds": [
+            11008,
+            768,
+            13312,
+            1280
+          ],
+          "hash": "9772ea9864190b8889be0a02da01eb621904a59f712e8a71e30b174488f95059"
+        }
+      }
+    },
+    "3602388131": {
+      "assets": "f0ab53655a592eaa56dd2e795da06e6dcc6c387ff870af01e4e5a04adc729d73",
+      "maps": {
+        "Greenleaf": {
+          "bounds": [
+            6144,
+            9984,
+            6912,
+            11008
+          ],
+          "hash": "48027f182f5beefbc19304cc531a8591f54e59cd2459700410fc45e95e0991b1"
+        }
+      }
+    },
+    "3606927986": {
+      "assets": "0e6a91649daad751ded28493726162b970ec10a8de23d98bc33cba3ac66508dd",
+      "maps": {
+        "Estate 39": {
+          "bounds": [
+            8192,
+            9728,
+            8704,
+            10240
+          ],
+          "hash": "9e7e4cb2993ebed259e6807eb1ad09f52fe42e0851e04c1ee54f614185ba1510"
+        }
+      }
+    },
+    "3638880637": {
+      "assets": "c392d517b95c44161100d31eb28e1e12c7524e86e0bde8b1a97a6ad0fb64936b",
+      "maps": {
+        "Yanghu Town": {
+          "bounds": [
+            8448,
+            8960,
+            9728,
+            9728
+          ],
+          "hash": "458e16bc0fb328893dab2cb7376ce993ddfa7f85210d62de04d855781e562dd7"
+        }
+      }
+    },
+    "3659221974": {
+      "assets": "b322d1f91a43d20eac8d91a3d135362a15870dad34d920737eac8d129a2c1ed1",
+      "maps": {
+        "ningzi": {
+          "bounds": [
+            8960,
+            11520,
+            9728,
+            12800
+          ],
+          "hash": "e8f959302a6496ac03e83518f296486e677e9e54f97bce3c5c896e0a93e18b2e"
+        }
+      }
+    },
+    "3659676359": {
+      "assets": "05ccd4dbd533e4ddb943f9dbc751226fd2d08f9ac521d2757053d97f1f76b07a",
+      "maps": {
+        "AnruisiTown": {
+          "bounds": [
+            11776,
+            11008,
+            13056,
+            12032
+          ],
+          "hash": "57b5eda88fe76b6945eea676863a2420b754d3eeeedac7d2b195925068e59067"
+        }
+      }
+    },
+    "3666180085": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "DawnTown": {
+          "bounds": [
+            2816,
+            7936,
+            3328,
+            8448
+          ],
+          "hash": "a6740d869adaf506a805277d0e44250bdc42f65e4b3b320be24c20a4c329d1ff"
+        }
+      }
+    },
+    "3677600363": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Muldraugh-SouthernCheckpoint": {
+          "bounds": [
+            10496,
+            10752,
+            11008,
+            11520
+          ],
+          "hash": "35e7a727cfcea01daddb133f001314158805e9eb69e75b9a77d43c8a99e776ec"
+        }
+      }
+    },
+    "3691773420": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "WILDSTEEL": {
+          "bounds": [
+            14336,
+            5632,
+            14848,
+            6144
+          ],
+          "hash": "d6389a92c1a247bf1d949720f455d349890f9e7ef32704e83596a06367e58435"
+        }
+      }
+    },
+    "3693913206": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Floatopia": {
+          "bounds": [
+            4352,
+            5376,
+            4864,
+            5888
+          ],
+          "hash": "f9bdc4dbbfd2ad3a628a142a9f9b685d735ff366e48de0bb4cb0a8b07dcf82ac"
+        }
+      }
+    },
+    "3701164856": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Macon": {
+          "bounds": [
+            3584,
+            6400,
+            4608,
+            6912
+          ],
+          "hash": "28aa8fefb454f7dde4bb185f116a0aa72825e30f17074d7cb0ce03f4236e204e"
+        }
+      }
+    },
+    "3701834205": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Muldraugh 1993 B42": {
+          "bounds": [
+            10496,
+            8960,
+            11264,
+            11008
+          ],
+          "hash": "10b3b38727bf96c72ba1f084b94716bb97cdfe969f300efb78611fd9ed551464"
+        }
+      }
+    },
+    "3703704638": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Chinatown Expansion B42 version": {
+          "bounds": [
+            10752,
+            8192,
+            11264,
+            9216
+          ],
+          "hash": "6eb870ce47e2f49047071963e2ff25a3354c5062269468c1bb59a7de37ff7129"
+        }
+      }
+    },
+    "3711035052": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Blackmaze_wp": {
+          "bounds": [
+            10752,
+            6144,
+            11264,
+            6656
+          ],
+          "hash": "e0f6f99216b7ac4b356c71f8cf82d8ae70c1ad4ec89cb2ac2e9f3b7fc96f3deb"
+        }
+      }
+    },
+    "3728357493": {
+      "assets": "c1b2cc8f6f7089f3ba69400d0f7bb29cf39bef967dba7e665d3a80d0c5efaa9d",
+      "maps": {
+        "HavenFall": {
+          "bounds": [
+            4096,
+            8448,
+            5120,
+            9472
+          ],
+          "hash": "fbf5ec0d2a7112eefff378b6bb0cd4cb0e1d3a1f3301bee9a3b15366e3415bca"
+        }
+      }
+    },
+    "3736155379": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Begonia_Town": {
+          "bounds": [
+            11264,
+            7424,
+            12544,
+            7936
+          ],
+          "hash": "e1e4acf116d723a8a05a26999a22e8c7458f0d17940c847651025c57f8ef9744"
+        }
+      }
+    },
+    "3747339147": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "New Ellroy": {
+          "bounds": [
+            4864,
+            9728,
+            5888,
+            10752
+          ],
+          "hash": "ea1e94380c796aa10d028572b8ec56d7792dc3f8815bdf64b1da15867f38de3c"
+        },
+        "Shadyside": {
+          "bounds": [
+            5632,
+            9728,
+            6400,
+            10752
+          ],
+          "hash": "dc02af888480a4aa1e7d6d7ff88d9d861af18f8d8eeb1818a1fe83e8065ae7a4"
+        }
+      }
+    },
+    "3747595202": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Greenport": {
+          "bounds": [
+            7936,
+            7168,
+            8704,
+            7936
+          ],
+          "hash": "df984adeb398e38631dd0f000019cbd19e7a8753b3e322d0c19c058a91322808"
+        },
+        "Greenport, KY": {
+          "bounds": [
+            7936,
+            7168,
+            8704,
+            7936
+          ],
+          "hash": "7d1745f0e07279f6025a5a61657c977bcd6d66c1e80c1741865a68ef3ef1fd94"
+        }
+      }
+    },
+    "3759558202": {
+      "assets": "3ecea348443f9ace77248ca245c8d1c3d63576cfa899ad22ba03e4647516b735",
+      "maps": {
+        "Clover Lake": {
+          "bounds": [
+            9472,
+            8960,
+            9984,
+            9984
+          ],
+          "hash": "69a99daedca0e71d8fe097970d52d8d01e63cfb571c0e66f384f50c1cf9c6dfa"
+        },
+        "Clover Lake Highway KY-316": {
+          "bounds": [
+            9472,
+            7936,
+            9728,
+            9216
+          ],
+          "hash": "cbc70a07a8a78e4a46e07276e3c9e71d690fa15029bd83f1e13d3621ece41727"
+        }
+      }
+    },
+    "3762184916": {
+      "assets": "ee15825f6853a697ad622070d13d354a7f5b9b81d828308a8dd7b151c26fb9fe",
+      "maps": {
+        "Bunker 42": {
+          "bounds": [
+            11008,
+            9728,
+            11520,
+            10240
+          ],
+          "hash": "212dab4c4391e5aab1d4b7b4e6a4f0a27290041bcf7e71086b73fa32988ea102"
+        }
+      }
+    }
+  }
+}

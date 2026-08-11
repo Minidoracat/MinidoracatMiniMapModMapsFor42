@@ -1,9 +1,14 @@
 # 支援地圖更新追蹤器（PZ B42 MiniMap MOD Maps）
 # 排程：每日 05:43 UTC（台灣 13:43）；手動 Run workflow 預設 dry_run=true 走 preview。
 #
-# watchlist＝Steam「支援地圖收藏」3766382352（發版流程本來就會維護，免手動清單），
-# 排除自家項目後比對 time_updated → 冪等開/更「[地圖更新]」「[地圖下架]」issue，
-# state（tracker-state/timestamps.json）commit 回 repo。免 Steam API key、免下載內容。
+# 兩軸偵測（watchlist＝Steam 收藏 3766382352，排除自家項目；免 Steam API key）：
+#   MOD 軸：time_updated 變動 → steamcmd 下載該項 → hash 圖資與基準比對 →
+#           issue 直接標「需重渲（哪些 mapDir／bounds 變動）」或「免重渲（僅腳本/loot）」
+#   遊戲軸：public branch buildid 變動 → 開「[遊戲更新]」issue 提醒評估全量重渲
+#
+# 流程：check（查時間戳，無寫權限）→ diff（steamcmd 下載+hash，無 GitHub 寫權限；
+#       Workshop 內容只靜態 hash、絕不執行）→ issue（冪等開/更 issue + commit state）。
+# 三 job 以 artifact 傳遞，permission 逐 job 最小化。
 #
 # ⚠️ GitHub Actions 對 60 天無活動的 repo 會自動停用排程工作流。
 #    無上游變更即無 state commit，故不能靠本工作流自身當「活動」來源。
@@ -14,13 +19,12 @@ name: track-maps
 
 on:
   schedule:
-    # 每日 05:43 UTC（真實增量；僅 ~5 個 Steam API 請求，單輪 <1 分鐘。
-    # 注意：private repo 會計費 Actions 分鐘數，公開後才免費）
+    # 每日 05:43 UTC（真實增量；無變更日只有 check+diff 兩個輕量 job，<3 分鐘）
     - cron: "43 5 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "只查 API 印計畫，不開 issue/不 commit"
+        description: "只查 API 印計畫，不下載/不開 issue/不 commit"
         type: boolean
         default: true
 
@@ -33,7 +37,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # ---- 輕量預覽（workflow_dispatch 且 dry_run=true）：零 issue 零 commit ----
+  # ---- 輕量預覽（workflow_dispatch 且 dry_run=true）：零 issue 零下載 零 commit ----
   preview:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
     runs-on: ubuntu-latest
@@ -47,12 +51,66 @@ jobs:
           persist-credentials: false # dry-run 不推送，不留憑證
       - name: dry-run（查時間戳 + 印計畫）
         env:
-          TRACKER_CI: "1" # 缺 baseline fail-fast（須先本機 --bootstrap 建立並 commit）
+          TRACKER_CI: "1" # 缺 baseline fail-fast（須先本機 bootstrap/hash-baseline 建立並 commit）
         run: python3 scripts/map_tracker.py run --dry-run
 
-  # ---- track：查時間戳 → 冪等開/更 issue → commit state ----
-  track:
+  # ---- check：查時間戳 → changed artifact（無 GitHub 寫、無下載） ----
+  check:
     if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && !inputs.dry_run) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.event.repository.default_branch }} # 釘定 default branch，避免非預期 ref
+          persist-credentials: false
+      - name: self-test（零網路；壞掉的追蹤器 fail-fast，碰不到 issue 與 state）
+        run: python3 scripts/map_tracker.py self-test
+      - name: 查時間戳＋分類
+        env:
+          TRACKER_CI: "1"
+        run: python3 scripts/map_tracker.py check --out changed.json
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tracker-changed
+          path: changed.json
+          retention-days: 3
+
+  # ---- diff：steamcmd 下載變更項＋圖資 hash 判定＋遊戲 buildid（無 GitHub 寫） ----
+  diff:
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 30 # 大型地圖單項數百 MB～GB 級
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.event.repository.default_branch }} # 釘定 default branch，避免非預期 ref
+          persist-credentials: false
+      # 第三方 action pin 完整 commit SHA
+      - id: steamcmd
+        uses: CyberAndrii/setup-steamcmd@afc45f145b95c175c3a3862d3ca84756537d48e8 # v1.3.0
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: tracker-changed
+      - name: 下載變更項＋圖資 hash 判定（Workshop 內容只靜態 hash、絕不執行）
+        run: >-
+          python3 scripts/map_tracker.py diff
+          --in changed.json
+          --out mapdiff.json
+          --steamcmd "${{ steps.steamcmd.outputs.executable }}"
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tracker-diffs
+          path: mapdiff.json
+          retention-days: 3
+
+  # ---- issue：冪等開/更 issue + commit state（issues:write + contents:write） ----
+  issue:
+    needs: diff
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -63,15 +121,16 @@ jobs:
         with:
           ref: ${{ github.event.repository.default_branch }} # 釘定 default branch，避免非預期 ref
           fetch-depth: 0 # rebase onto origin 需完整歷史
-      - name: self-test（零網路；壞掉的追蹤器 fail-fast，碰不到 issue 與 state）
-        run: python3 scripts/map_tracker.py self-test
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: tracker-diffs
       - name: 設定 git 身分
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: 追蹤＋冪等 issue＋commit state
+      - name: 冪等開/更 issue＋commit state
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TRACKER_BRANCH: ${{ github.event.repository.default_branch }}
           TRACKER_CI: "1"
-        run: python3 scripts/map_tracker.py run
+        run: python3 scripts/map_tracker.py issue --in mapdiff.json

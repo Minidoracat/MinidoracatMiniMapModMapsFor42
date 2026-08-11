@@ -122,9 +122,9 @@ MinidoracatMiniMapModMapsFor42/
 ├── STEAM_DESCRIPTION.md           # Steam 商店頁描述（中文）——改動時必同步 _EN / _JP 版
 ├── link_workshop.bat              # Workshop 符號連結管理（雙擊啟動）
 ├── PZ_Test.bat                    # PZ 本地測試啟動器（雙擊啟動）
-├── .github/workflows/track_maps.yml  # 每日追蹤支援地圖更新，變動即開 issue
+├── .github/workflows/track_maps.yml  # 每日追蹤：地圖更新（含圖資 hash 重渲判定）＋遊戲 build
 ├── scripts/                       # PowerShell / Python 腳本（map_tracker.py＝追蹤器本體）
-├── tracker-state/                 # 追蹤器基準（timestamps.json，進版控）
+├── tracker-state/                 # 追蹤器基準（timestamps.json＋mapdata_hashes.json，進版控）
 └── MOD/MinidoracatMiniMapModMapsFor42/Contents/mods/MinidoracatMiniMapModMapsFor42/42/
     ├── mod.info                   # require=MinidoracatMiniMapFor42
     └── media/
