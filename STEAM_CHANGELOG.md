@@ -1,26 +1,18 @@
-[h1]Minidoracat MiniMap - MOD Maps for B42 42.20.0-0.4.1[/h1]
-[i]2026-07-29[/i]
+[h1]Minidoracat MiniMap - MOD Maps for B42 42.20.0-0.5.0[/h1]
+[i]2026-08-11[/i]
 
-[h3]• 更新[/h3]
+[h3]✨ 新增[/h3]
 [list]
-[*] [b]遊戲 42.20 全量重渲 81 張 pyramid（收錄全數）[/b]：42.20 更新了主世界 950 個 cell
+[*] [b]8 張新地圖[/b]，累計 [b]68 個地圖 MOD／89 張地圖[/b]。
+[*] [b]SecretZ 三個新據點[/b]：西點大橋檢查站、河濱鎮一號／二號檢查站（二號與六號檢查站同區域、為作者重建版本，依伺服器實際載入自動擇一顯示）。
+[*] [b]汐汐的靜謐小屋[/b]（Xixi's Serene Cottage，許願串點播）。
+[*] [b]VaultTec 四座避難所[/b]（Louisville／Muldraugh／聯絡道路／Rosewood，許願串點播；逐據點偵測，未載入的避難所不誤畫）。
+[*] 問題回報與新地圖申請新增 [b]GitHub 表單管道[/b]（商店頁與許願串有連結，含地圖支援申請與圖像問題回報兩種表單）。
 [/list]
-（Muldraugh／Rosewood／Riverside／West Point 城區），MOD 未覆蓋的 cell 會
-透出 vanilla 基底——71 張與更新區有交集；一併吃到渲染工具 42.20 巨樹修正
-（JumboTreesBigs2x 補載＋JUMBOXL/XXL anchor）與 Tiles2x 重打包。全部輸出
-bounds 與 Lua 註冊表逐張驗證一致，註冊表零改動。
+
+[h3]🔄 更新[/h3]
 [list]
-[*] 0.4.0 備忘的 [b]Frogtown／HavenFall[/b] 亦已重渲。
-[*] [b]移除 3 張已下架地圖的支援[/b]（Workshop 原項目已下架，無法再重渲且下架項
-[/list]
-會造成伺服器安裝問題）：Meiya'sTown、Sector-7 Breach、Sector-7 Breach
-Highway——Lua 註冊、四語翻譯、pyramid zip 與收錄清單一併移除，收錄降為
-[b]66 個地圖 MOD／81 張地圖[/b]。
-[list]
-[*] 新增 scripts/rebuild_pyramids.py：讀 Lua 註冊表批次重渲（workshop 定位
-[/list]
-mod 根目錄、bounds→--region 還原、require= 一層 tile pack 依賴、渲後
-bounds 驗證），支援 --dry-run／--only。
-[list]
-[*] 支援版本字樣 42.20.0+（mod.info modversion=42.20.0-0.4.1、versionMin=42.20.0）。
+[*] [b]全量重渲 89 張 pyramid[/b]：17 個地圖 MOD 上游於 7 月底全量重渲後又有更新，本版全部吃到最新內容（其中 Tikitown、SecretZ、Haven Fall 有實際圖資變更）。
+[*] [b]SecretZ 北方檢查站[/b]：上游地圖向北擴張一格 cell，範圍框線與圖像已同步擴展。
+[*] 支援地圖收藏移除兩個已下架項目（美雅鎮、Sector-7——支援已於 0.4.1 移除，收藏不再掛訂閱不到的死連結）。
 [/list]
