@@ -1,28 +1,19 @@
-[h1]Minidoracat MiniMap - MOD Maps for B42 42.20.0-0.5.1[/h1]
-[i]2026-08-11[/i]
-
-[h3]✨ 新增[/h3]
-[list]
-[*] [b]渡鴉溪（Kardinal 移植版）[/b]（Kardinal Raven Creek B42，商店頁點播）：Kardinal 團隊的另一個 B42 移植版，範圍比原版往東南各多兩格 cell，已獨立渲染。與原版渡鴉溪[b]二選一[/b]（兩者地圖資料夾同名，勿同時啟用）——裝哪一版就顯示哪一版的圖。累計 [b]69 個地圖 MOD／90 張地圖[/b]。
-[/list]
-
-[hr][/hr]
-
 [h1]Minidoracat MiniMap - MOD Maps for B42 42.20.0-0.5.0[/h1]
 [i]2026-08-11[/i]
 
 [h3]✨ 新增[/h3]
 [list]
-[*] [b]8 張新地圖[/b]，累計 [b]68 個地圖 MOD／89 張地圖[/b]。
+[*] [b]9 張新地圖[/b]，累計 [b]69 個地圖 MOD／90 張地圖[/b]。
 [*] [b]SecretZ 三個新據點[/b]：西點大橋檢查站、河濱鎮一號／二號檢查站（二號與六號檢查站同區域、為作者重建版本，依伺服器實際載入自動擇一顯示）。
 [*] [b]汐汐的靜謐小屋[/b]（Xixi's Serene Cottage，許願串點播）。
 [*] [b]VaultTec 四座避難所[/b]（Louisville／Muldraugh／聯絡道路／Rosewood，許願串點播；逐據點偵測，未載入的避難所不誤畫）。
+[*] [b]渡鴉溪（Kardinal 移植版）[/b]（Kardinal Raven Creek B42，商店頁點播）：Kardinal 團隊的另一個 B42 移植版，範圍比原版往東南各多兩格 cell，已獨立渲染。與原版渡鴉溪[b]二選一[/b]（兩者地圖資料夾同名，勿同時啟用）——裝哪一版就顯示哪一版的圖。
 [*] 問題回報與新地圖申請新增 [b]GitHub 表單管道[/b]（商店頁與許願串有連結，含地圖支援申請與圖像問題回報兩種表單）。
 [/list]
 
 [h3]🔄 更新[/h3]
 [list]
-[*] [b]全量重渲 89 張 pyramid[/b]：17 個地圖 MOD 上游於 7 月底全量重渲後又有更新，本版全部吃到最新內容（其中 Tikitown、SecretZ、Haven Fall 有實際圖資變更）。
+[*] [b]全量重渲 90 張 pyramid[/b]：17 個地圖 MOD 上游於 7 月底全量重渲後又有更新，本版全部吃到最新內容（其中 Tikitown、SecretZ、Haven Fall 有實際圖資變更）。
 [*] [b]SecretZ 北方檢查站[/b]：上游地圖向北擴張一格 cell，範圍框線與圖像已同步擴展。
 [*] 支援地圖收藏移除兩個已下架項目（美雅鎮、Sector-7——支援已於 0.4.1 移除，收藏不再掛訂閱不到的死連結）。
 [/list]

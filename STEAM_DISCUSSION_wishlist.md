@@ -17,7 +17,7 @@
 [*] 也可以改用 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue 表單[/url]申請——會直接進開發待辦，處理最快
 [/list]
 
-[h2]✅ 目前支援（v0.5.1：69 個地圖 MOD、90 張地圖）[/h2]
+[h2]✅ 目前支援（v0.5.0：69 個地圖 MOD、90 張地圖）[/h2]
 完整清單與一鍵訂閱請看
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352][b]支援地圖收藏[/b][/url]
 （含全部地圖 MOD＋主 MOD＋本包；地圖名點進收藏頁即有連結）。收錄名單：
