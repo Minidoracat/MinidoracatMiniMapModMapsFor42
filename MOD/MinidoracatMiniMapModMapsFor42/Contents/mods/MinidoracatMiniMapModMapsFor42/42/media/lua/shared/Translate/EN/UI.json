@@ -82,5 +82,10 @@
     "UI_MinidoracatMiniMapModMaps_BegoniaTown": "Begonia Town",
     "UI_MinidoracatMiniMapModMaps_Frogtown": "Frogtown",
     "UI_MinidoracatMiniMapModMaps_HavenFall": "Haven Fall",
-    "UI_MinidoracatMiniMapModMaps_MaconTWD": "Macon (TWD)"
+    "UI_MinidoracatMiniMapModMaps_MaconTWD": "Macon (TWD)",
+    "UI_MinidoracatMiniMapModMaps_XixiCottage": "Xixi's Serene Cottage",
+    "UI_MinidoracatMiniMapModMaps_VaultTecLouisville": "VaultTec Vault - Louisville",
+    "UI_MinidoracatMiniMapModMaps_VaultTecMuldraugh": "VaultTec Vault - Muldraugh",
+    "UI_MinidoracatMiniMapModMaps_VaultTecRoad": "VaultTec Road",
+    "UI_MinidoracatMiniMapModMaps_VaultTecRosewood": "VaultTec Vault - Rosewood"
 }

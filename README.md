@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **84 張**（66 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **89 張**（68 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 | 地圖 | 對應 MOD（mod ID) | 範圍（世界 square） |
@@ -107,6 +107,11 @@
 | 青蛙鎮 | `Frogtown` | 2816,6656 – 4096,7680 |
 | 海文弗爾 | `HavenFall` | 4096,8448 – 5120,9472 |
 | 梅肯（陰屍路） | `Macon` | 3584,6400 – 4608,6912 |
+| 汐汐的靜謐小屋 | `Xixi's Serene Cottage` | 7424,7936 – 7936,8448 |
+| VaultTec 避難所－路易斯維爾 | `VaultTec B42 version` | 14336,2560 – 14848,3072 |
+| VaultTec 避難所－Muldraugh | `VaultTec B42 version` | 12288,8960 – 12800,9472 |
+| VaultTec 聯絡道路 | `VaultTec B42 version` | 11776,8960 – 12544,9472 |
+| VaultTec 避難所－羅斯伍德 | `VaultTec B42 version` | 5888,10496 – 6400,11008 |
 
 ### 已下架地圖（記錄保留、每日追蹤不含）
 

@@ -82,5 +82,10 @@
     "UI_MinidoracatMiniMapModMaps_BegoniaTown": "ベゴニアタウン",
     "UI_MinidoracatMiniMapModMaps_Frogtown": "フロッグタウン",
     "UI_MinidoracatMiniMapModMaps_HavenFall": "ヘイヴンフォール",
-    "UI_MinidoracatMiniMapModMaps_MaconTWD": "メイコン（TWD）"
+    "UI_MinidoracatMiniMapModMaps_MaconTWD": "メイコン（TWD）",
+    "UI_MinidoracatMiniMapModMaps_XixiCottage": "汐汐の静かなコテージ",
+    "UI_MinidoracatMiniMapModMaps_VaultTecLouisville": "VaultTec 避難所（ルイビル）",
+    "UI_MinidoracatMiniMapModMaps_VaultTecMuldraugh": "VaultTec 避難所（Muldraugh）",
+    "UI_MinidoracatMiniMapModMaps_VaultTecRoad": "VaultTec 連絡道路",
+    "UI_MinidoracatMiniMapModMaps_VaultTecRosewood": "VaultTec 避難所（ローズウッド）"
 }

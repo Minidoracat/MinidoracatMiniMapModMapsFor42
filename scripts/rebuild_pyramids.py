@@ -69,7 +69,8 @@ def _index_info(info, root, idx, requires):
         if line.startswith("id="):
             mid = line[3:].strip()
         elif line.startswith("require="):
-            req = [r.strip() for r in line[8:].split(",") if r.strip()]
+            # B42 mod.info 可寫 require=\Name（反斜線前綴），依 id 索引時要剝掉
+            req = [r.strip().lstrip("\\") for r in line[8:].split(",") if r.strip().lstrip("\\")]
     if mid and mid not in idx:
         idx[mid] = root
         requires[mid] = req or []

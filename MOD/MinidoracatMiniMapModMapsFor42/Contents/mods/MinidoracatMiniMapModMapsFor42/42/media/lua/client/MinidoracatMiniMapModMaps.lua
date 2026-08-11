@@ -192,6 +192,18 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 4096, 8448, 5120, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_HavenFall" },
         { zip = "Macon.pyramid.zip", mapMod = "Macon",
             bounds = { 3584, 6400, 4608, 6912 }, nameKey = "UI_MinidoracatMiniMapModMaps_MaconTWD" },
+        { zip = "Xixi's Serene Cottage.pyramid.zip", mapMod = "Xixi's Serene Cottage",
+            bounds = { 7424, 7936, 7936, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_XixiCottage" },
+        -- VaultTec：一 mod 四座避難所，逐條 mapDir（MP 伺服器 Map= 未載入的不誤畫）；
+        -- Louisville 座與 SecretZ 路易斯維爾軍事複合區範圍重疊（各自依啟用 mod 顯示，非衝突）
+        { zip = "VaultTec_Louisville.pyramid.zip", mapMod = "VaultTec B42 version", mapDir = "VaultTec_Louisville",
+            bounds = { 14336, 2560, 14848, 3072 }, nameKey = "UI_MinidoracatMiniMapModMaps_VaultTecLouisville" },
+        { zip = "VaultTec_Muldraugh.pyramid.zip", mapMod = "VaultTec B42 version", mapDir = "VaultTec_Muldraugh",
+            bounds = { 12288, 8960, 12800, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_VaultTecMuldraugh" },
+        { zip = "VaultTec_road.pyramid.zip", mapMod = "VaultTec B42 version", mapDir = "VaultTec_road",
+            bounds = { 11776, 8960, 12544, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_VaultTecRoad" },
+        { zip = "VaultTec_Rosewood.pyramid.zip", mapMod = "VaultTec B42 version", mapDir = "VaultTec_Rosewood",
+            bounds = { 5888, 10496, 6400, 11008 }, nameKey = "UI_MinidoracatMiniMapModMaps_VaultTecRosewood" },
     })
 else
     print("[MinidoracatMiniMapModMaps] 找不到主 MOD API（MinidoracatMiniMapAPI）——請安裝並啟用 Minidoracat MiniMap for B42 主 MOD")
