@@ -95,6 +95,13 @@ def neutralize(text: str) -> str:
     return text.replace("`", "ˋ")
 
 
+def warn(msg: str) -> None:
+    """GitHub Actions annotation（浮上 run summary）；本機與 self-test 退化為純文字，
+    免得自測的故意觸發案例在 CI 變成 run 註記雜訊。"""
+    on_ci = os.environ.get("GITHUB_ACTIONS") == "true" and not os.environ.get("TRACKER_SELF_TEST")
+    print(f"::warning::{msg}" if on_ci else f"  ⚠️ {msg}")
+
+
 def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -237,7 +244,7 @@ def coverage_guard(ids: list[str], details: dict[str, dict]) -> None:
     print(f"  查得 {got}/{total} 筆有效 API 回應")
     if got < total:
         # GitHub Actions annotation：浮上 run summary，排程綠燈也看得到
-        print(f"::warning::Steam API 有效回應缺 {total - got}/{total} 筆（缺項 state 不推進，下輪重試）")
+        warn(f"Steam API 有效回應缺 {total - got}/{total} 筆（缺項 state 不推進，下輪重試）")
     if got == 0:
         print("❌ ids 非空但有效 API 回應全空，中止（疑似 API 故障/封鎖）。", file=sys.stderr)
         sys.exit(1)
@@ -441,14 +448,14 @@ def classify(
                 baselined += 1
             continue
         if result != RESULT_OK:
-            print(f"::warning::非預期 Steam API result={result}（id={wid}），本輪略過")
+            warn(f"非預期 Steam API result={result}（id={wid}），本輪略過")
             if first_seen:
                 meta.pop(wid)  # 無有效基準可記，下輪仍視為首見
             continue
         new_tu = detail.get("time_updated")
         if not isinstance(new_tu, int) or new_tu <= 0:
             # result=1 但欄位缺失/無效：不得以 0 入庫（會造成假更新 issue 反覆震盪）
-            print(f"::warning::time_updated 無效（id={wid}），本輪略過")
+            warn(f"time_updated 無效（id={wid}），本輪略過")
             if first_seen:
                 meta.pop(wid)
             continue
@@ -821,7 +828,7 @@ def cmd_diff(args) -> int:
     new_hashes: dict[str, dict] = {}
     for wid in todo:
         if not str(wid).isdigit():  # artifact 防禦：id 必為數字才進 argv
-            print(f"::warning::非法 workshop id（{wid!r}），略過")
+            warn(f"非法 workshop id（{wid!r}），略過")
             continue
         print(f"  ⬇️ steamcmd 下載 {wid}…", flush=True)
         root = steamcmd_download(args.steamcmd, str(wid))
@@ -837,7 +844,7 @@ def cmd_diff(args) -> int:
               + (f"（{ '、'.join(verdicts[wid]['changed_maps']) }）" if verdicts[wid]["changed_maps"] else ""))
     game_build = fetch_game_build(args.steamcmd)
     if game_build is None:
-        print("::warning::取得遊戲 buildid 失敗（本輪略過遊戲軸，下輪再試）")
+        warn("取得遊戲 buildid 失敗（本輪略過遊戲軸，下輪再試）")
     data["verdicts"] = verdicts
     data["new_hashes"] = new_hashes
     data["game_build"] = game_build
@@ -974,6 +981,8 @@ class _FakeGh:
 
 def cmd_self_test() -> int:
     import tempfile
+
+    os.environ["TRACKER_SELF_TEST"] = "1"
 
     # 1) marker roundtrip＋注入中和
     marker = make_marker(TYPE_UPDATE, "111", "abc")
