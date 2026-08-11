@@ -14,7 +14,7 @@ outline data for several map MODs.
 [/list]
 
 [h2]🗺️ Included maps & requests[/h2]
-Currently supports [b]66 map MODs (81 maps)[/b] — subscribe them all at once via the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
+Currently supports [b]66 map MODs (82 maps)[/b] — subscribe them all at once via the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
 requests all live in the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]Discussions[/url] — come make a wish!
 You can also request a new map via the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (goes straight into the dev backlog — fastest turnaround).
 

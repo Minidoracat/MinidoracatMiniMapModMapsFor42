@@ -144,6 +144,8 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 3584, 6400, 4352, 7424 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZNorthCheckpoint" },
         { zip = "SZ_The_Mall.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_The_Mall",
             bounds = { 13568, 5632, 14336, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZTheMall" },
+        { zip = "SZ_Westpoint_Bridge_Checkpoint.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Westpoint_Bridge_Checkpoint",
+            bounds = { 12288, 6400, 12800, 6912 }, nameKey = "UI_MinidoracatMiniMapModMaps_SZWestpointBridge" },
         { zip = "taibeiroad.pyramid.zip", mapMod = "Taibeiroad4",
             bounds = { 7936, 9984, 9216, 11776 }, nameKey = "UI_MinidoracatMiniMapModMaps_Taibeiroad" },
         { zip = "Taylorsville.pyramid.zip", mapMod = "Taylorsville",
