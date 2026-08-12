@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T08:42:18Z",
+  "generated_at": "2026-08-12T06:10:13Z",
   "items": {
     "2463499011": {
       "assets": "edb79ec01aa4df992286162c5bc04656eb6b59e205744fd2b68a61987c64f7ec",
@@ -1148,6 +1148,20 @@
             10240
           ],
           "hash": "4cece43eeec598bc9982f63c251cf09246ed36d6b1d748f258a05ca68920dc4b"
+        }
+      }
+    },
+    "3769577696": {
+      "assets": "cc608442dffa4a52af465af32cc4bebeca13417385e0a01ec31e4b33d3d32ed7",
+      "maps": {
+        "Raven Creek B42": {
+          "bounds": [
+            4096,
+            14336,
+            7168,
+            18176
+          ],
+          "hash": "fe1952bd9761489dbca20bd74adc7b5760bf3edb80cc7f2855abcaac59614f3f"
         }
       }
     }
