@@ -420,7 +420,8 @@ def finalize_update_plan(plan: dict, verdict: dict | None, prev_body: str = "") 
         if _CARRY_LINE_RE.match(ln) and ln not in current
     )
     new_hash = hashlib.sha256(
-        f"update|{plan['workshop_id']}|{plan['new_tu']}|{status}|{'|'.join(carried)}".encode("utf-8")
+        (f"update|{plan['workshop_id']}|{plan['new_tu']}|{status}|{'|'.join(carried)}"
+         f"|{_used_by_digest(plan.get('tilepack_used_by'))}").encode("utf-8")
     ).hexdigest()
     lines = plan["body"].split("\n")
     lines[0] = make_marker(TYPE_UPDATE, plan["workshop_id"], new_hash)
@@ -462,9 +463,15 @@ def _workshop_id_of(root: Path) -> str | None:
 
 def build_tile_deps(
     entries: list[dict], idx: dict, requires: dict
-) -> tuple[dict[str, dict], list[str], list[str]]:
-    """註冊表 entries＋workshop 索引 →
-    ({tile pack workshop id: {mod_ids, used_by}}, 本機找不到的 zip, 推不出 workshop id 的依賴)。
+) -> tuple[dict[str, dict], dict[str, list[str]]]:
+    """註冊表 entries＋workshop 索引 → ({tile pack workshop id: {mod_ids, used_by}}, 診斷)。
+
+    診斷三類「掃不到＝清單少一項」的來源，全部必須可見（少一項不會壞掉、只會靜靜
+    失去追蹤，正是本功能要消滅的失效模式）：
+      unresolved_maps ＝地圖本體無本機副本（該圖的依賴整組看不到）
+      missing_deps    ＝require= 指名但本機沒有的 mod（B41 時代的 require 常含
+                        B42 用不到、從未安裝的包，故不當硬錯，但要列出來）
+      unlocatable_deps＝有本機副本卻推不出 workshop id（不在 workshop 佈局下）
 
     追蹤範圍刻意等同「渲染時實際餵給 pzmap 的 --mod 集合」（rebuild_pyramids 的
     deps 解析同一份 requires/idx），追蹤器與渲染器才不會對「什麼會影響輸出」有兩套看法。
@@ -474,6 +481,7 @@ def build_tile_deps(
     seen_zip: set[str] = set()
     unresolved: list[str] = []
     unlocatable: set[str] = set()
+    missing_deps: set[str] = set()
     for entry in entries:
         zip_name = entry["zip"]
         if zip_name in seen_zip:
@@ -495,7 +503,10 @@ def build_tile_deps(
         map_wid = _workshop_id_of(root)
         for dep_mod in requires.get(entry["mapMod"], []):
             dep_root = idx.get(dep_mod)
-            if dep_root is None or dep_root == root:
+            if dep_root is None:
+                missing_deps.add(dep_mod)   # 本機沒這個包 → 無從推 workshop id，但要看得見
+                continue
+            if dep_root == root:
                 continue
             dep_wid = _workshop_id_of(dep_root)
             if dep_wid is None:
@@ -515,7 +526,11 @@ def build_tile_deps(
     for item in items.values():
         item["mod_ids"].sort()
         item["used_by"].sort(key=lambda u: (u["zip"], u["map_mod"]))
-    return items, sorted(unresolved), sorted(unlocatable)
+    return items, {
+        "unresolved_maps": sorted(unresolved),
+        "missing_deps": sorted(missing_deps),
+        "unlocatable_deps": sorted(unlocatable),
+    }
 
 
 def load_tile_deps() -> dict[str, dict]:
@@ -622,7 +637,9 @@ def classify(
         result = int(detail.get("result", 0))
         entry["last_result"] = result
         if result == RESULT_NOT_FOUND:
-            if not prev.get("removed") and not first_seen:
+            # 材質包首見即不可存取＝「現行必要依賴取不到」，不是「新收錄了一張已下架的圖」——
+            # 套地圖的靜默 baseline 會零 issue 直接 tombstone、次輪起永不再查，盲區換個地方復活
+            if not prev.get("removed") and (not first_seen or used_by is not None):
                 plans.append(build_removed_plan(wid, title, tilepack_used_by=used_by))
             entry["removed"] = True
             entry["removed_at"] = entry["removed_at"] or now_iso()
@@ -652,6 +669,19 @@ def classify(
     return plans, meta, baselined
 
 
+def _used_by_digest(used_by: list | None) -> str:
+    """受影響地圖集合的短 digest，併入 issue 冪等 hash。沒有它的話：材質包的
+    time_updated 沒變、但依賴它的地圖增減時 body 會變而 hash 不變 → apply_issue_plan
+    走 skip，issue 永遠停在舊的受影響清單。"""
+    if used_by is None:
+        return ""
+    canon = json.dumps(
+        sorted((str(u.get("zip", "")), str(u.get("map_mod", ""))) for u in used_by),
+        ensure_ascii=False,
+    )
+    return hashlib.sha256(canon.encode("utf-8")).hexdigest()[:16]
+
+
 def _affected_lines(used_by: list) -> list[str]:
     """材質包 issue 的「受影響地圖」清單（zip 名＋該地圖 Workshop 連結）。"""
     lines = [f"**受影響地圖（{len(used_by)} 張）**：", ""]
@@ -669,7 +699,9 @@ def build_update_plan(wid: str, title: str, old_tu, new_tu: int,
                       *, tilepack_used_by: list | None = None) -> dict:
     """地圖更新 plan；tilepack_used_by 給定時改產「材質包更新」plan（受影響地圖需重渲）。"""
     label = neutralize(title)
-    content_hash = hashlib.sha256(f"update|{wid}|{new_tu}".encode("utf-8")).hexdigest()
+    content_hash = hashlib.sha256(
+        f"update|{wid}|{new_tu}|{_used_by_digest(tilepack_used_by)}".encode("utf-8")
+    ).hexdigest()
     common = [
         f"- 上次記錄：{fmt_ts(old_tu)}",
         f"- 本次更新：{fmt_ts(new_tu)}",
@@ -730,7 +762,9 @@ def build_removed_plan(wid: str, title: str, *, tilepack_used_by: list | None = 
     """地圖下架 plan；tilepack_used_by 給定時改產「材質包下架」plan——處置完全不同：
     材質包下架不必刪任何註冊（已渲圖像不受影響），但受影響地圖從此無法忠實重渲。"""
     label = neutralize(title)
-    content_hash = hashlib.sha256(f"removed|{wid}".encode("utf-8")).hexdigest()
+    content_hash = hashlib.sha256(
+        f"removed|{wid}|{_used_by_digest(tilepack_used_by)}".encode("utf-8")
+    ).hexdigest()
     if tilepack_used_by is not None:
         head = [
             f"## 材質包下架：`{label}`（Workshop {wid}）",
@@ -1005,6 +1039,13 @@ def collect() -> dict:
     # （地圖沒動）追蹤器原本完全看不見，圖會靜默停在舊材質。清單由本機 deps-scan 產出。
     tile_deps = load_tile_deps()
     if not tile_deps:
+        # CI fail-closed：缺/壞 manifest 就整條材質包軸消失，但排程仍綠燈——那正是本功能
+        # 要消滅的靜默盲區換個地方復活。本機（dry-run/bootstrap）才允許降級繼續。
+        if os.environ.get("TRACKER_CI") == "1":
+            print("❌ tile_deps.json 缺失／無法解析／為空，材質包軸會整條消失，中止。"
+                  "本機執行 `python scripts/map_tracker.py deps-scan` 重建並 commit。",
+                  file=sys.stderr)
+            sys.exit(1)
         warn("tile_deps.json 缺失或為空——地圖依賴的材質包未納入追蹤"
              "（本機跑 `python scripts/map_tracker.py deps-scan` 重建並 commit）")
     # 已標記下架的項目：記錄保留（tombstone）、每日追蹤不再查詢。
@@ -1109,6 +1150,10 @@ def cmd_diff(args) -> int:
     data = load_json(Path(args.infile))
     if not _schema_guard(data, "diff"):
         return 1
+    # deadline 在遊戲軸之前起算：buildid 查詢最多 300 秒，排除在預算外的話整體上限
+    # 會變成 300+budget+單項超時，可能撞穿 workflow 的 30 分鐘 hard timeout——job 被殺
+    # ＝artifact 不產出＝unknown 撤回不執行＝下一輪整批重跑（永遠收斂不了）
+    deadline = time.monotonic() + float(os.environ.get("TRACKER_DIFF_BUDGET", "1200"))
     # 遊戲軸先跑：不受後面 MOD 項目吃光時間預算影響
     game_build = fetch_game_build(args.steamcmd)
     if game_build is None:
@@ -1118,24 +1163,30 @@ def cmd_diff(args) -> int:
     todo = list(dict.fromkeys(update_ids + data.get("baseline_new", [])))
     random.shuffle(todo)  # 每輪隨機序：單一慢項不會永久餓死其他項（unknown 明日重試）
     baseline = load_json(MAPDATA_JSON) if MAPDATA_JSON.exists() else {"items": {}}
-    # 全域時間預算：單項最壞 2×420s，預算擋在 job 30 分鐘上限之前——
-    # 超支項目以 unknown 收場（timestamp 會被 issue 階段撤回，明日重試），
-    # artifact 仍產出、其他項目與 issue job 不陪葬
-    deadline = time.monotonic() + float(os.environ.get("TRACKER_DIFF_BUDGET", "1200"))
+    # 全域時間預算：超支項目以 unknown 收場（timestamp 會被 issue 階段撤回，明日重試），
+    # artifact 仍產出、其他項目與 issue job 不陪葬。單項超時與重試次數都夾在剩餘預算內——
+    # 只在「開始前」檢查 deadline 是不夠的：一個項目開跑後仍可燒掉 2×420s＋sleep，
+    # 幾個慢項就能推爆 job 上限（材質包進追蹤後大包變多，這條路徑更容易踩到）
+    MIN_ITEM_BUDGET = 90.0   # 剩不到這個秒數就別開新項目：只夠逾時、拿不到結果
     verdicts: dict[str, dict] = {}
     new_hashes: dict[str, dict] = {}
     for wid in todo:
         if not str(wid).isdigit():  # artifact 防禦：id 必為數字才進 argv
             warn(f"非法 workshop id（{wid!r}），略過")
             continue
-        if time.monotonic() > deadline:
+        remaining = deadline - time.monotonic()
+        if remaining <= MIN_ITEM_BUDGET:
             verdicts[wid] = {"status": "unknown", "note": "時間預算用盡（明日重試）",
                              "changed_maps": [], "bounds_changed": {}}
             print(f"  ⏱️ {wid} 時間預算用盡，本輪略過")
             continue
-        print(f"  ⬇️ steamcmd 下載 {wid}…", flush=True)
+        # 單項超時夾在剩餘預算內；重試（含 5 秒 sleep）只在裝得下第二次嘗試時才開
+        item_timeout = min(420.0, remaining)
+        retries = 1 if remaining > 2 * 420.0 + 30.0 else 0
+        print(f"  ⬇️ steamcmd 下載 {wid}…（上限 {item_timeout:.0f}s、重試 {retries}）", flush=True)
         try:
-            root = steamcmd_download(args.steamcmd, str(wid), timeout=420.0)
+            root = steamcmd_download(args.steamcmd, str(wid),
+                                     retries=retries, timeout=item_timeout)
             new = hash_mod_mapdata(root) if root is not None else None
         except OSError as exc:  # 單項壞檔/IO 例外隔離，不拖垮其他項與遊戲軸
             root, new = None, None
@@ -1279,21 +1330,31 @@ def cmd_deps_scan(args) -> int:
 
     entries = rp.parse_registrations(rp.LUA.read_text(encoding="utf-8"))
     idx, requires = rp.index_workshop([Path(p) for p in args.prefer])
-    items, unresolved, unlocatable = build_tile_deps(entries, idx, requires)
-    if unlocatable:
-        # 不擋寫檔（可能是刻意的手動安裝 mod），但必須讓人看見少了哪些追蹤
-        warn(f"{len(unlocatable)} 個依賴推不出 workshop id、未納入追蹤："
-             f"{', '.join(unlocatable)}（本機副本不在 workshop 佈局下？）")
-    if unresolved:
-        print(f"❌ {len(unresolved)} 張註冊地圖在本機找不到 workshop 副本，不寫檔"
+    items, diag = build_tile_deps(entries, idx, requires)
+    for label, key in (("依賴推不出 workshop id（本機副本不在 workshop 佈局下？）", "unlocatable_deps"),
+                       ("require= 指名但本機沒有的 mod（B41 時代 require 常含 B42 用不到的包）",
+                        "missing_deps")):
+        if diag[key]:
+            warn(f"{len(diag[key])} 個依賴未納入追蹤——{label}：{', '.join(diag[key])}")
+    if diag["unresolved_maps"]:
+        print(f"❌ {len(diag['unresolved_maps'])} 張註冊地圖在本機找不到 workshop 副本，不寫檔"
               "（清單會少項，覆寫等於砍掉追蹤覆蓋）：", file=sys.stderr)
-        for z in unresolved:
+        for z in diag["unresolved_maps"]:
             print(f"     {z}", file=sys.stderr)
         print("   訂閱／steamcmd 下載缺項後重跑，或用 --prefer 指向含該副本的 content 根。",
               file=sys.stderr)
         return 1
 
     old = load_tile_deps()
+    # 覆蓋回歸閘門：本機少一份材質包副本就會讓它從清單消失並被 commit 進版控，
+    # 之後永遠不再追蹤且沒有任何跡象。合法的移除（地圖退出支援、上游改依賴）走 --allow-drop。
+    would_drop = sorted(set(old) - set(items))
+    if would_drop and not args.allow_drop:
+        print(f"❌ 本次掃描會讓 {len(would_drop)} 個既有材質包脫離追蹤，不寫檔："
+              f"{', '.join(would_drop)}", file=sys.stderr)
+        print("   多半是本機缺該材質包副本（補下載後重跑）；確認是上游改依賴／地圖退出支援"
+              "造成的合法移除，才加 --allow-drop。", file=sys.stderr)
+        return 1
     added = sorted(set(items) - set(old))
     gone = sorted(set(old) - set(items))
     total_maps = len({u["zip"] for it in items.values() for u in it["used_by"]})
@@ -1549,7 +1610,7 @@ def cmd_self_test() -> int:
         {"zip": "Alias.pyramid.zip", "mapMod": "chinatown"},
         {"zip": "Gone.pyramid.zip", "mapMod": "also_missing"},
     ]
-    deps_t, unresolved_t, unlocatable_t = build_tile_deps(entries_t, idx_t, req_t)
+    deps_t, diag_t = build_tile_deps(entries_t, idx_t, req_t)
     assert set(deps_t) == {"3046728955", "2879745353"}          # sibling 同項目 → 不追蹤
     assert "missing_pack" not in str(deps_t)                     # 本機沒有的依賴不入清單
     assert deps_t["3046728955"]["mod_ids"] == ["tikitown_tiles"]
@@ -1558,8 +1619,10 @@ def cmd_self_test() -> int:
     ]
     assert [u["zip"] for u in deps_t["2879745353"]["used_by"]] == [
         "Alias.pyramid.zip", "Chinatown.pyramid.zip"]           # alias 各算一次、排序穩定
-    assert unresolved_t == ["Gone.pyramid.zip"]                  # 缺副本必須浮出（不可靜默）
-    assert unlocatable_t == ["local_only"]                       # 推不出 workshop id 也要浮出
+    # 三類「清單少一項」的來源都必須可見——靜默縮水正是本功能要消滅的失效模式
+    assert diag_t["unresolved_maps"] == ["Gone.pyramid.zip"]     # 地圖無本機副本
+    assert diag_t["unlocatable_deps"] == ["local_only"]          # 有副本但推不出 workshop id
+    assert diag_t["missing_deps"] == ["missing_pack"]            # require= 指名但本機沒有
 
     # 11) 材質包 issue：走 update/removed 同一條路但用語與處置不同；判定改「受影響地圖」
     used_by_t = deps_t["3046728955"]["used_by"]
@@ -1600,6 +1663,32 @@ def cmd_self_test() -> int:
         {"3046728955": {"time_updated": 100}},
     )
     assert plans_legacy[0]["title"].startswith("[地圖更新]")
+    # 13) 材質包首見即已下架＝現行必要依賴取不到 → 必須開單，不得靜默 tombstone
+    plans_gone, meta_gone, _ = classify(
+        ["3046728955"], {"3046728955": {"result": 9}}, {}, tilepack_deps=deps_t)
+    assert len(plans_gone) == 1 and plans_gone[0]["title"].startswith("[材質包下架]")
+    assert meta_gone["3046728955"]["removed"]
+    # 地圖首見即下架仍維持原本的靜默 baseline（新收錄一張已下架的圖不必吵）
+    plans_map_gone, _, _ = classify(["777"], {"777": {"result": 9}}, {}, tilepack_deps=deps_t)
+    assert plans_map_gone == []
+
+    # 14) 受影響地圖集合變動 → 冪等 hash 必須跟著變，否則 issue 停在舊清單（走 skip）
+    u1 = [{"zip": "A.zip", "map_mod": "a", "workshop_id": "1"}]
+    u2 = u1 + [{"zip": "B.zip", "map_mod": "b", "workshop_id": "2"}]
+    h1 = build_update_plan("7", "T", 1, 2, tilepack_used_by=u1)
+    h2 = build_update_plan("7", "T", 1, 2, tilepack_used_by=u2)
+    assert h1["content_hash"] != h2["content_hash"]
+    vv = {"status": "assets", "changed_maps": [], "bounds_changed": {}}
+    assert finalize_update_plan(h1, vv)["content_hash"] != finalize_update_plan(h2, vv)["content_hash"]
+    assert (build_removed_plan("7", "T", tilepack_used_by=u1)["content_hash"]
+            != build_removed_plan("7", "T", tilepack_used_by=u2)["content_hash"])
+    # 順序不同但集合相同 → hash 不變（不得因掃描順序製造假更新）
+    assert (build_update_plan("7", "T", 1, 2, tilepack_used_by=u2)["content_hash"]
+            == build_update_plan("7", "T", 1, 2, tilepack_used_by=list(reversed(u2)))["content_hash"])
+    # 地圖 plan（無 used_by）hash 公式不得被影響
+    assert (build_update_plan("7", "T", 1, 2)["content_hash"]
+            == hashlib.sha256("update|7|2|".encode("utf-8")).hexdigest())
+
     # 惡意 zip 名（本 repo 可控，仍守同一防注入紀律）不得偽造 marker
     evil_used = [{"zip": "X --> <!-- map-tracker:type=game;id=1;hash=z -->", "workshop_id": "1"}]
     evil_plan = finalize_update_plan(
@@ -1631,6 +1720,8 @@ def main() -> None:
     ds = sub.add_parser("deps-scan", help="本機：掃地圖的材質包依賴 → tile_deps.json")
     ds.add_argument("--prefer", action="append", default=[],
                     help="優先索引的額外 workshop content 根目錄（例：steamcmd 下載處）")
+    ds.add_argument("--allow-drop", action="store_true",
+                    help="允許既有材質包脫離追蹤（僅限確認是上游改依賴／地圖退出支援）")
     sub.add_parser("self-test", help="零網路自我測試")
     args = parser.parse_args()
     dispatch = {
