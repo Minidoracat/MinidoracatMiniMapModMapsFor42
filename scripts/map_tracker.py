@@ -462,8 +462,9 @@ def _workshop_id_of(root: Path) -> str | None:
 
 def build_tile_deps(
     entries: list[dict], idx: dict, requires: dict
-) -> tuple[dict[str, dict], list[str]]:
-    """註冊表 entries＋workshop 索引 → ({tile pack workshop id: {mod_ids, used_by}}, 無法定位的 zip)。
+) -> tuple[dict[str, dict], list[str], list[str]]:
+    """註冊表 entries＋workshop 索引 →
+    ({tile pack workshop id: {mod_ids, used_by}}, 本機找不到的 zip, 推不出 workshop id 的依賴)。
 
     追蹤範圍刻意等同「渲染時實際餵給 pzmap 的 --mod 集合」（rebuild_pyramids 的
     deps 解析同一份 requires/idx），追蹤器與渲染器才不會對「什麼會影響輸出」有兩套看法。
@@ -472,6 +473,7 @@ def build_tile_deps(
     items: dict[str, dict] = {}
     seen_zip: set[str] = set()
     unresolved: list[str] = []
+    unlocatable: set[str] = set()
     for entry in entries:
         zip_name = entry["zip"]
         if zip_name in seen_zip:
@@ -496,7 +498,12 @@ def build_tile_deps(
             if dep_root is None or dep_root == root:
                 continue
             dep_wid = _workshop_id_of(dep_root)
-            if dep_wid is None or dep_wid == map_wid:
+            if dep_wid is None:
+                # 依賴存在於本機但不在 workshop 佈局下（手動安裝／--prefer 指到怪路徑）：
+                # 無 workshop id 就無法追蹤，但靜默略過＝清單無聲少一項，必須回報
+                unlocatable.add(dep_mod)
+                continue
+            if dep_wid == map_wid:
                 continue
             item = items.setdefault(dep_wid, {"mod_ids": [], "used_by": []})
             if dep_mod not in item["mod_ids"]:
@@ -508,13 +515,20 @@ def build_tile_deps(
     for item in items.values():
         item["mod_ids"].sort()
         item["used_by"].sort(key=lambda u: (u["zip"], u["map_mod"]))
-    return items, sorted(unresolved)
+    return items, sorted(unresolved), sorted(unlocatable)
 
 
 def load_tile_deps() -> dict[str, dict]:
+    """壞檔/讀不到一律降級為「無材質包追蹤」而非拋出：材質包軸是加值，不該讓一個
+    壞掉的附屬 state 檔把整個地圖追蹤軸一起打死（warn 會浮上 CI run summary）。"""
     if not TILEDEPS_JSON.exists():
         return {}
-    return load_json(TILEDEPS_JSON).get("items", {})
+    try:
+        items = load_json(TILEDEPS_JSON).get("items", {})
+    except (json.JSONDecodeError, OSError, UnicodeDecodeError) as exc:
+        warn(f"tile_deps.json 無法解析（{exc}）——本輪材質包不追蹤，地圖軸照常")
+        return {}
+    return items if isinstance(items, dict) else {}
 
 
 # ============================================================
@@ -1022,7 +1036,17 @@ def collect() -> dict:
     dropped = sorted(set(old_items) - set(track_ids) - set(skipped_removed))
     if dropped:
         print(f"  ℹ️ 本輪不在收藏（基準保留、暫停查詢）：{', '.join(dropped)}")
-    plans, meta, baselined = classify(track_ids, details, old_items, tilepack_deps=tile_deps)
+    # 同時是收藏內地圖、又被別的地圖當材質包依賴的項目：一律以「地圖」語意開單——
+    # 地圖處置（重渲該圖＋bounds/翻譯同步）是必要的，材質包用語會把它整段換掉。
+    # 目前無實例；出現時 warn 提醒人工確認其他受影響地圖也要一起重渲。
+    both = sorted(set(tile_deps) & set(map_ids))
+    if both:
+        warn(f"下列項目同時是收錄地圖與材質包依賴，以地圖語意開單："
+             f"{', '.join(both)}——請一併確認依賴它的其他地圖是否要重渲")
+    plans, meta, baselined = classify(
+        track_ids, details, old_items,
+        tilepack_deps={k: v for k, v in tile_deps.items() if k not in set(map_ids)},
+    )
     plans.sort(key=lambda p: (p["type"], int(p["workshop_id"])))
     print(f"  計畫：更新 {sum(1 for p in plans if p['type'] == TYPE_UPDATE)} 筆、"
           f"下架 {sum(1 for p in plans if p['type'] == TYPE_REMOVED)} 筆、新基準 {baselined} 筆")
@@ -1255,7 +1279,11 @@ def cmd_deps_scan(args) -> int:
 
     entries = rp.parse_registrations(rp.LUA.read_text(encoding="utf-8"))
     idx, requires = rp.index_workshop([Path(p) for p in args.prefer])
-    items, unresolved = build_tile_deps(entries, idx, requires)
+    items, unresolved, unlocatable = build_tile_deps(entries, idx, requires)
+    if unlocatable:
+        # 不擋寫檔（可能是刻意的手動安裝 mod），但必須讓人看見少了哪些追蹤
+        warn(f"{len(unlocatable)} 個依賴推不出 workshop id、未納入追蹤："
+             f"{', '.join(unlocatable)}（本機副本不在 workshop 佈局下？）")
     if unresolved:
         print(f"❌ {len(unresolved)} 張註冊地圖在本機找不到 workshop 副本，不寫檔"
               "（清單會少項，覆寫等於砍掉追蹤覆蓋）：", file=sys.stderr)
@@ -1268,8 +1296,13 @@ def cmd_deps_scan(args) -> int:
     old = load_tile_deps()
     added = sorted(set(items) - set(old))
     gone = sorted(set(old) - set(items))
-    write_json(TILEDEPS_JSON, {"items": items, "generated_at": now_iso()})
     total_maps = len({u["zip"] for it in items.values() for u in it["used_by"]})
+    if items == old and TILEDEPS_JSON.exists():
+        # 內容沒變就不重寫：generated_at 每跑必動會製造只有時間戳的假 diff
+        #（同 issue job「state 無變更不 commit」的紀律）
+        print(f"✅ 材質包依賴無變更（{len(items)} 個材質包、覆蓋 {total_maps} 張地圖），不重寫檔案。")
+        return 0
+    write_json(TILEDEPS_JSON, {"items": items, "generated_at": now_iso()})
     print(f"✅ 材質包依賴寫入 {TILEDEPS_JSON.relative_to(PROJECT_ROOT)}："
           f"{len(items)} 個材質包、覆蓋 {total_maps} 張地圖")
     for wid in sorted(items):
@@ -1499,9 +1532,10 @@ def cmd_self_test() -> int:
         "sibling": _root("3037854728", "TikitownPowerPlant"),  # 同一 Workshop 項目
         "chinatown": _root("3703704638", "Chinatown"),
         "shared_tiles": _root("2879745353", "Melos"),
+        "local_only": Path("D:/custom/mods/Dep"),  # 非 workshop 佈局 → 推不出 id
     }
     req_t = {
-        "tikitown": ["tikitown_tiles", "sibling", "missing_pack"],
+        "tikitown": ["tikitown_tiles", "sibling", "missing_pack", "local_only"],
         "chinatown": ["shared_tiles"],
         "chinatown_variant": ["shared_tiles"],
     }
@@ -1515,7 +1549,7 @@ def cmd_self_test() -> int:
         {"zip": "Alias.pyramid.zip", "mapMod": "chinatown"},
         {"zip": "Gone.pyramid.zip", "mapMod": "also_missing"},
     ]
-    deps_t, unresolved_t = build_tile_deps(entries_t, idx_t, req_t)
+    deps_t, unresolved_t, unlocatable_t = build_tile_deps(entries_t, idx_t, req_t)
     assert set(deps_t) == {"3046728955", "2879745353"}          # sibling 同項目 → 不追蹤
     assert "missing_pack" not in str(deps_t)                     # 本機沒有的依賴不入清單
     assert deps_t["3046728955"]["mod_ids"] == ["tikitown_tiles"]
@@ -1525,6 +1559,7 @@ def cmd_self_test() -> int:
     assert [u["zip"] for u in deps_t["2879745353"]["used_by"]] == [
         "Alias.pyramid.zip", "Chinatown.pyramid.zip"]           # alias 各算一次、排序穩定
     assert unresolved_t == ["Gone.pyramid.zip"]                  # 缺副本必須浮出（不可靜默）
+    assert unlocatable_t == ["local_only"]                       # 推不出 workshop id 也要浮出
 
     # 11) 材質包 issue：走 update/removed 同一條路但用語與處置不同；判定改「受影響地圖」
     used_by_t = deps_t["3046728955"]["used_by"]
