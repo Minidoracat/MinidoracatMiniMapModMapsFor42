@@ -1,0 +1,387 @@
+{
+  "generated_at": "2026-08-13T08:44:09Z",
+  "items": {
+    "2384329562": {
+      "mod_ids": [
+        "tkTiles_01"
+      ],
+      "used_by": [
+        {
+          "map_mod": "PZ_ACSM_LV",
+          "workshop_id": "3589905072",
+          "zip": "Path of Zenith, Louisville.pyramid.zip"
+        }
+      ]
+    },
+    "2599752664": {
+      "mod_ids": [
+        "DylansTiles"
+      ],
+      "used_by": [
+        {
+          "map_mod": "PZ_ACSM_LV",
+          "workshop_id": "3589905072",
+          "zip": "Path of Zenith, Louisville.pyramid.zip"
+        }
+      ]
+    },
+    "2837923608": {
+      "mod_ids": [
+        "PertsPartyTiles"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Chinatown Expansion B42 version",
+          "workshop_id": "3703704638",
+          "zip": "Chinatown Expansion B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "Floatopia",
+          "workshop_id": "3693913206",
+          "zip": "Floatopia.pyramid.zip"
+        },
+        {
+          "map_mod": "Fort JadeLake",
+          "workshop_id": "3537326669",
+          "zip": "Fort JadeLake.pyramid.zip"
+        },
+        {
+          "map_mod": "muldraugh1993b42",
+          "workshop_id": "3701834205",
+          "zip": "Muldraugh 1993 B42.pyramid.zip"
+        },
+        {
+          "map_mod": "Muldraugh-Checkpoint",
+          "workshop_id": "3677600363",
+          "zip": "Muldraugh-SouthernCheckpoint.pyramid.zip"
+        },
+        {
+          "map_mod": "PZ_ACSM_LV",
+          "workshop_id": "3589905072",
+          "zip": "Path of Zenith, Louisville.pyramid.zip"
+        }
+      ]
+    },
+    "2844685624": {
+      "mod_ids": [
+        "TryhonestyTiles"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Chinatown Expansion B42 version",
+          "workshop_id": "3703704638",
+          "zip": "Chinatown Expansion B42 version.pyramid.zip"
+        }
+      ]
+    },
+    "2852704777": {
+      "mod_ids": [
+        "simonMDsTiles"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Floatopia",
+          "workshop_id": "3693913206",
+          "zip": "Floatopia.pyramid.zip"
+        },
+        {
+          "map_mod": "muldraugh1993b42",
+          "workshop_id": "3701834205",
+          "zip": "Muldraugh 1993 B42.pyramid.zip"
+        },
+        {
+          "map_mod": "Muldraugh-Checkpoint",
+          "workshop_id": "3677600363",
+          "zip": "Muldraugh-SouthernCheckpoint.pyramid.zip"
+        },
+        {
+          "map_mod": "PZ_ACSM_LV",
+          "workshop_id": "3589905072",
+          "zip": "Path of Zenith, Louisville.pyramid.zip"
+        }
+      ]
+    },
+    "2879745353": {
+      "mod_ids": [
+        "melos_tiles_for_miles_pack"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Chinatown Expansion B42 version",
+          "workshop_id": "3703704638",
+          "zip": "Chinatown Expansion B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "Floatopia",
+          "workshop_id": "3693913206",
+          "zip": "Floatopia.pyramid.zip"
+        },
+        {
+          "map_mod": "muldraugh1993b42",
+          "workshop_id": "3701834205",
+          "zip": "Muldraugh 1993 B42.pyramid.zip"
+        },
+        {
+          "map_mod": "Muldraugh-Checkpoint",
+          "workshop_id": "3677600363",
+          "zip": "Muldraugh-SouthernCheckpoint.pyramid.zip"
+        },
+        {
+          "map_mod": "PZ_ACSM_LV",
+          "workshop_id": "3589905072",
+          "zip": "Path of Zenith, Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "tikitown",
+          "workshop_id": "3037854728",
+          "zip": "Tikitown.pyramid.zip"
+        }
+      ]
+    },
+    "2973698541": {
+      "mod_ids": [
+        "AsianStyleTilesOnly"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Project Gurashi",
+          "workshop_id": "3318210146",
+          "zip": "Megurigaoka City, Kanagawa.pyramid.zip"
+        }
+      ]
+    },
+    "3046728955": {
+      "mod_ids": [
+        "tikitown_tiles"
+      ],
+      "used_by": [
+        {
+          "map_mod": "tikitown",
+          "workshop_id": "3037854728",
+          "zip": "Tikitown.pyramid.zip"
+        }
+      ]
+    },
+    "3346506593": {
+      "mod_ids": [
+        "Erikas_Tiles"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Erikas_Furniture_Store",
+          "workshop_id": "3363546437",
+          "zip": "Erikas_Furniture_Store.pyramid.zip"
+        },
+        {
+          "map_mod": "PZ_ACSM_LV",
+          "workshop_id": "3589905072",
+          "zip": "Path of Zenith, Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "Taylorsville",
+          "workshop_id": "3134394569",
+          "zip": "Taylorsville.pyramid.zip"
+        }
+      ]
+    },
+    "3390311555": {
+      "mod_ids": [
+        "all tiles b41"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Kentucky Center Manor_Renovation",
+          "workshop_id": "3494693499",
+          "zip": "Kentucky Center Manor_Renovation_B42.pyramid.zip"
+        }
+      ]
+    },
+    "3404301631": {
+      "mod_ids": [
+        "seifuku"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Project Gurashi",
+          "workshop_id": "3318210146",
+          "zip": "Megurigaoka City, Kanagawa.pyramid.zip"
+        }
+      ]
+    },
+    "3520263838": {
+      "mod_ids": [
+        "ThermoNewburbs"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Chinatown Expansion B42 version",
+          "workshop_id": "3703704638",
+          "zip": "Chinatown Expansion B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "Daisy County B42 version",
+          "workshop_id": "3390753141",
+          "zip": "Daisy County.pyramid.zip"
+        },
+        {
+          "map_mod": "Project Gurashi",
+          "workshop_id": "3318210146",
+          "zip": "Megurigaoka City, Kanagawa.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_Muldraugh.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_Rosewood.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_road.pyramid.zip"
+        },
+        {
+          "map_mod": "Yanghu Town",
+          "workshop_id": "3638880637",
+          "zip": "Yanghu Town.pyramid.zip"
+        }
+      ]
+    },
+    "3628736763": {
+      "mod_ids": [
+        "UnofficialMappersCommunityTilePack"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Cathaya Valley 2.0 B42 version",
+          "workshop_id": "3576150391",
+          "zip": "Cathaya Valley2.0.pyramid.zip"
+        },
+        {
+          "map_mod": "Chinatown Expansion B42 version",
+          "workshop_id": "3703704638",
+          "zip": "Chinatown Expansion B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "Daisy County B42 version",
+          "workshop_id": "3390753141",
+          "zip": "Daisy County.pyramid.zip"
+        },
+        {
+          "map_mod": "Floatopia",
+          "workshop_id": "3693913206",
+          "zip": "Floatopia.pyramid.zip"
+        },
+        {
+          "map_mod": "muldraugh1993b42",
+          "workshop_id": "3701834205",
+          "zip": "Muldraugh 1993 B42.pyramid.zip"
+        },
+        {
+          "map_mod": "Muldraugh-Checkpoint",
+          "workshop_id": "3677600363",
+          "zip": "Muldraugh-SouthernCheckpoint.pyramid.zip"
+        },
+        {
+          "map_mod": "Nettle Township B42 version",
+          "workshop_id": "3391349130",
+          "zip": "Nettle Township.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_Muldraugh.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_Rosewood.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_road.pyramid.zip"
+        }
+      ]
+    },
+    "3666137359": {
+      "mod_ids": [
+        "Roccos_Tiles"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Begonia_Town",
+          "workshop_id": "3736155379",
+          "zip": "Begonia_Town.pyramid.zip"
+        },
+        {
+          "map_mod": "dawn_town",
+          "workshop_id": "3666180085",
+          "zip": "DawnTown.pyramid.zip"
+        }
+      ]
+    },
+    "3694705423": {
+      "mod_ids": [
+        "OujinjinTiles"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Chinatown Expansion B42 version",
+          "workshop_id": "3703704638",
+          "zip": "Chinatown Expansion B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "Nettle Township B42 version",
+          "workshop_id": "3391349130",
+          "zip": "Nettle Township.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_Muldraugh.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_Rosewood.pyramid.zip"
+        },
+        {
+          "map_mod": "VaultTec B42 version",
+          "workshop_id": "3697082724",
+          "zip": "VaultTec_road.pyramid.zip"
+        }
+      ]
+    },
+    "3736154771": {
+      "mod_ids": [
+        "LiuDing_Tiles"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Begonia_Town",
+          "workshop_id": "3736155379",
+          "zip": "Begonia_Town.pyramid.zip"
+        }
+      ]
+    }
+  }
+}

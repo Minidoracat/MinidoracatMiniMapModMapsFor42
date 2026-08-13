@@ -8,6 +8,10 @@ watchlist＝Steam「支援地圖收藏」3766382352（發現來源，發版流�
 MOD 軸（time_updated 變動）→ steamcmd 下載該項 → hash 圖資（media/maps/ 的
   .lotheader/.lotpack/.bin＋mod 自帶 texturepack/.tiles）→ 與基準比對 →
   issue 直接標「需重渲（哪些 mapDir、bounds 是否變動）」或「免重渲（僅腳本/loot）」。
+  材質包軸（同一條 MOD 軸，watchlist 多一組來源）：收藏只含地圖 MOD，地圖 require= 的
+  tile pack 不在其中——材質包單獨更新時原本零 issue、圖靜默停在舊材質（2026-08-12
+  Tikitown＋Drazion's Tilepack 同批更新實案）。清單由本機 `deps-scan` 由註冊表推導成
+  tracker-state/tile_deps.json（進版控），命中者 issue 改標「需重渲受影響地圖（N 張）」。
   下架（API result=9）→ 開「[地圖下架]」issue 一次；自下輪起不再查詢（tombstone 保留），
   重新上架要恢復追蹤＝手動把 state 該項 removed 改回 false。
   首次見到（含 --bootstrap 首建）→ 靜默記基準，零 issue。
@@ -24,6 +28,8 @@ CI 三 job（權限逐 job 最小化；diff 下載第三方內容故無 GitHub �
   hash-baseline --steamcmd <exe> [--client-root <dir>]
                       對全部追蹤項建圖資基準（先自行 steamcmd 批次下載）；
                       給 --client-root 時同時報告新舊副本 drift（渲染來源過期偵測）
+  deps-scan [--prefer <dir>]
+                      掃註冊地圖的材質包依賴 → tile_deps.json（新增/移除地圖後要重跑）
   self-test           零網路自我測試
 
 state（tracker-state/timestamps.json＋mapdata_hashes.json）進版控；gh 任一步失敗即中止、
@@ -51,6 +57,7 @@ from urllib.parse import urlencode
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 STATE_JSON = PROJECT_ROOT / "tracker-state" / "timestamps.json"
 MAPDATA_JSON = PROJECT_ROOT / "tracker-state" / "mapdata_hashes.json"
+TILEDEPS_JSON = PROJECT_ROOT / "tracker-state" / "tile_deps.json"
 
 COLLECTION_ID = "3766382352"  # 支援地圖收藏（含全部地圖 MOD＋自家系列 MOD）
 GAME_APPID = "108600"  # Project Zomboid
@@ -350,12 +357,29 @@ def build_verdict(old: dict | None, new: dict) -> dict:
     return {"status": status, "changed_maps": changed, "bounds_changed": bounds_changed}
 
 
-def verdict_section(verdict: dict | None) -> list[str]:
-    """issue body 的「圖資判定」段（mapDir 名屬上游可控字串 → neutralize＋code span）。"""
+def verdict_section(verdict: dict | None, *, tilepack_used_by: list | None = None) -> list[str]:
+    """issue body 的「圖資判定」段（mapDir 名屬上游可控字串 → neutralize＋code span）。
+    tilepack_used_by 給定時＝材質包 issue：判定改以「受影響地圖」表述（材質包自己沒有
+    media/maps，套用地圖用語會變成沒有地圖的「全部地圖」空指示）。"""
     if verdict is None:
         return []
     lines = ["", "### 圖資判定（自動）", ""]
     status = verdict.get("status")
+    if tilepack_used_by is not None:
+        # zip 名來自本 repo 註冊表（非上游），仍統一 neutralize：與地圖路徑同一防注入紀律
+        zips = "、".join(f"`{neutralize(str(u.get('zip', '')))}`" for u in tilepack_used_by)
+        if status == "none":
+            lines.append("- ✅ **免重渲**：本次更新未動材質／tiles（僅腳本、說明等）。"
+                         "若下方無「尚未處置的先前判定」即可關閉本 issue。")
+        elif status == "no_baseline":
+            lines.append(f"- ⚠️ **無基準（本次已建立）**：無法比對，建議重渲以保險 → {zips}")
+        elif status in ("maps", "assets"):
+            lines.append(f"- 🔴 **需重渲受影響地圖（{len(tilepack_used_by)} 張）**："
+                         f"材質包內容變更 → {zips}")
+        else:
+            note = neutralize(str(verdict.get("note", "")))
+            lines.append(f"- ⚠️ **無法判定**：{note}——請依 Workshop 更新紀錄人工判斷。")
+        return lines
     names = "、".join(f"`{neutralize(str(d))}`" for d in verdict.get("changed_maps", []))
     if status == "none":
         lines.append("- ✅ **免重渲**：本次更新未動地圖圖資／材質（僅腳本、loot 等）。"
@@ -388,7 +412,8 @@ def finalize_update_plan(plan: dict, verdict: dict | None, prev_body: str = "") 
     if verdict is None:
         return plan
     status = verdict.get("status", "unknown")
-    section = verdict_section(verdict)
+    # 材質包 plan 帶 used_by → 判定段改用「受影響地圖」表述（見 verdict_section）
+    section = verdict_section(verdict, tilepack_used_by=plan.get("tilepack_used_by"))
     current = {ln for ln in section if _CARRY_LINE_RE.match(ln)}
     carried = sorted(
         ln for ln in prev_body.split("\n")
@@ -420,6 +445,76 @@ def apply_verdict_state(old_items: dict, meta: dict, verdicts: dict) -> dict:
         elif wid in out:
             out[wid] = {**out[wid], "time_updated": old_items[wid].get("time_updated")}
     return out
+
+
+# ============================================================
+# 材質包依賴（地圖 require= 的 tile pack）
+# ============================================================
+def _workshop_id_of(root: Path) -> str | None:
+    """mod 根目錄（<content>/108600/<wid>/mods/<name>）→ workshop id；認不出回 None。
+    錨定 appid 的下一層而非固定往上數幾層——同一 mod 可能來自
+    `<wid>/mods/<name>` 或 `<wid>/mods/<name>/42` 兩種深度。"""
+    for parent in root.parents:
+        if parent.name.isdigit() and parent.parent.name == GAME_APPID:
+            return parent.name
+    return None
+
+
+def build_tile_deps(
+    entries: list[dict], idx: dict, requires: dict
+) -> tuple[dict[str, dict], list[str]]:
+    """註冊表 entries＋workshop 索引 → ({tile pack workshop id: {mod_ids, used_by}}, 無法定位的 zip)。
+
+    追蹤範圍刻意等同「渲染時實際餵給 pzmap 的 --mod 集合」（rebuild_pyramids 的
+    deps 解析同一份 requires/idx），追蹤器與渲染器才不會對「什麼會影響輸出」有兩套看法。
+    同一 Workshop 項目內的 mod 不另外追蹤（本體更新時本來就會偵測到）。
+    純函式、不碰檔案系統：workshop id 由路徑推導，故 self-test 可直接餵假 Path。"""
+    items: dict[str, dict] = {}
+    seen_zip: set[str] = set()
+    unresolved: list[str] = []
+    for entry in entries:
+        zip_name = entry["zip"]
+        if zip_name in seen_zip:
+            continue
+        root = idx.get(entry["mapMod"])
+        if root is None:
+            # alias 條目（互斥變體共用同 zip）：換用同 zip 其他 mapMod 再試，同 rebuild_pyramids
+            alt = next(
+                (x for x in entries if x["zip"] == zip_name and idx.get(x["mapMod"])), None
+            )
+            if alt is None:
+                # 本機沒有該地圖副本 → 它的材質包依賴這輪看不到。必須浮上來：
+                # 靜默略過會讓 tile_deps.json 在缺副本的機器上「掃出較少項目」而砍掉追蹤覆蓋
+                unresolved.append(zip_name)
+                seen_zip.add(zip_name)
+                continue
+            entry, root = alt, idx[alt["mapMod"]]
+        seen_zip.add(zip_name)
+        map_wid = _workshop_id_of(root)
+        for dep_mod in requires.get(entry["mapMod"], []):
+            dep_root = idx.get(dep_mod)
+            if dep_root is None or dep_root == root:
+                continue
+            dep_wid = _workshop_id_of(dep_root)
+            if dep_wid is None or dep_wid == map_wid:
+                continue
+            item = items.setdefault(dep_wid, {"mod_ids": [], "used_by": []})
+            if dep_mod not in item["mod_ids"]:
+                item["mod_ids"].append(dep_mod)
+            item["used_by"].append(
+                {"zip": zip_name, "map_mod": entry["mapMod"], "workshop_id": map_wid or ""}
+            )
+    # 排序穩定化：掃描順序不得造成 state 假 diff（每日 commit 噪音）
+    for item in items.values():
+        item["mod_ids"].sort()
+        item["used_by"].sort(key=lambda u: (u["zip"], u["map_mod"]))
+    return items, sorted(unresolved)
+
+
+def load_tile_deps() -> dict[str, dict]:
+    if not TILEDEPS_JSON.exists():
+        return {}
+    return load_json(TILEDEPS_JSON).get("items", {})
 
 
 # ============================================================
@@ -478,15 +573,19 @@ def fetch_game_build(exe: str) -> str | None:
 # 變更分類與 issue plan
 # ============================================================
 def classify(
-    map_ids: list[str], details: dict[str, dict], state_items: dict
+    map_ids: list[str], details: dict[str, dict], state_items: dict,
+    *, tilepack_deps: dict[str, dict] | None = None,
 ) -> tuple[list[dict], dict[str, dict], int]:
     """回傳 (issue plans, 每 id 的新 state entry, 本輪新基準數)。
     首次見到的 id（不在 state）一律靜默記基準、零 issue——--bootstrap 首建與日後
-    收藏新增地圖走同一條路。"""
+    收藏新增地圖走同一條路。
+    tilepack_deps＝{材質包 workshop id: {mod_ids, used_by}}：命中的 id 改走材質包
+    plan（時間戳追蹤邏輯完全相同，只有 issue 用語與處置不同）。不給＝行為與原本一致。"""
     plans: list[dict] = []
     meta: dict[str, dict] = {}
     baselined = 0
     for wid in map_ids:
+        used_by = (tilepack_deps or {}).get(wid, {}).get("used_by")
         prev = state_items.get(wid)
         first_seen = prev is None
         prev = prev or {}
@@ -510,7 +609,7 @@ def classify(
         entry["last_result"] = result
         if result == RESULT_NOT_FOUND:
             if not prev.get("removed") and not first_seen:
-                plans.append(build_removed_plan(wid, title))
+                plans.append(build_removed_plan(wid, title, tilepack_used_by=used_by))
             entry["removed"] = True
             entry["removed_at"] = entry["removed_at"] or now_iso()
             if first_seen:
@@ -535,66 +634,129 @@ def classify(
         if first_seen:
             baselined += 1
         elif old_tu != new_tu:
-            plans.append(build_update_plan(wid, title, old_tu, new_tu))
+            plans.append(build_update_plan(wid, title, old_tu, new_tu, tilepack_used_by=used_by))
     return plans, meta, baselined
 
 
-def build_update_plan(wid: str, title: str, old_tu, new_tu: int) -> dict:
+def _affected_lines(used_by: list) -> list[str]:
+    """材質包 issue 的「受影響地圖」清單（zip 名＋該地圖 Workshop 連結）。"""
+    lines = [f"**受影響地圖（{len(used_by)} 張）**：", ""]
+    for u in used_by:
+        zip_name = neutralize(str(u.get("zip", "")))
+        map_wid = str(u.get("workshop_id", ""))
+        link = (f"（[Workshop {map_wid}]"
+                f"(https://steamcommunity.com/sharedfiles/filedetails/?id={map_wid})）"
+                if map_wid.isdigit() else "")
+        lines.append(f"- `{zip_name}`{link}")
+    return lines
+
+
+def build_update_plan(wid: str, title: str, old_tu, new_tu: int,
+                      *, tilepack_used_by: list | None = None) -> dict:
+    """地圖更新 plan；tilepack_used_by 給定時改產「材質包更新」plan（受影響地圖需重渲）。"""
     label = neutralize(title)
     content_hash = hashlib.sha256(f"update|{wid}|{new_tu}".encode("utf-8")).hexdigest()
-    body = "\n".join([
-        make_marker(TYPE_UPDATE, wid, content_hash),
-        f"## 地圖更新：`{label}`（Workshop {wid}）",
-        "",
-        "追蹤器偵測到上游地圖 MOD 發布了新版本：",
-        "",
+    common = [
         f"- 上次記錄：{fmt_ts(old_tu)}",
         f"- 本次更新：{fmt_ts(new_tu)}",
         f"- [Workshop 頁面](https://steamcommunity.com/sharedfiles/filedetails/?id={wid})"
         f"｜[更新紀錄](https://steamcommunity.com/sharedfiles/filedetails/changelog/{wid})",
         "",
-        "**處置**（見下方自動圖資判定；免重渲可直接關閉）：",
-        "",
-        "- [ ] pzmap Studio 或 `scripts/rebuild_pyramids.py --only <zip名>` 重渲該地圖",
-        "- [ ] bounds 若變動，同步 `MinidoracatMiniMapModMaps.lua`",
-        "- [ ] 地圖名稱／`mapDir` 若變動，同步 Lua 註冊與 `Translate/*/UI.json`",
-        "- [ ] `python scripts/verify_mod.py` 通過後照常發版",
-    ])
-    return {
+    ]
+    if tilepack_used_by is not None:
+        head = [
+            f"## 材質包更新：`{label}`（Workshop {wid}）",
+            "",
+            "追蹤器偵測到**地圖所依賴的材質包**發布了新版本。材質包內容直接影響貼圖渲染結果，",
+            "依賴它的地圖必須在**同步新版材質包之後**重渲，否則會拿舊材質渲出錯誤圖磚",
+            "（外觀正常但內容過期，靜態驗證抓不到）。",
+            "",
+            *common,
+            *_affected_lines(tilepack_used_by),
+            "",
+            "**處置**（見下方自動判定；免重渲可直接關閉）：",
+            "",
+            f"- [ ] 先同步材質包新版：`steamcmd +workshop_download_item {GAME_APPID} {wid}`",
+            "- [ ] 再重渲受影響地圖："
+            "`python scripts/rebuild_pyramids.py --prefer <steamcmd content 根> --only <zip名>`",
+            "- [ ] `python scripts/verify_mod.py` 通過後照常發版",
+        ]
+        issue_title = f"[材質包更新] {label}（{wid}）"
+    else:
+        head = [
+            f"## 地圖更新：`{label}`（Workshop {wid}）",
+            "",
+            "追蹤器偵測到上游地圖 MOD 發布了新版本：",
+            "",
+            *common,
+            "**處置**（見下方自動圖資判定；免重渲可直接關閉）：",
+            "",
+            "- [ ] pzmap Studio 或 `scripts/rebuild_pyramids.py --only <zip名>` 重渲該地圖",
+            "- [ ] bounds 若變動，同步 `MinidoracatMiniMapModMaps.lua`",
+            "- [ ] 地圖名稱／`mapDir` 若變動，同步 Lua 註冊與 `Translate/*/UI.json`",
+            "- [ ] `python scripts/verify_mod.py` 通過後照常發版",
+        ]
+        issue_title = f"[地圖更新] {label}（{wid}）"
+    plan = {
         "type": TYPE_UPDATE,
         "workshop_id": wid,
         "content_hash": content_hash,
         "new_tu": new_tu,
-        "title": f"[地圖更新] {label}（{wid}）",
-        "body": body,
+        "title": issue_title,
+        "body": "\n".join([make_marker(TYPE_UPDATE, wid, content_hash), *head]),
         "comment": f"追蹤器偵測到再次更新：{fmt_ts(new_tu)}（上次記錄 {fmt_ts(old_tu)}）。",
     }
+    if tilepack_used_by is not None:
+        # 隨 artifact 過到 diff/issue job：判定段要靠它切換用語（見 finalize_update_plan）
+        plan["tilepack_used_by"] = tilepack_used_by
+    return plan
 
 
-def build_removed_plan(wid: str, title: str) -> dict:
+def build_removed_plan(wid: str, title: str, *, tilepack_used_by: list | None = None) -> dict:
+    """地圖下架 plan；tilepack_used_by 給定時改產「材質包下架」plan——處置完全不同：
+    材質包下架不必刪任何註冊（已渲圖像不受影響），但受影響地圖從此無法忠實重渲。"""
     label = neutralize(title)
     content_hash = hashlib.sha256(f"removed|{wid}".encode("utf-8")).hexdigest()
-    body = "\n".join([
-        make_marker(TYPE_REMOVED, wid, content_hash),
-        f"## 地圖下架：`{label}`（Workshop {wid}）",
-        "",
-        "每日檢查發現此 Workshop 項目已無法存取（Steam API result=9），",
-        "可能為作者隱藏／移除，或遭 Steam 下架。",
-        "",
-        "**處置**（現行政策：下架即移除支援，見 README「已下架地圖」表）：",
-        "",
-        "- [ ] 自 `media/minimap/` 刪 pyramid zip、刪 Lua 註冊條目與四語翻譯鍵",
-        "- [ ] README 收錄表移除該列、補進「已下架地圖」表；三語 Steam 描述與許願串數字同步",
-        f"- [ ] 自[支援地圖收藏](https://steamcommunity.com/sharedfiles/filedetails/?id={COLLECTION_ID})移除該項目",
-        "- 自下輪起本項目**停止每日查詢**（記錄保留於 tracker-state）；處置完關閉本 issue 即可。",
-        "- 若日後重新上架且要恢復支援：`tracker-state/timestamps.json` 該項 `removed` 改回 `false`，重渲補回註冊。",
-    ])
+    if tilepack_used_by is not None:
+        head = [
+            f"## 材質包下架：`{label}`（Workshop {wid}）",
+            "",
+            "每日檢查發現**地圖所依賴的材質包**已無法存取（Steam API result=9）。",
+            "**已渲好的 pyramid 圖像不受影響**（圖像是成品，不會回頭讀材質包），",
+            "但受影響地圖自此無法再忠實重渲——上游地圖日後更新時會渲不出正確貼圖。",
+            "",
+            *_affected_lines(tilepack_used_by),
+            "",
+            "**處置**：",
+            "",
+            "- [ ] 保留現有 pyramid zip 與註冊條目（**不要**比照地圖下架去刪）",
+            "- [ ] 保留一份材質包本機副本備援（本機 workshop 目錄若還在，勿清）",
+            "- [ ] 受影響地圖日後若更新：評估用備援副本重渲，或該圖轉為停止追新",
+            "- 自下輪起本項目**停止每日查詢**（記錄保留於 tracker-state）；處置完關閉本 issue 即可。",
+        ]
+        issue_title = f"[材質包下架] {label} 已無法存取（{wid}）"
+    else:
+        head = [
+            f"## 地圖下架：`{label}`（Workshop {wid}）",
+            "",
+            "每日檢查發現此 Workshop 項目已無法存取（Steam API result=9），",
+            "可能為作者隱藏／移除，或遭 Steam 下架。",
+            "",
+            "**處置**（現行政策：下架即移除支援，見 README「已下架地圖」表）：",
+            "",
+            "- [ ] 自 `media/minimap/` 刪 pyramid zip、刪 Lua 註冊條目與四語翻譯鍵",
+            "- [ ] README 收錄表移除該列、補進「已下架地圖」表；三語 Steam 描述與許願串數字同步",
+            f"- [ ] 自[支援地圖收藏](https://steamcommunity.com/sharedfiles/filedetails/?id={COLLECTION_ID})移除該項目",
+            "- 自下輪起本項目**停止每日查詢**（記錄保留於 tracker-state）；處置完關閉本 issue 即可。",
+            "- 若日後重新上架且要恢復支援：`tracker-state/timestamps.json` 該項 `removed` 改回 `false`，重渲補回註冊。",
+        ]
+        issue_title = f"[地圖下架] {label} 已無法存取（{wid}）"
     return {
         "type": TYPE_REMOVED,
         "workshop_id": wid,
         "content_hash": content_hash,
-        "title": f"[地圖下架] {label} 已無法存取（{wid}）",
-        "body": body,
+        "title": issue_title,
+        "body": "\n".join([make_marker(TYPE_REMOVED, wid, content_hash), *head]),
         "comment": "追蹤器再次確認此項目仍不可存取。",
     }
 
@@ -825,13 +987,21 @@ def collect() -> dict:
 
     print("🔎 查詢支援地圖收藏…")
     children = fetch_collection_children()
+    # 材質包軸：收藏只含地圖 MOD，地圖 require= 的 tile pack 不在其中——材質包單獨更新
+    # （地圖沒動）追蹤器原本完全看不見，圖會靜默停在舊材質。清單由本機 deps-scan 產出。
+    tile_deps = load_tile_deps()
+    if not tile_deps:
+        warn("tile_deps.json 缺失或為空——地圖依賴的材質包未納入追蹤"
+             "（本機跑 `python scripts/map_tracker.py deps-scan` 重建並 commit）")
     # 已標記下架的項目：記錄保留（tombstone）、每日追蹤不再查詢。
     # 重新上架要恢復追蹤＝把 state 該項 removed 改回 false（或刪該 entry）
-    skipped_removed = [wid for wid in children if old_items.get(wid, {}).get("removed")]
+    tracked = list(children) + [w for w in sorted(tile_deps) if w not in children]
+    skipped_removed = [wid for wid in tracked if old_items.get(wid, {}).get("removed")]
     if skipped_removed:
         print(f"  ℹ️ 已下架、不查詢：{', '.join(skipped_removed)}")
     query_ids = [wid for wid in children if wid not in skipped_removed]
-    details = fetch_details(query_ids)
+    tile_ids = [wid for wid in tracked if wid not in children and wid not in skipped_removed]
+    details = fetch_details(query_ids + tile_ids)
 
     # creator 缺失（下架項目不回 creator）→ 當作外人保留追蹤：第三方地圖要下架 issue；
     # 自家項目誤中只是可關閉的噪音，方向刻意 fail-open
@@ -840,16 +1010,19 @@ def collect() -> dict:
         if details.get(wid, {}).get("creator") != OWN_CREATOR
     ]
     print(f"  收藏 {len(children)} 項 → 追蹤地圖 {len(map_ids)} 項"
-          f"（排除自家 {len(query_ids) - len(map_ids)} 項、已下架 {len(skipped_removed)} 項）")
+          f"（排除自家 {len(query_ids) - len(map_ids)} 項、已下架 {len(skipped_removed)} 項）"
+          f"＋材質包 {len(tile_ids)} 項")
+    # < 10 的健全性檢查只看地圖：材質包數量本來就少，混入會讓收藏被清空的異常漏網
     if len(map_ids) < 10:
         print("❌ 追蹤地圖項目 < 10（疑似 API 異常或收藏被清空），中止。", file=sys.stderr)
         sys.exit(1)
-    coverage_guard(map_ids, details)
+    track_ids = map_ids + tile_ids
+    coverage_guard(track_ids, details)
 
-    dropped = sorted(set(old_items) - set(map_ids) - set(skipped_removed))
+    dropped = sorted(set(old_items) - set(track_ids) - set(skipped_removed))
     if dropped:
         print(f"  ℹ️ 本輪不在收藏（基準保留、暫停查詢）：{', '.join(dropped)}")
-    plans, meta, baselined = classify(map_ids, details, old_items)
+    plans, meta, baselined = classify(track_ids, details, old_items, tilepack_deps=tile_deps)
     plans.sort(key=lambda p: (p["type"], int(p["workshop_id"])))
     print(f"  計畫：更新 {sum(1 for p in plans if p['type'] == TYPE_UPDATE)} 筆、"
           f"下架 {sum(1 for p in plans if p['type'] == TYPE_REMOVED)} 筆、新基準 {baselined} 筆")
@@ -885,7 +1058,8 @@ def cmd_run(args) -> int:
     return 2
 
 
-ARTIFACT_SCHEMA = 2  # check→diff→issue 的 artifact 契約版本；不符即 fail-closed
+ARTIFACT_SCHEMA = 3  # check→diff→issue 的 artifact 契約版本；不符即 fail-closed
+# v3：update plan 可帶 tilepack_used_by（材質包 issue 的受影響地圖清單）
 
 
 def _schema_guard(data: dict, stage: str) -> bool:
@@ -1067,6 +1241,47 @@ def cmd_hash_baseline(args) -> int:
         for wid, v in drift:
             print(f"  {wid}: {v['status']} {'、'.join(v['changed_maps'])}")
     return 0 if not missing else 1
+
+
+def cmd_deps_scan(args) -> int:
+    """本機：由 Lua 註冊表＋本機 workshop 副本推導各地圖的材質包依賴 → tile_deps.json。
+
+    須在有完整 workshop 副本的渲染機執行（依賴解析與 rebuild_pyramids 共用同一份
+    idx/requires，追蹤範圍才等同實際餵給 pzmap 的 --mod 集合）。有地圖無法定位時
+    以非零碼結束且**不寫檔**——缺副本的機器掃出來的清單會少項，覆寫進版控等於
+    無聲砍掉追蹤覆蓋。"""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import rebuild_pyramids as rp  # 延後匯入：CI 的 check/diff/issue 用不到
+
+    entries = rp.parse_registrations(rp.LUA.read_text(encoding="utf-8"))
+    idx, requires = rp.index_workshop([Path(p) for p in args.prefer])
+    items, unresolved = build_tile_deps(entries, idx, requires)
+    if unresolved:
+        print(f"❌ {len(unresolved)} 張註冊地圖在本機找不到 workshop 副本，不寫檔"
+              "（清單會少項，覆寫等於砍掉追蹤覆蓋）：", file=sys.stderr)
+        for z in unresolved:
+            print(f"     {z}", file=sys.stderr)
+        print("   訂閱／steamcmd 下載缺項後重跑，或用 --prefer 指向含該副本的 content 根。",
+              file=sys.stderr)
+        return 1
+
+    old = load_tile_deps()
+    added = sorted(set(items) - set(old))
+    gone = sorted(set(old) - set(items))
+    write_json(TILEDEPS_JSON, {"items": items, "generated_at": now_iso()})
+    total_maps = len({u["zip"] for it in items.values() for u in it["used_by"]})
+    print(f"✅ 材質包依賴寫入 {TILEDEPS_JSON.relative_to(PROJECT_ROOT)}："
+          f"{len(items)} 個材質包、覆蓋 {total_maps} 張地圖")
+    for wid in sorted(items):
+        it = items[wid]
+        print(f"   {wid}  {'／'.join(it['mod_ids'])}  ← {len(it['used_by'])} 張")
+    if added:
+        print(f"   ➕ 新增追蹤：{', '.join(added)}")
+    if gone:
+        # 地圖移除支援或上游改依賴都會走到這裡；state 帳本本身永不 prune，只是不再查詢
+        print(f"   ➖ 不再依賴（timestamps 基準保留、停止查詢）：{', '.join(gone)}")
+    print("   請 commit tracker-state/tile_deps.json。")
+    return 0
 
 
 # ============================================================
@@ -1270,6 +1485,93 @@ def cmd_self_test() -> int:
     g1, g2 = build_game_plan("1", "2"), build_game_plan("9", "2")
     assert g1["content_hash"] == g2["content_hash"]  # 只綁新 build → 冪等
 
+    # 10) 材質包依賴：workshop id 推導、同項目內依賴不重複追蹤、alias 去重、缺副本要浮出
+    def _root(wid, name):  # 假 workshop 佈局（純路徑推導，不碰檔案系統）
+        return Path(f"D:/SteamLibrary/steamapps/workshop/content/{GAME_APPID}/{wid}/mods/{name}")
+
+    assert _workshop_id_of(_root("3046728955", "Tiles")) == "3046728955"
+    assert _workshop_id_of(_root("3046728955", "Tiles") / "42") == "3046728955"  # 深一層仍認得
+    assert _workshop_id_of(Path("D:/elsewhere/mods/Tiles")) is None
+
+    idx_t = {
+        "tikitown": _root("3037854728", "Tikitown"),
+        "tikitown_tiles": _root("3046728955", "Drazions Tile Pack"),
+        "sibling": _root("3037854728", "TikitownPowerPlant"),  # 同一 Workshop 項目
+        "chinatown": _root("3703704638", "Chinatown"),
+        "shared_tiles": _root("2879745353", "Melos"),
+    }
+    req_t = {
+        "tikitown": ["tikitown_tiles", "sibling", "missing_pack"],
+        "chinatown": ["shared_tiles"],
+        "chinatown_variant": ["shared_tiles"],
+    }
+    entries_t = [
+        {"zip": "Tikitown.pyramid.zip", "mapMod": "tikitown"},
+        {"zip": "Chinatown.pyramid.zip", "mapMod": "chinatown"},
+        # alias：同 zip 的互斥變體，只算一次（避免 used_by 重複計數）
+        {"zip": "Chinatown.pyramid.zip", "mapMod": "chinatown_variant"},
+        # 首個 mapMod 未安裝但 alias 可解析 → 仍要掃到依賴，且不得計入 unresolved
+        {"zip": "Alias.pyramid.zip", "mapMod": "not_installed"},
+        {"zip": "Alias.pyramid.zip", "mapMod": "chinatown"},
+        {"zip": "Gone.pyramid.zip", "mapMod": "also_missing"},
+    ]
+    deps_t, unresolved_t = build_tile_deps(entries_t, idx_t, req_t)
+    assert set(deps_t) == {"3046728955", "2879745353"}          # sibling 同項目 → 不追蹤
+    assert "missing_pack" not in str(deps_t)                     # 本機沒有的依賴不入清單
+    assert deps_t["3046728955"]["mod_ids"] == ["tikitown_tiles"]
+    assert deps_t["3046728955"]["used_by"] == [
+        {"zip": "Tikitown.pyramid.zip", "map_mod": "tikitown", "workshop_id": "3037854728"}
+    ]
+    assert [u["zip"] for u in deps_t["2879745353"]["used_by"]] == [
+        "Alias.pyramid.zip", "Chinatown.pyramid.zip"]           # alias 各算一次、排序穩定
+    assert unresolved_t == ["Gone.pyramid.zip"]                  # 缺副本必須浮出（不可靜默）
+
+    # 11) 材質包 issue：走 update/removed 同一條路但用語與處置不同；判定改「受影響地圖」
+    used_by_t = deps_t["3046728955"]["used_by"]
+    tp_plan = build_update_plan("3046728955", "Drazion's Tilepack", 100, 200,
+                                tilepack_used_by=used_by_t)
+    assert tp_plan["title"].startswith("[材質包更新]")
+    assert "受影響地圖（1 張）" in tp_plan["body"] and "Tikitown.pyramid.zip" in tp_plan["body"]
+    assert tp_plan["tilepack_used_by"] == used_by_t
+    map_plan = build_update_plan("3037854728", "Tikitown", 100, 200)
+    assert map_plan["title"].startswith("[地圖更新]") and "tilepack_used_by" not in map_plan
+    tp_fin = finalize_update_plan(tp_plan, {"status": "assets", "changed_maps": [],
+                                            "bounds_changed": {}})
+    assert "需重渲受影響地圖（1 張）" in tp_fin["body"]
+    # 材質包沒有 media/maps → changed_maps 恆空；套地圖用語會變成沒有地圖的空指示
+    assert "該 MOD 全部地圖" not in tp_fin["body"]
+    tp_none = finalize_update_plan(tp_plan, {"status": "none", "changed_maps": [],
+                                             "bounds_changed": {}})
+    assert "免重渲" in tp_none["body"] and "材質／tiles" in tp_none["body"]
+    tp_rm = build_removed_plan("3046728955", "Drazion's Tilepack", tilepack_used_by=used_by_t)
+    assert tp_rm["title"].startswith("[材質包下架]")
+    assert "不要" in tp_rm["body"] and "刪 pyramid zip" not in tp_rm["body"]
+    assert "刪 pyramid zip" in build_removed_plan("1", "M")["body"]  # 地圖下架處置不受影響
+
+    # 12) classify 掛上材質包：時間戳邏輯不變，只有 plan 型態換人
+    plans_t, meta_t, _ = classify(
+        ["3037854728", "3046728955"],
+        {"3037854728": {"result": 1, "time_updated": 200, "title": "Tikitown"},
+         "3046728955": {"result": 1, "time_updated": 200, "title": "Tilepack"}},
+        {"3037854728": {"time_updated": 100}, "3046728955": {"time_updated": 100}},
+        tilepack_deps=deps_t,
+    )
+    kinds = {p["workshop_id"]: p["title"].split("]")[0] + "]" for p in plans_t}
+    assert kinds == {"3037854728": "[地圖更新]", "3046728955": "[材質包更新]"}
+    assert meta_t["3046728955"]["time_updated"] == 200
+    # 不給 tilepack_deps → 與原本行為逐字相同（HIGH risk 迴歸護欄）
+    plans_legacy, _, _ = classify(
+        ["3046728955"], {"3046728955": {"result": 1, "time_updated": 200, "title": "Tilepack"}},
+        {"3046728955": {"time_updated": 100}},
+    )
+    assert plans_legacy[0]["title"].startswith("[地圖更新]")
+    # 惡意 zip 名（本 repo 可控，仍守同一防注入紀律）不得偽造 marker
+    evil_used = [{"zip": "X --> <!-- map-tracker:type=game;id=1;hash=z -->", "workshop_id": "1"}]
+    evil_plan = finalize_update_plan(
+        build_update_plan("9", "T", 1, 2, tilepack_used_by=evil_used),
+        {"status": "assets", "changed_maps": [], "bounds_changed": {}})
+    assert parse_marker(evil_plan["body"]) == (TYPE_UPDATE, "9", evil_plan["content_hash"])
+
     print("✅ self-test 全數通過")
     return 0
 
@@ -1291,6 +1593,9 @@ def main() -> None:
     hb = sub.add_parser("hash-baseline", help="本機：對全部追蹤項建圖資基準（先 steamcmd 下載）")
     hb.add_argument("--steamcmd", required=True)
     hb.add_argument("--client-root", default="", help="Steam 客戶端 workshop content 根（供 drift 比對）")
+    ds = sub.add_parser("deps-scan", help="本機：掃地圖的材質包依賴 → tile_deps.json")
+    ds.add_argument("--prefer", action="append", default=[],
+                    help="優先索引的額外 workshop content 根目錄（例：steamcmd 下載處）")
     sub.add_parser("self-test", help="零網路自我測試")
     args = parser.parse_args()
     dispatch = {
@@ -1299,6 +1604,7 @@ def main() -> None:
         "diff": cmd_diff,
         "issue": cmd_issue,
         "hash-baseline": cmd_hash_baseline,
+        "deps-scan": cmd_deps_scan,
     }
     if args.cmd == "self-test":
         sys.exit(cmd_self_test())
