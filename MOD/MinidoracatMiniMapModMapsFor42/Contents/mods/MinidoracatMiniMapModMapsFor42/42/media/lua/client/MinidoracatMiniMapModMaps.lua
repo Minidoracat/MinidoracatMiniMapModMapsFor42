@@ -171,6 +171,11 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 14336, 5632, 14848, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_FortSpiffo" },
         { zip = "Willowbrook Bastion!.pyramid.zip", mapMod = "Willowbrook Bastion!",
             bounds = { 8448, 9472, 9728, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_WillowbrookBastion" },
+        -- 同 Workshop 互斥變體（雙向 incompatible=），但 2026 版是重製圖（59 個 cell
+        -- 檔 50 個不同、作者描述 2x2→3x2）＝圖像不同，不能作同 zip alias（那會讓啟用
+        -- 2026 版的玩家看到舊城鎮的圖）：各自一顆 zip、各自 nameKey，bounds 恰好相同
+        { zip = "Willowbrook Bastion! 2026.pyramid.zip", mapMod = "Willowbrook Bastion! 2",
+            bounds = { 8448, 9472, 9728, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_WillowbrookBastion2026" },
         { zip = "Clover Lake.pyramid.zip", mapMod = "Clover Lake",
             bounds = { 9472, 8960, 9984, 9984 }, nameKey = "UI_MinidoracatMiniMapModMaps_CloverLake" },
         { zip = "Bunker 42.pyramid.zip", mapMod = "Bunker42",
