@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T08:44:09Z",
+  "generated_at": "2026-08-24T17:41:27Z",
   "items": {
     "2384329562": {
       "mod_ids": [
@@ -331,6 +331,11 @@
           "map_mod": "dawn_town",
           "workshop_id": "3666180085",
           "zip": "DawnTown.pyramid.zip"
+        },
+        {
+          "map_mod": "Willowbrook Bastion! 2",
+          "workshop_id": "3479667649",
+          "zip": "Willowbrook Bastion! 2026.pyramid.zip"
         }
       ]
     },
