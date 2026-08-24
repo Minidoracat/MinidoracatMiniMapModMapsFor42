@@ -3,7 +3,7 @@
     "build": "24775755",
     "detected_at": "2026-08-18T05:54:42Z"
   },
-  "generated_at": "2026-08-21T05:55:39Z",
+  "generated_at": "2026-08-24T06:25:02Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -79,7 +79,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1787226085,
+      "time_updated": 1787511601,
       "title": "[B42.2/B41] Tikitown & Powerplant"
     },
     "3046728955": {
@@ -226,7 +226,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1786956388,
+      "time_updated": 1787476323,
       "title": "Willowbrook Bastion!"
     },
     "3480990544": {
