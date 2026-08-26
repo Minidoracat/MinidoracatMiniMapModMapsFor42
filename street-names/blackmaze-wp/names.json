@@ -1,0 +1,32 @@
+{
+  "dataset": "blackmaze-wp",
+  "source": {
+    "workshop_id": "3711035052",
+    "map_mod": "blackmaze_wp",
+    "map_dir": "Blackmaze_wp",
+    "streets_xml_sha256": "a9619923dabca21796d4372f37b8d179308ad19b3d4b6c61365ecf83dc7ad845",
+    "captured": "2026-08-26"
+  },
+  "names": {
+    "AsinSina": {
+      "ch": "阿辛西納",
+      "cn": "阿辛西纳",
+      "jp": "アシンシナ"
+    },
+    "BlackHawk": {
+      "ch": "黑鷹",
+      "cn": "黑鹰",
+      "jp": "ブラックホーク"
+    },
+    "La Frontera": {
+      "ch": "邊境",
+      "cn": "边境",
+      "jp": "ラ・フロンテーラ"
+    },
+    "Solsticio": {
+      "ch": "至日",
+      "cn": "至日",
+      "jp": "ソルスティシオ"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<streets version="1">
+    <street name="蚱蜢街" width="4">
+        <points>
+            <point x="8700.0" y="8505.0"/>
+            <point x="8700.0" y="8423.0"/>
+            <point x="8700.0" y="8402.0"/>
+            <point x="8696.0" y="8400.0"/>
+            <point x="8648.0" y="8400.0"/>
+        </points>
+    </street>
+    <street name="美好周末路" width="8">
+        <points>
+            <point x="8644.0" y="8388.5"/>
+            <point x="8644.0" y="8396.0"/>
+            <point x="8644.0" y="8558.0"/>
+        </points>
+    </street>
+</streets>

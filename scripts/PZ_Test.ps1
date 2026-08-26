@@ -9,6 +9,9 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 # ============================================
 $PZ_PATH = "D:\SteamLibrary\steamapps\common\ProjectZomboid"
 $SERVER_NAME = "servertest"
+# 地圖 MOD 專用伺服器（link_workshop.bat 選單 4 只寫這份；埠 16271/16272）：
+# 測其他 MOD 時走 servertest 就不必載入幾十張地圖
+$MAPTEST_SERVER_NAME = "maptest"
 $SERVER_MEMORY = "3072m"
 
 # 驗證遊戲路徑
@@ -41,10 +44,14 @@ function Start-PZClient {
 }
 
 function Start-PZServer {
+    param([string]$ServerName = $SERVER_NAME)
     Write-Host ""
     Write-Host "[伺服器] 啟動專用伺服器..." -ForegroundColor Cyan
-    Write-Host "[伺服器] 名稱: $SERVER_NAME"
+    Write-Host "[伺服器] 名稱: $ServerName"
     Write-Host "[伺服器] 記憶體: $SERVER_MEMORY"
+    if ($ServerName -eq $MAPTEST_SERVER_NAME) {
+        Write-Host "[伺服器] 地圖 MOD 專用設定（連線埠 16271）" -ForegroundColor DarkCyan
+    }
     Write-Host ""
 
     $javaPath = Join-Path $PZ_PATH "jre64\bin\java.exe"
@@ -56,7 +63,7 @@ function Start-PZServer {
         "-Djava.library.path=natives/;natives/win64/;./",
         "-cp", ".;projectzomboid.jar",
         "zombie.network.GameServer",
-        "-servername", $SERVER_NAME
+        "-servername", $ServerName
     )
 
     Start-Process -FilePath $javaPath -ArgumentList $javaArgs -WorkingDirectory $PZ_PATH
@@ -102,10 +109,15 @@ while ($true) {
     Write-Host "  [1] 啟動客戶端"
     Write-Host "  [2] 啟動客戶端 (Debug 模式)"
     Write-Host ""
-    Write-Host "  [3] 啟動專用伺服器 (Dedicated Server)"
+    Write-Host "  [3] 啟動專用伺服器 ($SERVER_NAME，不含地圖 MOD)"
     Write-Host "  [4] 一鍵啟動：伺服器 + 1 個客戶端"
     Write-Host "  [5] 一鍵啟動：伺服器 + 2 個客戶端"
     Write-Host "  [6] 僅啟動兩個客戶端 (Host 模式用)"
+    Write-Host ""
+    Write-Host "  --- 地圖 MOD 測試（$MAPTEST_SERVER_NAME，埠 16271）---" -ForegroundColor DarkCyan
+    Write-Host "  [7] 啟動地圖測試伺服器（含全部地圖 MOD）"
+    Write-Host "  [8] 一鍵啟動：地圖測試伺服器 + 1 個客戶端"
+    Write-Host "      設定由 link_workshop.bat 選單 4 寫入；$SERVER_NAME 保持乾淨" -ForegroundColor DarkGray
     Write-Host ""
     Write-Host "  [0] 停止所有 PZ 進程"
     Write-Host "  [Q] 離開"
@@ -168,6 +180,25 @@ while ($true) {
             Write-Host "  兩個客戶端已啟動！" -ForegroundColor Green
             Write-Host "  第一個視窗: 選擇 HOST 建立伺服器"
             Write-Host "  第二個視窗: 選擇 JOIN - LAN - 127.0.0.1"
+            Write-Host "========================================" -ForegroundColor Green
+            Write-Host ""
+            Read-Host "按 Enter 繼續"
+        }
+        "7" {
+            Start-PZServer -ServerName $MAPTEST_SERVER_NAME
+            Read-Host "按 Enter 繼續"
+        }
+        "8" {
+            Start-PZServer -ServerName $MAPTEST_SERVER_NAME
+            # 地圖 MOD 多，伺服器載入比 servertest 久（每張圖都要建 isoregion）——多等一些
+            Write-Host "[自動] 等待伺服器啟動 (30秒；地圖多，載入較久)..." -ForegroundColor DarkGray
+            Start-Sleep -Seconds 30
+            Start-PZClient -Debug
+            Write-Host "========================================" -ForegroundColor Green
+            Write-Host "  地圖測試環境已啟動！" -ForegroundColor Green
+            Write-Host "  伺服器: $MAPTEST_SERVER_NAME"
+            Write-Host "  連線位址: 127.0.0.1:16271"
+            Write-Host "  街名驗收：console.txt 找 StreetI18n armed / streetI18n loaded" -ForegroundColor DarkGray
             Write-Host "========================================" -ForegroundColor Green
             Write-Host ""
             Read-Host "按 Enter 繼續"

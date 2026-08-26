@@ -1,0 +1,22 @@
+{
+  "dataset": "megurigaoka-city",
+  "source": {
+    "workshop_id": "3318210146",
+    "map_mod": "Project Gurashi",
+    "map_dir": "Megurigaoka City, Kanagawa",
+    "streets_xml_sha256": "e888d587897420a41fd4a1bd9d65649903032d1b12af4fb9423d404bfa273e65",
+    "captured": "2026-08-26"
+  },
+  "names": {
+    "Chuo-dori": {
+      "ch": "中央大道",
+      "cn": "中央大道",
+      "jp": "中央通り"
+    },
+    "Gakuen-dori": {
+      "ch": "學園大道",
+      "cn": "学园大道",
+      "jp": "学園通り"
+    }
+  }
+}

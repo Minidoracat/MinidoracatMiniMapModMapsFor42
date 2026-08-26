@@ -1,0 +1,26 @@
+<streets version="1">
+    <street name="通り" width="5">
+        <points>
+            <point x="8244.5" y="8564.0"/>
+        </points>
+    </street>
+    <street name="サルタモンテス中尉大通り" width="4">
+        <points>
+            <point x="8279.0" y="8557.5"/>
+            <point x="8279.0" y="8503.0"/>
+            <point x="8336.0" y="8503.0"/>
+            <point x="8336.0" y="8543.0"/>
+        </points>
+    </street>
+    <street name="ロロ住宅街" width="3">
+        <points>
+            <point x="8225.5" y="8557.5"/>
+            <point x="8225.5" y="8527.0"/>
+            <point x="8210.0" y="8511.5"/>
+            <point x="8220.0" y="8501.0"/>
+            <point x="8220.0" y="8453.0"/>
+            <point x="8212.0" y="8445.0"/>
+            <point x="8192.0" y="8445.0"/>
+        </points>
+    </street>
+</streets>

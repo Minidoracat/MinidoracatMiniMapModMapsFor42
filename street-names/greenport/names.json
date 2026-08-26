@@ -1,0 +1,87 @@
+{
+  "dataset": "greenport",
+  "source": {
+    "workshop_id": "3747595202",
+    "map_mod": "GreenportB42",
+    "map_dir": "Greenport, KY",
+    "streets_xml_sha256": "e6d6920cbe2e261da68384ffd37613d2bbb665ac984346c26b5dc5e992c77303",
+    "captured": "2026-08-26"
+  },
+  "names": {
+    "Arkturus Rd": {
+      "ch": "大角星路",
+      "cn": "大角星路",
+      "jp": "アークトゥルス・ロード"
+    },
+    "Cypress Lane": {
+      "ch": "柏樹巷",
+      "cn": "柏树巷",
+      "jp": "イトスギ・レーン"
+    },
+    "Delmer Drive": {
+      "ch": "德爾默大道",
+      "cn": "德尔默大道",
+      "jp": "デルマー・ドライブ"
+    },
+    "Dogwood Way": {
+      "ch": "山茱萸道",
+      "cn": "山茱萸道",
+      "jp": "ハナミズキ・ウェイ"
+    },
+    "Greenport Parkway": {
+      "ch": "綠港園道",
+      "cn": "绿港园道",
+      "jp": "グリーンポート・パークウェイ"
+    },
+    "Harrington Rd": {
+      "ch": "哈林頓路",
+      "cn": "哈林顿路",
+      "jp": "ハリントン・ロード"
+    },
+    "Indie St": {
+      "ch": "獨立街",
+      "cn": "独立街",
+      "jp": "インディー通り"
+    },
+    "Leroy Lane": {
+      "ch": "勒羅伊巷",
+      "cn": "勒罗伊巷",
+      "jp": "ルロイ・レーン"
+    },
+    "Nuevo St": {
+      "ch": "新街",
+      "cn": "新街",
+      "jp": "ヌエボ通り"
+    },
+    "Oliver Rd": {
+      "ch": "奧利弗路",
+      "cn": "奥利弗路",
+      "jp": "オリバー・ロード"
+    },
+    "Pine Rd": {
+      "ch": "松樹路",
+      "cn": "松树路",
+      "jp": "パイン・ロード"
+    },
+    "Poplar Lane": {
+      "ch": "楊樹巷",
+      "cn": "杨树巷",
+      "jp": "ポプラ・レーン"
+    },
+    "Redbud Way": {
+      "ch": "紫荊道",
+      "cn": "紫荆道",
+      "jp": "ハナズオウ・ウェイ"
+    },
+    "Wayne Avenue": {
+      "ch": "韋恩大道",
+      "cn": "韦恩大道",
+      "jp": "ウェイン・アベニュー"
+    },
+    "Wharf Way": {
+      "ch": "碼頭道",
+      "cn": "码头道",
+      "jp": "ワーフ・ウェイ"
+    }
+  }
+}

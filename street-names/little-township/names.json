@@ -1,0 +1,32 @@
+{
+  "dataset": "little-township",
+  "source": {
+    "workshop_id": "3477336014",
+    "map_mod": "LittleTownshipB42",
+    "map_dir": "LittleTownshipB42",
+    "streets_xml_sha256": "2d3254272c7e99e6868fcf6d036aab2ed58f2aa49dccf8d3383a61b965434c7b",
+    "captured": "2026-08-26",
+    "keep_geometry": [
+      "8a65b0fc2179",
+      "e6e4c2fa24d0",
+      "f1c91314a76d"
+    ]
+  },
+  "names": {
+    "Loro Residential": {
+      "ch": "洛羅住宅區",
+      "cn": "洛罗住宅区",
+      "jp": "ロロ住宅街"
+    },
+    "Lt Saltamontes Blvd": {
+      "ch": "蚱蜢中尉大道",
+      "cn": "蚱蜢中尉大道",
+      "jp": "サルタモンテス中尉大通り"
+    },
+    "Street": {
+      "ch": "街道",
+      "cn": "街道",
+      "jp": "通り"
+    }
+  }
+}

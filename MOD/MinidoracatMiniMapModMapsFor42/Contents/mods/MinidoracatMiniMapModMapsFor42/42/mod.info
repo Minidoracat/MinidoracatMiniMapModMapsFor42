@@ -3,5 +3,5 @@ id=MinidoracatMiniMapModMapsFor42
 description=[B42]Minidoracat 小地圖的地圖 MOD 圖資包：內建多張地圖 MOD 的小地圖圖像與範圍框線，依啟用的地圖 MOD 自動掛載。需搭配主 MOD Minidoracat MiniMap for B42。By Minidoracat
 require=MinidoracatMiniMapFor42
 poster=poster.png
-modversion=42.20.3-0.6.0
+modversion=42.20.3-0.7.0
 versionMin=42.20.0

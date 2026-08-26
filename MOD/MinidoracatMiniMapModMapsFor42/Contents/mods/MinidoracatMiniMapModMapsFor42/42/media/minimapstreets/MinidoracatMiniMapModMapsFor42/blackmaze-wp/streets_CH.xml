@@ -1,0 +1,26 @@
+<streets version="1">
+    <street name="黑鷹" width="3">
+        <points>
+            <point x="10800.0" y="6301.0"/>
+            <point x="11100.0" y="6301.0"/>
+        </points>
+    </street>
+    <street name="阿辛西納" width="3">
+        <points>
+            <point x="10800.0" y="6598.5"/>
+            <point x="11100.0" y="6598.5"/>
+        </points>
+    </street>
+    <street name="邊境" width="5">
+        <points>
+            <point x="10801.0" y="6303.5"/>
+            <point x="10800.5" y="6596.0"/>
+        </points>
+    </street>
+    <street name="至日" width="5">
+        <points>
+            <point x="11099.0" y="6303.5"/>
+            <point x="11099.0" y="6596.0"/>
+        </points>
+    </street>
+</streets>

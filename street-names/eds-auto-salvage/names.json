@@ -1,0 +1,26 @@
+{
+  "dataset": "eds-auto-salvage",
+  "source": {
+    "workshop_id": "3478900814",
+    "map_mod": "EdsAutoSalvageB42",
+    "map_dir": "EdsAutoSalvageB42",
+    "streets_xml_sha256": "9f614165a824497761351d77f9746b9fb6cee447d3eed5701f41b432000cb7df",
+    "captured": "2026-08-26",
+    "keep_geometry": [
+      "137b299b6d1a",
+      "c16b04260b29"
+    ]
+  },
+  "names": {
+    "Good Weekend Rd": {
+      "ch": "美好週末路",
+      "cn": "美好周末路",
+      "jp": "グッドウィークエンド・ロード"
+    },
+    "Saltamontes St": {
+      "ch": "蚱蜢街",
+      "cn": "蚱蜢街",
+      "jp": "サルタモンテス通り"
+    }
+  }
+}

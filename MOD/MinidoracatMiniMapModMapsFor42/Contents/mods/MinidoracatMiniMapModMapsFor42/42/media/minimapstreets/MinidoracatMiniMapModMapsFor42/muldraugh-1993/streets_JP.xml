@@ -1,0 +1,427 @@
+<streets version="1">
+    <street name="パークリッジ・ロード" width="4">
+        <points>
+            <point x="10963.0" y="8771.0"/>
+            <point x="10962.0" y="9057.0"/>
+            <point x="10962.0" y="9068.0"/>
+            <point x="10962.0" y="9214.0"/>
+            <point x="10948.5" y="9227.5"/>
+            <point x="10920.5" y="9228.0"/>
+            <point x="10901.5" y="9218.5"/>
+            <point x="10892.5" y="9209.5"/>
+            <point x="10886.5" y="9197.5"/>
+            <point x="10833.5" y="9143.5"/>
+            <point x="10824.5" y="9139.0"/>
+            <point x="10686.5" y="9139.0"/>
+            <point x="10677.5" y="9134.5"/>
+            <point x="10672.0" y="9129.0"/>
+            <point x="10655.0" y="9094.0"/>
+            <point x="10655.0" y="9055.5"/>
+            <point x="10647.5" y="9041.0"/>
+            <point x="10640.5" y="9034.0"/>
+            <point x="10628.0" y="9027.5"/>
+            <point x="10599.0" y="9027.5"/>
+        </points>
+    </street>
+    <street name="ティンバー・コート" width="4">
+        <points>
+            <point x="10761.0" y="9137.0"/>
+            <point x="10761.0" y="9065.5"/>
+            <point x="10761.0" y="9065.0"/>
+        </points>
+    </street>
+    <street name="ウォーカー・ロード" width="4">
+        <points>
+            <point x="10599.0" y="9515.0"/>
+            <point x="10873.0" y="9515.0"/>
+            <point x="10963.0" y="9470.0"/>
+            <point x="11004.0" y="9429.0"/>
+            <point x="11031.5" y="9374.0"/>
+            <point x="11083.0" y="9323.0"/>
+            <point x="11092.5" y="9318.0"/>
+            <point x="11101.0" y="9318.0"/>
+        </points>
+    </street>
+    <street name="ハリス通り" width="4">
+        <points>
+            <point x="10599.0" y="9585.0"/>
+            <point x="10609.0" y="9585.0"/>
+            <point x="10715.0" y="9585.0"/>
+            <point x="10848.5" y="9585.0"/>
+        </points>
+    </street>
+    <street name="メイン通り" width="4">
+        <points>
+            <point x="10612.0" y="9587.0"/>
+            <point x="10612.0" y="9589.5"/>
+            <point x="10686.0" y="9737.0"/>
+            <point x="10686.0" y="9759.0"/>
+        </points>
+    </street>
+    <street name="ウォーレン通り" width="10">
+        <points>
+            <point x="10599.0" y="9643.0"/>
+            <point x="10633.5" y="9643.0"/>
+            <point x="10638.5" y="9643.0"/>
+        </points>
+    </street>
+    <street name="東ガーネッツビル・ロード" width="4">
+        <points>
+            <point x="10684.0" y="9761.0"/>
+            <point x="10869.0" y="9761.0"/>
+        </points>
+    </street>
+    <street name="シューメイト通り" width="4">
+        <points>
+            <point x="10779.0" y="9587.0"/>
+            <point x="10779.0" y="9617.0"/>
+        </points>
+    </street>
+    <street name="ブランチ通り" width="4">
+        <points>
+            <point x="10781.0" y="9619.0"/>
+            <point x="10749.0" y="9619.0"/>
+            <point x="10745.0" y="9623.0"/>
+            <point x="10745.0" y="9628.0"/>
+        </points>
+    </street>
+    <street name="ブランチ通り" width="3">
+        <points>
+            <point x="10747.0" y="9629.5"/>
+            <point x="10728.0" y="9629.5"/>
+            <point x="10725.0" y="9631.0"/>
+            <point x="10723.0" y="9633.0"/>
+            <point x="10721.5" y="9636.0"/>
+            <point x="10721.5" y="9683.0"/>
+            <point x="10723.5" y="9687.0"/>
+            <point x="10726.5" y="9690.0"/>
+            <point x="10731.0" y="9692.5"/>
+            <point x="10755.5" y="9692.5"/>
+        </points>
+    </street>
+    <street name="ブランチ通り" width="4">
+        <points>
+            <point x="10777.0" y="9696.0"/>
+            <point x="10755.5" y="9696.0"/>
+            <point x="10754.0" y="9695.5"/>
+            <point x="10754.0" y="9694.0"/>
+        </points>
+    </street>
+    <street name="ホワイトアロー" width="4">
+        <points>
+            <point x="10745.0" y="9631.0"/>
+            <point x="10745.0" y="9686.0"/>
+            <point x="10750.0" y="9691.0"/>
+        </points>
+    </street>
+    <street name="アーマ・ドライブ" width="4">
+        <points>
+            <point x="10779.0" y="9621.0"/>
+            <point x="10779.0" y="9622.5"/>
+            <point x="10779.0" y="9759.0"/>
+        </points>
+    </street>
+    <street name="クリークベッド通り" width="3">
+        <points>
+            <point x="10781.0" y="9603.5"/>
+            <point x="10846.5" y="9603.5"/>
+            <point x="10848.0" y="9602.5"/>
+            <point x="10849.0" y="9600.5"/>
+            <point x="10849.0" y="9587.0"/>
+        </points>
+    </street>
+    <street name="サークル通り" width="3">
+        <points>
+            <point x="10868.5" y="9686.0"/>
+            <point x="10868.5" y="9640.5"/>
+            <point x="10872.0" y="9633.0"/>
+            <point x="10874.0" y="9631.0"/>
+            <point x="10876.5" y="9626.0"/>
+            <point x="10876.5" y="9623.0"/>
+            <point x="10873.0" y="9616.0"/>
+            <point x="10871.0" y="9614.0"/>
+            <point x="10866.0" y="9611.5"/>
+            <point x="10861.0" y="9611.5"/>
+            <point x="10850.0" y="9617.0"/>
+            <point x="10847.0" y="9620.0"/>
+            <point x="10844.5" y="9625.0"/>
+            <point x="10844.5" y="9629.0"/>
+            <point x="10847.0" y="9634.0"/>
+            <point x="10858.0" y="9645.0"/>
+            <point x="10865.0" y="9648.5"/>
+            <point x="10866.5" y="9648.5"/>
+        </points>
+    </street>
+    <street name="1番通り" width="4">
+        <points>
+            <point x="10781.0" y="9699.0"/>
+            <point x="10855.0" y="9699.0"/>
+            <point x="10862.0" y="9695.5"/>
+            <point x="10865.0" y="9692.5"/>
+            <point x="10868.5" y="9686.0"/>
+        </points>
+    </street>
+    <street name="2番通り" width="4">
+        <points>
+            <point x="10781.0" y="9676.0"/>
+            <point x="10867.0" y="9676.0"/>
+        </points>
+    </street>
+    <street name="3番通り" width="4">
+        <points>
+            <point x="10867.0" y="9657.0"/>
+            <point x="10781.0" y="9657.0"/>
+        </points>
+    </street>
+    <street name="クリ通り" width="4">
+        <points>
+            <point x="10845.0" y="9763.0"/>
+            <point x="10845.0" y="9965.0"/>
+        </points>
+    </street>
+    <street name="南メイン通り" width="5">
+        <points>
+            <point x="10686.0" y="9763.0"/>
+            <point x="10686.0" y="9765.0"/>
+            <point x="10727.5" y="9849.0"/>
+            <point x="10727.0" y="9957.0"/>
+            <point x="10734.0" y="9971.0"/>
+            <point x="10734.0" y="10010.0"/>
+        </points>
+    </street>
+    <street name="エルム通り" width="6">
+        <points>
+            <point x="10847.0" y="9968.0"/>
+            <point x="10737.0" y="9968.0"/>
+        </points>
+    </street>
+    <street name="フランクリン通り" width="6">
+        <points>
+            <point x="10599.0" y="9895.0"/>
+            <point x="10724.5" y="9895.0"/>
+        </points>
+    </street>
+    <street name="ポプラ通り" width="4">
+        <points>
+            <point x="10624.0" y="9898.0"/>
+            <point x="10624.0" y="10010.0"/>
+        </points>
+    </street>
+    <street name="ヒル通り" width="4">
+        <points>
+            <point x="10655.0" y="10010.0"/>
+            <point x="10655.0" y="9898.0"/>
+        </points>
+    </street>
+    <street name="ペリー通り" width="3">
+        <points>
+            <point x="10682.5" y="9898.0"/>
+            <point x="10682.5" y="9957.0"/>
+            <point x="10690.5" y="9973.0"/>
+            <point x="10690.5" y="10010.0"/>
+        </points>
+    </street>
+    <street name="ウェンデル通り" width="6">
+        <points>
+            <point x="10599.0" y="10013.0"/>
+            <point x="10737.0" y="10013.0"/>
+        </points>
+    </street>
+    <street name="ウィルソン通り" width="4">
+        <points>
+            <point x="10628.0" y="10488.0"/>
+            <point x="10628.0" y="10076.0"/>
+            <point x="10626.0" y="10071.0"/>
+            <point x="10626.0" y="10016.0"/>
+        </points>
+    </street>
+    <street name="ウォルナット通り" width="4">
+        <points>
+            <point x="10599.0" y="10069.0"/>
+            <point x="10624.0" y="10069.0"/>
+        </points>
+    </street>
+    <street name="ホルストン・エステーツ・プレイス" width="4">
+        <points>
+            <point x="10630.0" y="10250.0"/>
+            <point x="10692.5" y="10250.0"/>
+        </points>
+    </street>
+    <street name="ホルストン・ドライブ" width="5">
+        <points>
+            <point x="10692.5" y="10250.0"/>
+            <point x="10754.0" y="10250.0"/>
+        </points>
+    </street>
+    <street name="ポルストン通り" width="4">
+        <points>
+            <point x="10771.0" y="9971.0"/>
+            <point x="10771.0" y="10016.0"/>
+            <point x="10781.5" y="10037.0"/>
+            <point x="10789.0" y="10052.0"/>
+            <point x="10789.0" y="10136.0"/>
+            <point x="10795.0" y="10148.0"/>
+            <point x="10795.0" y="10174.0"/>
+        </points>
+    </street>
+    <street name="メイン通り" width="6">
+        <points>
+            <point x="10790.0" y="10792.0"/>
+            <point x="10790.0" y="10786.5"/>
+            <point x="10787.0" y="10783.0"/>
+            <point x="10782.5" y="10781.0"/>
+            <point x="10770.0" y="10781.0"/>
+            <point x="10764.5" y="10778.0"/>
+            <point x="10761.5" y="10775.0"/>
+            <point x="10757.0" y="10766.0"/>
+            <point x="10757.0" y="10130.0"/>
+            <point x="10752.0" y="10120.0"/>
+            <point x="10752.0" y="10052.0"/>
+            <point x="10734.5" y="10016.0"/>
+        </points>
+    </street>
+    <street name="リン通り" width="5">
+        <points>
+            <point x="10823.5" y="10039.5"/>
+            <point x="10749.5" y="10039.5"/>
+        </points>
+    </street>
+    <street name="スナイダー・ウェイ" width="5">
+        <points>
+            <point x="10838.5" y="10362.0"/>
+            <point x="10838.5" y="10139.0"/>
+            <point x="10821.5" y="10105.0"/>
+            <point x="10821.5" y="9971.0"/>
+        </points>
+    </street>
+    <street name="オーク通り" width="4">
+        <points>
+            <point x="10819.0" y="10101.0"/>
+            <point x="10755.0" y="10101.0"/>
+        </points>
+    </street>
+    <street name="ブナ通り" width="5">
+        <points>
+            <point x="10836.0" y="10171.5"/>
+            <point x="10760.0" y="10171.5"/>
+        </points>
+    </street>
+    <street name="ボール通り" width="3">
+        <points>
+            <point x="10599.0" y="10297.5"/>
+            <point x="10626.0" y="10297.5"/>
+        </points>
+    </street>
+    <street name="ボール通り" width="4">
+        <points>
+            <point x="10630.0" y="10297.0"/>
+            <point x="10672.0" y="10297.0"/>
+            <point x="10672.0" y="10344.0"/>
+            <point x="10630.0" y="10344.0"/>
+        </points>
+    </street>
+    <street name="バシャム・コート" width="8">
+        <points>
+            <point x="10599.0" y="10392.0"/>
+            <point x="10626.0" y="10392.0"/>
+        </points>
+    </street>
+    <street name="バシャム・コート" width="4">
+        <points>
+            <point x="10630.0" y="10392.0"/>
+            <point x="10754.0" y="10392.0"/>
+        </points>
+    </street>
+    <street name="サンセット・コート" width="4">
+        <points>
+            <point x="10705.0" y="10317.0"/>
+            <point x="10705.0" y="10755.0"/>
+            <point x="10708.0" y="10758.5"/>
+        </points>
+    </street>
+    <street name="西メイベル通り" width="5">
+        <points>
+            <point x="10754.0" y="10490.5"/>
+            <point x="10626.0" y="10490.5"/>
+            <point x="10626.0" y="10489.5"/>
+            <point x="10599.0" y="10489.5"/>
+        </points>
+    </street>
+    <street name="ワッツ通り" width="6">
+        <points>
+            <point x="10884.0" y="10365.0"/>
+            <point x="10760.0" y="10365.0"/>
+        </points>
+    </street>
+    <street name="カスカ通り" width="5">
+        <points>
+            <point x="10801.0" y="10327.0"/>
+            <point x="10836.0" y="10327.0"/>
+        </points>
+    </street>
+    <street name="ドレセル・サークル" width="6">
+        <points>
+            <point x="10836.0" y="10288.0"/>
+            <point x="10801.0" y="10288.0"/>
+        </points>
+    </street>
+    <street name="東メイベル通り" width="4">
+        <points>
+            <point x="10760.0" y="10508.0"/>
+            <point x="10874.0" y="10508.0"/>
+            <point x="10874.0" y="10642.0"/>
+        </points>
+    </street>
+    <street name="デューイ通り" width="5">
+        <points>
+            <point x="10821.5" y="10368.0"/>
+            <point x="10821.5" y="10506.0"/>
+        </points>
+    </street>
+    <street name="デューイ通り" width="3">
+        <points>
+            <point x="10821.5" y="10510.0"/>
+            <point x="10821.5" y="10614.0"/>
+        </points>
+    </street>
+    <street name="カレン・コート" width="5">
+        <points>
+            <point x="10847.5" y="10368.0"/>
+            <point x="10847.5" y="10427.0"/>
+            <point x="10846.5" y="10429.5"/>
+            <point x="10844.0" y="10432.0"/>
+            <point x="10841.0" y="10433.5"/>
+            <point x="10824.0" y="10433.5"/>
+        </points>
+    </street>
+    <street name="ニュー通り" width="7">
+        <points>
+            <point x="10869.0" y="10368.0"/>
+            <point x="10869.0" y="10506.0"/>
+        </points>
+    </street>
+    <street name="ウッド通り" width="4">
+        <points>
+            <point x="10628.0" y="10493.0"/>
+            <point x="10628.0" y="10528.0"/>
+            <point x="10631.5" y="10535.0"/>
+            <point x="10634.0" y="10537.5"/>
+            <point x="10641.0" y="10541.0"/>
+            <point x="10703.0" y="10541.0"/>
+        </points>
+    </street>
+    <street name="ペリン通り" width="4">
+        <points>
+            <point x="10599.0" y="10786.0"/>
+            <point x="10695.5" y="10786.0"/>
+            <point x="10698.0" y="10784.5"/>
+            <point x="10702.5" y="10780.0"/>
+            <point x="10705.0" y="10775.0"/>
+            <point x="10705.0" y="10765.5"/>
+            <point x="10705.5" y="10763.5"/>
+            <point x="10708.0" y="10761.0"/>
+            <point x="10711.0" y="10760.0"/>
+            <point x="10754.0" y="10760.0"/>
+        </points>
+    </street>
+</streets>

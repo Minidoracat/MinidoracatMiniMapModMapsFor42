@@ -1,0 +1,32 @@
+{
+  "dataset": "wildsteel",
+  "source": {
+    "workshop_id": "3691773420",
+    "map_mod": "WILDSTEEL",
+    "map_dir": "WILDSTEEL",
+    "streets_xml_sha256": "19f25595f44a62c666ca681196199e84b6fed9d53dbd02da199556d6c94e4c6c",
+    "captured": "2026-08-26"
+  },
+  "names": {
+    "Blackstone Av": {
+      "ch": "布萊克斯頓大道",
+      "cn": "布莱克斯顿大道",
+      "jp": "ブラックストーン・アベニュー"
+    },
+    "Comuna Rd": {
+      "ch": "公社路",
+      "cn": "公社路",
+      "jp": "コムーナ・ロード"
+    },
+    "Pecado St": {
+      "ch": "罪街",
+      "cn": "罪街",
+      "jp": "ペカド通り"
+    },
+    "Spiffo's Av": {
+      "ch": "斯皮弗大道",
+      "cn": "斯皮弗大道",
+      "jp": "スピッフォ・アベニュー"
+    }
+  }
+}

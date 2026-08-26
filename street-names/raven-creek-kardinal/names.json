@@ -1,0 +1,232 @@
+{
+  "dataset": "raven-creek-kardinal",
+  "source": {
+    "workshop_id": "3769577696",
+    "map_mod": "kardinal_ravencreek_B42",
+    "map_dir": "Raven Creek B42",
+    "streets_xml_sha256": "1ee94bfa8d8b94518b9d59e0746e6789dbc8610c7d6725c3051822c36308a33d",
+    "captured": "2026-08-26"
+  },
+  "names": {
+    "Ash Street": {
+      "ch": "白蠟樹街",
+      "cn": "白蜡树街",
+      "jp": "アッシュ通り"
+    },
+    "Berry Road": {
+      "ch": "貝里路",
+      "cn": "贝里路",
+      "jp": "ベリー・ロード"
+    },
+    "Bridge Street": {
+      "ch": "橋街",
+      "cn": "桥街",
+      "jp": "ブリッジ通り"
+    },
+    "Center Street": {
+      "ch": "中心街",
+      "cn": "中心街",
+      "jp": "センター通り"
+    },
+    "Chestnut Street": {
+      "ch": "栗樹街",
+      "cn": "栗树街",
+      "jp": "クリ通り"
+    },
+    "Church Street": {
+      "ch": "教會街",
+      "cn": "教会街",
+      "jp": "チャーチ通り"
+    },
+    "Colemansville Road": {
+      "ch": "科爾曼斯維爾路",
+      "cn": "科尔曼斯维尔路",
+      "jp": "コールマンズビル・ロード"
+    },
+    "College Street": {
+      "ch": "學院街",
+      "cn": "学院街",
+      "jp": "大学通り"
+    },
+    "Court Street": {
+      "ch": "法院街",
+      "cn": "法院街",
+      "jp": "コート通り"
+    },
+    "Elm Street": {
+      "ch": "榆木街",
+      "cn": "榆木街",
+      "jp": "エルム通り"
+    },
+    "Falmouth Road": {
+      "ch": "法爾茅斯路",
+      "cn": "法尔茅斯路",
+      "jp": "ファルマス・ロード"
+    },
+    "Federal Avenue": {
+      "ch": "聯邦大道",
+      "cn": "联邦大道",
+      "jp": "連邦大通り"
+    },
+    "Grandview Drive": {
+      "ch": "宏景大道",
+      "cn": "宏景大道",
+      "jp": "グランドビュー・ドライブ"
+    },
+    "Hickory Court": {
+      "ch": "山核桃苑",
+      "cn": "山核桃苑",
+      "jp": "ヒッコリー・コート"
+    },
+    "High Street": {
+      "ch": "高街",
+      "cn": "高街",
+      "jp": "ハイ通り"
+    },
+    "Highland Avenue": {
+      "ch": "高地大道",
+      "cn": "高地大道",
+      "jp": "ハイランド・アベニュー"
+    },
+    "Hillside Drive": {
+      "ch": "山坡大道",
+      "cn": "山坡大道",
+      "jp": "ヒルサイド・ドライブ"
+    },
+    "Hinkston Avenue": {
+      "ch": "欣克斯頓大道",
+      "cn": "欣克斯顿大道",
+      "jp": "ヒンクストン・アベニュー"
+    },
+    "Lair Road": {
+      "ch": "萊爾路",
+      "cn": "莱尔路",
+      "jp": "レア・ロード"
+    },
+    "Leesburg Pike": {
+      "ch": "利斯堡公路",
+      "cn": "利斯堡公路",
+      "jp": "リーズバーグ・パイク"
+    },
+    "Locust Street": {
+      "ch": "刺槐街",
+      "cn": "刺槐街",
+      "jp": "ニセアカシア通り"
+    },
+    "Main Street": {
+      "ch": "主街",
+      "cn": "主街",
+      "jp": "メイン通り"
+    },
+    "Maple Street": {
+      "ch": "楓街",
+      "cn": "枫街",
+      "jp": "カエデ通り"
+    },
+    "Market Street": {
+      "ch": "市場街",
+      "cn": "市场街",
+      "jp": "マーケット通り"
+    },
+    "Marshall Avenue": {
+      "ch": "馬歇爾大道",
+      "cn": "马歇尔大道",
+      "jp": "マーシャル・アベニュー"
+    },
+    "McIlvain Boulevard": {
+      "ch": "麥基爾文大道",
+      "cn": "麦基尔文大道",
+      "jp": "マキルベイン大通り"
+    },
+    "Mill Street": {
+      "ch": "磨坊街",
+      "cn": "磨坊街",
+      "jp": "ミル通り"
+    },
+    "Mulberry Street": {
+      "ch": "桑葚街",
+      "cn": "桑葚街",
+      "jp": "マルベリー通り"
+    },
+    "Oak Street": {
+      "ch": "橡樹街",
+      "cn": "橡树街",
+      "jp": "オーク通り"
+    },
+    "Oddville Road": {
+      "ch": "奧德維爾路",
+      "cn": "奥德维尔路",
+      "jp": "オッドビル・ロード"
+    },
+    "Paris Pike": {
+      "ch": "巴黎公路",
+      "cn": "巴黎公路",
+      "jp": "パリス・パイク"
+    },
+    "Parkway Drive": {
+      "ch": "林蔭大道",
+      "cn": "林荫大道",
+      "jp": "パークウェイ・ドライブ"
+    },
+    "Pearl Street": {
+      "ch": "珍珠街",
+      "cn": "珍珠街",
+      "jp": "パール通り"
+    },
+    "Penn Street": {
+      "ch": "佩恩街",
+      "cn": "佩恩街",
+      "jp": "ペン通り"
+    },
+    "Pike Street": {
+      "ch": "派克街",
+      "cn": "派克街",
+      "jp": "パイク通り"
+    },
+    "Pine Street": {
+      "ch": "松樹街",
+      "cn": "松树街",
+      "jp": "パイン通り"
+    },
+    "Pleasant Street": {
+      "ch": "宜人街",
+      "cn": "宜人街",
+      "jp": "プレザント通り"
+    },
+    "Poplar Street": {
+      "ch": "楊樹街",
+      "cn": "杨树街",
+      "jp": "ポプラ通り"
+    },
+    "Raven Creek Road": {
+      "ch": "渡鴉溪路",
+      "cn": "渡鸦溪路",
+      "jp": "レイヴンクリーク・ロード"
+    },
+    "River Road": {
+      "ch": "河路",
+      "cn": "河路",
+      "jp": "リバー・ロード"
+    },
+    "Short Street": {
+      "ch": "短街",
+      "cn": "短街",
+      "jp": "ショート通り"
+    },
+    "Vine Street": {
+      "ch": "藤街",
+      "cn": "藤街",
+      "jp": "ヴァイン通り"
+    },
+    "Walnut Street": {
+      "ch": "胡桃街",
+      "cn": "胡桃街",
+      "jp": "ウォルナット通り"
+    },
+    "Water Street": {
+      "ch": "水街",
+      "cn": "水街",
+      "jp": "ウォーター通り"
+    }
+  }
+}

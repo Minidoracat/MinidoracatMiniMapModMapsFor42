@@ -1,0 +1,107 @@
+{
+  "anruisi-town": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "1874b5881a8d30bf32ca5d4c96aabcd794a9c8cf778bc7b1897381c4e3756ed6",
+    "workshop_id": "3659676359"
+  },
+  "blackmaze-wp": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "a9619923dabca21796d4372f37b8d179308ad19b3d4b6c61365ecf83dc7ad845",
+    "workshop_id": "3711035052"
+  },
+  "camden-county": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "d4edc6dfa197913006b9ae02ef228c45bfbba89625d05754349e3d6d54c56b1c",
+    "workshop_id": "3504080284"
+  },
+  "clover-lake": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "3a5dd2b1e26afd9f408d5cfb6a9a9b0e28df5cd85264bd0407e9ac7e45dd0be1",
+    "workshop_id": "3759558202"
+  },
+  "daisy-county": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "23fe5b4da09a93730c43a7081b31207c93f289462e746c0e3c162bb579aadb00",
+    "workshop_id": "3390753141"
+  },
+  "eds-auto-salvage": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "9f614165a824497761351d77f9746b9fb6cee447d3eed5701f41b432000cb7df",
+    "workshop_id": "3478900814"
+  },
+  "greenport": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "e6d6920cbe2e261da68384ffd37613d2bbb665ac984346c26b5dc5e992c77303",
+    "workshop_id": "3747595202"
+  },
+  "little-township": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "2d3254272c7e99e6868fcf6d036aab2ed58f2aa49dccf8d3383a61b965434c7b",
+    "workshop_id": "3477336014"
+  },
+  "megurigaoka-city": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "e888d587897420a41fd4a1bd9d65649903032d1b12af4fb9423d404bfa273e65",
+    "workshop_id": "3318210146"
+  },
+  "muldraugh-1993": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "e3f45727069940606a52134020b7ab3e3b07bf9665c85522f1236555f54d255c",
+    "workshop_id": "3701834205"
+  },
+  "raven-creek": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "59358dadb6a2ecee3f44485d36e8e3241106e941f495042ab0412d19ca2dc2a4",
+    "workshop_id": "3484263516"
+  },
+  "raven-creek-kardinal": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "1ee94bfa8d8b94518b9d59e0746e6789dbc8610c7d6725c3051822c36308a33d",
+    "workshop_id": "3769577696"
+  },
+  "sz-checkpoint5": {
+    "checked": "2026-08-26T08:49:52Z",
+    "sha256": "a532758c5c0cfaeeeafd957a9bb70d0159367e42bdf570316e0fc3165a371388",
+    "workshop_id": "3494374578"
+  },
+  "sz-checkpoint8": {
+    "checked": "2026-08-26T08:49:52Z",
+    "sha256": "3034b5d8a0fa7bd529f5e1dd4c625f0101accd263423272799c90b32d2905bba",
+    "workshop_id": "3494374578"
+  },
+  "sz-marchridge-research": {
+    "checked": "2026-08-26T08:49:52Z",
+    "sha256": "8c918416d75243ef43e60c371a3809e2d57f9ec34069f9ec64c707064459235b",
+    "workshop_id": "3494374578"
+  },
+  "sz-riverside1": {
+    "checked": "2026-08-26T08:49:52Z",
+    "sha256": "a93dbc786b3cab4dd08579c767355fe2ab10c574a26f7121e91e2dbb9fb924d8",
+    "workshop_id": "3494374578"
+  },
+  "sz-riverside2": {
+    "checked": "2026-08-26T08:49:52Z",
+    "sha256": "09cf3fa84efc22d1f63834a1a9978476bb3c06da3518d1804b2616cec54ca32c",
+    "workshop_id": "3494374578"
+  },
+  "sz-westpoint-bridge": {
+    "checked": "2026-08-26T08:49:52Z",
+    "sha256": "770716591791c059873e662354b30b36794a57c687946e2b1f5c5a24946afeae",
+    "workshop_id": "3494374578"
+  },
+  "tikitown": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "3b6ce90819e5a66fa3191b3eeef28f4d4a6eec316173945cb55c392013e8e1ed",
+    "workshop_id": "3037854728"
+  },
+  "west-point-expansion": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "eb0e0e20369d1c64f848337c9f1a9a6b827d768ed401193aa9cf491588d13864",
+    "workshop_id": "3475754603"
+  },
+  "wildsteel": {
+    "checked": "2026-08-26T09:37:53Z",
+    "sha256": "19f25595f44a62c666ca681196199e84b6fed9d53dbd02da199556d6c94e4c6c",
+    "workshop_id": "3691773420"
+  }
+}

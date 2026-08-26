@@ -1,0 +1,133 @@
+<streets version="1">
+    <street name="绿港园道" width="5">
+        <points>
+            <point x="8101.5" y="7500.5"/>
+            <point x="8109.0" y="7500.5"/>
+            <point x="8118.5" y="7509.5"/>
+            <point x="8119.0" y="7532.0"/>
+            <point x="8133.0" y="7545.5"/>
+            <point x="8641.5" y="7546.5"/>
+            <point x="8666.0" y="7546.0"/>
+            <point x="8678.5" y="7533.0"/>
+            <point x="8678.5" y="7516.5"/>
+            <point x="8698.0" y="7500.5"/>
+        </points>
+    </street>
+    <street name="码头道" width="5">
+        <points>
+            <point x="8237.0" y="7503.5"/>
+            <point x="8237.0" y="7615.5"/>
+            <point x="8237.5" y="7731.0"/>
+        </points>
+    </street>
+    <street name="勒罗伊巷" width="5">
+        <points>
+            <point x="8582.5" y="7659.0"/>
+            <point x="8581.5" y="7549.5"/>
+        </points>
+    </street>
+    <street name="德尔默大道" width="5">
+        <points>
+            <point x="8466.5" y="7550.5"/>
+            <point x="8466.5" y="7650.5"/>
+            <point x="8457.5" y="7660.0"/>
+        </points>
+    </street>
+    <street name="韦恩大道" width="5">
+        <points>
+            <point x="8366.0" y="7659.5"/>
+            <point x="8356.5" y="7651.5"/>
+            <point x="8356.5" y="7553.5"/>
+            <point x="8353.5" y="7550.0"/>
+        </points>
+    </street>
+    <street name="哈林顿路" width="5">
+        <points>
+            <point x="8115.5" y="7663.0"/>
+            <point x="8680.0" y="7664.0"/>
+        </points>
+    </street>
+    <street name="新街" width="5">
+        <points>
+            <point x="8609.5" y="7668.5"/>
+            <point x="8610.5" y="7769.5"/>
+        </points>
+    </street>
+    <street name="大角星路" width="5">
+        <points>
+            <point x="8502.5" y="7708.0"/>
+            <point x="8605.0" y="7708.0"/>
+        </points>
+    </street>
+    <street name="奥利弗路" width="5">
+        <points>
+            <point x="8501.5" y="7740.5"/>
+            <point x="8607.0" y="7740.5"/>
+        </points>
+    </street>
+    <street name="独立街" width="5">
+        <points>
+            <point x="8498.0" y="7669.0"/>
+            <point x="8498.0" y="7742.5"/>
+        </points>
+    </street>
+    <street name="杨树巷" width="5">
+        <points>
+            <point x="8411.0" y="7668.5"/>
+            <point x="8408.5" y="7683.0"/>
+            <point x="8411.0" y="7696.0"/>
+            <point x="8408.0" y="7706.0"/>
+            <point x="8412.5" y="7716.5"/>
+            <point x="8409.5" y="7741.5"/>
+        </points>
+    </street>
+    <street name="松树路" width="5">
+        <points>
+            <point x="8405.0" y="7740.0"/>
+            <point x="8396.0" y="7743.0"/>
+            <point x="8372.0" y="7739.5"/>
+            <point x="8359.5" y="7742.0"/>
+            <point x="8346.5" y="7740.0"/>
+            <point x="8332.0" y="7741.0"/>
+            <point x="8314.0" y="7740.0"/>
+            <point x="8299.5" y="7740.5"/>
+            <point x="8291.5" y="7748.5"/>
+            <point x="8274.0" y="7749.0"/>
+        </points>
+    </street>
+    <street name="山茱萸道" width="5">
+        <points>
+            <point x="8403.5" y="7707.0"/>
+            <point x="8384.0" y="7705.5"/>
+            <point x="8371.5" y="7709.5"/>
+            <point x="8342.5" y="7704.5"/>
+            <point x="8321.5" y="7705.0"/>
+            <point x="8312.5" y="7709.0"/>
+            <point x="8294.5" y="7708.5"/>
+            <point x="8284.0" y="7711.0"/>
+            <point x="8269.5" y="7709.0"/>
+        </points>
+    </street>
+    <street name="柏树巷" width="5">
+        <points>
+            <point x="8267.5" y="7668.5"/>
+            <point x="8268.5" y="7680.5"/>
+            <point x="8261.5" y="7692.5"/>
+            <point x="8266.5" y="7713.5"/>
+            <point x="8264.0" y="7723.5"/>
+            <point x="8271.5" y="7747.0"/>
+        </points>
+    </street>
+    <street name="紫荆道" width="5">
+        <points>
+            <point x="8361.5" y="7746.5"/>
+            <point x="8361.5" y="7770.5"/>
+            <point x="8344.5" y="7775.5"/>
+            <point x="8332.5" y="7774.0"/>
+            <point x="8318.0" y="7782.0"/>
+            <point x="8293.5" y="7779.0"/>
+            <point x="8289.5" y="7770.0"/>
+            <point x="8291.5" y="7753.0"/>
+        </points>
+    </street>
+</streets>

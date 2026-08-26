@@ -1,0 +1,82 @@
+<streets version="1">
+    <street name="南 ww2commander街" width="8">
+        <points>
+            <point x="12240.0" y="7166.0"/>
+            <point x="12720.0" y="7166.0"/>
+        </points>
+    </street>
+    <street name="山頂街" width="8">
+        <points>
+            <point x="12342.0" y="7161.5"/>
+            <point x="12342.0" y="6967.0"/>
+        </points>
+    </street>
+    <street name="榆木林大道" width="8">
+        <points>
+            <point x="12348.0" y="7067.0"/>
+            <point x="12598.0" y="7067.0"/>
+        </points>
+    </street>
+    <street name="松谷路" width="8">
+        <points>
+            <point x="12476.5" y="6967.0"/>
+            <point x="12476.5" y="7213.5"/>
+        </points>
+    </street>
+    <street name="山頂巷" width="8">
+        <points>
+            <point x="12373.0" y="6956.0"/>
+            <point x="12373.0" y="6862.0"/>
+            <point x="12724.0" y="6862.0"/>
+            <point x="12724.0" y="7170.0"/>
+        </points>
+    </street>
+    <street name="北 ww2commander街" width="10">
+        <points>
+            <point x="12240.0" y="6961.0"/>
+            <point x="12719.5" y="6961.0"/>
+        </points>
+    </street>
+    <street name="橡嶺苑" width="8">
+        <points>
+            <point x="12602.0" y="6967.0"/>
+            <point x="12602.0" y="7162.0"/>
+        </points>
+    </street>
+    <street name="車站道" width="6">
+        <points>
+            <point x="12606.0" y="7125.0"/>
+            <point x="12663.0" y="7125.0"/>
+            <point x="12663.0" y="7006.5"/>
+            <point x="12642.5" y="7006.5"/>
+            <point x="12642.5" y="6967.0"/>
+        </points>
+    </street>
+    <street name="栗樹街" width="6">
+        <points>
+            <point x="12597.0" y="6858.0"/>
+            <point x="12597.0" y="6780.0"/>
+        </points>
+    </street>
+    <street name="駐防苑" width="6">
+        <points>
+            <point x="12500.0" y="6858.0"/>
+            <point x="12500.0" y="6771.5"/>
+        </points>
+    </street>
+    <street name="迪克西支線路" width="8">
+        <points>
+            <point x="12411.0" y="7162.0"/>
+            <point x="12411.0" y="7071.0"/>
+        </points>
+    </street>
+    <street name="觀景巷" width="6">
+        <points>
+            <point x="12337.0" y="7106.0"/>
+            <point x="12281.0" y="7106.0"/>
+            <point x="12281.0" y="7046.0"/>
+            <point x="12255.0" y="7046.0"/>
+            <point x="12240.0" y="7046.0"/>
+        </points>
+    </street>
+</streets>

@@ -1,0 +1,86 @@
+{
+  "dataset": "west-point-expansion",
+  "source": {
+    "workshop_id": "3475754603",
+    "map_mod": "WestPointExpansionB42",
+    "map_dir": "West Point Expansion_B42",
+    "streets_xml_sha256": "eb0e0e20369d1c64f848337c9f1a9a6b827d768ed401193aa9cf491588d13864",
+    "captured": "2026-08-26",
+    "keep_geometry": [
+      "205eb3e29034",
+      "3c5f09eaba89",
+      "44d8a9c73f7d",
+      "48aa4b2f47fd",
+      "5551801411ad",
+      "5ab1c5c3764f",
+      "616b76413954",
+      "637ba79c51ee",
+      "7f8ada252415",
+      "931fd0932f73",
+      "adcda0530fa5",
+      "afba09e36375"
+    ]
+  },
+  "names": {
+    "Chestnut St": {
+      "ch": "栗樹街",
+      "cn": "栗树街",
+      "jp": "クリ通り"
+    },
+    "Depot Way": {
+      "ch": "車站道",
+      "cn": "车站道",
+      "jp": "デポ・ウェイ"
+    },
+    "Dixie Spur Rd": {
+      "ch": "迪克西支線路",
+      "cn": "迪克西支线路",
+      "jp": "ディキシー・スパー・ロード"
+    },
+    "Elmwood Blvd": {
+      "ch": "榆木林大道",
+      "cn": "榆木林大道",
+      "jp": "エルムウッド大通り"
+    },
+    "Garrison Ct": {
+      "ch": "駐防苑",
+      "cn": "驻防苑",
+      "jp": "ギャリソン・コート"
+    },
+    "Hillcrest Ln": {
+      "ch": "山頂巷",
+      "cn": "山顶巷",
+      "jp": "ヒルクレスト・レーン"
+    },
+    "Hillcrest St": {
+      "ch": "山頂街",
+      "cn": "山顶街",
+      "jp": "ヒルクレスト通り"
+    },
+    "North ww2commander St": {
+      "ch": "北 ww2commander街",
+      "cn": "北 ww2commander街",
+      "jp": "北 ww2commander通り"
+    },
+    "Oakridge Ct": {
+      "ch": "橡嶺苑",
+      "cn": "橡岭苑",
+      "jp": "オークリッジ・コート"
+    },
+    "Overlook Ln": {
+      "ch": "觀景巷",
+      "cn": "观景巷",
+      "jp": "オーバールック・レーン"
+    },
+    "Pine Hollow Rd": {
+      "ch": "松谷路",
+      "cn": "松谷路",
+      "jp": "パインホロウ・ロード"
+    },
+    "South ww2commander St": {
+      "ch": "南 ww2commander街",
+      "cn": "南 ww2commander街",
+      "jp": "南 ww2commander通り"
+    }
+  }
+}

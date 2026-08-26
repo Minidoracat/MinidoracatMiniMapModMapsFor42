@@ -11,6 +11,14 @@
 *.md text eol=lf
 *.yml text eol=lf
 mod.info text eol=lf
+.gitattributes text eol=lf
 
 # workshop.txt 例外：遊戲上傳會整檔回寫成 CRLF，跟著遊戲格式走以消除假差異（入庫仍 LF）
 MOD/*/workshop.txt text eol=crlf
+
+# 街名替代檔是**生成物**，契約是「逐字節等於上游套用確定性轉換的結果」，而行尾跟隨
+# 各自上游（實測 clover-lake／daisy-county 是 LF、anruisi-town／muldraugh-1993 是 CRLF）。
+# 一旦讓 git 做行尾轉換，checkout 會改變檔案內容 ⇒
+# `python scripts/gen_streets_i18n.py verify` 的逐字節比對直接 fail（CI 與新 clone 都會炸）。
+# 故明確關閉轉換（`-text`），逐字節原樣進出。
+MOD/*/Contents/mods/*/42/media/minimapstreets/**/*.xml -text

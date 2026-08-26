@@ -1,0 +1,231 @@
+<streets version="1">
+<street name="威尼凡街" width="10">
+<points>
+<point x="9933" y="7308"/>
+<point x="9933" y="7491"/>
+</points>
+</street>
+<street name="小花街" width="10">
+<points>
+<point x="9913" y="7243"/>
+<point x="10023" y="7243"/>
+</points>
+</street>
+<street name="台北路" width="10">
+<points>
+<point x="9940" y="7247"/>
+<point x="9940" y="7288"/>
+</points>
+</street>
+<street name="釣魚路" width="10">
+<points>
+<point x="9944" y="7297"/>
+<point x="10023" y="7297"/>
+</points>
+</street>
+<street name="無名路" width="10">
+<points>
+<point x="10027" y="7221"/>
+<point x="10027" y="7269"/>
+</points>
+</street>
+<street name="二仙路" width="10">
+<points>
+<point x="10031" y="7274"/>
+<point x="10099" y="7274"/>
+</points>
+</street>
+<street name="成華路" width="10">
+<points>
+<point x="10109" y="7274"/>
+<point x="10200" y="7274"/>
+</points>
+</street>
+<street name="殺明石路" width="10">
+<points>
+<point x="10162" y="7279"/>
+<point x="10162" y="7342"/>
+</points>
+</street>
+<street name="玉林路" width="10">
+<points>
+<point x="10104" y="7235"/>
+<point x="10104" y="7337"/>
+</points>
+</street>
+<street name="雛菊路" width="10">
+<points>
+<point x="10087" y="7230"/>
+<point x="10179" y="7230"/>
+</points>
+</street>
+<street name="雛菊巷" width="10">
+<points>
+<point x="10174" y="7235"/>
+<point x="10174" y="7269"/>
+</points>
+</street>
+<street name="三葉草街" width="10">
+<points>
+<point x="10114" y="7347"/>
+<point x="10200" y="7347"/>
+</points>
+</street>
+<street name="楓街" width="10">
+<points>
+<point x="9982" y="7302"/>
+<point x="9982" y="7372"/>
+</points>
+</street>
+<street name="松嶺路" width="10">
+<points>
+<point x="10018" y="7302"/>
+<point x="10018" y="7446"/>
+</points>
+</street>
+<street name="毛茛苑" width="10">
+<points>
+<point x="10027" y="7487"/>
+<point x="10076" y="7487"/>
+</points>
+</street>
+ 
+<street name="露珠巷" width="10">
+<points>
+<point x="10200" y="7274"/>
+<point x="10236" y="7274"/>
+</points>
+</street>
+<street name="迷迭香道" width="10">
+<points>
+<point x="10212" y="7224"/>
+<point x="10212" y="7269"/>
+</points>
+</street>
+<street name="薊巷" width="10">
+<points>
+<point x="10221" y="7215"/>
+<point x="10438" y="7215"/>
+</points>
+</street>
+<street name="紫羅蘭街" width="10">
+<points>
+<point x="10433" y="7220"/>
+<point x="10433" y="7342"/>
+</points>
+</street>
+<street name="冬青大道" width="10">
+<points>
+<point x="10244" y="7282"/>
+<point x="10244" y="7342"/>
+</points>
+</street>
+<street name="雪松大道" width="10">
+<points>
+<point x="10200" y="7347"/>
+<point x="10464" y="7347"/>
+</points>
+</street>
+<street name="樺樹巷" width="10">
+<points>
+<point x="10473" y="7356"/>
+<point x="10473" y="7446"/>
+</points>
+</street>
+<street name="山毛櫸街" width="10">
+<points>
+<point x="10337" y="7352"/>
+<point x="10337" y="7446"/>
+</points>
+</street>
+<street name="未知" width="10">
+<points>
+<point x="10244" y="7352"/>
+<point x="10244" y="7446"/>
+</points>
+</street>
+<street name="冷杉大道" width="10">
+<points>
+<point x="10249" y="7397"/>
+<point x="10333" y="7397"/>
+</points>
+</street>
+<street name="茉莉花道" width="10">
+<points>
+<point x="10368" y="7383"/>
+<point x="10368" y="7446"/>
+</points>
+</street>
+<street name="鬱金香巷" width="10">
+<points>
+<point x="10423.5" y="7456"/>
+<point x="10423.5" y="7501"/>
+</points>
+</street>
+<street name="木蘭巷" width="10">
+<points>
+<point x="10032" y="7500"/>
+<point x="10032" y="7702"/>
+</points>
+</street>
+<street name="山茱萸路" width="10">
+<points>
+<point x="9946" y="7551"/>
+<point x="10027" y="7551"/>
+</points>
+</street>
+<street name="牡丹道" width="10">
+<points>
+<point x="10044" y="7701"/>
+<point x="10119" y="7701"/>
+</points>
+</street>
+<street name="棕櫚大道" width="10">
+<points>
+<point x="9946" y="7743"/>
+<point x="10009" y="7743"/>
+</points>
+</street>
+<street name="榛樹路" width="10">
+<points>
+<point x="10003" y="7748"/>
+<point x="10003" y="7801"/>
+</points>
+</street>
+ <street name="紫菀巷" width="10">
+<points>
+<point x="10423.5" y="7501"/>
+<point x="10423.5" y="7800"/>
+</points>
+</street>
+<street name="大理花苑" width="10">
+<points>
+<point x="10278" y="7612"/>
+<point x="10278" y="7772"/>
+</points>
+</street>
+<street name="向日葵路" width="10">
+<points>
+<point x="10353" y="7561.5"/>
+<point x="10419" y="7561.5"/>
+</points>
+</street>
+ <street name="蕨道" width="10">
+<points>
+<point x="10003" y="7803"/>
+<point x="10003" y="8055"/>
+</points>
+</street>
+<street name="梧桐大道" width="10">
+<points>
+<point x="10133" y="8010"/>
+<point x="10133" y="8055"/>
+</points>
+</street>
+<street name="明石路" width="10">
+<points>
+<point x="10423.5" y="7800"/>
+<point x="10423.5" y="8055"/>
+</points>
+</street>
+</streets>

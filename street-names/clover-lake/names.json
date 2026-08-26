@@ -1,0 +1,17 @@
+{
+  "dataset": "clover-lake",
+  "source": {
+    "workshop_id": "3759558202",
+    "map_mod": "Clover Lake",
+    "map_dir": "Clover Lake",
+    "streets_xml_sha256": "3a5dd2b1e26afd9f408d5cfb6a9a9b0e28df5cd85264bd0407e9ac7e45dd0be1",
+    "captured": "2026-08-26"
+  },
+  "names": {
+    "Alfalfa Road": {
+      "ch": "紫花苜蓿路",
+      "cn": "紫花苜蓿路",
+      "jp": "アルファルファ・ロード"
+    }
+  }
+}

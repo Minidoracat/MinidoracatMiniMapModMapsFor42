@@ -1,0 +1,172 @@
+{
+  "dataset": "anruisi-town",
+  "source": {
+    "workshop_id": "3659676359",
+    "map_mod": "AnruisiTown",
+    "map_dir": "AnruisiTown",
+    "streets_xml_sha256": "1874b5881a8d30bf32ca5d4c96aabcd794a9c8cf778bc7b1897381c4e3756ed6",
+    "captured": "2026-08-26"
+  },
+  "names": {
+    "Agriculture Boulevard": {
+      "ch": "農業大道",
+      "cn": "农业大道",
+      "jp": "農業大通り"
+    },
+    "Anruisi St": {
+      "ch": "安瑞斯街",
+      "cn": "安瑞斯街",
+      "jp": "アンルイス通り"
+    },
+    "Arms St": {
+      "ch": "軍械街",
+      "cn": "军械街",
+      "jp": "兵器通り"
+    },
+    "ArmyStreet": {
+      "ch": "軍隊街",
+      "cn": "军队街",
+      "jp": "アーミー通り"
+    },
+    "Business Road": {
+      "ch": "商業路",
+      "cn": "商业路",
+      "jp": "ビジネス・ロード"
+    },
+    "Doom St": {
+      "ch": "毀滅街",
+      "cn": "毁灭街",
+      "jp": "ドゥーム通り"
+    },
+    "Engineering Road": {
+      "ch": "工兵路",
+      "cn": "工兵路",
+      "jp": "工兵通り"
+    },
+    "Fire Protection Boulevard": {
+      "ch": "消防大道",
+      "cn": "消防大道",
+      "jp": "消防大通り"
+    },
+    "Forest St": {
+      "ch": "森林街",
+      "cn": "森林街",
+      "jp": "森林通り"
+    },
+    "Forest Trail": {
+      "ch": "森林小徑",
+      "cn": "森林小径",
+      "jp": "森林小径"
+    },
+    "Fountain Road": {
+      "ch": "噴泉路",
+      "cn": "喷泉路",
+      "jp": "噴水通り"
+    },
+    "Gas Road": {
+      "ch": "加油路",
+      "cn": "加油路",
+      "jp": "ガス・ロード"
+    },
+    "Gongan Road": {
+      "ch": "公安路",
+      "cn": "公安路",
+      "jp": "公安通り"
+    },
+    "Hope Boulevard": {
+      "ch": "希望大道",
+      "cn": "希望大道",
+      "jp": "希望大通り"
+    },
+    "Lake Road (Under Construction)": {
+      "ch": "湖路（施工中）",
+      "cn": "湖路（施工中）",
+      "jp": "レイク・ロード（工事中）"
+    },
+    "M16 Trail": {
+      "ch": "M16小徑",
+      "cn": "M16小径",
+      "jp": "M16小径"
+    },
+    "Military Runway 18L/36R": {
+      "ch": "軍用跑道 18L/36R",
+      "cn": "军用跑道 18L/36R",
+      "jp": "軍用滑走路 18L/36R"
+    },
+    "Military Taxiway A": {
+      "ch": "軍用滑行道 A",
+      "cn": "军用滑行道 A",
+      "jp": "軍用誘導路 A"
+    },
+    "MilitaryStreet": {
+      "ch": "軍事街",
+      "cn": "军事街",
+      "jp": "ミリタリー通り"
+    },
+    "OathKeepersRoad": {
+      "ch": "守誓者路",
+      "cn": "守誓者路",
+      "jp": "オースキーパーズ・ロード"
+    },
+    "Office Street": {
+      "ch": "辦公街",
+      "cn": "办公街",
+      "jp": "オフィス通り"
+    },
+    "Pilot Street": {
+      "ch": "飛行員街",
+      "cn": "飞行员街",
+      "jp": "パイロット通り"
+    },
+    "Pretty Path": {
+      "ch": "美麗步道",
+      "cn": "美丽步道",
+      "jp": "プリティ・パス"
+    },
+    "Purple Sky Path": {
+      "ch": "紫霄步道",
+      "cn": "紫霄步道",
+      "jp": "紫霄小径"
+    },
+    "Residential St": {
+      "ch": "住宅街",
+      "cn": "住宅街",
+      "jp": "住宅通り"
+    },
+    "Rose Trail": {
+      "ch": "玫瑰小徑",
+      "cn": "玫瑰小径",
+      "jp": "ローズ・トレイル"
+    },
+    "Safety Road": {
+      "ch": "安全路",
+      "cn": "安全路",
+      "jp": "安全通り"
+    },
+    "Spike Boulevard": {
+      "ch": "尖刺大道",
+      "cn": "尖刺大道",
+      "jp": "スパイク大通り"
+    },
+    "Warehouse Road": {
+      "ch": "倉庫路",
+      "cn": "仓库路",
+      "jp": "倉庫通り"
+    },
+    "Wheat Field Road": {
+      "ch": "麥田路",
+      "cn": "麦田路",
+      "jp": "麦畑通り"
+    },
+    "Woodland Path": {
+      "ch": "林地步道",
+      "cn": "林地步道",
+      "jp": "ウッドランド・パス"
+    },
+    "Woodland St": {
+      "ch": "林地街",
+      "cn": "林地街",
+      "jp": "ウッドランド通り"
+    }
+  }
+}

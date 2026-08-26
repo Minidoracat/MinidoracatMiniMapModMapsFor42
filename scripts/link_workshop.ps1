@@ -34,6 +34,13 @@ $ServerIniDir = Join-Path $env:UserProfile "Zomboid\Server"
 $ServerModIds = @("MinidoracatMiniMapFor42", "MinidoracatMiniMapModMapsFor42")
 $ServerModIdsOwn = @("MinidoracatMiniMapModMapsFor42")
 
+# 地圖測試專用伺服器：全部地圖 MOD 只寫進這份，servertest.ini 保持乾淨（測其他 MOD 用）。
+# 存檔目錄與埠都與 servertest 分離（Saves\Multiplayer\maptest、16271/16272）——
+# 兩份可各自留存檔，也不會在忘記關掉另一個時撞埠。
+$MapTestServerName = "maptest"
+$MapTestIniPath = Join-Path $ServerIniDir "$MapTestServerName.ini"
+$BaseServerName = "servertest"   # 缺 maptest 時的複製來源
+
 # 地圖 MOD 清單的單一真相：Lua 註冊表（mapMod= 的 mod id）
 $LuaRegistry = Join-Path $ModContent "42\media\lua\client\MinidoracatMiniMapModMaps.lua"
 
@@ -44,10 +51,50 @@ $LuaRegistry = Join-Path $ModContent "42\media\lua\client\MinidoracatMiniMapModM
 # Coryerdon 需在 Taylorsville 後（作者聲明）、Greenport 前（bg300 潛在雷）——列表順序即滿足
 $MapOrderFirst = @('AnruisiTown', 'Taylorsville', 'Coryerdon B42', 'RaccoonCity', 'Camden County B42', 'Clover Lake')  # Clover Lake：作者要求優先（歷史：曾因 Sector-7 公路 basement 衝突；Sector-7 已下架移除）
 
+# 翻譯 MOD 必須排在 Mods= 最後：PZ 的 Mods= 順序＝載入序，**後載入者覆蓋先載入者**
+# （log 的 mod "X" overrides ... 就是這個機制）。翻譯包排前面會被後面的 MOD 蓋掉。
+# 順序＝模組漢化在前、本體漢化最後（本體翻譯是絕對權威）。
+# 只重排既有條目、不新增：沒裝該漢化就不該被硬塞進 Mods=（EnsureLast 會硬塞，故不能用它）。
+$TranslationModsLast = @('CatModLangFor42', 'CatLangFor42')
+
 # 伺服器排除清單（mod id）：選單 4/5 不建連結、不寫入 Mods=/Map=，且選單 4 會把既有
 # 條目順手拔掉（自癒）；選單 6/7 的移除照常涵蓋。想排除哪張圖就把它的 mod id 加進來。
 # 注意：已在存檔啟用過的圖拔掉會觸發 WorldDictionary 錯誤——排除請配合開新存檔。
-$MapModExclude = @('IrisEyot')  # 鳶尾島
+$MapModExclude = @(
+    'IrisEyot',   # 鳶尾島
+    # tikitown：引擎 animset checksum 的大小寫 bug 會讓「伺服器／多人」啟動即崩。
+    # AdvancedAnimator.loadModMedia(:791) 把 mod 目錄路徑 toLowerCase 當 URI base，
+    # 再 relativize 真實大小寫的 media\AnimSets\...\GoKartIdle.xml → relativize 失敗、
+    # 產出小寫絕對路徑 → getAbsolutePath 查表 miss → buildChecksum 拋
+    # IllegalStateException → GameServer.doMinimumInit 中斷 → lua 環境沒建起
+    # （SpawnRegionMgr undefined）→ 地圖資料夾清單全空 → worldgen 為 nil →
+    # WorldGenOverride.lua 索引 biomes 失敗 → NPE → Server Terminated。
+    # 2026-08-26 實測 log 全檔只有這一個 couldn't find，其他有 AnimSets 的 MOD 不觸發。
+    # AdvancedAnimator.load(:845) 的 checksum 只在 GameServer.server || GameClient.client
+    # 執行 → **單機不受影響**：提基鎮（含其 99 條街名）改用單機驗收。
+    'tikitown',
+    # Taibeiroad4：MOD 自身的 B41 殘留 lua 讓「多人連線」後畫面全黑。
+    # common/media/lua/shared/TCGMusicDefenitionsTCBoomboxtb1.lua 第 1 行
+    # require "TCMusicDefenitions"（該檔不存在於此 MOD），第 3 行就對未定義的
+    # GlobalMusic 做索引 → attempted index of non-table。炸點在
+    # Core.ResetLua（Core.java:4194）← ConnectToServerState.receiveServerOptions(:135)
+    # ＝連線流程的 lua 重置，客戶端 lua 環境沒建完 → 進遊戲全黑（伺服器端不報錯）。
+    # GlobalMusic/TCMusicDefenitions 都不是 vanilla（整個 media/lua grep 零命中），
+    # 值 tsarcraft_music_01_62 指向 B41 的 Tsar's 音樂框架；Workshop 3401261192
+    # 標題就叫「B42 test」、描述自承「一些前置物品刷新会报错」、且未列任何 Required
+    # Items，2025-11-15 有玩家留言貼出同一 stack ⇒ 該 MOD 既有缺陷，非我方環境。
+    # 作者說「不影響遊戲體驗」是單機情境；MP 才會全黑。
+    'Taibeiroad4',
+    # muldraugh1993b42 已於 2026-08-26 移出本清單：疊字根因（streets.xml 是官方 Muldraugh
+    # 街道的英文複本、917 條同座標）已由 street-names/muldraugh-1993 的 keep_geometry 解決
+    # ——只保留本圖獨有的 175 條並翻譯，重疊的整條剔除、交回本體漢化那份顯示。
+    # kardinal_ravencreek_B42：與 RavenCreekB42 同 mapDir='Raven Creek B42' 但圖資不同
+    # （21 vs 44 unique 街名、互不相交），registry 註解已寫「二選一，勿同時啟用」。
+    # 兩個都進 Mods= 會讓 streetI18n 無法唯一判定（log: conflict for mapDir=...
+    # using English streets.xml）＝該圖街名退回英文，地圖資料本身也未定義行為。
+    # 取本體（同正式伺服器「互斥變體取本體」的既有決策）。
+    'kardinal_ravencreek_B42'
+)
 
 # 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）
 $MapFolderExclude = @('Greenport')  # GreenportB42 內的 B41 舊版資料夾（300 格座標）
@@ -375,8 +422,10 @@ function Select-ServerIni {
     for ($i = 0; $i -lt $inis.Count; $i++) {
         Write-Host "  [$($i + 1)] $($inis[$i].Name)" -NoNewline
         if ($inis[$i].Name -eq "servertest.ini") {
-            # PZ_Test.ps1 的 $SERVER_NAME 固定 servertest，本機測試都走這份
-            Write-Host "   <- PZ_Test.bat 主要測試伺服器" -ForegroundColor Green -NoNewline
+            # PZ_Test.ps1 的預設 $SERVER_NAME；地圖 MOD 不寫這份（保持乾淨測其他 MOD）
+            Write-Host "   <- PZ_Test.bat 一般測試伺服器（不含地圖 MOD）" -ForegroundColor Green -NoNewline
+        } elseif ($inis[$i].Name -eq "$MapTestServerName.ini") {
+            Write-Host "   <- 地圖 MOD 專用（選單 4/6/7 固定寫這份）" -ForegroundColor Cyan -NoNewline
         }
         Write-Host ""
     }
@@ -386,6 +435,38 @@ function Select-ServerIni {
         return $inis[$n - 1].FullName
     }
     return $null
+}
+
+# 地圖測試伺服器設定：缺檔時從 servertest 複製「四件套」——ini ＋ SandboxVars ＋
+# spawnpoints ＋ spawnregions。只複製 ini 會讓沙盒設定退回引擎預設，測試環境與
+# servertest 不一致（殭屍量、出生點都不同），問題難查，所以四件一起帶。
+# 只改埠：DefaultPort/UDPPort 各 +10，兩份伺服器可各自留存檔、忘記關也不撞埠。
+function Initialize-MapTestIni {
+    if (Test-Path -LiteralPath $MapTestIniPath) { return $MapTestIniPath }
+    $baseIni = Join-Path $ServerIniDir "$BaseServerName.ini"
+    if (-not (Test-Path -LiteralPath $baseIni)) {
+        Write-Host "  [伺服器] 找不到來源 $BaseServerName.ini，無法建立 $MapTestServerName.ini" -ForegroundColor Red
+        return $null
+    }
+    try {
+        # 走 bytes→UTF8 字串→bytes：不動換行風格與 BOM（Set-Content 會改寫 CRLF）
+        $text = [System.Text.Encoding]::UTF8.GetString([System.IO.File]::ReadAllBytes($baseIni))
+        $text = $text -replace 'DefaultPort=16261', 'DefaultPort=16271'
+        $text = $text -replace 'UDPPort=16262', 'UDPPort=16272'
+        [System.IO.File]::WriteAllBytes($MapTestIniPath, [System.Text.Encoding]::UTF8.GetBytes($text))
+        foreach ($suffix in @('_SandboxVars.lua', '_spawnpoints.lua', '_spawnregions.lua')) {
+            $s = Join-Path $ServerIniDir "$BaseServerName$suffix"
+            $d = Join-Path $ServerIniDir "$MapTestServerName$suffix"
+            if ((Test-Path -LiteralPath $s) -and -not (Test-Path -LiteralPath $d)) {
+                Copy-Item -LiteralPath $s -Destination $d
+            }
+        }
+    } catch {
+        Write-Host "  [伺服器] 建立 $MapTestServerName.ini 失敗: $($_.Exception.Message)" -ForegroundColor Red
+        return $null
+    }
+    Write-Host "  [伺服器] 已從 $BaseServerName 建立地圖測試設定 $MapTestServerName.ini（埠 16271/16272）" -ForegroundColor Green
+    return $MapTestIniPath
 }
 
 # 通用 ini 清單更新：一次讀檔、套用多個鍵的加/移除、一次備份寫回。
@@ -466,6 +547,19 @@ function Update-IniLists {
         if ($op.EnsureLast -and $updated.Count -gt 0) {
             $updated = @($updated | Where-Object { $_ -ne $op.EnsureLast }) + @($op.EnsureLast)
         }
+        # MoveLast：該條目**若存在**就移到最後（不新增）。翻譯 MOD 專用——Mods= 後載入
+        # 者覆蓋先載入者，翻譯包必須最後才有覆蓋權；但沒裝的漢化不該被硬塞（EnsureLast
+        # 會無條件新增，故另立此語意）。陣列依序處理 ⇒ 最後一個落在最尾。
+        # 注意 Mods= 的條目帶 '\' 前綴（BackslashStyle），比對必須去前綴——直接
+        # -contains 無前綴 id 永遠不命中（實測踩過）。大小寫敏感同 Add（PZ mod id 是）。
+        if ($op.ContainsKey('MoveLast') -and @($op.MoveLast).Count -gt 0) {
+            foreach ($ml in @($op.MoveLast)) {
+                $hit = @($updated | Where-Object { $_.TrimStart('\') -ceq $ml })
+                if ($hit.Count -gt 0) {
+                    $updated = @($updated | Where-Object { $_.TrimStart('\') -cne $ml }) + $hit
+                }
+            }
+        }
 
         if (($updated -join ';') -ne ($current -join ';')) {
             $changed = $true
@@ -521,7 +615,7 @@ function Update-ServerIniMods {
         # 只移除本 repo 擁有的 id，不動共用/主 MOD
         Update-IniLists -IniPath $IniPath -Ops @(@{ Key = 'Mods'; Remove = $ServerModIdsOwn; BackslashStyle = $true })
     } else {
-        Update-IniLists -IniPath $IniPath -Ops @(@{ Key = 'Mods'; Add = $ServerModIds; BackslashStyle = $true })
+        Update-IniLists -IniPath $IniPath -Ops @(@{ Key = 'Mods'; Add = $ServerModIds; BackslashStyle = $true; MoveLast = $TranslationModsLast })
     }
 }
 
@@ -624,8 +718,11 @@ function Dismount-MapModLinks {
 
 function Invoke-MapModsServerWrite {
     param($Inventory, [switch]$Remove)
-    $ini = Select-ServerIni
-    if (-not $ini) { Write-Host "  [伺服器] 已取消，設定檔未變更" -ForegroundColor DarkGray; return }
+    # 固定寫地圖測試專用設定，不再每次選：地圖 MOD 一旦寫進 servertest.ini，之後測
+    # 其他 MOD 都得載入這幾十張圖（也是使用者要求分開的原因）。缺檔就地建立。
+    $ini = Initialize-MapTestIni
+    if (-not $ini) { Write-Host "  [伺服器] 無法取得 $MapTestServerName.ini，設定檔未變更" -ForegroundColor DarkGray; return }
+    Write-Host "  [伺服器] 目標：$MapTestServerName.ini（地圖 MOD 專用；servertest.ini 不動）" -ForegroundColor Cyan
     $mapIds  = @($Inventory.MapMods | ForEach-Object { $_.Id })
     $folders = @($Inventory.MapMods | ForEach-Object { $_.MapFolders } | Where-Object { $_ } |
         Where-Object { $MapFolderExclude -notcontains $_ } | Select-Object -Unique | Sort-Object)
@@ -641,7 +738,7 @@ function Invoke-MapModsServerWrite {
         $depIds = @($Inventory.Deps | ForEach-Object { $_.Id })
         # Add 同時帶 Remove＝排除清單：既有殘留條目一併拔掉（自癒）
         Update-IniLists -IniPath $ini -Ops @(
-            @{ Key = 'Mods'; Add = @($ServerModIds) + $depIds + $mapIds; Remove = $exIds; BackslashStyle = $true },
+            @{ Key = 'Mods'; Add = @($ServerModIds) + $depIds + $mapIds; Remove = $exIds; BackslashStyle = $true; MoveLast = $TranslationModsLast },
             @{ Key = 'Map';  Add = $folders; Remove = $exFolders; OrderFirst = $MapOrderFirst; EnsureLast = 'Muldraugh, KY' }
         )
         Write-Host "  [提示] Map= 順序＝優先序（先者為大、vanilla 墊底）；已自動把已知會" -ForegroundColor DarkGray
@@ -788,10 +885,11 @@ while ($true) {
     Write-Host "  [3] 查看目前狀態"
     Write-Host ""
     Write-Host "  --- 支援的地圖 MOD（依 Lua 註冊清單）---" -ForegroundColor DarkCyan
-    Write-Host "  [4] 地圖 MOD：連結＋寫入伺服器（mods 連結 + Mods= + Map=）"
+    Write-Host "  [4] 地圖 MOD：連結＋寫入伺服器（mods 連結 + Mods= + Map= → $MapTestServerName.ini）"
     Write-Host "  [5] 地圖 MOD：只建 mods 連結（不動伺服器設定）"
-    Write-Host "  [6] 地圖 MOD：只從伺服器移除（Mods= + Map=；連結保留）"
-    Write-Host "  [7] 地圖 MOD：全部移除（伺服器設定＋連結）"
+    Write-Host "  [6] 地圖 MOD：只從伺服器移除（$MapTestServerName.ini 的 Mods= + Map=；連結保留）"
+    Write-Host "  [7] 地圖 MOD：全部移除（$MapTestServerName.ini 設定＋連結）"
+    Write-Host "      地圖只寫 $MapTestServerName.ini（埠 16271）——servertest.ini 保持乾淨，測其他 MOD 免載入幾十張圖" -ForegroundColor DarkGray
     Write-Host ""
     Write-Host "  [Q] 離開"
     Write-Host ""

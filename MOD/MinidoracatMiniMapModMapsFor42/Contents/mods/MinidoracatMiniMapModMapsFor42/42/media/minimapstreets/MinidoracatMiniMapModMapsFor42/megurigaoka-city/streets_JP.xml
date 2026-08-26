@@ -1,0 +1,17 @@
+<streets version="1">
+    <street name="学園通り" width="8">
+        <points>
+            <point x="770.0" y="3000.0"/>
+            <point x="770.0" y="3384.5"/>
+            <point x="770.0" y="3601.0"/>
+            <point x="770.0" y="3605.0"/>
+            <point x="770.0" y="3966.0"/>
+        </points>
+    </street>
+    <street name="中央通り" width="8">
+        <points>
+            <point x="766.0" y="3395.0"/>
+            <point x="1200.0" y="3395.0"/>
+        </points>
+    </street>
+</streets>

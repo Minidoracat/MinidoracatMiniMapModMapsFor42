@@ -30,6 +30,9 @@ CI 三 job（權限逐 job 最小化；diff 下載第三方內容故無 GitHub �
                       給 --client-root 時同時報告新舊副本 drift（渲染來源過期偵測）
   deps-scan [--prefer <dir>]
                       掃註冊地圖的材質包依賴 → tile_deps.json（新增/移除地圖後要重跑）
+  streets-scan [--prefer <dir>] [--write]
+                      掃 street-names 上游 streets.xml hash（獨立於 mapdata_hashes，
+                      街名文字更新不誤報重渲）；變更 → 「街名翻譯需更新」
   self-test           零網路自我測試
 
 state（tracker-state/timestamps.json＋mapdata_hashes.json）進版控；gh 任一步失敗即中止、
@@ -58,6 +61,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 STATE_JSON = PROJECT_ROOT / "tracker-state" / "timestamps.json"
 MAPDATA_JSON = PROJECT_ROOT / "tracker-state" / "mapdata_hashes.json"
 TILEDEPS_JSON = PROJECT_ROOT / "tracker-state" / "tile_deps.json"
+STREETS_JSON = PROJECT_ROOT / "tracker-state" / "streets_hashes.json"
 
 COLLECTION_ID = "3766382352"  # 支援地圖收藏（含全部地圖 MOD＋自家系列 MOD）
 GAME_APPID = "108600"  # Project Zomboid
@@ -1378,6 +1382,92 @@ def cmd_deps_scan(args) -> int:
     return 0
 
 
+def cmd_streets_scan(args) -> int:
+    """本機：掃 street-names/*/names.json 的上游 streets.xml sha256，
+    與 tracker-state/streets_hashes.json 比對。變更 → 「街名翻譯需更新」。
+
+    獨立軸：不動 mapdata_hashes／timestamps／tile_deps。缺本機副本的 dataset
+    列 warning，--write 時拒寫整檔（比照 deps-scan 覆蓋回歸閘門）。"""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import gen_streets_i18n as gsi
+
+    names_root = PROJECT_ROOT / "street-names"
+    files = gsi.discover_names_files(names_root, None)
+    if not files:
+        print("無 dataset 可掃（street-names/*/names.json 尚未存在）")
+        return 0
+
+    roots = gsi.iter_workshop_roots(args.prefer)
+    old: dict = {}
+    if STREETS_JSON.exists():
+        try:
+            loaded = load_json(STREETS_JSON)
+            old = loaded if isinstance(loaded, dict) else {}
+        except (OSError, json.JSONDecodeError) as e:
+            print(f"❌ 讀 {STREETS_JSON.name} 失敗：{e}", file=sys.stderr)
+            return 1
+
+    current: dict[str, dict] = {}
+    missing: list[str] = []
+    pending: list[str] = []
+    changed: list[str] = []
+
+    for path in files:
+        ds = path.parent.name
+        try:
+            data = gsi.read_names_json(path)
+        except (OSError, json.JSONDecodeError) as e:
+            warn(f"{ds} names.json 讀取失敗：{e}")
+            missing.append(ds)
+            continue
+        src = data.get("source") if isinstance(data.get("source"), dict) else {}
+        wid = str(src.get("workshop_id") or "")
+        map_dir = str(src.get("map_dir") or "")
+        xml = gsi.find_streets_xml(roots, wid, map_dir)
+        if xml is None:
+            warn(f"{ds} 無本機上游 streets.xml（workshop_id={wid} map_dir={map_dir}），跳過")
+            missing.append(ds)
+            continue
+        sha = gsi.file_sha256(xml)
+        current[ds] = {"sha256": sha, "workshop_id": wid, "checked": now_iso()}
+        prev = old.get(ds) if isinstance(old.get(ds), dict) else None
+        if not prev or not prev.get("sha256"):
+            pending.append(ds)
+            print(f"  待建立狀態  {ds}  {sha[:12]}…  {wid}")
+        elif prev.get("sha256") != sha:
+            changed.append(ds)
+            old_sha = str(prev.get("sha256") or "")
+            print(f"  街名翻譯需更新  {ds}  {old_sha[:12]}… → {sha[:12]}…  {wid}")
+        else:
+            print(f"  無變更  {ds}  {sha[:12]}…")
+
+    if missing:
+        print(f"⚠️ {len(missing)} 個 dataset 缺本機副本／無法定位：{', '.join(missing)}")
+
+    if args.write:
+        if missing:
+            print("❌ 有 dataset 缺本機副本，不寫入 streets_hashes.json"
+                  "（補下載後重跑，或確認 names.json source 無誤）", file=sys.stderr)
+            return 1
+        merged = dict(old)
+        merged.update(current)
+        write_json(STREETS_JSON, merged)
+        print(f"✅ 寫入 {STREETS_JSON.relative_to(PROJECT_ROOT)}：{len(current)} 個 dataset")
+        return 0
+
+    if changed:
+        print("❌ 街名翻譯需更新：" + "、".join(changed))
+        print("   SOP：補譯 names.json 三語 → gen → verify → 再 streets-scan --write")
+        return 1
+    if pending:
+        rel = STREETS_JSON.relative_to(PROJECT_ROOT)
+        print(f"待建立狀態：{len(pending)} 個 dataset（加 --write 寫入 {rel}）")
+        return 0
+    print("✅ 街名上游 hash 無變更")
+    return 0
+
+
+
 # ============================================================
 # self-test（零網路、零 gh、零 git：注入假物件驗證核心邏輯）
 # ============================================================
@@ -1722,6 +1812,11 @@ def main() -> None:
                     help="優先索引的額外 workshop content 根目錄（例：steamcmd 下載處）")
     ds.add_argument("--allow-drop", action="store_true",
                     help="允許既有材質包脫離追蹤（僅限確認是上游改依賴／地圖退出支援）")
+    ss = sub.add_parser("streets-scan", help="本機：掃 street-names 上游 streets.xml hash")
+    ss.add_argument("--prefer", action="append", default=[],
+                    help="優先索引的額外 workshop content 根目錄")
+    ss.add_argument("--write", action="store_true",
+                    help="更新 tracker-state/streets_hashes.json")
     sub.add_parser("self-test", help="零網路自我測試")
     args = parser.parse_args()
     dispatch = {
@@ -1731,6 +1826,7 @@ def main() -> None:
         "issue": cmd_issue,
         "hash-baseline": cmd_hash_baseline,
         "deps-scan": cmd_deps_scan,
+        "streets-scan": cmd_streets_scan,
     }
     if args.cmd == "self-test":
         sys.exit(cmd_self_test())
