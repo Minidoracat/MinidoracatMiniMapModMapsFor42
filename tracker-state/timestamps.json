@@ -1,9 +1,9 @@
 {
   "game": {
-    "build": "24775755",
-    "detected_at": "2026-08-18T05:54:42Z"
+    "build": "24909800",
+    "detected_at": "2026-08-27T16:50:06Z"
   },
-  "generated_at": "2026-08-24T06:25:02Z",
+  "generated_at": "2026-08-27T16:50:12Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -226,7 +226,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1787476323,
+      "time_updated": 1787820535,
       "title": "Willowbrook Bastion!"
     },
     "3480990544": {
@@ -457,7 +457,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1784709769,
+      "time_updated": 1787820560,
       "title": "Yanghu Town"
     },
     "3659221974": {
