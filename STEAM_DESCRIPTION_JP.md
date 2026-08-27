@@ -56,9 +56,6 @@
 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues]🐛 GitHub Issues[/url]——マップリクエスト＆画像問題報告フォーム
 [url=https://discord.gg/Gur2V67]👉 Discord サーバーに参加[/url]
 
-[h2]📺 作者をフォロー[/h2]
-[url=https://www.twitch.tv/minidoracat]🎬 Twitch チャンネル[/url]
-
 [b]#map #minimap #worldmap #Minidoracat[/b]
 
 Workshop ID: 3763914102

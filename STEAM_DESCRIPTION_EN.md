@@ -56,9 +56,6 @@ This pack only provides the [b]minimap / world-map image rendering[/b].
 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues]🐛 GitHub Issues[/url] — map request & image issue report forms
 [url=https://discord.gg/Gur2V67]👉 Join the Discord server[/url]
 
-[h2]📺 Follow the author[/h2]
-[url=https://www.twitch.tv/minidoracat]🎬 Twitch channel[/url]
-
 [b]#map #minimap #worldmap #Minidoracat[/b]
 
 Workshop ID: 3763914102
