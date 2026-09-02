@@ -30,6 +30,7 @@ DST = os.path.join(REPO, "STEAM_CHANGELOG.md")
 
 SECTION_EMOJI = {
     "新增": "✨", "變更": "🔄", "更新": "🔄", "修正": "🔧", "效能": "⚡", "移除": "🗑️", "安全": "🛡️",
+    "備註": "📝",
     "Added": "✨", "Changed": "🔄", "Fixed": "🔧", "Removed": "🗑️", "Notes": "📝",
 }
 

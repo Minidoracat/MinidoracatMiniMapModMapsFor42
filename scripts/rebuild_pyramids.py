@@ -27,18 +27,31 @@ WORKSHOP = Path(r"D:\SteamLibrary\steamapps\workshop\content\108600")
 
 def parse_registrations(text):
     entries = []
-    # 每條目從 "{ zip =" 起、到 nameKey 值結束；bounds 是唯一巢狀 {}
+    # 每條目從 "{ zip =" 起、到 bounds 值結束；bounds 是唯一巢狀 {}。
+    # zip/mapMod 之後到 bounds 之前的鍵一律寬鬆吃下（mapDir、streetI18n…）：
+    # 逐一列舉的話，主 MOD 每加一個註冊欄位就會讓這裡靜默漏解析＝漏渲。
+    # 字串值必須以 "…" 精確匹配——mapDir 值本身含逗號（"Megurigaoka City, Kanagawa"）。
+    opt_key = r'\s*\w+\s*=\s*(?:"[^"]*"|[\w.+-]+)\s*,'
     pat = re.compile(
         r'\{\s*zip\s*=\s*"(?P<zip>[^"]+)"\s*,\s*mapMod\s*=\s*"(?P<mod>[^"]+)"\s*,'
-        r'(?:\s*mapDir\s*=\s*"(?P<dir>[^"]+)"\s*,)?'
+        rf'(?P<opts>(?:{opt_key})*)'
         r'\s*bounds\s*=\s*\{\s*(?P<b0>\d+)\s*,\s*(?P<b1>\d+)\s*,\s*(?P<b2>\d+)\s*,\s*(?P<b3>\d+)\s*\}',
         re.S,
     )
     for m in pat.finditer(text):
+        map_dir = re.search(r'mapDir\s*=\s*"([^"]+)"', m["opts"])
         entries.append({
-            "zip": m["zip"], "mapMod": m["mod"], "mapDir": m["dir"],
+            "zip": m["zip"], "mapMod": m["mod"],
+            "mapDir": map_dir[1] if map_dir else None,
             "bounds": (int(m["b0"]), int(m["b1"]), int(m["b2"]), int(m["b3"])),
         })
+    # fail-closed：漏解析不會壞掉，只會少渲／少追蹤一張圖且毫無跡象
+    declared = len(re.findall(r'\{\s*zip\s*=\s*"', text))
+    if len(entries) != declared:
+        raise SystemExit(
+            f"❌ 註冊表解析 {len(entries)}/{declared} 條——有條目格式未涵蓋，"
+            "修 parse_registrations 再跑（漏解析＝靜默漏渲／漏追蹤）。"
+        )
     return entries
 
 
