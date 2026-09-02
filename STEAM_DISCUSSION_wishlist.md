@@ -17,13 +17,14 @@
 [*] 也可以改用 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue 表單[/url]申請——會直接進開發待辦，處理最快
 [/list]
 
-[h2]✅ 目前支援（v0.6.0：69 個地圖 MOD、91 張地圖）[/h2]
+[h2]✅ 目前支援（71 個地圖 MOD、93 張地圖）[/h2]
 完整清單與一鍵訂閱請看
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352][b]支援地圖收藏[/b][/url]
 （含全部地圖 MOD＋主 MOD＋本包；地圖名點進收藏頁即有連結）。收錄名單：
 [list]
 [*] [B42 SP/MP] Dawn Town
 [*] [B42&MP] Fort Preston
+[*] [B42]Nekomata Ridge（貓又嶺）
 [*] AnruisiTown (Military Bastion)
 [*] Asakusa lake town
 [*] Ashenwood
@@ -32,6 +33,7 @@
 [*] Blackpine County
 [*] Camden County
 [*] Cathaya Valley（含公路擴充）
+[*] Chinatown B42（本體）
 [*] Chinatown Expansion B42（含 Less Traffic Jam 變體）
 [*] Constown
 [*] Coryerdon
@@ -112,7 +114,7 @@
 Want a map MOD supported? Comment below with the map's [b]Workshop link[/b] (+ optionally why).
 Prefer GitHub? Use the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]issue form[/url] — it goes straight into the dev backlog.
 More requests for the same map = higher priority. Very large maps may ship as separate packs.
-[b]Currently supported:[/b] 69 map MODs (90 maps) — full list above and in the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url].
+[b]Currently supported:[/b] 71 map MODs (93 maps) — full list above and in the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url].
 You need the original map MOD enabled, plus the main [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url].
 All map design credit belongs to the original authors — if you're an author with any concern, comment or DM me and I'll act immediately (including removal).
 
@@ -122,6 +124,6 @@ All map design credit belongs to the original authors — if you're an author wi
 対応してほしいマップ MOD をコメントでどうぞ（Workshop リンク必須、理由は任意）。
 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue フォーム[/url]からのリクエストも歓迎です（開発バックログに直行します）。
 リクエストが多いマップほど優先されます。大型マップは別パックになる場合があります。
-[b]現在対応：[/b]69 個のマップ MOD（90 マップ）——上のリストと[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]をご覧ください。
+[b]現在対応：[/b]71 個のマップ MOD（93 マップ）——上のリストと[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]をご覧ください。
 元マップ MOD と本体 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] が必要です。
 マップの功績はすべて原作者に帰属します。原作者の方でご意見があれば、コメントまたは DM でご連絡ください（削除を含め即対応します）。

@@ -22,12 +22,23 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 10496, 8960, 11008, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_MuldraughFireDept" },
         { zip = "Estate 39.pyramid.zip", mapMod = "Estate 39",
             bounds = { 8192, 9728, 8704, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_Estate39" },
+        -- 唐人街群組＝兩個 Workshop 項目、三個 mod ID，彼此**不是**依賴關係：
+        --   3703704638 拓展（本條與下一條，同項目互斥變體）cell 42-43 × 32-35
+        --   3703704021 本體（再下一條）cell 43-44 × 33-36
+        -- 兩張圖在 cell (43,33)(43,34)(43,35) 三格交疊，卻無 require/incompatible 互相
+        -- 宣告 ⇒ 玩家可能只裝其中一張，伺服器 Map= 也通常只列一張。故三條都明寫
+        -- mapDir 設掛載閘門（省略＝一律放行，未載入的那張會照樣畫框——同 SecretZ 據點回報）
         { zip = "Chinatown Expansion B42 version.pyramid.zip", mapMod = "Chinatown Expansion B42 version",
+            mapDir = "Chinatown Expansion B42 version",
             bounds = { 10752, 8192, 11264, 9216 }, nameKey = "UI_MinidoracatMiniMapModMaps_Chinatown" },
         -- 同 Workshop 互斥變體（mod.info incompatible=本體）：同 zip/bounds 作 ID alias，
         -- 主 MOD 掛載（絕對路徑）與建層（indexOfLayer）自帶去重
         { zip = "Chinatown Expansion B42 version.pyramid.zip", mapMod = "Chinatown Expansion B42 version (Less Traffic Jam)",
+            mapDir = "Chinatown Expansion B42 version",
             bounds = { 10752, 8192, 11264, 9216 }, nameKey = "UI_MinidoracatMiniMapModMaps_Chinatown" },
+        { zip = "Chinatown B42 version.pyramid.zip", mapMod = "Chinatown B42 version",
+            mapDir = "Chinatown B42 version",
+            bounds = { 11008, 8448, 11520, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_ChinatownBase" },
         { zip = "AnruisiTown.pyramid.zip", mapMod = "AnruisiTown", mapDir = "AnruisiTown",
             streetI18n = "anruisi-town",
             bounds = { 11776, 11008, 13056, 12032 }, nameKey = "UI_MinidoracatMiniMapModMaps_AnruisiTown" },
@@ -113,6 +124,9 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 10496, 10752, 11008, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_MuldraughOverpass" },
         { zip = "muldraughmilitarybaseas24.pyramid.zip", mapMod = "muldraughmilitarybaseas24",
             bounds = { 8448, 10752, 9472, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_FortPreston" },
+        { zip = "Nekomata Ridge.pyramid.zip", mapMod = "Nekomata Ridge",
+            mapDir = "Nekomata Ridge",
+            bounds = { 11776, 8192, 13312, 9216 }, nameKey = "UI_MinidoracatMiniMapModMaps_NekomataRidge" },
         { zip = "Nettle Township.pyramid.zip", mapMod = "Nettle Township B42 version",
             bounds = { 6400, 8960, 7424, 9728 }, nameKey = "UI_MinidoracatMiniMapModMaps_NettleTownship" },
         { zip = "Path of Zenith, Louisville.pyramid.zip", mapMod = "PZ_ACSM_LV",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T17:41:27Z",
+  "generated_at": "2026-09-02T19:01:55Z",
   "items": {
     "2384329562": {
       "mod_ids": [
@@ -229,6 +229,11 @@
           "zip": "Megurigaoka City, Kanagawa.pyramid.zip"
         },
         {
+          "map_mod": "Nekomata Ridge",
+          "workshop_id": "3782173659",
+          "zip": "Nekomata Ridge.pyramid.zip"
+        },
+        {
           "map_mod": "VaultTec B42 version",
           "workshop_id": "3697082724",
           "zip": "VaultTec_Louisville.pyramid.zip"
@@ -266,6 +271,11 @@
           "zip": "Cathaya Valley2.0.pyramid.zip"
         },
         {
+          "map_mod": "Chinatown B42 version",
+          "workshop_id": "3703704021",
+          "zip": "Chinatown B42 version.pyramid.zip"
+        },
+        {
           "map_mod": "Chinatown Expansion B42 version",
           "workshop_id": "3703704638",
           "zip": "Chinatown Expansion B42 version.pyramid.zip"
@@ -289,6 +299,11 @@
           "map_mod": "Muldraugh-Checkpoint",
           "workshop_id": "3677600363",
           "zip": "Muldraugh-SouthernCheckpoint.pyramid.zip"
+        },
+        {
+          "map_mod": "Nekomata Ridge",
+          "workshop_id": "3782173659",
+          "zip": "Nekomata Ridge.pyramid.zip"
         },
         {
           "map_mod": "Nettle Township B42 version",
@@ -333,6 +348,11 @@
           "zip": "DawnTown.pyramid.zip"
         },
         {
+          "map_mod": "Nekomata Ridge",
+          "workshop_id": "3782173659",
+          "zip": "Nekomata Ridge.pyramid.zip"
+        },
+        {
           "map_mod": "Willowbrook Bastion! 2",
           "workshop_id": "3479667649",
           "zip": "Willowbrook Bastion! 2026.pyramid.zip"
@@ -344,6 +364,11 @@
         "OujinjinTiles"
       ],
       "used_by": [
+        {
+          "map_mod": "Chinatown B42 version",
+          "workshop_id": "3703704021",
+          "zip": "Chinatown B42 version.pyramid.zip"
+        },
         {
           "map_mod": "Chinatown Expansion B42 version",
           "workshop_id": "3703704638",

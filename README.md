@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **91 張**（69 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **93 張**（71 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯（0.7.0 起，需主 MOD 0.21.0＋）**：下列 **15 張**地圖的路名已提供繁中／簡中／
@@ -47,6 +47,7 @@
 | Muldraugh 消防局 | `beek_muldraugh_firedept` | 10496,8960 – 11008,9472 |
 | Estate 39 | `Estate 39` | 8192,9728 – 8704,10240 |
 | 唐人街擴張區 | `Chinatown Expansion B42 version`（含 Less Traffic Jam 變體） | 10752,8192 – 11264,9216 |
+| 唐人街 | `Chinatown B42 version` | 11008,8448 – 11520,9472 |
 | 安瑞斯鎮（軍事堡壘） | `AnruisiTown` | 11776,11008 – 13056,12032 |
 | 淺草湖畔小鎮 | `Asakusa lake town` | 10496,11264 – 11264,12032 |
 | 灰木鎮 | `AshenwoodmodNewB42` | 11264,11008 – 11776,11776 |
@@ -85,6 +86,7 @@
 | Muldraugh 1993 | `muldraugh1993b42` | 10496,8960 – 11264,11008 |
 | Muldraugh 軍事檢查站－天橋 | `Muldraugh-Checkpoint` | 10496,10752 – 11008,11520 |
 | 普雷斯頓堡 | `muldraughmilitarybaseas24` | 8448,10752 – 9472,11520 |
+| 貓又嶺 | `Nekomata Ridge` | 11776,8192 – 13312,9216 |
 | 蕁麻鎮 | `Nettle Township B42 version` | 6400,8960 – 7424,9728 |
 | 天頂號郵輪 | `PZ_ACSM_LV` | 12800,768 – 13312,1280 |
 | 新煤田鎮 | `PZKNewCoalfieldTownMap` | 2816,8192 – 3584,8960 |

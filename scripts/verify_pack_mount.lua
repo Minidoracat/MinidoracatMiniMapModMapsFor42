@@ -133,6 +133,30 @@ pass = check("啟用舊版 → 不掛 2026 zip", g[NEW_ZIP] == nil) and pass
 g = run({}, "Muldraugh, KY")
 pass = check("兩者皆未啟用 → 兩張都不掛", g[OLD_ZIP] == nil and g[NEW_ZIP] == nil) and pass
 
+-- 4b) 案例：唐人街群組——兩個 Workshop 項目（本體 3703704021／拓展 3703704638）在
+--     cell (43,33)-(43,35) 三格重疊，卻彼此無 require/incompatible 宣告 ⇒ 玩家可能只裝
+--     一張、伺服器 Map= 也通常只列一張。三條註冊都明寫 mapDir 就是為了這個閘門：
+--     省略時未載入的那張照樣會被畫框（SecretZ 據點回報的失效模式）
+local CT_BASE, CT_EXP = "Chinatown B42 version", "Chinatown Expansion B42 version"
+local CT_BASE_ZIP, CT_EXP_ZIP = CT_BASE .. ".pyramid.zip", CT_EXP .. ".pyramid.zip"
+local CT_FOLDERS = { [CT_BASE] = { CT_BASE }, [CT_EXP] = { CT_EXP } }  -- 兩者 mapDir 恰同 mod id
+
+g = run({ CT_BASE }, CT_BASE .. ";Muldraugh, KY", CT_FOLDERS)
+pass = check("唐人街：只啟用本體 → 掛本體、不掛拓展",
+    g[CT_BASE_ZIP] ~= nil and g[CT_EXP_ZIP] == nil) and pass
+
+g = run({ CT_EXP }, CT_EXP .. ";Muldraugh, KY", CT_FOLDERS)
+pass = check("唐人街：只啟用拓展 → 掛拓展、不掛本體",
+    g[CT_EXP_ZIP] ~= nil and g[CT_BASE_ZIP] == nil) and pass
+
+g = run({ CT_BASE, CT_EXP }, CT_EXP .. ";Muldraugh, KY", CT_FOLDERS)
+pass = check("唐人街：兩 MOD 都啟用但伺服器只載拓展 → 只掛拓展（mapDir 閘門）",
+    g[CT_EXP_ZIP] ~= nil and g[CT_BASE_ZIP] == nil) and pass
+
+g = run({ CT_BASE, CT_EXP }, CT_BASE .. ";" .. CT_EXP .. ";Muldraugh, KY", CT_FOLDERS)
+pass = check("唐人街：兩張都啟用且都載入 → 兩張都掛（重疊區靠疊層優先序）",
+    g[CT_BASE_ZIP] ~= nil and g[CT_EXP_ZIP] ~= nil) and pass
+
 -- 5) 全量：所有 mapMod 啟用且所有地圖目錄都載入 → 91 顆 zip 全數掛上（alias 去重後）。
 --    有 mapDir 的條目（SecretZ 據點類）吃「該目錄實際載入」閘門，故 mapStr 要含全部目錄
 local allMods, uniq, dirList, folders = {}, {}, {}, {}
