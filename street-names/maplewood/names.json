@@ -1,0 +1,50 @@
+{
+  "dataset": "maplewood",
+  "source": {
+    "workshop_id": "3644794945",
+    "map_mod": "Maplewood",
+    "map_dir": "Maplewood",
+    "streets_xml_sha256": "0ebff3373123040378149d78b795a99014af29a2cdb28de7bcca8eb6d2137a54",
+    "captured": "2026-09-03",
+    "keep_geometry": [
+      "21bb0e4d48e8",
+      "2569163d7a6f",
+      "26cb3bb8f446",
+      "4814acd131c9",
+      "9d46afc0a29e",
+      "ab3a92279348",
+      "b0b067e8d621",
+      "d3da392c0fcc",
+      "dc2c7b1e7da1",
+      "e51dbc6d78a2",
+      "e5ff44d0098a"
+    ]
+  },
+  "names": {
+    "Maplewood Avenue": {
+      "ch": "楓木林大道",
+      "cn": "枫木林大道",
+      "jp": "メープルウッド・アベニュー"
+    },
+    "Maplewood Cresent": {
+      "ch": "楓木林彎",
+      "cn": "枫木林弯",
+      "jp": "メープルウッド・クレセント"
+    },
+    "Maplewood Drive": {
+      "ch": "楓木林道",
+      "cn": "枫木林道",
+      "jp": "メープルウッド・ドライブ"
+    },
+    "Maplewood Gardens": {
+      "ch": "楓木林花園",
+      "cn": "枫木林花园",
+      "jp": "メープルウッド・ガーデンズ"
+    },
+    "Maplewood Street": {
+      "ch": "楓木林街",
+      "cn": "枫木林街",
+      "jp": "メープルウッド通り"
+    }
+  }
+}

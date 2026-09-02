@@ -93,6 +93,13 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 6144, 9984, 6912, 11008 }, nameKey = "UI_MinidoracatMiniMapModMaps_Greenleaf" },
         { zip = "Hartburg, KY.pyramid.zip", mapMod = "hartburgb42",
             bounds = { 6400, 11008, 6912, 11776 }, nameKey = "UI_MinidoracatMiniMapModMaps_Hartburg" },
+        -- 獵人基地：同 Workshop 兩個 mod ID（完整版／小型版），bounds 相同但 4 個 cell
+        -- 檔有 1 個不同（cell 23_22 的 lotheader／lotpack／chunkdata／worldmap 全異）
+        -- ⇒ 圖像不同，不能作同 zip alias（會讓裝小型版的玩家看到完整版的建築）
+        { zip = "hunter's_base.pyramid.zip", mapMod = "Hunter'sBaseB42", mapDir = "hunter's_base",
+            bounds = { 5888, 5632, 6400, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_HuntersBase" },
+        { zip = "hunter's_base_small.pyramid.zip", mapMod = "Hunter'sBaseB42Small", mapDir = "hunter's_base_small",
+            bounds = { 5888, 5632, 6400, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_HuntersBaseSmall" },
         { zip = "Hazelnut Manor.pyramid.zip", mapMod = "HazelnutManor",
             bounds = { 12544, 5888, 13056, 6400 }, nameKey = "UI_MinidoracatMiniMapModMaps_HazelnutManor" },
         { zip = "Hazelnut Manor[Poor Version].pyramid.zip", mapMod = "HazelnutManor[Poor Version]",
@@ -110,6 +117,12 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "LittleTownshipB42.pyramid.zip", mapMod = "LittleTownshipB42", mapDir = "LittleTownshipB42",
             streetI18n = "little-township",
             bounds = { 7936, 8192, 8448, 8704 }, nameKey = "UI_MinidoracatMiniMapModMaps_LittleTownship" },
+        -- 楓木林鎮與上面的小鎮區佔用**完全相同的 4 個 cell**（31-32 × 32-33），但 22 個
+        -- 同名檔內容全異＝兩位作者的兩張不同地圖搶同一塊地（小鎮區作者自述「原作者出
+        -- B42 版就會刪」，而本圖正是原作的 B42 版）⇒ 事實上互斥，靠 mapDir 閘門擇一顯示
+        { zip = "Maplewood.pyramid.zip", mapMod = "Maplewood", mapDir = "Maplewood",
+            streetI18n = "maplewood",
+            bounds = { 7936, 8192, 8448, 8704 }, nameKey = "UI_MinidoracatMiniMapModMaps_Maplewood" },
         { zip = "Louisville_Riverboat.pyramid.zip", mapMod = "Louisville_Riverboat",
             bounds = { 13056, 1024, 13312, 1280 }, nameKey = "UI_MinidoracatMiniMapModMaps_LouisvilleRiverboat" },
         { zip = "Megurigaoka City, Kanagawa.pyramid.zip", mapMod = "Project Gurashi",
@@ -145,12 +158,21 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 4096, 14336, 7168, 18176 }, nameKey = "UI_MinidoracatMiniMapModMaps_RavenCreekKardinal" },
         { zip = "RMSafeHouseUnofficial.pyramid.zip", mapMod = "RMSafeHouseUnofficial",
             bounds = { 5376, 4864, 5888, 5632 }, nameKey = "UI_MinidoracatMiniMapModMaps_RiversideMansion" },
+        { zip = "RustBury.pyramid.zip", mapMod = "rustbury_2026_b42", mapDir = "RustBury",
+            bounds = { 8960, 12544, 9472, 13056 }, nameKey = "UI_MinidoracatMiniMapModMaps_RustBury" },
         -- 安泊戍鎮（Safeharbor Garrison，Workshop 3522517059）：上游 mod.info 真的是
         -- id=modid（作者未改模板佔位符，2026-08-11 實查本機訂閱檔確認），勿「修正」此值
         { zip = "SafeharborGarrison.pyramid.zip", mapMod = "modid",
             bounds = { 11520, 10496, 12800, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SafeharborGarrison" },
         { zip = "SafeWayHamlet.pyramid.zip", mapMod = "SafeWayHamlet",
             bounds = { 12544, 10752, 13056, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SafeWayHamlet" },
+        -- 日落湖鎮的 story addon（id 同名加 "(story addon)"）沒有自己的 media/maps，
+        -- 且 require= 本圖 ⇒ 不需另立條目
+        { zip = "Sunset Lake Town B42 version.pyramid.zip", mapMod = "Sunset Lake Town B42 version",
+            mapDir = "Sunset Lake Town B42 version",
+            bounds = { 9472, 11008, 10240, 12032 }, nameKey = "UI_MinidoracatMiniMapModMaps_SunsetLakeTown" },
+        { zip = "Sunset Tower.pyramid.zip", mapMod = "SunsetTower", mapDir = "Sunset Tower",
+            bounds = { 11264, 7168, 11776, 7680 }, nameKey = "UI_MinidoracatMiniMapModMaps_SunsetTower" },
         -- SecretZ：單一 mod 內 12 個獨立據點目錄，MP 伺服器常只挑部分進 Map=
         -- ——逐條指定 mapDir，未載入的據點不畫（需主 MOD ≥ mapDir 支援版）
         { zip = "SZ_Bunker_3.pyramid.zip", mapMod = "Secretz42", mapDir = "SZ_Bunker_3",
@@ -193,6 +215,10 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 6400, 6656, 7936, 7936 }, nameKey = "UI_MinidoracatMiniMapModMaps_Tikitown" },
         { zip = "Trapalaketown.pyramid.zip", mapMod = "TrapalaketownB42",
             bounds = { 8192, 11520, 9216, 12032 }, nameKey = "UI_MinidoracatMiniMapModMaps_Trapalaketown" },
+        -- Kardinal 團隊把 B41 的 Trelai 4x4 移植到 B42（作者自述重映射到 cell 25,25..30,30）：
+        -- 與上面的提基鎮範圍大幅重疊（cell 25-30 × 26-30），兩者都靠 mapDir 閘門擇一顯示
+        { zip = "Trelai_4x4.pyramid.zip", mapMod = "Trelai_B42", mapDir = "Trelai_4x4",
+            bounds = { 6400, 6400, 7936, 7936 }, nameKey = "UI_MinidoracatMiniMapModMaps_TrelaiKardinal" },
         { zip = "vilaz.pyramid.zip", mapMod = "VilaZMap",
             bounds = { 9472, 9472, 9984, 9984 }, nameKey = "UI_MinidoracatMiniMapModMaps_VilaZ" },
         { zip = "West Point Expansion_B42.pyramid.zip", mapMod = "WestPointExpansionB42",

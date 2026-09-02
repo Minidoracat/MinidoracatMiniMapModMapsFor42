@@ -14,7 +14,7 @@
 [/list]
 
 [h2]🗺️ 收录地图与许愿[/h2]
-目前支持 [b]71 个地图 MOD（93 张地图）[/b]，一键订阅可用 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支持地图收藏[/url]。完整清单、原作者致谢、以及「许愿想要的地图」都在
+目前支持 [b]77 个地图 MOD（100 张地图）[/b]，一键订阅可用 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支持地图收藏[/url]。完整清单、原作者致谢、以及「许愿想要的地图」都在
 [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]讨论区[/url]——欢迎留言许愿！
 也可以用 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue 表单[/url]申请支持新地图（会直接进开发待办，处理最快）。
 

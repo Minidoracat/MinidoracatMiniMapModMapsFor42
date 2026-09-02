@@ -9,7 +9,7 @@
 --
 -- 載入序：mod.info require=MinidoracatMiniMapFor42 保證主 MOD 的表先定義（同
 -- registerMaps 依賴的同一個保證）；缺席時自建，不讓它變成 nil 索引錯誤。
--- 來源 15 個 dataset／417 條；上游變更時重跑生成器。
+-- 來源 16 個 dataset／428 條；上游變更時重跑生成器。
 if type(MinidoracatMiniMapStreetNames) ~= "table" then
     MinidoracatMiniMapStreetNames = {}
 end
@@ -177,6 +177,17 @@ a("Redbud Way", "redbud way", 8361, 7746)
 a("Street", "street", 8244, 8564)
 a("Lt Saltamontes Blvd", "lt saltamontes blvd", 8279, 8557)
 a("Loro Residential", "loro residential", 8225, 8557)
+a("Maplewood Avenue", "maplewood avenue", 8296, 8487)
+a("Maplewood Street", "maplewood street", 8176, 8495)
+a("Maplewood Street", "maplewood street", 8275, 8495)
+a("Maplewood Gardens", "maplewood gardens", 8355, 8487)
+a("Maplewood Gardens", "maplewood gardens", 8237, 8430)
+a("Maplewood Gardens", "maplewood gardens", 8241, 8434)
+a("Maplewood Cresent", "maplewood cresent", 8176, 8566)
+a("Maplewood Cresent", "maplewood cresent", 8279, 8640)
+a("Maplewood Cresent", "maplewood cresent", 8275, 8636)
+a("Maplewood Gardens", "maplewood gardens", 8122, 8491)
+a("Maplewood Drive", "maplewood drive", 8347, 8566)
 a("Gakuen-dori", "gakuen-dori", 770, 3000)
 a("Chuo-dori", "chuo-dori", 766, 3395)
 a("Park Ridge Rd", "park ridge rd", 10963, 8771)

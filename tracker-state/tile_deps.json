@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T19:01:55Z",
+  "generated_at": "2026-09-02T19:52:27Z",
   "items": {
     "2384329562": {
       "mod_ids": [
@@ -59,6 +59,11 @@
           "map_mod": "PZ_ACSM_LV",
           "workshop_id": "3589905072",
           "zip": "Path of Zenith, Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "Sunset Lake Town B42 version",
+          "workshop_id": "3752069346",
+          "zip": "Sunset Lake Town B42 version.pyramid.zip"
         }
       ]
     },
@@ -71,6 +76,11 @@
           "map_mod": "Chinatown Expansion B42 version",
           "workshop_id": "3703704638",
           "zip": "Chinatown Expansion B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "Sunset Lake Town B42 version",
+          "workshop_id": "3752069346",
+          "zip": "Sunset Lake Town B42 version.pyramid.zip"
         }
       ]
     },
@@ -98,6 +108,11 @@
           "map_mod": "PZ_ACSM_LV",
           "workshop_id": "3589905072",
           "zip": "Path of Zenith, Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "Sunset Lake Town B42 version",
+          "workshop_id": "3752069346",
+          "zip": "Sunset Lake Town B42 version.pyramid.zip"
         }
       ]
     },
@@ -130,6 +145,11 @@
           "map_mod": "PZ_ACSM_LV",
           "workshop_id": "3589905072",
           "zip": "Path of Zenith, Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "Sunset Lake Town B42 version",
+          "workshop_id": "3752069346",
+          "zip": "Sunset Lake Town B42 version.pyramid.zip"
         },
         {
           "map_mod": "tikitown",
@@ -181,6 +201,16 @@
           "map_mod": "Taylorsville",
           "workshop_id": "3134394569",
           "zip": "Taylorsville.pyramid.zip"
+        },
+        {
+          "map_mod": "Hunter'sBaseB42",
+          "workshop_id": "3664225685",
+          "zip": "hunter's_base.pyramid.zip"
+        },
+        {
+          "map_mod": "Hunter'sBaseB42Small",
+          "workshop_id": "3664225685",
+          "zip": "hunter's_base_small.pyramid.zip"
         }
       ]
     },
@@ -232,6 +262,11 @@
           "map_mod": "Nekomata Ridge",
           "workshop_id": "3782173659",
           "zip": "Nekomata Ridge.pyramid.zip"
+        },
+        {
+          "map_mod": "Sunset Lake Town B42 version",
+          "workshop_id": "3752069346",
+          "zip": "Sunset Lake Town B42 version.pyramid.zip"
         },
         {
           "map_mod": "VaultTec B42 version",
@@ -311,6 +346,11 @@
           "zip": "Nettle Township.pyramid.zip"
         },
         {
+          "map_mod": "Sunset Lake Town B42 version",
+          "workshop_id": "3752069346",
+          "zip": "Sunset Lake Town B42 version.pyramid.zip"
+        },
+        {
           "map_mod": "VaultTec B42 version",
           "workshop_id": "3697082724",
           "zip": "VaultTec_Louisville.pyramid.zip"
@@ -361,7 +401,8 @@
     },
     "3694705423": {
       "mod_ids": [
-        "OujinjinTiles"
+        "OujinjinTiles",
+        "OujinjinTilesV2"
       ],
       "used_by": [
         {
@@ -378,6 +419,16 @@
           "map_mod": "Nettle Township B42 version",
           "workshop_id": "3391349130",
           "zip": "Nettle Township.pyramid.zip"
+        },
+        {
+          "map_mod": "Sunset Lake Town B42 version",
+          "workshop_id": "3752069346",
+          "zip": "Sunset Lake Town B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "Sunset Lake Town B42 version",
+          "workshop_id": "3752069346",
+          "zip": "Sunset Lake Town B42 version.pyramid.zip"
         },
         {
           "map_mod": "VaultTec B42 version",
