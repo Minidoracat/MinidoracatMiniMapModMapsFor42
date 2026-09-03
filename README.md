@@ -174,6 +174,12 @@ MinidoracatMiniMapModMapsFor42/
         └── minimap/               # pyramid zip（渲染產物，不進版控）
 ```
 
+## ☕ 支持作者
+
+MOD 永遠免費。喜歡的話可以請我喝杯咖啡，贊助會用在伺服器與 MOD 開發上。
+
+[![Ko-fi](https://raw.githubusercontent.com/Minidoracat/workshop-resources/refs/heads/main/badges/badge_kofi.png)](https://ko-fi.com/minidoracat)
+
 ## 授權
 
 程式碼與設定以 [MIT License](LICENSE) 釋出。地圖圖像（pyramid.zip）不進版控；
