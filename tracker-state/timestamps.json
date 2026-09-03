@@ -3,7 +3,7 @@
     "build": "24909800",
     "detected_at": "2026-08-27T16:50:06Z"
   },
-  "generated_at": "2026-09-02T09:56:02Z",
+  "generated_at": "2026-09-03T10:06:51Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -460,6 +460,13 @@
       "time_updated": 1787907959,
       "title": "Yanghu Town"
     },
+    "3644794945": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1771281563,
+      "title": "Maplewood [B42]"
+    },
     "3659221974": {
       "last_result": 1,
       "removed": false,
@@ -473,6 +480,13 @@
       "removed_at": null,
       "time_updated": 1776512212,
       "title": "AnruisiTown (Military Bastion)"
+    },
+    "3664225685": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1771573187,
+      "title": "Hunter's Base B42"
     },
     "3666137359": {
       "last_result": 1,
@@ -544,6 +558,13 @@
       "time_updated": 1785508473,
       "title": "Muldraugh 1993 B42"
     },
+    "3703704021": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1785331758,
+      "title": "Chinatown B42 version"
+    },
     "3703704638": {
       "last_result": 1,
       "removed": false,
@@ -557,6 +578,13 @@
       "removed_at": null,
       "time_updated": 1778565145,
       "title": "[B42] WEST POINT: THE BRIDGE CITADEL"
+    },
+    "3721711345": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1778252684,
+      "title": "[42.18+] RustBury"
     },
     "3728357493": {
       "last_result": 1,
@@ -593,6 +621,20 @@
       "time_updated": 1783833337,
       "title": "Greenport, KY (B42)"
     },
+    "3748141823": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1785357049,
+      "title": "Sunset Tower"
+    },
+    "3752069346": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1785331971,
+      "title": "Sunset Lake Town B42 version"
+    },
     "3759558202": {
       "last_result": 1,
       "removed": false,
@@ -607,12 +649,26 @@
       "time_updated": 1783733869,
       "title": "Bunker 42"
     },
+    "3768876083": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1784741145,
+      "title": "Kardinal Trelai 4x4 B42.19"
+    },
     "3769577696": {
       "last_result": 1,
       "removed": false,
       "removed_at": null,
       "time_updated": 1786057286,
       "title": "Kardinal Raven Creek B42"
+    },
+    "3782173659": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1787021336,
+      "title": "[B42]Nekomata Ridge"
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T17:43:42Z",
+  "generated_at": "2026-09-03T10:06:51Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -915,6 +915,20 @@
         }
       }
     },
+    "3644794945": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Maplewood": {
+          "bounds": [
+            7936,
+            8192,
+            8448,
+            8704
+          ],
+          "hash": "b365ff54dabb7c8b1d078901c6d69dd8f879ccd3829cf27f25d2663e22d460fa"
+        }
+      }
+    },
     "3659221974": {
       "assets": "0f4107467352dd20c5b7db2b9a5002b11b39770e19772ebe2bc34b2e1c1bcde7",
       "maps": {
@@ -940,6 +954,29 @@
             12032
           ],
           "hash": "659fc48edbe479c07faef110cb1449816113f5b9243894fe3e8320b147f5d65f"
+        }
+      }
+    },
+    "3664225685": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "hunter's_base": {
+          "bounds": [
+            5888,
+            5632,
+            6400,
+            6144
+          ],
+          "hash": "8875dd15a81dd8ec9296c6442bac7fdd6efeb09d713e92d1790e078290adeea1"
+        },
+        "hunter's_base_small": {
+          "bounds": [
+            5888,
+            5632,
+            6400,
+            6144
+          ],
+          "hash": "9204fe8716321a9504ac6710f2952691ef3830ab8748ad37431bf8b464296b11"
         }
       }
     },
@@ -1090,6 +1127,20 @@
         }
       }
     },
+    "3703704021": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Chinatown B42 version": {
+          "bounds": [
+            11008,
+            8448,
+            11520,
+            9472
+          ],
+          "hash": "480710cfc1c362adfd78069c190e4b1ff1f4eb8f5bf313fbd3846a148b2ffc13"
+        }
+      }
+    },
     "3703704638": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "maps": {
@@ -1115,6 +1166,20 @@
             6656
           ],
           "hash": "80837d4351a6d7c3b310703ee148fe3d6d40c3f90afa63ccaffed83592140d2a"
+        }
+      }
+    },
+    "3721711345": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "RustBury": {
+          "bounds": [
+            8960,
+            12544,
+            9472,
+            13056
+          ],
+          "hash": "8e373a9e7cbe06f369e0b4d915f1567bc5f58475e75aab6eea53fc4d0496505a"
         }
       }
     },
@@ -1187,6 +1252,34 @@
         }
       }
     },
+    "3748141823": {
+      "assets": "aebb5c91ae8e408ed9f78900c95c9a1c1eb0e1278726f82d5d6a60f21dc7c334",
+      "maps": {
+        "Sunset Tower": {
+          "bounds": [
+            11264,
+            7168,
+            11776,
+            7680
+          ],
+          "hash": "e55586e4f1a52152ab8829c4469f5da0307d0760cc9269763f1fe5d215e331cc"
+        }
+      }
+    },
+    "3752069346": {
+      "assets": "f632049eab6914d9adf75c73a7ee737b245a314aa079c9f7a08a33940d5004bd",
+      "maps": {
+        "Sunset Lake Town B42 version": {
+          "bounds": [
+            9472,
+            11008,
+            10240,
+            12032
+          ],
+          "hash": "87a37a0bb4478377cec97fc2bb08709d0aaaafa58ed4487c70e272cca848aad2"
+        }
+      }
+    },
     "3759558202": {
       "assets": "cc70fe705b9851ce4fe084f67a75ba270d29c4da9500e0558ce248998000bed6",
       "maps": {
@@ -1224,6 +1317,20 @@
         }
       }
     },
+    "3768876083": {
+      "assets": "b31dd2ddf71574419c49c0c1d884d3ca4c198cb09de5db45acb7d12774974386",
+      "maps": {
+        "Trelai_4x4": {
+          "bounds": [
+            6400,
+            6400,
+            7936,
+            7936
+          ],
+          "hash": "078c5859cf0dc490959f6cc26244c117e7cea2b96ab83d70cd3f1ea6434cf85b"
+        }
+      }
+    },
     "3769577696": {
       "assets": "cc608442dffa4a52af465af32cc4bebeca13417385e0a01ec31e4b33d3d32ed7",
       "maps": {
@@ -1235,6 +1342,20 @@
             18176
           ],
           "hash": "fe1952bd9761489dbca20bd74adc7b5760bf3edb80cc7f2855abcaac59614f3f"
+        }
+      }
+    },
+    "3782173659": {
+      "assets": "d86fe495383401bc4195f3da547bd286bcdb61810832999d06fdd53e3423f1da",
+      "maps": {
+        "Nekomata Ridge": {
+          "bounds": [
+            11776,
+            8192,
+            13312,
+            9216
+          ],
+          "hash": "308121a1d47db0de99281be02aeff775a2956185e6090d19fa0d0f15da132589"
         }
       }
     }
