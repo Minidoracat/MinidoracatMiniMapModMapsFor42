@@ -55,6 +55,10 @@
 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues]🐛 GitHub Issues[/url]——地图支持申请与图像问题回报表单
 [url=https://discord.gg/Gur2V67]👉 点此加入 Discord 服务器[/url]
 
+[h2]☕ 支持作者[/h2]
+MOD 永远免费。喜欢的话可以请我喝杯咖啡，赞助会用在服务器与 MOD 开发上；源代码公开在 GitHub。
+[url=https://ko-fi.com/minidoracat][img]https://raw.githubusercontent.com/Minidoracat/workshop-resources/refs/heads/main/badges/badge_kofi.png[/img][/url] [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42][img]https://raw.githubusercontent.com/Minidoracat/workshop-resources/refs/heads/main/badges/badge_github.png[/img][/url]
+
 [b]#地图 #小地图 #minimap #worldmap #Minidoracat[/b]
 
 Workshop ID: 3763914102

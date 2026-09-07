@@ -56,6 +56,10 @@ This pack only provides the [b]minimap / world-map image rendering[/b].
 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues]🐛 GitHub Issues[/url] — map request & image issue report forms
 [url=https://discord.gg/Gur2V67]👉 Join the Discord server[/url]
 
+[h2]☕ Support the author[/h2]
+The mod is free and always will be. If you enjoy it, consider buying me a coffee - tips go straight into servers and mod development. Source code is public on GitHub.
+[url=https://ko-fi.com/minidoracat][img]https://raw.githubusercontent.com/Minidoracat/workshop-resources/refs/heads/main/badges/badge_kofi.png[/img][/url] [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42][img]https://raw.githubusercontent.com/Minidoracat/workshop-resources/refs/heads/main/badges/badge_github.png[/img][/url]
+
 [b]#map #minimap #worldmap #Minidoracat[/b]
 
 Workshop ID: 3763914102
