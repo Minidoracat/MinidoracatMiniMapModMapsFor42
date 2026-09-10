@@ -1,445 +1,405 @@
 -- MinidoracatMiniMapModMapsStreetNames.lua（生成檔，勿手編）
--- 由 scripts/gen_streets_i18n.py 烘焙自各地圖 MOD 上游 streets.xml 的英文原名。
+-- 由 scripts/gen_streets_i18n.py 依 street-names/<dataset>/names.json 生成。
 --
--- 為何需要：本包把 MOD 地圖街名整份替換成 CH/CN/JP 後，引擎街道索引只剩譯名，
--- 用英文原名搜尋會無結果（主 MOD 對官方地圖早有同一問題，解法是
--- gen_street_names.py 烘焙 MinidoracatMiniMapStreetNames）。本表補 MOD 地圖那段，
--- 格式與角色相同，直接 append 到同一張全域表 MinidoracatMiniMapStreetNames → 搜尋端零改動。
--- n=顯示名 l=預小寫 x/y=首點（與引擎索引同源）。
+-- 內容＝每個 dataset 的「上游英文原街名 → UI 翻譯鍵」。譯名本體在
+-- media/lua/shared/Translate/<LANG>/UI.json，執行期由主 MOD 取用；本包不碰
+-- 上游 streets.xml 的幾何。查不到鍵的街名（上游新增、尚未補譯）原樣顯示。
 --
--- 載入序：mod.info require=MinidoracatMiniMapFor42 保證主 MOD 的表先定義（同
--- registerMaps 依賴的同一個保證）；缺席時自建，不讓它變成 nil 索引錯誤。
--- 來源 16 個 dataset／428 條；上游變更時重跑生成器。
-if type(MinidoracatMiniMapStreetNames) ~= "table" then
-    MinidoracatMiniMapStreetNames = {}
-end
-local t = MinidoracatMiniMapStreetNames
-local function a(n, l, x, y) t[#t + 1] = { n = n, l = l, x = x, y = y } end
-a("Anruisi St", "anruisi st", 12030, 11477)
-a("Anruisi St", "anruisi st", 12050, 11500)
-a("ArmyStreet", "armystreet", 12485, 11496)
-a("OathKeepersRoad", "oathkeepersroad", 12503, 11694)
-a("MilitaryStreet", "militarystreet", 12544, 11524)
-a("MilitaryStreet", "militarystreet", 12546, 11636)
-a("MilitaryStreet", "militarystreet", 12541, 11636)
-a("MilitaryStreet", "militarystreet", 12504, 11590)
-a("MilitaryStreet", "militarystreet", 12504, 11555)
-a("MilitaryStreet", "militarystreet", 12546, 11548)
-a("Gongan Road", "gongan road", 12026, 11503)
-a("Engineering Road", "engineering road", 12051, 11571)
-a("Business Road", "business road", 12171, 11506)
-a("Gas Road", "gas road", 12117, 11571)
-a("Fire Protection Boulevard", "fire protection boulevard", 12175, 11556)
-a("Fire Protection Boulevard", "fire protection boulevard", 12240, 11506)
-a("Warehouse Road", "warehouse road", 12274, 11560)
-a("Forest St", "forest st", 12314, 11506)
-a("Warehouse Road", "warehouse road", 12227, 11627)
-a("Forest Trail", "forest trail", 12278, 11627)
-a("Office Street", "office street", 12374, 11494)
-a("Pretty Path", "pretty path", 12307, 11446)
-a("Office Street", "office street", 12379, 11452)
-a("Fountain Road", "fountain road", 12362, 11506)
-a("Doom St", "doom st", 12428, 11506)
-a("Woodland St", "woodland st", 12478, 11506)
-a("Woodland Path", "woodland path", 12318, 11627)
-a("Safety Road", "safety road", 12318, 11586)
-a("Spike Boulevard", "spike boulevard", 12385, 11589)
-a("Rose Trail", "rose trail", 12388, 11603)
-a("M16 Trail", "m16 trail", 12439, 11625)
-a("Purple Sky Path", "purple sky path", 12434, 11657)
-a("Wheat Field Road", "wheat field road", 12436, 11589)
-a("Wheat Field Road", "wheat field road", 12388, 11704)
-a("Wheat Field Road", "wheat field road", 12438, 11700)
-a("Residential St", "residential st", 12141, 11700)
-a("Lake Road (Under Construction)", "lake road (under construction)", 12094, 11799)
-a("Residential St", "residential st", 12146, 11799)
-a("Residential St", "residential st", 12274, 11700)
-a("Woodland St", "woodland st", 12316, 11700)
-a("Woodland St", "woodland st", 12388, 11773)
-a("Arms St", "arms st", 12340, 11725)
-a("Agriculture Boulevard", "agriculture boulevard", 12385, 11774)
-a("Arms St", "arms st", 12466, 11855)
-a("Agriculture Boulevard", "agriculture boulevard", 12486, 11854)
-a("Agriculture Boulevard", "agriculture boulevard", 12552, 11782)
-a("Hope Boulevard", "hope boulevard", 12223, 11560)
-a("Hope Boulevard", "hope boulevard", 12175, 11651)
-a("Hope Boulevard", "hope boulevard", 12175, 11601)
-a("Pilot Street", "pilot street", 12504, 11520)
-a("Pilot Street", "pilot street", 12544, 11515)
-a("Military Runway 18L/36R", "military runway 18l/36r", 12644, 11401)
-a("Military Taxiway A", "military taxiway a", 12630, 11444)
-a("MilitaryStreet", "militarystreet", 12597, 11634)
-a("MilitaryStreet", "militarystreet", 12597, 11591)
-a("Military Taxiway A", "military taxiway a", 12618, 11513)
-a("Arms St", "arms st", 12482, 11773)
-a("Arms St", "arms st", 12482, 11704)
-a("Arms St", "arms st", 12654, 11926)
-a("BlackHawk", "blackhawk", 10800, 6301)
-a("AsinSina", "asinsina", 10800, 6598)
-a("La Frontera", "la frontera", 10801, 6303)
-a("Solsticio", "solsticio", 11099, 6303)
-a("KY-60", "ky-60", 12895, 11204)
-a("Spoon Way", "spoon way", 15184, 8700)
-a("Marble Hill Dr", "marble hill dr", 14777, 12370)
-a("Greenbay Rd", "greenbay rd", 14903, 12439)
-a("Hodges Bay Dr", "hodges bay dr", 14854, 12228)
-a("All Saints Pl", "all saints pl", 14876, 12228)
-a("Paradise View St", "paradise view st", 15100, 12134)
-a("Clare Hall Dr", "clare hall dr", 14903, 12281)
-a("Birchwood Blvd", "birchwood blvd", 14182, 12401)
-a("Pigotts Main Rd", "pigotts main rd", 14967, 11556)
-a("Brooklawn Rd", "brooklawn rd", 15416, 10782)
-a("Evesham Rd", "evesham rd", 15160, 10779)
-a("Brooklawn Blvd", "brooklawn blvd", 15427, 10299)
-a("White Horse Ln", "white horse ln", 15318, 9838)
-a("Magnolia Pl", "magnolia pl", 15610, 9991)
-a("Salt Ridge St", "salt ridge st", 15769, 9998)
-a("Brooklawn Ln", "brooklawn ln", 15750, 10006)
-a("Laurel Pl", "laurel pl", 15652, 10078)
-a("Foundry Pl", "foundry pl", 15647, 10163)
-a("Ashwood Pl", "ashwood pl", 15523, 10189)
-a("Landing St", "landing st", 15223, 9624)
-a("Elm Dr", "elm dr", 15295, 9618)
-a("Ramblewood Pl", "ramblewood pl", 15053, 9615)
-a("Franklin Rd", "franklin rd", 15792, 9839)
-a("Gloucester Ln", "gloucester ln", 16071, 9799)
-a("Maple Heights Ln", "maple heights ln", 15774, 9998)
-a("Chews Landing Ln", "chews landing ln", 15573, 10988)
-a("Erial Rd", "erial rd", 15436, 10995)
-a("Clementon St", "clementon st", 15917, 10317)
-a("Hillcrest Blvd", "hillcrest blvd", 15715, 9855)
-a("Sawmill Pl", "sawmill pl", 15516, 10149)
-a("Briarwood Ln", "briarwood ln", 16472, 12693)
-a("Audubon Park Dr", "audubon park dr", 16573, 12989)
-a("Greenbriar St", "greenbriar st", 16478, 13479)
-a("Blackwood St", "blackwood st", 16579, 13482)
-a("Crystal Lake Rd", "crystal lake rd", 16471, 13736)
-a("Street", "street", 16497, 13733)
-a("Voorhees Ave", "voorhees ave", 16475, 12873)
-a("Locust Ct", "locust ct", 17786, 12463)
-a("Grant Ln", "grant ln", 17789, 12591)
-a("Alfalfa Road", "alfalfa road", 9780, 9785)
-a("Weinifan Street", "weinifan street", 9933, 7308)
-a("Little Flower Street", "little flower street", 9913, 7243)
-a("Taibei Road", "taibei road", 9940, 7247)
-a("Fishing Road", "fishing road", 9944, 7297)
-a("Unnamed Road", "unnamed road", 10027, 7221)
-a("Er Xian Road", "er xian road", 10031, 7274)
-a("Cheng Hua Road", "cheng hua road", 10109, 7274)
-a("Kill Mingshi Road", "kill mingshi road", 10162, 7279)
-a("Yu Lin Road", "yu lin road", 10104, 7235)
-a("Daisy Road", "daisy road", 10087, 7230)
-a("Daisy Lane", "daisy lane", 10174, 7235)
-a("Clover Street", "clover street", 10114, 7347)
-a("Maple Street", "maple street", 9982, 7302)
-a("Pine Ridge Road", "pine ridge road", 10018, 7302)
-a("Buttercup Court", "buttercup court", 10027, 7487)
-a("Dewdrop Lane", "dewdrop lane", 10200, 7274)
-a("Rosemary Way", "rosemary way", 10212, 7224)
-a("Thistle Lane", "thistle lane", 10221, 7215)
-a("Violet Street", "violet street", 10433, 7220)
-a("Holly Drive", "holly drive", 10244, 7282)
-a("Cedar Avenue", "cedar avenue", 10200, 7347)
-a("Birch Lane", "birch lane", 10473, 7356)
-a("Beech Street", "beech street", 10337, 7352)
-a("unknown", "unknown", 10244, 7352)
-a("Fir Drive", "fir drive", 10249, 7397)
-a("Jasmine Way", "jasmine way", 10368, 7383)
-a("Tulip Lane", "tulip lane", 10423, 7456)
-a("Magnolia Lane", "magnolia lane", 10032, 7500)
-a("Dogwood Road", "dogwood road", 9946, 7551)
-a("Peony Way", "peony way", 10044, 7701)
-a("Palm Drive", "palm drive", 9946, 7743)
-a("Hazel Road", "hazel road", 10003, 7748)
-a("Aster Lane", "aster lane", 10423, 7501)
-a("Dahlia Court", "dahlia court", 10278, 7612)
-a("Sunflower Road", "sunflower road", 10353, 7561)
-a("Fern Way", "fern way", 10003, 7803)
-a("Sycamore Drive", "sycamore drive", 10133, 8010)
-a("Mingshi Road", "mingshi road", 10423, 7800)
-a("Saltamontes St", "saltamontes st", 8700, 8505)
-a("Good Weekend Rd", "good weekend rd", 8644, 8388)
-a("Greenport Parkway", "greenport parkway", 8101, 7500)
-a("Wharf Way", "wharf way", 8237, 7503)
-a("Leroy Lane", "leroy lane", 8582, 7659)
-a("Delmer Drive", "delmer drive", 8466, 7550)
-a("Wayne Avenue", "wayne avenue", 8366, 7659)
-a("Harrington Rd", "harrington rd", 8115, 7663)
-a("Nuevo St", "nuevo st", 8609, 7668)
-a("Arkturus Rd", "arkturus rd", 8502, 7708)
-a("Oliver Rd", "oliver rd", 8501, 7740)
-a("Indie St", "indie st", 8498, 7669)
-a("Poplar Lane", "poplar lane", 8411, 7668)
-a("Pine Rd", "pine rd", 8405, 7740)
-a("Dogwood Way", "dogwood way", 8403, 7707)
-a("Cypress Lane", "cypress lane", 8267, 7668)
-a("Redbud Way", "redbud way", 8361, 7746)
-a("Street", "street", 8244, 8564)
-a("Lt Saltamontes Blvd", "lt saltamontes blvd", 8279, 8557)
-a("Loro Residential", "loro residential", 8225, 8557)
-a("Maplewood Avenue", "maplewood avenue", 8296, 8487)
-a("Maplewood Street", "maplewood street", 8176, 8495)
-a("Maplewood Street", "maplewood street", 8275, 8495)
-a("Maplewood Gardens", "maplewood gardens", 8355, 8487)
-a("Maplewood Gardens", "maplewood gardens", 8237, 8430)
-a("Maplewood Gardens", "maplewood gardens", 8241, 8434)
-a("Maplewood Cresent", "maplewood cresent", 8176, 8566)
-a("Maplewood Cresent", "maplewood cresent", 8279, 8640)
-a("Maplewood Cresent", "maplewood cresent", 8275, 8636)
-a("Maplewood Gardens", "maplewood gardens", 8122, 8491)
-a("Maplewood Drive", "maplewood drive", 8347, 8566)
-a("Gakuen-dori", "gakuen-dori", 770, 3000)
-a("Chuo-dori", "chuo-dori", 766, 3395)
-a("Park Ridge Rd", "park ridge rd", 10963, 8771)
-a("Timber Ct", "timber ct", 10761, 9137)
-a("Walker Rd", "walker rd", 10599, 9515)
-a("Harris St", "harris st", 10599, 9585)
-a("Main St", "main st", 10612, 9587)
-a("Warren St", "warren st", 10599, 9643)
-a("E Garnettsville Rd", "e garnettsville rd", 10684, 9761)
-a("Shumate St", "shumate st", 10779, 9587)
-a("Branch St", "branch st", 10781, 9619)
-a("Branch St", "branch st", 10747, 9629)
-a("Branch St", "branch st", 10777, 9696)
-a("White Arrow", "white arrow", 10745, 9631)
-a("Irma Drive", "irma drive", 10779, 9621)
-a("Creekbed St", "creekbed st", 10781, 9603)
-a("Circle St", "circle st", 10868, 9686)
-a("1st St", "1st st", 10781, 9699)
-a("2nd St", "2nd st", 10781, 9676)
-a("3rd St", "3rd st", 10867, 9657)
-a("Chestnut St", "chestnut st", 10845, 9763)
-a("S Main St", "s main st", 10686, 9763)
-a("Elm St", "elm st", 10847, 9968)
-a("Franklin St", "franklin st", 10599, 9895)
-a("Poplar St", "poplar st", 10624, 9898)
-a("Hill St", "hill st", 10655, 10010)
-a("Perry St", "perry st", 10682, 9898)
-a("Wendell St", "wendell st", 10599, 10013)
-a("Wilson St", "wilson st", 10628, 10488)
-a("Walnut St", "walnut st", 10599, 10069)
-a("Holston Estates Pl", "holston estates pl", 10630, 10250)
-a("Holston Dr", "holston dr", 10692, 10250)
-a("Polston St", "polston st", 10771, 9971)
-a("Main St", "main st", 10790, 10792)
-a("Lynn St", "lynn st", 10823, 10039)
-a("Snyder Way", "snyder way", 10838, 10362)
-a("Oak St", "oak st", 10819, 10101)
-a("Beech St", "beech st", 10836, 10171)
-a("Ball St", "ball st", 10599, 10297)
-a("Ball St", "ball st", 10630, 10297)
-a("Basham Ct", "basham ct", 10599, 10392)
-a("Basham Ct", "basham ct", 10630, 10392)
-a("Sunset Ct", "sunset ct", 10705, 10317)
-a("W Mabel St", "w mabel st", 10754, 10490)
-a("Watts St", "watts st", 10884, 10365)
-a("Kaska St", "kaska st", 10801, 10327)
-a("Dresel Cir", "dresel cir", 10836, 10288)
-a("E Mabel St", "e mabel st", 10760, 10508)
-a("Dewey St", "dewey st", 10821, 10368)
-a("Dewey St", "dewey st", 10821, 10510)
-a("Karen Ct", "karen ct", 10847, 10368)
-a("New St", "new st", 10869, 10368)
-a("Wood St", "wood st", 10628, 10493)
-a("Perrin St", "perrin st", 10599, 10786)
-a("David Blane Rd", "david blane rd", 6600, 14608)
-a("David Blane Way", "david blane way", 6418, 14607)
-a("David Blane Av", "david blane av", 5762, 16033)
-a("David Blane Av", "david blane av", 5020, 16030)
-a("Raven Creek Way", "raven creek way", 5028, 16024)
-a("Ludwin Bridge St", "ludwin bridge st", 4433, 15580)
-a("Allegheny St", "allegheny st", 5218, 15412)
-a("Callowhill St", "callowhill st", 5140, 16024)
-a("Lancaster St", "lancaster st", 5265, 15471)
-a("Wharton St", "wharton st", 5323, 15567)
-a("Butler St", "butler st", 4937, 15414)
-a("Beechwood Blvd", "beechwood blvd", 5318, 15615)
-a("Liberty Blvd", "liberty blvd", 5342, 15649)
-a("Waverly Blvd", "waverly blvd", 5037, 17573)
-a("Street", "street", 5244, 17577)
-a("Street", "street", 5359, 17577)
-a("Street", "street", 5388, 17684)
-a("Street", "street", 5386, 17608)
-a("Street", "street", 5269, 17577)
-a("Street", "street", 5299, 17577)
-a("Street", "street", 5329, 17577)
-a("Street", "street", 5414, 17577)
-a("Dunmore Dr", "dunmore dr", 5571, 17538)
-a("Street", "street", 5419, 17407)
-a("Street", "street", 5457, 17565)
-a("Street", "street", 5494, 17407)
-a("Street", "street", 5531, 17565)
-a("Prescott Ave", "prescott ave", 5565, 17404)
-a("Street", "street", 5182, 17514)
-a("Street", "street", 5182, 17494)
-a("Street", "street", 5182, 17474)
-a("Street", "street", 5161, 17454)
-a("Mill St", "mill st", 5551, 17354)
-a("Court Dr", "court dr", 5639, 17325)
-a("Prospect Terrace", "prospect terrace", 5588, 17354)
-a("Acker Ct", "acker ct", 5636, 17357)
-a("View Ln", "view ln", 5333, 17354)
-a("Street", "street", 5244, 17407)
-a("Street", "street", 5247, 17533)
-a("Street", "street", 5416, 17498)
-a("Street", "street", 4618, 17579)
-a("Street", "street", 4511, 17562)
-a("Street", "street", 4672, 17562)
-a("Street", "street", 4892, 17562)
-a("Street", "street", 4947, 17562)
-a("Falmouth Road", "falmouth road", 6418, 15405)
-a("Main Street", "main street", 6418, 15120)
-a("Pike Street", "pike street", 5754, 15929)
-a("Pike Street", "pike street", 5012, 15926)
-a("Raven Creek Road", "raven creek road", 5020, 15920)
-a("Bridge Street", "bridge street", 4425, 15476)
-a("Pleasant Street", "pleasant street", 5210, 15308)
-a("Pearl Street", "pearl street", 5132, 15920)
-a("Penn Street", "penn street", 5257, 15367)
-a("Elm Street", "elm street", 5315, 15463)
-a("Maple Street", "maple street", 4929, 15310)
-a("Highland Avenue", "highland avenue", 5310, 15511)
-a("Federal Avenue", "federal avenue", 5334, 15545)
-a("McIlvain Boulevard", "mcilvain boulevard", 5029, 17469)
-a("Pine Street", "pine street", 5236, 17473)
-a("Walnut Street", "walnut street", 5351, 17473)
-a("Church Street", "church street", 5380, 17580)
-a("Water Street", "water street", 5378, 17504)
-a("Center Street", "center street", 5261, 17473)
-a("College Street", "college street", 5291, 17473)
-a("Court Street", "court street", 5321, 17473)
-a("Oak Street", "oak street", 5406, 17473)
-a("Grandview Drive", "grandview drive", 5563, 17434)
-a("Chestnut Street", "chestnut street", 5411, 17303)
-a("Vine Street", "vine street", 5449, 17461)
-a("Ash Street", "ash street", 5486, 17303)
-a("Mulberry Street", "mulberry street", 5523, 17461)
-a("Marshall Avenue", "marshall avenue", 5557, 17300)
-a("Locust Street", "locust street", 5174, 17410)
-a("Poplar Street", "poplar street", 5174, 17390)
-a("Short Street", "short street", 5174, 17370)
-a("High Street", "high street", 5153, 17350)
-a("Mill Street", "mill street", 5543, 17250)
-a("Hinkston Avenue", "hinkston avenue", 5631, 17221)
-a("Parkway Drive", "parkway drive", 5580, 17250)
-a("Hickory Court", "hickory court", 5628, 17253)
-a("Hillside Drive", "hillside drive", 5325, 17250)
-a("Market Street", "market street", 5236, 17303)
-a("River Road", "river road", 5239, 17429)
-a("Leesburg Pike", "leesburg pike", 5408, 17394)
-a("Paris Pike", "paris pike", 4610, 17475)
-a("Lair Road", "lair road", 4503, 17458)
-a("Oddville Road", "oddville road", 4664, 17458)
-a("Berry Road", "berry road", 4884, 17458)
-a("Colemansville Road", "colemansville road", 4939, 17458)
-a("Bluegrass Bend", "bluegrass bend", 7347, 6981)
-a("Holler Ridge Rd", "holler ridge rd", 7422, 6981)
-a("Boone Trace Rd", "boone trace rd", 7472, 7052)
-a("Shaker Way", "shaker way", 7472, 7060)
-a("Henry Clay Blvd", "henry clay blvd", 7517, 7056)
-a("Ashland Pike", "ashland pike", 7521, 7061)
-a("Riverport Way", "riverport way", 7573, 7105)
-a("Lexington Ave", "lexington ave", 7314, 6976)
-a("Toucan Blvd", "toucan blvd", 7078, 7295)
-a("Cumberland Trace", "cumberland trace", 6741, 7260)
-a("Ironworks Rd", "ironworks rd", 7384, 7407)
-a("Thomas Ave", "thomas ave", 7200, 7254)
-a("Burnside Way", "burnside way", 7225, 7255)
-a("McClellan Way", "mcclellan way", 7265, 7255)
-a("Scott Street", "scott street", 7269, 7278)
-a("David Ireland Street", "david ireland street", 7074, 7359)
-a("Cox Street", "cox street", 7321, 7236)
-a("Gibbon Street", "gibbon street", 7361, 7234)
-a("James Andrews Street", "james andrews street", 7519, 7230)
-a("Rosecrans Street", "rosecrans street", 7383, 7230)
-a("Sherman Street", "sherman street", 7070, 7271)
-a("Meagher Street", "meagher street", 6953, 7325)
-a("Willich Way", "willich way", 6953, 7378)
-a("Barlow Way", "barlow way", 7095, 7378)
-a("Hunt Street", "hunt street", 7073, 7399)
-a("Ingalls Street", "ingalls street", 6954, 7484)
-a("Gibson Street", "gibson street", 7078, 7484)
-a("Meade Street", "meade street", 7205, 7530)
-a("Carr Road", "carr road", 7196, 7342)
-a("Meigs Way", "meigs way", 7390, 7342)
-a("Ingalls Street", "ingalls street", 7390, 7170)
-a("McCallum Road", "mccallum road", 7525, 7215)
-a("Totten Street", "totten street", 7525, 7276)
-a("Haupt Street", "haupt street", 7596, 7211)
-a("Wilson Boulevard", "wilson boulevard", 7154, 6971)
-a("Gregg Street", "gregg street", 6952, 6970)
-a("Hammond Road", "hammond road", 6951, 7543)
-a("Barnes Way", "barnes way", 6935, 7674)
-a("Letterman Road", "letterman road", 7006, 7737)
-a("Kilpatrick Street", "kilpatrick street", 7499, 7553)
-a("Pleasonton Road", "pleasonton road", 7495, 7613)
-a("Grierson Way", "grierson way", 7472, 7444)
-a("Merrit Street", "merrit street", 7426, 7364)
-a("Buford Trace", "buford trace", 7228, 7346)
-a("Shaw Street", "shaw street", 7205, 7448)
-a("Ellsworth Street", "ellsworth street", 7080, 7617)
-a("Rose Street", "rose street", 7075, 7590)
-a("Baker Street", "baker street", 7008, 7633)
-a("Ellet Way", "ellet way", 7008, 7686)
-a("Lander Road", "lander road", 7718, 7219)
-a("Devin Ln", "devin ln", 7156, 7185)
-a("Greeley St", "greeley st", 7383, 7148)
-a("Todd Loop", "todd loop", 7252, 7125)
-a("Howe St", "howe st", 7248, 7117)
-a("Stowe St", "stowe st", 7219, 7123)
-a("Adams St", "adams st", 7222, 7138)
-a("Sheriff Loop", "sheriff loop", 7369, 7581)
-a("Irish Street", "irish street", 7080, 7431)
-a("Brady Way", "brady way", 7104, 7433)
-a("Gardner Way", "gardner way", 7130, 7434)
-a("Russell St", "russell st", 7121, 7382)
-a("Knox Loop", "knox loop", 6985, 7381)
-a("McDowell Rd", "mcdowell rd", 7203, 7657)
-a("Short Street", "short street", 7234, 7589)
-a("Ivy Hill Rd", "ivy hill rd", 7075, 7740)
-a("Wright Ave", "wright ave", 7513, 7600)
-a("Rich Ave", "rich ave", 7529, 7599)
-a("Cardinal Street", "cardinal street", 7059, 6998)
-a("Oriole Street", "oriole street", 7150, 7034)
-a("Jay Street", "jay street", 7057, 6971)
-a("Gray Ave", "gray ave", 7513, 7605)
-a("Artillery Ridge Ave", "artillery ridge ave", 7500, 7602)
-a("Northwestern Railroad (Muldraugh - Brandenburg)", "northwestern railroad (muldraugh - brandenburg)", 7476, 7730)
-a("Northwestern Railroad (Muldraugh - Brandenburg)", "northwestern railroad (muldraugh - brandenburg)", 7517, 7352)
-a("Trail Ridge Rd", "trail ridge rd", 7640, 7301)
-a("Howard Rd", "howard rd", 6741, 7240)
-a("Spanner St", "spanner st", 6870, 7243)
-a("Kelly Rd", "kelly rd", 6740, 7385)
-a("Gilsa St", "gilsa st", 6811, 7304)
-a("Burling St", "burling st", 6856, 7263)
-a("Sedgewick Rd", "sedgewick rd", 7319, 7589)
-a("McDougall Rd", "mcdougall rd", 7500, 7704)
-a("Turner Bend", "turner bend", 6741, 7210)
-a("Millstone Dr", "millstone dr", 6740, 7335)
-a("Sycamore St", "sycamore st", 6945, 7722)
-a("Fall Hill Dr", "fall hill dr", 7204, 7707)
-a("Crimber St", "crimber st", 6901, 7717)
-a("Weinzierl Rd", "weinzierl rd", 6737, 7514)
-a("Gravel Ridge Rd", "gravel ridge rd", 7278, 7711)
-a("Railview Spur", "railview spur", 7460, 7689)
-a("First Line Dr", "first line dr", 7425, 7590)
-a("Memorial Way", "memorial way", 7435, 7528)
-a("Northwestern Railroad (Muldraugh - Brandenburg)", "northwestern railroad (muldraugh - brandenburg)", 7476, 7730)
-a("Northwestern Railroad (Muldraugh - Brandenburg)", "northwestern railroad (muldraugh - brandenburg)", 7479, 7727)
-a("Old Mill Rd", "old mill rd", 7518, 6909)
-a("South ww2commander St", "south ww2commander st", 12240, 7166)
-a("Hillcrest St", "hillcrest st", 12342, 7161)
-a("Elmwood Blvd", "elmwood blvd", 12348, 7067)
-a("Pine Hollow Rd", "pine hollow rd", 12476, 6967)
-a("Hillcrest Ln", "hillcrest ln", 12373, 6956)
-a("North ww2commander St", "north ww2commander st", 12240, 6961)
-a("Oakridge Ct", "oakridge ct", 12602, 6967)
-a("Depot Way", "depot way", 12606, 7125)
-a("Chestnut St", "chestnut st", 12597, 6858)
-a("Garrison Ct", "garrison ct", 12500, 6858)
-a("Dixie Spur Rd", "dixie spur rd", 12411, 7162)
-a("Overlook Ln", "overlook ln", 12337, 7106)
-a("Spiffo's Av", "spiffo's av", 14402, 5830)
-a("Blackstone Av", "blackstone av", 14548, 5703)
-a("Pecado St", "pecado st", 14485, 5825)
-a("Comuna Rd", "comuna rd", 14674, 5835)
+-- 空白折疊後與原名不同者會多掛一個別名鍵，讓引擎索引裡的髒名（連續空白）
+-- 也查得到；兩者指向同一個 UI 鍵。
+-- 共 16 個 dataset／360 條街名。
+MinidoracatMiniMapModMapsStreetNames = {
+    ["anruisi-town"] = {
+        ["Agriculture Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_f5e46c6a35",
+        ["Anruisi St"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_b0cb40ab43",
+        ["Arms St"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_a3f8457b4e",
+        ["ArmyStreet"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_9408c81d49",
+        ["Business Road"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_d6c12ce57b",
+        ["Doom St"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_b2747efc66",
+        ["Engineering Road"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_0cf132f0d6",
+        ["Fire Protection Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_9cc1b853ab",
+        ["Forest  St"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_2ec3ea7f5f",
+        ["Forest St"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_2ec3ea7f5f",
+        ["Forest Trail"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_b9160c4365",
+        ["Fountain Road"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_327f6d2cc2",
+        ["Gas Road"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_55f821f241",
+        ["Gongan Road"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_39e8a3965f",
+        ["Hope Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_9193762329",
+        ["Lake Road (Under Construction)"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_328de8ee35",
+        ["M16 Trail"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_90d9b859cf",
+        ["Military Runway 18L/36R"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_55f2de95aa",
+        ["Military Taxiway A"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_8b64891b19",
+        ["MilitaryStreet"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_17f39c13e6",
+        ["OathKeepersRoad"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_0074dba0a3",
+        ["Office Street"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_bad92ec292",
+        ["Pilot Street"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_a1a52da590",
+        ["Pretty Path"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_cc16715823",
+        ["Purple Sky Path"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_abbf5924b3",
+        ["Residential St"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_cdb3b88972",
+        ["Rose Trail"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_deb9b905bf",
+        ["Safety Road"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_32040421c0",
+        ["Spike Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_8e61d4dfea",
+        ["Warehouse Road"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_81e4f4be7f",
+        ["Wheat Field Road"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_7fa5be9f81",
+        ["Woodland Path"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_475b953913",
+        ["Woodland St"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_1332310a19",
+    },
+    ["blackmaze-wp"] = {
+        ["AsinSina"] = "UI_MinidoracatMiniMapModMaps_Street_blackmaze-wp_b6cbc7eff4",
+        ["BlackHawk"] = "UI_MinidoracatMiniMapModMaps_Street_blackmaze-wp_3472c08cc7",
+        ["La Frontera"] = "UI_MinidoracatMiniMapModMaps_Street_blackmaze-wp_d31619f339",
+        ["Solsticio"] = "UI_MinidoracatMiniMapModMaps_Street_blackmaze-wp_28a5eefb43",
+    },
+    ["camden-county"] = {
+        ["All Saints Pl"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_836f84183f",
+        ["Ashwood Pl"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_5366b7094c",
+        ["Audubon Park Dr"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_1f009cf4ee",
+        ["Birchwood Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_2ffd5120a7",
+        ["Blackwood St"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_8360271d52",
+        ["Briarwood Ln"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_2fe7843686",
+        ["Brooklawn Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_e05f891d4c",
+        ["Brooklawn Ln"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_60d1b72e5c",
+        ["Brooklawn Rd"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_413f0663ce",
+        ["Chews Landing Ln"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_2b5a9c304c",
+        ["Clare Hall Dr"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_71aecd9fee",
+        ["Clementon St"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_2680a5ddc1",
+        ["Crystal Lake Rd"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_987862b511",
+        ["Elm Dr"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_446166d3a9",
+        ["Erial Rd"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_e567dd995e",
+        ["Evesham Rd"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_ea04463b93",
+        ["Foundry Pl"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_3535864aea",
+        ["Franklin Rd"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_d683d45a9f",
+        ["Gloucester Ln"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_b844556871",
+        ["Grant Ln"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_2a3d020cbf",
+        ["Greenbay Rd"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_78043106dc",
+        ["Greenbriar St"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_343b62e109",
+        ["Hillcrest Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_942caf058e",
+        ["Hodges Bay Dr"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_0e32f103f3",
+        ["KY-60"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_99250250bc",
+        ["Landing St"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_3d30b85056",
+        ["Laurel Pl"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_500db06bae",
+        ["Locust Ct"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_a62ee80616",
+        ["Magnolia Pl"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_26cc7b602d",
+        ["Maple Heights Ln"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_871e54b9e4",
+        ["Marble Hill Dr"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_f67d15d13f",
+        ["Paradise View St"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_2d61b92bfe",
+        ["Pigotts Main Rd"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_3f3f7fbb87",
+        ["Ramblewood Pl"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_57bea1bfa3",
+        ["Salt Ridge St"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_5683c398f3",
+        ["Sawmill Pl"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_37a2df57b5",
+        ["Spoon Way"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_15fb9e7390",
+        ["Street"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_b454109993",
+        ["Voorhees Ave"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_b504d524dc",
+        ["White Horse Ln"] = "UI_MinidoracatMiniMapModMaps_Street_camden-county_b35792fd91",
+    },
+    ["clover-lake"] = {
+        ["Alfalfa Road"] = "UI_MinidoracatMiniMapModMaps_Street_clover-lake_b93a2e7a76",
+    },
+    ["daisy-county"] = {
+        ["Aster Lane"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_644fbae6f9",
+        ["Beech Street"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_449635d0cd",
+        ["Birch Lane"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_0a151ebed6",
+        ["Buttercup Court"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_2b73cfa391",
+        ["Cedar Avenue"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_490f448c87",
+        ["Cheng Hua Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_0b96e71057",
+        ["Clover Street"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_59eff419ef",
+        ["Dahlia Court"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_04ffdcf434",
+        ["Daisy Lane"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_c994396418",
+        ["Daisy Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_5f8311a587",
+        ["Dewdrop Lane"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_6319f737ba",
+        ["Dogwood Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_6e58906c98",
+        ["Er Xian Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_02c0d5c2a9",
+        ["Fern Way"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_13fb5c1314",
+        ["Fir Drive"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_5dfa978a6e",
+        ["Fishing Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_ee8327cfca",
+        ["Hazel Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_72c2c0c332",
+        ["Holly Drive"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_4820b0049f",
+        ["Jasmine Way"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_3cf8d18cde",
+        ["Kill Mingshi Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_a5bbf4fe93",
+        ["Little Flower Street"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_ad0a257dc1",
+        ["Magnolia Lane"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_96f465c514",
+        ["Maple Street"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_107dab9ce2",
+        ["Mingshi Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_1f8b1d39ee",
+        ["Palm Drive"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_819f8b3d78",
+        ["Peony Way"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_61c5d476de",
+        ["Pine Ridge Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_a826891544",
+        ["Rosemary Way"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_1775678fdb",
+        ["Sunflower Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_470dbfc31e",
+        ["Sycamore Drive"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_0efe719485",
+        ["Taibei Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_ad2acacf2e",
+        ["Thistle Lane"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_36da154307",
+        ["Tulip Lane"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_db69b412dd",
+        ["Unnamed Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_8a9577ffee",
+        ["Violet Street"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_acc7a22d88",
+        ["Weinifan Street"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_0ed482dc11",
+        ["Yu Lin Road"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_24d5c36f51",
+        ["unknown"] = "UI_MinidoracatMiniMapModMaps_Street_daisy-county_50d8b4a941",
+    },
+    ["eds-auto-salvage"] = {
+        ["Good Weekend Rd"] = "UI_MinidoracatMiniMapModMaps_Street_eds-auto-salvage_e19caf51c0",
+        ["Saltamontes St"] = "UI_MinidoracatMiniMapModMaps_Street_eds-auto-salvage_e3b39f7e93",
+    },
+    ["greenport"] = {
+        ["Arkturus Rd"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_643b14c1fb",
+        ["Cypress Lane"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_09a656bb8d",
+        ["Delmer Drive"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_688d75c499",
+        ["Dogwood Way"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_160fe4c517",
+        ["Greenport Parkway"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_5e5d8b164d",
+        ["Harrington Rd"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_c8fe87ee39",
+        ["Indie St"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_395ca58ddf",
+        ["Leroy Lane"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_a3543f076c",
+        ["Nuevo St"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_bbcb084107",
+        ["Oliver Rd"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_d72e922afc",
+        ["Pine Rd"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_282ebd9ccf",
+        ["Poplar Lane"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_d542fe1292",
+        ["Redbud Way"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_d6d2a72311",
+        ["Wayne Avenue"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_084d06f098",
+        ["Wharf Way"] = "UI_MinidoracatMiniMapModMaps_Street_greenport_1d7adcb0d1",
+    },
+    ["little-township"] = {
+        ["Loro Residential"] = "UI_MinidoracatMiniMapModMaps_Street_little-township_3ef81d32a5",
+        ["Lt Saltamontes Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_little-township_00c8bb7e93",
+        ["Street"] = "UI_MinidoracatMiniMapModMaps_Street_little-township_b454109993",
+    },
+    ["maplewood"] = {
+        ["Maplewood Avenue"] = "UI_MinidoracatMiniMapModMaps_Street_maplewood_d74235a0a9",
+        ["Maplewood Cresent"] = "UI_MinidoracatMiniMapModMaps_Street_maplewood_cba3a42a77",
+        ["Maplewood Drive"] = "UI_MinidoracatMiniMapModMaps_Street_maplewood_801b8b682f",
+        ["Maplewood Gardens"] = "UI_MinidoracatMiniMapModMaps_Street_maplewood_df62a5b371",
+        ["Maplewood Street"] = "UI_MinidoracatMiniMapModMaps_Street_maplewood_1cd8e40887",
+    },
+    ["megurigaoka-city"] = {
+        ["Chuo-dori"] = "UI_MinidoracatMiniMapModMaps_Street_megurigaoka-city_d0dbd8c0a0",
+        ["Gakuen-dori"] = "UI_MinidoracatMiniMapModMaps_Street_megurigaoka-city_e352e3f6af",
+    },
+    ["muldraugh-1993"] = {
+        ["1st St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_00a17fcaac",
+        ["2nd St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_5093cedf70",
+        ["3rd St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_8466d94fda",
+        ["Ball St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_16fab477d1",
+        ["Basham Ct"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_95ab37ff62",
+        ["Beech St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_86cdd16125",
+        ["Branch St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_a438e722d0",
+        ["Chestnut St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_b075020c9a",
+        ["Circle St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_6487967248",
+        ["Creekbed St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_556f0f5c6b",
+        ["Dewey St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_3706e353fc",
+        ["Dresel Cir"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_fc7677f821",
+        ["E Garnettsville Rd"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_0d34c4a531",
+        ["E Mabel St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_4e8b9c2d38",
+        ["Elm St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_3faa69225b",
+        ["Franklin St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_c52b248cc7",
+        ["Harris St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_03d397ba79",
+        ["Hill St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_40b79f555d",
+        ["Holston Dr"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_b8dfa0776c",
+        ["Holston Estates Pl"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_5f17ee7002",
+        ["Irma Drive"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_af7a79fdb5",
+        ["Karen Ct"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_1d75edde9f",
+        ["Kaska St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_64a87b678c",
+        ["Lynn St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_27a433d881",
+        ["Main St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_5b9db87521",
+        ["New St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_a612470046",
+        ["Oak St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_b16f84622d",
+        ["Park Ridge Rd"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_8de42b8b5e",
+        ["Perrin St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_c184252619",
+        ["Perry St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_3b8325fdf5",
+        ["Polston St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_8e6669c029",
+        ["Poplar St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_36cd1d94ba",
+        ["S Main St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_96abb7191a",
+        ["Shumate St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_3dc25cc81e",
+        ["Snyder Way"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_d9f4398707",
+        ["Sunset Ct"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_235d2482c9",
+        ["Timber Ct"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_e2884849eb",
+        ["W Mabel St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_dbd04e5a9b",
+        ["Walker Rd"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_40f352074f",
+        ["Walnut St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_67e92b60bb",
+        ["Warren St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_f906a06f27",
+        ["Watts St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_e33bed17ea",
+        ["Wendell St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_885e1303aa",
+        ["White Arrow"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_be1b0d08a2",
+        ["Wilson St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_bad77d1a2b",
+        ["Wood St"] = "UI_MinidoracatMiniMapModMaps_Street_muldraugh-1993_c9a7b33289",
+    },
+    ["raven-creek"] = {
+        ["Acker Ct"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_77c326f541",
+        ["Allegheny St"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_45fbeeb31c",
+        ["Beechwood Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_1964af8317",
+        ["Butler St"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_c2d32dc515",
+        ["Callowhill St"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_db2b0f55ce",
+        ["Court Dr"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_b782f7e21e",
+        ["David Blane Av"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_44a6209a9b",
+        ["David Blane Rd"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_31fadb393a",
+        ["David Blane Way"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_85eb9cc036",
+        ["Dunmore Dr"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_6f59cfdea4",
+        ["Lancaster St"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_39eb8bfc05",
+        ["Liberty Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_d52c2f3ba5",
+        ["Ludwin Bridge St"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_bdba9b57a9",
+        ["Mill St"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_bda485d08c",
+        ["Prescott Ave"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_2a734e4f23",
+        ["Prospect Terrace"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_784b63a004",
+        ["Raven Creek Way"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_9d8b7ac45d",
+        ["Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_b454109993",
+        ["View Ln"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_955ab9b107",
+        ["Waverly Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_2eaf4c166e",
+        ["Wharton St"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek_5cf58a5d86",
+    },
+    ["raven-creek-kardinal"] = {
+        ["Ash Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_7580fdfaff",
+        ["Berry Road"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_13c8e04d01",
+        ["Bridge Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_422d2045ea",
+        ["Center Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_7734bb4182",
+        ["Chestnut Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_0e7f02712b",
+        ["Church Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_c806935764",
+        ["Colemansville Road"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_aa9c187980",
+        ["College Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_28c3fed7e3",
+        ["Court Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_50a59cc92c",
+        ["Elm Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_d6d0cfb173",
+        ["Falmouth Road"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_3174e1e351",
+        ["Federal Avenue"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_c7105997e7",
+        ["Grandview Drive"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_7b3cd4a922",
+        ["Hickory Court"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_3c96b63906",
+        ["High Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_a1dcc0246b",
+        ["Highland Avenue"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_a78588de49",
+        ["Hillside Drive"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_aedcb570e4",
+        ["Hinkston Avenue"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_b6b456dff6",
+        ["Lair Road"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_60fd3737f3",
+        ["Leesburg Pike"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_a1e7ec9270",
+        ["Locust Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_121fee7d38",
+        ["Main Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_a3810f8073",
+        ["Maple Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_107dab9ce2",
+        ["Market Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_43ab980637",
+        ["Marshall Avenue"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_f04a7949bb",
+        ["McIlvain Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_ccf5c21964",
+        ["Mill Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_5902ae01de",
+        ["Mulberry Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_d04fcc5df6",
+        ["Oak Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_97d464549d",
+        ["Oddville Road"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_a041fbd192",
+        ["Paris Pike"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_988926d45c",
+        ["Parkway Drive"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_f62546fd71",
+        ["Pearl Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_00c1163242",
+        ["Penn Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_89f694ffcb",
+        ["Pike Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_c0e4cfffb9",
+        ["Pine Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_827e1861e7",
+        ["Pleasant Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_f4a1bf1541",
+        ["Poplar Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_6f13e682ca",
+        ["Raven Creek Road"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_eae1ef9b92",
+        ["River Road"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_54512f7ad9",
+        ["Short Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_c3ee63614b",
+        ["Vine Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_3e66068580",
+        ["Walnut Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_887d5d9d30",
+        ["Water Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_e272701994",
+    },
+    ["tikitown"] = {
+        ["Adams St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_21533884d1",
+        ["Artillery Ridge Ave"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_3c7ce92a20",
+        ["Ashland Pike"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_d89b818c9a",
+        ["Baker Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_61094e8cea",
+        ["Barlow Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_8d6775b678",
+        ["Barnes Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_5a664c5102",
+        ["Bluegrass Bend"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_39b586cbc8",
+        ["Boone Trace Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_67feac386e",
+        ["Brady Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4b32bf0375",
+        ["Buford Trace"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_f5f16bc1f7",
+        ["Burling St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_3dff7a813a",
+        ["Burnside Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_db48b7fc83",
+        ["Cardinal Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_9da4aa4218",
+        ["Carr Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_f13f91ce09",
+        ["Cox Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4a68de0a25",
+        ["Crimber St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_da2abf89c5",
+        ["Cumberland Trace"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_575c1ca144",
+        ["David Ireland Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_41fe8a1a06",
+        ["Devin Ln"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_8b2bf3639c",
+        ["Ellet Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4977ade21f",
+        ["Ellsworth Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_81daa193f5",
+        ["Fall Hill Dr"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_ed81342c0f",
+        ["First Line Dr"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_0392bed90c",
+        ["Gardner Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_cd9a7cb076",
+        ["Gibbon Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c0272eee36",
+        ["Gibson Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4932437471",
+        ["Gilsa St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_50433df734",
+        ["Gravel Ridge Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_79544effcf",
+        ["Gray Ave"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_74f80ffe01",
+        ["Greeley St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_090d90be85",
+        ["Gregg Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_f0d6b1c742",
+        ["Grierson Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_72051dd1a8",
+        ["Hammond Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_ebbbcebcd9",
+        ["Haupt Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_754ba1f7e4",
+        ["Henry Clay Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_bf9594b7d0",
+        ["Holler Ridge Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_5d943e8693",
+        ["Howard Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_6ced124bdb",
+        ["Howe St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_6b800b1aff",
+        ["Hunt Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_8776488730",
+        ["Ingalls Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_7bbfd155b3",
+        ["Irish Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_5915dcf9e5",
+        ["Ironworks Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4fa5574172",
+        ["Ivy Hill Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c5a8a86377",
+        ["James Andrews Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_0ad0189f2a",
+        ["Jay Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_665c7dd395",
+        ["Kelly Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_0ae08ba319",
+        ["Kilpatrick Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_5fe86bc478",
+        ["Knox Loop"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_598076eeb8",
+        ["Lander Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_b2a640fd19",
+        ["Letterman Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_35cd890072",
+        ["Lexington Ave"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_f26b921f67",
+        ["McCallum Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_8a1bfcad91",
+        ["McClellan Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_76aa9b5c55",
+        ["McDougall Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_bd49257120",
+        ["McDowell Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_005c6d52a7",
+        ["Meade Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c773603fc2",
+        ["Meagher Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_86ae8ad2f2",
+        ["Meigs Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_ca268dc028",
+        ["Memorial Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_d7de91a55f",
+        ["Merrit Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_767221449b",
+        ["Millstone Dr"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_d03c598d4f",
+        ["Northwestern Railroad (Muldraugh - Brandenburg)"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_0f3a659918",
+        ["Old Mill Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_3c9976dfc6",
+        ["Oriole Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_74bedca63c",
+        ["Pleasonton Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_ccc7d288da",
+        ["Railview Spur"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_783a209d38",
+        ["Rich Ave"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_0c2ec973a1",
+        ["Riverport Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_6ee4603a0f",
+        ["Rose Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_a81147c0c3",
+        ["Rosecrans Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4e20d19cf7",
+        ["Russell St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_3e9f1570b4",
+        ["Scott Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_96e6074e2c",
+        ["Sedgewick Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_fd9e745472",
+        ["Shaker Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_ce576bb880",
+        ["Shaw Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4011e07a02",
+        ["Sheriff Loop"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_d2d5075108",
+        ["Sherman Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_7a2e6af1f7",
+        ["Short Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c3ee63614b",
+        ["Spanner St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_efe5b932a7",
+        ["Stowe St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_7fe3f66fdc",
+        ["Sycamore St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_aedcd3b9ea",
+        ["Thomas Ave"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_aab11c4be5",
+        ["Todd Loop"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c95f65edff",
+        ["Totten Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_68d95f7ef0",
+        ["Toucan Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_990616d109",
+        ["Trail Ridge Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_a18218fbdb",
+        ["Turner Bend"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c2ccd9fc9c",
+        ["Weinzierl Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c94f7c8ed2",
+        ["Willich Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_5c82011cc0",
+        ["Wilson Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_1911f8bb41",
+        ["Wright Ave"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4b19e4002d",
+    },
+    ["west-point-expansion"] = {
+        ["Chestnut St"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_b075020c9a",
+        ["Depot Way"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_f21ad7c4a0",
+        ["Dixie Spur Rd"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_3bf5fb80ce",
+        ["Elmwood Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_caaf29d7cc",
+        ["Garrison Ct"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_d216f514d6",
+        ["Hillcrest Ln"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_5495b2fe22",
+        ["Hillcrest St"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_1e3b9b9dac",
+        ["North ww2commander St"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_bd8fbecaad",
+        ["Oakridge Ct"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_fa83c7ba93",
+        ["Overlook Ln"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_f75dafd947",
+        ["Pine Hollow Rd"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_d9b9c934f9",
+        ["South ww2commander St"] = "UI_MinidoracatMiniMapModMaps_Street_west-point-expansion_7d566165d3",
+    },
+    ["wildsteel"] = {
+        ["Blackstone Av"] = "UI_MinidoracatMiniMapModMaps_Street_wildsteel_ac4c45757d",
+        ["Comuna Rd"] = "UI_MinidoracatMiniMapModMaps_Street_wildsteel_f030df5b24",
+        ["Pecado St"] = "UI_MinidoracatMiniMapModMaps_Street_wildsteel_a68421acf9",
+        ["Spiffo's Av"] = "UI_MinidoracatMiniMapModMaps_Street_wildsteel_655b64f493",
+    },
+}

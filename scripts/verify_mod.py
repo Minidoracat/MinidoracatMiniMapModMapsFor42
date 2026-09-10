@@ -297,6 +297,25 @@ if os.path.isfile(_cl):
                     leaks.append(f"CHANGELOG.md:{lineno} {desc}（{mm.group()[:40]}）")
     fail("CHANGELOG 無基礎設施洩漏樣式", leaks) if leaks else ok("CHANGELOG 無基礎設施洩漏樣式")
 
+# ---- 名稱與獨立道路修正資料 ----
+for script, label in (
+    ("gen_streets_i18n.py", "街名翻譯生成物"),
+    ("gen_street_repairs.py", "獨立道路修正生成物"),
+):
+    try:
+        result = subprocess.run(
+            [sys.executable, os.path.join(REPO, "scripts", script), "verify"],
+            cwd=REPO, capture_output=True, text=True, encoding="utf-8", timeout=60,
+        )
+        if result.stdout.strip():
+            print(result.stdout.strip())
+        if result.returncode:
+            fail(label, [result.stderr.strip() or result.stdout.strip() or f"exit {result.returncode}"])
+        else:
+            ok(label)
+    except (OSError, subprocess.TimeoutExpired) as error:
+        fail(label, [str(error)])
+
 # ---- 總結 ----
 print()
 print(f"PASS {len(passed)} / FAIL {len(failed)} / SKIP {len(skipped)}")

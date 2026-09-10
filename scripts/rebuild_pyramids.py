@@ -28,10 +28,11 @@ WORKSHOP = Path(r"D:\SteamLibrary\steamapps\workshop\content\108600")
 def parse_registrations(text):
     entries = []
     # 每條目從 "{ zip =" 起、到 bounds 值結束；bounds 是唯一巢狀 {}。
-    # zip/mapMod 之後到 bounds 之前的鍵一律寬鬆吃下（mapDir、streetI18n…）：
+    # zip/mapMod 之後到 bounds 之前的鍵一律寬鬆吃下（mapDir、streetNames…）：
     # 逐一列舉的話，主 MOD 每加一個註冊欄位就會讓這裡靜默漏解析＝漏渲。
     # 字串值必須以 "…" 精確匹配——mapDir 值本身含逗號（"Megurigaoka City, Kanagawa"）。
-    opt_key = r'\s*\w+\s*=\s*(?:"[^"]*"|[\w.+-]+)\s*,'
+    # 第二個分支＝表索引值（streetNames = StreetNames["<dataset>"]）。
+    opt_key = r'\s*\w+\s*=\s*(?:"[^"]*"|[\w.]+\s*\[\s*"[^"]*"\s*\]|[\w.+-]+)\s*,'
     pat = re.compile(
         r'\{\s*zip\s*=\s*"(?P<zip>[^"]+)"\s*,\s*mapMod\s*=\s*"(?P<mod>[^"]+)"\s*,'
         rf'(?P<opts>(?:{opt_key})*)'
