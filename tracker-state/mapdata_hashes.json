@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T10:38:36Z",
+  "generated_at": "2026-09-14T10:59:56Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -433,7 +433,7 @@
       }
     },
     "3494374578": {
-      "assets": "a5b96b38265616b513f2d8161f78a0547911b3cd34e8735f05b2d2ce0cbfeea7",
+      "assets": "ef0512e15761faf4e1423c097175aa838ce6921caccbc63cb8779fec92e7c9bb",
       "maps": {
         "SZ_Bunker_3": {
           "bounds": [
@@ -680,7 +680,7 @@
       }
     },
     "3520263838": {
-      "assets": "e1880b22bc6caa0aaef777cf83632d14b04be30977fb03d2bea12052028850f2",
+      "assets": "2729d53d60dd8391de3855187eda36238ec015b4ed48fa9c934378064fa2f418",
       "maps": {}
     },
     "3522517059": {
