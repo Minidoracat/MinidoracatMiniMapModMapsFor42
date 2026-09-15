@@ -1,5 +1,9 @@
-# MinidoracatMiniMapModMapsFor42 Workshop 符號連結管理
-# 用途：將開發目錄連結到 Zomboid Workshop 和 mods 目錄，方便本地測試和 Workshop 上傳
+﻿# MinidoracatMiniMapModMapsFor42 開發同步管理（本 repo 專屬版：含地圖 MOD 全量掛載）
+# 用途：本包（與主 MOD）以「實體副本」同步到 Zomboid\Workshop 與 Zomboid\mods，方便本地測試和 Workshop 上傳
+# 為什麼本包不再建符號連結：PZ 會把 Workshop/mods 路徑反解成真實路徑再映射 MOD 來源，
+#   link 會讓 A MOD 的來源被串成別的 repo 的內容（已用真 jar 驗證）——家族自身 MOD 一律走 sync_mod.ps1。
+#   選單 4-7 的「第三方地圖 MOD」仍走 Steam Workshop 目錄的 junction：來源是 Steam 唯讀安裝目錄、
+#   數十 GB 圖資，複製既無意義又塞爆硬碟，且不是家族 repo（不受同步引擎管轄）。
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
@@ -20,16 +24,18 @@ if ($env:PROJECT_ROOT) {
 $ModSource = Join-Path $ProjectRoot "MOD\MinidoracatMiniMapModMapsFor42"
 $ModContent = Join-Path $ModSource "Contents\mods\MinidoracatMiniMapModMapsFor42"
 
-# Workshop 符號連結（用於上傳）
-$WorkshopDir = Join-Path $env:UserProfile "Zomboid\Workshop"
-$WorkshopLink = Join-Path $WorkshopDir "MinidoracatMiniMapModMapsFor42"
+# Zomboid 快取根（同步目的地、地圖 MOD 連結與伺服器設定都由此推導）
+$ZomboidDir = Join-Path $env:UserProfile "Zomboid"
 
-# Mods 符號連結（用於遊戲載入，PZ 優先從此處讀取；連結名 = mod id）
-$ModsDir = Join-Path $env:UserProfile "Zomboid\mods"
-$ModsLink = Join-Path $ModsDir "MinidoracatMiniMapModMapsFor42"
+# Workshop 副本（用於上傳；目錄名 = 資料夾名）
+$WorkshopDest = Join-Path (Join-Path $ZomboidDir "Workshop") "MinidoracatMiniMapModMapsFor42"
+
+# mods 副本（no-Steam 測試也可讀取；目錄名 = mod id）
+$ModsDir = Join-Path $ZomboidDir "mods"
+$ModsDest = Join-Path $ModsDir "MinidoracatMiniMapModMapsFor42"
 
 # 非 Steam 伺服器設定檔（-nosteam 伺服器不掃 Workshop，需把 mod id 寫進 ini 的 Mods=）
-$ServerIniDir = Join-Path $env:UserProfile "Zomboid\Server"
+$ServerIniDir = Join-Path $ZomboidDir "Server"
 # 伺服器契約（AGENTS.md）：Mods= 需同時含主 MOD 與本包；移除時只動本包，不動共用的主 MOD
 $ServerModIds = @("MinidoracatMiniMapFor42", "MinidoracatMiniMapModMapsFor42")
 $ServerModIdsOwn = @("MinidoracatMiniMapModMapsFor42")
@@ -62,16 +68,16 @@ $TranslationModsLast = @('CatModLangFor42', 'CatLangFor42')
 # 注意：已在存檔啟用過的圖拔掉會觸發 WorldDictionary 錯誤——排除請配合開新存檔。
 $MapModExclude = @(
     'IrisEyot',   # 鳶尾島
-    # tikitown：引擎 animset checksum 的大小寫 bug 會讓「伺服器／多人」啟動即崩。
-    # AdvancedAnimator.loadModMedia(:791) 把 mod 目錄路徑 toLowerCase 當 URI base，
-    # 再 relativize 真實大小寫的 media\AnimSets\...\GoKartIdle.xml → relativize 失敗、
+    # tikitown：2026-09-09 no-steam 多人重測仍在 GoKartIdle.xml 動畫校驗失敗，依使用者要求恢復排除。
+    # 資源檔實際存在，但 AdvancedAnimator.buildChecksum 無法由資源索引解析路徑；不視為道路座標問題。
+    # 需另查引擎路徑解析與本機連結環境，不能只歸因為檔名大小寫。
     # 產出小寫絕對路徑 → getAbsolutePath 查表 miss → buildChecksum 拋
     # IllegalStateException → GameServer.doMinimumInit 中斷 → lua 環境沒建起
     # （SpawnRegionMgr undefined）→ 地圖資料夾清單全空 → worldgen 為 nil →
     # WorldGenOverride.lua 索引 biomes 失敗 → NPE → Server Terminated。
     # 2026-08-26 實測 log 全檔只有這一個 couldn't find，其他有 AnimSets 的 MOD 不觸發。
     # AdvancedAnimator.load(:845) 的 checksum 只在 GameServer.server || GameClient.client
-    # 執行 → **單機不受影響**：提基鎮（含其 99 條街名）改用單機驗收。
+    # 執行；單機不走這條多人校驗。這次只恢復排除，不改上游動畫或停用校驗。
     'tikitown',
     # Taibeiroad4：MOD 自身的 B41 殘留 lua 讓「多人連線」後畫面全黑。
     # common/media/lua/shared/TCGMusicDefenitionsTCBoomboxtb1.lua 第 1 行
@@ -110,20 +116,62 @@ if (-not (Test-Path (Join-Path $ModContent "42\mod.info"))) {
     exit 1
 }
 
-# 清理誤入 MOD 內容樹的 .omc 開發狀態目錄（AI 工具 hook 會就地寫入；
-# git 已忽略，但 Workshop 上傳是整包目錄，出貨包內必須不存在）
-Get-ChildItem -Path $ModSource -Recurse -Force -Directory -Filter ".omc" -ErrorAction SilentlyContinue |
-    Remove-Item -Recurse -Force -Confirm:$false
+# 註：AI 工具狀態目錄（.omc 等）不再就地刪除——同步引擎複製時直接排除，來源保持原狀。
+
+# ============================================
+# 同步引擎（sync_mod.ps1）：bat 以 ScriptBlock 執行時沒有 $PSScriptRoot，
+# 所以先找專案 scripts/，再退回腳本自身同目錄。缺引擎＝fail-closed，絕不「沒同步照樣繼續」。
+# ============================================
+$enginePaths = @(Join-Path $ProjectRoot "scripts\sync_mod.ps1")
+if ($PSScriptRoot) { $enginePaths += (Join-Path $PSScriptRoot "sync_mod.ps1") }
+$SyncEngine = @($enginePaths | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1)[0]
+if (-not $SyncEngine) {
+    Write-Host ""
+    Write-Host "[錯誤] 找不到同步引擎 sync_mod.ps1，已中止（不會建立任何副本或連結）" -ForegroundColor Red
+    foreach ($p in $enginePaths) { Write-Host "  找過：$p" -ForegroundColor DarkGray }
+    Write-Host "  請從 D:/github/pz-family-docs/scripts 同步腳本到本 repo 的 scripts/。" -ForegroundColor Yellow
+    Read-Host "按 Enter 結束"
+    exit 1
+}
+. $SyncEngine
+foreach ($fn in @('Invoke-PZModSync', 'Remove-PZModSync')) {
+    if (-not (Get-Command $fn -CommandType Function -ErrorAction SilentlyContinue)) {
+        Write-Host ""
+        Write-Host "[錯誤] $SyncEngine 未提供 $fn，引擎版本不符，已中止" -ForegroundColor Red
+        Read-Host "按 Enter 結束"
+        exit 1
+    }
+}
 
 # ============================================
 # 功能函式
 # ============================================
 
+# 只接受引擎契約的單一布林成功值，避免雜訊輸出被 PowerShell 當作成功。
+function Test-SyncResult {
+    param($Result)
+    return ($Result -is [bool] -and $Result)
+}
+
+# 唯讀：狀態顯示用（本包已不建連結；地圖 MOD 的連結偵測走 Test-IsSymlinkL）
 function Test-IsSymlink {
     param([string]$Path)
     if (-not (Test-Path $Path)) { return $false }
     $item = Get-Item $Path -Force -ErrorAction SilentlyContinue
     return ($null -ne $item.LinkType)
+}
+
+function Show-DestState {
+    param([string]$Label, [string]$Path)
+    Write-Host "  [$Label] " -NoNewline
+    if (-not (Test-Path $Path)) {
+        Write-Host "未同步" -ForegroundColor DarkGray
+    } elseif (Test-IsSymlink $Path) {
+        $target = (Get-Item $Path -Force).Target
+        Write-Host "舊符號連結 -> $target（下次同步會先歸檔再改成實體副本）" -ForegroundColor Yellow
+    } else {
+        Write-Host "實體副本" -ForegroundColor Green
+    }
 }
 
 # 地圖 MOD 目錄名常含 [] 等萬用字元，一律走 -LiteralPath 版本
@@ -316,28 +364,15 @@ function Show-Status {
     }
 
     Write-Host ""
-    Write-Host "=== 連結狀態 ===" -ForegroundColor Cyan
+    Write-Host "=== 同步狀態（本包＋家族依賴）===" -ForegroundColor Cyan
+    Show-DestState -Label "Workshop" -Path $WorkshopDest
+    Show-DestState -Label "mods    " -Path $ModsDest
 
-    # Workshop 連結
-    Write-Host "  [Workshop] " -NoNewline
-    if (-not (Test-Path $WorkshopLink)) {
-        Write-Host "未掛載" -ForegroundColor DarkGray
-    } elseif (Test-IsSymlink $WorkshopLink) {
-        $target = (Get-Item $WorkshopLink -Force).Target
-        Write-Host "已掛載 -> $target" -ForegroundColor Green
+    # 內容一致性（含主 MOD 等家族依賴）交給引擎唯讀檢查：CheckOnly 不寫入任何東西
+    if (Test-SyncResult (Invoke-PZModSync -ProjectRoot $ProjectRoot -ZomboidDir $ZomboidDir -CheckOnly)) {
+        Write-Host "  [一致性] 已同步，副本與來源一致" -ForegroundColor Green
     } else {
-        Write-Host "實體資料夾（非符號連結）" -ForegroundColor Yellow
-    }
-
-    # Mods 連結
-    Write-Host "  [Mods]     " -NoNewline
-    if (-not (Test-Path $ModsLink)) {
-        Write-Host "未掛載" -ForegroundColor DarkGray
-    } elseif (Test-IsSymlink $ModsLink) {
-        $target = (Get-Item $ModsLink -Force).Target
-        Write-Host "已掛載 -> $target" -ForegroundColor Green
-    } else {
-        Write-Host "實體資料夾（Steam 快取？）" -ForegroundColor Yellow
+        Write-Host "  [一致性] 需同步——請執行選單 [1]" -ForegroundColor Yellow
     }
 
     # 地圖 MOD 連結統計（不掃 Workshop——只數 mods 目錄裡指向 108600 的符號連結）
@@ -350,60 +385,6 @@ function Show-Status {
         Write-Host "未掛載（選單 4/5 建立）" -ForegroundColor DarkGray
     }
     Write-Host ""
-}
-
-function New-SymlinkSafe {
-    param([string]$LinkPath, [string]$Target, [string]$Label)
-
-    if (Test-Path $LinkPath) {
-        if (Test-IsSymlink $LinkPath) {
-            $existing = (Get-Item $LinkPath -Force).Target
-            Write-Host "  [$Label] 已掛載 -> $existing" -ForegroundColor Green
-            return
-        }
-        # 實體資料夾（可能是 Steam 快取）—— 自動重新命名
-        $bakPath = "$LinkPath.bak"
-        if (Test-Path $bakPath) {
-            Remove-Item $bakPath -Recurse -Force -ErrorAction SilentlyContinue
-        }
-        Rename-Item $LinkPath $bakPath -Force
-        Write-Host "  [$Label] 已將舊資料夾重新命名為 .bak" -ForegroundColor Yellow
-    }
-
-    # 確保父目錄存在
-    $parentDir = Split-Path -Parent $LinkPath
-    if (-not (Test-Path $parentDir)) {
-        New-Item -ItemType Directory -Path $parentDir -Force | Out-Null
-    }
-
-    # 嘗試建立符號連結
-    try {
-        New-Item -ItemType SymbolicLink -Path $LinkPath -Target $Target -ErrorAction Stop | Out-Null
-        Write-Host "  [$Label] 建立成功" -ForegroundColor Green
-        Write-Host "           $LinkPath" -ForegroundColor DarkGray
-        Write-Host "           -> $Target" -ForegroundColor DarkGray
-        return $true
-    } catch {
-        return $false
-    }
-}
-
-function New-SymlinkElevated {
-    param([string]$LinkPath, [string]$Target, [string]$Label)
-    try {
-        Start-Process powershell.exe -Verb RunAs -Wait -ArgumentList @(
-            "-NoProfile",
-            "-ExecutionPolicy", "Bypass",
-            "-Command",
-            "New-Item -ItemType SymbolicLink -Path '$LinkPath' -Target '$Target' -ErrorAction Stop | Out-Null"
-        )
-        if (Test-IsSymlink $LinkPath) {
-            Write-Host "  [$Label] 建立成功（UAC）" -ForegroundColor Green
-            return $true
-        }
-    } catch {}
-    Write-Host "  [$Label] 建立失敗" -ForegroundColor Red
-    return $false
 }
 
 # ============================================
@@ -778,89 +759,47 @@ function Invoke-MapMods {
     }
 }
 
-function Mount-Workshop {
+# ============================================
+# 本包同步 / 卸載（實作全在 sync_mod.ps1；地圖 MOD 走下方選單 4-7 的第三方連結流程）
+# ============================================
+
+function Sync-Workshop {
     Write-Host ""
-    Write-Host "正在建立符號連結..." -ForegroundColor Cyan
+    Write-Host "正在同步實體副本（Workshop + mods，含主 MOD 等家族依賴）..." -ForegroundColor Cyan
     Write-Host ""
 
-    # 嘗試不需提權建立兩個連結
-    $ws = New-SymlinkSafe -LinkPath $WorkshopLink -Target $ModSource -Label "Workshop"
-    $md = New-SymlinkSafe -LinkPath $ModsLink -Target $ModContent -Label "Mods"
+    $ok = Test-SyncResult (Invoke-PZModSync -ProjectRoot $ProjectRoot -ZomboidDir $ZomboidDir)
 
-    # 如果任一個失敗，嘗試 UAC 提權
-    $needElevate = @()
-    if ($ws -eq $false) { $needElevate += @{ Link=$WorkshopLink; Target=$ModSource; Label="Workshop" } }
-    if ($md -eq $false) { $needElevate += @{ Link=$ModsLink; Target=$ModContent; Label="Mods" } }
-
-    if ($needElevate.Count -gt 0) {
+    Write-Host ""
+    if (-not $ok) {
+        # 失敗不得假成功：不寫 ini、不提示可以開遊戲
+        Write-Host "[未完成] 同步失敗，請依上方訊息處理（遊戲或伺服器執行中請先關閉後重試）。" -ForegroundColor Red
+        Write-Host "[提示] 同步未成功，略過伺服器 ini 寫入詢問" -ForegroundColor Yellow
         Write-Host ""
-        Write-Host "[提示] 需要管理員權限，正在請求提升..." -ForegroundColor Yellow
-        foreach ($item in $needElevate) {
-            New-SymlinkElevated -LinkPath $item.Link -Target $item.Target -Label $item.Label
-        }
-    }
-
-    Write-Host ""
-    if ((Test-IsSymlink $WorkshopLink) -and (Test-IsSymlink $ModsLink)) {
-        Write-Host "[全部完成] 現在可以在 PZ 遊戲中測試此 MOD。" -ForegroundColor Green
-    } else {
-        Write-Host "[部分完成] 請檢查上方狀態。" -ForegroundColor Yellow
-        Write-Host "替代方案：啟用 Windows 開發人員模式後即可免管理員建立連結：" -ForegroundColor Yellow
-        Write-Host "  設定 -> 系統 -> 開發人員專用 -> 開發人員模式" -ForegroundColor Yellow
-    }
-
-    Write-Host ""
-    if ((Test-IsSymlink $ModsLink) -and (Test-Path (Join-Path $ModsDir "MinidoracatMiniMapFor42"))) {
-        Invoke-ServerIniPrompt
-    } else {
-        Write-Host "[提示] Mods 連結未建立或主 MOD 不在 mods 目錄，略過伺服器設定檔寫入詢問" -ForegroundColor Yellow
-    }
-    Write-Host ""
-}
-
-function Remove-SymlinkSafe {
-    param([string]$LinkPath, [string]$Label)
-
-    if (-not (Test-Path $LinkPath)) {
-        Write-Host "  [$Label] 不存在，跳過" -ForegroundColor DarkGray
         return
     }
 
-    if (-not (Test-IsSymlink $LinkPath)) {
-        Write-Host "  [$Label] 是實體資料夾，跳過（請手動處理）" -ForegroundColor Yellow
-        return
-    }
-
-    try {
-        (Get-Item $LinkPath -Force).Delete()
-        Write-Host "  [$Label] 已移除" -ForegroundColor Green
-    } catch {
-        Write-Host "  [$Label] 需要提權移除..." -ForegroundColor Yellow
-        try {
-            Start-Process powershell.exe -Verb RunAs -Wait -ArgumentList @(
-                "-NoProfile",
-                "-ExecutionPolicy", "Bypass",
-                "-Command",
-                "(Get-Item '$LinkPath' -Force).Delete()"
-            )
-            if (-not (Test-Path $LinkPath)) {
-                Write-Host "  [$Label] 已移除（UAC）" -ForegroundColor Green
-            } else {
-                Write-Host "  [$Label] 移除失敗" -ForegroundColor Red
-            }
-        } catch {
-            Write-Host "  [$Label] 移除失敗: $($_.Exception.Message)" -ForegroundColor Red
-        }
-    }
+    Write-Host "[全部完成] 現在可以在 PZ 遊戲中測試此 MOD。" -ForegroundColor Green
+    Write-Host "[提示] 地圖 MOD 圖資（第三方 Steam 訂閱）不在同步範圍——用選單 4/5 建立連結。" -ForegroundColor DarkGray
+    Write-Host ""
+    Invoke-ServerIniPrompt
+    Write-Host ""
 }
 
-function Dismount-Workshop {
+function Unsync-Workshop {
     Write-Host ""
-    Write-Host "正在移除符號連結..." -ForegroundColor Cyan
+    Write-Host "正在歸檔受管副本（只動本 repo 的 Workshop/mods 副本，主 MOD 與地圖連結保留）..." -ForegroundColor Cyan
     Write-Host ""
-    Remove-SymlinkSafe -LinkPath $WorkshopLink -Label "Workshop"
-    Remove-SymlinkSafe -LinkPath $ModsLink -Label "Mods"
 
+    $ok = Test-SyncResult (Remove-PZModSync -ProjectRoot $ProjectRoot -ZomboidDir $ZomboidDir)
+
+    Write-Host ""
+    if (-not $ok) {
+        Write-Host "[未完成] 卸載未完成，請檢查上方歸檔結果；略過伺服器 ini 移除詢問。" -ForegroundColor Red
+        Write-Host ""
+        return
+    }
+    Write-Host "[完成] 受管副本已歸檔。" -ForegroundColor Green
     Write-Host ""
     Invoke-ServerIniPrompt -Remove
     Write-Host ""
@@ -869,22 +808,22 @@ function Dismount-Workshop {
 # ============================================
 # 主選單
 # ============================================
-$Host.UI.RawUI.WindowTitle = "MinidoracatMiniMapModMapsFor42 Workshop 連結管理"
+$Host.UI.RawUI.WindowTitle = "MinidoracatMiniMapModMapsFor42 開發同步管理"
 
 while ($true) {
     Clear-Host
     Write-Host "============================================" -ForegroundColor Cyan
-    Write-Host "  MinidoracatMiniMapModMapsFor42 符號連結管理" -ForegroundColor Cyan
+    Write-Host "  MinidoracatMiniMapModMapsFor42 開發同步管理" -ForegroundColor Cyan
     Write-Host "============================================" -ForegroundColor Cyan
     Write-Host ""
-    Write-Host "  Workshop: $WorkshopLink"
-    Write-Host "  Mods:     $ModsLink"
+    Write-Host "  Workshop: $WorkshopDest"
+    Write-Host "  mods:     $ModsDest"
     Write-Host ""
-    Write-Host "  [1] 掛載本包 - 建立符號連結（Workshop + Mods）"
-    Write-Host "  [2] 卸載本包 - 移除符號連結（Workshop + Mods）"
-    Write-Host "  [3] 查看目前狀態"
+    Write-Host "  [1] 同步本包 - 複製到 Workshop + mods（實體副本，含主 MOD）"
+    Write-Host "  [2] 卸載本包 - 歸檔本 repo 的受管副本（主 MOD 與地圖連結保留）"
+    Write-Host "  [3] 查看目前狀態（唯讀檢查）"
     Write-Host ""
-    Write-Host "  --- 支援的地圖 MOD（依 Lua 註冊清單）---" -ForegroundColor DarkCyan
+    Write-Host "  --- 支援的地圖 MOD（第三方 Steam 訂閱，依 Lua 註冊清單；仍用 junction 連結）---" -ForegroundColor DarkCyan
     Write-Host "  [4] 地圖 MOD：連結＋寫入伺服器（mods 連結 + Mods= + Map= → $MapTestServerName.ini）"
     Write-Host "  [5] 地圖 MOD：只建 mods 連結（不動伺服器設定）"
     Write-Host "  [6] 地圖 MOD：只從伺服器移除（$MapTestServerName.ini 的 Mods= + Map=；連結保留）"
@@ -896,8 +835,8 @@ while ($true) {
     $choice = Read-Host "請選擇"
 
     switch ($choice.ToUpper()) {
-        "1" { Mount-Workshop; Read-Host "按 Enter 繼續" }
-        "2" { Dismount-Workshop; Read-Host "按 Enter 繼續" }
+        "1" { Sync-Workshop; Read-Host "按 Enter 繼續" }
+        "2" { Unsync-Workshop; Read-Host "按 Enter 繼續" }
         "3" { Show-Status; Read-Host "按 Enter 繼續" }
         "4" { Invoke-MapMods -Mode 'link-server'; Read-Host "按 Enter 繼續" }
         "5" { Invoke-MapMods -Mode 'link-only'; Read-Host "按 Enter 繼續" }

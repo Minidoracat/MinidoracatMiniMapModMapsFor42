@@ -157,13 +157,29 @@
 | 7號淪陷區（Sector-7 Breach，含 Highway） | 3513107552 | 2026-07-21 | v0.4.1 移除支援；正式伺服器移除（下架項目會讓開服崩潰） |
 | White Wolf Ridge | 3499861271 | 收藏建立前 | 未收錄（無圖） |
 
+## 本機地圖測試
+
+1. `link_workshop.bat` 選 **4**：建立地圖／材質包的本機連結，並寫入 `maptest.ini`；不會把整套地圖寫進 `servertest.ini`。腳本排除清單中的地圖不會加入。
+2. 開啟 `PZ_Test.bat`，在「伺服器設定」下拉選 `maptest`，選 Steam／no-Steam 與「伺服器 + 客戶端」，需要時勾「啟用 Debug」，再按 **同步並啟動**。no-Steam 可選兩個客戶端；選擇會按專案保存，下次不用重選。
+3. 等伺服器啟動完成後，在遊戲選「加入」，連到 **127.0.0.1，埠 16271**。一鍵選項只啟動程式，不會自動連線；不要沿用舊的 `16261` 連線。兩端模式須一致，切換前先正常關服。
+
+兩個伺服器的世界分別位於 `%USERPROFILE%\Zomboid\Saves\Multiplayer\maptest` 與 `servertest`；
+重新啟動會沿用各自的既有存檔，不會自動清空或複製另一份世界。啟動後可在「詳細紀錄」查看設定檔、連線埠與存檔路徑。
+
+啟動器回歸（攔截程式啟動，只使用暫存設定，不碰真實存檔；同步會在 TEMP fixture 上真的複製檔案）：
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test_pz_launcher.ps1
+# 也可驗其他變體（需與該啟動器同目錄的 scripts/sync_mod.ps1）
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test_pz_launcher.ps1 -LauncherPath ..\MinidoracatMiniMapFor42\scripts\PZ_Test.ps1
+```
+
 ## 專案結構
 
 ```
 MinidoracatMiniMapModMapsFor42/
 ├── STEAM_DESCRIPTION.md           # Steam 商店頁描述（繁中）——改動時必同步 _EN / _JP
 │                                  # 版；_CN 由 `opencc tw2sp` 自繁中轉出，勿手改
-├── link_workshop.bat              # Workshop 符號連結管理（雙擊啟動）
+├── link_workshop.bat              # 本包實體同步管理／第三方地圖獨立管理
 ├── PZ_Test.bat                    # PZ 本地測試啟動器（雙擊啟動）
 ├── .github/workflows/track_maps.yml  # 每日追蹤：地圖更新（含圖資 hash 重渲判定）＋遊戲 build
 ├── scripts/                       # PowerShell / Python 腳本（map_tracker.py＝追蹤器本體）
