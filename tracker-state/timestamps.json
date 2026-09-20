@@ -3,7 +3,7 @@
     "build": "24909800",
     "detected_at": "2026-08-27T16:50:06Z"
   },
-  "generated_at": "2026-09-19T09:44:00Z",
+  "generated_at": "2026-09-20T10:07:54Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -247,7 +247,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1785942347,
+      "time_updated": 1789883053,
       "title": "Raven Creek B42"
     },
     "3485388592": {
@@ -261,14 +261,14 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1785815091,
+      "time_updated": 1789882746,
       "title": "Fort Waterfront B42"
     },
     "3490580478": {
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1789765924,
+      "time_updated": 1789882321,
       "title": "Fort Benning B42"
     },
     "3493916941": {
@@ -286,9 +286,9 @@
       "title": "[B42] SecretZ Pandemic (Alpha)"
     },
     "3494693499": {
-      "last_result": 1,
-      "removed": false,
-      "removed_at": null,
+      "last_result": 9,
+      "removed": true,
+      "removed_at": "2026-09-20T10:06:40Z",
       "time_updated": 1756609790,
       "title": "Kentucky Center Manor_Renovation, KY"
     },
