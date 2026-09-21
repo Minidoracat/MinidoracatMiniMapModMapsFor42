@@ -40,6 +40,8 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 10496, 8960, 11008, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_MuldraughFireDept" },
         { zip = "Estate 39.pyramid.zip", mapMod = "Estate 39",
             bounds = { 8192, 9728, 8704, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_Estate39" },
+        { zip = "Atlas Underground Complex.pyramid.zip", mapMod = "Atlas Underground", mapDir = "Atlas Underground Complex",
+            bounds = { 9728, 11264, 10752, 12544 }, nameKey = "UI_MinidoracatMiniMapModMaps_AtlasUnderground" },
         -- 唐人街群組＝兩個 Workshop 項目、三個 mod ID，彼此**不是**依賴關係：
         --   3703704638 拓展（本條與下一條，同項目互斥變體）cell 42-43 × 32-35
         --   3703704021 本體（再下一條）cell 43-44 × 33-36
@@ -99,6 +101,8 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 11264, 7936, 11776, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_ErikasFurniture" },
         { zip = "Floatopia.pyramid.zip", mapMod = "Floatopia",
             bounds = { 4352, 5376, 4864, 5888 }, nameKey = "UI_MinidoracatMiniMapModMaps_Floatopia" },
+        { zip = "FoxtrotWarehouse.pyramid.zip", mapMod = "FoxtrotWarehouse", mapDir = "FoxtrotWarehouse",
+            bounds = { 10496, 13056, 11008, 13568 }, nameKey = "UI_MinidoracatMiniMapModMaps_FoxtrotWarehouse" },
         { zip = "Fort Benning B42.pyramid.zip", mapMod = "FortBenningB42",
             bounds = { 5888, 6656, 6400, 7424 }, nameKey = "UI_MinidoracatMiniMapModMaps_FortBenning" },
         { zip = "Fort JadeLake.pyramid.zip", mapMod = "Fort JadeLake",

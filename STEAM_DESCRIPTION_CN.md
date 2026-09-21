@@ -14,7 +14,7 @@
 [/list]
 
 [h2]🗺️ 收录地图与许愿[/h2]
-目前支持 [b]77 个地图 MOD（100 张地图）[/b]，一键订阅可用 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支持地图收藏[/url]。完整清单、原作者致谢、以及「许愿想要的地图」都在
+目前开发中支持 [b]79 个地图 MOD（102 张地图）[/b]。Foxtrot Warehouse 与 Atlas Underground Complex 地表图尚未发布；[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支持地图收藏[/url]将于发布时同步。完整清单、原作者致谢、以及「许愿想要的地图」都在
 [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]讨论区[/url]——欢迎留言许愿！
 也可以用 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue 表单[/url]申请支持新地图（会直接进开发待办，处理最快）。
 
@@ -26,6 +26,7 @@
 [h2]道路数据与支持范围[/h2]
 道路修正使用独立于语言的数据：已知轮廓道路改为中心线，来源几何不符就跳过；确定重复的标签只抑制显示，不删除导航道路。不确定的重叠仍保留。图片支持不等于导航／自动驾驶认证。
 详细规范与已知限制请见[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]英中双语置顶说明[/url]。
+Foxtrot Warehouse 与 Atlanta 的地块完全重叠，请二选一。Atlas Underground Complex [b]仅支持地表图，不含地下楼层[/b]，与 SecretZ 等多张地图部分重叠，不保证混用兼容。
 
 [h2]🔧 支持范围说明[/h2]
 本包提供[b]小地图／世界地图图片与街名翻译数据[/b]，不修改实际游戏地形。

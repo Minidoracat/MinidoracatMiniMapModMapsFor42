@@ -582,7 +582,7 @@
             8448,
             9984
           ],
-          "hash": "3a90c33e6841697b68ff88c4e960729a8882a94dcc3dc21c8f31326f3dd35c23"
+          "hash": "5919e0657d2244c7bb407b0b7bc20ec621095f8e66ebb47685795349829dcc6b"
         }
       }
     },
@@ -866,6 +866,20 @@
             1280
           ],
           "hash": "b93de5cbfc75e5555a6176e4e9a737a54175167881ae82f6cb46e81d2f0bb72a"
+        }
+      }
+    },
+    "3600377019": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "FoxtrotWarehouse": {
+          "bounds": [
+            10496,
+            13056,
+            11008,
+            13568
+          ],
+          "hash": "d755e666668e81c547d7e98164b20e2e6fb3c2bc042e550a3315a456e0ae911b"
         }
       }
     },
@@ -1166,6 +1180,20 @@
             6656
           ],
           "hash": "80837d4351a6d7c3b310703ee148fe3d6d40c3f90afa63ccaffed83592140d2a"
+        }
+      }
+    },
+    "3717208771": {
+      "assets": "c832d7d893b23fd65a0b512e5357504ae9c43a9af192cd0bee04973842a17a11",
+      "maps": {
+        "Atlas Underground Complex": {
+          "bounds": [
+            9728,
+            11264,
+            10752,
+            12544
+          ],
+          "hash": "9d23402721909f082064f96ea4b5d2db2f4b56620f7ce367bf4e17ef6d69b092"
         }
       }
     },

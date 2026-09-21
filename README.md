@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **100 張**（77 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+開發中共 **102 張**（79 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。Foxtrot Warehouse 與 Atlas Underground Complex 地表圖尚未發布，收藏將於發布時同步。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯**：下列 **16 組**地圖資料提供繁中／簡中／
@@ -48,6 +48,7 @@
 |------|--------------------|---------------------|
 | Muldraugh 消防局 | `beek_muldraugh_firedept` | 10496,8960 – 11008,9472 |
 | Estate 39 | `Estate 39` | 8192,9728 – 8704,10240 |
+| 阿特拉斯地下複合設施（僅地表） | `Atlas Underground` | 9728,11264 – 10752,12544 |
 | 唐人街擴張區 | `Chinatown Expansion B42 version`（含 Less Traffic Jam 變體） | 10752,8192 – 11264,9216 |
 | 唐人街 | `Chinatown B42 version` | 11008,8448 – 11520,9472 |
 | 安瑞斯鎮（軍事堡壘） | `AnruisiTown` | 11776,11008 – 13056,12032 |
@@ -68,6 +69,7 @@
 | 艾德汽車回收場 | `EdsAutoSalvageB42` | 8448,8192 – 9216,8704 |
 | 艾莉卡家具店 | `Erikas_Furniture_Store` | 11264,7936 – 11776,8448 |
 | 漂浮烏托邦 | `Floatopia` | 4352,5376 – 4864,5888 |
+| 狐步軍事倉庫 | `FoxtrotWarehouse` | 10496,13056 – 11008,13568 |
 | 班寧堡 | `FortBenningB42` | 5888,6656 – 6400,7424 |
 | 翠湖堡 | `Fort JadeLake` | 11008,8448 – 11520,9216 |
 | 濱水堡壘 | `Fort Waterfront B42` | 9984,10752 – 10752,11264 |
@@ -146,6 +148,12 @@
 | VaultTec 避難所－Muldraugh | `VaultTec B42 version` | 12288,8960 – 12800,9472 |
 | VaultTec 聯絡道路 | `VaultTec B42 version` | 11776,8960 – 12544,9472 |
 | VaultTec 避難所－羅斯伍德 | `VaultTec B42 version` | 5888,10496 – 6400,11008 |
+
+### 新增地圖的限制與衝突
+
+- [Foxtrot Warehouse](https://steamcommunity.com/sharedfiles/filedetails/?id=3600377019)（原作者 Caçador）：4 個地塊全部與 Atlanta 重疊，請二選一；本包收錄圖片不代表兩張原地圖可共用。
+- [Atlas Underground Complex](https://steamcommunity.com/sharedfiles/filedetails/?id=3717208771)（原作者 SD JUAN）：**只提供地表頂視圖，不提供地下樓層平面圖**。實際地塊與淺草湖畔小鎮、Atlanta、Muldraugh 南方檢查站、日落湖鎮、SecretZ 馬奇嶺研究設施及十字路口檢查站部分重疊；不保證混用相容。
+- 兩張圖都沒有上游 `streets.xml`，本次不新增街名翻譯或導航路網；亦不自動加入全地圖測試組合，避免與既有地圖同時載入。
 
 ### 已下架地圖（記錄保留、每日追蹤不含）
 

@@ -67,6 +67,8 @@ $TranslationModsLast = @('CatModLangFor42', 'CatLangFor42')
 # 條目順手拔掉（自癒）；選單 6/7 的移除照常涵蓋。想排除哪張圖就把它的 mod id 加進來。
 # 注意：已在存檔啟用過的圖拔掉會觸發 WorldDictionary 錯誤——排除請配合開新存檔。
 $MapModExclude = @(
+    'FoxtrotWarehouse', # 與 Atlanta 地塊重疊；保留圖包支援，不加入全地圖測試組合
+    'Atlas Underground', # 與 SecretZ 等地塊重疊；另開世界測試地表圖，不加入全地圖組合
     'IrisEyot',   # 鳶尾島
     # tikitown：引擎 animset checksum 的大小寫 bug 會讓「伺服器／多人」啟動即崩。
     # AdvancedAnimator.loadModMedia(:791) 把 mod 目錄路徑 toLowerCase 當 URI base，

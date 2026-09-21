@@ -286,11 +286,11 @@
       "title": "[B42] SecretZ Pandemic (Alpha)"
     },
     "3494693499": {
-      "last_result": 9,
-      "removed": true,
-      "removed_at": "2026-09-20T10:06:40Z",
-      "time_updated": 1756609790,
-      "title": "Kentucky Center Manor_Renovation, KY"
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1789875184,
+      "title": "Kentucky Center Manor_Renovation_B42"
     },
     "3495993590": {
       "last_result": 1,
@@ -431,6 +431,13 @@
       "removed_at": null,
       "time_updated": 1785371812,
       "title": "Path of Zenith, Louisville B41/B42.19 [BROKEN 42.20]"
+    },
+    "3600377019": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1772633783,
+      "title": "Foxtrot Warehouse [B42]"
     },
     "3602388131": {
       "last_result": 1,
@@ -578,6 +585,13 @@
       "removed_at": null,
       "time_updated": 1778565145,
       "title": "[B42] WEST POINT: THE BRIDGE CITADEL"
+    },
+    "3717208771": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1779709326,
+      "title": "Atlas Underground Complex"
     },
     "3721711345": {
       "last_result": 1,

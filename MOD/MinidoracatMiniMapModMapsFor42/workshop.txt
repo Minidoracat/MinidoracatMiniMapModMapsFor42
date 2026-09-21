@@ -18,7 +18,7 @@ description=[*] [b]Street name translation[/b]: 16 map datasets in Traditional C
 description=[/list]
 description=
 description=[h2]🗺️ Included maps & requests[/h2]
-description=Currently supports [b]77 map MODs (100 maps)[/b] — subscribe them all at once via the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
+description=The development version supports [b]79 map MODs (102 maps)[/b]. Foxtrot Warehouse and the Atlas Underground Complex surface image are not released yet; the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url] will be updated on release. The full list, credits to the original authors, and map
 description=requests all live in the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]Discussions[/url] — come make a wish!
 description=You can also request a new map via the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (goes straight into the dev backlog — fastest turnaround).
 description=
@@ -30,6 +30,7 @@ description=
 description=[h2]Road data and compatibility[/h2]
 description=Road repairs use language-independent data: confirmed outline roads become centre lines only when the source geometry matches. Verified duplicate labels are suppressed without deleting navigation roads; uncertain overlaps remain. Image support is not navigation or AutoDrive certification.
 description=See the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]pinned English/Chinese explanation[/url] for requirements and known limitations.
+description=Foxtrot Warehouse fully overlaps Atlanta; choose one. Atlas Underground Complex has [b]surface imagery only, no underground floor plans[/b], and partially overlaps SecretZ and other maps. Combined-map compatibility is not guaranteed.
 description=
 description=[h2]🔧 Support scope[/h2]
 description=This pack supplies [b]minimap / world-map images and street-name translation data[/b]; it does not alter the physical game world.
