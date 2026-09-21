@@ -15,7 +15,7 @@
 [/list]
 
 [h2]🗺️ 収録マップとリクエスト[/h2]
-開発版は [b]79 個のマップ MOD（102 マップ）[/b]に対応。Foxtrot Warehouse と Atlas Underground Complex の地表画像は未公開で、[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]は公開時に更新します。対応リスト・原作者クレジット・マップリクエストは
+現在 [b]79 個のマップ MOD（102 マップ）[/b]に対応。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]から必要なマップを選んでサブスクライブできます。対応リスト・原作者クレジット・マップリクエストは
 [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]ディスカッション[/url]へどうぞ！
 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue フォーム[/url]からのリクエストも歓迎です（開発バックログに直行、対応が最速）。
 

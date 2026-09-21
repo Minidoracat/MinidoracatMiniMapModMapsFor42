@@ -14,7 +14,7 @@
 [/list]
 
 [h2]🗺️ 收录地图与许愿[/h2]
-目前开发中支持 [b]79 个地图 MOD（102 张地图）[/b]。Foxtrot Warehouse 与 Atlas Underground Complex 地表图尚未发布；[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支持地图收藏[/url]将于发布时同步。完整清单、原作者致谢、以及「许愿想要的地图」都在
+目前支持 [b]79 个地图 MOD（102 张地图）[/b]，可从 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支持地图收藏[/url]自选订阅。完整清单、原作者致谢、以及「许愿想要的地图」都在
 [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]讨论区[/url]——欢迎留言许愿！
 也可以用 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue 表单[/url]申请支持新地图（会直接进开发待办，处理最快）。
 

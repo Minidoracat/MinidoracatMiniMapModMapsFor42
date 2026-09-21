@@ -15,7 +15,7 @@ outline data for several map MODs.
 [/list]
 
 [h2]🗺️ Included maps & requests[/h2]
-The development version supports [b]79 map MODs (102 maps)[/b]. Foxtrot Warehouse and the Atlas Underground Complex surface image are not released yet; the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url] will be updated on release. The full list, credits to the original authors, and map
+Currently supports [b]79 map MODs (102 maps)[/b] — choose maps to subscribe to from the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
 requests all live in the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]Discussions[/url] — come make a wish!
 You can also request a new map via the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (goes straight into the dev backlog — fastest turnaround).
 

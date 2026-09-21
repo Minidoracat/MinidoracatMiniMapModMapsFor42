@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-開發中共 **102 張**（79 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。Foxtrot Warehouse 與 Atlas Underground Complex 地表圖尚未發布，收藏將於發布時同步。
+共 **102 張**（79 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯**：下列 **16 組**地圖資料提供繁中／簡中／
