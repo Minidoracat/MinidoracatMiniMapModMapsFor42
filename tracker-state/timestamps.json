@@ -3,7 +3,7 @@
     "build": "24909800",
     "detected_at": "2026-08-27T16:50:06Z"
   },
-  "generated_at": "2026-09-20T10:07:54Z",
+  "generated_at": "2026-09-22T10:21:37Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -219,7 +219,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1783055273,
+      "time_updated": 1790052229,
       "title": "Ed's Auto Salavage B42"
     },
     "3479667649": {
@@ -286,9 +286,9 @@
       "title": "[B42] SecretZ Pandemic (Alpha)"
     },
     "3494693499": {
-      "last_result": 1,
-      "removed": false,
-      "removed_at": null,
+      "last_result": 9,
+      "removed": true,
+      "removed_at": "2026-09-22T10:20:28Z",
       "time_updated": 1789875184,
       "title": "Kentucky Center Manor_Renovation_B42"
     },
