@@ -15,12 +15,12 @@ outline data for several map MODs.
 [/list]
 
 [h2]🗺️ Included maps & requests[/h2]
-Currently supports [b]79 map MODs (102 maps)[/b] — choose maps to subscribe to from the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
+Currently supports [b]78 map MODs (101 maps)[/b] — choose maps to subscribe to from the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
 requests all live in the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]Discussions[/url] — come make a wish!
 You can also request a new map via the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (goes straight into the dev backlog — fastest turnaround).
 
 [h2]Street name translation[/h2]
-[b]16 datasets, 360 names[/b] support [b]Traditional Chinese / Simplified Chinese / Japanese[/b]. Only names are translated; the original author's road coordinates remain in use. Original-name and translated-name searches share the same live road position. [b]Requires the main MOD 42.20.4-0.27.0 or newer[/b] — update both packs together and restart the game.
+[b]16 datasets, 364 names[/b] support [b]Traditional Chinese / Simplified Chinese / Japanese[/b]. Only names are translated; the original author's road coordinates remain in use. Original-name and translated-name searches share the same live road position. [b]Requires the main MOD 42.20.4-0.27.0 or newer[/b] — update both packs together and restart the game.
 Unlisted names keep their originals. Maps without street data do not gain a navigation network from this pack.
 The "MOD map: <name>" source hint in street search results is provided by the main MOD (Traditional Chinese / Simplified Chinese / English / Japanese); this pack only ships the name mapping and road-repair data.
 

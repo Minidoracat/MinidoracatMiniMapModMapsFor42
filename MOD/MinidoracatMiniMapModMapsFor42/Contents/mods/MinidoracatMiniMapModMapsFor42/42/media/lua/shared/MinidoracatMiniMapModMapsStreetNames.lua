@@ -7,7 +7,7 @@
 --
 -- 空白折疊後與原名不同者會多掛一個別名鍵，讓引擎索引裡的髒名（連續空白）
 -- 也查得到；兩者指向同一個 UI 鍵。
--- 共 16 個 dataset／360 條街名。
+-- 共 16 個 dataset／364 條街名。
 MinidoracatMiniMapModMapsStreetNames = {
     ["anruisi-town"] = {
         ["Agriculture Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_f5e46c6a35",
@@ -335,6 +335,7 @@ MinidoracatMiniMapModMapsStreetNames = {
         ["Ivy Hill Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c5a8a86377",
         ["James Andrews Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_0ad0189f2a",
         ["Jay Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_665c7dd395",
+        ["KY-163"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_ffb1a0e383",
         ["Kelly Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_0ae08ba319",
         ["Kilpatrick Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_5fe86bc478",
         ["Knox Loop"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_598076eeb8",
@@ -357,7 +358,9 @@ MinidoracatMiniMapModMapsStreetNames = {
         ["Pleasonton Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_ccc7d288da",
         ["Railview Spur"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_783a209d38",
         ["Rich Ave"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_0c2ec973a1",
+        ["River Walk Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_712d28d14d",
         ["Riverport Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_6ee4603a0f",
+        ["Riverside Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_374c8cf2f7",
         ["Rose Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_a81147c0c3",
         ["Rosecrans Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4e20d19cf7",
         ["Russell St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_3e9f1570b4",
@@ -377,6 +380,7 @@ MinidoracatMiniMapModMapsStreetNames = {
         ["Toucan Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_990616d109",
         ["Trail Ridge Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_a18218fbdb",
         ["Turner Bend"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c2ccd9fc9c",
+        ["Wagon Trail Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_423de36141",
         ["Weinzierl Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c94f7c8ed2",
         ["Willich Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_5c82011cc0",
         ["Wilson Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_1911f8bb41",

@@ -130,8 +130,6 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 12544, 5888, 13056, 6400 }, nameKey = "UI_MinidoracatMiniMapModMaps_HazelnutManorPoor" },
         { zip = "IrisEyot.pyramid.zip", mapMod = "IrisEyot",
             bounds = { 4096, 11008, 4864, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_IrisEyot" },
-        { zip = "Kentucky Center Manor_Renovation_B42.pyramid.zip", mapMod = "Kentucky Center Manor_Renovation",
-            bounds = { 7936, 9472, 8448, 9984 }, nameKey = "UI_MinidoracatMiniMapModMaps_KentuckyCenterManor" },
         { zip = "KillMingLake.pyramid.zip", mapMod = "KillMingLake",
             bounds = { 8192, 11776, 8704, 12544 }, nameKey = "UI_MinidoracatMiniMapModMaps_KillMingLake" },
         { zip = "Kingsmouth North B42.pyramid.zip", mapMod = "KingsmouthNorthB42",

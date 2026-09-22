@@ -14,12 +14,12 @@
 [/list]
 
 [h2]🗺️ 收录地图与许愿[/h2]
-目前支持 [b]79 个地图 MOD（102 张地图）[/b]，可从 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支持地图收藏[/url]自选订阅。完整清单、原作者致谢、以及「许愿想要的地图」都在
+目前支持 [b]78 个地图 MOD（101 张地图）[/b]，可从 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支持地图收藏[/url]自选订阅。完整清单、原作者致谢、以及「许愿想要的地图」都在
 [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]讨论区[/url]——欢迎留言许愿！
 也可以用 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue 表单[/url]申请支持新地图（会直接进开发待办，处理最快）。
 
 [h2]路名翻译[/h2]
-[b]16 组[/b]地图数据、360 个路名提供[b]繁中／简中／日文[/b]翻译。只翻名称，不替换原作者的道路坐标；原名与译名使用相同的实时搜索位置。[b]需要主 MOD 42.20.4-0.27.0 或更新版本[/b]，两包请一起更新并重启游戏。
+[b]16 组[/b]地图数据、364 个路名提供[b]繁中／简中／日文[/b]翻译。只翻名称，不替换原作者的道路坐标；原名与译名使用相同的实时搜索位置。[b]需要主 MOD 42.20.4-0.27.0 或更新版本[/b]，两包请一起更新并重启游戏。
 未收录的街名保留原名；没有道路数据的地图不会因此获得导航路网。
 街道搜索结果的「MOD 地图：地图名称」来源提示由主 MOD 提供（繁中／简中／英文／日文）；本包只提供名称对照与道路修正数据。
 

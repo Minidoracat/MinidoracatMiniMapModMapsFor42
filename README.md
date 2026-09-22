@@ -18,11 +18,11 @@
 
 ## 收錄地圖
 
-共 **102 張**（79 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **101 張**（78 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯**：下列 **16 組**地圖資料提供繁中／簡中／
-日文翻譯，共 360 條——提基鎮、安瑞斯鎮、渡鴉溪（本體與 Kardinal 移植版各一套）、雛菊郡、
+日文翻譯，共 364 條——提基鎮、安瑞斯鎮、渡鴉溪（本體與 Kardinal 移植版各一套）、雛菊郡、
 坎登郡、西點擴張、綠港、小鎮、狂鋼、黑迷宮橋頭堡、艾德汽車回收場、三葉湖、目黑丘城、
 馬爾德勞 1993 重製版、楓木林鎮。英文與其他語言維持地圖作者原本的英文路名。
 與官方地圖同名的路直接沿用官方譯名，跨地圖用詞一致。
@@ -82,7 +82,6 @@
 | 榛果莊園 | `HazelnutManor` | 12544,5888 – 13056,6400 |
 | 榛果莊園（簡樸版） | `HazelnutManor[Poor Version]` | 12544,5888 – 13056,6400 |
 | 鳶尾島 | `IrisEyot` | 4096,11008 – 4864,11520 |
-| 肯塔基中央莊園（翻新） | `Kentucky Center Manor_Renovation` | 7936,9472 – 8448,9984 |
 | 落明湖 | `KillMingLake` | 8192,11776 – 8704,12544 |
 | 金斯茅斯北區 | `KingsmouthNorthB42` | 0,3840 – 1280,5120 |
 | 白森林 | `linzimod` | 8960,11008 – 9728,11776 |
@@ -164,6 +163,7 @@
 | 美雅鎮（Meiya'sTownB42） | 3478788261 | 2026-07 | v0.4.1 移除支援 |
 | 7號淪陷區（Sector-7 Breach，含 Highway） | 3513107552 | 2026-07-21 | v0.4.1 移除支援；正式伺服器移除（下架項目會讓開服崩潰） |
 | White Wolf Ridge | 3499861271 | 收藏建立前 | 未收錄（無圖） |
+| 肯塔基中央莊園（翻新） | 3494693499 | 2026-09-22 | 再次無法公開存取；本機已移除支援，待下次發布 |
 
 ## 本機地圖測試
 

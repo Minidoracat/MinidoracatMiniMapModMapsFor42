@@ -17,7 +17,7 @@
 [*] 也可以改用 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue 表單[/url]申請——會直接進開發待辦，處理最快
 [/list]
 
-[h2]目前支援（79 個地圖 MOD、102 張地圖）[/h2]
+[h2]目前支援（78 個地圖 MOD、101 張地圖）[/h2]
 完整清單與一鍵訂閱請看
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352][b]支援地圖收藏[/b][/url]
 （含全部地圖 MOD＋主 MOD＋本包；地圖名點進收藏頁即有連結）。收錄名單：
@@ -56,7 +56,6 @@
 [*] Hazelnut Manor（含簡樸版）
 [*] Hunter's Base B42（獵人基地，含小型版）
 [*] Iris Eyot
-[*] Kentucky Center Manor_Renovation
 [*] KillMingLake
 [*] Kingsmouth North
 [*] LittleTownship
@@ -124,7 +123,7 @@ Foxtrot Warehouse 的 4 個地塊全部與 Atlanta 重疊，請二選一。Atlas
 Want a map MOD supported? Comment below with the map's [b]Workshop link[/b] (+ optionally why).
 Prefer GitHub? Use the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]issue form[/url] — it goes straight into the dev backlog.
 More requests for the same map = higher priority. Very large maps may ship as separate packs.
-[b]Currently supported:[/b] 79 map MODs (102 maps) — choose maps from the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url].
+[b]Currently supported:[/b] 78 map MODs (101 maps) — choose maps from the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url].
 You need the original map MOD enabled, plus the main [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url].
 Foxtrot Warehouse fully overlaps Atlanta; choose one. Atlas Underground Complex provides surface imagery only, not underground floor plans, and partially overlaps SecretZ and other maps; combined-map compatibility is not guaranteed.
 All map design credit belongs to the original authors — if you're an author with any concern, comment or DM me and I'll act immediately (including removal).
@@ -135,7 +134,7 @@ All map design credit belongs to the original authors — if you're an author wi
 対応してほしいマップ MOD をコメントでどうぞ（Workshop リンク必須、理由は任意）。
 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue フォーム[/url]からのリクエストも歓迎です（開発バックログに直行します）。
 リクエストが多いマップほど優先されます。大型マップは別パックになる場合があります。
-[b]現在対応：[/b]79 個のマップ MOD（102 マップ）。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]から必要なマップを選んでください。
+[b]現在対応：[/b]78 個のマップ MOD（101 マップ）。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]から必要なマップを選んでください。
 元マップ MOD と本体 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] が必要です。
 Foxtrot Warehouse は Atlanta と全セルが重なるため、どちらか一方を選んでください。Atlas Underground Complex は地表画像のみで、地下階の平面図はありません。SecretZ などと一部が重なり、併用の互換性は保証しません。
 マップの功績はすべて原作者に帰属します。原作者の方でご意見があれば、コメントまたは DM でご連絡ください（削除を含め即対応します）。
