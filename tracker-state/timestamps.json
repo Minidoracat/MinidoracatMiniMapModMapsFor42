@@ -3,7 +3,7 @@
     "build": "24909800",
     "detected_at": "2026-08-27T16:50:06Z"
   },
-  "generated_at": "2026-09-24T10:32:28Z",
+  "generated_at": "2026-09-25T10:35:07Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -226,7 +226,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1790233116,
+      "time_updated": 1790322095,
       "title": "Willowbrook Bastion!"
     },
     "3480990544": {
