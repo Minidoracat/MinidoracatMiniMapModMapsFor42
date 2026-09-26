@@ -70,16 +70,16 @@ $MapModExclude = @(
     'FoxtrotWarehouse', # 與 Atlanta 地塊重疊；保留圖包支援，不加入全地圖測試組合
     'Atlas Underground', # 與 SecretZ 等地塊重疊；另開世界測試地表圖，不加入全地圖組合
     'IrisEyot',   # 鳶尾島
-    # tikitown：引擎 animset checksum 的大小寫 bug 會讓「伺服器／多人」啟動即崩。
-    # AdvancedAnimator.loadModMedia(:791) 把 mod 目錄路徑 toLowerCase 當 URI base，
-    # 再 relativize 真實大小寫的 media\AnimSets\...\GoKartIdle.xml → relativize 失敗、
+    # tikitown：2026-09-09 no-steam 多人重測仍在 GoKartIdle.xml 動畫校驗失敗，依使用者要求恢復排除。
+    # 資源檔實際存在，但 AdvancedAnimator.buildChecksum 無法由資源索引解析路徑；不視為道路座標問題。
+    # 需另查引擎路徑解析與本機連結環境，不能只歸因為檔名大小寫。
     # 產出小寫絕對路徑 → getAbsolutePath 查表 miss → buildChecksum 拋
     # IllegalStateException → GameServer.doMinimumInit 中斷 → lua 環境沒建起
     # （SpawnRegionMgr undefined）→ 地圖資料夾清單全空 → worldgen 為 nil →
     # WorldGenOverride.lua 索引 biomes 失敗 → NPE → Server Terminated。
     # 2026-08-26 實測 log 全檔只有這一個 couldn't find，其他有 AnimSets 的 MOD 不觸發。
     # AdvancedAnimator.load(:845) 的 checksum 只在 GameServer.server || GameClient.client
-    # 執行 → **單機不受影響**：提基鎮（含其 99 條街名）改用單機驗收。
+    # 執行；單機不走這條多人校驗。這次只恢復排除，不改上游動畫或停用校驗。
     'tikitown',
     # Taibeiroad4：MOD 自身的 B41 殘留 lua 讓「多人連線」後畫面全黑。
     # common/media/lua/shared/TCGMusicDefenitionsTCBoomboxtb1.lua 第 1 行

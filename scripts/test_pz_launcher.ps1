@@ -54,6 +54,9 @@ function Arg-Value($Start, [string]$Name) {
 function Server-Process([string]$Mode) {
     [pscustomobject]@{ Name='java.exe'; ProcessId=4242; CommandLine="java -Dzomboid.steam=$Mode zombie.network.GameServer -servername servertest" }
 }
+function Proc([int]$Id, [string]$Cmd, [string]$Name = 'ProjectZomboid64.exe') {
+    [pscustomobject]@{ Name=$Name; ProcessId=$Id; CommandLine=$(if ($Cmd) { $Cmd } else { $null }) }
+}
 
 try {
     $env:USERPROFILE = $root; $env:PROJECT_ROOT = $repo; $env:PZ_PATH = Join-Path $root 'game'
@@ -126,6 +129,33 @@ try {
     Assert ($script:Starts.Count -eq 1) '重用server不應再啟動一個server'
     Assert (-not (Run-Action @{Action='server'} @([pscustomobject]@{Name='java.exe';ProcessId=9;CommandLine=$null}))) '未知Java命令列不得猜成没有server'
     Assert ($script:Starts.Count -eq 0) '未知server狀態不應啟動'
+
+    # -cachedir= 認人：只有確定指向別的使用者目錄（隔離 E2E 輪次）才不算這台／不停；指向受管目錄仍算；無法確認不猜
+    $e2e = Join-Path $root 'Zomboid_e2e\run 1'
+    foreach ($d in @('server', 'client1')) { [void][IO.Directory]::CreateDirectory((Join-Path $e2e $d)) }
+    $sameRoot = "-cachedir=$((Join-Path $root 'Zomboid').Replace('\', '/'))/"
+    Assert (Run-Action @{Action='server';NoSteam=$true} @((Proc 21 "java -Dzomboid.steam=1 zombie.network.GameServer `"-cachedir=$e2e\server`" -servername servertest" 'java.exe'))) '同名隔離輪次server不應擋住啟動'
+    Assert (@($script:Starts | Where-Object { $_.Args -contains 'zombie.network.GameServer' }).Count -eq 1) '隔離輪次server被當成已在執行'
+    Assert (-not (Run-Action @{Action='server';NoSteam=$true} @((Proc 22 "java -Dzomboid.steam=1 zombie.network.GameServer $sameRoot -servername servertest" 'java.exe')))) '-cachedir=受管目錄的異模式server必須拒絕'
+    Assert ($script:Starts.Count -eq 0) '-cachedir=受管目錄的server不應再啟動一台'
+    Assert (-not (Run-Action @{Action='server';NoSteam=$true} @((Proc 23 'java zombie.network.GameServer -cachedir=rel -servername servertest' 'java.exe')))) '無法解析的-cachedir不得猜成沒有server'
+    Assert ($script:Starts.Count -eq 0) '無法確認server狀態不應啟動'
+    $pz = @(
+        (Proc 31 '"C:\PZ\ProjectZomboid64.exe" -nosteam'),
+        (Proc 32 "`"C:\PZ\ProjectZomboid64.exe`" -nosteam `"$sameRoot`""),
+        (Proc 33 "`"C:\PZ\ProjectZomboid64.exe`" -nosteam `"-cachedir=$e2e\client1`""),
+        (Proc 34 "java zombie.network.GameServer -cachedir=`"$($e2e.Replace('\', '/'))/server`" -servername servertest" 'java.exe'),
+        (Proc 35 'java zombie.network.GameServer -servername servertest' 'java.exe'),
+        (Proc 36 $null),
+        (Proc 38 "`"C:\PZ\ProjectZomboid64.exe`" `"-cachedir=\\?\$(Join-Path $root 'Zomboid')`""))
+    $script:Stopped = @()
+    Assert (-not (Run-Action @{Action='stop'} $pz)) '有無法確認的PZ程序時stop必須回報失敗'
+    Assert ((@($script:Stopped) -join ',') -eq '31,32,35') "stop只能停受管目錄的程序，實際：$($script:Stopped -join ',')"
+    $script:Stopped = @()
+    Assert (Run-Action @{Action='stop'} @($pz[2], $pz[3])) '只有隔離輪次時stop應成功'
+    Assert ($script:Stopped.Count -eq 0) 'stop不得停隔離輪次'
+    Assert (-not (Run-Action @{Action='stop'} @((Proc 37 $null 'java.exe')))) '讀不到命令列的Java不得回報已全部停止'
+    Assert ($script:Stopped.Count -eq 0) '讀不到命令列的Java不得被停'
 
     [IO.File]::WriteAllText($probe, 'marker=v2')
     [IO.File]::WriteAllText((Join-Path $src 'media\added.lua'), 'new')
