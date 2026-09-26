@@ -5,8 +5,7 @@
 
 [h2]✨ What is this[/h2]
 A [b]map pack addon[/b] for the [b]Minidoracat MiniMap for B42[/b] main MOD:
-it ships mini-map images (rendered from actual in-game visuals) and area
-outline data for several map MODs.
+It supplies map images (rendered from in-game visuals), area outlines, street-name mappings and selected approved road-repair data, applied by the main MOD.
 [list]
 [*] [u]Auto-detected[/u]: a map's image only shows when that map MOD is enabled — nothing is drawn for maps you don't have
 [*] Area outlines + name labels (multi-language) to quickly locate MOD maps on the mini-map and world map
@@ -20,19 +19,19 @@ requests all live in the [url=https://steamcommunity.com/workshop/filedetails/di
 You can also request a new map via the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (goes straight into the dev backlog — fastest turnaround).
 
 [h2]Street name translation[/h2]
-[b]16 datasets, 364 names[/b] support [b]Traditional Chinese / Simplified Chinese / Japanese[/b]. Only names are translated; the original author's road coordinates remain in use. Original-name and translated-name searches share the same live road position. [b]Requires the main MOD 42.20.4-0.27.0 or newer[/b] — update both packs together and restart the game.
+[b]16 datasets, 364 names[/b] support [b]Traditional Chinese / Simplified Chinese / Japanese[/b]. Name translation does not change road geometry. Original-name and translated-name searches share the same live road position. [b]Pair map pack 42.20.4-0.9.0 with main MOD 42.20.4-0.27.0 or newer[/b] — update both together and restart the game.
 Unlisted names keep their originals. Maps without street data do not gain a navigation network from this pack.
-The "MOD map: <name>" source hint in street search results is provided by the main MOD (Traditional Chinese / Simplified Chinese / English / Japanese); this pack only ships the name mapping and road-repair data.
+The main MOD's "MOD map: <name>" search label identifies a known data source, not an error or certification.
 
 [h2]Road data and compatibility[/h2]
-Road repairs use language-independent data: confirmed outline roads become centre lines only when the source geometry matches. Verified duplicate labels are suppressed without deleting navigation roads; uncertain overlaps remain. Image support is not navigation or AutoDrive certification.
+This pack supplies selected approved road repairs for the main MOD to apply, separately from translation: confirmed outline roads become centre lines only when the source geometry matches. Verified duplicate labels are suppressed without deleting navigation roads; uncertain overlaps remain. This is not a universal automatic road fixer. Image support is not full-map navigation or AutoDrive validation.
 See the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]pinned English/Chinese explanation[/url] for requirements and known limitations.
 Foxtrot Warehouse fully overlaps Atlanta; choose one. Atlas Underground Complex has [b]surface imagery only, no underground floor plans[/b], and partially overlaps SecretZ and other maps. Combined-map compatibility is not guaranteed.
 
 [h2]🔧 Support scope[/h2]
-This pack supplies [b]minimap / world-map images and street-name translation data[/b]; it does not alter the physical game world.
+This pack supplies [b]minimap / world-map images, street-name mappings and approved road-repair data[/b]; it does not alter physical terrain or buildings.
 [list]
-[*] Image issues (misaligned imagery, outline position, name translations) → report here, or use the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (screenshots welcome — fastest turnaround)
+[*] Pack data issues (misaligned imagery, outline position, translations or repair data) → report here, or use the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (screenshots welcome — fastest turnaround)
 [*] Issues with the map MODs themselves (missing tiles, building bugs, map conflicts, save issues, [b]street data that breaks the convention[/b]) → please report to the original map authors
 [/list]
 
@@ -48,9 +47,9 @@ This pack supplies [b]minimap / world-map images and street-name translation dat
 [list]
 [*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42
 [*] [b]Required MOD:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] (the main MOD, [b]42.20.4-0.27.0 or newer[/b]; this pack does nothing without it)
-[*] [b]Load order:[/b] no manual sorting needed — the dependency is declared via require, the game always loads the main MOD first
+[*] [b]Load order:[/b] require only ensures the main MOD loads before this addon. Priority between different map MODs still matters; multiplayer uses the server's Map= order. Overridden street sections may be excluded from street-name searches and the routing network. Arbitrary map combinations are not guaranteed compatible.
 [*] [b]Supported version:[/b] Build 42.20.0+
-[*] Works in singleplayer / multiplayer (client-side images only, no world changes)
+[*] Works in singleplayer / multiplayer (client-side map data, no world changes; not driving validation of every map combination)
 [/list]
 
 [h2]💬 Feedback & community[/h2]
