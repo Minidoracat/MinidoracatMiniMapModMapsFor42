@@ -49,12 +49,92 @@ The [b]MOD map: map name[/b] label in street search identifies a known source; i
 [/list]
 
 [h2]❌ Maps without author road data (79)[/h2]
-These maps show their image, but have no street names, search or navigation (except the roads we added above):
-Muldraugh Fire Dept, Estate 39, Atlas Underground Complex (Surface), Chinatown Expansion, Chinatown, Asakusa Lake Town, Ashenwood, Atlanta Safe Zone, Atlanta Tower Survival, Atlanta, Blackpine County, Cathaya Valley 2.0 Highway, Cathaya Valley 2.0, Constown, KY, Coryerdon, Dawn Town, EchoCreek Military Base, Erika's Furniture Store, Floatopia, Foxtrot Warehouse, Fort Benning, Fort JadeLake, Fort Waterfront, Fort Boonesborough, Grapeseed, Greenleaf, Hartburg, KY, Hunter's Base, Hunter's Base (Small), Hazelnut Manor, Hazelnut Manor (Poor), Iris Eyot, KillMingLake, Kingsmouth North, White Forest, Louisville Riverboat, Muldraugh Checkpoint - Overpass, Fort Preston, Nekomata Ridge, Nettle Township, Path of Zenith, New Coalfield, Raccoon City, Riverside Mansion (Unofficial), RustBury, Safeharbor Garrison, SafeWayHamlet, Sunset Lake Town, Sunset Tower, SecretZ Bunker 3, SecretZ Checkpoint 1, SecretZ Checkpoint 6, SecretZ Deerhead Lake Base, SecretZ Louisville Military Complex, SecretZ Train Depot Refugee Camp, SecretZ Crossroads Checkpoint, SecretZ North Checkpoint, SecretZ The Mall, Taibei Road, Taylorsville, Trapala Lake Town, Trelai 4x4 (Kardinal port), Vila Z, Willowbrook Bastion, Willowbrook Bastion 2026, Bunker 42, New Ellroy, Shadyside, White Forest Ridge, Yanghu Town, Begonia Town, Frogtown, Haven Fall, Macon (TWD), Xixi's Serene Cottage, VaultTec Vault - Louisville, VaultTec Vault - Muldraugh, VaultTec Road, VaultTec Vault - Rosewood
+These maps show their image, but have no street names, search or navigation (except the roads we added above).
+[list]
+[*] Muldraugh Fire Dept
+[*] Estate 39
+[*] Atlas Underground Complex (Surface)
+[*] Chinatown Expansion
+[*] Chinatown
+[*] Asakusa Lake Town
+[*] Ashenwood
+[*] Atlanta Safe Zone
+[*] Atlanta Tower Survival
+[*] Atlanta
+[*] Blackpine County
+[*] Cathaya Valley 2.0 Highway
+[*] Cathaya Valley 2.0
+[*] Constown, KY
+[*] Coryerdon
+[*] Dawn Town
+[*] EchoCreek Military Base
+[*] Erika's Furniture Store
+[*] Floatopia
+[*] Foxtrot Warehouse
+[*] Fort Benning
+[*] Fort JadeLake
+[*] Fort Waterfront
+[*] Fort Boonesborough
+[*] Grapeseed
+[*] Greenleaf
+[*] Hartburg, KY
+[*] Hunter's Base
+[*] Hunter's Base (Small)
+[*] Hazelnut Manor
+[*] Hazelnut Manor (Poor)
+[*] Iris Eyot
+[*] KillMingLake
+[*] Kingsmouth North
+[*] White Forest
+[*] Louisville Riverboat
+[*] Muldraugh Checkpoint - Overpass
+[*] Fort Preston
+[*] Nekomata Ridge
+[*] Nettle Township
+[*] Path of Zenith
+[*] New Coalfield
+[*] Raccoon City
+[*] Riverside Mansion (Unofficial)
+[*] RustBury
+[*] Safeharbor Garrison
+[*] SafeWayHamlet
+[*] Sunset Lake Town
+[*] Sunset Tower
+[*] SecretZ Bunker 3
+[*] SecretZ Checkpoint 1
+[*] SecretZ Checkpoint 6
+[*] SecretZ Deerhead Lake Base
+[*] SecretZ Louisville Military Complex
+[*] SecretZ Train Depot Refugee Camp
+[*] SecretZ Crossroads Checkpoint
+[*] SecretZ North Checkpoint
+[*] SecretZ The Mall
+[*] Taibei Road
+[*] Taylorsville
+[*] Trapala Lake Town
+[*] Trelai 4x4 (Kardinal port)
+[*] Vila Z
+[*] Willowbrook Bastion
+[*] Willowbrook Bastion 2026
+[*] Bunker 42
+[*] New Ellroy
+[*] Shadyside
+[*] White Forest Ridge
+[*] Yanghu Town
+[*] Begonia Town
+[*] Frogtown
+[*] Haven Fall
+[*] Macon (TWD)
+[*] Xixi's Serene Cottage
+[*] VaultTec Vault - Louisville
+[*] VaultTec Vault - Muldraugh
+[*] VaultTec Road
+[*] VaultTec Vault - Rosewood
+[/list]
 
 [h2]Related topics[/h2]
 [list]
-[*][url=https://steamcommunity.com/workshop/filedetails/discussion/3763913359/569297034317714443/]Full road-data requirements for map authors — MiniMap[/url]
-[*][url=https://steamcommunity.com/workshop/filedetails/discussion/3792675881/569297034317714529/]AutoDrive requirements, multiplayer test scope and known issues[/url]
+[*][url=https://steamcommunity.com/workshop/filedetails/discussion/3763913359/586187095760051259/]Full road-data requirements for map authors — MiniMap[/url]
+[*][url=https://steamcommunity.com/workshop/filedetails/discussion/3792675881/586187095760051144/]AutoDrive road requirements and known issues[/url]
 [/list]
 Being included in the image pack or collection does not mean every map has been tested for navigation, AutoDrive, or compatibility with every other map. Use the map-request topic for image support requests; use the linked topics for road-data and driving reports.
