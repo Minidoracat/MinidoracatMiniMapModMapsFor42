@@ -3,7 +3,7 @@
     "build": "24909800",
     "detected_at": "2026-08-27T16:50:06Z"
   },
-  "generated_at": "2026-09-25T10:35:07Z",
+  "generated_at": "2026-09-27T10:46:58Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -205,7 +205,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1790110048,
+      "time_updated": 1790498566,
       "title": "LittleTownship B42"
     },
     "3478788261": {
@@ -226,7 +226,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1790322095,
+      "time_updated": 1790497448,
       "title": "Willowbrook Bastion!"
     },
     "3480990544": {
@@ -660,7 +660,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1783733869,
+      "time_updated": 1790430525,
       "title": "Bunker 42"
     },
     "3768876083": {
