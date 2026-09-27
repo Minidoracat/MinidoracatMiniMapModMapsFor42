@@ -6,58 +6,47 @@ description=[h3]By Minidoracat[/h3]
 description=
 description=[hr][/hr]
 description=
-description=[h2]✨ What is this[/h2]
-description=A [b]map pack addon[/b] for the [b]Minidoracat MiniMap for B42[/b] main MOD:
-description=It supplies map images (rendered from in-game visuals), area outlines, street-name mappings and selected approved road-repair data, applied by the main MOD.
+description=Shows real map images, area outlines and map names for map mods on the minimap and world map. Only the map mods you have enabled are drawn.
+description=
+description=[h2]📦 What you need[/h2]
 description=[list]
-description=[*] [u]Auto-detected[/u]: a map's image only shows when that map MOD is enabled — nothing is drawn for maps you don't have
-description=[*] Area outlines + name labels (multi-language) to quickly locate MOD maps on the mini-map and world map
-description=[*] Extra options that appear only with this pack installed: MOD map tiles toggle, outline toggle, outline color (green by default)
-description=[*] [b]Street name translation[/b]: 16 map datasets in Traditional Chinese / Simplified Chinese / Japanese, searchable by original or translated name
+description=[*] Required: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] (main mod) and its requirement [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library for B42[/url]
+description=[*] The map mods you want to play: this pack only provides the images, so the maps themselves must be subscribed separately
 description=[/list]
+description=Keep every Minidoracat MiniMap series mod up to date and restart the game after updating.
 description=
-description=[h2]🗺️ Included maps & requests[/h2]
-description=Currently supports [b]78 map MODs (101 maps)[/b] — choose maps to subscribe to from the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
-description=requests all live in the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050601/]Discussions[/url] — come make a wish!
-description=You can also request a new map via the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (goes straight into the dev backlog — fastest turnaround).
+description=[h2]🚀 Quick start[/h2]
+description=[olist]
+description=[*] Subscribe to the main mod and this pack
+description=[*] Pick map mods from the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url], then subscribe and enable them
+description=[*] In game, press [b]/[/b] for the minimap or [b]M[/b] for the world map — the map area shows its image, outline and name
+description=[/olist]
 description=
-description=[h2]Street name translation[/h2]
-description=[b]16 datasets, 364 names[/b] support [b]Traditional Chinese / Simplified Chinese / Japanese[/b]. Name translation does not change road geometry. Original-name and translated-name searches share the same live road position. [b]Pair map pack 42.20.4-0.9.0 with main MOD 42.20.4-0.27.0 or newer[/b] — update both together and restart the game.
-description=Unlisted names keep their originals. Maps without street data do not gain a navigation network from this pack.
-description=The main MOD's "MOD map: <name>" search label identifies a known data source, not an error or certification.
-description=
-description=[h2]Road data and compatibility[/h2]
-description=This pack supplies selected approved road repairs for the main MOD to apply, separately from translation: confirmed outline roads become centre lines only when the source geometry matches. Verified duplicate labels are suppressed without deleting navigation roads; uncertain overlaps remain. This is not a universal automatic road fixer. Image support is not full-map navigation or AutoDrive validation.
-description=See the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050473/]MOD Map Support Notice[/url] for requirements and known limitations.
-description=Foxtrot Warehouse fully overlaps Atlanta; choose one. Atlas Underground Complex has [b]surface imagery only, no underground floor plans[/b], and partially overlaps SecretZ and other maps. Combined-map compatibility is not guaranteed.
-description=
-description=[h2]🔧 Support scope[/h2]
-description=This pack supplies [b]minimap / world-map images, street-name mappings and approved road-repair data[/b]; it does not alter physical terrain or buildings.
+description=[h2]✨ Features[/h2]
 description=[list]
-description=[*] Pack data issues (misaligned imagery, outline position, translations or repair data) → report here, or use the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (screenshots welcome — fastest turnaround)
-description=[*] Issues with the map MODs themselves (missing tiles, building bugs, map conflicts, save issues, [b]street data that breaks the convention[/b]) → please report to the original map authors
+description=[*] Supports [b]78 map mods (101 maps)[/b], shown automatically when enabled
+description=[*] Map outlines and map names in four languages; outlines can be toggled and recoloured
+description=[*] Street names on 16 maps are translated into Traditional Chinese, Simplified Chinese and Japanese; both original and translated names are searchable
+description=[*] Road data fixed or added by this pack on some maps, for more complete street names, search and navigation (for example, 37 added roads in Constown)
+description=[*] Display only — terrain, buildings and saves are never changed
 description=[/list]
+description=📖 [b]Full supported list (including which maps have road data), conflict notes and map requests:[/b] [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050601/]Map Requests & Supported Maps[/url]
 description=
-description=[h2]🔗 MOD series[/h2]
+description=[h2]🔗 Minidoracat MiniMap series[/h2]
 description=[list]
-description=[*] [b]Main MOD (required)[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] — the image-based map core
-description=[*] [b]This page[/b]: MOD Maps — map pack addon for map MODs
-description=[*] [b]Optional[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url] — third-party compatibility pack (animal icons for dogs, horses, etc.)
-description=[*] [b]Optional[/b]: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url] — server custom-zone display
-description=[/list]
-description=
-description=[h2]📋 MOD info[/h2]
-description=[list]
-description=[*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42
-description=[*] [b]Required MOD:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] (the main MOD, [b]42.20.4-0.27.0 or newer[/b]; this pack does nothing without it)
-description=[*] [b]Load order:[/b] require only ensures the main MOD loads before this addon. Priority between different map MODs still matters; multiplayer uses the server's Map= order. Overridden street sections may be excluded from street-name searches and the routing network. Arbitrary map combinations are not guaranteed compatible.
-description=[*] [b]Supported version:[/b] Build 42.20.0+
-description=[*] Works in singleplayer / multiplayer (client-side map data, no world changes; not driving validation of every map combination)
+description=[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]MiniMap for B42[/url] (main mod, required) — image-based world map and minimap, search, navigation
+description=[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102]MOD Maps[/url] — map images and street-name translations for map mods
+description=[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3792675881]AutoDrive[/url] — GPS navigation and autonomous driving
+description=[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url] — custom server zones
+description=[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url] — icons for third-party animals such as dogs and horses
 description=[/list]
 description=
 description=[h2]💬 Feedback & community[/h2]
-description=[url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues]🐛 GitHub Issues[/url] — map request & image issue report forms
-description=[url=https://discord.gg/Gur2V67]👉 Join the Discord server[/url]
+description=[list]
+description=[*] [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue forms[/url]: request a map, or report misaligned images and translation problems
+description=[*] Problems with the map itself (missing textures, buildings, map conflicts) should go to the original map author
+description=[*] [url=https://discord.gg/Gur2V67]Discord[/url]
+description=[/list]
 description=
 description=[h2]☕ Support the author[/h2]
 description=The mod is free and always will be. If you enjoy it, consider buying me a coffee - tips go straight into servers and mod development. Source code is public on GitHub.

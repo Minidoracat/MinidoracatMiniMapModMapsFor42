@@ -3,58 +3,47 @@
 
 [hr][/hr]
 
-[h2]✨ 这是什么[/h2]
-[b]Minidoracat MiniMap for B42[/b] 主 MOD 的[b]地图包 addon[/b]：
-收录地图 MOD 的小地图图像（实际游戏画面渲染）、范围框线、街名对照与少数已核准的道路修正数据，由主 MOD 套用。
+让地图 MOD 也能在小地图与世界地图上显示真实地图图片、范围框线与地图名称。你激活了哪些地图 MOD，就自动显示哪些，没装的不会画。
+
+[h2]📦 需要安装[/h2]
 [list]
-[*] [u]自动侦测[/u]：对应的地图 MOD 有激活才显示它的图，没装不误画
-[*] 地图范围框线＋名称标示（多语翻译），在小地图与世界地图上快速找到 MOD 地图
-[*] 装了本包才会出现的专属选项：MOD 地图区块开关、框线开关、框线颜色（预设绿）
-[*] [b]路名翻译[/b]：16 组地图数据支持繁中／简中／日文，原名与译名皆可搜索
+[*] 必装：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]（主 MOD）与它的前置 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library for B42[/url]
+[*] 你要玩的地图 MOD：本包只提供图片，地图本身仍要另外订阅
+[/list]
+系列 MOD 请都更新到最新版，更新后重新启动游戏。
+
+[h2]🚀 快速上手[/h2]
+[olist]
+[*] 订阅主 MOD 与本包
+[*] 从[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支持地图收藏[/url]挑选想玩的地图 MOD 订阅并激活
+[*] 进游戏按 [b]/[/b] 开小地图、[b]M[/b] 开世界地图，该地图区域会显示图片、框线与名称
+[/olist]
+
+[h2]✨ 主要功能[/h2]
+[list]
+[*] 支持 [b]78 个地图 MOD（101 张地图）[/b]，依激活状态自动显示
+[*] 地图范围框线与四语地图名称，框线可开关、可换颜色
+[*] 16 张地图的路名有繁中／简中／日文翻译，原名和译名都搜得到
+[*] 本包修正或补上部分地图的道路数据，让路名、搜索与导航更完整（例如康斯镇补上 37 条路）
+[*] 只改地图显示，不修改实际地形、建筑或存盘
+[/list]
+📖 [b]完整支持清单（含每张地图有没有道路数据）、冲突提醒与许愿：[/b][url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]支持地图清单＆许愿[/url]
+
+[h2]🔗 Minidoracat 小地图系列[/h2]
+[list]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]MiniMap for B42[/url]（主 MOD，必装）——图片化世界地图与小地图、搜索、导航
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102]MOD Maps[/url]——地图 MOD 的地图图片与路名翻译
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3792675881]AutoDrive[/url]——GPS 导航与自动驾驶
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url]——服务器自订区域
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url]——狗、马等第三方动物图标
 [/list]
 
-[h2]🗺️ 收录地图与许愿[/h2]
-目前支持 [b]78 个地图 MOD（101 张地图）[/b]，可从 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支持地图收藏[/url]自选订阅。完整清单、原作者致谢、以及「许愿想要的地图」都在
-[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]讨论区[/url]——欢迎留言许愿！
-也可以用 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue 表单[/url]申请支持新地图（会直接进开发待办，处理最快）。
-
-[h2]路名翻译[/h2]
-[b]16 组[/b]地图数据、364 个路名提供[b]繁中／简中／日文[/b]翻译。名称翻译不改道路几何；原名与译名使用相同的实时搜索位置。[b]地图包 42.20.4-0.9.0 搭配主 MOD 42.20.4-0.27.0 或更新版本[/b]，两包请一起更新并重启游戏。
-未收录的街名保留原名；没有道路数据的地图不会因此获得导航路网。
-街道搜索的「MOD 地图：地图名称」由主 MOD 提供，只表示可确认的数据来源，不是错误或认证标记。
-
-[h2]道路数据与支持范围[/h2]
-少数已核准的道路修正由本包提供、主 MOD 套用，与翻译分开：已知轮廓道路改为中线，来源几何不符就跳过；确定重复的标签只抑制显示，不删导航道路。不确定的重叠仍保留。这不是通用自动修路；图片支持不等于导航／自驾全图验收。
-详细规范与已知限制请见[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]MOD 地图支持告知[/url]。
-Foxtrot Warehouse 与 Atlanta 的地块完全重叠，请二选一。Atlas Underground Complex [b]仅支持地表图，不含地下楼层[/b]，与 SecretZ 等多张地图部分重叠，不保证混用兼容。
-
-[h2]🔧 支持范围说明[/h2]
-本包提供[b]小地图／世界地图图片、街名对照与已核准的道路修正数据[/b]，不修改实际游戏地形或建筑。
+[h2]💬 回报与交流[/h2]
 [list]
-[*] 本包图资问题（图对不上、框线位置错、名称翻译或修正数据问题）→ 欢迎在本页回报，或用 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue 表单[/url]（可附截屏，处理最快）
-[*] 地图 MOD 本身的问题（缺材质、建筑 BUG、地图间冲突、存盘问题、[b]路名数据违规[/b]）→ 请向原地图作者回报
+[*] [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue 表单[/url]：申请新地图、回报图片对不上或翻译问题
+[*] 地图本身的问题（缺材质、建筑、地图冲突）请向原地图作者回报
+[*] [url=https://discord.gg/Gur2V67]Discord[/url]
 [/list]
-
-[h2]🔗 系列 MOD[/h2]
-[list]
-[*] [b]主 MOD（必装）[/b]：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]——地图图片化本体
-[*] [b]本页[/b]：MOD Maps——地图 MOD 图资 addon
-[*] [b]选装[/b]：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url]——第三方 MOD 兼容包（狗、马等动物图标）
-[*] [b]选装[/b]：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url]——服务器自订区域显示
-[/list]
-
-[h2]📋 MOD 信息[/h2]
-[list]
-[*] [b]Mod ID:[/b] MinidoracatMiniMapModMapsFor42
-[*] [b]必要 MOD:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]（主 MOD，[b]需 42.20.4-0.27.0 或更新版本[/b]；缺少时本包无作用）
-[*] [b]加载顺序:[/b] require 只处理主 MOD 先于本 addon 的依赖顺序；不同地图 MOD 的覆盖优先级仍重要，多人模式由服务器 Map= 决定。被覆盖的道路部分可能不进入街名搜索与导航路网；不保证任意地图组合兼容。
-[*] [b]支持版本:[/b] Build 42.20.0+
-[*] 单机 / 多人皆可用（客户端图资，不改世界内容；不代表所有地图组合均经驾驶验收）
-[/list]
-
-[h2]💬 问题回报 & 交流[/h2]
-[url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues]🐛 GitHub Issues[/url]——地图支持申请与图像问题回报表单
-[url=https://discord.gg/Gur2V67]👉 点此加入 Discord 服务器[/url]
 
 [h2]☕ 支持作者[/h2]
 MOD 永远免费。喜欢的话可以请我喝杯咖啡，赞助会用在服务器与 MOD 开发上；原代码公开在 GitHub。
