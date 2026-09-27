@@ -1,0 +1,29 @@
+{
+  "dataset": "raven-creek",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3484263516",
+    "map_mod": "RavenCreekB42",
+    "map_dir": "Raven Creek B42",
+    "streets_xml_sha256": "59358dadb6a2ecee3f44485d36e8e3241106e941f495042ab0412d19ca2dc2a4",
+    "upstream_street_count": 45,
+    "worldmap_xml_sha256": "782be3b68338561de0289765f8153f9bcdc0b7f01bae15062d17cd0df83f8057",
+    "captured": "2026-09-28",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Raven Creek",
+    "ch": "渡鴉溪",
+    "cn": "渡鸦溪",
+    "jp": "レイヴンクリーク"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 8,
+      "points": [6307.5, 14373.5, 6493, 14558.5, 6592, 14607, 6600, 14607],
+      "evidence": {"samples": 380, "on_road": 380}
+    }
+  ],
+  "retired": []
+}

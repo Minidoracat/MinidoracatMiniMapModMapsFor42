@@ -80,7 +80,7 @@
 [*] New Ellroy（新艾爾羅伊）
 [*] Path of Zenith（天頂號郵輪）
 [*] Raccoon City（浣熊市）
-[*] Raven Creek（渡鴉溪） — ✅ 45 條
+[*] Raven Creek（渡鴉溪） — ✅ 45 條 🛠️
 [*] Raven Creek (Kardinal port)（渡鴉溪（Kardinal 移植版）） — ✅ 45 條
 [*] Riverside Mansion (Unofficial)（河畔豪宅（非官方修改版））
 [*] RustBury（鏽堡鎮）
@@ -130,6 +130,7 @@
 [*] [b]Constown, KY（康斯鎮）[/b]：原作者沒附道路資料，本包補上 37 條路，路名是「康斯鎮 01 號路（小地圖補）」這種格式，可以搜尋與導航；原作者日後提供道路資料時自動改用原作者的
 [*] [b]Camden County（卡姆登郡）[/b]：3 處原作者的路停在路口前，接上後可以導航到達
 [*] [b]Daisy County（雛菊郡）[/b]：44 條畫成外框的路改成中心線，路名不再上下各顯示一次
+[*] [b]Raven Creek（渡鴉溪）[/b]：原版 KY-79 轉進渡鴉溪的彎道沒有導航資料，導航會繞一大圈；本包補上這段，路名「渡鴉溪 01 號路（小地圖補）」
 [*] [b]Muldraugh 1993[/b]：和官方地圖完全相同的 913 個重複路名只隱藏顯示，導航不受影響
 [/list]
 

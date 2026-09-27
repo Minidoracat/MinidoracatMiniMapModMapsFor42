@@ -80,7 +80,7 @@ To subscribe to them all at once, use the [url=https://steamcommunity.com/shared
 [*] New Ellroy
 [*] Path of Zenith
 [*] Raccoon City
-[*] Raven Creek — ✅ 45 streets
+[*] Raven Creek — ✅ 45 streets 🛠️
 [*] Raven Creek (Kardinal port) — ✅ 45 streets
 [*] Riverside Mansion (Unofficial)
 [*] RustBury
@@ -130,6 +130,7 @@ To subscribe to them all at once, use the [url=https://steamcommunity.com/shared
 [*] [b]Constown, KY[/b]: the author ships no road data, so this pack adds 37 roads named like "Constown Rd 01 (MiniMap)"; they are searchable and routable, and the game switches to the author's roads automatically if the author adds road data later
 [*] [b]Camden County[/b]: 3 author roads stopped short of junctions; they now connect, so navigation can reach them
 [*] [b]Daisy County[/b]: 44 roads drawn as outlines are converted to centre lines, so names no longer appear twice
+[*] [b]Raven Creek[/b]: the KY-79 bend where the vanilla highway enters Raven Creek had no navigation data, so routes took a long detour; this pack adds it as "Raven Creek Rd 01 (MiniMap)"
 [*] [b]Muldraugh 1993[/b]: 913 street labels that exactly duplicate the vanilla map are hidden on display only; navigation is unaffected
 [/list]
 

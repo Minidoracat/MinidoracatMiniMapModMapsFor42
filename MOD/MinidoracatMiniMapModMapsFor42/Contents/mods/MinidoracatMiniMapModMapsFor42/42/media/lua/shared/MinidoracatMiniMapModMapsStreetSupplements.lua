@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 1 個 dataset／37 條補充道路
+-- 2 個 dataset／38 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -51,5 +51,14 @@ Supplements["constown"] = {
         ["Constown Rd 35 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_35",
         ["Constown Rd 36 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_36",
         ["Constown Rd 37 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_37",
+    },
+}
+
+-- ==== raven-creek (RavenCreekB42 / Raven Creek B42) ====
+Supplements["raven-creek"] = {
+    schemaVersion = 1, mapMod = "RavenCreekB42", mapDir = "Raven Creek B42",
+    file = "media/minimap/streets/raven-creek.xml", upstreamStreetCount = 45, roadCount = 1,
+    names = {
+        ["Raven Creek Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_raven-creek_01",
     },
 }

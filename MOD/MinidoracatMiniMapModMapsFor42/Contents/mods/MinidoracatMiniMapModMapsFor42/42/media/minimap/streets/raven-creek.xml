@@ -1,0 +1,10 @@
+<streets version="1">
+    <street name="Raven Creek Rd 01 (MiniMap)" width="8">
+        <points>
+            <point x="6307.5" y="14373.5"/>
+            <point x="6493.0" y="14558.5"/>
+            <point x="6592.0" y="14607.0"/>
+            <point x="6600.0" y="14607.0"/>
+        </points>
+    </street>
+</streets>

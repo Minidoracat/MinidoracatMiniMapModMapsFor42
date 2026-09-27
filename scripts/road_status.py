@@ -340,6 +340,8 @@ def render_doc(root: Path, status: dict) -> str:
             first, last = sup.roads[0].no, sup.roads[-1].no
 
             def span(lang: str) -> str:
+                if first == last:
+                    return f"`{grs.road_name(sup.label, first, lang)}`"
                 return (f"`{grs.road_name(sup.label, first, lang)}`～"
                         f"`{grs.road_name(sup.label, last, lang)}`")
 

@@ -80,7 +80,7 @@
 [*] New Ellroy
 [*] Path of Zenith
 [*] Raccoon City
-[*] Raven Creek — ✅ 45 本
+[*] Raven Creek — ✅ 45 本 🛠️
 [*] Raven Creek (Kardinal port) — ✅ 45 本
 [*] Riverside Mansion (Unofficial)
 [*] RustBury
@@ -130,6 +130,7 @@
 [*] [b]Constown, KY[/b]：原作者の道路データがないため、本パックが 37 本の道路を追加（名前は「コンスタウン 01号線（ミニマップ補完）」の形式）。検索とナビに使え、原作者が道路データを追加すると自動で原作者のものに切り替わります
 [*] [b]Camden County[/b]：交差点の手前で途切れていた 3 か所をつなぎ、ナビで到達できるようにしました
 [*] [b]Daisy County[/b]：輪郭として描かれていた 44 本の道路を中心線に変更し、道路名が二重に表示されなくなりました
+[*] [b]Raven Creek[/b]：公式マップの KY-79 が Raven Creek に入るカーブにナビ用データがなく、大きく遠回りしていました。本パックがこの区間を「レイヴンクリーク 01号線（ミニマップ補完）」として追加
 [*] [b]Muldraugh 1993[/b]：公式マップと完全に同じ 913 件の重複した道路名は表示だけを隠し、ナビには影響しません
 [/list]
 
