@@ -1,12 +1,15 @@
-# MOD 地圖街名與獨立道路修正
+# MOD 地圖街名、獨立道路修正與補充道路
 
-名稱翻譯不再替換整份語系 XML；已確認的道路修正改為另一組與語言無關的 pins。
+名稱翻譯不再替換整份語系 XML；已確認的道路修正改為另一組與語言無關的 pins；
+作者沒放進 `streets.xml` 的路由本包另補（補充道路）。
 公開介面的單一來源為 [小地圖 Addon API](../../MinidoracatMiniMapFor42/docs/addon-api.md)。
+每張地圖的現況給玩家查的清單在 [道路資料清單](road-data.md)（生成檔）。
 
 ## 目標與分工
 
 - 地圖原作者的 `streets.xml` 是來源；翻譯只決定名字，獨立修正決定已核准的幾何調整。
-- 本包提供 `street-names/` 名稱對照與 `road-repairs/` 修正 pins，兩支生成器各自運作。
+- 本包提供 `street-names/` 名稱對照、`road-repairs/` 修正 pins、`road-supplements/` 補充道路，
+  三支生成器各自運作。
 - 小地圖本體負責來源核對、顯示副本的暫時套用／還原，以及讓導航使用相同修正。
 - 不修改 AutoDrive 控制邏輯；本輪不調整 LangFor42 的原版中文街道來源。
 
@@ -34,8 +37,30 @@ Lua 字串中的非 ASCII 原名以 UTF-8 十進位位元組跳脫，避免 Kahl
   `shared/MinidoracatMiniMapModMapsStreetRepairs.lua`；registry 用 `streetRepairs` 引用。
 - 每筆保存來源 ID／目錄、0-based 街道 index、原始完整點列及路寬。執行期不符就略過；
   不會在 `gen` 時自動接受上游新座標。
-- 現有核准內容：Daisy County 44 條輪廓→中心線；Muldraugh 1993 913 筆完整複本標籤候選。
+- 現有核准內容：Daisy County 44 條輪廓→中心線；Camden County 3 條斷點接線（gap-bridge，
+  原點列不動、只在一端多接最多 4 點、接線 ≤ 48 格並寫明接到同圖哪條街）；
+  Muldraugh 1993 913 筆完整複本標籤候選。
 - 名稱、points 與 width 的來源追蹤可以各自更新；原版道路修補仍由主 MOD 既有 RoadPatches 管理。
+
+## 補充道路（作者沒放進 streets.xml 的路）
+
+作者的 `worldmap.xml`（遊戲 M 鍵地圖畫路用的那份）常有完整道路多邊形，但導航、路名、
+搜尋只讀 `streets.xml`。`road-supplements/<dataset>.json` 由
+`scripts/derive_road_supplements.py` 從作者道路多邊形骨架化推導（路口接最直的兩段成一條路，
+寬度依原版校準：多邊形寬 − 2），每條路附中線落在實際路面的取樣證據；人看過 `--preview`
+疊圖才 `--write`。`scripts/gen_road_supplements.py` 只編譯：
+
+1. `media/minimap/streets/<dataset>.xml`（同 `streets.xml` 格式，英文原名）。
+2. `shared/MinidoracatMiniMapModMapsStreetSupplements.lua`；registry 以 `streetSupplement` 引用。
+3. 四語 `UI.json` 的 `UI_MinidoracatMiniMapModMaps_Road_<dataset>_<NN>`。
+
+- 路名格式（2026-09-27 使用者選定）：`Constown Rd 07 (MiniMap)`／`康斯鎮 07 號路（小地圖補）`／
+  `康斯镇 07 号路（小地图补）`／`コンスタウン 07号線（ミニマップ補完）`。號碼一經發出就固定，
+  重跑推導時幾何重疊的路沿用舊號，消失的號碼記進 `retired` 不再重用。
+- 退場：`source.upstream_street_count` 綁定推導當時作者的街道數（沒有檔＝0），主 MOD 數到不同
+  就整份停用、改回作者資料；數目相同的內容改動由追蹤器比對 sha256 開 issue。
+- `highway=trail`（土徑）預設不推導：路面訊號弱、過不了九成落在路面的證據門檻。
+- 現有資料：Constown 37 條（作者沒有 `streets.xml`）。其他地圖的缺漏區域之後再補。
 
 ## 來源辨識
 
@@ -86,7 +111,8 @@ Lua 字串中的非 ASCII 原名以 UTF-8 十進位位元組跳脫，避免 Kahl
   不預測未來載入、不反向修改較晚加入的原版資料；部分 EN 同名疊繪仍可能存在。
 - 舊 near、60% overlay、oob 剔除不搬回；19 筆只有 full-cover 的標籤候選也已撤回，
   因為幾何覆蓋不證明另一個標籤真的可用。部分重疊與未核准錯路維持來源行為。
-- 沒有 `streets.xml` 的地圖不會因安裝本包就憑空獲得導航道路。
+- 沒有 `streets.xml` 的地圖只有在本包提供補充道路時才有導航道路（目前只有 Constown）；
+  其餘地圖不會因安裝本包就憑空獲得道路。
 - Tikitown 的本機多人初始化阻礙與名稱處理無關；離線道路測試不等於伺服器成功啟動或實機駕駛驗收。
 
 ## 維護與驗證
@@ -102,8 +128,8 @@ uv run scripts/verify_mod.py
 ```
 
 `gen` 不要求已安裝上游副本：名稱資料可獨立生成。若找到上游，會非阻擋地提示未收錄原名；
-`--update-hash` 可更新來源追蹤中繼資料。`map_tracker.py streets-scan` 仍獨立追蹤上游變更，
-不要把街名更新誤判成圖片必須重渲。
+`--update-hash` 可更新來源追蹤中繼資料。`map_tracker.py road-scan` 與每日追蹤器獨立追蹤上游
+道路資料變更（`tracker-state/road_status.json`），不要把街名更新誤判成圖片必須重渲。
 
 主 MOD 的 `test_street_names.lua` 驗來源分離、幾何保留、缺譯、第三方改名、例外還原與重入；
 `test_nav_kick.lua` 比較原名／譯名下的路線與鐵路排除；`test_search_logic.lua` 驗雙語共用錨點。

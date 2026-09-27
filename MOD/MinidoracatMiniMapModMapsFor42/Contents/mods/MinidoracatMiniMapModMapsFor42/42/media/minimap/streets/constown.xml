@@ -1,0 +1,346 @@
+<streets version="1">
+    <street name="Constown Rd 01 (MiniMap)" width="8">
+        <points>
+            <point x="5656.5" y="10810.5"/>
+            <point x="5656.5" y="10877.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 02 (MiniMap)" width="8">
+        <points>
+            <point x="5749.5" y="10810.5"/>
+            <point x="5749.5" y="10877.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 03 (MiniMap)" width="4">
+        <points>
+            <point x="6294.5" y="10833.5"/>
+            <point x="6188.5" y="10833.5"/>
+            <point x="6186.5" y="10835.5"/>
+            <point x="6162.5" y="10834.5"/>
+            <point x="6159.5" y="10837.5"/>
+            <point x="6159.5" y="10867.5"/>
+            <point x="6161.5" y="10869.5"/>
+            <point x="6185.5" y="10869.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 04 (MiniMap)" width="4">
+        <points>
+            <point x="5132.5" y="10869.5"/>
+            <point x="5138.5" y="10868.5"/>
+            <point x="5150.5" y="10873.5"/>
+            <point x="5163.5" y="10885.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 05 (MiniMap)" width="8">
+        <points>
+            <point x="5387.5" y="10865.5"/>
+            <point x="5381.5" y="10862.5"/>
+            <point x="5328.5" y="10862.5"/>
+            <point x="5305.5" y="10873.5"/>
+            <point x="5286.5" y="10892.5"/>
+            <point x="5283.5" y="10893.5"/>
+            <point x="5279.5" y="10899.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 06 (MiniMap)" width="6">
+        <points>
+            <point x="5830.5" y="11098.5"/>
+            <point x="5831.5" y="10942.5"/>
+            <point x="5828.5" y="10915.5"/>
+            <point x="5820.5" y="10899.5"/>
+            <point x="5808.5" y="10887.5"/>
+            <point x="5792.5" y="10879.5"/>
+            <point x="5787.5" y="10878.5"/>
+            <point x="5637.5" y="10878.5"/>
+            <point x="5616.5" y="10888.5"/>
+            <point x="5602.5" y="10902.5"/>
+            <point x="5593.5" y="10921.5"/>
+            <point x="5593.5" y="11162.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 07 (MiniMap)" width="4">
+        <points>
+            <point x="6186.5" y="10835.5"/>
+            <point x="6186.5" y="10925.5"/>
+            <point x="6188.5" y="10927.5"/>
+            <point x="6240.5" y="10926.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 08 (MiniMap)" width="4">
+        <points>
+            <point x="5215.5" y="10824.5"/>
+            <point x="5207.5" y="10828.5"/>
+            <point x="5206.5" y="10834.5"/>
+            <point x="5197.5" y="10849.5"/>
+            <point x="5170.5" y="10876.5"/>
+            <point x="5155.5" y="10903.5"/>
+            <point x="5155.5" y="10940.5"/>
+            <point x="5166.5" y="10964.5"/>
+            <point x="5166.5" y="11008.5"/>
+            <point x="5164.5" y="11012.5"/>
+            <point x="5164.5" y="11043.5"/>
+            <point x="5177.5" y="11071.5"/>
+            <point x="5177.5" y="11123.5"/>
+            <point x="5174.5" y="11131.5"/>
+            <point x="5169.5" y="11136.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 09 (MiniMap)" width="6">
+        <points>
+            <point x="5532.5" y="10942.5"/>
+            <point x="5532.5" y="11016.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 10 (MiniMap)" width="6">
+        <points>
+            <point x="5979.5" y="10903.5"/>
+            <point x="5930.5" y="10903.5"/>
+            <point x="5907.5" y="10914.5"/>
+            <point x="5890.5" y="10931.5"/>
+            <point x="5870.5" y="10941.5"/>
+            <point x="5831.5" y="10942.5"/>
+            <point x="5344.5" y="10941.5"/>
+            <point x="5327.5" y="10934.5"/>
+            <point x="5301.5" y="10909.5"/>
+            <point x="5291.5" y="10904.5"/>
+            <point x="5281.5" y="10902.5"/>
+            <point x="5279.5" y="10900.5"/>
+            <point x="5270.5" y="10902.5"/>
+            <point x="5219.5" y="10902.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 11 (MiniMap)" width="4">
+        <points>
+            <point x="6207.5" y="10928.5"/>
+            <point x="6207.5" y="10948.5"/>
+            <point x="6236.5" y="10977.5"/>
+            <point x="6239.5" y="10978.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 12 (MiniMap)" width="3">
+        <points>
+            <point x="6241.5" y="10834.5"/>
+            <point x="6241.5" y="10989.5"/>
+            <point x="6251.5" y="11000.5"/>
+            <point x="6271.5" y="11005.5"/>
+            <point x="6280.5" y="11014.5"/>
+            <point x="6287.5" y="11029.5"/>
+            <point x="6293.5" y="11035.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 13 (MiniMap)" width="6">
+        <points>
+            <point x="5219.5" y="10803.5"/>
+            <point x="5218.5" y="10815.5"/>
+            <point x="5216.5" y="10820.5"/>
+            <point x="5218.5" y="10826.5"/>
+            <point x="5218.5" y="11118.5"/>
+            <point x="5219.5" y="11123.5"/>
+            <point x="5233.5" y="11151.5"/>
+            <point x="5242.5" y="11161.5"/>
+            <point x="5242.5" y="11171.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 14 (MiniMap)" width="6">
+        <points>
+            <point x="5699.5" y="11017.5"/>
+            <point x="5323.5" y="11017.5"/>
+            <point x="5311.5" y="11023.5"/>
+            <point x="5302.5" y="11032.5"/>
+            <point x="5297.5" y="11042.5"/>
+            <point x="5297.5" y="11099.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 15 (MiniMap)" width="6">
+        <points>
+            <point x="5701.5" y="10994.5"/>
+            <point x="5829.5" y="10994.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 16 (MiniMap)" width="8">
+        <points>
+            <point x="5943.5" y="10979.5"/>
+            <point x="5943.5" y="11045.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 17 (MiniMap)" width="6">
+        <points>
+            <point x="5400.5" y="10942.5"/>
+            <point x="5400.5" y="11099.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 18 (MiniMap)" width="6">
+        <points>
+            <point x="5887.5" y="11001.5"/>
+            <point x="5885.5" y="11047.5"/>
+            <point x="5885.5" y="11098.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 19 (MiniMap)" width="6">
+        <points>
+            <point x="5887.5" y="11046.5"/>
+            <point x="6085.5" y="11046.5"/>
+            <point x="6090.5" y="11048.5"/>
+            <point x="6093.5" y="11053.5"/>
+            <point x="6093.5" y="11099.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 20 (MiniMap)" width="4">
+        <points>
+            <point x="5178.5" y="11096.5"/>
+            <point x="5216.5" y="11096.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 21 (MiniMap)" width="6">
+        <points>
+            <point x="6000.5" y="10968.5"/>
+            <point x="6000.5" y="11203.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 22 (MiniMap)" width="4">
+        <points>
+            <point x="5420.5" y="11101.5"/>
+            <point x="5429.5" y="11117.5"/>
+            <point x="5433.5" y="11121.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 23 (MiniMap)" width="4">
+        <points>
+            <point x="5446.5" y="11102.5"/>
+            <point x="5443.5" y="11109.5"/>
+            <point x="5433.5" y="11121.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 24 (MiniMap)" width="8">
+        <points>
+            <point x="6185.5" y="11147.5"/>
+            <point x="6182.5" y="11142.5"/>
+            <point x="6096.5" y="11100.5"/>
+            <point x="5219.5" y="11100.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 25 (MiniMap)" width="6">
+        <points>
+            <point x="5775.5" y="11136.5"/>
+            <point x="5999.5" y="11136.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 26 (MiniMap)" width="8">
+        <points>
+            <point x="5433.5" y="11121.5"/>
+            <point x="5433.5" y="11203.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 27 (MiniMap)" width="6">
+        <points>
+            <point x="5434.5" y="11163.5"/>
+            <point x="5699.5" y="11163.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 28 (MiniMap)" width="6">
+        <points>
+            <point x="5700.5" y="10942.5"/>
+            <point x="5700.5" y="11267.5"/>
+            <point x="5554.5" y="11269.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 29 (MiniMap)" width="6">
+        <points>
+            <point x="5774.5" y="11101.5"/>
+            <point x="5774.5" y="11252.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 30 (MiniMap)" width="5">
+        <points>
+            <point x="6185.5" y="11149.5"/>
+            <point x="6175.5" y="11161.5"/>
+            <point x="6174.5" y="11176.5"/>
+            <point x="6177.5" y="11184.5"/>
+            <point x="6184.5" y="11192.5"/>
+            <point x="6187.5" y="11199.5"/>
+            <point x="6187.5" y="11203.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 31 (MiniMap)" width="6">
+        <points>
+            <point x="6186.5" y="11148.5"/>
+            <point x="6198.5" y="11150.5"/>
+            <point x="6274.5" y="11188.5"/>
+            <point x="6282.5" y="11202.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 32 (MiniMap)" width="14">
+        <points>
+            <point x="6296.5" y="10802.5"/>
+            <point x="6296.5" y="11033.5"/>
+            <point x="6294.5" y="11035.5"/>
+            <point x="6295.5" y="11195.5"/>
+            <point x="6289.5" y="11201.5"/>
+            <point x="6282.5" y="11202.5"/>
+            <point x="6280.5" y="11204.5"/>
+            <point x="5304.5" y="11204.5"/>
+            <point x="5295.5" y="11202.5"/>
+            <point x="5253.5" y="11181.5"/>
+            <point x="5242.5" y="11172.5"/>
+            <point x="5231.5" y="11170.5"/>
+            <point x="5185.5" y="11146.5"/>
+            <point x="5181.5" y="11146.5"/>
+            <point x="5178.5" y="11143.5"/>
+            <point x="5171.5" y="11140.5"/>
+            <point x="5169.5" y="11137.5"/>
+            <point x="5161.5" y="11135.5"/>
+            <point x="5107.5" y="11108.5"/>
+            <point x="5100.5" y="11095.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 33 (MiniMap)" width="4">
+        <points>
+            <point x="5179.5" y="11145.5"/>
+            <point x="5174.5" y="11151.5"/>
+            <point x="5174.5" y="11197.5"/>
+            <point x="5196.5" y="11242.5"/>
+            <point x="5195.5" y="11290.5"/>
+            <point x="5183.5" y="11314.5"/>
+            <point x="5184.5" y="11340.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 34 (MiniMap)" width="8">
+        <points>
+            <point x="5552.5" y="11246.5"/>
+            <point x="5433.5" y="11246.5"/>
+            <point x="5415.5" y="11263.5"/>
+            <point x="5412.5" y="11264.5"/>
+            <point x="5397.5" y="11264.5"/>
+            <point x="5391.5" y="11262.5"/>
+            <point x="5381.5" y="11252.5"/>
+            <point x="5376.5" y="11250.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 35 (MiniMap)" width="7">
+        <points>
+            <point x="5554.5" y="11164.5"/>
+            <point x="5553.5" y="11333.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 36 (MiniMap)" width="6">
+        <points>
+            <point x="5863.5" y="11100.5"/>
+            <point x="5863.5" y="11234.5"/>
+            <point x="5858.5" y="11245.5"/>
+            <point x="5854.5" y="11249.5"/>
+            <point x="5845.5" y="11253.5"/>
+            <point x="5701.5" y="11253.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 37 (MiniMap)" width="4">
+        <points>
+            <point x="5375.5" y="11205.5"/>
+            <point x="5374.5" y="11280.5"/>
+            <point x="5370.5" y="11284.5"/>
+            <point x="5261.5" y="11284.5"/>
+            <point x="5222.5" y="11265.5"/>
+            <point x="5203.5" y="11246.5"/>
+            <point x="5197.5" y="11244.5"/>
+        </points>
+    </street>
+</streets>

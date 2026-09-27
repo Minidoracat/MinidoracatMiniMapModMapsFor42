@@ -301,6 +301,7 @@ if os.path.isfile(_cl):
 for script, label in (
     ("gen_streets_i18n.py", "街名翻譯生成物"),
     ("gen_street_repairs.py", "獨立道路修正生成物"),
+    ("gen_road_supplements.py", "補充道路生成物"),
 ):
     try:
         result = subprocess.run(
@@ -315,6 +316,18 @@ for script, label in (
             ok(label)
     except (OSError, subprocess.TimeoutExpired) as error:
         fail(label, [str(error)])
+
+# ---- 道路資料狀態與公開清單（tracker-state/road_status.json、docs/road-data.md） ----
+try:
+    sys.path.insert(0, os.path.join(REPO, "scripts"))
+    import road_status
+    from pathlib import Path
+
+    road_problems = road_status.verify(Path(REPO))
+except (OSError, ValueError) as error:
+    road_problems = [str(error)]
+fail("道路資料狀態與公開清單", road_problems) if road_problems \
+    else ok("道路資料狀態與公開清單（涵蓋全部註冊地圖、docs/road-data.md 同步）")
 
 # ---- 總結 ----
 print()

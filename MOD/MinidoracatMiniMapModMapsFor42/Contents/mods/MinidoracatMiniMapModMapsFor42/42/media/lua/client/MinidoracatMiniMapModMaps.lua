@@ -21,7 +21,7 @@
 --   streetRepairs = 選配，該圖的**道路修正**資料（與街名翻譯完全分離的另一套）：
 --             {schemaVersion, mapMod, mapDir, operations = {[0-based 原始街道索引] = {
 --                 expectedWidth, expectedPoints,   -- 當前上游的 width 與完整點列
---                 replacementPoints = 選配,         -- 改幾何（輪廓矩形 → 中心線）
+--                 replacementPoints = 選配,         -- 改幾何（輪廓矩形 → 中心線／斷點接線）
 --                 hideLabel = 選配, reference = {index, width, points} }}}
 --             執行期逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log
 --             ⇒ 上游改版安全退回原樣，不擋同圖其他修正、也不擋新道路。
@@ -30,10 +30,18 @@
 --             仍在且看得見才隱藏。表由 scripts/gen_street_repairs.py 從
 --             road-repairs/<dataset>.json 生成在 shared/ 全域表
 --             MinidoracatMiniMapModMapsStreetRepairs，本檔只引用不定義。
--- shared/ 早於 client/ 載入 ⇒ 兩張全域表此時已就緒；`or {}` 只防生成檔缺席時
+--   streetSupplement = 選配，本包補上的**補充道路**（作者沒放進 streets.xml 的路）：
+--             {schemaVersion, mapMod, mapDir, file, upstreamStreetCount, roadCount, names}。
+--             file 是本包 media/minimap/streets/<dataset>.xml；路名帶「(MiniMap)」＝不是作者
+--             取的名字。作者自己的 streets.xml 街道數 ≠ upstreamStreetCount 時主 MOD 整份停用。
+--             必須明寫 mapDir。表由 scripts/gen_road_supplements.py 從
+--             road-supplements/<dataset>.json 生成在 shared/ 全域表
+--             MinidoracatMiniMapModMapsStreetSupplements，本檔只引用不定義。
+-- shared/ 早於 client/ 載入 ⇒ 三張全域表此時已就緒；`or {}` 只防生成檔缺席時
 -- 整份註冊清單被 nil 索引炸掉（缺表只是街名退英文／修正不生效，不該連地圖都不掛）。
 local StreetNames = MinidoracatMiniMapModMapsStreetNames or {}
 local StreetRepairs = MinidoracatMiniMapModMapsStreetRepairs or {}
+local StreetSupplements = MinidoracatMiniMapModMapsStreetSupplements or {}
 if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
     MinidoracatMiniMapAPI.registerMaps("MinidoracatMiniMapModMapsFor42", {
         { zip = "Muldraugh_FireDept.pyramid.zip", mapMod = "beek_muldraugh_firedept",
@@ -75,13 +83,15 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "BlackpineCounty.pyramid.zip", mapMod = "BlackpineCounty",
             bounds = { 9728, 14080, 11776, 15360 }, nameKey = "UI_MinidoracatMiniMapModMaps_BlackpineCounty" },
         { zip = "Camden County B42.pyramid.zip", mapMod = "CamdenCountyB42", mapDir = "Camden County B42",
-            streetNames = StreetNames["camden-county"],
+            streetNames = StreetNames["camden-county"], streetRepairs = StreetRepairs["camden-county"],
             bounds = { 12800, 8448, 19200, 14848 }, nameKey = "UI_MinidoracatMiniMapModMaps_CamdenCounty" },
         { zip = "Cathaya Valley2.0 highway.pyramid.zip", mapMod = "Cathaya Valley 2.0 B42 version highway",
             bounds = { 7424, 12288, 7936, 13312 }, nameKey = "UI_MinidoracatMiniMapModMaps_CathayaValleyHighway" },
         { zip = "Cathaya Valley2.0.pyramid.zip", mapMod = "Cathaya Valley 2.0 B42 version",
             bounds = { 7168, 12544, 7680, 13312 }, nameKey = "UI_MinidoracatMiniMapModMaps_CathayaValley" },
-        { zip = "Constown, KY.pyramid.zip", mapMod = "Constown42",
+        -- 作者沒有 streets.xml：路名、搜尋、導航全靠本包補充道路（依作者 worldmap.xml 推導）
+        { zip = "Constown, KY.pyramid.zip", mapMod = "Constown42", mapDir = "Constown, KY",
+            streetSupplement = StreetSupplements["constown"],
             bounds = { 4864, 10752, 6400, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_Constown" },
         { zip = "Coryerdon B42.pyramid.zip", mapMod = "CoryerdonB42",
             bounds = { 7168, 5632, 10752, 7424 }, nameKey = "UI_MinidoracatMiniMapModMaps_Coryerdon" },

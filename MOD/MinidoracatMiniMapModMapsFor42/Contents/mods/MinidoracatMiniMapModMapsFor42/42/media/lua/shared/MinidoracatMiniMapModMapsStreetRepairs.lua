@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetRepairs.lua（生成檔，勿手編）
 -- 由 scripts/gen_street_repairs.py 從 road-repairs/*.json 編譯
--- 2 個 dataset／957 筆修正（改幾何 44、隱藏標籤候選 913）
+-- 3 個 dataset／960 筆修正（中心線 44、接線 3、隱藏標籤候選 913）
 --
 -- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log
 -- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。
@@ -11,8 +11,21 @@
 MinidoracatMiniMapModMapsStreetRepairs = MinidoracatMiniMapModMapsStreetRepairs or {}
 local Repairs = MinidoracatMiniMapModMapsStreetRepairs
 
+-- ==== camden-county (CamdenCountyB42 / Camden County B42) ====
+-- 逐筆理由（rect-outline／gap-bridge／exact-copy）在 road-repairs/camden-county.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+do
+    local ops = {}
+    -- #5 All Saints Pl
+    ops[5] = { expectedWidth = 5, expectedPoints = { 14876.5, 12228.5, 15098.5, 12228 }, replacementPoints = { 14863.5, 12228.5, 14876.5, 12228.5, 15098.5, 12228 } }
+    -- #22 Ramblewood Pl
+    ops[22] = { expectedWidth = 5, expectedPoints = { 15053.5, 9615.5, 15016.5, 9581.5, 14161.5, 9580.5 }, replacementPoints = { 15056, 9625.1875, 15053.5, 9615.5, 15016.5, 9581.5, 14161.5, 9580.5 } }
+    -- #35 Crystal Lake Rd
+    ops[35] = { expectedWidth = 5, expectedPoints = { 16471.5, 13736, 16473, 13821, 16436, 13890, 16419, 13901.5, 16378.5, 13908, 16362, 13921, 16314.5, 13933.5, 16286, 13952, 16263, 13964.5, 16239, 13983, 16222, 14008.5, 16180, 14073.5, 16161, 14098.5, 16158, 14123.5, 16161.5, 14144, 16146, 14189, 16144, 14230.5, 16133.5, 14286.5, 16115, 14317.5, 16092, 14339, 16068.5, 14383.5, 16057.5, 14427.5, 16044.5, 14477, 16023.5, 14514.5, 16016, 14521, 16000.5, 14544.5, 15989.5, 14560, 15976, 14587.5, 15971.5, 14594.5, 15957, 14608, 15941.5, 14620, 15932.5, 14631.5, 15912.5, 14642, 15903, 14652.5, 15896, 14667.5, 15888, 14698 }, replacementPoints = { 16473.5, 13698.5, 16469.5, 13702.5, 16469.5, 13731.5, 16471.5, 13736, 16473, 13821, 16436, 13890, 16419, 13901.5, 16378.5, 13908, 16362, 13921, 16314.5, 13933.5, 16286, 13952, 16263, 13964.5, 16239, 13983, 16222, 14008.5, 16180, 14073.5, 16161, 14098.5, 16158, 14123.5, 16161.5, 14144, 16146, 14189, 16144, 14230.5, 16133.5, 14286.5, 16115, 14317.5, 16092, 14339, 16068.5, 14383.5, 16057.5, 14427.5, 16044.5, 14477, 16023.5, 14514.5, 16016, 14521, 16000.5, 14544.5, 15989.5, 14560, 15976, 14587.5, 15971.5, 14594.5, 15957, 14608, 15941.5, 14620, 15932.5, 14631.5, 15912.5, 14642, 15903, 14652.5, 15896, 14667.5, 15888, 14698 } }
+    Repairs["camden-county"] = { schemaVersion = 1, mapMod = "CamdenCountyB42", mapDir = "Camden County B42", operations = ops }
+end
+
 -- ==== daisy-county (Daisy County B42 version / Daisy County) ====
--- 逐筆理由（rect-outline／exact-copy）在 road-repairs/daisy-county.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／exact-copy）在 road-repairs/daisy-county.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
 do
     local ops = {}
     -- #0 Weinifan Street
@@ -107,7 +120,7 @@ do
 end
 
 -- ==== muldraugh-1993 (muldraugh1993b42 / Muldraugh 1993 B42) ====
--- 逐筆理由（rect-outline／exact-copy）在 road-repairs/muldraugh-1993.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／exact-copy）在 road-repairs/muldraugh-1993.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
 do
     local ops = {}
     -- #3 Goggins St

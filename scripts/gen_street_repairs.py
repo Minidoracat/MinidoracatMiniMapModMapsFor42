@@ -18,7 +18,7 @@ width 與完整點列長這樣」，以及要對它做什麼（壓成中心線�
 canonical 道路仍在、仍看得見，才真的隱藏。所以「上游漂移」與「官方路網改版」兩種
 情況都退回原樣，不會把路弄丟。
 
-## pin 是怎麼得出來的（人工核准過的兩條規則，生成時逐筆強制驗）
+## pin 是怎麼得出來的（人工核准過的三條規則，生成時逐筆強制驗）
 
 1. **rect-outline → 中心線**（只有 Daisy County 44/44 條）：4 點、軸對齊、四角互異
    的閉合矩形，短邊 <= max(width*1.5, 16)、長邊 >= 短邊*3。作者把街道畫成輪廓矩形，
@@ -27,10 +27,17 @@ canonical 道路仍在、仍看得見，才真的隱藏。所以「上游漂移�
    方環／L 形折線一律不套（`rect_centerline` 判定會自己擋掉）。
 2. **exact-copy → 隱藏路名**：本圖某條街的原始點列與 vanilla 全域街道表某條**逐點
    相同**。引擎兩份都畫 ⇒ 同座標疊字。官方那份動不了，所以隱藏我方這份。
+3. **gap-bridge → 端點接線**（2026-09-27 使用者核准；Camden County 3 條）：作者的街
+   停在路口前幾十格，實際路面連到隔壁街，但距離超過導航吸附容差 ⇒ 整段變成到不了的
+   孤島。`replacementPoints` 必須是「原點列一個不動、只在頭或尾多接最多 4 點」，接出的
+   長度 <= 48 格，並用 `bridgeTo` 寫明接到同圖哪一條街（0-based index）。接線的新端點
+   要落在該街 1 格內——這條要讀上游，由 verify 對本機副本檢查。沿實際路面走（路面
+   取樣比例）的證據寫在 reason，那是核准時人看過的東西，generator 不重算。
 
-`replacementPoints` 必須等於 `rect_centerline(expectedPoints, expectedWidth)`、
-`hideLabel` 的 `reference.points` 必須等於 `expectedPoints`：手繪的新幾何、或沒有
-逐點相同證據的隱藏，一律 fail-closed。要走新規則就先有人核准，同時改這支的判定。
+`replacementPoints` 必須等於 `rect_centerline(expectedPoints, expectedWidth)` 或是合法的
+gap-bridge 延伸、`hideLabel` 的 `reference.points` 必須等於 `expectedPoints`：其他手繪
+新幾何、或沒有逐點相同證據的隱藏，一律 fail-closed。要走新規則就先有人核准，同時改
+這支的判定。
 
 **「整條共線落在單一官方路上」不是隱藏理由**（曾評估、已否決）：幾何 100% 被覆蓋
 不等於玩家看得到另一份可見標籤——短路段的名字可能是那一段唯一顯示的名字，藏了
@@ -86,6 +93,10 @@ MAX_REPLACEMENT_POINTS = 383
 # 幾何規則門檻（pin 就是照這條算出來的，改了這裡等於改核准規則）
 _RECT_MAX_SHORT = 16.0
 _RECT_MIN_RATIO = 3.0
+# gap-bridge：接線只准短短一段、點數也少——長的補路不是「修正作者的街」，是新增道路
+_BRIDGE_MAX_LEN = 48.0
+_BRIDGE_MAX_ADDED = 4
+_BRIDGE_SNAP = 1.0  # 新端點離目標街的最大距離（格）；verify 讀上游時檢查
 
 # operations[] 認得的欄位；多打一個字（replacmentPoints）不該變成靜默的空修正
 _OP_KEYS = {
@@ -96,6 +107,7 @@ _OP_KEYS = {
     "replacementPoints",
     "hideLabel",
     "reference",
+    "bridgeTo",
     "reason",
 }
 # 註冊清單引用形如 `streetRepairs = StreetRepairs["daisy-county"]`
@@ -130,6 +142,43 @@ def rect_centerline(flat: list[float], width: float) -> list[float] | None:
         return [x0, cy, x1, cy]
     cx = (x0 + x1) / 2
     return [cx, y0, cx, y1]
+
+
+def bridge_extension(exp: list[float], rep: list[float]) -> tuple[str, list[float]] | None:
+    """gap-bridge 判定：rep 是否為 exp 原封不動、只在一端多接點。
+
+    → (端別 "start"|"end", 接線折線 flat：含原端點，從原端點走到新端點)；不符回 None。
+    """
+    n, m = len(exp), len(rep)
+    added = (m - n) // 2
+    if m <= n or (m - n) % 2 or added > _BRIDGE_MAX_ADDED:
+        return None
+    if rep[m - n:] == exp:
+        # 頭端延伸：rep = 新點… + exp；接線從 exp 起點倒著走到 rep[0]
+        seg = rep[: m - n + 2]
+        pts = [(seg[i], seg[i + 1]) for i in range(0, len(seg), 2)][::-1]
+        return "start", [c for p in pts for c in p]
+    if rep[:n] == exp:
+        return "end", rep[n - 2:]
+    return None
+
+
+def polyline_length(flat: list[float]) -> float:
+    return sum(
+        ((flat[i + 2] - flat[i]) ** 2 + (flat[i + 3] - flat[i + 1]) ** 2) ** 0.5
+        for i in range(0, len(flat) - 2, 2)
+    )
+
+
+def point_polyline_distance(x: float, y: float, flat: list[float]) -> float:
+    best = float("inf")
+    for i in range(0, len(flat) - 2, 2):
+        ax, ay, bx, by = flat[i], flat[i + 1], flat[i + 2], flat[i + 3]
+        dx, dy = bx - ax, by - ay
+        ll = dx * dx + dy * dy
+        t = 0.0 if ll == 0 else max(0.0, min(1.0, ((x - ax) * dx + (y - ay) * dy) / ll))
+        best = min(best, ((x - ax - t * dx) ** 2 + (y - ay - t * dy) ** 2) ** 0.5)
+    return best
 
 
 # ============================================================
@@ -214,6 +263,19 @@ class Op(NamedTuple):
     ref_index: int | None
     ref_width: float | None
     ref_points: list[float] | None
+    bridge_to: int | None = None
+
+
+KIND_RECT = "rect-centerline"
+KIND_BRIDGE = "gap-bridge"
+KIND_HIDE = "hide-label"
+
+
+def classify_op(op: Op) -> str:
+    """已通過 `_load_op` 的修正 → 規則種類（公開道路資料清單依此分類計數）。"""
+    if op.hide_label:
+        return KIND_HIDE
+    return KIND_BRIDGE if op.bridge_to is not None else KIND_RECT
 
 
 class Pins(NamedTuple):
@@ -238,6 +300,7 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
     exp = _flat_points(errors, f"{where}.expectedPoints", raw.get("expectedPoints"))
 
     rep = None
+    bridge_to = None
     if "replacementPoints" in raw:
         rep = _flat_points(errors, f"{where}.replacementPoints", raw["replacementPoints"])
         if rep is not None and len(rep) // 2 > MAX_REPLACEMENT_POINTS:
@@ -247,12 +310,33 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
             )
             rep = None
         elif rep is not None and exp is not None and width is not None:
-            # 只認核准過的 rect-outline → 中心線；手繪幾何一律 fail-closed
-            if rect_centerline(exp, width) != rep:
-                errors.append(
-                    f"{where}.replacementPoints 不是 expectedPoints 的 rect-outline 中心線"
-                    "（新規則要先人工核准並改 gen_street_repairs.py 的判定）"
-                )
+            # 只認核准過的規則：rect-outline → 中心線、gap-bridge 端點接線；其餘 fail-closed
+            if rect_centerline(exp, width) == rep:
+                if "bridgeTo" in raw:
+                    errors.append(f"{where}.bridgeTo 只用於 gap-bridge（這筆是 rect-outline 中心線）")
+            else:
+                bridge = bridge_extension(exp, rep)
+                if bridge is None:
+                    errors.append(
+                        f"{where}.replacementPoints 不是 rect-outline 中心線，也不是只在一端接"
+                        f" <= {_BRIDGE_MAX_ADDED} 點的 gap-bridge（新規則要先人工核准並改"
+                        " gen_street_repairs.py 的判定）"
+                    )
+                else:
+                    length = polyline_length(bridge[1])
+                    if length > _BRIDGE_MAX_LEN:
+                        errors.append(
+                            f"{where} gap-bridge 接線長 {length:.1f} 格超過上限 {_BRIDGE_MAX_LEN:g}"
+                            "（長路段是新增道路，不是修正作者的街）"
+                        )
+                    target = raw.get("bridgeTo")
+                    ti = target.get("index") if isinstance(target, dict) else None
+                    if not isinstance(ti, int) or isinstance(ti, bool) or ti < 0:
+                        errors.append(f"{where}.bridgeTo.index 必填（接到同圖哪一條街，0-based）")
+                    elif ti == idx:
+                        errors.append(f"{where}.bridgeTo 不能接回自己")
+                    else:
+                        bridge_to = ti
 
     hide = raw.get("hideLabel", False)
     if hide is not True and hide is not False:
@@ -260,6 +344,8 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         hide = False
     if not hide and rep is None:
         errors.append(f"{where} 既不改幾何也不隱藏路名＝空修正，請刪除")
+    if "bridgeTo" in raw and rep is None:
+        errors.append(f"{where}.bridgeTo 只用於 gap-bridge（這筆沒有 replacementPoints）")
 
     ref_index = ref_width = ref_points = None
     if hide:
@@ -295,6 +381,7 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         ref_index,
         ref_width,
         ref_points,
+        bridge_to,
     )
 
 
@@ -380,12 +467,12 @@ def _fmt_flat(vals: list[float]) -> str:
 
 def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
     total = sum(len(p.ops) for p in pins_by_ds.values())
-    hides = sum(1 for p in pins_by_ds.values() for o in p.ops if o.hide_label)
-    geoms = sum(1 for p in pins_by_ds.values() for o in p.ops if o.replacement_points)
+    kinds = [classify_op(o) for p in pins_by_ds.values() for o in p.ops]
     lines = [
         f"-- {REPAIR_TABLE_REL.name}（生成檔，勿手編）",
         f"-- 由 scripts/gen_street_repairs.py 從 {REPAIRS_DIR_NAME}/*.json 編譯",
-        f"-- {len(pins_by_ds)} 個 dataset／{total} 筆修正（改幾何 {geoms}、隱藏標籤候選 {hides}）",
+        f"-- {len(pins_by_ds)} 個 dataset／{total} 筆修正（中心線 {kinds.count(KIND_RECT)}、"
+        f"接線 {kinds.count(KIND_BRIDGE)}、隱藏標籤候選 {kinds.count(KIND_HIDE)}）",
         "--",
         "-- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log",
         "-- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。",
@@ -401,7 +488,7 @@ def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
         p = pins_by_ds[ds]
         lines.append(f"-- ==== {ds} ({p.map_mod} / {p.map_dir}) ====")
         lines.append(
-            f"-- 逐筆理由（rect-outline／exact-copy）在"
+            f"-- 逐筆理由（rect-outline／gap-bridge／exact-copy）在"
             f" {REPAIRS_DIR_NAME}/{ds}.json 的 reason；"
             "有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名"
         )
@@ -499,6 +586,20 @@ def survey_upstream(
                     f"{ds} {len(stale)}/{len(p.ops)} 筆 pin 與上游不符（執行期會安全略過）"
                     f"：index {stale[:8]}{' …' if len(stale) > 8 else ''}"
                 )
+            # gap-bridge 的新端點必須落在目標街上：目標街被上游改動時接線就懸空了
+            loose = []
+            for o in p.ops:
+                if o.bridge_to is None or o.index in stale:
+                    continue
+                _end, seg = bridge_extension(o.expected_points, o.replacement_points)
+                if (o.bridge_to >= len(up) or point_polyline_distance(
+                        seg[-2], seg[-1], up[o.bridge_to].flat) > _BRIDGE_SNAP):
+                    loose.append(o.index)
+            if loose:
+                warnings.append(
+                    f"{ds} {len(loose)} 筆 gap-bridge 的新端點不在目標街 {_BRIDGE_SNAP:g} 格內"
+                    f"（須人工覆核）：index {loose[:8]}"
+                )
         if van is None:
             continue
         bad = [
@@ -585,6 +686,12 @@ _XML = (
     '    <street name="Copy St" width="8">\n'
     '        <points><point x="10" y="20" /><point x="60" y="20" /></points>\n'
     "    </street>\n"
+    '    <street name="Stub Rd" width="5">\n'
+    '        <points><point x="200" y="300" /><point x="260" y="300" /></points>\n'
+    "    </street>\n"
+    '    <street name="Cross Ave" width="5">\n'
+    '        <points><point x="190" y="250" /><point x="190" y="350" /></points>\n'
+    "    </street>\n"
     "</streets>\n"
 )
 _VAN_XML = (
@@ -625,6 +732,15 @@ def _pin_doc(**over: object) -> dict:
                 "hideLabel": True,
                 "reference": {"index": 0, "name": "Real St", "width": 8, "points": [10, 20, 60, 20]},
                 "reason": "exact-copy",
+            },
+            {
+                "index": 2,
+                "name": "Stub Rd",
+                "expectedWidth": 5,
+                "expectedPoints": [200, 300, 260, 300],
+                "replacementPoints": [190, 300, 200, 300, 260, 300],
+                "bridgeTo": {"index": 3, "name": "Cross Ave"},
+                "reason": "gap-bridge",
             },
         ],
     }
@@ -681,6 +797,21 @@ def _reject_cases() -> list[tuple[str, dict, str]]:
     cases.append(("index 重複", doc, "重複"))
     doc = _pin_doc(); doc["operations"][0]["replacmentPoints"] = [1, 2, 3, 4]
     cases.append(("欄位打錯字", doc, "未知欄位"))
+    doc = _pin_doc(); doc["operations"][2]["replacementPoints"] = [100, 300, 200, 300, 260, 300]
+    cases.append(("gap-bridge 接線過長", doc, "超過上限"))
+    doc = _pin_doc(); doc["operations"][2].pop("bridgeTo")
+    cases.append(("gap-bridge 缺 bridgeTo", doc, "bridgeTo.index 必填"))
+    doc = _pin_doc(); doc["operations"][2]["bridgeTo"] = {"index": 2}
+    cases.append(("gap-bridge 接回自己", doc, "接回自己"))
+    doc = _pin_doc(); doc["operations"][2]["replacementPoints"] = [190, 300, 201, 300, 260, 300]
+    cases.append(("gap-bridge 改到原點列", doc, "也不是只在一端接"))
+    doc = _pin_doc(); doc["operations"][2]["replacementPoints"] = [
+        170, 300, 175, 300, 180, 300, 185, 300, 190, 300, 200, 300, 260, 300]
+    cases.append(("gap-bridge 接太多點", doc, "也不是只在一端接"))
+    doc = _pin_doc(); doc["operations"][1]["bridgeTo"] = {"index": 3}
+    cases.append(("bridgeTo 用在隱藏路名", doc, "只用於 gap-bridge"))
+    doc = _pin_doc(); doc["operations"][0]["bridgeTo"] = {"index": 3}
+    cases.append(("bridgeTo 用在中心線", doc, "只用於 gap-bridge"))
     return cases
 
 
@@ -718,7 +849,20 @@ def cmd_selftest() -> int:
             "    -- #0 Outline Rd\n" in lua and "reason =" not in lua,
             lua,
         )
-        check("verify 通過剛生成的檔", _verify(root).ok)
+        check(
+            "gap-bridge 接線原樣落表、bridgeTo 不進執行期",
+            "replacementPoints = { 190, 300, 200, 300, 260, 300 }" in lua and "bridgeTo" not in lua,
+            lua,
+        )
+        pins, _e, _w = load_pins(root / REPAIRS_DIR_NAME / "demo.json")
+        check(
+            "三種規則分類正確",
+            pins is not None
+            and [classify_op(o) for o in pins.ops] == [KIND_RECT, KIND_HIDE, KIND_BRIDGE],
+        )
+        res = _verify(root)
+        check("verify 通過剛生成的檔", res.ok and not any("gap-bridge" in w for w in res.warnings),
+              str(res.errors + res.warnings))
         p = root / REPAIR_TABLE_REL
         p.write_bytes(p.read_bytes() + b"\n-- tampered\n")
         res = _verify(root)
@@ -776,6 +920,22 @@ def cmd_selftest() -> int:
         )
         check("漂移不改動 pin", pin_path.read_bytes() == before)
 
+    # gap-bridge 目標街被上游挪走：新端點懸空要回報
+    with tempfile.TemporaryDirectory() as td:
+        root = _fixture(Path(td) / "g", _pin_doc())
+        gen(root)
+        ws = root / "workshop" / "1" / "mods" / "demo" / "42" / "media" / "maps" / "Demo"
+        (ws / "streets.xml").write_text(
+            _XML.replace('x="190" y="250"', 'x="180" y="250"').replace('x="190" y="350"', 'x="180" y="350"'),
+            encoding="utf-8",
+        )
+        res = _verify(root)
+        check(
+            "gap-bridge 目標街移動只警告",
+            res.ok and any("不在目標街" in w for w in res.warnings),
+            str(res.errors + res.warnings),
+        )
+
     print(f"\n{'✅' if n_ok == n_all else '❌'} selftest {n_ok}/{n_all}")
     return 0 if n_ok == n_all else 1
 
@@ -796,10 +956,11 @@ def main(argv: list[str] | None = None) -> int:
         result, pins_by_ds = gen(PROJECT_ROOT)
         _print_result("gen 道路修正表", result)
         for ds in sorted(pins_by_ds):
-            ops = pins_by_ds[ds].ops
-            geom = sum(1 for o in ops if o.replacement_points)
-            hide = sum(1 for o in ops if o.hide_label)
-            print(f"   {ds:24s} 改幾何 {geom:4d} 隱藏標籤候選 {hide:4d}")
+            kinds = [classify_op(o) for o in pins_by_ds[ds].ops]
+            print(
+                f"   {ds:24s} 中心線 {kinds.count(KIND_RECT):4d} 接線 {kinds.count(KIND_BRIDGE):4d}"
+                f" 隱藏標籤候選 {kinds.count(KIND_HIDE):4d}"
+            )
         return 0 if result.ok else 1
     if args.cmd == "verify":
         result = verify(

@@ -26,7 +26,8 @@
 坎登郡、西點擴張、綠港、小鎮、狂鋼、黑迷宮橋頭堡、艾德汽車回收場、三葉湖、目黑丘城、
 馬爾德勞 1993 重製版、楓木林鎮。英文與其他語言維持地圖作者原本的英文路名。
 與官方地圖同名的路直接沿用官方譯名，跨地圖用詞一致。
-其餘地圖多半**上游本來就沒有路名資料**（如浣熊市），不是翻譯缺漏。
+其餘地圖多半**上游本來就沒有路名資料**（如浣熊市），不是翻譯缺漏——每張地圖有沒有作者道路資料、
+本包有沒有翻譯／修正／補充道路，見 [道路資料清單](docs/road-data.md)（追蹤器每日隨作者更新自動維護）。
 
 另外幾項行為值得知道：
 
@@ -35,8 +36,11 @@
 - **原名與譯名都可搜尋**：由小地圖本體的即時路網索引提供，兩者使用相同的道路錨點。
 - **缺譯不缺路**：新增／改名的街道若未命中翻譯表，顯示原名；作者只改座標則翻譯照用，
   不需等本包更新才能讀到新道路。改檔後需重啟遊戲，不會即時監看 XML。
-- **獨立道路修正**：雛菊郡 44 條已知輪廓道路恢復為中心線，顯示與導航共用修正；
-  原始點列或路寬改變就略過該筆，避免對新版上游盲套舊補丁。
+- **獨立道路修正**：雛菊郡 44 條已知輪廓道路恢復為中心線；卡姆登郡 3 處停在路口前的街道
+  沿實際路面接回路網。顯示與導航共用修正；原始點列或路寬改變就略過該筆，避免對新版上游盲套舊補丁。
+- **補充道路**：作者沒放進道路資料的路由本包依作者自己的世界地圖補上（目前康斯鎮 37 條），
+  路名固定帶「(MiniMap)」／「（小地圖補）」，一看就知道不是作者取的名字；可搜尋、可導航。
+  作者之後補上或改動道路資料時自動停用、改用作者版本。需搭配支援補充道路的主 MOD 版本。
 - **重複名稱不靠刪路處理**：馬爾德勞 1993 提供 913 筆完整複本候選，僅在同張地圖已有
   未被遮蔽的參照時抑制重複顯示。原 MOD 在自己區域的不同名稱仍保留，導航道路不刪除。
   原版尚未載入、局部重疊等不確定情況保持顯示，因此不保證消除所有疊字。
@@ -189,15 +193,20 @@ MinidoracatMiniMapModMapsFor42/
 │                                  # 版；_CN 由 `opencc tw2sp` 自繁中轉出，勿手改
 ├── link_workshop.bat              # 本包實體同步管理／第三方地圖獨立管理
 ├── PZ_Test.bat                    # PZ 本地測試啟動器（雙擊啟動）
-├── .github/workflows/track_maps.yml  # 每日追蹤：地圖更新（含圖資 hash 重渲判定）＋遊戲 build
+├── .github/workflows/track_maps.yml  # 每日追蹤：地圖更新（含圖資 hash 重渲判定、道路資料判定）＋遊戲 build
 ├── scripts/                       # PowerShell / Python 腳本（map_tracker.py＝追蹤器本體）
-├── tracker-state/                 # 追蹤器基準（timestamps.json＋mapdata_hashes.json，進版控）
+├── street-names/                  # 街名翻譯來源（原名 → 繁中／簡中／日文）
+├── road-repairs/                  # 作者道路資料的修正 pin（中心線、斷點接線、重複路名）
+├── road-supplements/             # 本包補上的道路（作者沒放進 streets.xml 的路）
+├── docs/road-data.md              # 道路資料清單（生成檔，給玩家查）
+├── tracker-state/                 # 追蹤器基準（timestamps／mapdata_hashes／road_status，進版控）
 └── MOD/MinidoracatMiniMapModMapsFor42/Contents/mods/MinidoracatMiniMapModMapsFor42/42/
     ├── mod.info                   # require=MinidoracatMiniMapFor42
     └── media/
         ├── lua/client/MinidoracatMiniMapModMaps.lua   # 向主 MOD 註冊地圖清單
-        ├── lua/shared/Translate/{CH,CN,EN,JP}/UI.json
-        └── minimap/               # pyramid zip（渲染產物，不進版控）
+        ├── lua/shared/            # 生成的街名／道路修正／補充道路表＋Translate/{CH,CN,EN,JP}/UI.json
+        ├── minimap/               # pyramid zip（渲染產物，不進版控）
+        └── minimap/streets/       # 補充道路 XML（生成檔，進版控）
 ```
 
 ## ☕ 支持作者

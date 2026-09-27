@@ -121,8 +121,8 @@ def normalize_name(s: str) -> str:
 
 # ============================================================
 # 上游來源檔定位
-# map_tracker streets-scan 匯入 iter_workshop_roots／find_streets_xml
-# （另有 discover_names_files／read_names_json／file_sha256）⇒ 勿改這些簽名。
+# road_status（map_tracker road-scan／CI 道路判定、verify_mod 共用）匯入 discover_names_files／
+# read_names_json／file_sha256 與 REGISTRY_REL／TRANSLATE_REL ⇒ 勿改這些簽名。
 # gen_street_repairs 也共用來源定位、_lua_str、write_bytes_atomic、Result 與路徑常數。
 # ============================================================
 def iter_workshop_roots(prefer: list[str] | None) -> list[Path]:

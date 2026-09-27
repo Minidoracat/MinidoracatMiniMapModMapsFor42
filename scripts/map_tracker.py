@@ -15,6 +15,10 @@ MOD 軸（time_updated 變動）→ steamcmd 下載該項 → hash 圖資（medi
   下架（API result=9）→ 開「[地圖下架]」issue 一次；自下輪起不再查詢（tombstone 保留），
   重新上架要恢復追蹤＝手動把 state 該項 removed 改回 false。
   首次見到（含 --bootstrap 首建）→ 靜默記基準，零 issue。
+  道路資料（同一次下載）：掃 streets.xml／worldmap.xml → 本包 pin（街名翻譯／道路修正／
+  補充道路）對不上作者現況 → issue 加「🛣️」待處理行（關閉前累積保留）；本包沒資料的
+  地圖作者增刪改道路 → 「ℹ️」行。tracker-state/road_status.json 與公開清單
+  docs/road-data.md 隨 state 一起更新（純函式在 road_status.py，verify_mod 共用）。
 遊戲軸（public branch buildid 變動，steamcmd app_info_print）→ 開「[遊戲更新]」
   issue 提醒評估全量重渲（42.20 案例：主世界 950 cells 變更）。
 
@@ -30,13 +34,14 @@ CI 三 job（權限逐 job 最小化；diff 下載第三方內容故無 GitHub �
                       給 --client-root 時同時報告新舊副本 drift（渲染來源過期偵測）
   deps-scan [--prefer <dir>]
                       掃註冊地圖的材質包依賴 → tile_deps.json（新增/移除地圖後要重跑）
-  streets-scan [--prefer <dir>] [--write]
-                      掃 street-names 上游 streets.xml hash（獨立於 mapdata_hashes，
-                      街名文字更新不誤報重渲）；變更 → 「街名翻譯需更新」
+  road-scan [--prefer <dir>] [--write]
+                      掃全部註冊地圖的作者道路資料，比對 road_status.json 與本包 pin；
+                      --write 更新 road_status.json＋重新生成 docs/road-data.md
+                      （有註冊地圖缺本機副本就拒寫）
   self-test           零網路自我測試
 
-state（tracker-state/timestamps.json＋mapdata_hashes.json）進版控；gh 任一步失敗即中止、
-state 不推進，下一輪由 issue body marker 冪等自癒（不會重複開）。
+state（tracker-state/timestamps.json＋mapdata_hashes.json＋road_status.json）進版控；
+gh 任一步失敗即中止、state 不推進，下一輪由 issue body marker 冪等自癒（不會重複開）。
 """
 
 from __future__ import annotations
@@ -61,7 +66,6 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 STATE_JSON = PROJECT_ROOT / "tracker-state" / "timestamps.json"
 MAPDATA_JSON = PROJECT_ROOT / "tracker-state" / "mapdata_hashes.json"
 TILEDEPS_JSON = PROJECT_ROOT / "tracker-state" / "tile_deps.json"
-STREETS_JSON = PROJECT_ROOT / "tracker-state" / "streets_hashes.json"
 
 COLLECTION_ID = "3766382352"  # 支援地圖收藏（含全部地圖 MOD＋自家系列 MOD）
 GAME_APPID = "108600"  # Project Zomboid
@@ -387,7 +391,7 @@ def verdict_section(verdict: dict | None, *, tilepack_used_by: list | None = Non
     names = "、".join(f"`{neutralize(str(d))}`" for d in verdict.get("changed_maps", []))
     if status == "none":
         lines.append("- ✅ **免重渲**：本次更新未動地圖圖資／材質（僅腳本、loot 等）。"
-                     "若下方無「尚未處置的先前判定」即可關閉本 issue。")
+                     "若下方沒有 🛣️ 道路項目與「尚未處置的先前判定」即可關閉本 issue。")
     elif status == "maps":
         lines.append(f"- 🔴 **需重渲**：圖資變更 mapDir {names}")
     elif status == "assets":
@@ -405,34 +409,49 @@ def verdict_section(verdict: dict | None, *, tilepack_used_by: list | None = Non
     return lines
 
 
-_CARRY_LINE_RE = re.compile(r"^- (🔴|⚠️ bounds 變動)")
+# 🛣️＝道路資料待處理（見 road_status.judge）：與需重渲同樣是「還沒做的工作」，關閉前累積保留
+_CARRY_LINE_RE = re.compile(r"^- (🔴|⚠️ bounds 變動|🛣️)")
 
 
-def finalize_update_plan(plan: dict, verdict: dict | None, prev_body: str = "") -> dict:
-    """圖資判定併入 update plan。content_hash 綁 (tu, status, carry 集合)——
-    判定從 unknown 解決、或 carry 集合變動時 hash 變 → comment 路徑會更新 body。
-    carry＝既有 open issue body 內的 🔴/bounds 行（未處置的先前判定）：後續
-    「免重渲」增量不得覆寫掉還沒做的重渲工作，關閉 issue 才清空。"""
+def road_section(road_lines: list[str]) -> list[str]:
+    """issue body 的「道路資料判定」段；road_lines＝已格式化的 `- 🛣️／ℹ️ …` 行。"""
+    if not road_lines:
+        return []
+    lines = ["", "### 道路資料判定（自動）", "", *road_lines]
+    if any(ln.startswith("- 🛣️") for ln in road_lines):
+        lines += ["", "**🛣️ 項目處理完才能關閉本 issue**（即使上方圖資判定為免重渲）。"]
+    return lines
+
+
+def finalize_update_plan(plan: dict, verdict: dict | None, prev_body: str = "",
+                         road_lines: list[str] | None = None) -> dict:
+    """圖資判定與道路判定併入 update plan。content_hash 綁 (tu, status, carry 集合,
+    🛣️ 行)——判定從 unknown 解決、carry 或道路待處理項變動時 hash 變 → comment 路徑會更新 body。
+    carry＝既有 open issue body 內的 🔴/bounds/🛣️ 行（未處置的先前判定）：後續
+    「免重渲」增量不得覆寫掉還沒做的重渲／道路工作，關閉 issue 才清空。"""
     if verdict is None:
         return plan
     status = verdict.get("status", "unknown")
     # 材質包 plan 帶 used_by → 判定段改用「受影響地圖」表述（見 verdict_section）
     section = verdict_section(verdict, tilepack_used_by=plan.get("tilepack_used_by"))
-    current = {ln for ln in section if _CARRY_LINE_RE.match(ln)}
+    road = road_section(road_lines or [])
+    current = {ln for ln in section + road if _CARRY_LINE_RE.match(ln)}
     carried = sorted(
         ln for ln in prev_body.split("\n")
         if _CARRY_LINE_RE.match(ln) and ln not in current
     )
+    road_todo = sorted(ln for ln in road if ln.startswith("- 🛣️"))
     new_hash = hashlib.sha256(
         (f"update|{plan['workshop_id']}|{plan['new_tu']}|{status}|{'|'.join(carried)}"
-         f"|{_used_by_digest(plan.get('tilepack_used_by'))}").encode("utf-8")
+         f"|{_used_by_digest(plan.get('tilepack_used_by'))}|{'|'.join(road_todo)}").encode("utf-8")
     ).hexdigest()
     lines = plan["body"].split("\n")
     lines[0] = make_marker(TYPE_UPDATE, plan["workshop_id"], new_hash)
-    body_lines = lines + section
+    body_lines = lines + section + road
     if carried:
         body_lines += ["", "### 尚未處置的先前判定（處理完成後關閉本 issue）", "", *carried]
     comment = plan["comment"] + f"（圖資判定：{status}" + (
+        f"；道路待處理 {len(road_todo)} 項" if road_todo else "") + (
         f"；另有 {len(carried)} 項先前判定未處置）" if carried else "）")
     return {**plan, "content_hash": new_hash, "body": "\n".join(body_lines), "comment": comment}
 
@@ -453,16 +472,66 @@ def apply_verdict_state(old_items: dict, meta: dict, verdicts: dict) -> dict:
 
 
 # ============================================================
+# 道路資料（純函式在 road_status.py；延後匯入：check／run 用不到）
+# ============================================================
+def _code(text: str) -> str:
+    """上游字串（地圖目錄）→ issue 內安全的 code span。"""
+    return f"`{neutralize(str(text))}`"
+
+
+def road_judgments(new_roads: dict, status: dict, pins: dict,
+                   now: str) -> tuple[dict[str, list[str]], dict]:
+    """diff 的 new_roads → ({wid: issue 的 `- 🛣️／ℹ️` 行}, 新 road_status items)。
+    只處理本包相關 item（註冊地圖所在或有 pin）：材質包等無關項不進狀態檔。
+    new_roads 只含成功下載項 ⇒ 失敗項的 items 原樣保留（同 mapdata 只推進成功子集）。"""
+    import road_status as rs
+
+    registered = rs.registered_dirs(status)
+    relevant = set(registered) | {wid for wid, _d in pins}
+    scanned = {
+        wid: v["maps"] for wid, v in new_roads.items()
+        if wid in relevant and isinstance(v, dict) and isinstance(v.get("maps"), dict)
+    }
+    old_items = status.get("items", {})
+    lines: dict[str, list[str]] = {}
+    for wid, maps in scanned.items():
+        old = old_items.get(wid)
+        found = rs.judge(wid, old.get("maps") if isinstance(old, dict) else None, maps, pins,
+                         registered.get(wid, set()))
+        lines[wid] = [f"- {rs.describe(f, _code)}" for f in found]
+    return lines, rs.merge_items(old_items, scanned, now)
+
+
+def write_road_doc(status: dict) -> bool:
+    """依狀態重新生成公開清單；內容有變才寫。回傳是否寫入。"""
+    import road_status as rs
+
+    doc = PROJECT_ROOT / rs.DOC_REL
+    text = rs.render_doc(PROJECT_ROOT, status)
+    if doc.is_file() and doc.read_text(encoding="utf-8") == text:
+        return False
+    doc.parent.mkdir(parents=True, exist_ok=True)
+    doc.write_text(text, encoding="utf-8", newline="\n")
+    return True
+
+
+
+# ============================================================
 # 材質包依賴（地圖 require= 的 tile pack）
 # ============================================================
-def _workshop_id_of(root: Path) -> str | None:
-    """mod 根目錄（<content>/108600/<wid>/mods/<name>）→ workshop id；認不出回 None。
+def _item_root(root: Path) -> Path | None:
+    """mod 根目錄（<content>/108600/<wid>/mods/<name>）→ workshop item 根；認不出回 None。
     錨定 appid 的下一層而非固定往上數幾層——同一 mod 可能來自
     `<wid>/mods/<name>` 或 `<wid>/mods/<name>/42` 兩種深度。"""
     for parent in root.parents:
         if parent.name.isdigit() and parent.parent.name == GAME_APPID:
-            return parent.name
+            return parent
     return None
+
+
+def _workshop_id_of(root: Path) -> str | None:
+    item = _item_root(root)
+    return item.name if item else None
 
 
 def build_tile_deps(
@@ -739,7 +808,7 @@ def build_update_plan(wid: str, title: str, old_tu, new_tu: int,
             "追蹤器偵測到上游地圖 MOD 發布了新版本：",
             "",
             *common,
-            "**處置**（見下方自動圖資判定；免重渲可直接關閉）：",
+            "**處置**（見下方自動判定；免重渲且沒有 🛣️ 道路項目才可直接關閉）：",
             "",
             "- [ ] pzmap Studio 或 `scripts/rebuild_pyramids.py --only <zip名>` 重渲該地圖",
             "- [ ] bounds 若變動，同步 `MinidoracatMiniMapModMaps.lua`",
@@ -1127,8 +1196,9 @@ def cmd_run(args) -> int:
     return 2
 
 
-ARTIFACT_SCHEMA = 3  # check→diff→issue 的 artifact 契約版本；不符即 fail-closed
+ARTIFACT_SCHEMA = 4  # check→diff→issue 的 artifact 契約版本；不符即 fail-closed
 # v3：update plan 可帶 tilepack_used_by（材質包 issue 的受影響地圖清單）
+# v4：diff 產出 new_roads（成功下載項的道路資料掃描，issue 階段判定＋更新 road_status）
 
 
 def _schema_guard(data: dict, stage: str) -> bool:
@@ -1174,6 +1244,8 @@ def cmd_diff(args) -> int:
     MIN_ITEM_BUDGET = 90.0   # 剩不到這個秒數就別開新項目：只夠逾時、拿不到結果
     verdicts: dict[str, dict] = {}
     new_hashes: dict[str, dict] = {}
+    new_roads: dict[str, dict] = {}
+    import road_status as rs  # 延後匯入：check／run 用不到
     for wid in todo:
         if not str(wid).isdigit():  # artifact 防禦：id 必為數字才進 argv
             warn(f"非法 workshop id（{wid!r}），略過")
@@ -1204,8 +1276,13 @@ def cmd_diff(args) -> int:
         new_hashes[wid] = new
         print(f"    判定：{verdicts[wid]['status']}"
               + (f"（{ '、'.join(verdicts[wid]['changed_maps']) }）" if verdicts[wid]["changed_maps"] else ""))
+        try:  # 道路掃描與圖資判定分開隔離：道路讀檔失敗不該讓圖資判定變 unknown
+            new_roads[wid] = {"maps": rs.scan_roads(_mod_content_bases(root))}
+        except OSError as exc:
+            warn(f"{wid} 道路資料掃描例外（本輪該項道路狀態不更新）：{exc}")
     data["verdicts"] = verdicts
     data["new_hashes"] = new_hashes
+    data["new_roads"] = new_roads
     data["game_build"] = game_build
     write_json(Path(args.out), data)
     print(f"✅ diff 完成：判定 {len(verdicts)} 項、遊戲 build {game_build or '（未知）'} → {args.out}")
@@ -1219,6 +1296,18 @@ def cmd_issue(args) -> int:
     plans = list(data.get("plans", []))
     verdicts = data.get("verdicts", {})
     meta = data.get("meta", {})
+
+    # 道路軸：成功下載項的掃描 → 🛣️／ℹ️ 行＋road_status items（失敗項原樣保留）
+    import road_status as rs
+    road_path = PROJECT_ROOT / rs.STATUS_REL
+    road_state, road_err = rs.load_status(road_path)
+    if road_err:
+        warn(f"{road_err}——本輪道路狀態不更新，道路判定只比對本包 pin")
+    road_data, road_errs = rs.load_road_data(PROJECT_ROOT)
+    for err in road_errs:
+        warn(f"本包道路資料讀取失敗（該組 pin 本輪不判定）：{err}")
+    road_lines, road_items = road_judgments(
+        data.get("new_roads", {}), road_state, rs.pin_index(road_data), now_iso())
 
     state = load_json(STATE_JSON) if STATE_JSON.exists() else {"items": {}}
     old_items = state.get("items", {})
@@ -1240,11 +1329,12 @@ def cmd_issue(args) -> int:
     gh = GhClient()
     gh.ensure_label()
     index = index_issues(gh.list_tracker_issues())
-    # 判定併入 plan（hash 綁 verdict＋carry；prev_body 供未處置判定累積）
+    # 判定併入 plan（hash 綁 verdict＋carry＋🛣️；prev_body 供未處置判定累積）
     plans = [
         finalize_update_plan(
             p, verdicts.get(p["workshop_id"]),
             index.get((TYPE_UPDATE, p["workshop_id"]), {}).get("body", ""),
+            road_lines.get(p["workshop_id"]),
         ) if p.get("type") == TYPE_UPDATE else p
         for p in plans
     ]
@@ -1267,6 +1357,16 @@ def cmd_issue(args) -> int:
     if md_items != mapdata.get("items", {}):
         write_json(MAPDATA_JSON, {"items": md_items, "generated_at": now_iso()})
         paths.append(str(MAPDATA_JSON.relative_to(PROJECT_ROOT)).replace("\\", "/"))
+    if road_items != road_state["items"]:
+        if road_err or not road_state["entries"]:
+            warn("road_status.json 無法解析或缺 entries（本機跑 road-scan --write 重建並 commit）"
+                 "——道路狀態與公開清單本輪不更新")
+        else:
+            new_road_state = {**road_state, "items": road_items, "generated_at": now_iso()}
+            write_json(road_path, new_road_state)
+            paths.append(rs.STATUS_REL.as_posix())
+            if write_road_doc(new_road_state):
+                paths.append(rs.DOC_REL.as_posix())
     if not paths:
         print("✅ 完成（state 無變更、不 commit——排程停用風險見 workflow 註解）。")
         return 0
@@ -1382,90 +1482,112 @@ def cmd_deps_scan(args) -> int:
     return 0
 
 
-def cmd_streets_scan(args) -> int:
-    """本機：掃 street-names/*/names.json 的上游 streets.xml sha256，
-    與 tracker-state/streets_hashes.json 比對。變更 → 「街名翻譯需更新」。
+def cmd_road_scan(args) -> int:
+    """本機：掃全部註冊地圖的作者道路資料（streets.xml／worldmap.xml），與
+    tracker-state/road_status.json 及本包 pin（街名翻譯／道路修正／補充道路）比對。
 
-    獨立軸：不動 mapdata_hashes／timestamps／tile_deps。缺本機副本的 dataset
-    列 warning，--write 時拒寫整檔（比照 deps-scan 覆蓋回歸閘門）。"""
-    sys.path.insert(0, str(Path(__file__).resolve().parent))
-    import gen_streets_i18n as gsi
+    zip → workshop item／地圖目錄的解析與 deps-scan／rebuild_pyramids 同一套。--write 更新
+    road_status.json（內容沒變不重寫）並重新生成 docs/road-data.md；有註冊地圖在本機找不到
+    副本時拒寫——缺副本的機器掃出來的狀態會少項，覆寫等於砍掉清單覆蓋（同 deps-scan）。"""
+    import rebuild_pyramids as rp
+    import road_status as rs
 
-    names_root = PROJECT_ROOT / "street-names"
-    files = gsi.discover_names_files(names_root, None)
-    if not files:
-        print("無 dataset 可掃（street-names/*/names.json 尚未存在）")
-        return 0
-
-    roots = gsi.iter_workshop_roots(args.prefer)
-    old: dict = {}
-    if STREETS_JSON.exists():
-        try:
-            loaded = load_json(STREETS_JSON)
-            old = loaded if isinstance(loaded, dict) else {}
-        except (OSError, json.JSONDecodeError) as e:
-            print(f"❌ 讀 {STREETS_JSON.name} 失敗：{e}", file=sys.stderr)
-            return 1
-
-    current: dict[str, dict] = {}
-    missing: list[str] = []
-    pending: list[str] = []
-    changed: list[str] = []
-
-    for path in files:
-        ds = path.parent.name
-        try:
-            data = gsi.read_names_json(path)
-        except (OSError, json.JSONDecodeError) as e:
-            warn(f"{ds} names.json 讀取失敗：{e}")
-            missing.append(ds)
+    entries = rp.parse_registrations(rp.LUA.read_text(encoding="utf-8"))
+    idx, _requires = rp.index_workshop([Path(p) for p in args.prefer])
+    resolved: dict[str, dict] = {}
+    item_roots: dict[str, Path] = {}
+    unresolved: list[str] = []
+    for zip_name in dict.fromkeys(e["zip"] for e in entries):
+        hit = None
+        # alias 條目（互斥變體共用同 zip）：依序換用同 zip 其他 mapMod，同 rebuild_pyramids
+        for e in (x for x in entries if x["zip"] == zip_name):
+            root = idx.get(e["mapMod"])
+            item = _item_root(root) if root is not None else None
+            map_dir = (rp.find_map_dir(root, e["mapDir"], zip_name.removesuffix(".pyramid.zip"),
+                                       e["mapMod"]) if item is not None else None)
+            if map_dir:
+                hit = (item, map_dir)
+                break
+        if hit is None:
+            unresolved.append(zip_name)
             continue
-        src = data.get("source") if isinstance(data.get("source"), dict) else {}
-        wid = str(src.get("workshop_id") or "")
-        map_dir = str(src.get("map_dir") or "")
-        xml = gsi.find_streets_xml(roots, wid, map_dir)
-        if xml is None:
-            warn(f"{ds} 無本機上游 streets.xml（workshop_id={wid} map_dir={map_dir}），跳過")
-            missing.append(ds)
-            continue
-        sha = gsi.file_sha256(xml)
-        current[ds] = {"sha256": sha, "workshop_id": wid, "checked": now_iso()}
-        prev = old.get(ds) if isinstance(old.get(ds), dict) else None
-        if not prev or not prev.get("sha256"):
-            pending.append(ds)
-            print(f"  待建立狀態  {ds}  {sha[:12]}…  {wid}")
-        elif prev.get("sha256") != sha:
-            changed.append(ds)
-            old_sha = str(prev.get("sha256") or "")
-            print(f"  街名翻譯需更新  {ds}  {old_sha[:12]}… → {sha[:12]}…  {wid}")
+        resolved[zip_name] = {"workshop_id": hit[0].name, "map_dir": hit[1]}
+        item_roots.setdefault(hit[0].name, hit[0])
+
+    road_data, road_errs = rs.load_road_data(PROJECT_ROOT)
+    for err in road_errs:
+        warn(f"本包道路資料讀取失敗（該組 pin 不判定）：{err}")
+    pins = rs.pin_index(road_data)
+    content_roots = [Path(p) for p in args.prefer] + [rp.WORKSHOP]
+    for wid in sorted({w for w, _d in pins} - set(item_roots)):
+        found = next((r / wid for r in content_roots if (r / wid).is_dir()), None)
+        if found is None:
+            warn(f"道路資料 pin 指向的 Workshop {wid} 無本機副本，該組 pin 不判定")
         else:
-            print(f"  無變更  {ds}  {sha[:12]}…")
+            item_roots[wid] = found
 
-    if missing:
-        print(f"⚠️ {len(missing)} 個 dataset 缺本機副本／無法定位：{', '.join(missing)}")
-
-    if args.write:
-        if missing:
-            print("❌ 有 dataset 缺本機副本，不寫入 streets_hashes.json"
-                  "（補下載後重跑，或確認 names.json source 無誤）", file=sys.stderr)
-            return 1
-        merged = dict(old)
-        merged.update(current)
-        write_json(STREETS_JSON, merged)
-        print(f"✅ 寫入 {STREETS_JSON.relative_to(PROJECT_ROOT)}：{len(current)} 個 dataset")
-        return 0
-
-    if changed:
-        print("❌ 街名翻譯需更新：" + "、".join(changed))
-        print("   SOP：補譯 names.json 三語 → gen → verify → 再 streets-scan --write")
+    status_path = PROJECT_ROOT / rs.STATUS_REL
+    old, err = rs.load_status(status_path)
+    if err:
+        print(f"❌ {err}", file=sys.stderr)
         return 1
-    if pending:
-        rel = STREETS_JSON.relative_to(PROJECT_ROOT)
-        print(f"待建立狀態：{len(pending)} 個 dataset（加 --write 寫入 {rel}）")
-        return 0
-    print("✅ 街名上游 hash 無變更")
-    return 0
+    scanned = {wid: rs.scan_roads(_mod_content_bases(root)) for wid, root in sorted(item_roots.items())}
+    registered = rs.registered_dirs({"entries": resolved})
+    actions = 0
+    for wid, maps in scanned.items():
+        prev = old["items"].get(wid)
+        for f in rs.judge(wid, prev.get("maps") if isinstance(prev, dict) else None, maps, pins,
+                          registered.get(wid, set())):
+            actions += f["level"] == rs.ACTION
+            print(f"  {wid}  {rs.describe(f, lambda s: f'`{s}`')}")
 
+    now = now_iso()
+    merged = rs.merge_items(old["items"], scanned, now)
+    new = {"entries": resolved, "items": {w: merged[w] for w in scanned}}
+    for label, before, after in (("註冊地圖", old["entries"], new["entries"]),
+                                 ("Workshop 項目", old["items"], new["items"])):
+        added = sorted(set(after) - set(before))
+        gone = sorted(set(before) - set(after))
+        changed = sorted(k for k in set(after) & set(before) if after[k] != before[k])
+        for mark, keys in (("➕ 新增", added), ("➖ 移除", gone), ("✏️ 變更", changed)):
+            if keys:
+                print(f"  {mark}{label} {len(keys)}：{', '.join(keys)}")
+    status_changed = new["entries"] != old["entries"] or new["items"] != old["items"]
+    with_streets = sum(1 for maps in scanned.values() for m in maps.values() if m["streets_sha256"])
+    print(f"  註冊地圖 {len(resolved)}/{len(resolved) + len(unresolved)} 張已定位、"
+          f"Workshop 項目 {len(scanned)} 個、其中 {with_streets} 個地圖目錄有作者 streets.xml")
+
+    if unresolved:
+        print(f"❌ {len(unresolved)} 張註冊地圖在本機找不到 workshop 副本或地圖目錄"
+              + ("，不寫檔（狀態會少項）" if args.write else "") + "：", file=sys.stderr)
+        for z in unresolved:
+            print(f"     {z}", file=sys.stderr)
+        print("   訂閱／steamcmd 下載缺項後重跑，或用 --prefer 指向含該副本的 content 根。",
+              file=sys.stderr)
+        return 1
+
+    doc_rel = rs.DOC_REL.as_posix()
+    if args.write:
+        if status_changed:
+            write_json(status_path, {**new, "generated_at": now})
+            print(f"✅ 寫入 {rs.STATUS_REL.as_posix()}")
+        else:
+            print("✅ 道路資料狀態無變更，不重寫。")
+        print(f"✅ 重新生成 {doc_rel}" if write_road_doc(new) else f"✅ {doc_rel} 無變更。")
+    else:
+        doc = PROJECT_ROOT / rs.DOC_REL
+        doc_stale = (not doc.is_file()
+                     or doc.read_text(encoding="utf-8") != rs.render_doc(PROJECT_ROOT, new))
+        if status_changed or doc_stale:
+            pending = [p for p, flag in ((rs.STATUS_REL.as_posix(), status_changed),
+                                         (doc_rel, doc_stale)) if flag]
+            print(f"ℹ️ 有變更待寫入（{'、'.join(pending)}）：加 --write 更新")
+        else:
+            print("✅ 道路資料狀態與公開清單無變更。")
+    if actions:
+        print(f"❌ 本包道路資料有 {actions} 項與作者現況不符（見上方 🛣️），請依指示處理。")
+        return 1
+    return 0
 
 
 # ============================================================
@@ -1786,6 +1908,83 @@ def cmd_self_test() -> int:
         {"status": "assets", "changed_maps": [], "bounds_changed": {}})
     assert parse_marker(evil_plan["body"]) == (TYPE_UPDATE, "9", evil_plan["content_hash"])
 
+    # 15) 道路資料：掃描（B41 排除、<streets> 不計入街道數）
+    import road_status as rs
+
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td)
+        town = root / "mods" / "M" / "42" / "media" / "maps" / "Town"
+        town.mkdir(parents=True)
+        (town / "streets.xml").write_bytes(b'<streets><street name="A"/><street name="B"/></streets>')
+        (town / "worldmap.xml").write_bytes(b"W")
+        old41 = root / "mods" / "M" / "media" / "maps" / "Old41"
+        old41.mkdir(parents=True)
+        (old41 / "streets.xml").write_bytes(b"<street/>")
+        scan = rs.scan_roads(_mod_content_bases(root))
+        assert set(scan) == {"Town"} and scan["Town"]["street_count"] == 2
+        assert scan["Town"]["streets_sha256"] and scan["Town"]["worldmap_sha256"]
+
+    sa, sb, wm = "a" * 64, "b" * 64, "c" * 64
+
+    def roads(sha, n, w=None):
+        return {"streets_sha256": sha, "street_count": n, "worldmap_sha256": w}
+
+    pins_r = {
+        ("50", "Sup Town"): {"names": [], "repairs": [], "supplements": [("sup", None, 0, wm)]},
+        ("51", "Fix Town"): {"names": [("fix", sa)], "repairs": [("fix", sa)], "supplements": []},
+    }
+    # 補充道路 pin 被作者新增 streets.xml 打破 → 🛣️，街道數不同＝遊戲內已自動停用
+    f_sup = rs.judge("50", {"Sup Town": roads(None, 0, wm)}, {"Sup Town": roads(sb, 5, wm)},
+                     pins_r, {"Sup Town"})
+    assert [(f["level"], f["kind"]) for f in f_sup] == [(rs.ACTION, "supplement_streets")]
+    assert "新增" in rs.describe(f_sup[0], _code) and "已自動停用" in rs.describe(f_sup[0], _code)
+    # worldmap.xml（推導來源）變了 → 重跑 derive
+    f_wm = rs.judge("50", None, {"Sup Town": roads(None, 0, "d" * 64)}, pins_r, {"Sup Town"})
+    assert [f["kind"] for f in f_wm] == ["supplement_worldmap"]
+    assert "derive_road_supplements.py" in rs.describe(f_wm[0], _code)
+    # 修正 pin 的 sha 變了 → 修正覆核＋補譯各一條 🛣️；pin 對得上 → 無事
+    f_fix = rs.judge("51", {"Fix Town": roads(sa, 3)}, {"Fix Town": roads(sb, 4)}, pins_r, {"Fix Town"})
+    assert sorted(f["kind"] for f in f_fix) == ["names", "repairs"]
+    assert all(f["level"] == rs.ACTION for f in f_fix)
+    assert rs.judge("51", {"Fix Town": roads(sa, 3)}, {"Fix Town": roads(sa, 3)}, pins_r, {"Fix Town"}) == []
+    # 本包沒資料的註冊地圖作者新增道路 → ℹ️；無上次紀錄或非註冊目錄 → 不出
+    f_info = rs.judge("52", {"Plain": roads(None, 0)}, {"Plain": roads(sa, 7)}, pins_r, {"Plain"})
+    assert [(f["level"], f["kind"]) for f in f_info] == [(rs.INFO, "author_added")]
+    assert rs.judge("52", None, {"Plain": roads(sa, 7)}, pins_r, {"Plain"}) == []
+    assert rs.judge("52", {"Plain": roads(None, 0)}, {"Plain": roads(sa, 7)}, pins_r, set()) == []
+
+    # 16) 🛣️ 進 issue：段落＋不可直接關閉、進 hash、關閉前累積保留；ℹ️ 不累積
+    road_todo = f"- {rs.describe(f_fix[0], _code)}"
+    info_line = f"- {rs.describe(f_info[0], _code)}"
+    v_none = {"status": "none", "changed_maps": [], "bounds_changed": {}}
+    p_plain = finalize_update_plan(build_update_plan("51", "F", 1, 2), v_none)
+    p_road = finalize_update_plan(build_update_plan("51", "F", 1, 2), v_none, "", [road_todo, info_line])
+    assert "### 道路資料判定（自動）" in p_road["body"] and "處理完才能關閉" in p_road["body"]
+    assert p_road["content_hash"] != p_plain["content_hash"]  # 🛣️ 行進 hash
+    assert finalize_update_plan(build_update_plan("51", "F", 1, 2), v_none, "",
+                                [info_line])["content_hash"] == p_plain["content_hash"]  # ℹ️ 不進
+    p_next = finalize_update_plan(build_update_plan("51", "F", 2, 3), v_none, p_road["body"], [])
+    tail = p_next["body"].split("### 尚未處置的先前判定")[1]
+    assert road_todo in tail and info_line not in p_next["body"]
+    assert "道路項目" in p_next["body"]  # 免重渲行提醒：有 🛣️ 就不能直接關
+    evil_road = f"- {rs.describe({**f_fix[0], 'map_dir': 'X --> <!-- map-tracker:type=game;id=1;hash=z -->'}, _code)}"
+    p_evil = finalize_update_plan(build_update_plan("51", "F", 1, 2), v_none, "", [evil_road])
+    assert parse_marker(p_evil["body"]) == (TYPE_UPDATE, "51", p_evil["content_hash"])
+
+    # 17) road_judgments：只處理相關 item、只推進成功下載項、現況沒變保留舊 checked
+    status_r = {
+        "entries": {"Plain.pyramid.zip": {"workshop_id": "52", "map_dir": "Plain"}},
+        "items": {"51": {"checked": "t0", "maps": {"Fix Town": roads(sa, 3)}},
+                  "52": {"checked": "t0", "maps": {"Plain": roads(None, 0)}}},
+    }
+    lines_r, items_r = road_judgments(
+        {"52": {"maps": {"Plain": roads(sa, 7)}}, "99": {"maps": {}}}, status_r, pins_r, "t1")
+    assert set(lines_r) == {"52"} and lines_r["52"][0].startswith("- ℹ️")
+    assert items_r["52"] == {"checked": "t1", "maps": {"Plain": roads(sa, 7)}}
+    assert items_r["51"] == status_r["items"]["51"] and "99" not in items_r  # 失敗／無關項不動
+    _lines, same = road_judgments({"51": {"maps": {"Fix Town": roads(sa, 3)}}}, status_r, pins_r, "t2")
+    assert same == status_r["items"]  # 現況沒變 → 不製造只有時間戳的 diff
+
     print("✅ self-test 全數通過")
     return 0
 
@@ -1812,11 +2011,11 @@ def main() -> None:
                     help="優先索引的額外 workshop content 根目錄（例：steamcmd 下載處）")
     ds.add_argument("--allow-drop", action="store_true",
                     help="允許既有材質包脫離追蹤（僅限確認是上游改依賴／地圖退出支援）")
-    ss = sub.add_parser("streets-scan", help="本機：掃 street-names 上游 streets.xml hash")
-    ss.add_argument("--prefer", action="append", default=[],
-                    help="優先索引的額外 workshop content 根目錄")
-    ss.add_argument("--write", action="store_true",
-                    help="更新 tracker-state/streets_hashes.json")
+    rs_ = sub.add_parser("road-scan", help="本機：掃註冊地圖的作者道路資料 → road_status.json＋公開清單")
+    rs_.add_argument("--prefer", action="append", default=[],
+                     help="優先索引的額外 workshop content 根目錄（例：steamcmd 下載處）")
+    rs_.add_argument("--write", action="store_true",
+                     help="更新 tracker-state/road_status.json 並重新生成 docs/road-data.md")
     sub.add_parser("self-test", help="零網路自我測試")
     args = parser.parse_args()
     dispatch = {
@@ -1826,7 +2025,7 @@ def main() -> None:
         "issue": cmd_issue,
         "hash-baseline": cmd_hash_baseline,
         "deps-scan": cmd_deps_scan,
-        "streets-scan": cmd_streets_scan,
+        "road-scan": cmd_road_scan,
     }
     if args.cmd == "self-test":
         sys.exit(cmd_self_test())
