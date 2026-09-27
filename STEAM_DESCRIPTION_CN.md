@@ -25,7 +25,7 @@
 
 [h2]道路数据与支持范围[/h2]
 少数已核准的道路修正由本包提供、主 MOD 套用，与翻译分开：已知轮廓道路改为中线，来源几何不符就跳过；确定重复的标签只抑制显示，不删导航道路。不确定的重叠仍保留。这不是通用自动修路；图片支持不等于导航／自驾全图验收。
-详细规范与已知限制请见[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]英中双语置顶说明[/url]。
+详细规范与已知限制请见[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]MOD 地图支持告知[/url]。
 Foxtrot Warehouse 与 Atlanta 的地块完全重叠，请二选一。Atlas Underground Complex [b]仅支持地表图，不含地下楼层[/b]，与 SecretZ 等多张地图部分重叠，不保证混用兼容。
 
 [h2]🔧 支持范围说明[/h2]

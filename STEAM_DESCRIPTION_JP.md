@@ -15,7 +15,7 @@
 
 [h2]🗺️ 収録マップとリクエスト[/h2]
 現在 [b]78 個のマップ MOD（101 マップ）[/b]に対応。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]から必要なマップを選んでサブスクライブできます。対応リスト・原作者クレジット・マップリクエストは
-[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]ディスカッション[/url]へどうぞ！
+[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050627/]ディスカッション[/url]へどうぞ！
 [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue フォーム[/url]からのリクエストも歓迎です（開発バックログに直行、対応が最速）。
 
 [h2]道路名の翻訳[/h2]
@@ -25,7 +25,7 @@
 
 [h2]道路データと対応範囲[/h2]
 一部の承認済み道路修正は本パックが提供し、本体 MOD が翻訳とは別に適用します。確認済みの輪郭道路を中心線に変更し、元の形状が一致しなければ適用しません。確実な重複表示だけを抑制し、ナビ用道路は削除しません。不確かな重複は残ります。汎用の自動道路修復機能ではなく、画像対応は全域のナビ・自動運転の検証済みを意味しません。
-要件と既知の制限は[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]英語・繁体字の固定トピック[/url]をご覧ください。
+要件と既知の制限は[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050473/]MOD Map Support Notice（英語）[/url]をご覧ください。
 Foxtrot Warehouse は Atlanta と全セルが重なるため、どちらか一方を選んでください。Atlas Underground Complex は[b]地表画像のみで、地下階の平面図はありません[/b]。SecretZ などと一部が重なり、併用の互換性は保証しません。
 
 [h2]🔧 サポート範囲[/h2]

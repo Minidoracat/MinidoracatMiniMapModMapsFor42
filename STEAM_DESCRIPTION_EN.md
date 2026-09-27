@@ -15,7 +15,7 @@ It supplies map images (rendered from in-game visuals), area outlines, street-na
 
 [h2]🗺️ Included maps & requests[/h2]
 Currently supports [b]78 map MODs (101 maps)[/b] — choose maps to subscribe to from the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url]. The full list, credits to the original authors, and map
-requests all live in the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]Discussions[/url] — come make a wish!
+requests all live in the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050601/]Discussions[/url] — come make a wish!
 You can also request a new map via the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub issue form[/url] (goes straight into the dev backlog — fastest turnaround).
 
 [h2]Street name translation[/h2]
@@ -25,7 +25,7 @@ The main MOD's "MOD map: <name>" search label identifies a known data source, no
 
 [h2]Road data and compatibility[/h2]
 This pack supplies selected approved road repairs for the main MOD to apply, separately from translation: confirmed outline roads become centre lines only when the source geometry matches. Verified duplicate labels are suppressed without deleting navigation roads; uncertain overlaps remain. This is not a universal automatic road fixer. Image support is not full-map navigation or AutoDrive validation.
-See the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]pinned English/Chinese explanation[/url] for requirements and known limitations.
+See the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050473/]MOD Map Support Notice[/url] for requirements and known limitations.
 Foxtrot Warehouse fully overlaps Atlanta; choose one. Atlas Underground Complex has [b]surface imagery only, no underground floor plans[/b], and partially overlaps SecretZ and other maps. Combined-map compatibility is not guaranteed.
 
 [h2]🔧 Support scope[/h2]

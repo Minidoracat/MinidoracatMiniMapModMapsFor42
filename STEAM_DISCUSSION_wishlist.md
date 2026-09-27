@@ -1,6 +1,8 @@
-<!-- Steam 討論區貼文稿源（發文後把討論串網址記在下行）-->
+<!-- Steam 討論區貼文稿源（繁體中文）-->
 <!-- 討論串網址：https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/ -->
-<!-- 建議標題：📍 地圖許願＆支援清單 | Map Requests & Supported Maps | マップリクエスト -->
+<!-- 標題：📍 地圖許願＆支援清單 -->
+
+[b]繁體中文[/b]：[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]地圖許願＆支援清單[/url] ｜ [b]English[/b]：[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050601/]Map Requests[/url] ｜ [b]日本語[/b]：[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050627/]マップリクエスト[/url]
 
 [h1]🗺️ MOD 地圖許願區[/h1]
 想要哪張地圖 MOD 的小地圖支援？直接在下面留言許願！
@@ -108,7 +110,7 @@ Foxtrot Warehouse 的 4 個地塊全部與 Atlanta 重疊，請二選一。Atlas
 [h2]資料支援與版本搭配[/h2]
 本包提供小地圖／世界地圖圖片、範圍框線、街名對照與少數已核准的道路修正資料，由主 MOD 套用。[b]名稱翻譯不改幾何[/b]；道路修正另走與語言無關的資料，不是通用自動修路，也不修改實體地形或建築。
 [b]地圖包 42.20.4-0.9.0 請搭配主 MOD 42.20.4-0.27.0 或更新版本[/b]，兩包一起更新並重啟遊戲。16 組地圖資料、364 個街名有繁中／簡中／日文對照；缺譯顯示原名，沒有道路資料則不會因此新增導航路網。
-圖片支援不等於導航／自駕全圖驗收，不保證任意地圖組合相容。本輪未新增單機／多人駕駛認證；Tikitown 的本機多人啟動測試受阻紀錄與其他限制，請見[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]英中雙語置頂說明[/url]。
+圖片支援不等於導航／自駕全圖驗收，不保證任意地圖組合相容。哪些地圖有道路資料、本包自製或修正了哪些道路，請見[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]MOD 地圖支援告知[/url]。
 
 [h2]🙏 感謝原作者[/h2]
 以上地圖的設計與心血皆屬原作者，本包提供圖像、街名對照與已核准的道路修正資料支援，不取代原地圖 MOD。
@@ -123,31 +125,3 @@ Foxtrot Warehouse 的 4 個地塊全部與 Atlanta 重疊，請二選一。Atlas
 [*] [b]為何原名與譯名都搜不到？[/b]——先確認地圖與道路資料有載入；被其他地圖覆蓋的道路部分也可能不進街名搜尋與導航路網。「MOD 地圖：地圖名稱」只表示可確認的資料來源，不是錯誤或認證標記；搜不到不一定是翻譯缺漏。
 [*] [b]框線／MOD 地圖圖層可以關嗎？[/b]——可以。裝了本包後，ESC 選項頁與小地圖齒輪面板會多出開關（框線顏色也能換）
 [/list]
-
-[hr][/hr]
-
-[h2]🌐 English — Map Requests[/h2]
-Want a map MOD supported? Comment below with the map's [b]Workshop link[/b] (+ optionally why).
-Prefer GitHub? Use the [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]issue form[/url] — it goes straight into the dev backlog.
-More requests for the same map = higher priority. Very large maps may ship as separate packs.
-[b]Currently supported:[/b] 78 map MODs (101 maps) — choose maps from the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url].
-Enable the original map MOD and pair this pack [b]42.20.4-0.9.0[/b] with the main [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] [b]42.20.4-0.27.0 or newer[/b]; update both and restart.
-The pack supplies images, outlines, street-name mappings and selected approved road-repair data for the main MOD to apply. Translation does not change geometry; repairs are separate, not a universal automatic road fixer. Physical terrain and buildings are unchanged.
-require only orders the main MOD before this addon. Other map MODs still need the correct overlap priority (server Map= in multiplayer). Overridden street sections may be excluded from both original/translated-name searches and the routing network. The "MOD map: map name" label identifies a known source, not an error or certification; missing search results do not necessarily mean missing translations.
-Image support is not full-map navigation/AutoDrive validation or a guarantee for arbitrary map combinations. No new singleplayer/multiplayer driving certification is claimed. See the [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]pinned English/Chinese explanation[/url] for the blocked local Tikitown multiplayer startup test and other limits. Report pack image, translation or repair-data issues here or via the issue form above; report map-world bugs to the original authors.
-Foxtrot Warehouse fully overlaps Atlanta; choose one. Atlas Underground Complex provides surface imagery only, not underground floor plans, and partially overlaps SecretZ and other maps; combined-map compatibility is not guaranteed.
-All map design credit belongs to the original authors — if you're an author with any concern, comment or DM me and I'll act immediately (including removal).
-
-[hr][/hr]
-
-[h2]🌐 日本語 — マップリクエスト[/h2]
-対応してほしいマップ MOD をコメントでどうぞ（Workshop リンク必須、理由は任意）。
-[url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose]GitHub Issue フォーム[/url]からのリクエストも歓迎です（開発バックログに直行します）。
-リクエストが多いマップほど優先されます。大型マップは別パックになる場合があります。
-[b]現在対応：[/b]78 個のマップ MOD（101 マップ）。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]から必要なマップを選んでください。
-元マップ MOD を有効にし、本パック [b]42.20.4-0.9.0[/b] と本体 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] [b]42.20.4-0.27.0 以降[/b]を併用してください。両方を更新し、ゲームを再起動してください。
-本パックは画像・枠線・道路名対照表・一部の承認済み道路修正データを提供し、本体が適用します。翻訳は形状を変えず、修正は別データです。汎用の自動道路修復ではなく、実際の地形や建物も変更しません。
-require が扱うのは本体→本 addon の依存順だけです。別のマップ MOD 同士の上書き優先順位は重要で、マルチではサーバーの Map= 順に従います。上書きされた道路区間は原名・訳名の検索やナビ用道路網から除外される場合があります。「MOD マップ：マップ名」は確認できる出典の表示であり、エラーや認証の印ではありません。検索結果がなくても翻訳漏れとは限りません。
-画像対応は全域のナビ・自動運転の検証済みや任意の組み合わせの互換性を意味しません。今回シングル／マルチの走行認証は追加していません。Tikitown のローカル環境でのマルチ起動テストの中断や他の制限は[url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/569297034317714585/]英語・繁体字の固定トピック[/url]をご覧ください。本パックの画像・翻訳・修正データの問題はこちらか上の Issue フォームへ、地形や建物の不具合は元のマップ作者へご報告ください。
-Foxtrot Warehouse は Atlanta と全セルが重なるため、どちらか一方を選んでください。Atlas Underground Complex は地表画像のみで、地下階の平面図はありません。SecretZ などと一部が重なり、併用の互換性は保証しません。
-マップの功績はすべて原作者に帰属します。原作者の方でご意見があれば、コメントまたは DM でご連絡ください（削除を含め即対応します）。
