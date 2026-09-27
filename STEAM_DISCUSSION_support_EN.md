@@ -16,8 +16,8 @@ The [b]MOD map: map name[/b] label in street search identifies a known source; i
 
 [h2]🛠️ Roads we made or fixed[/h2]
 [list]
-[*] [b]Constown, KY[/b]: 37 added roads. Roads missing from the author's data are added by this pack, named "Constown Rd 01 (MiniMap)" to "Constown Rd 37 (MiniMap)", searchable and routable. If the author later ships road data, the game switches to the author's roads automatically. [i](next update)[/i]
-[*] [b]Camden County[/b]: 3 gap bridges. Author roads stopped short of junctions so navigation/AutoDrive could not reach them; they now connect to the network and keep the author's street names. [i](next update)[/i]
+[*] [b]Constown, KY[/b]: 37 added roads. Roads missing from the author's data are added by this pack, named "Constown Rd 01 (MiniMap)" to "Constown Rd 37 (MiniMap)", searchable and routable. If the author later ships road data, the game switches to the author's roads automatically.
+[*] [b]Camden County[/b]: 3 gap bridges. Author roads stopped short of junctions so navigation/AutoDrive could not reach them; they now connect to the network and keep the author's street names.
 [*] [b]Daisy County[/b]: 44 outline roads converted to centre lines, so names are not shown twice and routes follow the road centre.
 [*] [b]Muldraugh 1993[/b]: 913 street labels that exactly duplicate the vanilla map are hidden on display only; navigation roads are not deleted, and uncertain or partial overlaps keep their labels.
 [/list]
