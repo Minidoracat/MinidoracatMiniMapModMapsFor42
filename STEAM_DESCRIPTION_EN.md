@@ -21,11 +21,11 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 
 [h2]✨ Features[/h2]
 [list]
-[*] Supports [b]78 map mods (101 maps)[/b], shown automatically when enabled
-[*] Map outlines and map names in four languages; outlines can be toggled and recoloured
-[*] Street names on 16 maps are translated into Traditional Chinese, Simplified Chinese and Japanese; both original and translated names are searchable
-[*] Road data fixed or added by this pack on some maps, for more complete street names, search and navigation (for example, 37 added roads in Constown)
-[*] Display only — terrain, buildings and saves are never changed
+[*] [b]Supported maps[/b]: 78 map mods (101 maps), shown automatically when enabled
+[*] [b]Outlines & map names[/b]: map names in four languages; outlines can be toggled and recoloured
+[*] [b]Street-name translations[/b]: street names on 16 maps in Traditional/Simplified Chinese and Japanese; original and translated names are both searchable
+[*] [b]Road data fixes[/b]: roads added or fixed on some maps for more complete street names and navigation
+[*] [b]Display only[/b]: terrain, buildings and saves are never changed
 [/list]
 📖 [b]Full supported list (including which maps have road data), conflict notes and map requests:[/b] [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050601/]Map Requests & Supported Maps[/url]
 
@@ -37,6 +37,7 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url] — custom server zones
 [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url] — icons for third-party animals such as dogs and horses
 [/list]
+More mods: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3809297109]Minidoracat Mods for B42 collection[/url]
 
 [h2]💬 Feedback & community[/h2]
 [list]

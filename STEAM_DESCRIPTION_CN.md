@@ -3,7 +3,7 @@
 
 [hr][/hr]
 
-让地图 MOD 也能在小地图与世界地图上显示真实地图图片、范围框线与地图名称。你激活了哪些地图 MOD，就自动显示哪些，没装的不会画。
+让地图 MOD 也能在小地图与世界地图上显示真实地图图片、范围框线与地图名称，只画你已激活的地图。
 
 [h2]📦 需要安装[/h2]
 [list]
@@ -21,11 +21,11 @@
 
 [h2]✨ 主要功能[/h2]
 [list]
-[*] 支持 [b]78 个地图 MOD（101 张地图）[/b]，依激活状态自动显示
-[*] 地图范围框线与四语地图名称，框线可开关、可换颜色
-[*] 16 张地图的路名有繁中／简中／日文翻译，原名和译名都搜得到
-[*] 本包修正或补上部分地图的道路数据，让路名、搜索与导航更完整（例如康斯镇补上 37 条路）
-[*] 只改地图显示，不修改实际地形、建筑或存盘
+[*] [b]支持清单[/b]：78 个地图 MOD、101 张地图，依激活状态自动显示
+[*] [b]框线与地图名称[/b]：地图名称有四种语言，框线可开关、可换颜色
+[*] [b]路名翻译[/b]：16 张地图的路名有繁中／简中／日文翻译，原名译名都能搜
+[*] [b]道路数据修正[/b]：补上或修正部分地图的道路，路名与导航更完整
+[*] [b]只改显示[/b]：不修改实际地形、建筑或存盘
 [/list]
 📖 [b]完整支持清单（含每张地图有没有道路数据）、冲突提醒与许愿：[/b][url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]支持地图清单＆许愿[/url]
 
@@ -37,6 +37,7 @@
 [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url]——服务器自订区域
 [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url]——狗、马等第三方动物图标
 [/list]
+其他作品：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3809297109]Minidoracat 全系列收藏[/url]
 
 [h2]💬 回报与交流[/h2]
 [list]
@@ -46,7 +47,7 @@
 [/list]
 
 [h2]☕ 支持作者[/h2]
-MOD 永远免费。喜欢的话可以请我喝杯咖啡，赞助会用在服务器与 MOD 开发上；原代码公开在 GitHub。
+MOD 永远免费。喜欢的话可以请我喝杯咖啡，赞助会用在服务器与 MOD 开发上；源代码公开在 GitHub。
 [url=https://ko-fi.com/minidoracat][img]https://raw.githubusercontent.com/Minidoracat/workshop-resources/refs/heads/main/badges/badge_kofi.png[/img][/url] [url=https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42][img]https://raw.githubusercontent.com/Minidoracat/workshop-resources/refs/heads/main/badges/badge_github.png[/img][/url]
 
 [b]#地图 #小地图 #minimap #worldmap #Minidoracat[/b]

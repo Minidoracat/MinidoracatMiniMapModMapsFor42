@@ -24,11 +24,11 @@ description=[/olist]
 description=
 description=[h2]✨ Features[/h2]
 description=[list]
-description=[*] Supports [b]78 map mods (101 maps)[/b], shown automatically when enabled
-description=[*] Map outlines and map names in four languages; outlines can be toggled and recoloured
-description=[*] Street names on 16 maps are translated into Traditional Chinese, Simplified Chinese and Japanese; both original and translated names are searchable
-description=[*] Road data fixed or added by this pack on some maps, for more complete street names, search and navigation (for example, 37 added roads in Constown)
-description=[*] Display only — terrain, buildings and saves are never changed
+description=[*] [b]Supported maps[/b]: 78 map mods (101 maps), shown automatically when enabled
+description=[*] [b]Outlines & map names[/b]: map names in four languages; outlines can be toggled and recoloured
+description=[*] [b]Street-name translations[/b]: street names on 16 maps in Traditional/Simplified Chinese and Japanese; original and translated names are both searchable
+description=[*] [b]Road data fixes[/b]: roads added or fixed on some maps for more complete street names and navigation
+description=[*] [b]Display only[/b]: terrain, buildings and saves are never changed
 description=[/list]
 description=📖 [b]Full supported list (including which maps have road data), conflict notes and map requests:[/b] [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050601/]Map Requests & Supported Maps[/url]
 description=
@@ -40,6 +40,7 @@ description=[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3792
 description=[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url] — custom server zones
 description=[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url] — icons for third-party animals such as dogs and horses
 description=[/list]
+description=More mods: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3809297109]Minidoracat Mods for B42 collection[/url]
 description=
 description=[h2]💬 Feedback & community[/h2]
 description=[list]
