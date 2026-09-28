@@ -1,5 +1,18 @@
 # Changelog
 
+## [42.21.0-0.11.2] - 2026-09-29
+
+### 更新
+
+- **對應遊戲 42.21.0**：42.21 沒有改動地圖圖像用到的遊戲資料，本包的地圖圖像、街名翻譯、道路修正與補充道路內容都不變，照常使用。
+
+### 備註
+
+- 建議一起更新小地圖主 MOD 到 42.21.0-0.32.0：42.21 官方改了 Flaherty Road 中段的路線，新版主 MOD 會把 Muldraugh 1993 內附的舊版 Flaherty Road 換算成新路線再判斷是否為重複街名；舊版主 MOD 仍可使用，只是這一條在「官方地圖先載入」的設定下會和官方街名重疊。
+- 更新後請重新啟動遊戲。
+
+> 技術要點：Daisy County 與 Muldraugh 1993 道路修正的來源追蹤改釘 42.21 官方 `Muldraugh, KY/streets.xml`（sha256 `af02b646…`）；重新生成的道路修正資料位元組不變。42.21 官方只改 Oak St（index 0）與 Flaherty Road（index 540），Muldraugh 1993 的 op 509 reference 仍是 42.20.4 Flaherty 幾何（`8106,11124.5`），pin 不動，由主 MOD 42.21.0-0.32.0 以 `patch.legacy` 換算成現行點列後比對；`gen_street_repairs.py verify` 對此筆的 reference 不符警告為預期。免重渲：42.21 的 `lotheader`／`lotpack`／`texturepacks` 未改，圖像不需重做。
+
 ## [42.20.4-0.11.1] - 2026-09-28
 
 ### 修正
