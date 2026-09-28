@@ -10,7 +10,7 @@
   },
   "vanilla": {
     "map_dir": "Muldraugh, KY",
-    "streets_xml_sha256": "86172be118d99243ecbb6027ef4b82f2aa31590afcc7bbd776cffe9869482771",
+    "streets_xml_sha256": "af02b646f166cdbd3e47d37589701d845463b777668ac1088cb40f87e2140310",
     "street_count": 1098
   },
   "operations": [

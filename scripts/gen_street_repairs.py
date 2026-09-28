@@ -614,7 +614,8 @@ def survey_upstream(
         ]
         if bad:
             warnings.append(
-                f"{ds} {len(bad)} 筆 reference 與 vanilla 不符（執行期不會隱藏路名）"
+                f"{ds} {len(bad)} 筆 reference 與 vanilla 不符（執行期不會隱藏路名；"
+                f"主 MOD RoadPatches 的 patch.legacy 收錄該上一版官方幾何者除外）"
                 f"：index {bad[:8]}{' …' if len(bad) > 8 else ''}"
             )
     return warnings

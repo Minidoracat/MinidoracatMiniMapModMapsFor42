@@ -85,8 +85,11 @@ Lua 字串中的非 ASCII 原名以 UTF-8 十進位位元組跳脫，避免 Kahl
 - `WorldMap.addStreetData` 同步把來源 `splitStreets` 複製到地圖的 `combinedStreets`
   （`WorldMap.java:193-218`、`WorldMapStreets.java:419-431`）。單改 raw 名稱不會改既有顯示副本。
 - 一次性、未加入 UIManager 的 `UIWorldMap` 取得 raw 來源；以原生 `setPoint`／
-  `addPoint`／`removePoint` 與 `setTranslatedText`、`clipToObscuredCells` 暫時準備副本，
+  `addPoint`／`removePoint` 與 `setUntranslatedText`、`clipToObscuredCells` 暫時準備副本，
   不用會通知 dirty 的 editor setter。原 loader 結束後還原 raw 原名與點列，再 clip。
+  42.21 起 raw 名稱是 untranslated（`WorldMapStreet.java:178-188`）：原名一律讀
+  `getUntranslatedText()`；`getTranslatedText()` 會經 `Translator.getText`，debug 開
+  translationPrefix 時還會加 `!`／`*` 前綴，不能當原名。
 - replacement 共用 preflight 限制為有效、非零長度、float32 可精確表示且至多 383 點；
   不能讓 Java 寫入量化後無法還原，也不能讓顯示與 Nav 單側接受超大點列。
 - 巢狀新 map 載入會暫停外層 owned 修改，內層依自己的參照狀態重新判斷，結束再恢復外層；
