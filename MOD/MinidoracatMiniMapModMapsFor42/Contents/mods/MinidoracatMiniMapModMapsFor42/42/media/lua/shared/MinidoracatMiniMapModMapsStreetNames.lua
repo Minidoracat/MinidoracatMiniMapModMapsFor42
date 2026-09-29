@@ -7,7 +7,7 @@
 --
 -- 空白折疊後與原名不同者會多掛一個別名鍵，讓引擎索引裡的髒名（連續空白）
 -- 也查得到；兩者指向同一個 UI 鍵。
--- 共 16 個 dataset／364 條街名。
+-- 共 16 個 dataset／368 條街名。
 MinidoracatMiniMapModMapsStreetNames = {
     ["anruisi-town"] = {
         ["Agriculture Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_f5e46c6a35",
@@ -303,6 +303,7 @@ MinidoracatMiniMapModMapsStreetNames = {
         ["Burling St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_3dff7a813a",
         ["Burnside Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_db48b7fc83",
         ["Cardinal Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_9da4aa4218",
+        ["Caroline St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_a3c14e9db4",
         ["Carr Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_f13f91ce09",
         ["Cox Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4a68de0a25",
         ["Crimber St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_da2abf89c5",
@@ -352,7 +353,9 @@ MinidoracatMiniMapModMapsStreetNames = {
         ["Memorial Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_d7de91a55f",
         ["Merrit Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_767221449b",
         ["Millstone Dr"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_d03c598d4f",
+        ["North Hope St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_fccdeabf91",
         ["Northwestern Railroad (Muldraugh - Brandenburg)"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_0f3a659918",
+        ["Old Kelly Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_00a95fad02",
         ["Old Mill Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_3c9976dfc6",
         ["Oriole Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_74bedca63c",
         ["Pleasonton Road"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_ccc7d288da",
@@ -371,6 +374,7 @@ MinidoracatMiniMapModMapsStreetNames = {
         ["Sheriff Loop"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_d2d5075108",
         ["Sherman Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_7a2e6af1f7",
         ["Short Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_c3ee63614b",
+        ["South Hope St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_74630f0c50",
         ["Spanner St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_efe5b932a7",
         ["Stowe St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_7fe3f66fdc",
         ["Sycamore St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_aedcd3b9ea",

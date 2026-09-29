@@ -4,8 +4,8 @@
     "workshop_id": "3037854728",
     "map_mod": "tikitown",
     "map_dir": "Tikitown",
-    "streets_xml_sha256": "3b6ce90819e5a66fa3191b3eeef28f4d4a6eec316173945cb55c392013e8e1ed",
-    "captured": "2026-08-26",
+    "streets_xml_sha256": "4e19e1fbb137730e6c65a899e22275b32416c8ffa02c0868fed7b7b2422a7ce2",
+    "captured": "2026-09-29",
     "keep_geometry": [
       "0315b528a898",
       "0329e4145a80",
@@ -169,6 +169,11 @@
       "ch": "紅雀街",
       "cn": "红雀街",
       "jp": "カージナル通り"
+    },
+    "Caroline St": {
+      "ch": "卡羅琳街",
+      "cn": "卡罗琳街",
+      "jp": "キャロライン通り"
     },
     "Carr Road": {
       "ch": "卡爾路",
@@ -415,10 +420,20 @@
       "cn": "磨石大道",
       "jp": "ミルストーン・ドライブ"
     },
+    "North Hope St": {
+      "ch": "北霍普街",
+      "cn": "北霍普街",
+      "jp": "北ホープ通り"
+    },
     "Northwestern Railroad (Muldraugh - Brandenburg)": {
       "ch": "西北鐵路 (馬爾德勞 - 勃蘭登堡)",
       "cn": "西北铁路 (马尔德劳 - 勃兰登堡)",
       "jp": "ノースウェスタン鉄道（マルドロー - ブランデンバーグ）"
+    },
+    "Old Kelly Rd": {
+      "ch": "舊凱利路",
+      "cn": "旧凯利路",
+      "jp": "オールドケリー・ロード"
     },
     "Old Mill Rd": {
       "ch": "老磨坊路",
@@ -509,6 +524,11 @@
       "ch": "短街",
       "cn": "短街",
       "jp": "ショート通り"
+    },
+    "South Hope St": {
+      "ch": "南霍普街",
+      "cn": "南霍普街",
+      "jp": "南ホープ通り"
     },
     "Spanner St": {
       "ch": "扳手街",

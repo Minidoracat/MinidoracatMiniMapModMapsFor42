@@ -124,7 +124,7 @@
 | SecretZ 河濱鎮二號檢查站<br>SecretZ Riverside Checkpoint 2 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 4 條 | — | — | — |
 | 台北路<br>Taibei Road | [3401261192](https://steamcommunity.com/sharedfiles/filedetails/?id=3401261192) | ❌ 無 | — | — | — |
 | 泰勒斯維爾<br>Taylorsville | [3134394569](https://steamcommunity.com/sharedfiles/filedetails/?id=3134394569) | ❌ 無 | — | — | — |
-| 提基鎮＆發電廠<br>Tikitown & PowerPlant | [3037854728](https://steamcommunity.com/sharedfiles/filedetails/?id=3037854728) | ✅ 103 條 | ✅ 95 條 | — | — |
+| 提基鎮＆發電廠<br>Tikitown & PowerPlant | [3037854728](https://steamcommunity.com/sharedfiles/filedetails/?id=3037854728) | ✅ 103 條 | ✅ 99 條 | — | — |
 | 特拉帕湖鎮<br>Trapala Lake Town | [3390327877](https://steamcommunity.com/sharedfiles/filedetails/?id=3390327877) | ❌ 無 | — | — | — |
 | 特雷萊 4x4（Kardinal 移植版）<br>Trelai 4x4 (Kardinal port) | [3768876083](https://steamcommunity.com/sharedfiles/filedetails/?id=3768876083) | ❌ 無 | — | — | — |
 | Z 村<br>Vila Z | [3524981481](https://steamcommunity.com/sharedfiles/filedetails/?id=3524981481) | ❌ 無 | — | — | — |
