@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### 修正
+
+- **渡鴉溪東入口導航穿過中央分隔島樹叢**：從東邊進渡鴉溪（Raven Creek）往西走 David Blane Rd 時，導航路線會在入口處歪到旁邊、穿過分隔島的樹叢，自動駕駛也跟著開出路面。本包修正這段道路資料，現在會沿著實際路面走。感謝玩家回報。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：主 MOD NavCore 的 T 字路口吸附（容差 4＋3＋4.5＝11.5 格）把 David Blane Rd（index 0）的內點 (6585.5,14610) 拖到補充道路 Raven Creek Rd 01 斜段上約 (6587.9,14605)。新增 `road-repairs/raven-creek.json` 只移除這一個內點；`gen_street_repairs.py` 新增經使用者核准的 drop-vertex 規則（`dropVertex` 寫明點序、只准內點、`replacementPoints` 必須逐點等於 expectedPoints 拿掉該點，頭尾端點或點列不符一律拒收）。實機 E2E（東入口西行）離開路面時間 4002 ms → 0 ms。Kardinal 移植版未套用。
+
 ## [42.21.0-0.11.3] - 2026-09-29
 
 ### 更新

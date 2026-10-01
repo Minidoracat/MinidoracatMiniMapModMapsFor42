@@ -1,0 +1,38 @@
+{
+  "dataset": "raven-creek",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3484263516",
+    "map_mod": "RavenCreekB42",
+    "map_dir": "Raven Creek B42",
+    "streets_xml_sha256": "59358dadb6a2ecee3f44485d36e8e3241106e941f495042ab0412d19ca2dc2a4",
+    "captured": "2026-10-01"
+  },
+  "operations": [
+    {
+      "index": 0,
+      "name": "David Blane Rd",
+      "expectedWidth": 6,
+      "expectedPoints": [
+        6600,
+        14608,
+        6585.5,
+        14610,
+        6421.5,
+        14610,
+        6413.5,
+        14613
+      ],
+      "dropVertex": 1,
+      "replacementPoints": [
+        6600,
+        14608,
+        6421.5,
+        14610,
+        6413.5,
+        14613
+      ],
+      "reason": "drop-vertex：東入口的內點 (6585.5,14610) 距本包補充道路 Raven Creek Rd 01 斜段 5.6 格，落在主 MOD NavCore T 字路口吸附容差（兩路半寬 4＋3＋4.5＝11.5 格）內，被拖到斜段上約 (6587.9,14605)，西行路段因此離開路面、穿過中央分隔島樹叢（玩家回報）。只移除這一個內點，兩端點與其餘點不動；離線 NavCore 東入口往鎮內路線改沿 David Blane Rd 本身走。2026-10-01 實機 E2E（東入口西行）離開路面時間 4002 ms → 0 ms。"
+    }
+  ]
+}

@@ -28,7 +28,7 @@
 - 收錄地圖（Maps）：**101** 張
 - 作者附道路資料（Author road data）：**22** 張；沒有 **79** 張
 - 本包路名翻譯（Translated names）：**16** 張
-- 本包道路修正（Fixes）：**3** 張
+- 本包道路修正（Fixes）：**4** 張
 - 本包補充道路（Added roads）：**2** 張
 
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
@@ -42,6 +42,7 @@
 - **Muldraugh 1993**
   - 重複路名隱藏 913 筆：與官方地圖逐點相同的複本，只藏玩家地圖上重疊的路名，導航不受影響
 - **渡鴉溪（Raven Creek）**
+  - 移除內部轉折點 1 處：作者的路在路口旁有個轉折點，導航會把它拉到隔壁路上而偏離路面；拿掉這一點後沿實際路面走
   - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `渡鴉溪 01 號路（小地圖補）`（英文 `Raven Creek Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 
 ## 全部地圖（All maps）
@@ -99,7 +100,7 @@
 | 天頂號郵輪<br>Path of Zenith | [3589905072](https://steamcommunity.com/sharedfiles/filedetails/?id=3589905072) | ❌ 無 | — | — | — |
 | 新煤田鎮<br>New Coalfield | [3452917446](https://steamcommunity.com/sharedfiles/filedetails/?id=3452917446) | ❌ 無 | — | — | — |
 | 浣熊市<br>Raccoon City | [3388468313](https://steamcommunity.com/sharedfiles/filedetails/?id=3388468313) | ❌ 無 | — | — | — |
-| 渡鴉溪<br>Raven Creek | [3484263516](https://steamcommunity.com/sharedfiles/filedetails/?id=3484263516) | ✅ 45 條 | ✅ 21 條 | — | ✅ 1 條 |
+| 渡鴉溪<br>Raven Creek | [3484263516](https://steamcommunity.com/sharedfiles/filedetails/?id=3484263516) | ✅ 45 條 | ✅ 21 條 | 移除內部轉折點 1 處 | ✅ 1 條 |
 | 渡鴉溪（Kardinal 移植版）<br>Raven Creek (Kardinal port) | [3769577696](https://steamcommunity.com/sharedfiles/filedetails/?id=3769577696) | ✅ 45 條 | ✅ 44 條 | — | — |
 | 河畔豪宅（非官方修改版）<br>Riverside Mansion (Unofficial) | [3485388592](https://steamcommunity.com/sharedfiles/filedetails/?id=3485388592) | ❌ 無 | — | — | — |
 | 鏽堡鎮<br>RustBury | [3721711345](https://steamcommunity.com/sharedfiles/filedetails/?id=3721711345) | ❌ 無 | — | — | — |

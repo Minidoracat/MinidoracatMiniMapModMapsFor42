@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetRepairs.lua（生成檔，勿手編）
 -- 由 scripts/gen_street_repairs.py 從 road-repairs/*.json 編譯
--- 3 個 dataset／960 筆修正（中心線 44、接線 3、隱藏標籤候選 913）
+-- 4 個 dataset／961 筆修正（中心線 44、接線 3、移除內點 1、隱藏標籤候選 913）
 --
 -- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log
 -- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。
@@ -12,7 +12,7 @@ MinidoracatMiniMapModMapsStreetRepairs = MinidoracatMiniMapModMapsStreetRepairs 
 local Repairs = MinidoracatMiniMapModMapsStreetRepairs
 
 -- ==== camden-county (CamdenCountyB42 / Camden County B42) ====
--- 逐筆理由（rect-outline／gap-bridge／exact-copy）在 road-repairs/camden-county.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／exact-copy）在 road-repairs/camden-county.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
 do
     local ops = {}
     -- #5 All Saints Pl
@@ -25,7 +25,7 @@ do
 end
 
 -- ==== daisy-county (Daisy County B42 version / Daisy County) ====
--- 逐筆理由（rect-outline／gap-bridge／exact-copy）在 road-repairs/daisy-county.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／exact-copy）在 road-repairs/daisy-county.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
 do
     local ops = {}
     -- #0 Weinifan Street
@@ -120,7 +120,7 @@ do
 end
 
 -- ==== muldraugh-1993 (muldraugh1993b42 / Muldraugh 1993 B42) ====
--- 逐筆理由（rect-outline／gap-bridge／exact-copy）在 road-repairs/muldraugh-1993.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／exact-copy）在 road-repairs/muldraugh-1993.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
 do
     local ops = {}
     -- #3 Goggins St
@@ -1950,4 +1950,13 @@ do
     -- #1037 Northwestern Railroad (Muldraugh - Brandenburg)
     ops[1037] = { expectedWidth = 5, expectedPoints = { 2238, 6695.5, 2574.5, 6695.5, 2646.5, 6623.5, 2646.5, 6210.5, 2691.5, 6165.5, 3138.5, 6165.5, 3197.5, 6224.5, 3603.5, 6224.5, 3729, 6350.5, 4331.5, 6350.5, 4350.5, 6369.5, 4350.5, 6706.5, 4424.5, 6780.5, 5222.5, 6780.5, 5323.5, 6881.5, 6607, 6881.5, 6724.5, 6998.5, 6724.5, 7514.5, 6762.5, 7552.5, 6949.5, 7552.5, 6994.5, 7597.5, 7453.5, 7597.5, 7482.5, 7626.5, 7482.5, 7778.5, 7549.5, 7845.5, 8298.5, 7845.5, 8421.5, 7968.5, 8421.5, 8080.5, 8456.5, 8115.5, 8655.5, 8115.5, 8699.5, 8071.5, 10724.5, 8071.5, 10761.5, 8108.5, 12104, 8108.5 }, hideLabel = true, reference = { index = 1068, width = 5, points = { 2238, 6695.5, 2574.5, 6695.5, 2646.5, 6623.5, 2646.5, 6210.5, 2691.5, 6165.5, 3138.5, 6165.5, 3197.5, 6224.5, 3603.5, 6224.5, 3729, 6350.5, 4331.5, 6350.5, 4350.5, 6369.5, 4350.5, 6706.5, 4424.5, 6780.5, 5222.5, 6780.5, 5323.5, 6881.5, 6607, 6881.5, 6724.5, 6998.5, 6724.5, 7514.5, 6762.5, 7552.5, 6949.5, 7552.5, 6994.5, 7597.5, 7453.5, 7597.5, 7482.5, 7626.5, 7482.5, 7778.5, 7549.5, 7845.5, 8298.5, 7845.5, 8421.5, 7968.5, 8421.5, 8080.5, 8456.5, 8115.5, 8655.5, 8115.5, 8699.5, 8071.5, 10724.5, 8071.5, 10761.5, 8108.5, 12104, 8108.5 } } }
     Repairs["muldraugh-1993"] = { schemaVersion = 1, mapMod = "muldraugh1993b42", mapDir = "Muldraugh 1993 B42", operations = ops }
+end
+
+-- ==== raven-creek (RavenCreekB42 / Raven Creek B42) ====
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／exact-copy）在 road-repairs/raven-creek.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+do
+    local ops = {}
+    -- #0 David Blane Rd
+    ops[0] = { expectedWidth = 6, expectedPoints = { 6600, 14608, 6585.5, 14610, 6421.5, 14610, 6413.5, 14613 }, replacementPoints = { 6600, 14608, 6421.5, 14610, 6413.5, 14613 } }
+    Repairs["raven-creek"] = { schemaVersion = 1, mapMod = "RavenCreekB42", mapDir = "Raven Creek B42", operations = ops }
 end

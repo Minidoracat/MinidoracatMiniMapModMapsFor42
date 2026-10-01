@@ -187,6 +187,7 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 9728, 9728, 10496, 10752 }, nameKey = "UI_MinidoracatMiniMapModMaps_RaccoonCity" },
         { zip = "Raven Creek B42.pyramid.zip", mapMod = "RavenCreekB42", mapDir = "Raven Creek B42",
             streetNames = StreetNames["raven-creek"], streetSupplement = StreetSupplements["raven-creek"],
+            streetRepairs = StreetRepairs["raven-creek"],
             bounds = { 4096, 14336, 6656, 17920 }, nameKey = "UI_MinidoracatMiniMapModMaps_RavenCreek" },
         -- Kardinal 團隊的另一個 B42 移植版：與上者同地圖資料夾名（二選一，勿同時啟用），
         -- 但圖資內容不同且範圍更大，故獨立渲染；靠 mapMod 各自偵測
