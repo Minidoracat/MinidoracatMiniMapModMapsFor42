@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### 更新
+
+- **柳溪堡壘 2026 小地圖圖像更新**：原作者 2026-10-01 更新了地圖內容，小地圖圖像已依最新資料重新產生；範圍與名稱不變。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：追蹤器 #39 判定 Willowbrook Bastion! 2026 圖資 hash 變更；steamcmd 同步後 `rebuild_pyramids.py --only` 重渲。lotheader 仍為 15 個 cell（33–37 × 37–39），bounds 與註冊值一致。舊版 Willowbrook Bastion! 圖資未變，免重渲。
+
 ## [42.21.0-0.11.4] - 2026-10-02
 
 ### 修正
