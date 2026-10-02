@@ -14,7 +14,7 @@ Want a map mod supported? Comment below, or use the [url=https://github.com/Mini
 [/list]
 More requests for the same map mean higher priority (+1 on someone else's request counts). Very large maps may ship as a separate pack.
 
-[h2]🗺️ Supported maps (78 map mods, 101 maps)[/h2]
+[h2]🗺️ Supported maps (79 map mods, 102 maps)[/h2]
 To subscribe to them all at once, use the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url].
 [list]
 [*] ✅ = the author ships road data: street names, search and navigation work (number = street count)
@@ -75,6 +75,7 @@ To subscribe to them all at once, use the [url=https://steamcommunity.com/shared
 [*] Muldraugh Checkpoint - Overpass
 [*] Muldraugh Fire Dept
 [*] Nekomata Ridge
+[*] Nellis Air Force Base
 [*] Nettle Township
 [*] New Coalfield
 [*] New Ellroy
@@ -138,6 +139,7 @@ To subscribe to them all at once, use the [url=https://steamcommunity.com/shared
 [list]
 [*] Atlanta and Atlanta Tower Survival conflict — choose one; Foxtrot Warehouse fully overlaps Atlanta — choose one
 [*] Raven Creek vs. its Kardinal port, and Willowbrook Bastion vs. its 2026 remake, are also either-or
+[*] Nellis Air Force Base overlaps Blackpine County and Atlanta — choose one
 [*] Atlas Underground Complex has surface imagery only (no underground floors) and partly overlaps several nearby maps; using them together is not guaranteed
 [/list]
 

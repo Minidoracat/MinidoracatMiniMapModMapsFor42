@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **101 張**（78 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **102 張**（79 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯**：下列 **16 組**地圖資料提供繁中／簡中／
@@ -97,6 +97,7 @@
 | Muldraugh 軍事檢查站－天橋 | `Muldraugh-Checkpoint` | 10496,10752 – 11008,11520 |
 | 普雷斯頓堡 | `muldraughmilitarybaseas24` | 8448,10752 – 9472,11520 |
 | 貓又嶺 | `Nekomata Ridge` | 11776,8192 – 13312,9216 |
+| 內利斯空軍基地 | `NellisAFB` | 10496,14080 – 11776,15616 |
 | 蕁麻鎮 | `Nettle Township B42 version` | 6400,8960 – 7424,9728 |
 | 天頂號郵輪 | `PZ_ACSM_LV` | 12800,768 – 13312,1280 |
 | 新煤田鎮 | `PZKNewCoalfieldTownMap` | 2816,8192 – 3584,8960 |

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-22T12:55:01Z",
+  "generated_at": "2026-10-02T05:11:41Z",
   "items": {
     "2384329562": {
       "mod_ids": [
@@ -142,6 +142,11 @@
           "zip": "Muldraugh-SouthernCheckpoint.pyramid.zip"
         },
         {
+          "map_mod": "NellisAFB",
+          "workshop_id": "3783433804",
+          "zip": "Nellis Air Force Base.pyramid.zip"
+        },
+        {
           "map_mod": "PZ_ACSM_LV",
           "workshop_id": "3589905072",
           "zip": "Path of Zenith, Louisville.pyramid.zip"
@@ -223,6 +228,18 @@
           "map_mod": "Project Gurashi",
           "workshop_id": "3318210146",
           "zip": "Megurigaoka City, Kanagawa.pyramid.zip"
+        }
+      ]
+    },
+    "3436499337": {
+      "mod_ids": [
+        "VMZNEW"
+      ],
+      "used_by": [
+        {
+          "map_mod": "NellisAFB",
+          "workshop_id": "3783433804",
+          "zip": "Nellis Air Force Base.pyramid.zip"
         }
       ]
     },
@@ -327,6 +344,11 @@
           "map_mod": "Nekomata Ridge",
           "workshop_id": "3782173659",
           "zip": "Nekomata Ridge.pyramid.zip"
+        },
+        {
+          "map_mod": "NellisAFB",
+          "workshop_id": "3783433804",
+          "zip": "Nellis Air Force Base.pyramid.zip"
         },
         {
           "map_mod": "Nettle Township B42 version",

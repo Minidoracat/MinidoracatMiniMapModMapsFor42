@@ -177,6 +177,10 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "Nekomata Ridge.pyramid.zip", mapMod = "Nekomata Ridge",
             mapDir = "Nekomata Ridge",
             bounds = { 11776, 8192, 13312, 9216 }, nameKey = "UI_MinidoracatMiniMapModMaps_NekomataRidge" },
+        -- 與黑松郡（25 cell）、亞特蘭大（10 cell）地塊重疊＝事實上互斥，各自依啟用 mod 顯示。
+        -- 上游另有負座標 lotheader（-108_-124 等，非地表區域），bounds 只取地表 cell 41-45 × 55-60
+        { zip = "Nellis Air Force Base.pyramid.zip", mapMod = "NellisAFB",
+            bounds = { 10496, 14080, 11776, 15616 }, nameKey = "UI_MinidoracatMiniMapModMaps_NellisAFB" },
         { zip = "Nettle Township.pyramid.zip", mapMod = "Nettle Township B42 version",
             bounds = { 6400, 8960, 7424, 9728 }, nameKey = "UI_MinidoracatMiniMapModMaps_NettleTownship" },
         { zip = "Path of Zenith, Louisville.pyramid.zip", mapMod = "PZ_ACSM_LV",

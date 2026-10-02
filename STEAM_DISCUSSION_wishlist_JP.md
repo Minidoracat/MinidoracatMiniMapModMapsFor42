@@ -14,7 +14,7 @@
 [/list]
 リクエストが多いマップほど優先されます（他の人のリクエストへの +1 も有効）。大容量のマップは別パックになる場合があります。
 
-[h2]🗺️ 対応マップ（78 個のマップ MOD、101 マップ）[/h2]
+[h2]🗺️ 対応マップ（79 個のマップ MOD、102 マップ）[/h2]
 まとめてサブスクライブするなら[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]対応マップコレクション[/url]をどうぞ。
 [list]
 [*] ✅＝原作者が道路データを同梱：道路名・検索・ナビが使えます（数字は道路の本数）
@@ -75,6 +75,7 @@
 [*] Muldraugh Checkpoint - Overpass
 [*] Muldraugh Fire Dept
 [*] Nekomata Ridge
+[*] Nellis Air Force Base
 [*] Nettle Township
 [*] New Coalfield
 [*] New Ellroy
@@ -138,6 +139,7 @@
 [list]
 [*] Atlanta と Atlanta Tower Survival は競合するため、どちらか一方を選んでください。Foxtrot Warehouse は Atlanta と全域が重なるため、これもどちらか一方です
 [*] Raven Creek と Kardinal 移植版、Willowbrook Bastion と 2026 リメイク版もどちらか一方です
+[*] Nellis Air Force Base は Blackpine County・Atlanta と重なるため、どちらか一方を選んでください
 [*] Atlas Underground Complex は地表画像のみ（地下階なし）で、周辺の複数マップと一部重なります。併用は保証しません
 [/list]
 

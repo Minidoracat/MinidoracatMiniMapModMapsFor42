@@ -14,7 +14,7 @@
 [/list]
 同一張圖許願的人越多，優先度越高（幫別人 +1 也算）。圖檔很大的地圖可能另做獨立圖包。
 
-[h2]🗺️ 支援地圖（78 個地圖 MOD、101 張地圖）[/h2]
+[h2]🗺️ 支援地圖（79 個地圖 MOD、102 張地圖）[/h2]
 想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] ✅＝原作者附有道路資料：地圖上有路名，可以搜尋與導航（數字是街道數）
@@ -75,6 +75,7 @@
 [*] Muldraugh Checkpoint - Overpass（Muldraugh 軍事檢查站－天橋）
 [*] Muldraugh Fire Dept（Muldraugh 消防局）
 [*] Nekomata Ridge（貓又嶺）
+[*] Nellis Air Force Base（內利斯空軍基地）
 [*] Nettle Township（蕁麻鎮）
 [*] New Coalfield（新煤田鎮）
 [*] New Ellroy（新艾爾羅伊）
@@ -138,6 +139,7 @@
 [list]
 [*] Atlanta 與 Atlanta Tower Survival 衝突，請二選一；Foxtrot Warehouse 全部地塊與 Atlanta 重疊，也請二選一
 [*] Raven Creek 原版與 Kardinal 移植版、Willowbrook Bastion 原版與 2026 重製版都是二選一
+[*] Nellis Air Force Base 與 Blackpine County、Atlanta 地塊重疊，請擇一
 [*] Atlas Underground Complex 只有地表圖、沒有地下樓層，和附近多張地圖部分重疊，不保證能一起用
 [/list]
 

@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### 新增
+
+- **新增支援內利斯空軍基地（Nellis Air Force Base）**：啟用該地圖 MOD 後，小地圖會顯示基地的地圖圖片、框線與名稱。原作者沒有附道路資料，所以這張圖沒有路名、搜尋與導航。這張地圖和黑松郡（Blackpine County）、亞特蘭大（Atlanta）有部分地塊重疊，請擇一使用。
+
 ### 更新
 
 - **柳溪堡壘 2026 小地圖圖像更新**：原作者 2026-10-01 更新了地圖內容，小地圖圖像已依最新資料重新產生；範圍與名稱不變。
@@ -10,7 +14,7 @@
 
 - 更新後請重新啟動遊戲。
 
-> 技術要點：追蹤器 #39 判定 Willowbrook Bastion! 2026 圖資 hash 變更；steamcmd 同步後 `rebuild_pyramids.py --only` 重渲。lotheader 仍為 15 個 cell（33–37 × 37–39），bounds 與註冊值一致。舊版 Willowbrook Bastion! 圖資未變，免重渲。
+> 技術要點：Nellis Air Force Base（Workshop 3783433804，mod ID `NellisAFB`）地表 lotheader 為 cell 41–45 × 55–60（30 個），bounds `10496,14080 – 11776,15616`；上游另有 10 個負座標 lotheader，非地表區域、不渲染。與 BlackpineCounty 重疊 25 個 cell、與 Atlanta 重疊 10 個 cell。新增追蹤材質包依賴 VMZNEW（3436499337）。追蹤器 #39 判定 Willowbrook Bastion! 2026 圖資 hash 變更；steamcmd 同步後 `rebuild_pyramids.py --only` 重渲。lotheader 仍為 15 個 cell（33–37 × 37–39），bounds 與註冊值一致。舊版 Willowbrook Bastion! 圖資未變，免重渲。
 
 ## [42.21.0-0.11.4] - 2026-10-02
 

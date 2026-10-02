@@ -208,6 +208,10 @@
       "map_dir": "Nekomata Ridge",
       "workshop_id": "3782173659"
     },
+    "Nellis Air Force Base.pyramid.zip": {
+      "map_dir": "Nellis Air Force Base",
+      "workshop_id": "3783433804"
+    },
     "Nettle Township.pyramid.zip": {
       "map_dir": "Nettle Township",
       "workshop_id": "3391349130"
@@ -405,7 +409,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-09-29T14:50:44Z",
+  "generated_at": "2026-10-02T05:11:42Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1354,6 +1358,16 @@
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": "65754c6bea58a318d7ea974f76481eaae599ac73d1fe55cf51a645f260549ad8"
+        }
+      }
+    },
+    "3783433804": {
+      "checked": "2026-10-02T05:11:42Z",
+      "maps": {
+        "Nellis Air Force Base": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "de2a461171a69dcc5fb1dc26dc07e931e27bf9830ad2260f28d75a310ef96c6c"
         }
       }
     }
