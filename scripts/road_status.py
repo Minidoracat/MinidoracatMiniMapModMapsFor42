@@ -158,15 +158,17 @@ def pin_index(data: dict) -> dict[tuple[str, str], dict[str, list]]:
 # 判定（作者現況 vs 本包 pin／上次狀態）
 # ============================================================
 ACTION = "action"  # 需要人處理（issue 的 🛣️ 行，關閉前累積保留）
-INFO = "info"      # 純資訊（本包沒資料的地圖，清單自動更新即可）
+INFO = "info"      # 純資訊（本包沒資料的地圖作者移除道路，清單自動更新即可）
 
 
 def judge(wid: str, old_maps: dict | None, new_maps: dict, pins: dict,
           registered: set[str]) -> list[dict]:
     """單一 workshop item 的道路判定。
-    ACTION：本包 pin（街名翻譯／道路修正／補充道路）記的 sha 與作者現況不符。
-    INFO  ：本包沒有任何道路資料的註冊地圖，作者新增／移除／變更了 streets.xml
-            （old_maps 為 None＝沒有上次紀錄，無從比較，不出 INFO）。"""
+    ACTION：本包 pin（街名翻譯／道路修正／補充道路）記的 sha 與作者現況不符；或本包沒有
+            道路資料的註冊地圖，作者新增／變更了 streets.xml（路名沒人翻，中日文介面顯示英文，
+            要有人決定補不補）。
+    INFO  ：本包沒有道路資料的註冊地圖，作者移除了 streets.xml（沒有東西要翻）。
+    old_maps 為 None＝沒有上次紀錄，無從比較，後兩類都不出。"""
     dirs = set(new_maps) | set(old_maps or {}) | {d for (w, d) in pins if w == wid}
     out: list[dict] = []
     for d in sorted(dirs):
@@ -194,7 +196,7 @@ def judge(wid: str, old_maps: dict | None, new_maps: dict, pins: dict,
         if old_sha != sha:
             kind = "author_added" if old_sha is None else "author_removed" if sha is None \
                 else "author_changed"
-            out.append({**base, "level": INFO, "kind": kind,
+            out.append({**base, "level": INFO if kind == "author_removed" else ACTION, "kind": kind,
                         "old_count": int(old.get("street_count") or 0)})
     return out
 
@@ -206,9 +208,9 @@ def describe(f: dict, quote) -> str:
     kind = f["kind"]
     if kind == "names":
         return (f"🛣️ **街名翻譯需補譯**：{d}（`street-names/{ds}`）作者 streets.xml 已變"
-                f"（現 {f['street_count']} 條）→ 補譯 names.json 後 "
-                "`uv run scripts/gen_streets_i18n.py gen --update-hash`，再 "
-                "`uv run scripts/gen_streets_i18n.py verify`")
+                f"（現 {f['street_count']} 條）→ `uv run scripts/gen_streets_i18n.py verify` "
+                "會列出還沒翻的原名；補譯 names.json（刻意不翻列進 skip_names）後 "
+                "`uv run scripts/gen_streets_i18n.py gen --update-hash`，verify 通過才算處理完")
     if kind == "repairs":
         return (f"🛣️ **道路修正需覆核**：{d}（`road-repairs/{ds}.json`）作者 streets.xml 已變，"
                 "對不上的修正遊戲內會自動略過 → `uv run scripts/gen_street_repairs.py verify` "
@@ -227,12 +229,15 @@ def describe(f: dict, quote) -> str:
                 f"重跑 `uv run scripts/derive_road_supplements.py {ds} --preview output/{ds}-roads.png`"
                 " 看疊圖，確認後加 `--write`（沿用號碼），再 "
                 "`uv run scripts/gen_road_supplements.py gen` 與 `verify`")
-    what = {
-        "author_added": f"新增道路資料（{f['street_count']} 條）",
-        "author_removed": f"移除道路資料（原 {f['old_count']} 條）",
-        "author_changed": f"變更道路資料（{f['old_count']} → {f['street_count']} 條）",
-    }[kind]
-    return f"ℹ️ 作者{what}：{d}（本包沒有此圖的道路資料；公開清單已自動更新）"
+    if kind == "author_removed":
+        return (f"ℹ️ 作者移除道路資料（原 {f['old_count']} 條）：{d}"
+                "（本包沒有此圖的道路資料；公開清單已自動更新）")
+    what = (f"新增道路資料（{f['street_count']} 條）" if kind == "author_added"
+            else f"變更道路資料（{f['old_count']} → {f['street_count']} 條）")
+    return (f"🛣️ **路名沒有翻譯，評估補譯**：{d} 作者{what}，本包沒有這張圖的路名翻譯，"
+            "中文／日文介面會顯示英文 → 作者自己取的路名就建 `street-names/<dataset>/names.json`"
+            "並在註冊清單加 `streetNames`，再 `uv run scripts/gen_streets_i18n.py gen`；"
+            "只是照抄官方路網可不翻。處理完跑 `road-scan --write`")
 
 
 # ============================================================

@@ -27,10 +27,20 @@
       "cn": "栗树街",
       "jp": "クリ通り"
     },
+    "Church St": {
+      "ch": "教會街",
+      "cn": "教堂街",
+      "jp": "チャーチ通り"
+    },
     "Depot Way": {
       "ch": "車站道",
       "cn": "车站道",
       "jp": "デポ・ウェイ"
+    },
+    "Dixie Highway (Route 31W)": {
+      "ch": "迪克西高速公路 (31號國道西路)",
+      "cn": "迪克西高速公路 (31号国道西线)",
+      "jp": "ディキシー・ハイウェイ（国道31W号線）"
     },
     "Dixie Spur Rd": {
       "ch": "迪克西支線路",
@@ -57,6 +67,16 @@
       "cn": "山顶街",
       "jp": "ヒルクレスト通り"
     },
+    "Hospital Ct": {
+      "ch": "醫院苑",
+      "cn": "医院苑",
+      "jp": "ホスピタル・コート"
+    },
+    "Main St": {
+      "ch": "主街",
+      "cn": "主街",
+      "jp": "メイン通り"
+    },
     "North ww2commander St": {
       "ch": "北 ww2commander街",
       "cn": "北 ww2commander街",
@@ -77,10 +97,20 @@
       "cn": "松谷路",
       "jp": "パインホロウ・ロード"
     },
+    "Salt River Rd": {
+      "ch": "鹹水河路",
+      "cn": "咸水河路",
+      "jp": "ソルト・リバー・ロード"
+    },
     "South ww2commander St": {
       "ch": "南 ww2commander街",
       "cn": "南 ww2commander街",
       "jp": "南 ww2commander通り"
+    },
+    "Stendo's Blvd": {
+      "ch": "斯坦多大道",
+      "cn": "斯坦多大道",
+      "jp": "ステンド大通り"
     }
   }
 }

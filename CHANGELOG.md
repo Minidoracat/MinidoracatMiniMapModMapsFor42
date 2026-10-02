@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### 修正
+
+- **部分地圖的路名在中文／日文介面顯示英文**：雛菊郡（Daisy County）6 條、西點擴張區 6 條、Muldraugh 1993 15 條，以及艾德汽車回收場、小鎮區的 Pony Trot Rd，現在都有繁中／簡中／日文路名（例如雛菊郡的 Meadow Way 改顯示「草甸道」、Pansy Street 改顯示「三色堇街」）。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：0.9.0 改為直接讀作者 `streets.xml` 後，舊版 keep-scan 剔除的街回到路網，但 `names.json` 沿用舊的保留清單，沒有補譯。這次補上 29 個原名；與官方同名或只差縮寫的（如 Pony Trot Rd／Pony Trot Road）沿用 LangFor42 譯名，與官方路名用字一致。Muldraugh 1993 與官方同名的 877 個路網複本列入新欄位 `skip_names`，維持原名。`gen_streets_i18n.py verify` 新增漏譯閘門：有本機上游副本時，上游原名不在 `names` 也不在 `skip_names` 就 fail。追蹤器：本包沒翻路名的地圖，作者新增或變更 `streets.xml` 時改開 🛣️ 待處理（原為 ℹ️）。實機 E2E（`daisy-names-mp`，繁中）6 條譯名可搜尋，雛菊郡範圍內只顯示雛菊郡自己的路名。
+
 ## [42.21.0-0.12.0] - 2026-10-02
 
 ### 新增

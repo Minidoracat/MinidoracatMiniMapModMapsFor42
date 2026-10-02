@@ -161,7 +161,8 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             mapDir = "Megurigaoka City, Kanagawa", streetNames = StreetNames["megurigaoka-city"],
             bounds = { 0, 2304, 1280, 4864 }, nameKey = "UI_MinidoracatMiniMapModMaps_Megurigaoka" },
         -- 本圖是 Muldraugh 重製版，上游 streets.xml 含大量與 vanilla 同座標的官方路網
-        -- 複本；names.json 只收本圖獨有的 175 條 ⇒ 只有這些會被譯，其餘維持上游英文。
+        -- 複本；names.json 翻譯本圖自己的路名，與官方同名的 877 個列在 skip_names、維持
+        -- 上游英文（gen_streets_i18n verify 會擋兩邊都沒列的新路名）。
         -- 那些複本的路名會與官方漢化疊字，streetRepairs 只針對與官方**逐點相同**的
         -- 913 條下隱藏標籤候選（幾何 100% 被覆蓋但點列不同的不算——那一段的名字
         -- 可能是唯一可見的）；實際是否隱藏由執行期判定官方那條已載入且看得見。

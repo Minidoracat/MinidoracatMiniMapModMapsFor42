@@ -16,9 +16,10 @@ MOD 軸（time_updated 變動）→ steamcmd 下載該項 → hash 圖資（medi
   重新上架要恢復追蹤＝手動把 state 該項 removed 改回 false。
   首次見到（含 --bootstrap 首建）→ 靜默記基準，零 issue。
   道路資料（同一次下載）：掃 streets.xml／worldmap.xml → 本包 pin（街名翻譯／道路修正／
-  補充道路）對不上作者現況 → issue 加「🛣️」待處理行（關閉前累積保留）；本包沒資料的
-  地圖作者增刪改道路 → 「ℹ️」行。tracker-state/road_status.json 與公開清單
-  docs/road-data.md 隨 state 一起更新（純函式在 road_status.py，verify_mod 共用）。
+  補充道路）對不上作者現況、或本包沒翻路名的地圖作者新增／變更道路 → issue 加「🛣️」
+  待處理行（關閉前累積保留）；本包沒資料的地圖作者移除道路 → 「ℹ️」行。
+  tracker-state/road_status.json 與公開清單 docs/road-data.md 隨 state 一起更新
+  （純函式在 road_status.py，verify_mod 共用）。
 遊戲軸（public branch buildid 變動，steamcmd app_info_print）→ 開「[遊戲更新]」
   issue 提醒評估全量重渲（42.20 案例：主世界 950 cells 變更）。
 
@@ -1585,7 +1586,7 @@ def cmd_road_scan(args) -> int:
         else:
             print("✅ 道路資料狀態與公開清單無變更。")
     if actions:
-        print(f"❌ 本包道路資料有 {actions} 項與作者現況不符（見上方 🛣️），請依指示處理。")
+        print(f"❌ 有 {actions} 項道路資料待處理（見上方 🛣️），請依指示處理。")
         return 1
     return 0
 
@@ -1947,9 +1948,15 @@ def cmd_self_test() -> int:
     assert sorted(f["kind"] for f in f_fix) == ["names", "repairs"]
     assert all(f["level"] == rs.ACTION for f in f_fix)
     assert rs.judge("51", {"Fix Town": roads(sa, 3)}, {"Fix Town": roads(sa, 3)}, pins_r, {"Fix Town"}) == []
-    # 本包沒資料的註冊地圖作者新增道路 → ℹ️；無上次紀錄或非註冊目錄 → 不出
-    f_info = rs.judge("52", {"Plain": roads(None, 0)}, {"Plain": roads(sa, 7)}, pins_r, {"Plain"})
-    assert [(f["level"], f["kind"]) for f in f_info] == [(rs.INFO, "author_added")]
+    # 本包沒翻路名的註冊地圖：作者新增／變更道路 → 🛣️ 評估補譯；移除 → ℹ️；
+    # 無上次紀錄或非註冊目錄 → 不出
+    f_new = rs.judge("52", {"Plain": roads(None, 0)}, {"Plain": roads(sa, 7)}, pins_r, {"Plain"})
+    assert [(f["level"], f["kind"]) for f in f_new] == [(rs.ACTION, "author_added")]
+    assert "評估補譯" in rs.describe(f_new[0], _code)
+    f_chg = rs.judge("52", {"Plain": roads(sa, 7)}, {"Plain": roads(sb, 8)}, pins_r, {"Plain"})
+    assert [(f["level"], f["kind"]) for f in f_chg] == [(rs.ACTION, "author_changed")]
+    f_info = rs.judge("52", {"Plain": roads(sa, 7)}, {"Plain": roads(None, 0)}, pins_r, {"Plain"})
+    assert [(f["level"], f["kind"]) for f in f_info] == [(rs.INFO, "author_removed")]
     assert rs.judge("52", None, {"Plain": roads(sa, 7)}, pins_r, {"Plain"}) == []
     assert rs.judge("52", {"Plain": roads(None, 0)}, {"Plain": roads(sa, 7)}, pins_r, set()) == []
 
@@ -1979,7 +1986,7 @@ def cmd_self_test() -> int:
     }
     lines_r, items_r = road_judgments(
         {"52": {"maps": {"Plain": roads(sa, 7)}}, "99": {"maps": {}}}, status_r, pins_r, "t1")
-    assert set(lines_r) == {"52"} and lines_r["52"][0].startswith("- ℹ️")
+    assert set(lines_r) == {"52"} and lines_r["52"][0].startswith("- 🛣️")
     assert items_r["52"] == {"checked": "t1", "maps": {"Plain": roads(sa, 7)}}
     assert items_r["51"] == status_r["items"]["51"] and "99" not in items_r  # 失敗／無關項不動
     _lines, same = road_judgments({"51": {"maps": {"Fix Town": roads(sa, 3)}}}, status_r, pins_r, "t2")

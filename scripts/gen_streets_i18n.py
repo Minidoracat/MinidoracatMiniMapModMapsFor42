@@ -18,7 +18,7 @@
 
 用法：
   python scripts/gen_streets_i18n.py gen [--prefer DIR] [--update-hash]
-  python scripts/gen_streets_i18n.py verify
+  python scripts/gen_streets_i18n.py verify [--prefer DIR]
   python scripts/gen_streets_i18n.py --selftest
 
 閘門：
@@ -26,15 +26,18 @@
           正規化後撞鍵）。缺譯只是 warning——該語言退回英文原名，玩家看到的仍是
           可用的街名。
   verify  重跑同一支生成器、與磁碟上的生成物**逐字節**比對，再核對註冊清單引用的
-          dataset 集合＝`street-names/` 實際內容 ⇒ 手改一定被抓到。
+          dataset 集合＝`street-names/` 實際內容 ⇒ 手改一定被抓到。有本機上游副本時
+          再擋漏譯：上游原名必須列在 `names`（翻）或 `skip_names`（刻意不翻、執行期
+          顯示原名）其中之一。
 
 names.json 的鍵必須是上游 `streets.xml` 的**原字串**（逐字節，含連續空白）：執行期
 是 `names[原名]` 精確查表（主 MOD `translateStreetName`），鍵差一個空白就查不到＝
 該街顯示英文。
 
 `--prefer` 與 map_tracker deps-scan 同語意：優先的 workshop content 根
-（`<root>/<workshop_id>/mods/…`）。gen 只拿它做**非阻擋**的上游對照（照上述精確語意
-列出未收錄街名、sha256 是否已變），生成物本身不依賴上游副本 ⇒ CI 無需 workshop。
+（`<root>/<workshop_id>/mods/…`）。gen 拿它做**非阻擋**的上游對照（照上述精確語意
+列出未收錄街名、sha256 是否已變），verify 拿它擋漏譯；生成物本身不依賴上游副本 ⇒
+CI 無需 workshop。
 """
 
 from __future__ import annotations
@@ -171,6 +174,20 @@ def upstream_names(xml_text: str) -> list[str]:
     return list(dict.fromkeys(name for name in names if name.strip()))
 
 
+def upstream_streets_xml(roots: list[Path], data: dict) -> Path | None:
+    """names.json 的 source → 本機上游 streets.xml（找不到副本回 None）。"""
+    src = data.get("source") if isinstance(data.get("source"), dict) else {}
+    return find_streets_xml(
+        roots, str(src.get("workshop_id") or ""), str(src.get("map_dir") or "")
+    )
+
+
+def untranslated_names(data: dict, xml_text: str) -> list[str]:
+    """上游有、`names` 與 `skip_names` 都沒列的原名（依上游出現順序）＝執行期顯示英文。"""
+    covered = set(data.get("names") or ()) | set(data.get("skip_names") or ())
+    return [n for n in upstream_names(xml_text) if n not in covered]
+
+
 # ============================================================
 # names.json
 # ============================================================
@@ -229,6 +246,21 @@ def _load_names_map(data: dict) -> tuple[dict[str, dict], list[str]]:
         seen_norm[nk] = name
         out[name] = val
     return out, errors
+
+
+def _skip_names_errors(data: dict) -> list[str]:
+    """`skip_names`＝上游原名中刻意不翻的（執行期顯示原名），verify 不當漏譯。
+    同一個名字又列在 `names`＝自相矛盾，拒收。"""
+    raw = data.get("skip_names", [])
+    if not isinstance(raw, list) or not all(isinstance(n, str) and n.strip() for n in raw):
+        return ["skip_names 必須是非空字串陣列"]
+    errors = []
+    if len(set(raw)) != len(raw):
+        errors.append("skip_names 有重複項")
+    both = sorted(set(raw) & set(data.get("names") or ()))
+    if both:
+        errors.append(f"skip_names 與 names 同時列出：{both[:5]}")
+    return errors
 
 
 def _field(entry: dict, lang: str) -> str | None:
@@ -295,6 +327,7 @@ def load_all(files: list[Path]) -> tuple[dict[str, list[Row]], list[str], list[s
         if declared is not None and str(declared) != ds:
             errors.append(f"{ds}：dataset 欄位 {declared!r} 與目錄名不符")
         names, load_err = _load_names_map(data)
+        load_err += _skip_names_errors(data)
         errors.extend(f"{ds}：{e}" for e in load_err)
         if load_err:
             continue
@@ -460,9 +493,8 @@ def survey_upstream(
         except (OSError, json.JSONDecodeError):
             continue
         src = data.get("source") if isinstance(data.get("source"), dict) else {}
-        wid = str(src.get("workshop_id") or "")
         recorded = str(src.get("streets_xml_sha256") or "")
-        xml = find_streets_xml(roots, wid, str(src.get("map_dir") or ""))
+        xml = upstream_streets_xml(roots, data)
         if xml is None:
             continue
         try:
@@ -470,8 +502,7 @@ def survey_upstream(
         except (OSError, UnicodeDecodeError) as exc:
             notes.append(f"{ds}：上游 streets.xml 讀取失敗（{exc}）")
             continue
-        known = set(data.get("names") or ())
-        new = [n for n in upstream_names(text) if n not in known]
+        new = untranslated_names(data, text)
         if new:
             # repr：把「連續空白」這種看不見的差異印出來（鍵必須是上游原字串）
             notes.append(
@@ -524,7 +555,8 @@ def gen(project_root: Path) -> tuple[Result, dict[str, list[Row]]]:
     return Result([], warnings), rows_by_ds
 
 
-def verify(project_root: Path) -> Result:
+def verify(project_root: Path, roots: list[Path] | None = None) -> Result:
+    """roots＝本機上游 content 根；None＝不查漏譯（selftest 用），[]＝沒有副本、只警告。"""
     files = discover_names_files(project_root / "street-names", None)
     rows_by_ds, errors, warnings = load_all(files)
     if errors:
@@ -546,6 +578,28 @@ def verify(project_root: Path) -> Result:
     for ds in sorted(rows_by_ds):
         if ds not in referenced:
             warnings.append(f"{ds} 有 names.json 但註冊清單未引用（死資料？）")
+    # 漏譯閘門：上游原名不在 names（翻）也不在 skip_names（刻意不翻）＝玩家看到英文。
+    # 0.9.0 改用上游原件後，舊版剔除的街就這樣在雛菊郡等 5 張圖靜默漏翻。
+    if roots is not None and not roots:
+        warnings.append("無本機 workshop 副本，略過漏譯檢查")
+    for path in files if roots else []:
+        ds = path.parent.name
+        data = read_names_json(path)
+        xml = upstream_streets_xml(roots, data)
+        if xml is None:
+            warnings.append(f"{ds}：本機找不到上游 streets.xml，未檢查漏譯")
+            continue
+        try:
+            missing = untranslated_names(data, xml.read_bytes().decode("utf-8"))
+        except (OSError, UnicodeDecodeError) as exc:
+            errors.append(f"{ds}：上游 streets.xml 讀取失敗（{exc}）")
+            continue
+        if missing:
+            errors.append(
+                f"{ds}：上游有 {len(missing)} 個街名沒翻譯也沒列進 skip_names（玩家會看到英文）："
+                + "、".join(repr(n) for n in missing[:8]) + ("…" if len(missing) > 8 else "")
+                + " → 補進 names.json，刻意不翻就列進 skip_names，再跑 gen"
+            )
     return Result(errors, warnings)
 
 
@@ -565,7 +619,7 @@ def cmd_gen(args: argparse.Namespace, *, project_root: Path | None = None) -> in
 
 def cmd_verify(args: argparse.Namespace, *, project_root: Path | None = None) -> int:
     root = project_root or PROJECT_ROOT
-    result = verify(root)
+    result = verify(root, iter_workshop_roots(args.prefer))
     _print_result("verify 街名資料", result)
     return 0 if result.ok else 1
 
@@ -796,6 +850,39 @@ def cmd_selftest() -> int:
             "; ".join(res.errors),
         )
 
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td) / "case6"
+        _fixture(root, {"alpha": {"A St": {"ch": "甲街", "cn": "甲街", "jp": "甲通り"}}})
+        ws = Path(td) / "ws"
+        up_dir = ws / "1" / "mods" / "M" / "42" / "media" / "maps" / "alpha"
+        up_dir.mkdir(parents=True)
+        (up_dir / "streets.xml").write_text(
+            '<streets><street name="A St"/><street name="B St"/>'
+            '<street name="C &amp; D"/></streets>',
+            encoding="utf-8",
+        )
+        gen(root)
+        res = verify(root, [ws])
+        check(
+            "上游有沒翻也沒 skip 的原名 → verify fail 並列出原名",
+            not res.ok and any("'B St'" in e and "'C & D'" in e for e in res.errors),
+            "; ".join(res.errors),
+        )
+        names_path = root / "street-names" / "alpha" / "names.json"
+        data = read_names_json(names_path)
+        data["skip_names"] = ["B St", "C & D"]
+        write_names_json(names_path, data)
+        res = verify(root, [ws])
+        check("刻意不翻列進 skip_names → verify 通過", res.ok, "; ".join(res.errors))
+        data["skip_names"] = ["A St"]
+        write_names_json(names_path, data)
+        res = verify(root, [ws])
+        check(
+            "skip_names 與 names 同列 → verify fail",
+            not res.ok and any("skip_names 與 names" in e for e in res.errors),
+            "; ".join(res.errors),
+        )
+
     print(f"selftest {n_ok}/{n_all}")
     return 0 if n_ok == n_all else 1
 
@@ -809,7 +896,9 @@ def main(argv: list[str] | None = None) -> int:
                    help="優先索引的額外 workshop content 根（僅供上游對照提示）")
     g.add_argument("--update-hash", action="store_true",
                    help="接受上游新 sha256（寫回 names.json 的 source）")
-    sub.add_parser("verify", help="重跑生成器與磁碟逐字節比對＋註冊清單交叉核對")
+    v = sub.add_parser("verify", help="重跑生成器與磁碟逐字節比對＋註冊清單交叉核對＋漏譯閘門")
+    v.add_argument("--prefer", action="append", default=[],
+                   help="優先索引的額外 workshop content 根（漏譯閘門用）")
     args = parser.parse_args(argv)
     if args.selftest:
         return cmd_selftest()

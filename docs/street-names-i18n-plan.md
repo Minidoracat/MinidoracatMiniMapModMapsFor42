@@ -19,6 +19,10 @@
 例如 AnruisiTown 的 `Forest  St` 有兩個空格，不能只保存一個空格的版本。
 來源 `workshop_id`、`map_mod`、`map_dir`、hash 等中繼資料用於上游追蹤，不限制執行期道路。
 舊 `keep_geometry` 若仍留在歷史來源中，不再參與生成或載入。
+`skip_names`（選填）列出上游原名中**刻意不翻**的街，執行期顯示原名；目前只有
+Muldraugh 1993 與官方同名的 877 個路網複本。`verify` 找得到本機上游副本時，要求每個上游
+原名都在 `names` 或 `skip_names`，兩邊都沒有就 fail：0.9.0 改用上游原件時，舊版剔除的
+29 個路名沒補進字典，就這樣在中日文介面顯示英文。
 
 生成器輸出：
 
@@ -115,6 +119,11 @@ Lua 字串中的非 ASCII 原名以 UTF-8 十進位位元組跳脫，避免 Kahl
   不預測未來載入、不反向修改較晚加入的原版資料；部分 EN 同名疊繪仍可能存在。
 - 舊 near、60% overlay、oob 剔除不搬回；19 筆只有 full-cover 的標籤候選也已撤回，
   因為幾何覆蓋不證明另一個標籤真的可用。部分重疊與未核准錯路維持來源行為。
+- 舊版剔除的路已補回翻譯。官方街道依地圖優先序被 MOD 地圖裁掉時（例如搭 LangFor42），
+  雛菊郡範圍只剩雛菊郡自己的路名（2026-10-02 `daisy-names-mp` 遊戲內截圖）。玩家截圖的
+  「浣熊路／Meadow Way」交錯，三個中文字串都與統一漢化（B42Trans_CN）自帶的
+  `Riverside, KY/streets.xml` 一致，推測是那份整包中文街道不受 MOD 地圖裁切（未在遊戲內重現）。
+  與官方同名或只差縮寫的沿用 LangFor42 譯名；Muldraugh 1993 與 SecretZ 的同名複本仍顯示原名。
 - 沒有 `streets.xml` 的地圖只有在本包提供補充道路時才有導航道路（目前只有 Constown）；
   其餘地圖不會因安裝本包就憑空獲得道路。
 - Tikitown 的本機多人初始化阻礙與名稱處理無關；離線道路測試不等於伺服器成功啟動或實機駕駛驗收。
@@ -131,7 +140,8 @@ python scripts/gen_street_repairs.py --selftest
 uv run scripts/verify_mod.py
 ```
 
-`gen` 不要求已安裝上游副本：名稱資料可獨立生成。若找到上游，會非阻擋地提示未收錄原名；
+`gen` 不要求已安裝上游副本：名稱資料可獨立生成。若找到上游，`gen` 會非阻擋地提示未收錄原名，
+`verify` 則直接擋（`skip_names` 例外）；
 `--update-hash` 可更新來源追蹤中繼資料。`map_tracker.py road-scan` 與每日追蹤器獨立追蹤上游
 道路資料變更（`tracker-state/road_status.json`），不要把街名更新誤判成圖片必須重渲。
 

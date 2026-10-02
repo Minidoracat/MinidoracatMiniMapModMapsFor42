@@ -66,10 +66,10 @@
 | 銀杉谷 2.0<br>Cathaya Valley 2.0 | [3576150391](https://steamcommunity.com/sharedfiles/filedetails/?id=3576150391) | ❌ 無 | — | — | — |
 | 康斯鎮<br>Constown, KY | [3480990544](https://steamcommunity.com/sharedfiles/filedetails/?id=3480990544) | ❌ 無 | — | — | ✅ 37 條 |
 | 科里爾登<br>Coryerdon | [3502623745](https://steamcommunity.com/sharedfiles/filedetails/?id=3502623745) | ❌ 無 | — | — | — |
-| 雛菊郡<br>Daisy County | [3390753141](https://steamcommunity.com/sharedfiles/filedetails/?id=3390753141) | ✅ 44 條 | ✅ 38 條 | 輪廓道路改中心線 44 條 | — |
+| 雛菊郡<br>Daisy County | [3390753141](https://steamcommunity.com/sharedfiles/filedetails/?id=3390753141) | ✅ 44 條 | ✅ 44 條 | 輪廓道路改中心線 44 條 | — |
 | 拂曉鎮<br>Dawn Town | [3666180085](https://steamcommunity.com/sharedfiles/filedetails/?id=3666180085) | ❌ 無 | — | — | — |
 | 回音河軍事基地<br>EchoCreek Military Base | [3476333350](https://steamcommunity.com/sharedfiles/filedetails/?id=3476333350) | ❌ 無 | — | — | — |
-| 艾德汽車回收場<br>Ed's Auto Salvage | [3478900814](https://steamcommunity.com/sharedfiles/filedetails/?id=3478900814) | ✅ 3 條 | ✅ 2 條 | — | — |
+| 艾德汽車回收場<br>Ed's Auto Salvage | [3478900814](https://steamcommunity.com/sharedfiles/filedetails/?id=3478900814) | ✅ 3 條 | ✅ 3 條 | — | — |
 | 艾莉卡家具店<br>Erika's Furniture Store | [3363546437](https://steamcommunity.com/sharedfiles/filedetails/?id=3363546437) | ❌ 無 | — | — | — |
 | 漂浮烏托邦<br>Floatopia | [3693913206](https://steamcommunity.com/sharedfiles/filedetails/?id=3693913206) | ❌ 無 | — | — | — |
 | 狐步軍事倉庫<br>Foxtrot Warehouse | [3600377019](https://steamcommunity.com/sharedfiles/filedetails/?id=3600377019) | ❌ 無 | — | — | — |
@@ -88,11 +88,11 @@
 | 落明湖<br>KillMingLake | [3446958402](https://steamcommunity.com/sharedfiles/filedetails/?id=3446958402) | ❌ 無 | — | — | — |
 | 金斯茅斯北區<br>Kingsmouth North | [3498573050](https://steamcommunity.com/sharedfiles/filedetails/?id=3498573050) | ❌ 無 | — | — | — |
 | 白森林<br>White Forest | [3519054686](https://steamcommunity.com/sharedfiles/filedetails/?id=3519054686) | ❌ 無 | — | — | — |
-| 小鎮區<br>LittleTownship | [3477336014](https://steamcommunity.com/sharedfiles/filedetails/?id=3477336014) | ✅ 4 條 | ✅ 3 條 | — | — |
+| 小鎮區<br>LittleTownship | [3477336014](https://steamcommunity.com/sharedfiles/filedetails/?id=3477336014) | ✅ 4 條 | ✅ 4 條 | — | — |
 | 楓木林鎮<br>Maplewood | [3644794945](https://steamcommunity.com/sharedfiles/filedetails/?id=3644794945) | ✅ 12 條 | ✅ 5 條 | — | — |
 | 路易斯維爾河船<br>Louisville Riverboat | [2963883586](https://steamcommunity.com/sharedfiles/filedetails/?id=2963883586) | ❌ 無 | — | — | — |
 | 巡之丘市（學園孤島）<br>Megurigaoka, Kanagawa | [3318210146](https://steamcommunity.com/sharedfiles/filedetails/?id=3318210146) | ✅ 2 條 | ✅ 2 條 | — | — |
-| Muldraugh 1993 | [3701834205](https://steamcommunity.com/sharedfiles/filedetails/?id=3701834205) | ✅ 1092 條 | ✅ 46 條 | 重複路名隱藏 913 筆 | — |
+| Muldraugh 1993 | [3701834205](https://steamcommunity.com/sharedfiles/filedetails/?id=3701834205) | ✅ 1092 條 | ✅ 61 條 | 重複路名隱藏 913 筆 | — |
 | Muldraugh 軍事檢查站－天橋<br>Muldraugh Checkpoint - Overpass | [3677600363](https://steamcommunity.com/sharedfiles/filedetails/?id=3677600363) | ❌ 無 | — | — | — |
 | 普雷斯頓堡<br>Fort Preston | [3496507146](https://steamcommunity.com/sharedfiles/filedetails/?id=3496507146) | ❌ 無 | — | — | — |
 | 貓又嶺<br>Nekomata Ridge | [3782173659](https://steamcommunity.com/sharedfiles/filedetails/?id=3782173659) | ❌ 無 | — | — | — |
@@ -130,7 +130,7 @@
 | 特拉帕湖鎮<br>Trapala Lake Town | [3390327877](https://steamcommunity.com/sharedfiles/filedetails/?id=3390327877) | ❌ 無 | — | — | — |
 | 特雷萊 4x4（Kardinal 移植版）<br>Trelai 4x4 (Kardinal port) | [3768876083](https://steamcommunity.com/sharedfiles/filedetails/?id=3768876083) | ❌ 無 | — | — | — |
 | Z 村<br>Vila Z | [3524981481](https://steamcommunity.com/sharedfiles/filedetails/?id=3524981481) | ❌ 無 | — | — | — |
-| 西點擴張區<br>West Point Expansion | [3475754603](https://steamcommunity.com/sharedfiles/filedetails/?id=3475754603) | ✅ 18 條 | ✅ 12 條 | — | — |
+| 西點擴張區<br>West Point Expansion | [3475754603](https://steamcommunity.com/sharedfiles/filedetails/?id=3475754603) | ✅ 18 條 | ✅ 18 條 | — | — |
 | 斯皮福堡（WILDSTEEL）<br>WILDSTEEL - Fort Spiffo | [3691773420](https://steamcommunity.com/sharedfiles/filedetails/?id=3691773420) | ✅ 4 條 | ✅ 4 條 | — | — |
 | 柳溪堡壘<br>Willowbrook Bastion | [3479667649](https://steamcommunity.com/sharedfiles/filedetails/?id=3479667649) | ❌ 無 | — | — | — |
 | 柳溪堡壘 2026<br>Willowbrook Bastion 2026 | [3479667649](https://steamcommunity.com/sharedfiles/filedetails/?id=3479667649) | ❌ 無 | — | — | — |
