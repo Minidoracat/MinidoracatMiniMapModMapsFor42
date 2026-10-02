@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-01T11:49:49Z",
+  "generated_at": "2026-10-02T11:22:50Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -213,6 +213,10 @@
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "maps": {}
     },
+    "3436499337": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {}
+    },
     "3446958402": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "maps": {
@@ -312,7 +316,7 @@
       }
     },
     "3479667649": {
-      "assets": "bf99a5d4ecd611ddcd5c9ea503df71c8ccd4741acfa9606a9b7439bcf10d503d",
+      "assets": "df78f99a56bd49a14708123c1bac2666472a6b1f09c85c2749d1e4d3c53eccb7",
       "maps": {
         "Willowbrook Bastion!": {
           "bounds": [
@@ -330,7 +334,7 @@
             9728,
             10240
           ],
-          "hash": "66ccf02a7e4626c48af078303ed4dfb321d9b88d67fdf3a443599149aaa86b9c"
+          "hash": "09f11af10e8d0a409f4f8a84da66dbc5a6a24887aff59fc05a8983395c7d4a45"
         }
       }
     },
@@ -1384,6 +1388,20 @@
             9216
           ],
           "hash": "308121a1d47db0de99281be02aeff775a2956185e6090d19fa0d0f15da132589"
+        }
+      }
+    },
+    "3783433804": {
+      "assets": "73b470987941a1d7e2b4ecd5aadc8d475f2281823acac8ddcd294fbe043af2ca",
+      "maps": {
+        "Nellis Air Force Base": {
+          "bounds": [
+            10496,
+            14080,
+            11776,
+            15616
+          ],
+          "hash": "599e836f79d18580b58c84534c3f8ccd6ddf53fce31f23698bf493a4dd6a3f35"
         }
       }
     }

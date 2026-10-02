@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-01T11:49:49Z",
+  "generated_at": "2026-10-02T11:22:50Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -166,6 +166,13 @@
       "time_updated": 1786238367,
       "title": "[B42] School's Out: Anime-Style Student Uniforms"
     },
+    "3436499337": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1790518057,
+      "title": "Vehicle Military Zones"
+    },
     "3446958402": {
       "last_result": 1,
       "removed": false,
@@ -226,7 +233,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1790848014,
+      "time_updated": 1790935142,
       "title": "Willowbrook Bastion!"
     },
     "3480990544": {
@@ -395,7 +402,7 @@
       "removed": false,
       "removed_at": null,
       "time_updated": 1758916563,
-      "title": "[B42] Blackpine County B42.20"
+      "title": "[B42] Blackpine County B42 Stable"
     },
     "3576150391": {
       "last_result": 1,
@@ -683,6 +690,13 @@
       "removed_at": null,
       "time_updated": 1787021336,
       "title": "[B42]Nekomata Ridge"
+    },
+    "3783433804": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1787438368,
+      "title": "[B42] Nellis Air Force Base"
     }
   }
 }
