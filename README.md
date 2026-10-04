@@ -50,7 +50,7 @@
 
 | 地圖 | 對應 MOD（mod ID) | 範圍（世界 square） |
 |------|--------------------|---------------------|
-| Muldraugh 消防局 | `beek_muldraugh_firedept` | 10496,8960 – 11008,9472 |
+| 馬爾德勞消防局 | `beek_muldraugh_firedept` | 10496,8960 – 11008,9472 |
 | Estate 39 | `Estate 39` | 8192,9728 – 8704,10240 |
 | 阿特拉斯地下複合設施（僅地表） | `Atlas Underground` | 9728,11264 – 10752,12544 |
 | 唐人街擴張區 | `Chinatown Expansion B42 version`（含 Less Traffic Jam 變體） | 10752,8192 – 11264,9216 |
@@ -69,7 +69,7 @@
 | 科里爾登 | `CoryerdonB42` | 7168,5632 – 10752,7424 |
 | 雛菊郡 | `Daisy County B42 version` | 9728,7168 – 10752,8192 |
 | 拂曉鎮 | `dawn_town` | 2816,7936 – 3328,8448 |
-| 回音河軍事基地 | `EchoCreek MilitaryBase` | 2816,9984 – 3840,11008 |
+| 迴音河軍事基地 | `EchoCreek MilitaryBase` | 2816,9984 – 3840,11008 |
 | 艾德汽車回收場 | `EdsAutoSalvageB42` | 8448,8192 – 9216,8704 |
 | 艾莉卡家具店 | `Erikas_Furniture_Store` | 11264,7936 – 11776,8448 |
 | 漂浮烏托邦 | `Floatopia` | 4352,5376 – 4864,5888 |
@@ -94,8 +94,8 @@
 | 路易斯維爾河船 | `Louisville_Riverboat` | 13056,1024 – 13312,1280 |
 | 巡之丘市（學園孤島） | `Project Gurashi` | 0,2304 – 1280,4864 |
 | 烏鴉山市 | `MountCrowCityVanilla` | 12800,9472 – 14848,11520 |
-| Muldraugh 1993 | `muldraugh1993b42` | 10496,8960 – 11264,11008 |
-| Muldraugh 軍事檢查站－天橋 | `Muldraugh-Checkpoint` | 10496,10752 – 11008,11520 |
+| 馬爾德勞 1993 | `muldraugh1993b42` | 10496,8960 – 11264,11008 |
+| 馬爾德勞軍事檢查站－天橋 | `Muldraugh-Checkpoint` | 10496,10752 – 11008,11520 |
 | 普雷斯頓堡 | `muldraughmilitarybaseas24` | 8448,10752 – 9472,11520 |
 | 貓又嶺 | `Nekomata Ridge` | 11776,8192 – 13312,9216 |
 | 內利斯空軍基地 | `NellisAFB` | 10496,14080 – 11776,15616 |
@@ -118,14 +118,14 @@
 | SecretZ 八號檢查站 | `Secretz42` | 6400,11008 – 6912,11520 |
 | SecretZ 鹿頭湖基地 | `Secretz42` | 4352,8192 – 4864,8704 |
 | SecretZ 路易斯維爾軍事複合區 | `Secretz42` | 13568,1792 – 15360,3072 |
-| SecretZ 馬奇嶺研究設施 | `Secretz42` | 9984,11776 – 10752,12800 |
+| SecretZ 三月嶺研究設施 | `Secretz42` | 9984,11776 – 10752,12800 |
 | SecretZ 火車站難民營 | `Secretz42` | 11264,9472 – 12032,10752 |
 | SecretZ 十字路口檢查站 | `Secretz42` | 10496,11008 – 11008,11520 |
 | SecretZ 北方檢查站 | `Secretz42` | 3584,6400 – 4352,7424 |
 | SecretZ 購物中心 | `Secretz42` | 13568,5632 – 14336,6144 |
 | SecretZ 西點大橋檢查站 | `Secretz42` | 12288,6400 – 12800,6912 |
-| SecretZ 河濱鎮一號檢查站 | `Secretz42` | 6400,6400 – 6912,6912 |
-| SecretZ 河濱鎮二號檢查站 | `Secretz42` | 5632,5632 – 6144,6144 |
+| SecretZ 河畔鎮一號檢查站 | `Secretz42` | 6400,6400 – 6912,6912 |
+| SecretZ 河畔鎮二號檢查站 | `Secretz42` | 5632,5632 – 6144,6144 |
 | 台北路 | `Taibeiroad4` | 7936,9984 – 9216,11776 |
 | 泰勒斯維爾 | `Taylorsville` | 8960,6144 – 10496,7680 |
 | 提基鎮＆發電廠 | `tikitown` | 6400,6656 – 7936,7936 |
@@ -150,14 +150,14 @@
 | 梅肯（陰屍路） | `Macon` | 3584,6400 – 4608,6912 |
 | 汐汐的靜謐小屋 | `Xixi's Serene Cottage` | 7424,7936 – 7936,8448 |
 | VaultTec 避難所－路易斯維爾 | `VaultTec B42 version` | 14336,2560 – 14848,3072 |
-| VaultTec 避難所－Muldraugh | `VaultTec B42 version` | 12288,8960 – 12800,9472 |
+| VaultTec 避難所－馬爾德勞 | `VaultTec B42 version` | 12288,8960 – 12800,9472 |
 | VaultTec 聯絡道路 | `VaultTec B42 version` | 11776,8960 – 12544,9472 |
 | VaultTec 避難所－羅斯伍德 | `VaultTec B42 version` | 5888,10496 – 6400,11008 |
 
 ### 新增地圖的限制與衝突
 
 - [Foxtrot Warehouse](https://steamcommunity.com/sharedfiles/filedetails/?id=3600377019)（原作者 Caçador）：4 個地塊全部與 Atlanta 重疊，請二選一；本包收錄圖片不代表兩張原地圖可共用。
-- [Atlas Underground Complex](https://steamcommunity.com/sharedfiles/filedetails/?id=3717208771)（原作者 SD JUAN）：**只提供地表頂視圖，不提供地下樓層平面圖**。實際地塊與淺草湖畔小鎮、Atlanta、Muldraugh 南方檢查站、日落湖鎮、SecretZ 馬奇嶺研究設施及十字路口檢查站部分重疊；不保證混用相容。
+- [Atlas Underground Complex](https://steamcommunity.com/sharedfiles/filedetails/?id=3717208771)（原作者 SD JUAN）：**只提供地表頂視圖，不提供地下樓層平面圖**。實際地塊與淺草湖畔小鎮、Atlanta、馬爾德勞軍事檢查站－天橋、日落湖鎮、SecretZ 三月嶺研究設施及十字路口檢查站部分重疊；不保證混用相容。
 - 兩張圖都沒有上游 `streets.xml`，本次不新增街名翻譯或導航路網；亦不自動加入全地圖測試組合，避免與既有地圖同時載入。
 
 ### 已下架地圖（記錄保留、每日追蹤不含）

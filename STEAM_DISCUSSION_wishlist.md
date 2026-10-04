@@ -42,7 +42,7 @@
 [*] Coryerdon（科里爾登）
 [*] Daisy County（雛菊郡） — ✅ 44 條 🛠️
 [*] Dawn Town（拂曉鎮）
-[*] EchoCreek Military Base（回音河軍事基地）
+[*] EchoCreek Military Base（迴音河軍事基地）
 [*] Ed's Auto Salvage（艾德汽車回收場） — ✅ 3 條
 [*] Erika's Furniture Store（艾莉卡家具店）
 [*] Estate 39（Estate 39 莊園）
@@ -72,9 +72,9 @@
 [*] Maplewood（楓木林鎮） — ✅ 12 條
 [*] Megurigaoka, Kanagawa（巡之丘市（學園孤島）） — ✅ 2 條
 [*] Mount Crow City（烏鴉山市） — ✅ 87 條
-[*] Muldraugh 1993 — ✅ 1092 條 🛠️
-[*] Muldraugh Checkpoint - Overpass（Muldraugh 軍事檢查站－天橋）
-[*] Muldraugh Fire Dept（Muldraugh 消防局）
+[*] Muldraugh 1993（馬爾德勞 1993） — ✅ 1092 條 🛠️
+[*] Muldraugh Checkpoint - Overpass（馬爾德勞軍事檢查站－天橋）
+[*] Muldraugh Fire Dept（馬爾德勞消防局）
 [*] Nekomata Ridge（貓又嶺）
 [*] Nellis Air Force Base（內利斯空軍基地）
 [*] Nettle Township（蕁麻鎮）
@@ -96,10 +96,10 @@
 [*] SecretZ Crossroads Checkpoint（SecretZ 十字路口檢查站）
 [*] SecretZ Deerhead Lake Base（SecretZ 鹿頭湖基地）
 [*] SecretZ Louisville Military Complex（SecretZ 路易斯維爾軍事複合區）
-[*] SecretZ March Ridge Research Facility（SecretZ 馬奇嶺研究設施） — ✅ 2 條
+[*] SecretZ March Ridge Research Facility（SecretZ 三月嶺研究設施） — ✅ 2 條
 [*] SecretZ North Checkpoint（SecretZ 北方檢查站）
-[*] SecretZ Riverside Checkpoint 1（SecretZ 河濱鎮一號檢查站） — ✅ 2 條
-[*] SecretZ Riverside Checkpoint 2（SecretZ 河濱鎮二號檢查站） — ✅ 4 條
+[*] SecretZ Riverside Checkpoint 1（SecretZ 河畔鎮一號檢查站） — ✅ 2 條
+[*] SecretZ Riverside Checkpoint 2（SecretZ 河畔鎮二號檢查站） — ✅ 4 條
 [*] SecretZ The Mall（SecretZ 購物中心）
 [*] SecretZ Train Depot Refugee Camp（SecretZ 火車站難民營）
 [*] SecretZ West Point Bridge Checkpoint（SecretZ 西點大橋檢查站） — ✅ 4 條
@@ -113,7 +113,7 @@
 [*] Trelai 4x4 (Kardinal port)（特雷萊 4x4（Kardinal 移植版））
 [*] VaultTec Road（VaultTec 聯絡道路）
 [*] VaultTec Vault - Louisville（VaultTec 避難所－路易斯維爾）
-[*] VaultTec Vault - Muldraugh（VaultTec 避難所－Muldraugh）
+[*] VaultTec Vault - Muldraugh（VaultTec 避難所－馬爾德勞）
 [*] VaultTec Vault - Rosewood（VaultTec 避難所－羅斯伍德）
 [*] Vila Z（Z 村）
 [*] West Point Expansion（西點擴張區） — ✅ 18 條
@@ -133,7 +133,7 @@
 [*] [b]Camden County（卡姆登郡）[/b]：3 處原作者的路停在路口前，接上後可以導航到達
 [*] [b]Daisy County（雛菊郡）[/b]：44 條畫成外框的路改成中心線，路名不再上下各顯示一次
 [*] [b]Raven Creek（渡鴉溪）[/b]：原版 KY-79 轉進渡鴉溪的彎道沒有導航資料，導航會繞一大圈；本包補上這段，路名「渡鴉溪 01 號路（小地圖補）」。東入口往西的導航不再穿過中央分隔島樹叢
-[*] [b]Muldraugh 1993[/b]：和官方地圖完全相同的 913 個重複路名只隱藏顯示，導航不受影響
+[*] [b]Muldraugh 1993（馬爾德勞 1993）[/b]：和官方地圖完全相同的 913 個重複路名只隱藏顯示，導航不受影響
 [/list]
 
 [h2]⚠️ 衝突與重疊[/h2]

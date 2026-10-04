@@ -39,7 +39,7 @@
   - 補充道路 37 條：作者沒放進道路資料的路由本包補上，路名 `康斯鎮 01 號路（小地圖補）`～`康斯鎮 37 號路（小地圖補）`（英文 `Constown Rd 01 (MiniMap)`～`Constown Rd 37 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **雛菊郡（Daisy County）**
   - 輪廓道路改中心線 44 條：作者把路畫成外框，路名會上下各顯示一次；改成中心線後顯示與導航都正常
-- **Muldraugh 1993**
+- **馬爾德勞 1993（Muldraugh 1993）**
   - 重複路名隱藏 913 筆：與官方地圖逐點相同的複本，只藏玩家地圖上重疊的路名，導航不受影響
 - **渡鴉溪（Raven Creek）**
   - 移除內部轉折點 1 處：作者的路在路口旁有個轉折點，導航會把它拉到隔壁路上而偏離路面；拿掉這一點後沿實際路面走
@@ -49,7 +49,7 @@
 
 | 地圖 Map | Workshop | 作者道路資料<br>Author roads | 路名翻譯<br>Translated names | 本包修正<br>Fixes | 本包補充道路<br>Added roads |
 |---|---|---|---|---|---|
-| Muldraugh 消防局<br>Muldraugh Fire Dept | [3585472912](https://steamcommunity.com/sharedfiles/filedetails/?id=3585472912) | ❌ 無 | — | — | — |
+| 馬爾德勞消防局<br>Muldraugh Fire Dept | [3585472912](https://steamcommunity.com/sharedfiles/filedetails/?id=3585472912) | ❌ 無 | — | — | — |
 | Estate 39 莊園<br>Estate 39 | [3606927986](https://steamcommunity.com/sharedfiles/filedetails/?id=3606927986) | ❌ 無 | — | — | — |
 | 阿特拉斯地下複合設施（地表）<br>Atlas Underground Complex (Surface) | [3717208771](https://steamcommunity.com/sharedfiles/filedetails/?id=3717208771) | ❌ 無 | — | — | — |
 | 唐人街擴張區<br>Chinatown Expansion | [3703704638](https://steamcommunity.com/sharedfiles/filedetails/?id=3703704638) | ❌ 無 | — | — | — |
@@ -68,7 +68,7 @@
 | 科里爾登<br>Coryerdon | [3502623745](https://steamcommunity.com/sharedfiles/filedetails/?id=3502623745) | ❌ 無 | — | — | — |
 | 雛菊郡<br>Daisy County | [3390753141](https://steamcommunity.com/sharedfiles/filedetails/?id=3390753141) | ✅ 44 條 | ✅ 44 條 | 輪廓道路改中心線 44 條 | — |
 | 拂曉鎮<br>Dawn Town | [3666180085](https://steamcommunity.com/sharedfiles/filedetails/?id=3666180085) | ❌ 無 | — | — | — |
-| 回音河軍事基地<br>EchoCreek Military Base | [3476333350](https://steamcommunity.com/sharedfiles/filedetails/?id=3476333350) | ❌ 無 | — | — | — |
+| 迴音河軍事基地<br>EchoCreek Military Base | [3476333350](https://steamcommunity.com/sharedfiles/filedetails/?id=3476333350) | ❌ 無 | — | — | — |
 | 艾德汽車回收場<br>Ed's Auto Salvage | [3478900814](https://steamcommunity.com/sharedfiles/filedetails/?id=3478900814) | ✅ 3 條 | ✅ 3 條 | — | — |
 | 艾莉卡家具店<br>Erika's Furniture Store | [3363546437](https://steamcommunity.com/sharedfiles/filedetails/?id=3363546437) | ❌ 無 | — | — | — |
 | 漂浮烏托邦<br>Floatopia | [3693913206](https://steamcommunity.com/sharedfiles/filedetails/?id=3693913206) | ❌ 無 | — | — | — |
@@ -93,8 +93,8 @@
 | 路易斯維爾河船<br>Louisville Riverboat | [2963883586](https://steamcommunity.com/sharedfiles/filedetails/?id=2963883586) | ❌ 無 | — | — | — |
 | 巡之丘市（學園孤島）<br>Megurigaoka, Kanagawa | [3318210146](https://steamcommunity.com/sharedfiles/filedetails/?id=3318210146) | ✅ 2 條 | ✅ 2 條 | — | — |
 | 烏鴉山市<br>Mount Crow City | [3500846812](https://steamcommunity.com/sharedfiles/filedetails/?id=3500846812) | ✅ 87 條 | ✅ 83 條 | — | — |
-| Muldraugh 1993 | [3701834205](https://steamcommunity.com/sharedfiles/filedetails/?id=3701834205) | ✅ 1092 條 | ✅ 61 條 | 重複路名隱藏 913 筆 | — |
-| Muldraugh 軍事檢查站－天橋<br>Muldraugh Checkpoint - Overpass | [3677600363](https://steamcommunity.com/sharedfiles/filedetails/?id=3677600363) | ❌ 無 | — | — | — |
+| 馬爾德勞 1993<br>Muldraugh 1993 | [3701834205](https://steamcommunity.com/sharedfiles/filedetails/?id=3701834205) | ✅ 1092 條 | ✅ 61 條 | 重複路名隱藏 913 筆 | — |
+| 馬爾德勞軍事檢查站－天橋<br>Muldraugh Checkpoint - Overpass | [3677600363](https://steamcommunity.com/sharedfiles/filedetails/?id=3677600363) | ❌ 無 | — | — | — |
 | 普雷斯頓堡<br>Fort Preston | [3496507146](https://steamcommunity.com/sharedfiles/filedetails/?id=3496507146) | ❌ 無 | — | — | — |
 | 貓又嶺<br>Nekomata Ridge | [3782173659](https://steamcommunity.com/sharedfiles/filedetails/?id=3782173659) | ❌ 無 | — | — | — |
 | 內利斯空軍基地<br>Nellis Air Force Base | [3783433804](https://steamcommunity.com/sharedfiles/filedetails/?id=3783433804) | ❌ 無 | — | — | — |
@@ -117,14 +117,14 @@
 | SecretZ 八號檢查站<br>SecretZ Checkpoint 8 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 2 條 | — | — | — |
 | SecretZ 鹿頭湖基地<br>SecretZ Deerhead Lake Base | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |
 | SecretZ 路易斯維爾軍事複合區<br>SecretZ Louisville Military Complex | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |
-| SecretZ 馬奇嶺研究設施<br>SecretZ March Ridge Research Facility | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 2 條 | — | — | — |
+| SecretZ 三月嶺研究設施<br>SecretZ March Ridge Research Facility | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 2 條 | — | — | — |
 | SecretZ 火車站難民營<br>SecretZ Train Depot Refugee Camp | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |
 | SecretZ 十字路口檢查站<br>SecretZ Crossroads Checkpoint | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |
 | SecretZ 北方檢查站<br>SecretZ North Checkpoint | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |
 | SecretZ 購物中心<br>SecretZ The Mall | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |
 | SecretZ 西點大橋檢查站<br>SecretZ West Point Bridge Checkpoint | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 4 條 | — | — | — |
-| SecretZ 河濱鎮一號檢查站<br>SecretZ Riverside Checkpoint 1 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 2 條 | — | — | — |
-| SecretZ 河濱鎮二號檢查站<br>SecretZ Riverside Checkpoint 2 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 4 條 | — | — | — |
+| SecretZ 河畔鎮一號檢查站<br>SecretZ Riverside Checkpoint 1 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 2 條 | — | — | — |
+| SecretZ 河畔鎮二號檢查站<br>SecretZ Riverside Checkpoint 2 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 4 條 | — | — | — |
 | 台北路<br>Taibei Road | [3401261192](https://steamcommunity.com/sharedfiles/filedetails/?id=3401261192) | ❌ 無 | — | — | — |
 | 泰勒斯維爾<br>Taylorsville | [3134394569](https://steamcommunity.com/sharedfiles/filedetails/?id=3134394569) | ❌ 無 | — | — | — |
 | 提基鎮＆發電廠<br>Tikitown & PowerPlant | [3037854728](https://steamcommunity.com/sharedfiles/filedetails/?id=3037854728) | ✅ 103 條 | ✅ 99 條 | — | — |
@@ -149,6 +149,6 @@
 | 梅肯（陰屍路）<br>Macon (TWD) | [3701164856](https://steamcommunity.com/sharedfiles/filedetails/?id=3701164856) | ❌ 無 | — | — | — |
 | 汐汐的靜謐小屋<br>Xixi's Serene Cottage | [3685508479](https://steamcommunity.com/sharedfiles/filedetails/?id=3685508479) | ❌ 無 | — | — | — |
 | VaultTec 避難所－路易斯維爾<br>VaultTec Vault - Louisville | [3697082724](https://steamcommunity.com/sharedfiles/filedetails/?id=3697082724) | ❌ 無 | — | — | — |
-| VaultTec 避難所－Muldraugh<br>VaultTec Vault - Muldraugh | [3697082724](https://steamcommunity.com/sharedfiles/filedetails/?id=3697082724) | ❌ 無 | — | — | — |
+| VaultTec 避難所－馬爾德勞<br>VaultTec Vault - Muldraugh | [3697082724](https://steamcommunity.com/sharedfiles/filedetails/?id=3697082724) | ❌ 無 | — | — | — |
 | VaultTec 聯絡道路<br>VaultTec Road | [3697082724](https://steamcommunity.com/sharedfiles/filedetails/?id=3697082724) | ❌ 無 | — | — | — |
 | VaultTec 避難所－羅斯伍德<br>VaultTec Vault - Rosewood | [3697082724](https://steamcommunity.com/sharedfiles/filedetails/?id=3697082724) | ❌ 無 | — | — | — |
