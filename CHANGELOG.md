@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### 新增
+
+- **新增支援烏鴉山市（Mount Crow City）**：啟用該地圖 MOD 後，小地圖會顯示烏鴉山市的地圖圖片、框線與名稱。原作者附有道路資料，可以搜尋與導航；83 個路名都有繁中／簡中／日文翻譯（例如 Crow Avenue 顯示「烏鴉大道」）。這張地圖和卡姆登郡（Camden County）大部分地塊重疊，另與途安里（SafeWayHamlet）、安瑞斯鎮（AnruisiTown）小部分重疊，請擇一使用。感謝玩家申請。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：Mount Crow City: (Vanilla) B42（Workshop 3500846812，mod ID `MountCrowCityVanilla`，地圖資料夾 `Mount Crow City`）lotheader 為 cell 50–57 × 37–44（64 個，滿版），bounds `12800,9472 – 14848,11520`；與 CamdenCountyB42 重疊 58 個 cell、SafeWayHamlet 3 個、AnruisiTown 1 個。作者 `streets.xml` 87 條、83 個不重複路名，新增街名 dataset `mount-crow-city`。mod.info 沒有 `require=`，但地圖用到 65 種 `melos_tiles_*` 圖塊（Melos Tiles for Miles 2879745353）；加掛 Melos 重渲比對第 0 層只差 748 像素（0.018%），故照宣告依賴渲染，與 `rebuild_pyramids.py` 重渲結果一致，`tile_deps.json` 不變。`check_map_conflicts.ps1`：全地圖 99 條 `Map=` 與單圖 `Map=Mount Crow City;Muldraugh, KY` 危險組合皆 0。
+
 ## [42.21.0-0.12.1] - 2026-10-02
 
 ### 修正

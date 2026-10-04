@@ -18,13 +18,13 @@
 
 ## 收錄地圖
 
-共 **102 張**（79 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **103 張**（80 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
-**街名翻譯**：下列 **16 組**地圖資料提供繁中／簡中／
-日文翻譯，共 397 條——提基鎮、安瑞斯鎮、渡鴉溪（本體與 Kardinal 移植版各一套）、雛菊郡、
+**街名翻譯**：下列 **17 組**地圖資料提供繁中／簡中／
+日文翻譯，共 480 條——提基鎮、安瑞斯鎮、渡鴉溪（本體與 Kardinal 移植版各一套）、雛菊郡、
 坎登郡、西點擴張、綠港、小鎮、狂鋼、黑迷宮橋頭堡、艾德汽車回收場、三葉湖、目黑丘城、
-馬爾德勞 1993 重製版、楓木林鎮。英文與其他語言維持地圖作者原本的英文路名。
+馬爾德勞 1993 重製版、楓木林鎮、烏鴉山市。英文與其他語言維持地圖作者原本的英文路名。
 與官方地圖同名的路直接沿用官方譯名，跨地圖用詞一致。
 其餘地圖多半**上游本來就沒有路名資料**（如浣熊市），不是翻譯缺漏——每張地圖有沒有作者道路資料、
 本包有沒有翻譯／修正／補充道路，見 [道路資料清單](docs/road-data.md)（追蹤器每日隨作者更新自動維護）。
@@ -93,6 +93,7 @@
 | 楓木林鎮 | `Maplewood` | 7936,8192 – 8448,8704 |
 | 路易斯維爾河船 | `Louisville_Riverboat` | 13056,1024 – 13312,1280 |
 | 巡之丘市（學園孤島） | `Project Gurashi` | 0,2304 – 1280,4864 |
+| 烏鴉山市 | `MountCrowCityVanilla` | 12800,9472 – 14848,11520 |
 | Muldraugh 1993 | `muldraugh1993b42` | 10496,8960 – 11264,11008 |
 | Muldraugh 軍事檢查站－天橋 | `Muldraugh-Checkpoint` | 10496,10752 – 11008,11520 |
 | 普雷斯頓堡 | `muldraughmilitarybaseas24` | 8448,10752 – 9472,11520 |

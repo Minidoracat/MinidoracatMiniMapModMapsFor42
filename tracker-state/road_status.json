@@ -192,6 +192,10 @@
       "map_dir": "Megurigaoka City, Kanagawa",
       "workshop_id": "3318210146"
     },
+    "Mount Crow City.pyramid.zip": {
+      "map_dir": "Mount Crow City",
+      "workshop_id": "3500846812"
+    },
     "Muldraugh 1993 B42.pyramid.zip": {
       "map_dir": "Muldraugh 1993 B42",
       "workshop_id": "3701834205"
@@ -409,7 +413,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-02T05:11:42Z",
+  "generated_at": "2026-10-04T10:36:07Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -833,6 +837,16 @@
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": "e5733788c476dd6f562eb7b848f1c8deeb697781c22795c83426434747cf0d41"
+        }
+      }
+    },
+    "3500846812": {
+      "checked": "2026-10-04T10:36:07Z",
+      "maps": {
+        "Mount Crow City": {
+          "street_count": 87,
+          "streets_sha256": "85f7d75aa37189996c1903ee9e569db9124a1ebd51dd4bd09f8e2ecea9830530",
+          "worldmap_sha256": "ab5c78f0697cba7f4e8a0700d2c9fe281beec14d4d1a855e5a5d2f91feee4bdb"
         }
       }
     },

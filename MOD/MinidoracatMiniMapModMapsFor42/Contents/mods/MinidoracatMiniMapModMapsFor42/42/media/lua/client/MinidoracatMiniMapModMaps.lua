@@ -160,6 +160,10 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "Megurigaoka City, Kanagawa.pyramid.zip", mapMod = "Project Gurashi",
             mapDir = "Megurigaoka City, Kanagawa", streetNames = StreetNames["megurigaoka-city"],
             bounds = { 0, 2304, 1280, 4864 }, nameKey = "UI_MinidoracatMiniMapModMaps_Megurigaoka" },
+        -- 與卡姆登郡（58 cell）、途安里（3 cell）、安瑞斯鎮（1 cell）地塊重疊＝事實上互斥，各自依啟用 mod 顯示。
+        { zip = "Mount Crow City.pyramid.zip", mapMod = "MountCrowCityVanilla", mapDir = "Mount Crow City",
+            streetNames = StreetNames["mount-crow-city"],
+            bounds = { 12800, 9472, 14848, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_MountCrowCity" },
         -- 本圖是 Muldraugh 重製版，上游 streets.xml 含大量與 vanilla 同座標的官方路網
         -- 複本；names.json 翻譯本圖自己的路名，與官方同名的 877 個列在 skip_names、維持
         -- 上游英文（gen_streets_i18n verify 會擋兩邊都沒列的新路名）。

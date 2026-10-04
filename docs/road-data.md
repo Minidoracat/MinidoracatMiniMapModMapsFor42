@@ -25,9 +25,9 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**102** 張
-- 作者附道路資料（Author road data）：**22** 張；沒有 **80** 張
-- 本包路名翻譯（Translated names）：**16** 張
+- 收錄地圖（Maps）：**103** 張
+- 作者附道路資料（Author road data）：**23** 張；沒有 **80** 張
+- 本包路名翻譯（Translated names）：**17** 張
 - 本包道路修正（Fixes）：**4** 張
 - 本包補充道路（Added roads）：**2** 張
 
@@ -92,6 +92,7 @@
 | 楓木林鎮<br>Maplewood | [3644794945](https://steamcommunity.com/sharedfiles/filedetails/?id=3644794945) | ✅ 12 條 | ✅ 5 條 | — | — |
 | 路易斯維爾河船<br>Louisville Riverboat | [2963883586](https://steamcommunity.com/sharedfiles/filedetails/?id=2963883586) | ❌ 無 | — | — | — |
 | 巡之丘市（學園孤島）<br>Megurigaoka, Kanagawa | [3318210146](https://steamcommunity.com/sharedfiles/filedetails/?id=3318210146) | ✅ 2 條 | ✅ 2 條 | — | — |
+| 烏鴉山市<br>Mount Crow City | [3500846812](https://steamcommunity.com/sharedfiles/filedetails/?id=3500846812) | ✅ 87 條 | ✅ 83 條 | — | — |
 | Muldraugh 1993 | [3701834205](https://steamcommunity.com/sharedfiles/filedetails/?id=3701834205) | ✅ 1092 條 | ✅ 61 條 | 重複路名隱藏 913 筆 | — |
 | Muldraugh 軍事檢查站－天橋<br>Muldraugh Checkpoint - Overpass | [3677600363](https://steamcommunity.com/sharedfiles/filedetails/?id=3677600363) | ❌ 無 | — | — | — |
 | 普雷斯頓堡<br>Fort Preston | [3496507146](https://steamcommunity.com/sharedfiles/filedetails/?id=3496507146) | ❌ 無 | — | — | — |

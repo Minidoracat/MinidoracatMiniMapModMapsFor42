@@ -1,0 +1,427 @@
+{
+  "dataset": "mount-crow-city",
+  "source": {
+    "workshop_id": "3500846812",
+    "map_mod": "MountCrowCityVanilla",
+    "map_dir": "Mount Crow City",
+    "streets_xml_sha256": "85f7d75aa37189996c1903ee9e569db9124a1ebd51dd4bd09f8e2ecea9830530",
+    "captured": "2026-10-04"
+  },
+  "names": {
+    "Alis Street": {
+      "ch": "艾莉絲街",
+      "cn": "艾莉丝街",
+      "jp": "アリス通り"
+    },
+    "Bell Street": {
+      "ch": "貝爾街",
+      "cn": "贝尔街",
+      "jp": "ベル通り"
+    },
+    "Belleview Drive": {
+      "ch": "美景大道",
+      "cn": "美景大道",
+      "jp": "ベルビュー・ドライブ"
+    },
+    "Belmont Avenue": {
+      "ch": "貝爾蒙特大道",
+      "cn": "贝尔蒙特大道",
+      "jp": "ベルモント・アベニュー"
+    },
+    "Beta Way": {
+      "ch": "貝塔道",
+      "cn": "贝塔道",
+      "jp": "ベータ・ウェイ"
+    },
+    "Birch Road": {
+      "ch": "樺樹路",
+      "cn": "桦树路",
+      "jp": "バーチ・ロード"
+    },
+    "Blackstone Avenue": {
+      "ch": "黑石大道",
+      "cn": "黑石大道",
+      "jp": "ブラックストーン・アベニュー"
+    },
+    "Bonsai Drive": {
+      "ch": "盆栽大道",
+      "cn": "盆栽大道",
+      "jp": "盆栽ドライブ"
+    },
+    "Breakwater Road": {
+      "ch": "防波堤路",
+      "cn": "防波堤路",
+      "jp": "ブレイクウォーター・ロード"
+    },
+    "Captain's Road": {
+      "ch": "船長路",
+      "cn": "船长路",
+      "jp": "キャプテンズ・ロード"
+    },
+    "Cash Avenue": {
+      "ch": "現金大道",
+      "cn": "现金大道",
+      "jp": "キャッシュ・アベニュー"
+    },
+    "Cathedral Drive": {
+      "ch": "大教堂大道",
+      "cn": "大教堂大道",
+      "jp": "カテドラル・ドライブ"
+    },
+    "Channel Drive": {
+      "ch": "運河大道",
+      "cn": "运河大道",
+      "jp": "チャンネル・ドライブ"
+    },
+    "Coastline Road": {
+      "ch": "海岸線路",
+      "cn": "海岸线路",
+      "jp": "コーストライン・ロード"
+    },
+    "Commerce Road": {
+      "ch": "商業路",
+      "cn": "商业路",
+      "jp": "コマース・ロード"
+    },
+    "Cooper Street": {
+      "ch": "庫柏街",
+      "cn": "库珀街",
+      "jp": "クーパー通り"
+    },
+    "Coral Avenue": {
+      "ch": "珊瑚大道",
+      "cn": "珊瑚大道",
+      "jp": "コーラル・アベニュー"
+    },
+    "Crag Road": {
+      "ch": "峭壁路",
+      "cn": "峭壁路",
+      "jp": "クラッグ・ロード"
+    },
+    "Creamee Street": {
+      "ch": "克里米街",
+      "cn": "克里米街",
+      "jp": "クリーミー通り"
+    },
+    "Creekside Avenue": {
+      "ch": "溪畔大道",
+      "cn": "溪畔大道",
+      "jp": "クリークサイド・アベニュー"
+    },
+    "Crow Avenue": {
+      "ch": "烏鴉大道",
+      "cn": "乌鸦大道",
+      "jp": "クロウ・アベニュー"
+    },
+    "Crow Express": {
+      "ch": "烏鴉快速道路",
+      "cn": "乌鸦快速路",
+      "jp": "クロウ・エクスプレス"
+    },
+    "DevTech Lane": {
+      "ch": "DevTech 巷",
+      "cn": "DevTech 巷",
+      "jp": "DevTech・レーン"
+    },
+    "Drew Road": {
+      "ch": "德魯路",
+      "cn": "德鲁路",
+      "jp": "ドリュー・ロード"
+    },
+    "Espada Lane": {
+      "ch": "埃斯帕達巷",
+      "cn": "埃斯帕达巷",
+      "jp": "エスパーダ・レーン"
+    },
+    "Estate Drive": {
+      "ch": "莊園大道",
+      "cn": "庄园大道",
+      "jp": "エステート・ドライブ"
+    },
+    "Fort Street": {
+      "ch": "堡壘街",
+      "cn": "堡垒街",
+      "jp": "フォート通り"
+    },
+    "Foxlo Road": {
+      "ch": "福克斯洛路",
+      "cn": "福克斯洛路",
+      "jp": "フォクスロ・ロード"
+    },
+    "Granite Avenue": {
+      "ch": "花崗岩大道",
+      "cn": "花岗岩大道",
+      "jp": "グラナイト・アベニュー"
+    },
+    "Greenbriar Avenue": {
+      "ch": "綠薔薇大道",
+      "cn": "绿蔷薇大道",
+      "jp": "グリーンブライア・アベニュー"
+    },
+    "Harborview Avenue": {
+      "ch": "港景大道",
+      "cn": "港景大道",
+      "jp": "ハーバービュー・アベニュー"
+    },
+    "Hawthorne Road": {
+      "ch": "霍桑路",
+      "cn": "霍桑路",
+      "jp": "ホーソーン・ロード"
+    },
+    "Heritage Drive": {
+      "ch": "傳承大道",
+      "cn": "传承大道",
+      "jp": "ヘリテージ・ドライブ"
+    },
+    "Highland Boulevard": {
+      "ch": "高地大道",
+      "cn": "高地大道",
+      "jp": "ハイランド大通り"
+    },
+    "Hollow Street": {
+      "ch": "谷地街",
+      "cn": "谷地街",
+      "jp": "ホロー通り"
+    },
+    "Independence Avenue": {
+      "ch": "獨立大道",
+      "cn": "独立大道",
+      "jp": "インディペンデンス・アベニュー"
+    },
+    "Joc Avenue": {
+      "ch": "喬克大道",
+      "cn": "乔克大道",
+      "jp": "ジョック・アベニュー"
+    },
+    "Landing Street": {
+      "ch": "渡口街",
+      "cn": "渡口街",
+      "jp": "ランディング通り"
+    },
+    "Liberty Avenue": {
+      "ch": "自由大道",
+      "cn": "自由大道",
+      "jp": "リバティ・アベニュー"
+    },
+    "Lindvy Road": {
+      "ch": "林德維路",
+      "cn": "林德维路",
+      "jp": "リンドヴィ・ロード"
+    },
+    "Magnolia Boulevard": {
+      "ch": "木蘭大道",
+      "cn": "木兰大道",
+      "jp": "マグノリア大通り"
+    },
+    "Marina Drive": {
+      "ch": "遊艇港大道",
+      "cn": "游艇港大道",
+      "jp": "マリーナ・ドライブ"
+    },
+    "Milquetoast Boulevard": {
+      "ch": "懦夫大道",
+      "cn": "懦夫大道",
+      "jp": "ミルクトースト大通り"
+    },
+    "Molotov Drive": {
+      "ch": "莫洛托夫大道",
+      "cn": "莫洛托夫大道",
+      "jp": "モロトフ・ドライブ"
+    },
+    "Municipal Drive": {
+      "ch": "市政大道",
+      "cn": "市政大道",
+      "jp": "ミュニシパル・ドライブ"
+    },
+    "Murder Lane": {
+      "ch": "謀殺巷",
+      "cn": "谋杀巷",
+      "jp": "マーダー・レーン"
+    },
+    "N. Estate Drive": {
+      "ch": "北莊園大道",
+      "cn": "北庄园大道",
+      "jp": "北エステート・ドライブ"
+    },
+    "N. Magnolia Boulevard": {
+      "ch": "北木蘭大道",
+      "cn": "北木兰大道",
+      "jp": "北マグノリア大通り"
+    },
+    "N. Rosestreet Road": {
+      "ch": "北玫瑰街路",
+      "cn": "北玫瑰街路",
+      "jp": "北ローズストリート・ロード"
+    },
+    "N. Slag Drive": {
+      "ch": "北礦渣大道",
+      "cn": "北矿渣大道",
+      "jp": "北スラグ・ドライブ"
+    },
+    "North Waterside Drive": {
+      "ch": "北水岸大道",
+      "cn": "北水岸大道",
+      "jp": "北ウォーターサイド・ドライブ"
+    },
+    "Northgate Drive": {
+      "ch": "北門大道",
+      "cn": "北门大道",
+      "jp": "ノースゲート・ドライブ"
+    },
+    "Old Orchard Street": {
+      "ch": "舊果園街",
+      "cn": "旧果园街",
+      "jp": "オールド・オーチャード通り"
+    },
+    "Orchard Street": {
+      "ch": "果園街",
+      "cn": "果园街",
+      "jp": "オーチャード通り"
+    },
+    "Paradise Drive": {
+      "ch": "天堂大道",
+      "cn": "天堂大道",
+      "jp": "パラダイス・ドライブ"
+    },
+    "Parkside Avenue": {
+      "ch": "公園畔大道",
+      "cn": "公园畔大道",
+      "jp": "パークサイド・アベニュー"
+    },
+    "Pelican Drive": {
+      "ch": "鵜鶘大道",
+      "cn": "鹈鹕大道",
+      "jp": "ペリカン・ドライブ"
+    },
+    "Petroleum Road": {
+      "ch": "石油路",
+      "cn": "石油路",
+      "jp": "ペトロリアム・ロード"
+    },
+    "Quayside Drive": {
+      "ch": "埠頭大道",
+      "cn": "埠头大道",
+      "jp": "キーサイド・ドライブ"
+    },
+    "Ravine Road": {
+      "ch": "峽谷路",
+      "cn": "峡谷路",
+      "jp": "ラヴィーン・ロード"
+    },
+    "Renxcore Road": {
+      "ch": "倫克斯科爾路",
+      "cn": "伦克斯科尔路",
+      "jp": "レンクスコア・ロード"
+    },
+    "Robert Boulevard": {
+      "ch": "羅伯特大道",
+      "cn": "罗伯特大道",
+      "jp": "ロバート大通り"
+    },
+    "Rock Drive": {
+      "ch": "岩石大道",
+      "cn": "岩石大道",
+      "jp": "ロック・ドライブ"
+    },
+    "Runway Road": {
+      "ch": "跑道路",
+      "cn": "跑道路",
+      "jp": "ランウェイ・ロード"
+    },
+    "S. Liberty Avenue": {
+      "ch": "南自由大道",
+      "cn": "南自由大道",
+      "jp": "南リバティ・アベニュー"
+    },
+    "Sailor Drive": {
+      "ch": "水手大道",
+      "cn": "水手大道",
+      "jp": "セーラー・ドライブ"
+    },
+    "Sandpiper Avenue": {
+      "ch": "鷸鳥大道",
+      "cn": "鹬鸟大道",
+      "jp": "サンドパイパー・アベニュー"
+    },
+    "Slag Avenue": {
+      "ch": "礦渣大道",
+      "cn": "矿渣大道",
+      "jp": "スラグ・アベニュー"
+    },
+    "South Waterside Drive": {
+      "ch": "南水岸大道",
+      "cn": "南水岸大道",
+      "jp": "南ウォーターサイド・ドライブ"
+    },
+    "Southgate Drive": {
+      "ch": "南門大道",
+      "cn": "南门大道",
+      "jp": "サウスゲート・ドライブ"
+    },
+    "Stadium Boulevard": {
+      "ch": "體育場大道",
+      "cn": "体育场大道",
+      "jp": "スタジアム大通り"
+    },
+    "Sunstone Avenue": {
+      "ch": "日長石大道",
+      "cn": "日长石大道",
+      "jp": "サンストーン・アベニュー"
+    },
+    "Timberlane Way": {
+      "ch": "林徑道",
+      "cn": "林径道",
+      "jp": "ティンバーレーン・ウェイ"
+    },
+    "Timberline Way": {
+      "ch": "林線道",
+      "cn": "林线道",
+      "jp": "ティンバーライン・ウェイ"
+    },
+    "Try Honesty Road": {
+      "ch": "誠實為上路",
+      "cn": "诚实为上路",
+      "jp": "トライ・オネスティ・ロード"
+    },
+    "University Street": {
+      "ch": "大學街",
+      "cn": "大学街",
+      "jp": "大学通り"
+    },
+    "Venus Road": {
+      "ch": "金星路",
+      "cn": "金星路",
+      "jp": "ヴィーナス・ロード"
+    },
+    "Waterside Drive": {
+      "ch": "水岸大道",
+      "cn": "水岸大道",
+      "jp": "ウォーターサイド・ドライブ"
+    },
+    "Westover Avenue": {
+      "ch": "韋斯托弗大道",
+      "cn": "韦斯托弗大道",
+      "jp": "ウェストオーバー・アベニュー"
+    },
+    "Wharf Road": {
+      "ch": "碼頭路",
+      "cn": "码头路",
+      "jp": "ワーフ・ロード"
+    },
+    "Willow Lane": {
+      "ch": "柳樹巷",
+      "cn": "柳树巷",
+      "jp": "ウィロー・レーン"
+    },
+    "Windward Avenue": {
+      "ch": "迎風大道",
+      "cn": "迎风大道",
+      "jp": "ウィンドワード・アベニュー"
+    },
+    "Zach Street": {
+      "ch": "札克街",
+      "cn": "扎克街",
+      "jp": "ザック通り"
+    }
+  }
+}
