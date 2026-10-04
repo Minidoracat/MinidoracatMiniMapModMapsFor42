@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-03T10:38:33Z",
+  "generated_at": "2026-10-04T11:18:54Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -170,7 +170,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1790518057,
+      "time_updated": 1791044431,
       "title": "Vehicle Military Zones"
     },
     "3446958402": {
