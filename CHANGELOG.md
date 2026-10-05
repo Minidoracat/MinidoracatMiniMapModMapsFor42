@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### 更新
+
+- **柳溪堡壘 2026 小地圖圖像更新**：原作者 2026-10-05 更新了地圖與自帶材質，小地圖圖像已依最新資料重新產生；範圍與名稱不變。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：追蹤器 #43：Willowbrook Bastion! 2026 的 cell 34_38、36_38（lotheader／lotpack）與自帶 `dahai.pack`／`dahai.tiles` 變更，steamcmd 同步後 `rebuild_pyramids.py --only` 重渲；lotheader 仍為 15 個 cell（33–37 × 37–39），bounds 不變，mod.info 只加 `version=1.1.0`（`id=`、`require=` 不變）。與已發布版比對有 5 個分片不同，第 0 層共 12 像素（cell 34_38 一棟建築的兩側邊緣），36_38 的變更在俯視圖上看不出來。舊版 Willowbrook Bastion! 只動 mod.info 與 sandbox 選項，重渲結果逐位元組相同。
+
 ## [42.21.0-0.13.0] - 2026-10-04
 
 ### 新增
