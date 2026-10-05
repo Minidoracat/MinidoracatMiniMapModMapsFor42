@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-04T11:18:54Z",
+  "generated_at": "2026-10-05T12:40:50Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -233,7 +233,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1790935142,
+      "time_updated": 1791186322,
       "title": "Willowbrook Bastion!"
     },
     "3480990544": {
@@ -319,6 +319,13 @@
       "removed_at": null,
       "time_updated": 1754471358,
       "title": "Kingsmouth North Location B42"
+    },
+    "3500846812": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1790577462,
+      "title": "Mount Crow City: (Vanilla) B42"
     },
     "3502623745": {
       "last_result": 1,

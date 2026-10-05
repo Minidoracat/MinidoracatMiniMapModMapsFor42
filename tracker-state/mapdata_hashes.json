@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T10:38:33Z",
+  "generated_at": "2026-10-05T12:40:50Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -316,7 +316,7 @@
       }
     },
     "3479667649": {
-      "assets": "df78f99a56bd49a14708123c1bac2666472a6b1f09c85c2749d1e4d3c53eccb7",
+      "assets": "0e11f8339d16faf423ad5188f88d37f4ab8d03541e2d2e50f5bdb16b668b18d9",
       "maps": {
         "Willowbrook Bastion!": {
           "bounds": [
@@ -334,7 +334,7 @@
             9728,
             10240
           ],
-          "hash": "09f11af10e8d0a409f4f8a84da66dbc5a6a24887aff59fc05a8983395c7d4a45"
+          "hash": "6db5d6af2dcb5c313bb4edbff59499b7aff200e30d15c5252fd3f27487dd9cf5"
         }
       }
     },
@@ -638,6 +638,20 @@
             5120
           ],
           "hash": "51597c18248e29838e442f9e51b20cbbb8f4b6591fdfe0fc50e49d7d23766918"
+        }
+      }
+    },
+    "3500846812": {
+      "assets": "738593d28c351fdad18941616f3760029991e68e4eea2cf9f3a3d96ea11a9e0d",
+      "maps": {
+        "Mount Crow City": {
+          "bounds": [
+            12800,
+            9472,
+            14848,
+            11520
+          ],
+          "hash": "3f1da0eaf5722433fb14fcbed16bb3dbbde52f66feb65fcff479593e0716d789"
         }
       }
     },
