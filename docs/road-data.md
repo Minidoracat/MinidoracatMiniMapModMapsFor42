@@ -26,7 +26,7 @@
 ## 統計（Summary）
 
 - 收錄地圖（Maps）：**103** 張
-- 作者附道路資料（Author road data）：**23** 張；沒有 **80** 張
+- 作者附道路資料（Author road data）：**24** 張；沒有 **79** 張
 - 本包路名翻譯（Translated names）：**17** 張
 - 本包道路修正（Fixes）：**4** 張
 - 本包補充道路（Added roads）：**2** 張
@@ -113,7 +113,7 @@
 | SecretZ 三號地堡<br>SecretZ Bunker 3 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |
 | SecretZ 一號檢查站<br>SecretZ Checkpoint 1 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |
 | SecretZ 五號檢查站<br>SecretZ Checkpoint 5 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 1 條 | — | — | — |
-| SecretZ 六號檢查站<br>SecretZ Checkpoint 6 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |
+| SecretZ 六號檢查站<br>SecretZ Checkpoint 6 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 4 條 | — | — | — |
 | SecretZ 八號檢查站<br>SecretZ Checkpoint 8 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ✅ 2 條 | — | — | — |
 | SecretZ 鹿頭湖基地<br>SecretZ Deerhead Lake Base | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |
 | SecretZ 路易斯維爾軍事複合區<br>SecretZ Louisville Military Complex | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |

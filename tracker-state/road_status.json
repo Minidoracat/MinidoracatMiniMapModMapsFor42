@@ -413,7 +413,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-04T10:36:07Z",
+  "generated_at": "2026-10-06T15:48:00Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -706,7 +706,7 @@
       }
     },
     "3494374578": {
-      "checked": "2026-09-27T14:48:47Z",
+      "checked": "2026-10-06T15:48:00Z",
       "maps": {
         "ArmyGroup_Spawn": {
           "street_count": 0,
@@ -739,8 +739,8 @@
           "worldmap_sha256": null
         },
         "SZ_Checkpoint6": {
-          "street_count": 0,
-          "streets_sha256": null,
+          "street_count": 4,
+          "streets_sha256": "09cf3fa84efc22d1f63834a1a9978476bb3c06da3518d1804b2616cec54ca32c",
           "worldmap_sha256": "a2025d22ef8af84aba336e867ccbf834670db9bb4b1621d03be594fb518170b8"
         },
         "SZ_Checkpoint8": {
