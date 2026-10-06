@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetRepairs.lua（生成檔，勿手編）
 -- 由 scripts/gen_street_repairs.py 從 road-repairs/*.json 編譯
--- 4 個 dataset／961 筆修正（中心線 44、接線 3、移除內點 1、隱藏標籤候選 913）
+-- 4 個 dataset／961 筆修正（中心線 44、接線 3、移除轉折點 1、隱藏標籤候選 913）
 --
 -- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log
 -- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。
@@ -1957,6 +1957,6 @@ end
 do
     local ops = {}
     -- #0 David Blane Rd
-    ops[0] = { expectedWidth = 6, expectedPoints = { 6600, 14608, 6585.5, 14610, 6421.5, 14610, 6413.5, 14613 }, replacementPoints = { 6600, 14608, 6421.5, 14610, 6413.5, 14613 } }
+    ops[0] = { expectedWidth = 6, expectedPoints = { 6600, 14608, 6585.5, 14610, 6421.5, 14610, 6413.5, 14613 }, replacementPoints = { 6600, 14608, 6421.5, 14610 } }
     Repairs["raven-creek"] = { schemaVersion = 1, mapMod = "RavenCreekB42", mapDir = "Raven Creek B42", operations = ops }
 end

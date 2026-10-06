@@ -33,11 +33,15 @@ canonical 道路仍在、仍看得見，才真的隱藏。所以「上游漂移�
    長度 <= 48 格，並用 `bridgeTo` 寫明接到同圖哪一條街（0-based index）。接線的新端點
    要落在該街 1 格內——這條要讀上游，由 verify 對本機副本檢查。沿實際路面走（路面
    取樣比例）的證據寫在 reason，那是核准時人看過的東西，generator 不重算。
-4. **drop-vertex → 移除一個內部轉折點**（2026-10-01 使用者核准；Raven Creek 1 條）：作者
-   的街在路口旁有個內點，落在主 MOD NavCore T 字路口吸附容差內，被拖到隔壁街上，
-   相鄰路段因此離開路面。`dropVertex` 寫明移除第幾個點（0-based 點序，**只准內點**，
-   頭尾端點一律拒收），`replacementPoints` 必須逐點等於「expectedPoints 拿掉那一點」。
-   實機證據（離開路面時間前後對照）寫在 reason，generator 不重算。
+4. **drop-vertex → 移除轉折點**（2026-10-01 使用者核准內點；Raven Creek）：作者的街在
+   路口旁有個內點，落在主 MOD NavCore T 字路口吸附容差內，被拖到隔壁街上，相鄰路段
+   因此離開路面。`dropVertex` 寫明移除哪些點（0-based 點序，單一整數或互異點序陣列，
+   至少留 2 點），`replacementPoints` 必須逐點等於「expectedPoints 拿掉那些點」。
+   **頭尾端點**（2026-10-06 擴充，待使用者核准）：作者的街尾在路口內多畫一小段斜穿
+   隔壁街，NavCore 在 2 格內切出兩個交點、路線走成 Z 字。移除端點必須寫 `trimTo`
+   （同圖哪一條街，0-based index），且一次只准移除頭或尾其中一個端點、不可連同它的
+   相鄰點——只剪掉一段；新端點要落在 `trimTo` 街的半寬內（仍接得上），由 verify 讀
+   上游檢查。實機／離線證據寫在 reason，generator 不重算。
 
 `replacementPoints` 必須等於 `rect_centerline(expectedPoints, expectedWidth)`、合法的
 gap-bridge 延伸或合法的 drop-vertex，`hideLabel` 的 `reference.points` 必須等於
@@ -114,6 +118,7 @@ _OP_KEYS = {
     "reference",
     "bridgeTo",
     "dropVertex",
+    "trimTo",
     "reason",
 }
 # 註冊清單引用形如 `streetRepairs = StreetRepairs["daisy-county"]`
@@ -169,11 +174,21 @@ def bridge_extension(exp: list[float], rep: list[float]) -> tuple[str, list[floa
     return None
 
 
-def drop_vertex(exp: list[float], k: int) -> list[float] | None:
-    """drop-vertex：exp 拿掉第 k 個點（0-based）；k 不是內點（含頭尾端點）回 None。"""
-    if not 0 < k < len(exp) // 2 - 1:
+def drop_vertices(exp: list[float], ks: list[int]) -> list[float] | None:
+    """drop-vertex：exp 拿掉 ks 這些點（0-based）。
+
+    點序要互異、在範圍內、至少留 2 點；頭尾端點最多移一個，且不可連同它的相鄰點
+    （只剪一段）。不符回 None。是否移了端點由呼叫端用 `drops_endpoint` 判斷。"""
+    n = len(exp) // 2
+    if not ks or len(set(ks)) != len(ks) or any(not 0 <= k < n for k in ks) or n - len(ks) < 2:
         return None
-    return exp[: 2 * k] + exp[2 * k + 2:]
+    if (0 in ks and n - 1 in ks) or (0 in ks and 1 in ks) or (n - 1 in ks and n - 2 in ks):
+        return None
+    return [c for i in range(n) if i not in ks for c in exp[2 * i:2 * i + 2]]
+
+
+def drops_endpoint(exp: list[float], ks: tuple[int, ...]) -> bool:
+    return 0 in ks or len(exp) // 2 - 1 in ks
 
 
 def polyline_length(flat: list[float]) -> float:
@@ -277,7 +292,8 @@ class Op(NamedTuple):
     ref_width: float | None
     ref_points: list[float] | None
     bridge_to: int | None = None
-    drop_vertex: int | None = None
+    drop_vertex: tuple[int, ...] | None = None
+    trim_to: int | None = None
 
 
 KIND_RECT = "rect-centerline"
@@ -319,6 +335,7 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
     rep = None
     bridge_to = None
     drop_k = None
+    trim_to = None
     if "replacementPoints" in raw:
         rep = _flat_points(errors, f"{where}.replacementPoints", raw["replacementPoints"])
         if rep is not None and len(rep) // 2 > MAX_REPLACEMENT_POINTS:
@@ -329,20 +346,33 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
             rep = None
         elif rep is not None and exp is not None and width is not None and "dropVertex" in raw:
             k = raw["dropVertex"]
+            ks = [k] if isinstance(k, int) else k if isinstance(k, list) else None
             dropped = None
-            if isinstance(k, int) and not isinstance(k, bool):
-                dropped = drop_vertex(exp, k)
+            if ks and all(isinstance(v, int) and not isinstance(v, bool) for v in ks):
+                dropped = drop_vertices(exp, ks)
             if dropped is None:
                 errors.append(
-                    f"{where}.dropVertex 必須是內點的 0-based 點序（1..{len(exp) // 2 - 2}，"
-                    f"頭尾端點不可移除；得到 {k!r}）"
+                    f"{where}.dropVertex 必須是 0-based 點序或互異點序陣列（0..{len(exp) // 2 - 1}，"
+                    f"至少留 2 點；頭尾端點最多移一個且不可連同相鄰點；得到 {k!r}）"
                 )
             elif dropped != rep:
                 errors.append(
                     f"{where}.replacementPoints 不等於 expectedPoints 拿掉第 {k} 點（drop-vertex 只准移除該點）"
                 )
             else:
-                drop_k = k
+                drop_k = tuple(sorted(ks))
+                target = raw.get("trimTo")
+                if not drops_endpoint(exp, drop_k):
+                    if "trimTo" in raw:
+                        errors.append(f"{where}.trimTo 只用於移除頭尾端點（這筆只移內點）")
+                else:
+                    ti = target.get("index") if isinstance(target, dict) else None
+                    if not isinstance(ti, int) or isinstance(ti, bool) or ti < 0:
+                        errors.append(f"{where}.trimTo.index 必填（移除頭尾端點後接在同圖哪一條街，0-based）")
+                    elif ti == idx:
+                        errors.append(f"{where}.trimTo 不能指向自己")
+                    else:
+                        trim_to = ti
             if "bridgeTo" in raw:
                 errors.append(f"{where}.bridgeTo 只用於 gap-bridge（這筆是 drop-vertex）")
         elif rep is not None and exp is not None and width is not None:
@@ -384,6 +414,8 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         errors.append(f"{where}.bridgeTo 只用於 gap-bridge（這筆沒有 replacementPoints）")
     if "dropVertex" in raw and rep is None:
         errors.append(f"{where}.dropVertex 必須搭配 replacementPoints")
+    if "trimTo" in raw and "dropVertex" not in raw:
+        errors.append(f"{where}.trimTo 只用於 drop-vertex 移除頭尾端點")
 
     ref_index = ref_width = ref_points = None
     if hide:
@@ -421,6 +453,7 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         ref_points,
         bridge_to,
         drop_k,
+        trim_to,
     )
 
 
@@ -511,7 +544,7 @@ def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
         f"-- {REPAIR_TABLE_REL.name}（生成檔，勿手編）",
         f"-- 由 scripts/gen_street_repairs.py 從 {REPAIRS_DIR_NAME}/*.json 編譯",
         f"-- {len(pins_by_ds)} 個 dataset／{total} 筆修正（中心線 {kinds.count(KIND_RECT)}、"
-        f"接線 {kinds.count(KIND_BRIDGE)}、移除內點 {kinds.count(KIND_DROP)}、"
+        f"接線 {kinds.count(KIND_BRIDGE)}、移除轉折點 {kinds.count(KIND_DROP)}、"
         f"隱藏標籤候選 {kinds.count(KIND_HIDE)}）",
         "--",
         "-- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log",
@@ -640,6 +673,21 @@ def survey_upstream(
                     f"{ds} {len(loose)} 筆 gap-bridge 的新端點不在目標街 {_BRIDGE_SNAP:g} 格內"
                     f"（須人工覆核）：index {loose[:8]}"
                 )
+            # drop-vertex 剪掉頭尾端點：新端點要落在 trimTo 街半寬內，否則路口就斷了
+            cut = []
+            for o in p.ops:
+                if o.trim_to is None or o.index in stale:
+                    continue
+                rep = o.replacement_points
+                end = rep[:2] if 0 in o.drop_vertex else rep[-2:]
+                t = up[o.trim_to] if o.trim_to < len(up) else None
+                if t is None or not t.width or point_polyline_distance(*end, t.flat) > t.width / 2:
+                    cut.append(o.index)
+            if cut:
+                warnings.append(
+                    f"{ds} {len(cut)} 筆 drop-vertex 剪掉端點後新端點不在 trimTo 街半寬內"
+                    f"（路口會斷，須人工覆核）：index {cut[:8]}"
+                )
         if van is None:
             continue
         bad = [
@@ -739,6 +787,15 @@ _XML = (
     '            <point x="360" y="500" /><point x="390" y="500" />\n'
     "        </points>\n"
     "    </street>\n"
+    '    <street name="Tail Rd" width="6">\n'
+    "        <points>\n"
+    '            <point x="400" y="600" /><point x="410" y="601" />\n'
+    '            <point x="430" y="600" /><point x="440" y="604" />\n'
+    "        </points>\n"
+    "    </street>\n"
+    '    <street name="Long Ave" width="10">\n'
+    '        <points><point x="432" y="580" /><point x="432" y="700" /></points>\n'
+    "    </street>\n"
     "</streets>\n"
 )
 _VAN_XML = (
@@ -797,6 +854,16 @@ def _pin_doc(**over: object) -> dict:
                 "dropVertex": 1,
                 "replacementPoints": [300, 500, 360, 500, 390, 500],
                 "reason": "drop-vertex",
+            },
+            {
+                "index": 5,
+                "name": "Tail Rd",
+                "expectedWidth": 6,
+                "expectedPoints": [400, 600, 410, 601, 430, 600, 440, 604],
+                "dropVertex": [1, 3],
+                "trimTo": {"index": 6, "name": "Long Ave"},
+                "replacementPoints": [400, 600, 430, 600],
+                "reason": "drop-vertex（內點＋尾端點）",
             },
         ],
     }
@@ -869,11 +936,23 @@ def _reject_cases() -> list[tuple[str, dict, str]]:
     doc = _pin_doc(); doc["operations"][0]["bridgeTo"] = {"index": 3}
     cases.append(("bridgeTo 用在中心線", doc, "只用於 gap-bridge"))
     doc = _pin_doc(); doc["operations"][3].update(dropVertex=0, replacementPoints=[330, 503, 360, 500, 390, 500])
-    cases.append(("drop-vertex 移除頭端點", doc, "頭尾端點不可移除"))
+    cases.append(("drop-vertex 移除頭端點沒寫 trimTo", doc, "trimTo.index 必填"))
     doc = _pin_doc(); doc["operations"][3].update(dropVertex=3, replacementPoints=[300, 500, 330, 503, 360, 500])
-    cases.append(("drop-vertex 移除尾端點", doc, "頭尾端點不可移除"))
+    cases.append(("drop-vertex 移除尾端點沒寫 trimTo", doc, "trimTo.index 必填"))
     doc = _pin_doc(); doc["operations"][3]["dropVertex"] = True
-    cases.append(("drop-vertex 點序不是整數", doc, "頭尾端點不可移除"))
+    cases.append(("drop-vertex 點序不是整數", doc, "必須是 0-based 點序"))
+    doc = _pin_doc(); doc["operations"][4].update(dropVertex=[0, 3], replacementPoints=[410, 601, 430, 600])
+    cases.append(("drop-vertex 頭尾端點一起移", doc, "頭尾端點最多移一個"))
+    doc = _pin_doc(); doc["operations"][4].update(dropVertex=[2, 3], replacementPoints=[400, 600, 410, 601])
+    cases.append(("drop-vertex 端點連同相鄰點", doc, "不可連同相鄰點"))
+    doc = _pin_doc(); doc["operations"][4].update(dropVertex=[1, 1])
+    cases.append(("drop-vertex 點序重複", doc, "互異點序陣列"))
+    doc = _pin_doc(); doc["operations"][4].update(dropVertex=[1, 2], replacementPoints=[400, 600, 440, 604])
+    cases.append(("trimTo 用在只移內點", doc, "trimTo 只用於移除頭尾端點"))
+    doc = _pin_doc(); doc["operations"][4]["trimTo"] = {"index": 5}
+    cases.append(("trimTo 指向自己", doc, "不能指向自己"))
+    doc = _pin_doc(); doc["operations"][2]["trimTo"] = {"index": 3}
+    cases.append(("trimTo 用在 gap-bridge", doc, "只用於 drop-vertex"))
     doc = _pin_doc(); doc["operations"][3]["dropVertex"] = 2
     cases.append(("drop-vertex 點序與 replacement 不符", doc, "拿掉第 2 點"))
     doc = _pin_doc(); doc["operations"][3]["replacementPoints"] = [300, 500, 361, 500, 390, 500]
@@ -929,18 +1008,22 @@ def cmd_selftest() -> int:
             lua,
         )
         check(
-            "drop-vertex 原樣落表、dropVertex 不進執行期",
-            "replacementPoints = { 300, 500, 360, 500, 390, 500 }" in lua and "dropVertex" not in lua,
+            "drop-vertex 原樣落表、dropVertex／trimTo 不進執行期",
+            "replacementPoints = { 300, 500, 360, 500, 390, 500 }" in lua
+            and "replacementPoints = { 400, 600, 430, 600 }" in lua
+            and "dropVertex" not in lua and "trimTo" not in lua,
             lua,
         )
         pins, _e, _w = load_pins(root / REPAIRS_DIR_NAME / "demo.json")
         check(
-            "四種規則分類正確",
+            "四種規則分類正確（剪端點仍屬 drop-vertex）",
             pins is not None
-            and [classify_op(o) for o in pins.ops] == [KIND_RECT, KIND_HIDE, KIND_BRIDGE, KIND_DROP],
+            and [classify_op(o) for o in pins.ops] == [KIND_RECT, KIND_HIDE, KIND_BRIDGE, KIND_DROP, KIND_DROP]
+            and pins.ops[4].drop_vertex == (1, 3) and pins.ops[4].trim_to == 6,
         )
         res = _verify(root)
-        check("verify 通過剛生成的檔", res.ok and not any("gap-bridge" in w for w in res.warnings),
+        check("verify 通過剛生成的檔",
+              res.ok and not any("gap-bridge" in w or "trimTo" in w for w in res.warnings),
               str(res.errors + res.warnings))
         p = root / REPAIR_TABLE_REL
         p.write_bytes(p.read_bytes() + b"\n-- tampered\n")
@@ -1015,6 +1098,22 @@ def cmd_selftest() -> int:
             str(res.errors + res.warnings),
         )
 
+    # 剪端點的 trimTo 街被上游挪走：新端點離開該街半寬＝路口斷了要回報
+    with tempfile.TemporaryDirectory() as td:
+        root = _fixture(Path(td) / "h", _pin_doc())
+        gen(root)
+        ws = root / "workshop" / "1" / "mods" / "demo" / "42" / "media" / "maps" / "Demo"
+        (ws / "streets.xml").write_text(
+            _XML.replace('x="432" y="580"', 'x="436" y="580"').replace('x="432" y="700"', 'x="436" y="700"'),
+            encoding="utf-8",
+        )
+        res = _verify(root)
+        check(
+            "trimTo 街移出半寬只警告",
+            res.ok and any("不在 trimTo 街半寬內" in w for w in res.warnings),
+            str(res.errors + res.warnings),
+        )
+
     print(f"\n{'✅' if n_ok == n_all else '❌'} selftest {n_ok}/{n_all}")
     return 0 if n_ok == n_all else 1
 
@@ -1038,7 +1137,7 @@ def main(argv: list[str] | None = None) -> int:
             kinds = [classify_op(o) for o in pins_by_ds[ds].ops]
             print(
                 f"   {ds:24s} 中心線 {kinds.count(KIND_RECT):4d} 接線 {kinds.count(KIND_BRIDGE):4d}"
-                f" 移除內點 {kinds.count(KIND_DROP):4d} 隱藏標籤候選 {kinds.count(KIND_HIDE):4d}"
+                f" 移除轉折點 {kinds.count(KIND_DROP):4d} 隱藏標籤候選 {kinds.count(KIND_HIDE):4d}"
             )
         return 0 if result.ok else 1
     if args.cmd == "verify":

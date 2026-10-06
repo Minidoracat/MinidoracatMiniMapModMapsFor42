@@ -43,7 +43,8 @@ Lua 字串中的非 ASCII 原名以 UTF-8 十進位位元組跳脫，避免 Kahl
   不會在 `gen` 時自動接受上游新座標。
 - 現有核准內容：Daisy County 44 條輪廓→中心線；Camden County 3 條斷點接線（gap-bridge，
   原點列不動、只在一端多接最多 4 點、接線 ≤ 48 格並寫明接到同圖哪條街）；
-  Raven Creek 1 條移除內部轉折點（drop-vertex，`dropVertex` 寫明點序、只准內點、其餘點不動）；
+  Raven Creek 1 條移除多餘轉折點（drop-vertex，`dropVertex` 寫明點序、其餘點不動；內點 2026-10-01
+  核准，頭尾端點須寫 `trimTo` 且新端點在該街半寬內，2026-10-06 擴充待核准）；
   Muldraugh 1993 913 筆完整複本標籤候選。
 - 名稱、points 與 width 的來源追蹤可以各自更新；原版道路修補仍由主 MOD 既有 RoadPatches 管理。
 
