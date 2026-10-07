@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### 更新
+
+- **提基鎮小地圖圖像更新**：提基鎮使用的材質包 Drazion's Tilepack 在 2026-10-07 更新，小地圖圖像已依新版材質重新產生；範圍與名稱不變。
+
+> 技術要點：追蹤器 #45：`tikitown_tiles.pack` 與 `.tiles` 變更（`tile_deps.json` 中只有 Tikitown 依賴此包）；steamcmd 同步後 `rebuild_pyramids.py --only Tikitown` 重渲。與已發布版比對，45 個分片中有 5 個不同，全圖共 10 個像素，每個顏色值差 1–3，肉眼看不出差異。改用舊版材質包重渲，結果與已發布版逐檔相同，因此差異來自材質包。
+
 ## [42.21.0-0.13.2] - 2026-10-06
 
 ### 修正
