@@ -91,7 +91,7 @@
 [*] SecretZ Bunker 3
 [*] SecretZ Checkpoint 1
 [*] SecretZ Checkpoint 5 — ✅ 1 本
-[*] SecretZ Checkpoint 6
+[*] SecretZ Checkpoint 6 — ✅ 4 本
 [*] SecretZ Checkpoint 8 — ✅ 2 本
 [*] SecretZ Crossroads Checkpoint
 [*] SecretZ Deerhead Lake Base
@@ -108,7 +108,7 @@
 [*] Sunset Tower
 [*] Taibei Road
 [*] Taylorsville
-[*] Tikitown & PowerPlant — ✅ 99 本
+[*] Tikitown & PowerPlant — ✅ 105 本
 [*] Trapala Lake Town
 [*] Trelai 4x4 (Kardinal port)
 [*] VaultTec Road

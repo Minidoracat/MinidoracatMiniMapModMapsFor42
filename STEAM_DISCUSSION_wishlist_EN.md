@@ -91,7 +91,7 @@ To subscribe to them all at once, use the [url=https://steamcommunity.com/shared
 [*] SecretZ Bunker 3
 [*] SecretZ Checkpoint 1
 [*] SecretZ Checkpoint 5 — ✅ 1 streets
-[*] SecretZ Checkpoint 6
+[*] SecretZ Checkpoint 6 — ✅ 4 streets
 [*] SecretZ Checkpoint 8 — ✅ 2 streets
 [*] SecretZ Crossroads Checkpoint
 [*] SecretZ Deerhead Lake Base
@@ -108,7 +108,7 @@ To subscribe to them all at once, use the [url=https://steamcommunity.com/shared
 [*] Sunset Tower
 [*] Taibei Road
 [*] Taylorsville
-[*] Tikitown & PowerPlant — ✅ 99 streets
+[*] Tikitown & PowerPlant — ✅ 105 streets
 [*] Trapala Lake Town
 [*] Trelai 4x4 (Kardinal port)
 [*] VaultTec Road

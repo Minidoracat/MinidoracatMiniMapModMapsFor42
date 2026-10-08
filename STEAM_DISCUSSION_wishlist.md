@@ -91,7 +91,7 @@
 [*] SecretZ Bunker 3（SecretZ 三號地堡）
 [*] SecretZ Checkpoint 1（SecretZ 一號檢查站）
 [*] SecretZ Checkpoint 5（SecretZ 五號檢查站） — ✅ 1 條
-[*] SecretZ Checkpoint 6（SecretZ 六號檢查站）
+[*] SecretZ Checkpoint 6（SecretZ 六號檢查站） — ✅ 4 條
 [*] SecretZ Checkpoint 8（SecretZ 八號檢查站） — ✅ 2 條
 [*] SecretZ Crossroads Checkpoint（SecretZ 十字路口檢查站）
 [*] SecretZ Deerhead Lake Base（SecretZ 鹿頭湖基地）
@@ -108,7 +108,7 @@
 [*] Sunset Tower（日落塔（17 層住宅樓））
 [*] Taibei Road（台北路）
 [*] Taylorsville（泰勒斯維爾）
-[*] Tikitown & PowerPlant（提基鎮＆發電廠） — ✅ 99 條
+[*] Tikitown & PowerPlant（提基鎮＆發電廠） — ✅ 105 條
 [*] Trapala Lake Town（特拉帕湖鎮）
 [*] Trelai 4x4 (Kardinal port)（特雷萊 4x4（Kardinal 移植版））
 [*] VaultTec Road（VaultTec 聯絡道路）
