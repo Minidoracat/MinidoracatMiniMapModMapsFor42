@@ -10,7 +10,7 @@ Shows real map images, area outlines and map names for map mods on the minimap a
 [*] Required: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] (main mod) and its requirement [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library for B42[/url]
 [*] The map mods you want to play: this pack only provides the images, so the maps themselves must be subscribed separately
 [*] [b]Add/remove mid-save:[/b] safe either way
-[*] [b]Languages:[/b] 繁體中文, 简体中文, English, 日本語
+[*] [b]Languages:[/b] 繁體中文, 简体中文, English, 日本語, 한국어, Русский, Español, Português, Türkçe, Français, Polski, Deutsch (languages other than Chinese, English and Japanese are AI-translated; corrections welcome)
 [/list]
 Keep every Minidoracat MiniMap series mod up to date and restart the game after updating.
 
@@ -24,7 +24,7 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 [h2]✨ Features[/h2]
 [list]
 [*] [b]Supported maps[/b]: 80 map mods (103 maps), shown automatically when enabled
-[*] [b]Outlines & map names[/b]: map names in four languages; outlines can be toggled and recoloured
+[*] [b]Outlines & map names[/b]: map names in 12 languages; outlines can be toggled and recoloured
 [*] [b]Street-name translations[/b]: street names on 17 maps in Traditional/Simplified Chinese and Japanese; original and translated names are both searchable
 [*] [b]Road data fixes[/b]: roads added or fixed on some maps for more complete street names and navigation
 [*] [b]Display only[/b]: terrain, buildings and saves are never changed

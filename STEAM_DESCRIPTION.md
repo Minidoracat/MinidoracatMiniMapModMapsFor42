@@ -10,7 +10,7 @@
 [*] 必裝：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]（主 MOD）與它的前置 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library for B42[/url]
 [*] 你要玩的地圖 MOD：本包只提供圖片，地圖本身仍要另外訂閱
 [*] [b]中途加入／移除：[/b]都可以
-[*] [b]介面語言：[/b]繁體中文、简体中文、English、日本語
+[*] [b]介面語言：[/b]繁體中文、简体中文、English、日本語、한국어、Русский、Español、Português、Türkçe、Français、Polski、Deutsch（中英日以外為 AI 翻譯，歡迎回報）
 [/list]
 系列 MOD 請都更新到最新版，更新後重新啟動遊戲。
 
@@ -24,7 +24,7 @@
 [h2]✨ 主要功能[/h2]
 [list]
 [*] [b]支援清單[/b]：80 個地圖 MOD、103 張地圖，依啟用狀態自動顯示
-[*] [b]框線與地圖名稱[/b]：地圖名稱有四種語言，框線可開關、可換顏色
+[*] [b]框線與地圖名稱[/b]：地圖名稱有 12 種語言，框線可開關、可換顏色
 [*] [b]路名翻譯[/b]：17 張地圖的路名有繁中／簡中／日文翻譯，原名譯名都能搜
 [*] [b]道路資料修正[/b]：補上或修正部分地圖的道路，路名與導航更完整
 [*] [b]只改顯示[/b]：不修改實際地形、建築或存檔
