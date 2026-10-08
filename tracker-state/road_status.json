@@ -413,7 +413,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-06T15:48:00Z",
+  "generated_at": "2026-10-08T12:15:28Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -446,12 +446,12 @@
       }
     },
     "3037854728": {
-      "checked": "2026-09-29T14:50:44Z",
+      "checked": "2026-10-08T12:15:26Z",
       "maps": {
         "Tikitown": {
-          "street_count": 103,
-          "streets_sha256": "4e19e1fbb137730e6c65a899e22275b32416c8ffa02c0868fed7b7b2422a7ce2",
-          "worldmap_sha256": "0039583c28370bc9d2bf28b47452c46a805e029dc7c77b4213cad33e5371f450"
+          "street_count": 105,
+          "streets_sha256": "d2437fbdc2ad319ce9728d2f49d0c754c5bc3f0f68121a9415283d639026c39d",
+          "worldmap_sha256": "37763f0e6a92ee70bdc26a23ced2755c2984f562f3ec0243d38ce11b9489c470"
         }
       }
     },
