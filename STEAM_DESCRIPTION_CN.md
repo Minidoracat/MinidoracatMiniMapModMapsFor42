@@ -9,6 +9,8 @@
 [list]
 [*] 必装：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]（主 MOD）与它的前置 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library for B42[/url]
 [*] 你要玩的地图 MOD：本包只提供图片，地图本身仍要另外订阅
+[*] [b]中途加入／移除：[/b]都可以
+[*] [b]界面语言：[/b]繁體中文、简体中文、English、日本語
 [/list]
 系列 MOD 请都更新到最新版，更新后重新启动游戏。
 

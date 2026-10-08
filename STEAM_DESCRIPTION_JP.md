@@ -9,6 +9,8 @@
 [list]
 [*] 必須：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]（本体）と、その前提 MOD の [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library for B42[/url]
 [*] 遊びたいマップ MOD：本パックは画像だけを提供するため、マップ本体は別途サブスクライブが必要です
+[*] [b]途中追加・削除：[/b]どちらも可能
+[*] [b]対応言語：[/b]繁體中文、简体中文、English、日本語
 [/list]
 シリーズの MOD はすべて最新版に更新し、更新後はゲームを再起動してください。
 
