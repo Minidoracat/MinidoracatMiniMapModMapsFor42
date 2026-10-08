@@ -4,9 +4,14 @@
 
 ### 更新
 
-- **提基鎮小地圖圖像更新**：提基鎮使用的材質包 Drazion's Tilepack 在 2026-10-07 更新，小地圖圖像已依新版材質重新產生；範圍與名稱不變。
+- **提基鎮小地圖圖像更新**：原地圖在 2026-10-08 更新了地表與建築，使用的材質包 Drazion's Tilepack 也在 2026-10-07 更新；小地圖圖像已依最新地圖與材質重新產生，範圍與名稱不變。
+- **提基鎮新增 2 條街名翻譯**：原作者新增杜瓦爾街、工業街，現在會顯示中文／日文譯名。
 
-> 技術要點：追蹤器 #45：`tikitown_tiles.pack` 與 `.tiles` 變更（`tile_deps.json` 中只有 Tikitown 依賴此包）；steamcmd 同步後 `rebuild_pyramids.py --only Tikitown` 重渲。與已發布版比對，45 個分片中有 5 個不同，全圖共 10 個像素，每個顏色值差 1–3，肉眼看不出差異。改用舊版材質包重渲，結果與已發布版逐檔相同，因此差異來自材質包。
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：追蹤器 #45：`tikitown_tiles.pack` 與 `.tiles` 變更（`tile_deps.json` 中只有 Tikitown 依賴此包）；當時重渲與已發布版比對，45 個分片中有 5 個不同，全圖共 10 個像素、每個顏色值差 1–3；改用舊版材質包重渲則與已發布版逐檔相同，差異來自材質包。追蹤器 #46：Tikitown B42 目錄 29 個 lotheader、10 個 lotpack 與 `streets.xml` 變更，cell 範圍不變（25–30 × 26–30，bounds 與註冊值一致），mod.info 未改、材質包依賴不變；以 Steam 客戶端副本（新地圖＋新材質包）`rebuild_pyramids.py --only Tikitown` 重渲，與 #45 版比對 45 個分片中 21 個不同，第 0 層約 1.39 萬像素（0.7%）。`streets.xml` 新增 `Duval St`、`Industry St`（現 105 條、無刪除），`street-names/tikitown` 補譯並 `gen --update-hash`。
 
 ## [42.21.0-0.13.2] - 2026-10-06
 

@@ -7,7 +7,7 @@
 --
 -- 空白折疊後與原名不同者會多掛一個別名鍵，讓引擎索引裡的髒名（連續空白）
 -- 也查得到；兩者指向同一個 UI 鍵。
--- 共 17 個 dataset／480 條街名。
+-- 共 17 個 dataset／482 條街名。
 MinidoracatMiniMapModMapsStreetNames = {
     ["anruisi-town"] = {
         ["Agriculture Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_f5e46c6a35",
@@ -418,6 +418,7 @@ MinidoracatMiniMapModMapsStreetNames = {
         ["Cumberland Trace"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_575c1ca144",
         ["David Ireland Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_41fe8a1a06",
         ["Devin Ln"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_8b2bf3639c",
+        ["Duval St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_42c9da7749",
         ["Ellet Way"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4977ade21f",
         ["Ellsworth Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_81daa193f5",
         ["Fall Hill Dr"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_ed81342c0f",
@@ -438,6 +439,7 @@ MinidoracatMiniMapModMapsStreetNames = {
         ["Howard Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_6ced124bdb",
         ["Howe St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_6b800b1aff",
         ["Hunt Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_8776488730",
+        ["Industry St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_42ac759301",
         ["Ingalls Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_7bbfd155b3",
         ["Irish Street"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_5915dcf9e5",
         ["Ironworks Rd"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_4fa5574172",
