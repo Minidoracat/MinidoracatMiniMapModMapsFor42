@@ -1,0 +1,12 @@
+{
+  "zip": "Muldraugh_FireDept.pyramid.zip",
+  "mapDir": "Muldraugh_FireDept",
+  "rawRecords": 3,
+  "aliases": {},
+  "cells300": [[35, 30]],
+  "entries": [
+    {"cat": "farm", "rects": [[10780, 9074, 11, 7]], "bbox": [10780, 9074, 11, 7], "underground": false},
+    {"cat": "food", "rects": [[10616, 9214, 10, 4], [10616, 9218, 5, 3]], "bbox": [10616, 9214, 12, 22], "underground": false},
+    {"cat": "police", "rects": [[10538, 9218, 5, 5]], "bbox": [10525, 9193, 44, 30], "underground": true}
+  ]
+}

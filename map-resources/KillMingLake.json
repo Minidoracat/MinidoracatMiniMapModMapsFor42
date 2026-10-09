@@ -1,0 +1,12 @@
+{
+  "zip": "KillMingLake.pyramid.zip",
+  "mapDir": "KillMingLake",
+  "rawRecords": 3,
+  "aliases": {"Cartonroom": "gunstore", "Chinesecuisine1": "restaurant", "Chinesecuisine2": "grocery", "Chinesecuisine3": "grocery", "Chinesecuisine4": "grocery", "Chinesecuisine5": "icecream", "Claystorage1": "factory", "beerstorage1": "restaurant", "beerstorage2": "restaurant", "booksetroom1": "bookstore", "booksetroom2": "bookstore", "booksetroom3": "bookstore", "booksetroom4": "bookstore", "magroom1": "bookstore", "magroom2": "bookstore", "magroom3": "bookstore", "magroom4": "bookstore"},
+  "cells300": [[28, 40]],
+  "entries": [
+    {"cat": "food", "rects": [[8504, 12109, 4, 8]], "bbox": [8504, 12109, 4, 8], "underground": false},
+    {"cat": "military", "rects": [[8480, 12204, 13, 11], [8489, 12256, 12, 6]], "bbox": [8436, 12106, 194, 162], "underground": true},
+    {"cat": "outdoor", "rects": [[8560, 12108, 14, 6]], "bbox": [8560, 12108, 14, 8], "underground": false}
+  ]
+}

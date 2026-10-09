@@ -1,0 +1,10 @@
+{
+  "zip": "Louisville_Riverboat.pyramid.zip",
+  "mapDir": "Louisville_Riverboat",
+  "rawRecords": 2,
+  "aliases": {},
+  "cells300": [],
+  "entries": [
+    {"cat": "food", "rects": [[13097, 1178, 26, 3], [13097, 1182, 26, 3], [13123, 1177, 5, 8], [13097, 1181, 25, 1], [13103, 1177, 20, 1], [13103, 1185, 20, 1], [13108, 1176, 15, 1], [13108, 1186, 15, 1], [13127, 1185, 1, 1]], "bbox": [13097, 1176, 31, 11], "underground": false}
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "zip": "Atlanta - Safe Zone.pyramid.zip",
+  "mapDir": "Atlanta - Safe Zone-Chinese Survivors’ Community",
+  "rawRecords": 37,
+  "aliases": {},
+  "cells300": [[29, 26], [29, 27]],
+  "entries": [
+    {"cat": "books", "rects": [[8822, 8273, 9, 5]], "bbox": [8822, 8262, 10, 16], "underground": false},
+    {"cat": "books", "rects": [[8918, 8145, 4, 4]], "bbox": [8912, 8142, 14, 16], "underground": false},
+    {"cat": "books", "rects": [[8939, 8134, 3, 5]], "bbox": [8937, 8134, 20, 30], "underground": false},
+    {"cat": "farm", "rects": [[8895, 8356, 7, 5]], "bbox": [8895, 8356, 7, 5], "underground": false},
+    {"cat": "farm", "rects": [[8898, 8323, 8, 5], [8900, 8320, 6, 3]], "bbox": [8898, 8320, 8, 8], "underground": false},
+    {"cat": "farm", "rects": [[8908, 8320, 28, 8]], "bbox": [8908, 8320, 28, 8], "underground": false},
+    {"cat": "farm", "rects": [[8909, 8356, 5, 4]], "bbox": [8909, 8356, 7, 4], "underground": false},
+    {"cat": "gas", "rects": [[8816, 8021, 15, 6], [8816, 8018, 5, 3], [8827, 8018, 4, 3], [8817, 8036, 1, 1], [8822, 8036, 1, 1], [8827, 8036, 1, 1], [8832, 8036, 1, 1], [8837, 8036, 1, 1]], "bbox": [8816, 8012, 64, 88], "underground": false},
+    {"cat": "gas", "rects": [[8817, 8047, 1, 1]], "bbox": [8817, 8047, 1, 1], "underground": false},
+    {"cat": "gas", "rects": [[8822, 8047, 1, 1]], "bbox": [8822, 8047, 1, 1], "underground": false},
+    {"cat": "gas", "rects": [[8827, 8047, 1, 1]], "bbox": [8827, 8047, 1, 1], "underground": false},
+    {"cat": "gas", "rects": [[8832, 8047, 1, 1]], "bbox": [8832, 8047, 1, 1], "underground": false},
+    {"cat": "gas", "rects": [[8837, 8047, 1, 1]], "bbox": [8837, 8047, 1, 1], "underground": false},
+    {"cat": "grocery", "rects": [[8860, 8190, 9, 7], [8863, 8197, 1, 7]], "bbox": [8807, 8190, 66, 31], "underground": true},
+    {"cat": "grocery", "rects": [[8884, 8133, 6, 9], [8890, 8138, 1, 6]], "bbox": [8875, 8100, 16, 68], "underground": true},
+    {"cat": "grocery", "rects": [[8953, 8191, 8, 4]], "bbox": [8948, 8190, 17, 14], "underground": false},
+    {"cat": "gunstore", "rects": [[8895, 8181, 29, 8], [8911, 8189, 1, 1]], "bbox": [8895, 8181, 29, 18], "underground": true},
+    {"cat": "gunstore", "rects": [[8956, 8255, 8, 12]], "bbox": [8953, 8255, 14, 12], "underground": true},
+    {"cat": "outdoor", "rects": [[8833, 8248, 11, 9]], "bbox": [8833, 8248, 11, 9], "underground": false},
+    {"cat": "storage", "rects": [[8873, 8237, 6, 1], [8873, 8239, 6, 1], [8874, 8238, 5, 1], [8873, 8240, 3, 1]], "bbox": [8873, 8237, 8, 9], "underground": false},
+    {"cat": "tools", "rects": [[8963, 8144, 14, 15], [8963, 8140, 1, 4]], "bbox": [8960, 8135, 17, 26], "underground": true}
+  ]
+}

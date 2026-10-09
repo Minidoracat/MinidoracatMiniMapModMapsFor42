@@ -1,0 +1,10 @@
+{
+  "zip": "Path of Zenith, Louisville.pyramid.zip",
+  "mapDir": "Path of Zenith, Louisville",
+  "rawRecords": 1,
+  "aliases": {},
+  "cells300": [[43, 3]],
+  "entries": [
+    {"cat": "military", "rects": [[13104, 1182, 4, 5], [13097, 1185, 2, 2]], "bbox": [12987, 1163, 192, 29], "underground": false}
+  ]
+}

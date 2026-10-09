@@ -1,0 +1,16 @@
+{
+  "zip": "Erikas_Furniture_Store.pyramid.zip",
+  "mapDir": "Erikas_Furniture_Store",
+  "rawRecords": 11,
+  "aliases": {"erika_bathroomstore": "departmentstore", "erika_decorstore": "departmentstore", "erika_furniturestore": "departmentstore", "erika_gardenstore": "gardenstore", "erika_kitchenstore": "departmentstore", "erika_lampstore": "departmentstore", "erika_textilestore": "departmentstore", "erika_walldecorstore": "departmentstore"},
+  "cells300": [[38, 27]],
+  "entries": [
+    {"cat": "food", "rects": [[11663, 8295, 8, 10], [11663, 8305, 15, 4], [11671, 8295, 7, 8], [11663, 8309, 9, 4], [11675, 8303, 3, 2]], "bbox": [11663, 8295, 15, 18], "underground": false},
+    {"cat": "gas", "rects": [[11593, 8304, 7, 11], [11593, 8301, 2, 2], [11593, 8303, 3, 1]], "bbox": [11593, 8301, 7, 14], "underground": false},
+    {"cat": "gas", "rects": [[11609, 8303, 1, 1], [11609, 8310, 1, 1]], "bbox": [11609, 8303, 1, 8], "underground": false},
+    {"cat": "grocery", "rects": [[11531, 8279, 18, 10], [11531, 8274, 21, 5], [11540, 8289, 6, 2]], "bbox": [11501, 8244, 75, 48], "underground": false},
+    {"cat": "retail", "rects": [[11522, 8245, 8, 3]], "bbox": [11522, 8245, 8, 3], "underground": false},
+    {"cat": "retail", "rects": [[11522, 8250, 8, 3]], "bbox": [11522, 8250, 8, 3], "underground": false},
+    {"cat": "retail", "rects": [[11595, 8255, 24, 13], [11595, 8243, 13, 12], [11608, 8248, 9, 7], [11612, 8246, 5, 2]], "bbox": [11595, 8243, 24, 25], "underground": false}
+  ]
+}

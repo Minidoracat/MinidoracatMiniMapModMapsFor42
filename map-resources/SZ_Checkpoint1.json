@@ -1,0 +1,13 @@
+{
+  "zip": "SZ_Checkpoint1.pyramid.zip",
+  "mapDir": "SZ_Checkpoint1",
+  "rawRecords": 13,
+  "aliases": {},
+  "cells300": [[40, 27]],
+  "entries": [
+    {"cat": "medical", "rects": [[12137, 8310, 6, 8]], "bbox": [12137, 8310, 6, 8], "underground": false},
+    {"cat": "military", "rects": [[12074, 8313, 11, 6], [12077, 8319, 5, 1], [12078, 8320, 3, 1]], "bbox": [12074, 8313, 11, 8], "underground": false},
+    {"cat": "military", "rects": [[12090, 8313, 11, 6], [12093, 8319, 5, 1], [12094, 8320, 3, 1]], "bbox": [12090, 8313, 11, 8], "underground": false},
+    {"cat": "military", "rects": [[12114, 8313, 11, 6], [12117, 8319, 5, 1], [12118, 8320, 3, 1]], "bbox": [12114, 8313, 11, 8], "underground": false}
+  ]
+}

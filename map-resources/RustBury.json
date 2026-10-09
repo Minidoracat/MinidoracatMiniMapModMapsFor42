@@ -1,0 +1,31 @@
+{
+  "zip": "RustBury.pyramid.zip",
+  "mapDir": "RustBury",
+  "rawRecords": 53,
+  "aliases": {},
+  "cells300": [[30, 42]],
+  "entries": [
+    {"cat": "electronics", "rects": [[9094, 12604, 3, 8]], "bbox": [9094, 12604, 3, 8], "underground": false},
+    {"cat": "farm", "rects": [[9084, 12604, 3, 8]], "bbox": [9084, 12604, 3, 8], "underground": false},
+    {"cat": "fire", "rects": [[9105, 12661, 19, 14], [9104, 12656, 10, 5], [9102, 12667, 3, 8]], "bbox": [9101, 12656, 28, 55], "underground": false},
+    {"cat": "food", "rects": [[9109, 12604, 3, 8]], "bbox": [9109, 12604, 3, 8], "underground": false},
+    {"cat": "food", "rects": [[9202, 12660, 7, 12]], "bbox": [9154, 12654, 63, 36], "underground": false},
+    {"cat": "gas", "rects": [[9168, 12813, 15, 18]], "bbox": [9165, 12813, 18, 20], "underground": false},
+    {"cat": "gas", "rects": [[9194, 12818, 1, 1]], "bbox": [9194, 12818, 1, 1], "underground": false},
+    {"cat": "gas", "rects": [[9194, 12827, 1, 1]], "bbox": [9194, 12827, 1, 1], "underground": false},
+    {"cat": "gas", "rects": [[9203, 12818, 1, 1]], "bbox": [9203, 12818, 1, 1], "underground": false},
+    {"cat": "gas", "rects": [[9203, 12827, 1, 1]], "bbox": [9203, 12827, 1, 1], "underground": false},
+    {"cat": "grocery", "rects": [[9083, 12820, 14, 10], [9083, 12810, 14, 5], [9084, 12815, 13, 5]], "bbox": [9083, 12810, 19, 20], "underground": false},
+    {"cat": "grocery", "rects": [[9203, 12731, 7, 4]], "bbox": [9154, 12717, 56, 40], "underground": false},
+    {"cat": "gunstore", "rects": [[9253, 12816, 8, 4]], "bbox": [9253, 12816, 20, 18], "underground": false},
+    {"cat": "industry", "rects": [[9089, 12604, 3, 8]], "bbox": [9089, 12604, 3, 8], "underground": false},
+    {"cat": "military", "rects": [[9012, 12782, 3, 8]], "bbox": [9004, 12678, 30, 158], "underground": false},
+    {"cat": "outdoor", "rects": [[9079, 12604, 3, 8]], "bbox": [9079, 12604, 3, 8], "underground": false},
+    {"cat": "pharmacy", "rects": [[9116, 12787, 20, 8], [9116, 12785, 12, 2], [9120, 12780, 4, 5]], "bbox": [9116, 12735, 20, 60], "underground": false},
+    {"cat": "police", "rects": [[9065, 12613, 3, 3]], "bbox": [9065, 12613, 3, 3], "underground": false},
+    {"cat": "retail", "rects": [[9099, 12604, 3, 8]], "bbox": [9099, 12604, 3, 8], "underground": false},
+    {"cat": "retail", "rects": [[9120, 12828, 16, 7], [9120, 12818, 16, 5], [9116, 12815, 20, 3], [9116, 12824, 19, 3], [9116, 12827, 20, 1], [9120, 12823, 15, 1]], "bbox": [9116, 12815, 20, 20], "underground": false},
+    {"cat": "retail", "rects": [[9126, 12602, 5, 12], [9131, 12605, 2, 5]], "bbox": [9126, 12602, 28, 12], "underground": false},
+    {"cat": "tools", "rects": [[9114, 12604, 3, 8]], "bbox": [9114, 12604, 3, 8], "underground": false}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "zip": "SZ_DeerheadLake_Base.pyramid.zip",
+  "mapDir": "SZ_DeerheadLake_Base",
+  "rawRecords": 41,
+  "aliases": {"armystoragebunkerspecial": "armystorage", "laboratorybunker": "medicalstorage"},
+  "cells300": [[15, 28]],
+  "entries": [
+    {"cat": "food", "rects": [[4633, 8486, 11, 6]], "bbox": [4622, 8486, 22, 6], "underground": false},
+    {"cat": "gunstore", "rects": [[4656, 8512, 8, 3], [4656, 8508, 6, 3], [4656, 8516, 6, 3], [4656, 8511, 7, 1], [4656, 8515, 7, 1]], "bbox": [4656, 8508, 8, 11], "underground": false},
+    {"cat": "gunstore", "rects": [[4677, 8504, 11, 6], [4680, 8510, 5, 1], [4681, 8511, 3, 1]], "bbox": [4677, 8504, 11, 8], "underground": false},
+    {"cat": "medical", "rects": [[4657, 8435, 8, 19]], "bbox": [4657, 8435, 8, 19], "underground": false},
+    {"cat": "medical", "rects": [[4657, 8470, 11, 6]], "bbox": [4657, 8470, 11, 6], "underground": false},
+    {"cat": "medical", "rects": [[4666, 8591, 5, 5], [4663, 8591, 3, 2]], "bbox": [4663, 8591, 28, 15], "underground": false},
+    {"cat": "military", "rects": [[4655, 8533, 6, 11]], "bbox": [4655, 8533, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[4656, 8520, 3, 6]], "bbox": [4656, 8520, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[4663, 8533, 6, 11]], "bbox": [4663, 8533, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[4688, 8555, 6, 11]], "bbox": [4688, 8555, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[4693, 8530, 3, 6]], "bbox": [4693, 8530, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[4700, 8552, 6, 11]], "bbox": [4700, 8552, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[4743, 8596, 3, 6]], "bbox": [4743, 8596, 3, 6], "underground": false}
+  ]
+}

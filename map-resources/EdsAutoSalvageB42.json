@@ -1,0 +1,17 @@
+{
+  "zip": "EdsAutoSalvageB42.pyramid.zip",
+  "mapDir": "EdsAutoSalvageB42",
+  "rawRecords": 10,
+  "aliases": {},
+  "cells300": [[29, 28]],
+  "entries": [
+    {"cat": "books", "rects": [[8711, 8533, 5, 4]], "bbox": [8704, 8533, 12, 17], "underground": false},
+    {"cat": "food", "rects": [[8734, 8420, 4, 3]], "bbox": [8734, 8420, 4, 3], "underground": false},
+    {"cat": "gunstore", "rects": [[8854, 8562, 1, 1]], "bbox": [8854, 8560, 4, 3], "underground": false},
+    {"cat": "retail", "rects": [[8716, 8444, 4, 4], [8718, 8448, 2, 1]], "bbox": [8708, 8444, 12, 9], "underground": false},
+    {"cat": "retail", "rects": [[8720, 8416, 4, 2], [8720, 8418, 2, 1]], "bbox": [8713, 8411, 15, 11], "underground": false},
+    {"cat": "retail", "rects": [[8959, 8637, 7, 6]], "bbox": [8955, 8631, 11, 12], "underground": false},
+    {"cat": "tools", "rects": [[8720, 8526, 1, 2]], "bbox": [8720, 8526, 14, 7], "underground": false},
+    {"cat": "tools", "rects": [[8823, 8611, 1, 3]], "bbox": [8823, 8611, 6, 5], "underground": false}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "zip": "SZ_Riverside_Checkpoint_2.pyramid.zip",
+  "mapDir": "SZ_Riverside_Checkpoint_2",
+  "rawRecords": 43,
+  "aliases": {"armystoragebunkerspecial": "armystorage", "laboratorybunker": "medicalstorage"},
+  "cells300": [[19, 19]],
+  "entries": [
+    {"cat": "farm", "rects": [[5769, 5729, 6, 10]], "bbox": [5769, 5729, 6, 10], "underground": false},
+    {"cat": "farm", "rects": [[5784, 5669, 8, 12]], "bbox": [5784, 5669, 8, 12], "underground": false},
+    {"cat": "farm", "rects": [[5796, 5705, 12, 24]], "bbox": [5796, 5705, 12, 24], "underground": false},
+    {"cat": "food", "rects": [[5761, 5846, 11, 6]], "bbox": [5750, 5846, 22, 6], "underground": false},
+    {"cat": "medical", "rects": [[5815, 5871, 6, 11]], "bbox": [5815, 5871, 6, 11], "underground": false},
+    {"cat": "medical", "rects": [[5823, 5860, 11, 6]], "bbox": [5823, 5860, 11, 6], "underground": false},
+    {"cat": "military", "rects": [[5726, 5846, 3, 6]], "bbox": [5726, 5846, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[5750, 5855, 6, 11]], "bbox": [5750, 5855, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[5752, 5874, 6, 11]], "bbox": [5752, 5874, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[5782, 5846, 3, 6]], "bbox": [5782, 5846, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[5794, 5845, 3, 6]], "bbox": [5794, 5845, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[5802, 5846, 6, 11]], "bbox": [5802, 5846, 6, 11], "underground": false},
+    {"cat": "pharmacy", "rects": [[5817, 5847, 13, 4]], "bbox": [5817, 5847, 13, 4], "underground": false}
+  ]
+}

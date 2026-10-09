@@ -1,0 +1,12 @@
+{
+  "zip": "SZ_Bunker_3.pyramid.zip",
+  "mapDir": "SZ_Bunker_3",
+  "rawRecords": 3,
+  "aliases": {"armyhanger": "armystorage"},
+  "cells300": [[20, 39]],
+  "entries": [
+    {"cat": "medical", "rects": [[6066, 11812, 4, 4]], "bbox": [6038, 11808, 37, 18], "underground": false},
+    {"cat": "military", "rects": [[6030, 11857, 15, 7]], "bbox": [6030, 11857, 15, 7], "underground": false},
+    {"cat": "military", "rects": [[6030, 11870, 15, 7]], "bbox": [6030, 11870, 15, 7], "underground": false}
+  ]
+}

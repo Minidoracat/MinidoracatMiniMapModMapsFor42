@@ -1,0 +1,12 @@
+{
+  "zip": "Fort_Boonesborough.pyramid.zip",
+  "mapDir": "Fort_Boonesborough",
+  "rawRecords": 34,
+  "aliases": {},
+  "cells300": [],
+  "entries": [
+    {"cat": "food", "rects": [[14151, 2024, 9, 9]], "bbox": [14151, 2024, 9, 9], "underground": false},
+    {"cat": "industry", "rects": [[14154, 2003, 5, 5]], "bbox": [14154, 2003, 5, 5], "underground": false},
+    {"cat": "retail", "rects": [[14144, 2027, 5, 5]], "bbox": [14144, 2027, 5, 5], "underground": false}
+  ]
+}

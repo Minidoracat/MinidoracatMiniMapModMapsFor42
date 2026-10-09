@@ -1,0 +1,17 @@
+{
+  "zip": "VaultTec_Louisville.pyramid.zip",
+  "mapDir": "VaultTec_Louisville",
+  "rawRecords": 34,
+  "aliases": {},
+  "cells300": [[48, 9]],
+  "entries": [
+    {"cat": "farm", "rects": [[14474, 2843, 10, 5]], "bbox": [14474, 2843, 10, 5], "underground": false},
+    {"cat": "food", "rects": [[14515, 2721, 12, 4], [14517, 2717, 10, 4]], "bbox": [14515, 2717, 12, 8], "underground": false},
+    {"cat": "food", "rects": [[14531, 2718, 10, 14], [14531, 2732, 14, 6]], "bbox": [14531, 2718, 14, 20], "underground": false},
+    {"cat": "food", "rects": [[14541, 2826, 11, 6]], "bbox": [14530, 2826, 22, 6], "underground": false},
+    {"cat": "medical", "rects": [[14590, 2819, 14, 15], [14590, 2840, 14, 11], [14580, 2840, 7, 11], [14600, 2834, 4, 4]], "bbox": [14580, 2819, 25, 32], "underground": false},
+    {"cat": "military", "rects": [[14530, 2880, 3, 3]], "bbox": [14530, 2880, 3, 3], "underground": false},
+    {"cat": "retail", "rects": [[14555, 2727, 10, 17], [14555, 2748, 20, 5], [14562, 2744, 7, 4], [14555, 2744, 7, 3], [14555, 2747, 6, 1]], "bbox": [14555, 2718, 21, 35], "underground": false},
+    {"cat": "school", "rects": [[14622, 2741, 31, 22], [14622, 2714, 19, 21], [14622, 2735, 59, 4], [14641, 2714, 12, 13], [14645, 2739, 36, 2], [14622, 2739, 20, 2]], "bbox": [14622, 2714, 74, 49], "underground": false}
+  ]
+}

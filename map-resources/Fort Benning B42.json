@@ -1,0 +1,21 @@
+{
+  "zip": "Fort Benning B42.pyramid.zip",
+  "mapDir": "Fort Benning B42",
+  "rawRecords": 15,
+  "aliases": {"armyhanger": "armystorage", "armysurplustorage": "armystorage"},
+  "cells300": [[20, 23]],
+  "entries": [
+    {"cat": "gunstore", "rects": [[6115, 7159, 4, 6]], "bbox": [6115, 7159, 4, 6], "underground": false},
+    {"cat": "gunstore", "rects": [[6127, 7041, 8, 4]], "bbox": [6127, 7041, 8, 4], "underground": false},
+    {"cat": "gunstore", "rects": [[6242, 7150, 8, 6]], "bbox": [6242, 7150, 8, 6], "underground": false},
+    {"cat": "medical", "rects": [[6083, 7063, 18, 20]], "bbox": [6083, 7063, 18, 20], "underground": false},
+    {"cat": "medical", "rects": [[6127, 7014, 10, 10]], "bbox": [6127, 7014, 10, 10], "underground": false},
+    {"cat": "medical", "rects": [[6158, 7050, 8, 6]], "bbox": [6158, 7050, 8, 6], "underground": false},
+    {"cat": "military", "rects": [[6144, 7054, 6, 8]], "bbox": [6144, 7054, 6, 8], "underground": false},
+    {"cat": "military", "rects": [[6144, 7067, 6, 7]], "bbox": [6144, 7067, 6, 7], "underground": false},
+    {"cat": "military", "rects": [[6145, 7080, 6, 6]], "bbox": [6145, 7080, 6, 6], "underground": false},
+    {"cat": "military", "rects": [[6165, 7065, 8, 17]], "bbox": [6165, 7065, 8, 17], "underground": false},
+    {"cat": "military", "rects": [[6170, 7026, 4, 5], [6176, 7026, 4, 5]], "bbox": [6170, 7016, 10, 15], "underground": false},
+    {"cat": "military", "rects": [[6253, 7152, 7, 4]], "bbox": [6253, 7152, 7, 4], "underground": false}
+  ]
+}

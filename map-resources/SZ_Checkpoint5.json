@@ -1,0 +1,19 @@
+{
+  "zip": "SZ_Checkpoint5.pyramid.zip",
+  "mapDir": "SZ_Checkpoint5",
+  "rawRecords": 24,
+  "aliases": {},
+  "cells300": [[36, 37]],
+  "entries": [
+    {"cat": "food", "rects": [[10958, 11214, 11, 6]], "bbox": [10947, 11214, 22, 6], "underground": false},
+    {"cat": "gunstore", "rects": [[10905, 11174, 11, 6], [10908, 11180, 5, 1], [10909, 11181, 3, 1]], "bbox": [10905, 11174, 11, 8], "underground": false},
+    {"cat": "gunstore", "rects": [[10910, 11154, 8, 3], [10910, 11150, 6, 3], [10910, 11158, 6, 3], [10910, 11153, 7, 1], [10910, 11157, 7, 1]], "bbox": [10910, 11150, 8, 11], "underground": false},
+    {"cat": "gunstore", "rects": [[10918, 11174, 11, 6], [10921, 11180, 5, 1], [10922, 11181, 3, 1]], "bbox": [10918, 11174, 11, 8], "underground": false},
+    {"cat": "gunstore", "rects": [[10937, 11174, 11, 6], [10940, 11180, 5, 1], [10941, 11181, 3, 1]], "bbox": [10937, 11174, 11, 8], "underground": false},
+    {"cat": "gunstore", "rects": [[10950, 11174, 11, 6], [10953, 11180, 5, 1], [10954, 11181, 3, 1]], "bbox": [10950, 11174, 11, 8], "underground": false},
+    {"cat": "medical", "rects": [[10951, 11229, 11, 6]], "bbox": [10951, 11229, 11, 6], "underground": false},
+    {"cat": "military", "rects": [[10903, 11189, 3, 3]], "bbox": [10903, 11189, 3, 3], "underground": false},
+    {"cat": "military", "rects": [[10910, 11138, 3, 6]], "bbox": [10910, 11138, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[10967, 11189, 3, 3]], "bbox": [10967, 11189, 3, 3], "underground": false}
+  ]
+}

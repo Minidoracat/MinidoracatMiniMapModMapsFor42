@@ -1,0 +1,26 @@
+{
+  "zip": "Clover Lake.pyramid.zip",
+  "mapDir": "Clover Lake",
+  "rawRecords": 22,
+  "aliases": {},
+  "cells300": [[32, 30], [32, 31], [32, 32]],
+  "entries": [
+    {"cat": "farm", "rects": [[9651, 9656, 10, 8]], "bbox": [9651, 9656, 10, 8], "underground": false},
+    {"cat": "farm", "rects": [[9663, 9669, 4, 6]], "bbox": [9663, 9669, 4, 6], "underground": false},
+    {"cat": "farm", "rects": [[9663, 9692, 11, 7]], "bbox": [9663, 9692, 11, 7], "underground": false},
+    {"cat": "farm", "rects": [[9664, 9635, 9, 6]], "bbox": [9664, 9635, 9, 6], "underground": false},
+    {"cat": "farm", "rects": [[9766, 9205, 18, 10]], "bbox": [9766, 9205, 18, 10], "underground": false},
+    {"cat": "farm", "rects": [[9768, 9278, 6, 15]], "bbox": [9768, 9278, 6, 15], "underground": false},
+    {"cat": "farm", "rects": [[9771, 9249, 8, 6]], "bbox": [9771, 9249, 8, 6], "underground": false},
+    {"cat": "farm", "rects": [[9791, 9266, 16, 6]], "bbox": [9791, 9266, 16, 6], "underground": false},
+    {"cat": "gas", "rects": [[9690, 9011, 6, 9], [9692, 9020, 4, 2]], "bbox": [9690, 9011, 6, 11], "underground": false},
+    {"cat": "gas", "rects": [[9804, 9712, 5, 3], [9798, 9717, 2, 4], [9804, 9715, 1, 1]], "bbox": [9798, 9712, 11, 9], "underground": false},
+    {"cat": "grocery", "rects": [[9696, 9655, 4, 6]], "bbox": [9690, 9638, 59, 43], "underground": false},
+    {"cat": "grocery", "rects": [[9698, 9655, 11, 5]], "bbox": [9690, 9642, 39, 39], "underground": true},
+    {"cat": "grocery", "rects": [[9808, 9093, 5, 5]], "bbox": [9807, 9093, 26, 18], "underground": true},
+    {"cat": "gunstore", "rects": [[9851, 9560, 7, 6]], "bbox": [9851, 9560, 7, 6], "underground": true},
+    {"cat": "outdoor", "rects": [[9649, 9683, 4, 3]], "bbox": [9649, 9679, 4, 7], "underground": false},
+    {"cat": "outdoor", "rects": [[9690, 9497, 7, 4]], "bbox": [9690, 9497, 7, 4], "underground": false},
+    {"cat": "outdoor", "rects": [[9746, 9531, 4, 5]], "bbox": [9746, 9529, 4, 7], "underground": false}
+  ]
+}

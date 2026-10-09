@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### 新增
+
+- **地圖 MOD 也有資源點**：小地圖「資源版本」選「小地圖資源」時，本包支援的地圖 MOD 建築也會標出資源點（藥局、警局、超市等圖示與區塊），分類方式和原版建築相同，收錄的地圖合計約 6,850 筆。地圖 MOD 蓋掉原版城鎮時，原版那些已經不存在的資源點會改成地圖 MOD 自己的。地圖作者自訂、而且寫了物資表的房間類型，依物資內容逐一歸類，兩種資源版本都照著標。需要搭配支援此功能的小地圖主 MOD 新版，主 MOD 較舊時只是不顯示、不會出錯。更新後請重新啟動遊戲。
+
+> 技術要點：新增 shared `MinidoracatMiniMapModMapsResources.lua`（客戶端與伺服器都載入），對每個註冊條目呼叫主 MOD `MinidoracatMiniMapResourceAPI.registerMapResources`（resourceApiVersion 2），帶該地圖的資源點、300 格擁有清單與房名別名；主 MOD 低於此版本時只印一行 log 並略過。兩張地圖重疊時跟引擎一樣以 `Map=` 排前者為準，被蓋掉的建築不顯示資源點。資料由 `scripts/gen_map_resources.py` 用主 MOD 的分類規則離線產生，作者有寫 loot 表的自訂房名必須先在 `room-aliases.json` 歸類或忽略才能產生。
+
 ## [42.21.0-0.14.1] - 2026-10-09
 
 ### 更新

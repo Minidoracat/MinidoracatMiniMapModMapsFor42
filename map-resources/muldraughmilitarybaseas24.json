@@ -1,0 +1,24 @@
+{
+  "zip": "muldraughmilitarybaseas24.pyramid.zip",
+  "mapDir": "muldraughmilitarybaseas24",
+  "rawRecords": 20,
+  "aliases": {},
+  "cells300": [[29, 36], [30, 36], [29, 37], [30, 37]],
+  "entries": [
+    {"cat": "food", "rects": [[8936, 10940, 15, 7]], "bbox": [8936, 10940, 15, 7], "underground": false},
+    {"cat": "medical", "rects": [[9169, 10960, 5, 23], [9147, 10960, 6, 17]], "bbox": [9147, 10959, 27, 40], "underground": false},
+    {"cat": "military", "rects": [[8879, 10898, 4, 5]], "bbox": [8879, 10898, 4, 5], "underground": false},
+    {"cat": "military", "rects": [[8880, 11077, 4, 5]], "bbox": [8880, 11077, 4, 5], "underground": false},
+    {"cat": "military", "rects": [[8891, 11026, 9, 12], [8952, 11025, 7, 10], [8900, 11026, 4, 15], [8891, 11038, 6, 3], [8897, 11038, 3, 6], [8952, 11022, 7, 2], [8951, 11024, 8, 1], [8951, 11035, 8, 1], [8952, 11036, 7, 1]], "bbox": [8891, 10994, 92, 57], "underground": true},
+    {"cat": "military", "rects": [[8936, 10954, 15, 7]], "bbox": [8936, 10954, 15, 7], "underground": false},
+    {"cat": "military", "rects": [[8982, 10905, 13, 14]], "bbox": [8982, 10905, 13, 28], "underground": false},
+    {"cat": "military", "rects": [[9004, 10943, 4, 21], [9008, 10943, 2, 25]], "bbox": [9004, 10943, 6, 25], "underground": false},
+    {"cat": "military", "rects": [[9021, 10945, 25, 2], [9025, 10941, 12, 4], [9040, 10941, 6, 4]], "bbox": [9021, 10941, 25, 6], "underground": false},
+    {"cat": "military", "rects": [[9021, 10955, 25, 2], [9025, 10951, 12, 4], [9040, 10951, 6, 4]], "bbox": [9021, 10951, 25, 6], "underground": false},
+    {"cat": "military", "rects": [[9021, 10964, 25, 2], [9025, 10960, 12, 4], [9040, 10960, 6, 4]], "bbox": [9021, 10960, 25, 6], "underground": false},
+    {"cat": "military", "rects": [[9148, 11071, 4, 5]], "bbox": [9148, 11071, 4, 5], "underground": false},
+    {"cat": "military", "rects": [[9186, 10889, 4, 5]], "bbox": [9186, 10889, 4, 5], "underground": false},
+    {"cat": "police", "rects": [[9106, 10914, 10, 13], [9092, 10914, 8, 13]], "bbox": [9091, 10913, 26, 17], "underground": false},
+    {"cat": "tools", "rects": [[9116, 11020, 20, 10]], "bbox": [9116, 11020, 20, 10], "underground": false}
+  ]
+}

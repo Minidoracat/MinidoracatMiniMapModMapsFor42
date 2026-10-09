@@ -812,6 +812,8 @@ def build_update_plan(wid: str, title: str, old_tu, new_tu: int,
             "**處置**（見下方自動判定；免重渲且沒有 🛣️ 道路項目才可直接關閉）：",
             "",
             "- [ ] pzmap Studio 或 `scripts/rebuild_pyramids.py --only <zip名>` 重渲該地圖",
+            "- [ ] `scripts/gen_map_resources.py bake --only <zip名>` 重烘資源點；"
+            "列出沒審過的房名就先在 `room-aliases.json` 加別名或 ignored",
             "- [ ] bounds 若變動，同步 `MinidoracatMiniMapModMaps.lua`",
             "- [ ] 地圖名稱／`mapDir` 若變動，同步 Lua 註冊與 `Translate/*/UI.json`",
             "- [ ] `python scripts/verify_mod.py` 通過後照常發版",

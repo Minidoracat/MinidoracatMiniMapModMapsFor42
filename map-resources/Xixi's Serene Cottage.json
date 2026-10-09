@@ -1,0 +1,13 @@
+{
+  "zip": "Xixi's Serene Cottage.pyramid.zip",
+  "mapDir": "Xixi's Serene Cottage",
+  "rawRecords": 10,
+  "aliases": {},
+  "cells300": [[25, 27]],
+  "entries": [
+    {"cat": "farm", "rects": [[7604, 8340, 7, 11]], "bbox": [7604, 8340, 7, 11], "underground": false},
+    {"cat": "military", "rects": [[7559, 8210, 2, 1]], "bbox": [7552, 8210, 9, 10], "underground": true},
+    {"cat": "military", "rects": [[7598, 8277, 12, 4], [7606, 8270, 4, 7], [7598, 8266, 12, 2], [7598, 8270, 3, 7]], "bbox": [7598, 8266, 40, 40], "underground": true},
+    {"cat": "military", "rects": [[7610, 8343, 6, 8], [7610, 8339, 6, 2]], "bbox": [7604, 8339, 16, 12], "underground": true}
+  ]
+}

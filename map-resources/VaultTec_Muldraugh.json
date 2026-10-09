@@ -1,0 +1,23 @@
+{
+  "zip": "VaultTec_Muldraugh.pyramid.zip",
+  "mapDir": "VaultTec_Muldraugh",
+  "rawRecords": 31,
+  "aliases": {},
+  "cells300": [[41, 30]],
+  "entries": [
+    {"cat": "farm", "rects": [[12309, 9097, 3, 5]], "bbox": [12309, 9097, 3, 5], "underground": false},
+    {"cat": "farm", "rects": [[12319, 9097, 6, 4]], "bbox": [12319, 9097, 6, 4], "underground": false},
+    {"cat": "food", "rects": [[12325, 9033, 25, 6], [12326, 9039, 25, 4], [12325, 9045, 12, 4], [12325, 9043, 26, 1], [12325, 9044, 17, 1]], "bbox": [12325, 9033, 34, 19], "underground": false},
+    {"cat": "food", "rects": [[12351, 9144, 6, 6], [12352, 9142, 4, 2]], "bbox": [12351, 9142, 6, 8], "underground": false},
+    {"cat": "food", "rects": [[12362, 9007, 12, 11]], "bbox": [12362, 9007, 12, 11], "underground": false},
+    {"cat": "food", "rects": [[12513, 9037, 8, 17]], "bbox": [12491, 9029, 30, 25], "underground": false},
+    {"cat": "food", "rects": [[12539, 9091, 19, 10], [12544, 9083, 3, 8], [12555, 9087, 3, 4], [12539, 9082, 8, 1], [12539, 9081, 7, 1]], "bbox": [12539, 9081, 19, 20], "underground": false},
+    {"cat": "grocery", "rects": [[12378, 9039, 19, 8]], "bbox": [12378, 9039, 19, 38], "underground": false},
+    {"cat": "gunstore", "rects": [[12543, 9144, 16, 12], [12543, 9137, 16, 5], [12543, 9158, 16, 5], [12559, 9137, 6, 9], [12559, 9149, 6, 5], [12552, 9142, 7, 2], [12552, 9156, 7, 2], [12543, 9142, 6, 2], [12543, 9156, 6, 2], [12562, 9146, 3, 3]], "bbox": [12543, 9137, 22, 26], "underground": false},
+    {"cat": "medical", "rects": [[12404, 9007, 8, 2], [12404, 9009, 5, 3]], "bbox": [12404, 9007, 14, 15], "underground": false},
+    {"cat": "outdoor", "rects": [[12431, 9056, 6, 9]], "bbox": [12431, 9056, 6, 9], "underground": false},
+    {"cat": "outdoor", "rects": [[12498, 9209, 6, 5]], "bbox": [12498, 9209, 17, 13], "underground": false},
+    {"cat": "storage", "rects": [[12418, 9041, 6, 4]], "bbox": [12418, 9041, 6, 4], "underground": false},
+    {"cat": "storage", "rects": [[12563, 9252, 25, 9], [12563, 9232, 25, 8]], "bbox": [12563, 9232, 25, 29], "underground": false}
+  ]
+}

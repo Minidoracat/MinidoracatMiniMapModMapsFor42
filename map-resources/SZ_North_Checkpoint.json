@@ -1,0 +1,27 @@
+{
+  "zip": "SZ_North_Checkpoint.pyramid.zip",
+  "mapDir": "SZ_North_Checkpoint",
+  "rawRecords": 52,
+  "aliases": {"kitchenbunker": "restaurant"},
+  "cells300": [[12, 22], [13, 22]],
+  "entries": [
+    {"cat": "food", "rects": [[3784, 6725, 11, 6]], "bbox": [3773, 6725, 22, 6], "underground": false},
+    {"cat": "medical", "rects": [[3801, 6754, 11, 6]], "bbox": [3801, 6754, 11, 6], "underground": false},
+    {"cat": "military", "rects": [[3669, 6711, 8, 3], [3669, 6707, 6, 3], [3669, 6715, 6, 3], [3669, 6710, 7, 1], [3669, 6714, 7, 1]], "bbox": [3669, 6707, 8, 11], "underground": false},
+    {"cat": "military", "rects": [[3669, 6724, 8, 3], [3669, 6720, 6, 3], [3669, 6728, 6, 3], [3669, 6723, 7, 1], [3669, 6727, 7, 1]], "bbox": [3669, 6720, 8, 11], "underground": false},
+    {"cat": "military", "rects": [[3680, 6696, 11, 6], [3683, 6702, 5, 1], [3684, 6703, 3, 1]], "bbox": [3680, 6696, 11, 8], "underground": false},
+    {"cat": "military", "rects": [[3695, 6697, 3, 6]], "bbox": [3695, 6697, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[3727, 6810, 3, 3]], "bbox": [3727, 6810, 3, 3], "underground": false},
+    {"cat": "military", "rects": [[3733, 6720, 4, 11]], "bbox": [3704, 6705, 33, 30], "underground": false},
+    {"cat": "military", "rects": [[3782, 6683, 3, 3]], "bbox": [3782, 6683, 3, 3], "underground": false},
+    {"cat": "military", "rects": [[3789, 6699, 6, 11]], "bbox": [3789, 6699, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[3830, 6758, 6, 11]], "bbox": [3830, 6758, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[3831, 6776, 6, 11]], "bbox": [3831, 6776, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[3841, 6684, 3, 6]], "bbox": [3841, 6684, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[3842, 6757, 6, 11]], "bbox": [3842, 6757, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[3845, 6776, 6, 11]], "bbox": [3845, 6776, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[4030, 6780, 3, 3]], "bbox": [4030, 6775, 20, 25], "underground": false},
+    {"cat": "military", "rects": [[4053, 6731, 6, 4], [4053, 6738, 6, 2], [4053, 6735, 2, 3]], "bbox": [4035, 6719, 54, 47], "underground": true},
+    {"cat": "retail", "rects": [[4016, 6757, 3, 5]], "bbox": [4016, 6757, 3, 5], "underground": false}
+  ]
+}

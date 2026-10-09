@@ -1,0 +1,29 @@
+{
+  "zip": "SZ_MarchRidge_ResearchFacility.pyramid.zip",
+  "mapDir": "SZ_MarchRidge_ResearchFacility",
+  "rawRecords": 41,
+  "aliases": {"laboratorybunker": "medicalstorage"},
+  "cells300": [[34, 40], [34, 41]],
+  "entries": [
+    {"cat": "food", "rects": [[10347, 12138, 9, 6]], "bbox": [10346, 12128, 34, 33], "underground": false},
+    {"cat": "medical", "rects": [[10320, 12162, 6, 11]], "bbox": [10320, 12162, 6, 11], "underground": false},
+    {"cat": "medical", "rects": [[10328, 12479, 11, 12]], "bbox": [10328, 12479, 11, 12], "underground": false},
+    {"cat": "medical", "rects": [[10328, 12495, 11, 12]], "bbox": [10328, 12495, 11, 12], "underground": false},
+    {"cat": "military", "rects": [[10286, 12249, 22, 6]], "bbox": [10286, 12249, 22, 6], "underground": false},
+    {"cat": "military", "rects": [[10319, 12467, 3, 60], [10322, 12467, 18, 3]], "bbox": [10319, 12467, 21, 60], "underground": false},
+    {"cat": "military", "rects": [[10322, 12558, 24, 3], [10319, 12543, 3, 18], [10346, 12557, 6, 3], [10352, 12558, 6, 3]], "bbox": [10319, 12543, 39, 18], "underground": false},
+    {"cat": "military", "rects": [[10335, 12536, 3, 6]], "bbox": [10335, 12536, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[10339, 12536, 3, 6]], "bbox": [10339, 12536, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[10344, 12468, 12, 3]], "bbox": [10344, 12468, 12, 3], "underground": false},
+    {"cat": "military", "rects": [[10346, 12238, 3, 6]], "bbox": [10346, 12238, 3, 6], "underground": false},
+    {"cat": "military", "rects": [[10373, 12495, 6, 11]], "bbox": [10373, 12495, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[10375, 12519, 6, 11]], "bbox": [10375, 12519, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[10381, 12469, 6, 3]], "bbox": [10381, 12469, 6, 3], "underground": false},
+    {"cat": "military", "rects": [[10382, 12495, 6, 11]], "bbox": [10382, 12495, 6, 11], "underground": false},
+    {"cat": "military", "rects": [[10393, 12469, 18, 3], [10408, 12472, 3, 18]], "bbox": [10393, 12469, 18, 21], "underground": false},
+    {"cat": "military", "rects": [[10408, 12504, 3, 24], [10382, 12558, 18, 3], [10408, 12534, 3, 18], [10376, 12557, 6, 3], [10400, 12559, 6, 3], [10406, 12558, 6, 3], [10407, 12528, 3, 6], [10409, 12552, 3, 6]], "bbox": [10376, 12504, 36, 58], "underground": false},
+    {"cat": "pharmacy", "rects": [[10320, 12155, 13, 4]], "bbox": [10320, 12155, 13, 4], "underground": false},
+    {"cat": "police", "rects": [[10280, 12078, 9, 8], [10270, 12113, 11, 4], [10258, 12152, 10, 3], [10320, 12066, 9, 3], [10326, 12069, 3, 7], [10258, 12146, 3, 6], [10276, 12111, 5, 2]], "bbox": [10258, 12063, 160, 163], "underground": false},
+    {"cat": "retail", "rects": [[10424, 12100, 18, 76]], "bbox": [10424, 12100, 18, 76], "underground": false}
+  ]
+}

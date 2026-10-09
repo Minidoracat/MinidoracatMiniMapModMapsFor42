@@ -1,0 +1,18 @@
+{
+  "zip": "Fort Waterfront B42.pyramid.zip",
+  "mapDir": "Fort Waterfront B42",
+  "rawRecords": 16,
+  "aliases": {"armysurplustorage": "armystorage"},
+  "cells300": [[34, 36]],
+  "entries": [
+    {"cat": "gunstore", "rects": [[10291, 11072, 3, 8]], "bbox": [10291, 11072, 3, 8], "underground": false},
+    {"cat": "gunstore", "rects": [[10296, 11072, 3, 8]], "bbox": [10296, 11072, 3, 8], "underground": false},
+    {"cat": "gunstore", "rects": [[10333, 11063, 3, 6], [10318, 11064, 3, 4], [10318, 11063, 4, 1], [10318, 11068, 4, 1], [10332, 11062, 4, 1], [10323, 11062, 2, 1], [10328, 11063, 1, 1], [10328, 11068, 1, 1]], "bbox": [10318, 11058, 18, 11], "underground": false},
+    {"cat": "medical", "rects": [[10316, 11007, 15, 6], [10325, 10991, 6, 8], [10322, 11000, 5, 7], [10316, 10993, 6, 5], [10322, 10990, 3, 8], [10316, 10999, 11, 1], [10316, 10998, 9, 1]], "bbox": [10316, 10990, 15, 23], "underground": false},
+    {"cat": "military", "rects": [[10266, 11032, 18, 23], [10266, 11029, 18, 2], [10273, 11031, 11, 1], [10266, 11031, 6, 1], [10270, 11019, 1, 1]], "bbox": [10266, 11015, 39, 40], "underground": false},
+    {"cat": "military", "rects": [[10273, 10990, 11, 10], [10276, 11000, 20, 3]], "bbox": [10257, 10990, 48, 22], "underground": false},
+    {"cat": "military", "rects": [[10342, 11045, 3, 8]], "bbox": [10342, 11045, 3, 8], "underground": false},
+    {"cat": "military", "rects": [[10348, 11045, 3, 8]], "bbox": [10348, 11045, 3, 8], "underground": false},
+    {"cat": "outdoor", "rects": [[10223, 11007, 4, 3], [10223, 11006, 5, 1], [10223, 11010, 5, 1]], "bbox": [10223, 11006, 5, 9], "underground": false}
+  ]
+}

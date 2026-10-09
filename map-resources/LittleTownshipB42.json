@@ -1,0 +1,23 @@
+{
+  "zip": "LittleTownshipB42.pyramid.zip",
+  "mapDir": "LittleTownshipB42",
+  "rawRecords": 32,
+  "aliases": {"armyhanger": "armystorage"},
+  "cells300": [[27, 28]],
+  "entries": [
+    {"cat": "farm", "rects": [[8230, 8639, 4, 3]], "bbox": [8230, 8639, 4, 3], "underground": false},
+    {"cat": "farm", "rects": [[8271, 8636, 12, 11]], "bbox": [8271, 8636, 12, 11], "underground": false},
+    {"cat": "gas", "rects": [[8354, 8581, 7, 4], [8352, 8585, 9, 2]], "bbox": [8352, 8576, 9, 11], "underground": false},
+    {"cat": "grocery", "rects": [[8331, 8573, 7, 3]], "bbox": [8331, 8573, 7, 3], "underground": false},
+    {"cat": "grocery", "rects": [[8366, 8510, 5, 1], [8366, 8509, 3, 1], [8366, 8511, 3, 1]], "bbox": [8359, 8509, 12, 11], "underground": false},
+    {"cat": "gunstore", "rects": [[8348, 8544, 3, 2]], "bbox": [8342, 8516, 15, 37], "underground": false},
+    {"cat": "military", "rects": [[8128, 8668, 3, 9]], "bbox": [8119, 8666, 14, 11], "underground": false},
+    {"cat": "outdoor", "rects": [[8181, 8475, 1, 1]], "bbox": [8181, 8472, 3, 4], "underground": false},
+    {"cat": "outdoor", "rects": [[8327, 8532, 1, 1]], "bbox": [8327, 8529, 6, 10], "underground": false},
+    {"cat": "outdoor", "rects": [[8359, 8418, 4, 5]], "bbox": [8359, 8418, 4, 5], "underground": false},
+    {"cat": "pharmacy", "rects": [[8372, 8541, 1, 2]], "bbox": [8372, 8530, 15, 14], "underground": false},
+    {"cat": "retail", "rects": [[8182, 8491, 3, 3]], "bbox": [8182, 8484, 11, 10], "underground": false},
+    {"cat": "retail", "rects": [[8234, 8454, 6, 4], [8236, 8458, 2, 3]], "bbox": [8227, 8445, 21, 16], "underground": false},
+    {"cat": "retail", "rects": [[8282, 8516, 6, 5]], "bbox": [8282, 8511, 6, 10], "underground": false}
+  ]
+}

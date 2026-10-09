@@ -1,0 +1,13 @@
+{
+  "zip": "Atlanta Tower Survival.pyramid.zip",
+  "mapDir": "Atlanta Tower Survival",
+  "rawRecords": 6,
+  "aliases": {},
+  "cells300": [[37, 42]],
+  "entries": [
+    {"cat": "military", "rects": [[11350, 12766, 14, 13]], "bbox": [11328, 12766, 56, 51], "underground": false},
+    {"cat": "retail", "rects": [[11263, 12765, 12, 3], [11270, 12768, 5, 1]], "bbox": [11263, 12765, 18, 6], "underground": false},
+    {"cat": "school", "rects": [[11294, 12799, 25, 9], [11302, 12808, 17, 13], [11304, 12798, 15, 1]], "bbox": [11263, 12765, 56, 56], "underground": false},
+    {"cat": "school", "rects": [[11335, 12760, 4, 2]], "bbox": [11335, 12760, 4, 2], "underground": false}
+  ]
+}

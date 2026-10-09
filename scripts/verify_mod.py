@@ -325,15 +325,17 @@ if os.path.isfile(_cl):
                     leaks.append(f"CHANGELOG.md:{lineno} {desc}（{mm.group()[:40]}）")
     fail("CHANGELOG 無基礎設施洩漏樣式", leaks) if leaks else ok("CHANGELOG 無基礎設施洩漏樣式")
 
-# ---- 名稱與獨立道路修正資料 ----
-for script, label in (
-    ("gen_streets_i18n.py", "街名翻譯生成物"),
-    ("gen_street_repairs.py", "獨立道路修正生成物"),
-    ("gen_road_supplements.py", "補充道路生成物"),
+# ---- 名稱、獨立道路修正、補充道路、地圖資源點資料 ----
+for script, sub, label in (
+    ("gen_streets_i18n.py", "verify", "街名翻譯生成物"),
+    ("gen_street_repairs.py", "verify", "獨立道路修正生成物"),
+    ("gen_road_supplements.py", "verify", "補充道路生成物"),
+    ("gen_map_resources.py", "check", "地圖資源點與房名別名生成物"),
+    ("gen_map_resources.py", "--selftest", "地圖資源點 generator 自我測試"),
 ):
     try:
         result = subprocess.run(
-            [sys.executable, os.path.join(REPO, "scripts", script), "verify"],
+            [sys.executable, os.path.join(REPO, "scripts", script), sub],
             cwd=REPO, capture_output=True, text=True, encoding="utf-8", timeout=60,
         )
         if result.stdout.strip():

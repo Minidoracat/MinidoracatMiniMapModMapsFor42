@@ -1,0 +1,11 @@
+{
+  "zip": "SZ_Riverside_Checkpoint_1.pyramid.zip",
+  "mapDir": "SZ_Riverside_Checkpoint_1",
+  "rawRecords": 4,
+  "aliases": {},
+  "cells300": [[22, 22]],
+  "entries": [
+    {"cat": "electronics", "rects": [[6744, 6841, 3, 3]], "bbox": [6744, 6841, 3, 3], "underground": false},
+    {"cat": "pharmacy", "rects": [[6716, 6757, 13, 4]], "bbox": [6716, 6757, 13, 4], "underground": false}
+  ]
+}
