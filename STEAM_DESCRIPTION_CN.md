@@ -8,7 +8,7 @@
 [h2]📦 需要安装[/h2]
 [list]
 [*] 必装：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]（主 MOD）与它的前置 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library for B42[/url]
-[*] 你要玩的地图 MOD：本包只提供图片，地图本身仍要另外订阅
+[*] 你要玩的地图 MOD：本包只提供图片与数据，地图本身仍要另外订阅
 [*] [b]中途加入／移除：[/b]都可以
 [*] [b]界面语言：[/b]繁體中文、简体中文、English、日本語、한국어、Русский、Español、Português、Türkçe、Français、Polski、Deutsch（翻译有问题请反馈）
 [/list]
@@ -27,6 +27,7 @@
 [*] [b]框线与地图名称[/b]：地图名称有 12 种语言，框线可开关、可换颜色
 [*] [b]路名翻译[/b]：17 张地图的路名有繁中／简中／日文翻译，原名译名都能搜
 [*] [b]道路数据修正[/b]：补上或修正部分地图的道路，路名与导航更完整
+[*] [b]资源点[/b]：收录地图的药房、警局等建筑也会标出，分类和原版相同
 [*] [b]只改显示[/b]：不修改实际地形、建筑或存盘
 [/list]
 📖 [b]完整支持清单（含每张地图有没有道路数据）、冲突提醒与许愿：[/b][url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]支持地图清单＆许愿[/url]

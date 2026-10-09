@@ -8,7 +8,7 @@ Shows real map images, area outlines and map names for map mods on the minimap a
 [h2]📦 What you need[/h2]
 [list]
 [*] Required: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url] (main mod) and its requirement [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library for B42[/url]
-[*] The map mods you want to play: this pack only provides the images, so the maps themselves must be subscribed separately
+[*] The map mods you want to play: this pack only provides images and data, so the maps themselves must be subscribed separately
 [*] [b]Add/remove mid-save:[/b] safe either way
 [*] [b]Languages:[/b] 繁體中文, 简体中文, English, 日本語, 한국어, Русский, Español, Português, Türkçe, Français, Polski, Deutsch (please report any translation issues)
 [/list]
@@ -27,6 +27,7 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 [*] [b]Outlines & map names[/b]: map names in 12 languages; outlines can be toggled and recoloured
 [*] [b]Street-name translations[/b]: street names on 17 maps in Traditional/Simplified Chinese and Japanese; original and translated names are both searchable
 [*] [b]Road data fixes[/b]: roads added or fixed on some maps for more complete street names and navigation
+[*] [b]Resource points[/b]: pharmacies, police stations and other buildings on supported maps are marked too, sorted the same way as vanilla
 [*] [b]Display only[/b]: terrain, buildings and saves are never changed
 [/list]
 📖 [b]Full supported list (including which maps have road data), conflict notes and map requests:[/b] [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050601/]Map Requests & Supported Maps[/url]

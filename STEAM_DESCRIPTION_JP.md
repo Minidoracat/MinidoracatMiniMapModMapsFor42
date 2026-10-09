@@ -8,7 +8,7 @@
 [h2]📦 必要なもの[/h2]
 [list]
 [*] 必須：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]（本体）と、その前提 MOD の [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library for B42[/url]
-[*] 遊びたいマップ MOD：本パックは画像だけを提供するため、マップ本体は別途サブスクライブが必要です
+[*] 遊びたいマップ MOD：本パックは画像とデータだけを提供するため、マップ本体は別途サブスクライブが必要です
 [*] [b]途中追加・削除：[/b]どちらも可能
 [*] [b]対応言語：[/b]繁體中文、简体中文、English、日本語、한국어、Русский、Español、Português、Türkçe、Français、Polski、Deutsch（翻訳の問題はお知らせください）
 [/list]
@@ -27,6 +27,7 @@
 [*] [b]枠線とマップ名[/b]：マップ名は 12 言語。枠線は表示切替・色変更ができます
 [*] [b]道路名の翻訳[/b]：17 マップの道路名を繁体字／簡体字／日本語に翻訳。原名でも訳名でも検索できます
 [*] [b]道路データ修正[/b]：一部のマップの道路を追加・修正し、道路名とナビをより完全にします
+[*] [b]資源ポイント[/b]：収録マップの薬局や警察署などの建物も、バニラと同じ分類で表示します
 [*] [b]表示のみ[/b]：実際の地形・建物・セーブは変更しません
 [/list]
 📖 [b]対応マップの全リスト（道路データの有無を含む）、競合の注意、リクエスト：[/b][url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050627/]マップリクエスト＆対応マップ[/url]
