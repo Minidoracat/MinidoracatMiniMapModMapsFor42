@@ -316,7 +316,9 @@ def check(root: Path, poi) -> list[str]:
     if errors:
         return errors
     lua = root / LUA_REL
-    data, _ = render(root, poi.render_entry)
+    data, skipped = render(root, poi.render_entry)
+    # 註冊了卻沒有資源點資料＝玩家選「依主要用途」時這張圖沒有資源點：新增地圖忘了 bake 要在這裡擋下
+    errors += [f'{z} 在註冊清單裡但沒有 {RES_DIR_NAME} 資料，跑 bake --only "{stem(z)}"' for z in dict.fromkeys(skipped)]
     if not lua.is_file() or lua.read_bytes() != data:
         errors.append(f"{LUA_REL.as_posix()} 與 render 結果不同，重跑 render")
     return errors
@@ -596,6 +598,13 @@ def cmd_selftest() -> int:
            and "parking" not in text.split("Hunter'sBase", 1)[1].split("})", 1)[0], text)
         ok("LF、無 CR", b"\r" not in first)
         (root / LUA_REL).parent.mkdir(parents=True)
+        (root / LUA_REL).write_bytes(first)
+        errs = check(root, poi)
+        ok("check 抓到註冊了卻沒有資源點資料的地圖", errs == ['C.pyramid.zip 在註冊清單裡但沒有 '
+           f'{RES_DIR_NAME} 資料，跑 bake --only "C"'], errs)
+        (root / RES_DIR_NAME / "C.json").write_text(dump_resource({**doc, "zip": "C.pyramid.zip", "aliases": {}}),
+                                                    encoding="utf-8")
+        first, _ = render(root, poi.render_entry)
         (root / LUA_REL).write_bytes(first)
         ok("check 通過剛 render 的狀態", check(root, poi) == [], check(root, poi))
         (root / ALIASES_NAME).write_text(json.dumps({"A.pyramid.zip": {"aliases": {"FooRoom": "grocery"}}}),
