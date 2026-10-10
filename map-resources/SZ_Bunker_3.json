@@ -8,5 +8,6 @@
     {"cat": "medical", "rects": [[6066, 11812, 4, 4]], "bbox": [6038, 11808, 37, 18], "underground": false},
     {"cat": "military", "rects": [[6030, 11857, 15, 7]], "bbox": [6030, 11857, 15, 7], "underground": false},
     {"cat": "military", "rects": [[6030, 11870, 15, 7]], "bbox": [6030, 11870, 15, 7], "underground": false}
-  ]
+  ],
+  "parking": []
 }

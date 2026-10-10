@@ -4,5 +4,8 @@
   "rawRecords": 7,
   "aliases": {},
   "cells300": [[42, 20]],
-  "entries": []
+  "entries": [],
+  "parking": [
+    {"rects": [[12665, 6192, 9, 4]], "box": [12665, 6192, 12673, 6195], "icon": true}
+  ]
 }

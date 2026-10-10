@@ -7,5 +7,8 @@
   "entries": [
     {"cat": "pharmacy", "rects": [[6192, 9958, 5, 5], [6192, 9987, 5, 4]], "bbox": [6192, 9958, 60, 80], "underground": false},
     {"cat": "retail", "rects": [[5838, 10460, 6, 5]], "bbox": [5838, 10456, 11, 16], "underground": true}
+  ],
+  "parking": [
+    {"rects": [[6269, 10062, 4, 6]], "box": [6269, 10062, 6272, 10067], "icon": true}
   ]
 }

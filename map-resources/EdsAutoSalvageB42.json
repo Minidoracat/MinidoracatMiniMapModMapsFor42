@@ -13,5 +13,6 @@
     {"cat": "retail", "rects": [[8959, 8637, 7, 6]], "bbox": [8955, 8631, 11, 12], "underground": false},
     {"cat": "tools", "rects": [[8720, 8526, 1, 2]], "bbox": [8720, 8526, 14, 7], "underground": false},
     {"cat": "tools", "rects": [[8823, 8611, 1, 3]], "bbox": [8823, 8611, 6, 5], "underground": false}
-  ]
+  ],
+  "parking": []
 }

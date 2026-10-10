@@ -28,5 +28,6 @@
     {"cat": "tools", "rects": [[4615, 5580, 7, 6]], "bbox": [4615, 5580, 7, 6], "underground": false},
     {"cat": "tools", "rects": [[4653, 5510, 3, 6]], "bbox": [4653, 5510, 9, 6], "underground": false},
     {"cat": "tools", "rects": [[4678, 5596, 12, 3], [4678, 5603, 6, 3]], "bbox": [4678, 5596, 12, 10], "underground": false}
-  ]
+  ],
+  "parking": []
 }

@@ -15,5 +15,6 @@
     {"cat": "military", "rects": [[10903, 11189, 3, 3]], "bbox": [10903, 11189, 3, 3], "underground": false},
     {"cat": "military", "rects": [[10910, 11138, 3, 6]], "bbox": [10910, 11138, 3, 6], "underground": false},
     {"cat": "military", "rects": [[10967, 11189, 3, 3]], "bbox": [10967, 11189, 3, 3], "underground": false}
-  ]
+  ],
+  "parking": []
 }

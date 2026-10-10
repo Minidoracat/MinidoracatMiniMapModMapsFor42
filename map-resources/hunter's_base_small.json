@@ -7,5 +7,6 @@
   "entries": [
     {"cat": "outdoor", "rects": [[6073, 5748, 6, 10]], "bbox": [6069, 5747, 18, 14], "underground": true},
     {"cat": "outdoor", "rects": [[6086, 5740, 2, 4]], "bbox": [6086, 5740, 2, 4], "underground": false}
-  ]
+  ],
+  "parking": []
 }

@@ -28,5 +28,8 @@
     {"cat": "military", "rects": [[11850, 9782, 3, 6]], "bbox": [11850, 9782, 3, 6], "underground": false},
     {"cat": "storage", "rects": [[11463, 9819, 20, 22], [11463, 9841, 7, 3]], "bbox": [11454, 9819, 29, 36], "underground": false},
     {"cat": "storage", "rects": [[11887, 9788, 20, 22], [11887, 9810, 7, 3]], "bbox": [11878, 9788, 29, 36], "underground": false}
+  ],
+  "parking": [
+    {"rects": [[10828, 10026, 5, 18]], "box": [10828, 10026, 10832, 10043], "icon": true}
   ]
 }

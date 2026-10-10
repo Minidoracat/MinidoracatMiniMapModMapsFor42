@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""地圖包資源點（POI）生成器：每張註冊地圖的資源點、300 格擁有清單與房名別名。
+"""地圖包資源點（POI）與停車場生成器：每張註冊地圖的資源點、停車場、300 格擁有清單與房名別名。
 
-主 MOD 的資源點只烘了原版地圖；地圖 MOD 的建築由本檔離線烘好，經主 MOD 的
-`MinidoracatMiniMapResourceAPI.registerMapResources`（resourceApiVersion 2）交給主 MOD。
-分類規則**只有一份**：直接匯入主 MOD `scripts/gen_poi_data.py`（類別房名、優先序、
-住宅門檻、附屬房 10%、整棟合併、cells300 規則都在那裡），本檔不複製任何分類邏輯。
+主 MOD 的資源點與停車場只烘了原版地圖；地圖 MOD 的建築與停車場由本檔離線烘好，經主 MOD 的
+`MinidoracatMiniMapResourceAPI.registerMapResources`（resourceApiVersion 2 起讀 poi，3 起另讀 parking）
+交給主 MOD。分類與判定規則**只有一份**：直接匯入主 MOD `scripts/gen_poi_data.py`（類別房名、優先序、
+住宅門檻、附屬房 10%、整棟合併、cells300 規則都在那裡）與 `scripts/gen_parking_data.py`（停車場），
+本檔不複製任何規則。
 
 ## 資料流
 
@@ -13,8 +14,9 @@
    MOD 自己的 Lua 裡以整個字出現（＝作者替它寫了 loot 表），就必須在 `room-aliases.json`
    該 zip 底下審過：`aliases`（改名成某個類別房名後再分類）或 `ignored`（不算資源點）。
    沒有 loot 表的自訂房名自動略過、不必審。有沒審過的名字 → bake 整批不寫檔、exit 1。
-3. 套別名 → `gen_poi_data.build_entries` → `map-resources/<zip 主檔名>.json`（進版控的
-   唯一來源：zip、mapDir、rawRecords、cells300、aliases、entries）。
+3. 套別名 → `gen_poi_data.build_entries`；停車場 → `gen_parking_data.bake(use_roads=False)`（地圖 MOD 的
+   worldmap.xml 把停車場也畫成道路，不做貼路排除）→ `map-resources/<zip 主檔名>.json`（進版控的
+   唯一來源：zip、mapDir、rawRecords、cells300、aliases、entries、parking）。
 4. `render` 從全部 json＋註冊清單產生 shared
    `MinidoracatMiniMapModMapsResources.lua`（每個註冊條目 zip＋mapMod 一次註冊）。
 
@@ -22,6 +24,7 @@
 
     uv run scripts/gen_map_resources.py bake [--only 子字串] [--prefer 根 ...]
     uv run scripts/gen_map_resources.py candidates [--only] [--prefer] --out temp/room-review/candidates.json
+    uv run scripts/gen_map_resources.py parking [--only] [--prefer]   # 只重算停車場，資源點不動
     uv run scripts/gen_map_resources.py render      # map-resources/*.json → Lua
     uv run scripts/gen_map_resources.py check       # 離線閘門（不需 Workshop 副本）
     uv run scripts/gen_map_resources.py --selftest  # 合成資料自我測試
@@ -53,15 +56,24 @@ CONTEXT_LINES = 10
 MAX_FILES = 5
 
 
-def _poi():
-    """主 MOD 的分類規則模組（唯一來源，不複製）。"""
+def _main_module(name: str):
+    """主 MOD scripts/ 的模組（規則唯一來源，不複製）。"""
     if str(MAIN_SCRIPTS) not in sys.path:
         sys.path.insert(0, str(MAIN_SCRIPTS))
     try:
-        import gen_poi_data
+        return __import__(name)
     except ImportError as error:
-        raise SystemExit(f"❌ 匯入主 MOD {MAIN_SCRIPTS / 'gen_poi_data.py'} 失敗：{error}")
-    return gen_poi_data
+        raise SystemExit(f"❌ 匯入主 MOD {MAIN_SCRIPTS / (name + '.py')} 失敗：{error}")
+
+
+def _poi():
+    """主 MOD 的分類規則模組（唯一來源，不複製）。"""
+    return _main_module("gen_poi_data")
+
+
+def _parking():
+    """主 MOD 的停車場判定模組（唯一來源，不複製）。"""
+    return _main_module("gen_parking_data")
 
 
 def category_rooms(poi) -> frozenset[str]:
@@ -178,23 +190,36 @@ def plan_bake(scans: list[dict], aliases_doc: dict, cat_rooms: frozenset[str],
             "entries": [{"cat": e["cat"], "rects": [list(r) for r in e["rects"]],
                          "bbox": list(e["bbox"]) if e["bbox"] else None,
                          "underground": bool(e["underground"])} for e in entries],
+            "parking": parking_rows(s.get("parking", [])),
         }
     return {}, docs
 
 
+def parking_rows(areas: list[dict]) -> list[dict]:
+    """主 MOD gen_parking_data.bake 的停車區 → json 列（rects、box、icon＝這區帶整座停車場的 P）。"""
+    return [{"rects": [list(r) for r in a["rects"]], "box": list(a["box"]), "icon": bool(a.get("icon"))}
+            for a in areas]
+
+
 def dump_resource(doc: dict) -> str:
-    """確定性 JSON：一筆 entry 一行，diff 看得懂。"""
+    """確定性 JSON：一筆 entry／一區停車場一行，diff 看得懂。"""
     dump = lambda v: json.dumps(v, ensure_ascii=False, sort_keys=True)  # noqa: E731
     lines = ["{"]
     for key in ("zip", "mapDir", "rawRecords", "aliases", "cells300"):
         lines.append(f"  {dump(key)}: {dump(doc[key])},")
-    rows = [f"    {json.dumps(e, ensure_ascii=False, separators=(', ', ': '))}" for e in doc["entries"]]
-    lines.append('  "entries": [' + ("\n" + ",\n".join(rows) + "\n  ]" if rows else "]"))
+
+    def rows(key: str) -> str:
+        items = [f"    {json.dumps(x, ensure_ascii=False, separators=(', ', ': '))}" for x in doc.get(key, [])]
+        return f'  "{key}": [' + ("\n" + ",\n".join(items) + "\n  ]" if items else "]")
+
+    lines.append(rows("entries") + ",")
+    lines.append(rows("parking"))
     lines.append("}")
     return "\n".join(lines) + "\n"
 
 
-def render_lua(entries: list[dict], resources: dict[str, dict], render_entry) -> tuple[str, list[str]]:
+def render_lua(entries: list[dict], resources: dict[str, dict], render_entry,
+               render_parking=None) -> tuple[str, list[str]]:
     """註冊條目＋各 zip 的 json → (Lua 文字, 沒有 json 而略過的 zip)。"""
     s = gsi._lua_str
     regs = sorted({(e["zip"], e["mapMod"]): e for e in entries}.values(),
@@ -213,6 +238,10 @@ def render_lua(entries: list[dict], resources: dict[str, dict], render_entry) ->
         body += ["    },", "    poi = {"]
         body += [f"        {render_entry(x)}," for x in doc["entries"]]
         body += [f"        count = {len(doc['entries'])},", "    },"]
+        if doc.get("parking"):
+            body.append("    parking = {")
+            body += [f"        {render_parking(x)}," for x in doc["parking"]]
+            body += [f"        count = {len(doc['parking'])},", "    },"]
         if doc["aliases"]:
             body.append("    aliases = {")
             body += [f"        [{s(k)}] = {s(v)}," for k, v in sorted(doc["aliases"].items())]
@@ -221,8 +250,10 @@ def render_lua(entries: list[dict], resources: dict[str, dict], render_entry) ->
     head = [
         f"-- {LUA_REL.name}（生成檔，勿手編）",
         f"-- 由 scripts/gen_map_resources.py render 從 {RES_DIR_NAME}/*.json＋註冊清單產生；",
-        f"-- 資料用 bake 重烘，房名別名改 {ALIASES_NAME}。分類規則在主 MOD scripts/gen_poi_data.py。",
-        f"-- {len(regs) - len(skipped)} 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData。",
+        f"-- 資料用 bake 重烘，房名別名改 {ALIASES_NAME}。分類規則在主 MOD scripts/gen_poi_data.py，",
+        "-- 停車場判定在主 MOD scripts/gen_parking_data.py（只重算停車場用 parking 子命令）。",
+        f"-- {len(regs) - len(skipped)} 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，",
+        "-- parking 條目格式同 MinidoracatMiniMapParkingData（resourceApiVersion 3 起才讀，舊版主 MOD 不讀）。",
         "",
         "local R = MinidoracatMiniMapResourceAPI",
         "if not (R and type(R.registerMapResources) == \"function\"",
@@ -255,7 +286,7 @@ def load_resources(root: Path) -> dict[str, dict]:
 
 
 def render(root: Path, render_entry) -> tuple[bytes, list[str]]:
-    text, skipped = render_lua(load_registry(root), load_resources(root), render_entry)
+    text, skipped = render_lua(load_registry(root), load_resources(root), render_entry, _parking().render_entry)
     return text.encode("utf-8"), skipped
 
 
@@ -345,7 +376,9 @@ def scan(hit: dict, poi) -> dict:
     if r.returncode != 0:
         raise SystemExit(f"❌ pzmap poi 失敗（{hit['zip']}）：{(r.stderr or r.stdout).strip()[-300:]}")
     return {**hit, "raw": json.loads(out.read_text(encoding="utf-8")),
-            "lua": mod_lua_texts(hit["root"]), "cells300": poi.cells300(hit["path"])}
+            "lua": mod_lua_texts(hit["root"]), "cells300": poi.cells300(hit["path"]),
+            # 地圖 MOD 的 worldmap.xml 把停車場也畫成道路，不做貼路排除（見主 MOD gen_parking_data.py 檔頭）
+            "parking": _parking().bake(hit["path"], rp.PZMAP, use_roads=False)[0]}
 
 
 def _scan_selected(args, poi) -> tuple[list[dict], list[str]]:
@@ -397,9 +430,36 @@ def cmd_bake(args) -> int:
     for zip_name, doc in sorted(docs.items()):
         gsi.write_bytes_atomic(PROJECT_ROOT / RES_DIR_NAME / f"{stem(zip_name)}.json",
                                dump_resource(doc).encode("utf-8"))
-        print(f"   {zip_name:48s} {len(doc['entries']):5d} 個資源點／{len(doc['cells300']):3d} 格")
+        print(f"   {zip_name:48s} {len(doc['entries']):5d} 個資源點／{len(doc['parking']):4d} 區停車場"
+              f"／{len(doc['cells300']):3d} 格")
     _write_lua(poi)
     return 1 if missing else 0
+
+
+def cmd_parking(args) -> int:
+    """只重算停車場：選到的地圖跑主 MOD gen_parking_data.bake，寫回既有 json 的 parking，資源點不動。"""
+    parking = _parking()
+    hits, missing = locate(load_registry(PROJECT_ROOT), args.only, args.prefer)
+    if not hits and not missing:
+        raise SystemExit(f"❌ 沒有 zip 名含 {args.only!r} 的註冊條目")
+    docs = load_resources(PROJECT_ROOT)
+    no_doc = []
+    for i, hit in enumerate(hits, 1):
+        doc = docs.get(hit["zip"])
+        if doc is None:
+            no_doc.append(hit["zip"])
+            continue
+        areas, stats = parking.bake(hit["path"], rp.PZMAP, use_roads=False)
+        doc["parking"] = parking_rows(areas)
+        gsi.write_bytes_atomic(PROJECT_ROOT / RES_DIR_NAME / f"{stem(hit['zip'])}.json",
+                               dump_resource(doc).encode("utf-8"))
+        print(f"[{i}/{len(hits)}] {hit['zip']:48s} {stats['kept']:4d} 區停車場"
+              f"（車位區 {stats['stalls']}、能停 2 台以上 {stats['areas']}、排除草地 {stats['grass']}）", flush=True)
+    _print_missing(missing)
+    if no_doc:
+        print(f"⚠️ {len(no_doc)} 張還沒有 {RES_DIR_NAME} 資料，先跑 bake：{', '.join(no_doc)}")
+    _write_lua(_poi())
+    return 1 if missing or no_doc else 0
 
 
 def lua_context(name: str, files: list[str], lua_texts: dict[str, str]) -> str:
@@ -487,7 +547,9 @@ def cmd_selftest() -> int:
            {"building_id": "2", "x": 50, "y": 50, "width": 4, "height": 4, "level": 0,
             "rooms": [{"name": "NoLoot", "level": 0, "rects": [[50, 50, 4, 4]]},
                       {"name": "FooRoom", "level": 0, "rects": [[50, 50, 2, 2]]}]}]
-    scans = [{"zip": "A.pyramid.zip", "mapDir": "Town A", "raw": raw, "lua": texts, "cells300": [(1, 2)]}]
+    park = [{"rects": [(0, 0, 6, 5)], "box": (0, 0, 5, 4), "cap": 2, "icon": True}]  # gen_parking_data.bake 的一區
+    scans = [{"zip": "A.pyramid.zip", "mapDir": "Town A", "raw": raw, "lua": texts, "cells300": [(1, 2)],
+              "parking": park}]
     blocked, docs = plan_bake(scans, {}, cat_rooms, frozenset(), poi.build_entries, cats)
     ok("沒審過的 loot 房名擋下整批、不產資料",
        not docs and [x[:3] for x in blocked.get("A.pyramid.zip", [])] == [("FooRoom", 2, 2)], blocked)
@@ -499,6 +561,8 @@ def cmd_selftest() -> int:
     ok("別名套用後依類別分類", not blocked and [e["cat"] for e in doc.get("entries", [])] == ["grocery", "grocery"]
        and doc.get("aliases") == {"FooRoom": "grocery"} and raw[0]["rooms"][0]["name"] == "FooRoom", doc)
     ok("dump 可讀回且確定性", json.loads(dump_resource(doc)) == doc and dump_resource(doc) == dump_resource(doc))
+    ok("停車區帶進 json（rects、box、icon）",
+       doc.get("parking") == [{"rects": [[0, 0, 6, 5]], "box": [0, 0, 5, 4], "icon": True}], doc.get("parking"))
 
     with tempfile.TemporaryDirectory() as td:
         root = Path(td)
@@ -512,7 +576,7 @@ def cmd_selftest() -> int:
         empty, skipped = render(root, poi.render_entry)
         ok("零份資料：只有守門、無註冊", b"registerMapResources(" not in empty and b"resourceApiVersion" in empty
            and len(skipped) == 4, empty)
-        h_doc = {**doc, "zip": "hunter's_base.pyramid.zip", "mapDir": "x", "aliases": {}}
+        h_doc = {**doc, "zip": "hunter's_base.pyramid.zip", "mapDir": "x", "aliases": {}, "parking": []}
         (root / RES_DIR_NAME / "hunter's_base.json").write_text(dump_resource(h_doc), encoding="utf-8")
         (root / RES_DIR_NAME / "A.json").write_text(dump_resource({**doc, "aliases": {}}), encoding="utf-8")
         first, skipped = render(root, poi.render_entry)
@@ -526,6 +590,10 @@ def cmd_selftest() -> int:
            and all(ord(c) < 128 for line in text.splitlines() if not line.startswith("--") for c in line), text)
         ok("poi 帶 count、cells300、空別名不輸出",
            "count = 2," in text and "        1, 2," in text and "aliases" not in text.split("\nend\n", 1)[1], text)
+        ok("parking 照主 MOD 格式輸出、沒有停車區的地圖不輸出",
+           text.count("    parking = {") == 2 and "{ rn = 1, r = { { x = 0, y = 0, w = 6, h = 5 } }, "
+           "b = { x = 0, y = 0, w = 6, h = 5 }, i = 1 }," in text
+           and "parking" not in text.split("Hunter'sBase", 1)[1].split("})", 1)[0], text)
         ok("LF、無 CR", b"\r" not in first)
         (root / LUA_REL).parent.mkdir(parents=True)
         (root / LUA_REL).write_bytes(first)
@@ -557,6 +625,7 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("bake", parents=[pick], help="重烘選到的地圖並重產 Lua（有沒審過的 loot 房名就整批不寫）")
     c = sub.add_parser("candidates", parents=[pick], help="列出沒審過的 loot 房名給審查（不會因此失敗）")
     c.add_argument("--out", required=True)
+    sub.add_parser("parking", parents=[pick], help="只重算選到地圖的停車場，資源點不動，並重產 Lua")
     sub.add_parser("render", help=f"{RES_DIR_NAME}/*.json → {LUA_REL.name}")
     sub.add_parser("check", help="離線閘門：別名檔、json 與註冊、別名同步、Lua 同步")
     args = parser.parse_args(argv)
@@ -566,6 +635,8 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_bake(args)
     if args.cmd == "candidates":
         return cmd_candidates(args)
+    if args.cmd == "parking":
+        return cmd_parking(args)
     if args.cmd == "render":
         _write_lua(_poi())
         return 0

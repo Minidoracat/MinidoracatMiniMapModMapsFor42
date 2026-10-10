@@ -109,5 +109,6 @@
     {"cat": "tools", "rects": [[10978, 6387, 15, 7], [10984, 6382, 9, 5]], "bbox": [10978, 6382, 15, 12], "underground": false},
     {"cat": "tools", "rects": [[11074, 6551, 5, 5]], "bbox": [11074, 6545, 23, 11], "underground": false},
     {"cat": "tools", "rects": [[11083, 6518, 5, 21]], "bbox": [11074, 6517, 23, 23], "underground": false}
-  ]
+  ],
+  "parking": []
 }

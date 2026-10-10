@@ -9,5 +9,6 @@
     {"cat": "farm", "rects": [[5620, 5273, 3, 3]], "bbox": [5620, 5273, 3, 3], "underground": false},
     {"cat": "medical", "rects": [[5545, 5277, 7, 6]], "bbox": [5531, 5267, 38, 38], "underground": false},
     {"cat": "tools", "rects": [[5588, 5268, 5, 5]], "bbox": [5588, 5268, 5, 5], "underground": false}
-  ]
+  ],
+  "parking": []
 }

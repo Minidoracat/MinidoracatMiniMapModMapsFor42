@@ -9,5 +9,6 @@
     {"cat": "military", "rects": [[11152, 10005, 6, 7]], "bbox": [11152, 10005, 6, 7], "underground": false},
     {"cat": "military", "rects": [[11158, 9976, 16, 6], [11179, 9956, 6, 15]], "bbox": [11150, 9953, 36, 41], "underground": true},
     {"cat": "military", "rects": [[11163, 10005, 6, 7]], "bbox": [11163, 10005, 6, 7], "underground": false}
-  ]
+  ],
+  "parking": []
 }

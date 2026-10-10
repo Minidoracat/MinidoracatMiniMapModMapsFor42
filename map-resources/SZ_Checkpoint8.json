@@ -7,5 +7,6 @@
   "entries": [
     {"cat": "food", "rects": [[6742, 11253, 6, 11]], "bbox": [6742, 11253, 6, 11], "underground": false},
     {"cat": "military", "rects": [[6691, 11187, 3, 6]], "bbox": [6691, 11187, 3, 6], "underground": false}
-  ]
+  ],
+  "parking": []
 }
