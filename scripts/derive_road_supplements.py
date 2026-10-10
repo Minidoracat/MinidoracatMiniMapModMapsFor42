@@ -384,7 +384,7 @@ def preview(path: Path, roads: list[tuple[int, list[float]]], bounds: tuple[int,
 def registry_zip(map_mod: str, map_dir: str) -> Path | None:
     text = (PROJECT_ROOT / grs.REGISTRY_REL).read_text(encoding="utf-8")
     for line in text.splitlines():
-        if f'mapMod = "{map_mod}"' in line and 'zip = "' in line:
+        if f"mapMod = {gsi._lua_str(map_mod)}" in line and 'zip = "' in line:  # 註冊表非 ASCII 寫成 \ddd
             name = line.split('zip = "', 1)[1].split('"', 1)[0]
             return PROJECT_ROOT / MINIMAP_REL / name
     cand = PROJECT_ROOT / MINIMAP_REL / f"{map_dir}.pyramid.zip"

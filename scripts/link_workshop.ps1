@@ -262,8 +262,18 @@ function Get-MapModInventory {
         return $null
     }
     $lua = Get-Content -LiteralPath $LuaRegistry -Raw -Encoding UTF8
+    # 註冊表非 ASCII 寫成 UTF-8 位元組跳脫（\226\128\153）：解回 Unicode 才比得到 mod.info id=
     $ids = @([regex]::Matches($lua, 'mapMod\s*=\s*"([^"]+)"') |
-        ForEach-Object { $_.Groups[1].Value } | Select-Object -Unique |
+        ForEach-Object {
+            $raw = $_.Groups[1].Value
+            if ($raw -notmatch '\\\d') { return $raw }
+            $bytes = New-Object System.Collections.Generic.List[byte]
+            foreach ($m in [regex]::Matches($raw, '\\(\d{1,3})|[^\\]')) {
+                if ($m.Groups[1].Success) { $bytes.Add([byte][int]$m.Groups[1].Value) }
+                else { $bytes.AddRange([Text.Encoding]::UTF8.GetBytes($m.Value)) }
+            }
+            [Text.Encoding]::UTF8.GetString($bytes.ToArray())
+        } | Select-Object -Unique |
         Where-Object { $ServerModIds -notcontains $_ })
     $wc = Get-WorkshopContentDir
     if (-not $wc) {

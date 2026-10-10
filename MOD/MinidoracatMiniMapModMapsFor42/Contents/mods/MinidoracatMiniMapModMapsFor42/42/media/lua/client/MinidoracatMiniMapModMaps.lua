@@ -74,7 +74,9 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 10496, 11264, 11264, 12032 }, nameKey = "UI_MinidoracatMiniMapModMaps_AsakusaLakeTown" },
         { zip = "AshenwoodNewB42.pyramid.zip", mapMod = "AshenwoodmodNewB42",
             bounds = { 11264, 11008, 11776, 11776 }, nameKey = "UI_MinidoracatMiniMapModMaps_Ashenwood" },
-        { zip = "Atlanta - Safe Zone.pyramid.zip", mapMod = "Atlanta - Safe Zone-Chinese Survivors’ Community",
+        -- mod ID 原文「Atlanta - Safe Zone-Chinese Survivors’ Community」：’（U+2019）寫成 UTF-8 位元組跳脫，
+        -- Kahlua 字面值直接寫非 ASCII 會被截斷、永遠對不上（verify_mod 4c）
+        { zip = "Atlanta - Safe Zone.pyramid.zip", mapMod = "Atlanta - Safe Zone-Chinese Survivors\226\128\153 Community",
             bounds = { 8448, 7680, 9216, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_AtlantaSafeZone" },
         { zip = "Atlanta Tower Survival.pyramid.zip", mapMod = "Atlanta Tower Survival",
             bounds = { 11008, 12544, 11520, 13056 }, nameKey = "UI_MinidoracatMiniMapModMaps_AtlantaTower" },
@@ -323,5 +325,5 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 5888, 10496, 6400, 11008 }, nameKey = "UI_MinidoracatMiniMapModMaps_VaultTecRosewood" },
     })
 else
-    print("[MinidoracatMiniMapModMaps] 找不到主 MOD API（MinidoracatMiniMapAPI）——請安裝並啟用 Minidoracat MiniMap for B42 主 MOD")
+    print("[MinidoracatMiniMapModMaps] main MOD API (MinidoracatMiniMapAPI) not found -- install and enable the Minidoracat MiniMap for B42 main MOD")
 end

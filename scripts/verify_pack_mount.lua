@@ -13,10 +13,53 @@ local PACK_LUA = PACK_ROOT .. "media/lua/client/MinidoracatMiniMapModMaps.lua"
 local MINIMAP_DIR = PACK_ROOT .. "media/minimap/"
 local PACK_ID = "MinidoracatMiniMapModMapsFor42"
 
--- 1) 地圖包真實註冊表：提供 API stub 讓它自己註冊進來
+-- 1) 地圖包真實註冊表：提供 API stub 讓它自己註冊進來。
+--    原始碼先過 kahluaLex：模擬實機 Kahlua 的字串字面值（LexState.save 把每個字元 (byte) 截斷存進
+--    byte[]、newstring 再以 UTF-8 解碼）。標準 Lua 原樣保留 UTF-8，直接 loadfile 會漏掉
+--    「字面值寫了非 ASCII 字元 ⇒ 實機 mapMod 對不上真 mod ID」這類錯；\ddd 位元組跳脫兩邊一致
+local function kahluaChar(ch)
+    local b = utf8.codepoint(ch) % 256
+    -- ponytail: 截斷後的單一 byte ≥ 0x80 一律當無效 UTF-8（U+FFFD）；連續幾個截斷 byte 恰好
+    -- 拼成合法 UTF-8 的罕見情形不模擬
+    return b < 128 and ("\\%03d"):format(b) or "\239\191\189"
+end
+local function kahluaLex(code)
+    local out, i, n = {}, 1, #code
+    local function lit(s) return (s:gsub("[\194-\244][\128-\191]+", kahluaChar)) end
+    while i <= n do
+        local c = code:sub(i, i)
+        local eqs = code:match("^%-%-%[(=*)%[", i)
+        local j
+        if eqs then -- 長註解：原樣
+            j = select(2, code:find("]" .. eqs .. "]", i, true))
+            out[#out + 1] = code:sub(i, j)
+        elseif code:sub(i, i + 1) == "--" then -- 單行註解：原樣
+            j = (code:find("\n", i, true) or n + 1) - 1
+            out[#out + 1] = code:sub(i, j)
+        elseif code:match("^%[=*%[", i) then -- 長字串
+            eqs = code:match("^%[(=*)%[", i)
+            j = select(2, code:find("]" .. eqs .. "]", i, true))
+            out[#out + 1] = lit(code:sub(i, j))
+        elseif c == '"' or c == "'" then -- 短字串（跳脫成對跳過）
+            j = i + 1
+            while code:sub(j, j) ~= c do j = j + (code:sub(j, j) == "\\" and 2 or 1) end
+            out[#out + 1] = lit(code:sub(i, j))
+        else
+            j = i
+            out[#out + 1] = c
+        end
+        i = j + 1
+    end
+    return table.concat(out)
+end
 local entries, owner
 MinidoracatMiniMapAPI = { registerMaps = function(o, list) owner, entries = o, list end }
-assert(loadfile(PACK_LUA))()
+do
+    local pf = assert(io.open(PACK_LUA, "rb"))
+    local packSrc = pf:read("*a")
+    pf:close()
+    assert(load(kahluaLex(packSrc), "@" .. PACK_LUA))()
+end
 assert(entries and owner == PACK_ID, "抽不到地圖包註冊表")
 
 -- 2) zipFiles＝真實檔案系統存在性（不是假資料）
@@ -156,6 +199,14 @@ pass = check("唐人街：兩 MOD 都啟用但伺服器只載拓展 → 只掛�
 g = run({ CT_BASE, CT_EXP }, CT_BASE .. ";" .. CT_EXP .. ";Muldraugh, KY", CT_FOLDERS)
 pass = check("唐人街：兩張都啟用且都載入 → 兩張都掛（重疊區靠疊層優先序）",
     g[CT_BASE_ZIP] ~= nil and g[CT_EXP_ZIP] ~= nil) and pass
+
+-- 4c) 案例：mod ID 含非 ASCII 字元（Workshop 3580819781 的 id= 與地圖目錄都有 U+2019 ’）。
+--     實機 getActivatedMods 給的是正確 Unicode（這裡以 UTF-8 位元組表示）；註冊表直接寫 ’ 的話，
+--     Kahlua 截成 \025、永遠對不上，這張圖從沒掛上過
+local ATL_ID = "Atlanta - Safe Zone-Chinese Survivors\226\128\153 Community"
+local ATL_ZIP = "Atlanta - Safe Zone.pyramid.zip"
+g = run({ ATL_ID }, ATL_ID .. ";Muldraugh, KY", { [ATL_ID] = { ATL_ID } })
+pass = check("亞特蘭大安全區：真 mod ID（含 ’）啟用 → 掛 " .. ATL_ZIP, g[ATL_ZIP] ~= nil) and pass
 
 -- 5) 全量：所有 mapMod 啟用且所有地圖目錄都載入 → 91 顆 zip 全數掛上（alias 去重後）。
 --    有 mapDir 的條目（SecretZ 據點類）吃「該目錄實際載入」閘門，故 mapStr 要含全部目錄

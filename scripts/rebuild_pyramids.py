@@ -25,6 +25,14 @@ GAME = Path(r"D:\SteamLibrary\steamapps\common\ProjectZomboid")
 WORKSHOP = Path(r"D:\SteamLibrary\steamapps\workshop\content\108600")
 
 
+def lua_unescape(s):
+    """註冊表字串值的 `\\ddd`（UTF-8 位元組十進位跳脫）還原成 Unicode。
+
+    Lua 字面值只能 ASCII（verify_mod 4c）：含 ’ 等字元的 mod ID／目錄寫成 `\\226\\128\\153`，
+    Kahlua 以 UTF-8 解回原字；這裡照做，否則工具拿跳脫字面去比 mod.info id= 會對不上。"""
+    return re.sub(rb"\\(\d{1,3})", lambda m: bytes([int(m[1])]), s.encode()).decode()
+
+
 def parse_registrations(text):
     entries = []
     # 每條目從 "{ zip =" 起、到 bounds 值結束；bounds 是唯一巢狀 {}。
@@ -42,8 +50,8 @@ def parse_registrations(text):
     for m in pat.finditer(text):
         map_dir = re.search(r'mapDir\s*=\s*"([^"]+)"', m["opts"])
         entries.append({
-            "zip": m["zip"], "mapMod": m["mod"],
-            "mapDir": map_dir[1] if map_dir else None,
+            "zip": lua_unescape(m["zip"]), "mapMod": lua_unescape(m["mod"]),
+            "mapDir": lua_unescape(map_dir[1]) if map_dir else None,
             "bounds": (int(m["b0"]), int(m["b1"]), int(m["b2"]), int(m["b3"])),
         })
     # fail-closed：漏解析不會壞掉，只會少渲／少追蹤一張圖且毫無跡象

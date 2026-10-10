@@ -590,6 +590,9 @@ def cmd_selftest() -> int:
         ok("字串跳脫：註冊 mapDir 優先、非 ASCII 走 \\ddd、純 ASCII",
            'mapMod = "Hunter\'sBase", mapDir = "\\229\\155\\158' in text
            and all(ord(c) < 128 for line in text.splitlines() if not line.startswith("--") for c in line), text)
+        esc = rp.parse_registrations(_reg_text([("E.pyramid.zip", "S\\226\\128\\153 C", "D\\226\\128\\153")]))
+        ok("註冊表 \\ddd 跳脫解回 Unicode（mod ID 含 ’）",
+           (esc[0]["mapMod"], esc[0]["mapDir"]) == ("S\u2019 C", "D\u2019"), esc)
         ok("poi 帶 count、cells300、空別名不輸出",
            "count = 2," in text and "        1, 2," in text and "aliases" not in text.split("\nend\n", 1)[1], text)
         ok("parking 照主 MOD 格式輸出、沒有停車區的地圖不輸出",
