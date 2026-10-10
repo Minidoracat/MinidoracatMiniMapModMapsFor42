@@ -28,6 +28,7 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 [*] [b]Street-name translations[/b]: street names on 17 maps in Traditional/Simplified Chinese and Japanese; original and translated names are both searchable
 [*] [b]Road data fixes[/b]: roads added or fixed on some maps for more complete street names and navigation
 [*] [b]Resource points[/b]: pharmacies, police stations and other buildings on supported maps are marked too, sorted the same way as vanilla
+[*] [b]Parking lots[/b]: parking lots on supported maps are marked too, found the same way as on the vanilla map
 [*] [b]Display only[/b]: terrain, buildings and saves are never changed
 [/list]
 📖 [b]Full supported list (including which maps have road data), conflict notes and map requests:[/b] [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050601/]Map Requests & Supported Maps[/url]
