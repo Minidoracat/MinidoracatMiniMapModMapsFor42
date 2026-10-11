@@ -1,6 +1,6 @@
 version=1
 id=3763914102
-title=[B42] Minidoracat MiniMap - MOD Maps
+title=[B42] MiniMap - MOD Maps by Minidoracat
 description=[h1]🗺️ Minidoracat MiniMap - MOD Maps[/h1]
 description=[h3]By Minidoracat[/h3]
 description=
