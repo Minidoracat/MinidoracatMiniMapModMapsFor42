@@ -22,6 +22,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]挑地圖[/b]：從[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]挑選想玩的地圖 MOD，訂閱並啟用。
 [*] [b]進遊戲[/b]：按 [b]/[/b] 開小地圖、[b]M[/b] 開世界地圖，該地圖區域會顯示圖片、框線與名稱。
 [/olist]
+{{img:01-mod-map-outlines-zh.jpg}}
 === 🧰 支援地圖（A–M）
 共 80 個地圖 MOD、103 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
