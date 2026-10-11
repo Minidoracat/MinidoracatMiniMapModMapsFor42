@@ -1,4 +1,4 @@
-[h1]🗺️ Minidoracat MiniMap - MOD Maps for B42[/h1]
+[h1]🗺️ Minidoracat MiniMap - MOD Maps[/h1]
 [h3]By Minidoracat[/h3]
 
 [hr][/hr]
@@ -7,7 +7,7 @@
 
 [h2]📦 需要安装[/h2]
 [list]
-[*] 必装：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap for B42[/url]（主 MOD）与它的前置 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library for B42[/url]
+[*] 必装：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]Minidoracat MiniMap[/url]（主 MOD）与它的前置 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3789836701]Minidoracat UI Library[/url]
 [*] 你要玩的地图 MOD：本包只提供图片与数据，地图本身仍要另外订阅
 [*] [b]中途加入／移除：[/b]都可以
 [*] [b]界面语言：[/b]繁體中文、简体中文、English、日本語、한국어、Русский、Español、Português、Türkçe、Français、Polski、Deutsch（翻译有问题请反馈）
@@ -35,7 +35,7 @@
 
 [h2]🔗 Minidoracat 小地图系列[/h2]
 [list]
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]MiniMap for B42[/url]（主 MOD，必装）——图片化世界地图与小地图、搜索、导航
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]MiniMap[/url]（主 MOD，必装）——图片化世界地图与小地图、搜索、导航
 [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102]MOD Maps[/url]——地图 MOD 的地图图片与路名翻译
 [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3792675881]AutoDrive[/url]——GPS 导航与自动驾驶
 [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url]——服务器自订区域

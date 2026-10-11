@@ -325,5 +325,5 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 5888, 10496, 6400, 11008 }, nameKey = "UI_MinidoracatMiniMapModMaps_VaultTecRosewood" },
     })
 else
-    print("[MinidoracatMiniMapModMaps] main MOD API (MinidoracatMiniMapAPI) not found -- install and enable the Minidoracat MiniMap for B42 main MOD")
+    print("[MinidoracatMiniMapModMaps] main MOD API (MinidoracatMiniMapAPI) not found -- install and enable the Minidoracat MiniMap main MOD")
 end

@@ -1,8 +1,8 @@
-# Minidoracat MiniMap - MOD Maps for B42
+# Minidoracat MiniMap - MOD Maps
 
 **By Minidoracat**
 
-[Minidoracat MiniMap for B42](../MinidoracatMiniMapFor42) 主 MOD 的**地圖包 addon**：
+[Minidoracat MiniMap](../MinidoracatMiniMapFor42) 主 MOD 的**地圖包 addon**：
 收錄多張地圖 MOD 的小地圖圖像（ImagePyramid）與範圍框線資料，依啟用的地圖 MOD 自動掛載。
 
 - **需要主 MOD**（mod.info `require=MinidoracatMiniMapFor42`）
