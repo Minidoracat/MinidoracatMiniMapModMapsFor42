@@ -1,10 +1,5 @@
-[h1]Minidoracat MiniMap - MOD Maps 42.21.0-0.16.1[/h1]
+[h1]Minidoracat MiniMap - MOD Maps for B42 42.21.0-0.16.1[/h1]
 [i]2026-10-11[/i]
-
-[h3]🔄 變更[/h3]
-[list]
-[*] [b]遊戲內 MOD 清單的名稱改為「Minidoracat MiniMap - MOD Maps」[/b]：拿掉結尾的 for B42；MOD ID 不變，不需要重新啟用。
-[/list]
 
 [h3]🔧 修正[/h3]
 [list]
