@@ -31,7 +31,7 @@
 [*] [b]駐車場[/b]：収録マップの駐車場も、バニラと同じ判定で表示します
 [*] [b]表示のみ[/b]：実際の地形・建物・セーブは変更しません
 [/list]
-📖 [b]対応マップの全リスト（道路データの有無を含む）、競合の注意、リクエスト：[/b][url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050627/]マップリクエスト＆対応マップ[/url]
+📖 [b]対応マップの全リスト（道路データの有無を含む）、競合の注意、リクエスト：[/b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide: Supported Maps, Road Fixes & Conflicts[/url]（英語）
 
 [h2]🔗 Minidoracat ミニマップ シリーズ[/h2]
 [list]

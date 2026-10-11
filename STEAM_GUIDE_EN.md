@@ -176,7 +176,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [list]
 [*] Maps without ✅ have no road data from the author.
 [*] Where maps overlap, covered road sections may also be missing from search (in multiplayer, the server's map order decides).
-[*] Details: [url=https://steamcommunity.com/workshop/filedetails/discussion/3763913359/586187095760051259/]MiniMap Guide[/url]
+[*] Details: [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817841972]MiniMap Guide[/url]
 [/list]
 [h3]Can I turn off the outlines or map images?[/h3]
 [list]

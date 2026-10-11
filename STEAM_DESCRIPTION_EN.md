@@ -31,7 +31,7 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 [*] [b]Parking lots[/b]: parking lots on supported maps are marked too, found the same way as on the vanilla map
 [*] [b]Display only[/b]: terrain, buildings and saves are never changed
 [/list]
-📖 [b]Full supported list (including which maps have road data), conflict notes and map requests:[/b] [url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/586187095760050601/]Map Requests & Supported Maps[/url]
+📖 [b]Full supported list (including which maps have road data), conflict notes and map requests:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide: Supported Maps, Road Fixes & Conflicts[/url]
 
 [h2]🔗 Minidoracat MiniMap series[/h2]
 [list]

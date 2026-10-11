@@ -31,7 +31,7 @@
 [*] [b]停车场[/b]：收录地图的停车场也会标出，判定方式和原版相同
 [*] [b]只改显示[/b]：不修改实际地形、建筑或存盘
 [/list]
-📖 [b]完整支持清单（含每张地图有没有道路数据）、冲突提醒与许愿：[/b][url=https://steamcommunity.com/workshop/filedetails/discussion/3763914102/568165880361411088/]支持地图清单＆许愿[/url]
+📖 [b]完整支持清单（含每张地图有没有道路数据）、冲突提醒与许愿：[/b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840347]小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突[/url]（繁体中文）
 
 [h2]🔗 Minidoracat 小地图系列[/h2]
 [list]

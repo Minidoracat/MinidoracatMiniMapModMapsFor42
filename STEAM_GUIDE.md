@@ -175,7 +175,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [list]
 [*] 清單中沒有 ✅ 的地圖，原作者沒附道路資料。
 [*] 多張地圖重疊時，被蓋住的路段也可能搜不到（多人由伺服器的地圖順序決定）。
-[*] 詳細說明：[url=https://steamcommunity.com/workshop/filedetails/discussion/3763913359/569297034317714443/]小地圖完整說明[/url]
+[*] 詳細說明：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817841920]小地圖完整說明[/url]
 [/list]
 [h3]框線或 MOD 地圖圖片可以關嗎？[/h3]
 [list]
