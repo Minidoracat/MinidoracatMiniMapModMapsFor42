@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### 更新
+
+- **提基鎮小地圖圖像更新**：原作者 2026-10-12 小幅修改了鎮東南一角的建築，小地圖圖像已依最新資料重新產生；範圍、名稱與資源點不變。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：追蹤器 #50：Tikitown & Powerplant（3037854728）2026-10-12 20:42 UTC 更新，Steam 客戶端副本 timeupdated／manifest 與上游一致，圖資 hash 等於追蹤器新基準。Tikitown 目錄只有 29_29、29_30 兩個 cell 的 lotheader／lotpack 變更，lotheader 範圍不變（25–30 × 26–30，bounds 與註冊值一致），mod.info、自帶材質與道路資料未動；其餘變更是 Power Plant、Scrap Works 子 MOD 的 Lua 與配方腳本，不進圖像。`rebuild_pyramids.py --only Tikitown` 重渲，與已發布 0.16.1 比對 45 個分片中 7 個不同，第 0 層 19 像素，全部落在這兩個 cell；`gen_map_resources.py bake --only Tikitown` 重烘，資源點與停車場資料不變。
+
 ## [42.21.0-0.16.1] - 2026-10-11
 
 ### 修正
