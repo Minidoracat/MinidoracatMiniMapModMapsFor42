@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **103 張**（80 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **104 張**（81 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯**：下列 **17 組**地圖資料提供繁中／簡中／
@@ -69,6 +69,7 @@
 | 科里爾登 | `CoryerdonB42` | 7168,5632 – 10752,7424 |
 | 雛菊郡 | `Daisy County B42 version` | 9728,7168 – 10752,8192 |
 | 拂曉鎮 | `dawn_town` | 2816,7936 – 3328,8448 |
+| 多多市 | `DuoDuoCity` | 4864,7680 – 6656,9472 |
 | 迴音河軍事基地 | `EchoCreek MilitaryBase` | 2816,9984 – 3840,11008 |
 | 艾德汽車回收場 | `EdsAutoSalvageB42` | 8448,8192 – 9216,8704 |
 | 艾莉卡家具店 | `Erikas_Furniture_Store` | 11264,7936 – 11776,8448 |

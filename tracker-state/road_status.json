@@ -84,6 +84,10 @@
       "map_dir": "DawnTown",
       "workshop_id": "3666180085"
     },
+    "DuoDuoCity.pyramid.zip": {
+      "map_dir": "DuoDuoCity",
+      "workshop_id": "3710155331"
+    },
     "EchoCreek MilitaryBase.pyramid.zip": {
       "map_dir": "EchoCreek MilitaryBase回音河 军事基地",
       "workshop_id": "3476333350"
@@ -413,7 +417,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-08T12:15:28Z",
+  "generated_at": "2026-10-13T16:44:17Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1212,6 +1216,16 @@
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": "523f7a2b807d032860048dc7567bf153c7c39a43224c9645b255f59aa746f38d"
+        }
+      }
+    },
+    "3710155331": {
+      "checked": "2026-10-13T16:44:17Z",
+      "maps": {
+        "DuoDuoCity": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "abef89905d47a1b1ef1f8ac69b1cb79d5b96dd57f9d3c7d6d6805b72cbe9516c"
         }
       }
     },

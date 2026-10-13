@@ -104,6 +104,9 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 9728, 7168, 10752, 8192 }, nameKey = "UI_MinidoracatMiniMapModMaps_DaisyCounty" },
         { zip = "DawnTown.pyramid.zip", mapMod = "dawn_town",
             bounds = { 2816, 7936, 3328, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_DawnTown" },
+        -- 與海文弗爾（4 cell）、蕁麻鎮（2 cell）、提基鎮與特雷萊 4x4（各 1 cell）地塊重疊＝事實上互斥，各自依啟用 mod 顯示。
+        { zip = "DuoDuoCity.pyramid.zip", mapMod = "DuoDuoCity",
+            bounds = { 4864, 7680, 6656, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_DuoDuoCity" },
         { zip = "EchoCreek MilitaryBase.pyramid.zip", mapMod = "EchoCreek MilitaryBase",
             bounds = { 2816, 9984, 3840, 11008 }, nameKey = "UI_MinidoracatMiniMapModMaps_EchoCreek" },
         { zip = "EdsAutoSalvageB42.pyramid.zip", mapMod = "EdsAutoSalvageB42", mapDir = "EdsAutoSalvageB42",

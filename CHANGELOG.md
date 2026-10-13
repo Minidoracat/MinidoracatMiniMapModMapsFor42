@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### 新增
+
+- **新增支援多多市（DuoDuo City）**：啟用該地圖 MOD 後，小地圖會顯示多多市的地圖圖片、框線與名稱，也會標出資源點與停車場。原作者沒有附道路資料，這張地圖上沒有路名。它和海文弗爾（Haven Fall）、蕁麻鎮（Nettle Township）的邊緣地塊重疊，另與提基鎮、特雷萊 4x4 各重疊一個角落地塊，請擇一使用。
+
 ### 更新
 
 - **提基鎮小地圖圖像更新**：原作者 2026-10-12 小幅修改了鎮東南一角的建築，小地圖圖像已依最新資料重新產生；範圍、名稱與資源點不變。
@@ -11,6 +15,8 @@
 - 更新後請重新啟動遊戲。
 
 > 技術要點：追蹤器 #50：Tikitown & Powerplant（3037854728）2026-10-12 20:42 UTC 更新，Steam 客戶端副本 timeupdated／manifest 與上游一致，圖資 hash 等於追蹤器新基準。Tikitown 目錄只有 29_29、29_30 兩個 cell 的 lotheader／lotpack 變更，lotheader 範圍不變（25–30 × 26–30，bounds 與註冊值一致），mod.info、自帶材質與道路資料未動；其餘變更是 Power Plant、Scrap Works 子 MOD 的 Lua 與配方腳本，不進圖像。`rebuild_pyramids.py --only Tikitown` 重渲，與已發布 0.16.1 比對 45 個分片中 7 個不同，第 0 層 19 像素，全部落在這兩個 cell；`gen_map_resources.py bake --only Tikitown` 重烘，資源點與停車場資料不變。
+
+> 技術要點：DuoDuo City!（Workshop 3710155331，mod ID `DuoDuoCity`，地圖資料夾 `DuoDuoCity`）lotheader 為 cell 19–25 × 30–36（49 個，滿版，B42 格式），bounds `4864,7680 – 6656,9472`；與 HavenFall 重疊 4 個 cell、Nettle Township 2 個、Tikitown 與 Trelai_4x4 各 1 個，`check_map_conflicts.ps1` 對單圖及與這四張圖的前後順序危險組合皆 0。mod.info 沒有 `require=`；渲染時 73 個 sprite 不在 atlas（`carpentry_02_112`／`113`、`vegetation_wall_01_0`–`3`），這些圖塊在 B42 遊戲材質包裡也沒有。資源點 323 筆、停車場 168 處，沒有要審的自訂房名。作者只附 `worldmap.xml`、沒有 `streets.xml`，本版不做補充道路。
 
 ## [42.21.0-0.16.1] - 2026-10-11
 
