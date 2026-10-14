@@ -1,0 +1,13 @@
+{
+  "zip": "sd_cc.pyramid.zip",
+  "mapDir": "sd_cc",
+  "rawRecords": 62,
+  "aliases": {},
+  "cells300": [[36, 29], [37, 29], [36, 30], [37, 30]],
+  "entries": [
+    {"cat": "farm", "rects": [[10820, 9128, 7, 11]], "bbox": [10820, 9128, 7, 11], "underground": false},
+    {"cat": "farm", "rects": [[10846, 8957, 6, 15]], "bbox": [10846, 8957, 6, 15], "underground": false},
+    {"cat": "tools", "rects": [[11033, 8862, 8, 11], [11033, 8861, 4, 1]], "bbox": [11029, 8840, 55, 56], "underground": false}
+  ],
+  "parking": []
+}

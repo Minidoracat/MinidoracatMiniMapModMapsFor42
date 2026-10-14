@@ -1,0 +1,77 @@
+{
+  "dataset": "new-hartburg",
+  "source": {
+    "workshop_id": "3741334453",
+    "map_mod": "newhartburg",
+    "map_dir": "New Hartburg, KY",
+    "streets_xml_sha256": "2a7b121a8f8f7054041f33e05caac6841e1ae75e7d0216b6a80939ed1d6e4889",
+    "captured": "2026-10-14"
+  },
+  "names": {
+    "Black Creek Road": {
+      "ch": "黑溪路",
+      "cn": "黑溪路",
+      "jp": "ブラッククリーク・ロード"
+    },
+    "Bone Creek St": {
+      "ch": "骨溪街",
+      "cn": "骨溪街",
+      "jp": "ボーンクリーク通り"
+    },
+    "Deer Run Road": {
+      "ch": "鹿徑路",
+      "cn": "鹿径路",
+      "jp": "ディアラン・ロード"
+    },
+    "Dogwood St": {
+      "ch": "山茱萸街",
+      "cn": "山茱萸街",
+      "jp": "ハナミズキ通り"
+    },
+    "Greenfield St": {
+      "ch": "綠野街",
+      "cn": "绿野街",
+      "jp": "グリーンフィールド通り"
+    },
+    "Harvest Road": {
+      "ch": "豐收路",
+      "cn": "丰收路",
+      "jp": "ハーベスト・ロード"
+    },
+    "Hollow Oak Road": {
+      "ch": "空橡路",
+      "cn": "空橡路",
+      "jp": "ホロウオーク・ロード"
+    },
+    "Horselick Road": {
+      "ch": "霍斯利克路",
+      "cn": "霍斯利克路",
+      "jp": "ホースリック・ロード"
+    },
+    "KY-60": {
+      "ch": "60號公路",
+      "cn": "60号公路",
+      "jp": "KY-60"
+    },
+    "Krypton Road": {
+      "ch": "克利普頓路",
+      "cn": "克利普顿路",
+      "jp": "クリプトン・ロード"
+    },
+    "Pleasant Grove St": {
+      "ch": "怡林街",
+      "cn": "怡林街",
+      "jp": "プレザントグローブ通り"
+    },
+    "Sunnybrook Road": {
+      "ch": "晴溪路",
+      "cn": "晴溪路",
+      "jp": "サニーブルック・ロード"
+    },
+    "White Pine Road": {
+      "ch": "白松路",
+      "cn": "白松路",
+      "jp": "ホワイトパイン・ロード"
+    }
+  }
+}

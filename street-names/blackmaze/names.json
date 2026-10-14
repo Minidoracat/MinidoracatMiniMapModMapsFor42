@@ -1,0 +1,32 @@
+{
+  "dataset": "blackmaze",
+  "source": {
+    "workshop_id": "3691888819",
+    "map_mod": "blackmaze",
+    "map_dir": "Blackmaze",
+    "streets_xml_sha256": "dca5f5d1410ee707c3a1cda182ff5f621eec404e3c4db342688d383b9e714cfe",
+    "captured": "2026-10-14"
+  },
+  "names": {
+    "Asinsina St": {
+      "ch": "阿辛西納街",
+      "cn": "阿辛西纳街",
+      "jp": "アシンシナ通り"
+    },
+    "BlackHawk St": {
+      "ch": "黑鷹街",
+      "cn": "黑鹰街",
+      "jp": "ブラックホーク通り"
+    },
+    "La frontera St": {
+      "ch": "邊境街",
+      "cn": "边境街",
+      "jp": "ラ・フロンテーラ通り"
+    },
+    "Solsticio St": {
+      "ch": "至日街",
+      "cn": "至日街",
+      "jp": "ソルスティシオ通り"
+    }
+  }
+}

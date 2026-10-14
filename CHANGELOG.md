@@ -1,5 +1,21 @@
 # Changelog
 
+## [Unreleased]
+
+### 新增
+
+- **新增支援新哈特堡（New Hartburg, KY）**：啟用該地圖 MOD 後，小地圖會顯示新哈特堡的地圖圖片、框線與名稱，也會標出資源點與停車場。原作者附了 13 條道路資料，路名可以搜尋與導航，繁中／簡中／日文顯示譯名。它整張落在葡萄籽鎮（Grapeseed）範圍內，也和哈特堡（Hartburg, KY）重疊，原作者註明與這兩張衝突，請擇一使用；另與康斯鎮、綠葉鎮、SecretZ 八號檢查站等地圖的邊緣地塊重疊。
+- **新增支援大熊湖（Big Bear Lake）**：顯示地圖圖片、框線與名稱，也會標出資源點與停車場。原作者附了 87 條道路資料，同樣有譯名、可搜尋與導航。它和多多市、青蛙鎮、海文弗爾（原作者註明衝突）、梅肯的地塊重疊，請擇一使用；另與班寧堡、SecretZ 北方檢查站、SecretZ 鹿頭湖基地部分重疊。這張地圖仍是 Alpha 版，作者更新後本包會跟著更新圖像。
+- **新增支援黑迷宮（BlackMaze）**：PvP 迷宮城市，顯示地圖圖片、框線與名稱，也會標出資源點。原作者附了 4 條道路資料，有譯名、可搜尋與導航。
+- **新增支援社區中心（Community Center）**：顯示地圖圖片、框線與名稱，也會標出資源點。原作者附了 10 條道路資料，有譯名、可搜尋與導航。它和唐人街、唐人街擴張區、翠湖堡、馬爾德勞 1993、馬爾德勞消防局的部分地塊重疊，請擇一使用。
+- **新增支援羅斯伍德宅院（Rosewood Compound）**：羅斯伍德東邊的一座宅院，顯示地圖圖片、框線與名稱。原作者沒有附道路資料，這張地圖上沒有路名。它和普雷斯頓堡、台北路重疊一個地塊，請擇一使用。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：五張都來自 Steam 討論串許願（SwOwl）。New Hartburg（Workshop 3741334453，mod ID `newhartburg`，資料夾 `New Hartburg, KY`）cell 24–28 × 42–45，bounds `6144,10752 – 7424,11776`，自帶 PineVilleTiles 材質、沒有 `require=`。Big Bear Lake（3816175183，`bigbearlake42`，`BBL_b42`）cell 14–23 × 26–33，bounds `3584,6656 – 6144,8704`；根目錄 mod.info 是 B41 殘留的 `b42_bigbearlake`，B42 讀 `42.0/` 的 `bigbearlake42`。BlackMaze（3691888819，`blackmaze`，`Blackmaze`）cell 62–63 × 12–14，bounds `15872,3072 – 16384,3840`，與已收錄的 `blackmaze_wp`（West Point: The Bridge Citadel）是不同地圖。Community Center（3774052732，`sd_cc_test`，`sd_cc`）cell 42–44 × 33–36，bounds `10752,8448 – 11520,9472`；`common/mod.info` 寫的 `SD_CC_TEST_42` 不會被 B42 採用（引擎先讀 `42/mod.info`）。Rosewood Compound（3818580211，`ICFCompound`，`ICF Compound`）cell 33,43，bounds `8448,11008 – 8704,11264`；同項目的 `ICFCompoundSpawn` 只加出生點。五張 lotheader 都是滿版矩形，pzmap 輸出 bounds 與 lotheader 一致；`check_map_conflicts.ps1` 對每張單圖、以及與各自重疊圖的前後順序，危險組合皆 0。新增四組街名資料 `new-hartburg`、`big-bear-lake`、`blackmaze`、`community-center`（共 114 條），與官方同名的路（KY-60、Oak St、Deerhead Road 等）沿用 LangFor42 譯名。資源點：大熊湖 117 筆／停車場 106 處、黑迷宮 104 筆、新哈特堡 35 筆／9 處、社區中心 3 筆、羅斯伍德宅院 1 筆；大熊湖作者自訂的 `mymod_toolshed`（單間、物資是撬棍／武士刀／大鎚／突擊步槍的彩蛋房）列入 ignored。
+
 ## [42.21.0-0.17.0] - 2026-10-14
 
 ### 新增

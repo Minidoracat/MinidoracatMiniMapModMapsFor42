@@ -23,9 +23,9 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 
 [h2]✨ Features[/h2]
 [list]
-[*] [b]Supported maps[/b]: 81 map mods (104 maps), shown automatically when enabled
+[*] [b]Supported maps[/b]: 86 map mods (109 maps), shown automatically when enabled
 [*] [b]Outlines & map names[/b]: map names in 12 languages; outlines can be toggled and recoloured
-[*] [b]Street-name translations[/b]: street names on 17 maps in Traditional/Simplified Chinese and Japanese; original and translated names are both searchable
+[*] [b]Street-name translations[/b]: street names on 21 maps in Traditional/Simplified Chinese and Japanese; original and translated names are both searchable
 [*] [b]Road data fixes[/b]: roads added or fixed on some maps for more complete street names and navigation
 [*] [b]Resource points[/b]: pharmacies, police stations and other buildings on supported maps are marked too, sorted the same way as vanilla
 [*] [b]Parking lots[/b]: parking lots on supported maps are marked too, found the same way as on the vanilla map

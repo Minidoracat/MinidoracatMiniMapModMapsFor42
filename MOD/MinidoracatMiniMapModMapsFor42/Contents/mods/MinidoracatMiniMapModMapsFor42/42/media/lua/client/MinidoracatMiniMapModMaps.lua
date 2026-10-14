@@ -82,6 +82,15 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 11008, 12544, 11520, 13056 }, nameKey = "UI_MinidoracatMiniMapModMaps_AtlantaTower" },
         { zip = "Atlanta.pyramid.zip", mapMod = "Atlanta",
             bounds = { 10496, 12288, 13056, 14592 }, nameKey = "UI_MinidoracatMiniMapModMaps_Atlanta" },
+        -- 大熊湖與多多市（20 cell）、SecretZ 北方檢查站（9）、青蛙鎮（8）、海文弗爾與梅肯與 SecretZ 鹿頭湖基地（各 4）、
+        -- 班寧堡（3）地塊重疊＝事實上互斥，各自依啟用 mod 顯示。根目錄 mod.info 是 B41 殘留（id=b42_bigbearlake），
+        -- B42 讀 42.0/ 的 id=bigbearlake42（ChooseGameInfo.readModInfoAux 先讀版本資料夾）。
+        { zip = "BBL_b42.pyramid.zip", mapMod = "bigbearlake42", mapDir = "BBL_b42",
+            streetNames = StreetNames["big-bear-lake"],
+            bounds = { 3584, 6656, 6144, 8704 }, nameKey = "UI_MinidoracatMiniMapModMaps_BigBearLake" },
+        { zip = "Blackmaze.pyramid.zip", mapMod = "blackmaze", mapDir = "Blackmaze",
+            streetNames = StreetNames["blackmaze"],
+            bounds = { 15872, 3072, 16384, 3840 }, nameKey = "UI_MinidoracatMiniMapModMaps_BlackMaze" },
         { zip = "BlackpineCounty.pyramid.zip", mapMod = "BlackpineCounty",
             bounds = { 9728, 14080, 11776, 15360 }, nameKey = "UI_MinidoracatMiniMapModMaps_BlackpineCounty" },
         { zip = "Camden County B42.pyramid.zip", mapMod = "CamdenCountyB42", mapDir = "Camden County B42",
@@ -143,6 +152,9 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 12544, 5888, 13056, 6400 }, nameKey = "UI_MinidoracatMiniMapModMaps_HazelnutManor" },
         { zip = "Hazelnut Manor[Poor Version].pyramid.zip", mapMod = "HazelnutManor[Poor Version]",
             bounds = { 12544, 5888, 13056, 6400 }, nameKey = "UI_MinidoracatMiniMapModMaps_HazelnutManorPoor" },
+        -- 1 個 cell（33,43），與普雷斯頓堡、台北路各重疊這一格。同 Workshop 的 ICFCompoundSpawn 只加出生點、沒有地圖目錄。
+        { zip = "ICF Compound.pyramid.zip", mapMod = "ICFCompound",
+            bounds = { 8448, 11008, 8704, 11264 }, nameKey = "UI_MinidoracatMiniMapModMaps_RosewoodCompound" },
         { zip = "IrisEyot.pyramid.zip", mapMod = "IrisEyot",
             bounds = { 4096, 11008, 4864, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_IrisEyot" },
         { zip = "KillMingLake.pyramid.zip", mapMod = "KillMingLake",
@@ -193,6 +205,11 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 10496, 14080, 11776, 15616 }, nameKey = "UI_MinidoracatMiniMapModMaps_NellisAFB" },
         { zip = "Nettle Township.pyramid.zip", mapMod = "Nettle Township B42 version",
             bounds = { 6400, 8960, 7424, 9728 }, nameKey = "UI_MinidoracatMiniMapModMaps_NettleTownship" },
+        -- 新哈特堡是哈特堡的重製版（不同 mod、不同地圖目錄，圖像不同）：20 個 cell 全落在葡萄籽鎮範圍內，
+        -- 與哈特堡（6）、SecretZ 八號檢查站（4）、康斯鎮與綠葉鎮（各 3）、SecretZ 三號地堡與 VaultTec 羅斯伍德（各 1）重疊。
+        { zip = "New Hartburg, KY.pyramid.zip", mapMod = "newhartburg", mapDir = "New Hartburg, KY",
+            streetNames = StreetNames["new-hartburg"],
+            bounds = { 6144, 10752, 7424, 11776 }, nameKey = "UI_MinidoracatMiniMapModMaps_NewHartburg" },
         { zip = "Path of Zenith, Louisville.pyramid.zip", mapMod = "PZ_ACSM_LV",
             bounds = { 12800, 768, 13312, 1280 }, nameKey = "UI_MinidoracatMiniMapModMaps_PathOfZenith" },
         { zip = "pzkNewCoalfield.pyramid.zip", mapMod = "PZKNewCoalfieldTownMap",
@@ -218,6 +235,11 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 11520, 10496, 12800, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SafeharborGarrison" },
         { zip = "SafeWayHamlet.pyramid.zip", mapMod = "SafeWayHamlet",
             bounds = { 12544, 10752, 13056, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SafeWayHamlet" },
+        -- B42 讀 42/mod.info 的 id=sd_cc_test；common/mod.info 的 SD_CC_TEST_42 不會被引擎採用。
+        -- 與唐人街（8）、唐人街擴張區與翠湖堡（各 6）、馬爾德勞 1993（4）、馬爾德勞消防局（2）地塊重疊。
+        { zip = "sd_cc.pyramid.zip", mapMod = "sd_cc_test", mapDir = "sd_cc",
+            streetNames = StreetNames["community-center"],
+            bounds = { 10752, 8448, 11520, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_CommunityCenter" },
         -- 日落湖鎮的 story addon（id 同名加 "(story addon)"）沒有自己的 media/maps，
         -- 且 require= 本圖 ⇒ 不需另立條目
         { zip = "Sunset Lake Town B42 version.pyramid.zip", mapMod = "Sunset Lake Town B42 version",

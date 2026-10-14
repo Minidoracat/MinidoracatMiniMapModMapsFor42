@@ -52,6 +52,12 @@
       "toolck"
     ]
   },
+  "BBL_b42.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "mymod_toolshed"
+    ]
+  },
   "BlackpineCounty.pyramid.zip": {
     "aliases": {},
     "ignored": [

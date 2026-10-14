@@ -28,9 +28,17 @@
       "map_dir": "Atlas Underground Complex",
       "workshop_id": "3717208771"
     },
+    "BBL_b42.pyramid.zip": {
+      "map_dir": "BBL_b42",
+      "workshop_id": "3816175183"
+    },
     "Begonia_Town.pyramid.zip": {
       "map_dir": "Begonia_Town",
       "workshop_id": "3736155379"
+    },
+    "Blackmaze.pyramid.zip": {
+      "map_dir": "Blackmaze",
+      "workshop_id": "3691888819"
     },
     "Blackmaze_wp.pyramid.zip": {
       "map_dir": "Blackmaze_wp",
@@ -160,6 +168,10 @@
       "map_dir": "Hazelnut Manor[Poor Version]",
       "workshop_id": "3495993590"
     },
+    "ICF Compound.pyramid.zip": {
+      "map_dir": "ICF Compound",
+      "workshop_id": "3818580211"
+    },
     "IrisEyot.pyramid.zip": {
       "map_dir": "IrisEyot",
       "workshop_id": "3545473388"
@@ -227,6 +239,10 @@
     "New Ellroy.pyramid.zip": {
       "map_dir": "New Ellroy",
       "workshop_id": "3747339147"
+    },
+    "New Hartburg, KY.pyramid.zip": {
+      "map_dir": "New Hartburg, KY",
+      "workshop_id": "3741334453"
     },
     "Path of Zenith, Louisville.pyramid.zip": {
       "map_dir": "Path of Zenith, Louisville",
@@ -408,6 +424,10 @@
       "map_dir": "pzkNewCoalfield",
       "workshop_id": "3452917446"
     },
+    "sd_cc.pyramid.zip": {
+      "map_dir": "sd_cc",
+      "workshop_id": "3774052732"
+    },
     "taibeiroad.pyramid.zip": {
       "map_dir": "taibeiroad",
       "workshop_id": "3401261192"
@@ -417,7 +437,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-13T16:44:17Z",
+  "generated_at": "2026-10-14T10:05:44Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1144,6 +1164,16 @@
         }
       }
     },
+    "3691888819": {
+      "checked": "2026-10-14T10:05:44Z",
+      "maps": {
+        "Blackmaze": {
+          "street_count": 4,
+          "streets_sha256": "dca5f5d1410ee707c3a1cda182ff5f621eec404e3c4db342688d383b9e714cfe",
+          "worldmap_sha256": "0b5218f3386c17f2d5895d3f0e055784f17216cf451ce4ab65b1b23c8e83acfa"
+        }
+      }
+    },
     "3693913206": {
       "checked": "2026-09-27T14:48:47Z",
       "maps": {
@@ -1279,6 +1309,16 @@
         }
       }
     },
+    "3741334453": {
+      "checked": "2026-10-14T10:05:44Z",
+      "maps": {
+        "New Hartburg, KY": {
+          "street_count": 13,
+          "streets_sha256": "2a7b121a8f8f7054041f33e05caac6841e1ae75e7d0216b6a80939ed1d6e4889",
+          "worldmap_sha256": "d122892d08125c8e8e7aa02f5f0241630a1b7b7fa067a91849499413fc4083a8"
+        }
+      }
+    },
     "3747339147": {
       "checked": "2026-09-27T14:48:47Z",
       "maps": {
@@ -1379,6 +1419,16 @@
         }
       }
     },
+    "3774052732": {
+      "checked": "2026-10-14T10:05:44Z",
+      "maps": {
+        "sd_cc": {
+          "street_count": 10,
+          "streets_sha256": "7c5ae315ef298f15fb77e2e208531a5d0e69c2103b020d0ff55e028fe29d1a1e",
+          "worldmap_sha256": "8fea2b7d687a6c7ee39409365809e20800221892b28ea7145a77b716259d1629"
+        }
+      }
+    },
     "3782173659": {
       "checked": "2026-09-27T14:48:47Z",
       "maps": {
@@ -1396,6 +1446,26 @@
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": "de2a461171a69dcc5fb1dc26dc07e931e27bf9830ad2260f28d75a310ef96c6c"
+        }
+      }
+    },
+    "3816175183": {
+      "checked": "2026-10-14T10:05:44Z",
+      "maps": {
+        "BBL_b42": {
+          "street_count": 87,
+          "streets_sha256": "6e30437475d5dc333c6d3cafde89508e21017f068b31ac8b1645c4391574747d",
+          "worldmap_sha256": "76bed498eda75af84661da41c31bd3cb5e314675057bb9af6850ec9ebc0fda17"
+        }
+      }
+    },
+    "3818580211": {
+      "checked": "2026-10-14T10:05:44Z",
+      "maps": {
+        "ICF Compound": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "acd5b708687cdb42c9179da25eb5359038f3ec65f33e2fd1cd638163e180555d"
         }
       }
     }

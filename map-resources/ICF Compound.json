@@ -1,0 +1,11 @@
+{
+  "zip": "ICF Compound.pyramid.zip",
+  "mapDir": "ICF Compound",
+  "rawRecords": 5,
+  "aliases": {},
+  "cells300": [],
+  "entries": [
+    {"cat": "tools", "rects": [[8589, 11129, 9, 6], [8589, 11135, 8, 4], [8600, 11135, 4, 4]], "bbox": [8589, 11123, 15, 16], "underground": false}
+  ],
+  "parking": []
+}

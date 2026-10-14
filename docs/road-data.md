@@ -25,9 +25,9 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**104** 張
-- 作者附道路資料（Author road data）：**24** 張；沒有 **80** 張
-- 本包路名翻譯（Translated names）：**17** 張
+- 收錄地圖（Maps）：**109** 張
+- 作者附道路資料（Author road data）：**28** 張；沒有 **81** 張
+- 本包路名翻譯（Translated names）：**21** 張
 - 本包道路修正（Fixes）：**4** 張
 - 本包補充道路（Added roads）：**2** 張
 
@@ -60,6 +60,8 @@
 | 亞特蘭大安全區（華人社區）<br>Atlanta Safe Zone | [3580819781](https://steamcommunity.com/sharedfiles/filedetails/?id=3580819781) | ❌ 無 | — | — | — |
 | 亞特蘭大大廈生存<br>Atlanta Tower Survival | [3525104670](https://steamcommunity.com/sharedfiles/filedetails/?id=3525104670) | ❌ 無 | — | — | — |
 | 亞特蘭大<br>Atlanta | [3580819781](https://steamcommunity.com/sharedfiles/filedetails/?id=3580819781) | ❌ 無 | — | — | — |
+| 大熊湖<br>Big Bear Lake | [3816175183](https://steamcommunity.com/sharedfiles/filedetails/?id=3816175183) | ✅ 87 條 | ✅ 87 條 | — | — |
+| 黑迷宮<br>BlackMaze | [3691888819](https://steamcommunity.com/sharedfiles/filedetails/?id=3691888819) | ✅ 4 條 | ✅ 4 條 | — | — |
 | 黑松郡<br>Blackpine County | [3565649631](https://steamcommunity.com/sharedfiles/filedetails/?id=3565649631) | ❌ 無 | — | — | — |
 | 卡姆登郡<br>Camden County | [3504080284](https://steamcommunity.com/sharedfiles/filedetails/?id=3504080284) | ✅ 40 條 | ✅ 40 條 | 斷點接線 3 處 | — |
 | 銀杉谷 2.0－公路<br>Cathaya Valley 2.0 Highway | [3576150391](https://steamcommunity.com/sharedfiles/filedetails/?id=3576150391) | ❌ 無 | — | — | — |
@@ -85,6 +87,7 @@
 | 獵人基地（小型版）<br>Hunter's Base (Small) | [3664225685](https://steamcommunity.com/sharedfiles/filedetails/?id=3664225685) | ❌ 無 | — | — | — |
 | 榛果莊園<br>Hazelnut Manor | [3495993590](https://steamcommunity.com/sharedfiles/filedetails/?id=3495993590) | ❌ 無 | — | — | — |
 | 榛果莊園（簡樸版）<br>Hazelnut Manor (Poor) | [3495993590](https://steamcommunity.com/sharedfiles/filedetails/?id=3495993590) | ❌ 無 | — | — | — |
+| 羅斯伍德宅院<br>Rosewood Compound | [3818580211](https://steamcommunity.com/sharedfiles/filedetails/?id=3818580211) | ❌ 無 | — | — | — |
 | 鳶尾島<br>Iris Eyot | [3545473388](https://steamcommunity.com/sharedfiles/filedetails/?id=3545473388) | ❌ 無 | — | — | — |
 | 落明湖<br>KillMingLake | [3446958402](https://steamcommunity.com/sharedfiles/filedetails/?id=3446958402) | ❌ 無 | — | — | — |
 | 金斯茅斯北區<br>Kingsmouth North | [3498573050](https://steamcommunity.com/sharedfiles/filedetails/?id=3498573050) | ❌ 無 | — | — | — |
@@ -100,6 +103,7 @@
 | 貓又嶺<br>Nekomata Ridge | [3782173659](https://steamcommunity.com/sharedfiles/filedetails/?id=3782173659) | ❌ 無 | — | — | — |
 | 內利斯空軍基地<br>Nellis Air Force Base | [3783433804](https://steamcommunity.com/sharedfiles/filedetails/?id=3783433804) | ❌ 無 | — | — | — |
 | 蕁麻鎮<br>Nettle Township | [3391349130](https://steamcommunity.com/sharedfiles/filedetails/?id=3391349130) | ❌ 無 | — | — | — |
+| 新哈特堡<br>New Hartburg, KY | [3741334453](https://steamcommunity.com/sharedfiles/filedetails/?id=3741334453) | ✅ 13 條 | ✅ 13 條 | — | — |
 | 天頂號郵輪<br>Path of Zenith | [3589905072](https://steamcommunity.com/sharedfiles/filedetails/?id=3589905072) | ❌ 無 | — | — | — |
 | 新煤田鎮<br>New Coalfield | [3452917446](https://steamcommunity.com/sharedfiles/filedetails/?id=3452917446) | ❌ 無 | — | — | — |
 | 浣熊市<br>Raccoon City | [3388468313](https://steamcommunity.com/sharedfiles/filedetails/?id=3388468313) | ❌ 無 | — | — | — |
@@ -109,6 +113,7 @@
 | 鏽堡鎮<br>RustBury | [3721711345](https://steamcommunity.com/sharedfiles/filedetails/?id=3721711345) | ❌ 無 | — | — | — |
 | 安泊戍鎮<br>Safeharbor Garrison | [3522517059](https://steamcommunity.com/sharedfiles/filedetails/?id=3522517059) | ❌ 無 | — | — | — |
 | 途安里<br>SafeWayHamlet | [3533315055](https://steamcommunity.com/sharedfiles/filedetails/?id=3533315055) | ❌ 無 | — | — | — |
+| 社區中心<br>Community Center | [3774052732](https://steamcommunity.com/sharedfiles/filedetails/?id=3774052732) | ✅ 10 條 | ✅ 10 條 | — | — |
 | 日落湖鎮<br>Sunset Lake Town | [3752069346](https://steamcommunity.com/sharedfiles/filedetails/?id=3752069346) | ❌ 無 | — | — | — |
 | 日落塔（17 層住宅樓）<br>Sunset Tower | [3748141823](https://steamcommunity.com/sharedfiles/filedetails/?id=3748141823) | ❌ 無 | — | — | — |
 | SecretZ 三號地堡<br>SecretZ Bunker 3 | [3494374578](https://steamcommunity.com/sharedfiles/filedetails/?id=3494374578) | ❌ 無 | — | — | — |

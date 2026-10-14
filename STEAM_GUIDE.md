@@ -2,7 +2,7 @@
 <!-- Steam 指南稿源（繁中）：MOD 的完整說明以本指南為準，簡介只放摘要。格式與同步方式見 pz-family-docs/release.md「完整說明：Steam 指南」 -->
 <!-- 支援地圖表來自 docs/road-data.md（road-scan 產生）；新增／移除地圖或道路資料變動時，同步更新本檔與 STEAM_GUIDE_EN.md -->
 <!-- 標題：📖 小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突 -->
-<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 81 個地圖 MOD（104 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
+<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 86 個地圖 MOD（109 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
 === 🚀 快速上手
 [b]English version:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide[/url]
 
@@ -24,7 +24,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/olist]
 {{img:01-mod-map-outlines-zh.jpg}}
 === 🧰 支援地圖（A–M）
-共 81 個地圖 MOD、104 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
+共 86 個地圖 MOD、109 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] [b]✅[/b]：原作者附有道路資料，地圖上有路名，可以搜尋與導航（數字是街道數）。
 [*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包修正或補上的道路」。
@@ -40,6 +40,8 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Atlanta Tower Survival[/td][td]亞特蘭大大廈生存[/td][td][/td][/tr]
 [tr][td]Atlas Underground Complex (Surface)[/td][td]阿特拉斯地下複合設施（地表）[/td][td][/td][/tr]
 [tr][td]Begonia Town[/td][td]海棠鎮[/td][td][/td][/tr]
+[tr][td]Big Bear Lake[/td][td]大熊湖[/td][td]✅ 87 條[/td][/tr]
+[tr][td]BlackMaze[/td][td]黑迷宮[/td][td]✅ 4 條[/td][/tr]
 [tr][td]Blackpine County[/td][td]黑松郡[/td][td][/td][/tr]
 [tr][td]Bunker 42[/td][td]42 號地堡[/td][td][/td][/tr]
 [tr][td]Camden County[/td][td]卡姆登郡[/td][td]✅ 40 條 🛠️[/td][/tr]
@@ -48,6 +50,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Chinatown[/td][td]唐人街[/td][td][/td][/tr]
 [tr][td]Chinatown Expansion[/td][td]唐人街擴張區[/td][td][/td][/tr]
 [tr][td]Clover Lake Farmhouse[/td][td]四葉草湖畔農莊[/td][td]✅ 1 條[/td][/tr]
+[tr][td]Community Center[/td][td]社區中心[/td][td]✅ 10 條[/td][/tr]
 [tr][td]Constown, KY[/td][td]康斯鎮[/td][td]🛠️[/td][/tr]
 [tr][td]Coryerdon[/td][td]科里爾登[/td][td][/td][/tr]
 [tr][td]Daisy County[/td][td]雛菊郡[/td][td]✅ 44 條 🛠️[/td][/tr]
@@ -96,11 +99,13 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Nettle Township[/td][td]蕁麻鎮[/td][td][/td][/tr]
 [tr][td]New Coalfield[/td][td]新煤田鎮[/td][td][/td][/tr]
 [tr][td]New Ellroy[/td][td]新艾爾羅伊[/td][td][/td][/tr]
+[tr][td]New Hartburg, KY[/td][td]新哈特堡[/td][td]✅ 13 條[/td][/tr]
 [tr][td]Path of Zenith[/td][td]天頂號郵輪[/td][td][/td][/tr]
 [tr][td]Raccoon City[/td][td]浣熊市[/td][td][/td][/tr]
 [tr][td]Raven Creek[/td][td]渡鴉溪[/td][td]✅ 45 條 🛠️[/td][/tr]
 [tr][td]Raven Creek (Kardinal port)[/td][td]渡鴉溪（Kardinal 移植版）[/td][td]✅ 45 條[/td][/tr]
 [tr][td]Riverside Mansion (Unofficial)[/td][td]河畔豪宅（非官方修改版）[/td][td][/td][/tr]
+[tr][td]Rosewood Compound[/td][td]羅斯伍德宅院[/td][td][/td][/tr]
 [tr][td]RustBury[/td][td]鏽堡鎮[/td][td][/td][/tr]
 [tr][td]Safeharbor Garrison[/td][td]安泊戍鎮[/td][td][/td][/tr]
 [tr][td]SafeWayHamlet[/td][td]途安里[/td][td][/td][/tr]
@@ -167,6 +172,10 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Nellis Air Force Base[/b]：與 Blackpine County、Atlanta 地塊重疊，請擇一。
 [*] [b]Mount Crow City[/b]：與 Camden County 大部分地塊重疊，另與 SafeWayHamlet、AnruisiTown 小部分重疊，請擇一。
 [*] [b]DuoDuo City[/b]：與 Haven Fall、Nettle Township 邊緣地塊重疊，另與 Tikitown、Trelai 4x4 各重疊一個角落地塊，請擇一。
+[*] [b]New Hartburg, KY[/b]：地塊全部落在 Grapeseed 範圍內，也與 Hartburg, KY 重疊（原作者註明與這兩張衝突），請擇一；另與 Constown、Greenleaf、SecretZ 八號檢查站等地圖的邊緣地塊重疊。
+[*] [b]Big Bear Lake[/b]：與 DuoDuo City、Frogtown、Haven Fall（原作者註明衝突）、Macon 地塊重疊，請擇一；另與 Fort Benning、SecretZ 北方檢查站、SecretZ 鹿頭湖基地部分重疊。
+[*] [b]Community Center[/b]：與 Chinatown、Chinatown Expansion、Fort JadeLake、Muldraugh 1993、Muldraugh Fire Dept 部分地塊重疊，請擇一。
+[*] [b]Rosewood Compound[/b]：與 Fort Preston、Taibei Road 重疊一個地塊，請擇一。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。
 [/list]
 === ❓ 常見問題
