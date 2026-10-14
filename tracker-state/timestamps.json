@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-13T12:58:22Z",
+  "generated_at": "2026-10-14T10:37:44Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -592,6 +592,13 @@
       "removed_at": null,
       "time_updated": 1785504384,
       "title": "Chinatown Expansion B42 version"
+    },
+    "3710155331": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1779211099,
+      "title": "DuoDuo City! 多多市！"
     },
     "3711035052": {
       "last_result": 1,
