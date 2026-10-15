@@ -25,8 +25,8 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**109** 張
-- 作者附道路資料（Author road data）：**28** 張；沒有 **81** 張
+- 收錄地圖（Maps）：**110** 張
+- 作者附道路資料（Author road data）：**28** 張；沒有 **82** 張
 - 本包路名翻譯（Translated names）：**21** 張
 - 本包道路修正（Fixes）：**4** 張
 - 本包補充道路（Added roads）：**2** 張
@@ -74,6 +74,7 @@
 | 迴音河軍事基地<br>EchoCreek Military Base | [3476333350](https://steamcommunity.com/sharedfiles/filedetails/?id=3476333350) | ❌ 無 | — | — | — |
 | 艾德汽車回收場<br>Ed's Auto Salvage | [3478900814](https://steamcommunity.com/sharedfiles/filedetails/?id=3478900814) | ✅ 3 條 | ✅ 3 條 | — | — |
 | 艾莉卡家具店<br>Erika's Furniture Store | [3363546437](https://steamcommunity.com/sharedfiles/filedetails/?id=3363546437) | ❌ 無 | — | — | — |
+| 陰屍路監獄<br>The Walking Dead Prison | [3712968614](https://steamcommunity.com/sharedfiles/filedetails/?id=3712968614) | ❌ 無 | — | — | — |
 | 漂浮烏托邦<br>Floatopia | [3693913206](https://steamcommunity.com/sharedfiles/filedetails/?id=3693913206) | ❌ 無 | — | — | — |
 | 狐步軍事倉庫<br>Foxtrot Warehouse | [3600377019](https://steamcommunity.com/sharedfiles/filedetails/?id=3600377019) | ❌ 無 | — | — | — |
 | 班寧堡<br>Fort Benning | [3490580478](https://steamcommunity.com/sharedfiles/filedetails/?id=3490580478) | ❌ 無 | — | — | — |

@@ -2,7 +2,7 @@
 <!-- Steam 指南稿源（繁中）：MOD 的完整說明以本指南為準，簡介只放摘要。格式與同步方式見 pz-family-docs/release.md「完整說明：Steam 指南」 -->
 <!-- 支援地圖表來自 docs/road-data.md（road-scan 產生）；新增／移除地圖或道路資料變動時，同步更新本檔與 STEAM_GUIDE_EN.md -->
 <!-- 標題：📖 小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突 -->
-<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 86 個地圖 MOD（109 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
+<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 87 個地圖 MOD（110 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
 === 🚀 快速上手
 [b]English version:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide[/url]
 
@@ -24,7 +24,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/olist]
 {{img:01-mod-map-outlines-zh.jpg}}
 === 🧰 支援地圖（A–M）
-共 86 個地圖 MOD、109 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
+共 87 個地圖 MOD、110 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] [b]✅[/b]：原作者附有道路資料，地圖上有路名，可以搜尋與導航（數字是街道數）。
 [*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包修正或補上的道路」。
@@ -129,6 +129,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Sunset Tower[/td][td]日落塔（17 層住宅樓）[/td][td][/td][/tr]
 [tr][td]Taibei Road[/td][td]台北路[/td][td][/td][/tr]
 [tr][td]Taylorsville[/td][td]泰勒斯維爾[/td][td][/td][/tr]
+[tr][td]The Walking Dead Prison[/td][td]陰屍路監獄[/td][td][/td][/tr]
 [tr][td]Tikitown & PowerPlant[/td][td]提基鎮＆發電廠[/td][td]✅ 105 條[/td][/tr]
 [tr][td]Trapala Lake Town[/td][td]特拉帕湖鎮[/td][td][/td][/tr]
 [tr][td]Trelai 4x4 (Kardinal port)[/td][td]特雷萊 4x4（Kardinal 移植版）[/td][td][/td][/tr]
@@ -176,6 +177,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Big Bear Lake[/b]：與 DuoDuo City、Frogtown、Haven Fall（原作者註明衝突）、Macon 地塊重疊，請擇一；另與 Fort Benning、SecretZ 北方檢查站、SecretZ 鹿頭湖基地部分重疊。
 [*] [b]Community Center[/b]：與 Chinatown、Chinatown Expansion、Fort JadeLake、Muldraugh 1993、Muldraugh Fire Dept 部分地塊重疊，請擇一。
 [*] [b]Rosewood Compound[/b]：與 Fort Preston、Taibei Road 重疊一個地塊，請擇一。
+[*] [b]The Walking Dead Prison[/b]：與 VaultTec Road（含監獄建築北側）、SecretZ Train Depot Refugee Camp、VaultTec Vault - Muldraugh 部分地塊重疊，請擇一。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。
 [/list]
 === ❓ 常見問題

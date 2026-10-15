@@ -2,7 +2,7 @@
 -- 由 scripts/gen_map_resources.py render 從 map-resources/*.json＋註冊清單產生；
 -- 資料用 bake 重烘，房名別名改 room-aliases.json。分類規則在主 MOD scripts/gen_poi_data.py，
 -- 停車場判定在主 MOD scripts/gen_parking_data.py（只重算停車場用 parking 子命令）。
--- 110 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
+-- 111 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
 -- parking 條目格式同 MinidoracatMiniMapParkingData（resourceApiVersion 3 起才讀，舊版主 MOD 不讀）。
 
 local R = MinidoracatMiniMapResourceAPI
@@ -3462,6 +3462,22 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
     poi = {
         { cat = "farm", rn = 1, r = { { x = 8426, y = 10078, w = 8, h = 7 } }, b = { x = 8426, y = 10078, w = 8, h = 7 } },
         { cat = "military", rn = 1, r = { { x = 8443, y = 10083, w = 5, h = 12 } }, b = { x = 8438, y = 10078, w = 27, h = 33 }, u = 1 },
+        count = 2,
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "FCooperTWDPrison", mapDir = "FCooperTWDPrison",
+    cells300 = {
+        39, 31, 40, 31,
+    },
+    poi = {
+        { cat = "school", rn = 1, r = { { x = 12146, y = 9508, w = 9, h = 12 } }, b = { x = 12107, y = 9436, w = 106, h = 92 } },
+        count = 1,
+    },
+    parking = {
+        { rn = 3, r = { { x = 12196, y = 9446, w = 4, h = 15 }, { x = 12198, y = 9461, w = 4, h = 15 }, { x = 12207, y = 9446, w = 4, h = 15 } }, b = { x = 12196, y = 9446, w = 15, h = 30 }, i = 1 },
+        { rn = 3, r = { { x = 12196, y = 9509, w = 4, h = 15 }, { x = 12198, y = 9494, w = 4, h = 15 }, { x = 12207, y = 9512, w = 4, h = 12 } }, b = { x = 12196, y = 9494, w = 15, h = 30 }, i = 1 },
         count = 2,
     },
 })

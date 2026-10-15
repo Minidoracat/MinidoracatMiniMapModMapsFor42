@@ -123,6 +123,10 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 8448, 8192, 9216, 8704 }, nameKey = "UI_MinidoracatMiniMapModMaps_EdsAutoSalvage" },
         { zip = "Erikas_Furniture_Store.pyramid.zip", mapMod = "Erikas_Furniture_Store",
             bounds = { 11264, 7936, 11776, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_ErikasFurniture" },
+        -- 與 VaultTec 聯絡道路（3 cell，含監獄建築北側）、SecretZ 火車站難民營（2 cell）、VaultTec 避難所－馬爾德勞（1 cell）
+        -- 地塊重疊＝事實上互斥，各自依啟用 mod 顯示。
+        { zip = "FCooperTWDPrison.pyramid.zip", mapMod = "FCooperTWDPrison",
+            bounds = { 11520, 9216, 12544, 9728 }, nameKey = "UI_MinidoracatMiniMapModMaps_TWDPrison" },
         { zip = "Floatopia.pyramid.zip", mapMod = "Floatopia",
             bounds = { 4352, 5376, 4864, 5888 }, nameKey = "UI_MinidoracatMiniMapModMaps_Floatopia" },
         { zip = "FoxtrotWarehouse.pyramid.zip", mapMod = "FoxtrotWarehouse", mapDir = "FoxtrotWarehouse",

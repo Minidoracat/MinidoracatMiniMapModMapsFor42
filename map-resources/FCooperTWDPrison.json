@@ -1,0 +1,14 @@
+{
+  "zip": "FCooperTWDPrison.pyramid.zip",
+  "mapDir": "FCooperTWDPrison",
+  "rawRecords": 11,
+  "aliases": {},
+  "cells300": [[39, 31], [40, 31]],
+  "entries": [
+    {"cat": "school", "rects": [[12146, 9508, 9, 12]], "bbox": [12107, 9436, 106, 92], "underground": false}
+  ],
+  "parking": [
+    {"rects": [[12196, 9446, 4, 15], [12198, 9461, 4, 15], [12207, 9446, 4, 15]], "box": [12196, 9446, 12210, 9475], "icon": true},
+    {"rects": [[12196, 9509, 4, 15], [12198, 9494, 4, 15], [12207, 9512, 4, 12]], "box": [12196, 9494, 12210, 9523], "icon": true}
+  ]
+}

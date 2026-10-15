@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### 新增
+
+- **新增支援陰屍路監獄（The Walking Dead Prison）**：重現影集《陰屍路》第 3、4 季的監獄，位在馬爾德勞東邊。啟用該地圖 MOD 後，小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點與停車場。原作者沒有附道路資料，這張地圖上沒有路名。它和 VaultTec 聯絡道路（含監獄建築北側）、SecretZ 火車站難民營、VaultTec 避難所－馬爾德勞的部分地塊重疊，請擇一使用。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：來自 Steam 討論串許願（SwOwl）。Fred Cooper's The Walking Dead Prison（Workshop 3712968614，mod ID `FCooperTWDPrison`，地圖資料夾 `FCooperTWDPrison`，根目錄、`42/`、`common/` 三份 mod.info 的 `id=` 相同）lotheader 為 cell 45–48 × 36–37（8 個，滿版；作者描述寫的 45x35 實際檔案是 45_36），bounds `11520,9216 – 12544,9728`；與 VaultTec_road 重疊 3 個 cell、SZ_Muldraugh_Traindepot_Refugee 2 個、VaultTec_Muldraugh 1 個，`check_map_conflicts.ps1` 對單圖、與這三張圖各自的前後順序，以及四張合併的 `Map=`，危險組合皆 0。mod.info 沒有 `require=`，渲染沒有不在 atlas 的 sprite。資源點 1 筆（監獄內教室分到 school）、停車場 2 處；自訂 loot 房名 `fcooperprisonkeystorage`（文件櫃放鑰匙與文件）列 ignored。作者只附 `worldmap.xml`、沒有 `streets.xml`，本版不做補充道路。
+
 ## [42.21.0-0.18.0] - 2026-10-14
 
 ### 新增

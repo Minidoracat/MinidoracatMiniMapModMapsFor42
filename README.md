@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **109 張**（86 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **110 張**（87 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯**：下列 **21 組**地圖資料提供繁中／簡中／
@@ -75,6 +75,7 @@
 | 迴音河軍事基地 | `EchoCreek MilitaryBase` | 2816,9984 – 3840,11008 |
 | 艾德汽車回收場 | `EdsAutoSalvageB42` | 8448,8192 – 9216,8704 |
 | 艾莉卡家具店 | `Erikas_Furniture_Store` | 11264,7936 – 11776,8448 |
+| 陰屍路監獄 | `FCooperTWDPrison` | 11520,9216 – 12544,9728 |
 | 漂浮烏托邦 | `Floatopia` | 4352,5376 – 4864,5888 |
 | 狐步軍事倉庫 | `FoxtrotWarehouse` | 10496,13056 – 11008,13568 |
 | 班寧堡 | `FortBenningB42` | 5888,6656 – 6400,7424 |

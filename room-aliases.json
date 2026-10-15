@@ -150,6 +150,12 @@
       "mikuroom"
     ]
   },
+  "FCooperTWDPrison.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "fcooperprisonkeystorage"
+    ]
+  },
   "Fort Benning B42.pyramid.zip": {
     "aliases": {
       "armyhanger": "armystorage",

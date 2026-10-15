@@ -112,6 +112,10 @@
       "map_dir": "Estate 39",
       "workshop_id": "3606927986"
     },
+    "FCooperTWDPrison.pyramid.zip": {
+      "map_dir": "FCooperTWDPrison",
+      "workshop_id": "3712968614"
+    },
     "Floatopia.pyramid.zip": {
       "map_dir": "Floatopia",
       "workshop_id": "3693913206"
@@ -437,7 +441,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-14T10:05:44Z",
+  "generated_at": "2026-10-15T10:33:30Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1266,6 +1270,16 @@
           "street_count": 4,
           "streets_sha256": "a9619923dabca21796d4372f37b8d179308ad19b3d4b6c61365ecf83dc7ad845",
           "worldmap_sha256": "36002e76270b20bd9e3b7d67abba8981d4384c9cb19f838562662bd427bc248c"
+        }
+      }
+    },
+    "3712968614": {
+      "checked": "2026-10-15T10:33:30Z",
+      "maps": {
+        "FCooperTWDPrison": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "1eebdd032d8658c39231c84cc7d9c54e018f01800fcee33b647050d42ba66b16"
         }
       }
     },
