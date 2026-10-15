@@ -1,0 +1,18 @@
+<streets version="1">
+    <street name="The Walking Dead Prison Rd 01 (MiniMap)" width="4">
+        <points>
+            <point x="11844.0" y="9289.0"/>
+            <point x="11876.0" y="9305.0"/>
+            <point x="12263.0" y="9305.0"/>
+        </points>
+    </street>
+    <street name="The Walking Dead Prison Rd 02 (MiniMap)" width="7">
+        <points>
+            <point x="12266.5" y="9264.5"/>
+            <point x="12266.5" y="9300.5"/>
+            <point x="12266.5" y="9581.5"/>
+            <point x="12260.5" y="9593.0"/>
+            <point x="12252.0" y="9601.5"/>
+        </points>
+    </street>
+</streets>

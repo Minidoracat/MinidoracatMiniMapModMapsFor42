@@ -129,7 +129,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [tr][td]Sunset Tower[/td][td][/td][/tr]
 [tr][td]Taibei Road[/td][td][/td][/tr]
 [tr][td]Taylorsville[/td][td][/td][/tr]
-[tr][td]The Walking Dead Prison[/td][td][/td][/tr]
+[tr][td]The Walking Dead Prison[/td][td]🛠️[/td][/tr]
 [tr][td]Tikitown & PowerPlant[/td][td]✅ 105 streets[/td][/tr]
 [tr][td]Trapala Lake Town[/td][td][/td][/tr]
 [tr][td]Trelai 4x4 (Kardinal port)[/td][td][/td][/tr]
@@ -162,6 +162,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] The KY-79 bend where the vanilla highway enters Raven Creek had no navigation data, so routes took a long detour; this pack adds it as "Raven Creek Rd 01 (MiniMap)".
 [*] Westbound routes from the east entrance no longer cut through the median trees.
 [/list]
+[*] [b]The Walking Dead Prison[/b]: the map covers a stretch each of the vanilla Tioga Road and Magazine Road beside the prison, and those stretches had no navigation data, so routes along Tioga Road took a long detour (about 950 tiles became about 5,300) and could not reach the prison's east gate; this pack adds both along the vanilla route, searchable as "The Walking Dead Prison Rd 01 (MiniMap)" and "The Walking Dead Prison Rd 02 (MiniMap)".
 [*] [b]Muldraugh 1993[/b]: 913 street labels that exactly duplicate the vanilla map are hidden on display only; navigation is unaffected.
 [/list]
 === ⚠️ Conflicts and overlaps

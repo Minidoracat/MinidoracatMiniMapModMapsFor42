@@ -1,0 +1,35 @@
+{
+  "dataset": "twd-prison",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3712968614",
+    "map_mod": "FCooperTWDPrison",
+    "map_dir": "FCooperTWDPrison",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "1eebdd032d8658c39231c84cc7d9c54e018f01800fcee33b647050d42ba66b16",
+    "captured": "2026-10-15",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "The Walking Dead Prison",
+    "ch": "陰屍路監獄",
+    "cn": "行尸走肉监狱",
+    "jp": "ウォーキング・デッドの刑務所"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 4,
+      "points": [11844, 9289, 11876, 9305, 12263, 9305],
+      "evidence": {"samples": 423, "on_road": 423}
+    },
+    {
+      "no": 2,
+      "width": 7,
+      "points": [12266.5, 9264.5, 12266.5, 9300.5, 12266.5, 9581.5, 12260.5, 9593, 12252, 9601.5],
+      "evidence": {"samples": 342, "on_road": 342}
+    }
+  ],
+  "retired": []
+}

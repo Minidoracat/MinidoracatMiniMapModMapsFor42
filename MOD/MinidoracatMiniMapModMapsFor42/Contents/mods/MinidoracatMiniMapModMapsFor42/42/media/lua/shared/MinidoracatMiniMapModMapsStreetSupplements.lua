@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 2 個 dataset／38 條補充道路
+-- 3 個 dataset／40 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -60,5 +60,15 @@ Supplements["raven-creek"] = {
     file = "media/minimap/streets/raven-creek.xml", upstreamStreetCount = 45, roadCount = 1,
     names = {
         ["Raven Creek Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_raven-creek_01",
+    },
+}
+
+-- ==== twd-prison (FCooperTWDPrison / FCooperTWDPrison) ====
+Supplements["twd-prison"] = {
+    schemaVersion = 1, mapMod = "FCooperTWDPrison", mapDir = "FCooperTWDPrison",
+    file = "media/minimap/streets/twd-prison.xml", upstreamStreetCount = 0, roadCount = 2,
+    names = {
+        ["The Walking Dead Prison Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_twd-prison_01",
+        ["The Walking Dead Prison Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_twd-prison_02",
     },
 }

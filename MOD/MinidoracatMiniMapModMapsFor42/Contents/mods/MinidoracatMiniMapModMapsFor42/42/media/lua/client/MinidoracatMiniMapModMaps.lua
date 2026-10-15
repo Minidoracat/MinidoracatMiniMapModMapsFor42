@@ -124,8 +124,11 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "Erikas_Furniture_Store.pyramid.zip", mapMod = "Erikas_Furniture_Store",
             bounds = { 11264, 7936, 11776, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_ErikasFurniture" },
         -- 與 VaultTec 聯絡道路（3 cell，含監獄建築北側）、SecretZ 火車站難民營（2 cell）、VaultTec 避難所－馬爾德勞（1 cell）
-        -- 地塊重疊＝事實上互斥，各自依啟用 mod 顯示。
-        { zip = "FCooperTWDPrison.pyramid.zip", mapMod = "FCooperTWDPrison",
+        -- 地塊重疊＝事實上互斥，各自依啟用 mod 顯示。作者沒有 streets.xml，lotheader 又佔滿 300 格 (39,31)(40,31)：
+        -- 原版 Tioga Road／Magazine Road 在這兩格被裁（WorldMapStreets.initObscuredCells 不看有沒有 streets.xml），
+        -- 路面還在 ⇒ 補充道路沿原版幾何接回
+        { zip = "FCooperTWDPrison.pyramid.zip", mapMod = "FCooperTWDPrison", mapDir = "FCooperTWDPrison",
+            streetSupplement = StreetSupplements["twd-prison"],
             bounds = { 11520, 9216, 12544, 9728 }, nameKey = "UI_MinidoracatMiniMapModMaps_TWDPrison" },
         { zip = "Floatopia.pyramid.zip", mapMod = "Floatopia",
             bounds = { 4352, 5376, 4864, 5888 }, nameKey = "UI_MinidoracatMiniMapModMaps_Floatopia" },

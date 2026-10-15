@@ -129,7 +129,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Sunset Tower[/td][td]日落塔（17 層住宅樓）[/td][td][/td][/tr]
 [tr][td]Taibei Road[/td][td]台北路[/td][td][/td][/tr]
 [tr][td]Taylorsville[/td][td]泰勒斯維爾[/td][td][/td][/tr]
-[tr][td]The Walking Dead Prison[/td][td]陰屍路監獄[/td][td][/td][/tr]
+[tr][td]The Walking Dead Prison[/td][td]陰屍路監獄[/td][td]🛠️[/td][/tr]
 [tr][td]Tikitown & PowerPlant[/td][td]提基鎮＆發電廠[/td][td]✅ 105 條[/td][/tr]
 [tr][td]Trapala Lake Town[/td][td]特拉帕湖鎮[/td][td][/td][/tr]
 [tr][td]Trelai 4x4 (Kardinal port)[/td][td]特雷萊 4x4（Kardinal 移植版）[/td][td][/td][/tr]
@@ -162,6 +162,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 原版 KY-79 轉進渡鴉溪的彎道沒有導航資料，導航會繞一大圈；本包補上這段，路名「渡鴉溪 01 號路（小地圖補）」。
 [*] 東入口往西的導航不再穿過中央分隔島樹叢。
 [/list]
+[*] [b]The Walking Dead Prison（陰屍路監獄）[/b]：這張地圖蓋住監獄旁原版 Tioga Road 與 Magazine Road 各一段，那兩段沒有導航資料，沿 Tioga Road 南北走要繞一大圈（約 950 格變成約 5,300 格），也到不了監獄東門；本包沿原版路線補上，搜尋名稱是「陰屍路監獄 01 號路（小地圖補）」「陰屍路監獄 02 號路（小地圖補）」。
 [*] [b]Muldraugh 1993（馬爾德勞 1993）[/b]：和官方地圖完全相同的 913 個重複路名只隱藏顯示，導航不受影響。
 [/list]
 === ⚠️ 衝突與重疊

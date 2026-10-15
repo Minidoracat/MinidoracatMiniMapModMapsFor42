@@ -29,7 +29,7 @@
 - 作者附道路資料（Author road data）：**28** 張；沒有 **82** 張
 - 本包路名翻譯（Translated names）：**21** 張
 - 本包道路修正（Fixes）：**4** 張
-- 本包補充道路（Added roads）：**2** 張
+- 本包補充道路（Added roads）：**3** 張
 
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
 
@@ -39,6 +39,8 @@
   - 補充道路 37 條：作者沒放進道路資料的路由本包補上，路名 `康斯鎮 01 號路（小地圖補）`～`康斯鎮 37 號路（小地圖補）`（英文 `Constown Rd 01 (MiniMap)`～`Constown Rd 37 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **雛菊郡（Daisy County）**
   - 輪廓道路改中心線 44 條：作者把路畫成外框，路名會上下各顯示一次；改成中心線後顯示與導航都正常
+- **陰屍路監獄（The Walking Dead Prison）**
+  - 補充道路 2 條：作者沒放進道路資料的路由本包補上，路名 `陰屍路監獄 01 號路（小地圖補）`～`陰屍路監獄 02 號路（小地圖補）`（英文 `The Walking Dead Prison Rd 01 (MiniMap)`～`The Walking Dead Prison Rd 02 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **馬爾德勞 1993（Muldraugh 1993）**
   - 重複路名隱藏 913 筆：與官方地圖逐點相同的複本，只藏玩家地圖上重疊的路名，導航不受影響
 - **渡鴉溪（Raven Creek）**
@@ -74,7 +76,7 @@
 | 迴音河軍事基地<br>EchoCreek Military Base | [3476333350](https://steamcommunity.com/sharedfiles/filedetails/?id=3476333350) | ❌ 無 | — | — | — |
 | 艾德汽車回收場<br>Ed's Auto Salvage | [3478900814](https://steamcommunity.com/sharedfiles/filedetails/?id=3478900814) | ✅ 3 條 | ✅ 3 條 | — | — |
 | 艾莉卡家具店<br>Erika's Furniture Store | [3363546437](https://steamcommunity.com/sharedfiles/filedetails/?id=3363546437) | ❌ 無 | — | — | — |
-| 陰屍路監獄<br>The Walking Dead Prison | [3712968614](https://steamcommunity.com/sharedfiles/filedetails/?id=3712968614) | ❌ 無 | — | — | — |
+| 陰屍路監獄<br>The Walking Dead Prison | [3712968614](https://steamcommunity.com/sharedfiles/filedetails/?id=3712968614) | ❌ 無 | — | — | ✅ 2 條 |
 | 漂浮烏托邦<br>Floatopia | [3693913206](https://steamcommunity.com/sharedfiles/filedetails/?id=3693913206) | ❌ 無 | — | — | — |
 | 狐步軍事倉庫<br>Foxtrot Warehouse | [3600377019](https://steamcommunity.com/sharedfiles/filedetails/?id=3600377019) | ❌ 無 | — | — | — |
 | 班寧堡<br>Fort Benning | [3490580478](https://steamcommunity.com/sharedfiles/filedetails/?id=3490580478) | ❌ 無 | — | — | — |
