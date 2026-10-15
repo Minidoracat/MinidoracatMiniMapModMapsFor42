@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-14T10:37:44Z",
+  "generated_at": "2026-10-15T10:19:59Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -544,6 +544,13 @@
       "time_updated": 1774408950,
       "title": "WILDSTEEL - FORT SPIFFO"
     },
+    "3691888819": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1778565097,
+      "title": "BlackMaze Laberinto PVP Sp/Mp B42"
+    },
     "3693913206": {
       "last_result": 1,
       "removed": false,
@@ -642,6 +649,13 @@
       "time_updated": 1785662857,
       "title": "Begonia Town"
     },
+    "3741334453": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1790951222,
+      "title": "New Hartburg"
+    },
     "3747339147": {
       "last_result": 1,
       "removed": false,
@@ -698,6 +712,13 @@
       "time_updated": 1786057286,
       "title": "Kardinal Raven Creek B42"
     },
+    "3774052732": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1791509822,
+      "title": "Community Center"
+    },
     "3782173659": {
       "last_result": 1,
       "removed": false,
@@ -711,6 +732,20 @@
       "removed_at": null,
       "time_updated": 1787438368,
       "title": "[B42] Nellis Air Force Base"
+    },
+    "3816175183": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1791590564,
+      "title": "Big Bear Lake [ALPHA] [B42]"
+    },
+    "3818580211": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1791850859,
+      "title": "Rosewood Compound"
     }
   }
 }
