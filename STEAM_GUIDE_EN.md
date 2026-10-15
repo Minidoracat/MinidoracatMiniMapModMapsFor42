@@ -150,10 +150,11 @@ For what the marks mean, see "Supported maps (A–M)".
 [/table]
 === 🧰 Roads fixed or added by this pack
 [list]
-[*] [b]Constown, KY[/b]: the author ships no road data, so this pack adds 37 roads; they are searchable and routable.
+[*] [b]Constown, KY[/b]: the author ships no road data, so this pack adds 38 roads; they are searchable and routable.
 [list]
 [*] They are named like "Constown Rd 01 (MiniMap)".
 [*] The game switches to the author's roads automatically if the author adds road data later.
+[*] The vanilla Deer Trail Road stretch the map covers (the gravel road north of KY-60) follows the vanilla route with its real 5-tile width, searchable as "Constown Rd 38 (MiniMap)".
 [/list]
 [*] [b]Camden County[/b]: 3 author roads stopped short of junctions; they now connect, so navigation can reach them.
 [*] [b]Daisy County[/b]: 44 roads drawn as outlines are converted to centre lines, so names no longer appear twice.

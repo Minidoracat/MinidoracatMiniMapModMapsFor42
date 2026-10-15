@@ -271,9 +271,6 @@
     </street>
     <street name="Constown Rd 32 (MiniMap)" width="14">
         <points>
-            <point x="6296.5" y="10802.5"/>
-            <point x="6296.5" y="11033.5"/>
-            <point x="6294.5" y="11035.5"/>
             <point x="6295.5" y="11195.5"/>
             <point x="6289.5" y="11201.5"/>
             <point x="6282.5" y="11202.5"/>
@@ -341,6 +338,12 @@
             <point x="5222.5" y="11265.5"/>
             <point x="5203.5" y="11246.5"/>
             <point x="5197.5" y="11244.5"/>
+        </points>
+    </street>
+    <street name="Constown Rd 38 (MiniMap)" width="5">
+        <points>
+            <point x="6295.5" y="10594.0"/>
+            <point x="6295.5" y="11197.0"/>
         </points>
     </street>
 </streets>

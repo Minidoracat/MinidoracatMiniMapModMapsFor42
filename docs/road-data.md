@@ -36,7 +36,7 @@
 - **卡姆登郡（Camden County）**
   - 斷點接線 3 處：作者的路停在路口前，導航／自動駕駛到不了；接回路網後可以走
 - **康斯鎮（Constown, KY）**
-  - 補充道路 37 條：作者沒放進道路資料的路由本包補上，路名 `康斯鎮 01 號路（小地圖補）`～`康斯鎮 37 號路（小地圖補）`（英文 `Constown Rd 01 (MiniMap)`～`Constown Rd 37 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+  - 補充道路 38 條：作者沒放進道路資料的路由本包補上，路名 `康斯鎮 01 號路（小地圖補）`～`康斯鎮 38 號路（小地圖補）`（英文 `Constown Rd 01 (MiniMap)`～`Constown Rd 38 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **雛菊郡（Daisy County）**
   - 輪廓道路改中心線 44 條：作者把路畫成外框，路名會上下各顯示一次；改成中心線後顯示與導航都正常
 - **陰屍路監獄（The Walking Dead Prison）**
@@ -68,7 +68,7 @@
 | 卡姆登郡<br>Camden County | [3504080284](https://steamcommunity.com/sharedfiles/filedetails/?id=3504080284) | ✅ 40 條 | ✅ 40 條 | 斷點接線 3 處 | — |
 | 銀杉谷 2.0－公路<br>Cathaya Valley 2.0 Highway | [3576150391](https://steamcommunity.com/sharedfiles/filedetails/?id=3576150391) | ❌ 無 | — | — | — |
 | 銀杉谷 2.0<br>Cathaya Valley 2.0 | [3576150391](https://steamcommunity.com/sharedfiles/filedetails/?id=3576150391) | ❌ 無 | — | — | — |
-| 康斯鎮<br>Constown, KY | [3480990544](https://steamcommunity.com/sharedfiles/filedetails/?id=3480990544) | ❌ 無 | — | — | ✅ 37 條 |
+| 康斯鎮<br>Constown, KY | [3480990544](https://steamcommunity.com/sharedfiles/filedetails/?id=3480990544) | ❌ 無 | — | — | ✅ 38 條 |
 | 科里爾登<br>Coryerdon | [3502623745](https://steamcommunity.com/sharedfiles/filedetails/?id=3502623745) | ❌ 無 | — | — | — |
 | 雛菊郡<br>Daisy County | [3390753141](https://steamcommunity.com/sharedfiles/filedetails/?id=3390753141) | ✅ 44 條 | ✅ 44 條 | 輪廓道路改中心線 44 條 | — |
 | 拂曉鎮<br>Dawn Town | [3666180085](https://steamcommunity.com/sharedfiles/filedetails/?id=3666180085) | ❌ 無 | — | — | — |

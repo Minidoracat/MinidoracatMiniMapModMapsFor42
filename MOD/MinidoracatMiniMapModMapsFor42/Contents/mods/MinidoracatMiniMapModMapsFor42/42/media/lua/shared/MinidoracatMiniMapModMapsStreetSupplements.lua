@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 3 個 dataset／40 條補充道路
+-- 3 個 dataset／41 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -12,7 +12,7 @@ local Supplements = MinidoracatMiniMapModMapsStreetSupplements
 -- ==== constown (Constown42 / Constown, KY) ====
 Supplements["constown"] = {
     schemaVersion = 1, mapMod = "Constown42", mapDir = "Constown, KY",
-    file = "media/minimap/streets/constown.xml", upstreamStreetCount = 0, roadCount = 37,
+    file = "media/minimap/streets/constown.xml", upstreamStreetCount = 0, roadCount = 38,
     names = {
         ["Constown Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_01",
         ["Constown Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_02",
@@ -51,6 +51,7 @@ Supplements["constown"] = {
         ["Constown Rd 35 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_35",
         ["Constown Rd 36 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_36",
         ["Constown Rd 37 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_37",
+        ["Constown Rd 38 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_38",
     },
 }
 
