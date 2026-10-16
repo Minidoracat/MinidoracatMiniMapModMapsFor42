@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-15T10:19:59Z",
+  "generated_at": "2026-10-16T10:07:02Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -613,6 +613,13 @@
       "removed_at": null,
       "time_updated": 1778565145,
       "title": "[B42] WEST POINT: THE BRIDGE CITADEL"
+    },
+    "3712968614": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1780459055,
+      "title": "Fred Cooper's The Walking Dead Prison"
     },
     "3717208771": {
       "last_result": 1,
