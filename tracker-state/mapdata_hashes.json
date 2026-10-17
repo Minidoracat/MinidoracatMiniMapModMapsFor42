@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T10:07:02Z",
+  "generated_at": "2026-10-17T09:41:55Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -316,7 +316,7 @@
       }
     },
     "3479667649": {
-      "assets": "179df51ade6a67204db196cc988d79df3a1033807b713471e79a45877aae14ca",
+      "assets": "e5d251323c1d633131fdaa1ffedbca920c2ea88694d8d6b16a1ffff42a419c1f",
       "maps": {
         "Willowbrook Bastion!": {
           "bounds": [
@@ -334,7 +334,7 @@
             9728,
             10240
           ],
-          "hash": "2ea0a1054f54b6dc6d39f15ca7a0c15c848b804b43bc0fde9961146dfe50c396"
+          "hash": "e84468ce2097fa43cffb4db5460582c53bad9585f3a034acecd061487418d5c4"
         }
       }
     },
@@ -957,7 +957,7 @@
             8448,
             8704
           ],
-          "hash": "b365ff54dabb7c8b1d078901c6d69dd8f879ccd3829cf27f25d2663e22d460fa"
+          "hash": "4b318df0d0b377860d164a295d048a98d05e9411d7f3601b4f10136ac746f9b7"
         }
       }
     },
