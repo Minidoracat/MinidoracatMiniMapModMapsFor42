@@ -315,6 +315,11 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         -- 2026 版的玩家看到舊城鎮的圖）：各自一顆 zip、各自 nameKey，bounds 恰好相同
         { zip = "Willowbrook Bastion! 2026.pyramid.zip", mapMod = "Willowbrook Bastion! 2",
             bounds = { 8448, 9472, 9728, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_WillowbrookBastion2026" },
+        -- 2026 Map Only 版（同 Workshop 第三個互斥變體，mod 資料夾 "Willowbrook Bastion! 2026 map only"，
+        -- id 以 42/mod.info 為準；common/mod.info 照抄 2026 版的 id）：media 下地圖目錄、材質包、
+        -- tiles 與 2026 版逐檔 sha256 相同，只差 loot 分配 lua ⇒ 圖像相同，作 2026 zip 的 ID alias
+        { zip = "Willowbrook Bastion! 2026.pyramid.zip", mapMod = "Willowbrook Bastion! MO",
+            bounds = { 8448, 9472, 9728, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_WillowbrookBastion2026" },
         { zip = "Clover Lake.pyramid.zip", mapMod = "Clover Lake", mapDir = "Clover Lake",
             streetNames = StreetNames["clover-lake"],
             bounds = { 9472, 8960, 9984, 9984 }, nameKey = "UI_MinidoracatMiniMapModMaps_CloverLake" },

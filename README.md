@@ -143,7 +143,7 @@
 | 西點擴張區 | `WestPointExpansionB42` | 11776,6400 – 13312,7680 |
 | 斯皮福堡（WILDSTEEL） | `WILDSTEEL` | 14336,5632 – 14848,6144 |
 | 柳溪堡壘 | `Willowbrook Bastion!` | 8448,9472 – 9728,10240 |
-| 柳溪堡壘 2026 | `Willowbrook Bastion! 2`（與上者互斥，同 Workshop 項目的重製版） | 8448,9472 – 9728,10240 |
+| 柳溪堡壘 2026 | `Willowbrook Bastion! 2`、`Willowbrook Bastion! MO`（與上者互斥，同 Workshop 項目的重製版；MO 為純地圖版，圖像相同） | 8448,9472 – 9728,10240 |
 | 四葉草湖畔農莊 | `Clover Lake` | 9472,8960 – 9984,9984 |
 | 42 號地堡 | `Bunker42` | 11008,9728 – 11520,10240 |
 | 綠港 | `GreenportB42` | 7936,7168 – 8704,7936 |

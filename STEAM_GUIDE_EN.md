@@ -171,7 +171,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] [b]Atlanta[/b]: conflicts with Atlanta Tower Survival; choose one.
 [*] [b]Foxtrot Warehouse[/b]: fully overlaps Atlanta; choose one.
 [*] [b]Raven Creek[/b]: the original and its Kardinal port are either-or.
-[*] [b]Willowbrook Bastion[/b]: the original and its 2026 remake are either-or.
+[*] [b]Willowbrook Bastion[/b]: pick one of the original, its 2026 remake, or the 2026 Map Only version; Map Only shows the 2026 minimap.
 [*] [b]Nellis Air Force Base[/b]: overlaps Blackpine County and Atlanta; choose one.
 [*] [b]Mount Crow City[/b]: mostly overlaps Camden County and slightly overlaps SafeWayHamlet and AnruisiTown; choose one.
 [*] [b]DuoDuo City[/b]: overlaps the edge cells of Haven Fall and Nettle Township, and one corner cell each of Tikitown and Trelai 4x4; choose one.

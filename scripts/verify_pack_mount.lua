@@ -144,13 +144,13 @@ local mod = assert(load(prelude .. "\n" .. seg("mapdir%-gate") .. "\n" .. seg("r
     .. seg("register%-maps") .. "\n" .. suffix, "pack-mount"))()
 
 -- 4) 案例：只有「該地圖 MOD 啟用」時才掛，互斥變體各自掛對
-local OLD_ID, NEW_ID = "Willowbrook Bastion!", "Willowbrook Bastion! 2"
+local OLD_ID, NEW_ID, MO_ID = "Willowbrook Bastion!", "Willowbrook Bastion! 2", "Willowbrook Bastion! MO"
 local OLD_ZIP, NEW_ZIP = "Willowbrook Bastion!.pyramid.zip", "Willowbrook Bastion! 2026.pyramid.zip"
 local OLD_DIR, NEW_DIR = "Willowbrook Bastion!", "Willowbrook Bastion! 2026"
 
 local function run(active, dirs, extraFolders)
     local known = { [PACK_ID] = true }
-    local folders = { [OLD_ID] = { OLD_DIR }, [NEW_ID] = { NEW_DIR } }
+    local folders = { [OLD_ID] = { OLD_DIR }, [NEW_ID] = { NEW_DIR }, [MO_ID] = { NEW_DIR } }
     for id, list in pairs(extraFolders or {}) do folders[id] = list end
     for _, id in ipairs(active) do known[id] = true end
     local mods = { PACK_ID }
@@ -173,8 +173,12 @@ g = run({ OLD_ID }, OLD_DIR .. ";Muldraugh, KY")
 pass = check("啟用舊版 → 掛 " .. OLD_ZIP, g[OLD_ZIP] ~= nil) and pass
 pass = check("啟用舊版 → 不掛 2026 zip", g[NEW_ZIP] == nil) and pass
 
+g = run({ MO_ID }, NEW_DIR .. ";Muldraugh, KY")
+pass = check("啟用 2026 Map Only 版 → 掛 " .. NEW_ZIP .. "（alias）、不掛舊版 zip",
+    g[NEW_ZIP] ~= nil and g[OLD_ZIP] == nil) and pass
+
 g = run({}, "Muldraugh, KY")
-pass = check("兩者皆未啟用 → 兩張都不掛", g[OLD_ZIP] == nil and g[NEW_ZIP] == nil) and pass
+pass = check("三個變體皆未啟用 → 兩張都不掛", g[OLD_ZIP] == nil and g[NEW_ZIP] == nil) and pass
 
 -- 4b) 案例：唐人街群組——兩個 Workshop 項目（本體 3703704021／拓展 3703704638）在
 --     cell (43,33)-(43,35) 三格重疊，卻彼此無 require/incompatible 宣告 ⇒ 玩家可能只裝

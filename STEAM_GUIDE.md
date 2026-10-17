@@ -171,7 +171,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Atlanta[/b]：與 Atlanta Tower Survival 衝突，請二選一。
 [*] [b]Foxtrot Warehouse[/b]：全部地塊與 Atlanta 重疊，請二選一。
 [*] [b]Raven Creek[/b]：原版與 Kardinal 移植版二選一。
-[*] [b]Willowbrook Bastion[/b]：原版與 2026 重製版二選一。
+[*] [b]Willowbrook Bastion[/b]：原版、2026 重製版與 2026 純地圖版（Map Only）三選一；純地圖版顯示 2026 版的小地圖。
 [*] [b]Nellis Air Force Base[/b]：與 Blackpine County、Atlanta 地塊重疊，請擇一。
 [*] [b]Mount Crow City[/b]：與 Camden County 大部分地塊重疊，另與 SafeWayHamlet、AnruisiTown 小部分重疊，請擇一。
 [*] [b]DuoDuo City[/b]：與 Haven Fall、Nettle Township 邊緣地塊重疊，另與 Tikitown、Trelai 4x4 各重疊一個角落地塊，請擇一。

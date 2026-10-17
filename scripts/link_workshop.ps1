@@ -101,7 +101,10 @@ $MapModExclude = @(
     # 兩個都進 Mods= 會讓 streetI18n 無法唯一判定（log: conflict for mapDir=...
     # using English streets.xml）＝該圖街名退回英文，地圖資料本身也未定義行為。
     # 取本體（同正式伺服器「互斥變體取本體」的既有決策）。
-    'kardinal_ravencreek_B42'
+    'kardinal_ravencreek_B42',
+    # Willowbrook Bastion! MO：柳溪堡壘 2026 的純地圖版，與 2026 版同 mapDir、圖資相同、mod.info 互斥；
+    # 兩個都進 Mods= 會讓同路徑的 loot lua 互相覆蓋。同樣取本體，MO 的掛載用 E2E 單圖變體驗。
+    'Willowbrook Bastion! MO'
 )
 
 # 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）
