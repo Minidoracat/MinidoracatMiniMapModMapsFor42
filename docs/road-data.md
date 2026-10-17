@@ -25,9 +25,9 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**110** 張
-- 作者附道路資料（Author road data）：**28** 張；沒有 **82** 張
-- 本包路名翻譯（Translated names）：**21** 張
+- 收錄地圖（Maps）：**111** 張
+- 作者附道路資料（Author road data）：**29** 張；沒有 **82** 張
+- 本包路名翻譯（Translated names）：**22** 張
 - 本包道路修正（Fixes）：**4** 張
 - 本包補充道路（Added roads）：**3** 張
 
@@ -145,6 +145,7 @@
 | 柳溪堡壘<br>Willowbrook Bastion | [3479667649](https://steamcommunity.com/sharedfiles/filedetails/?id=3479667649) | ❌ 無 | — | — | — |
 | 柳溪堡壘 2026<br>Willowbrook Bastion 2026 | [3479667649](https://steamcommunity.com/sharedfiles/filedetails/?id=3479667649) | ❌ 無 | — | — | — |
 | 四葉草湖畔農莊<br>Clover Lake Farmhouse | [3759558202](https://steamcommunity.com/sharedfiles/filedetails/?id=3759558202) | ✅ 1 條 | ✅ 1 條 | — | — |
+| 四葉草湖 316 號公路<br>Clover Lake Highway KY-316 | [3759558202](https://steamcommunity.com/sharedfiles/filedetails/?id=3759558202) | ✅ 1 條 | ✅ 1 條 | — | — |
 | 42 號地堡<br>Bunker 42 | [3762184916](https://steamcommunity.com/sharedfiles/filedetails/?id=3762184916) | ❌ 無 | — | — | — |
 | 綠港<br>Greenport, KY | [3747595202](https://steamcommunity.com/sharedfiles/filedetails/?id=3747595202) | ✅ 15 條 | ✅ 15 條 | — | — |
 | 新艾爾羅伊<br>New Ellroy | [3747339147](https://steamcommunity.com/sharedfiles/filedetails/?id=3747339147) | ❌ 無 | — | — | — |

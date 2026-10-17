@@ -5,6 +5,7 @@
 ### 新增
 
 - **柳溪堡壘 2026 純地圖版（Map Only）也會顯示小地圖**：原作者 2026-10-17 在同一個 Workshop 項目加入不含 MOD 物品、武器與自訂掉落的純地圖版。它的地圖和柳溪堡壘 2026 完全相同，啟用後小地圖會顯示柳溪堡壘 2026 的地圖圖片、框線與名稱，也會標出資源點與停車場。純地圖版與柳溪堡壘原版、2026 版互斥，三選一。
+- **新增支援四葉草湖 316 號公路（Clover Lake Highway KY-316）**：四葉草湖畔農莊的作者在同一個 Workshop 項目附的公路 MOD，從四葉草湖往北接到 Riverside Road。啟用後小地圖會顯示它的地圖圖片、框線與名稱；原作者附了道路資料，「316號公路」可以搜尋與導航，繁中／簡中／日文顯示譯名。它和四葉草湖畔農莊共用公路接進農莊的那一個地塊，兩張一起用時，那一格的小地圖圖片以伺服器地圖順序（`Map=`）在前的那張為準。
 
 ### 更新
 
@@ -15,6 +16,8 @@
 - 更新後請重新啟動遊戲。
 
 > 技術要點：追蹤器 #52：Maplewood [B42]（3644794945）2026-10-16 15:01 UTC 更新，Steam 客戶端副本 timeupdated／manifest（6946674935883819135）與上游一致，`hash_mod_mapdata` 等於追蹤器新基準（322c9f9）。4 個 cell（31_32、31_33、32_32、32_33）的 lotheader／lotpack 與 3 個 chunkdata 變更，lotheader 範圍不變（31–32 × 32–33，bounds 與註冊值一致），mod.info、streets.xml／worldmap.xml 未動。`rebuild_pyramids.py --only Maplewood` 重渲，與已發布 0.19.1 比對 6 個分片中 4 個不同，第 0 層 2,848 像素；`gen_map_resources.py bake --only Maplewood` 後資源點仍 17 筆（rawRecords 67→75）。追蹤器 #51：Willowbrook Bastion!（3479667649）2026-10-17 07:27 UTC 更新，新增 mod 資料夾 `Willowbrook Bastion! 2026 map only`（`42/mod.info` 的 `id=Willowbrook Bastion! MO`、`require=\Roccos_Tiles`；`common/mod.info` 照抄 2026 版的 id，B42 不讀它），其 media 104 檔有 103 檔與 2026 版逐檔 sha256 相同（地圖目錄、`dahai.pack`／`dahai.floor.pack`／`dahai.tiles`、depthmaps），只有 loot 分配 lua 不同；追蹤器報的「自帶材質變更＋2026 圖資變更」就是這個新資料夾（`hash_mod_mapdata` 以 mapDir 名合併同名目錄）。原有兩個資料夾只改 lua／音效／腳本，`42/mod.info` 的 `incompatible=` 加上 MO（`id=`、`require=` 不變）。新增 MO 作 2026 zip 的 ID alias；兩顆 zip 重渲後與已發布版逐位元組相同，資源點 json 不變。`verify_pack_mount.lua` 加入 MO 啟用案例，`deps-scan`、`road-scan` 無變更。
+
+> 技術要點（四葉草湖 316 號公路）：補追蹤器 `mods` 基準時比對註冊表找到。Workshop 3759558202 的 `Clover Lake Highway KY-316`（`42/`、`common/` 兩份 mod.info 的 `id=` 相同，沒有 `require=`），地圖資料夾同名，lotheader 為 cell 37 × 31–35（5 個），bounds `9472,7936 – 9728,9216`，渲染沒有不在 atlas 的 sprite。cell 37_35 和 Clover Lake 都有、內容不同（公路版只有路口那段），`check_map_conflicts.ps1` 兩種先後順序危險組合皆 0。作者 `streets.xml` 1 條（KY-316，寬 10），新增街名 dataset `clover-lake-highway`；單欄 256 格不會佔滿任何 300 格街道格，原版道路不會被裁。資源點與停車場皆 0。
 
 ## [42.21.0-0.19.1] - 2026-10-16
 

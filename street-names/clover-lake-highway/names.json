@@ -1,0 +1,17 @@
+{
+  "dataset": "clover-lake-highway",
+  "source": {
+    "workshop_id": "3759558202",
+    "map_mod": "Clover Lake Highway KY-316",
+    "map_dir": "Clover Lake Highway KY-316",
+    "streets_xml_sha256": "19cb484d56e8c0109b117931a210461a61fca1a3222619a1bcf63dc70774bda9",
+    "captured": "2026-10-17"
+  },
+  "names": {
+    "KY-316": {
+      "ch": "316號公路",
+      "cn": "316号公路",
+      "jp": "KY-316"
+    }
+  }
+}

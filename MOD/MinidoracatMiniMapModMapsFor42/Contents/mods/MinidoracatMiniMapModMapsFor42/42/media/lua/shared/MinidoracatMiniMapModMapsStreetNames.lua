@@ -7,7 +7,7 @@
 --
 -- 空白折疊後與原名不同者會多掛一個別名鍵，讓引擎索引裡的髒名（連續空白）
 -- 也查得到；兩者指向同一個 UI 鍵。
--- 共 21 個 dataset／596 條街名。
+-- 共 22 個 dataset／597 條街名。
 MinidoracatMiniMapModMapsStreetNames = {
     ["anruisi-town"] = {
         ["Agriculture Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_f5e46c6a35",
@@ -189,6 +189,9 @@ MinidoracatMiniMapModMapsStreetNames = {
     },
     ["clover-lake"] = {
         ["Alfalfa Road"] = "UI_MinidoracatMiniMapModMaps_Street_clover-lake_b93a2e7a76",
+    },
+    ["clover-lake-highway"] = {
+        ["KY-316"] = "UI_MinidoracatMiniMapModMaps_Street_clover-lake-highway_fe86a1f758",
     },
     ["community-center"] = {
         ["Bill Rd"] = "UI_MinidoracatMiniMapModMaps_Street_community-center_3fa2ac50d6",

@@ -72,6 +72,10 @@
       "map_dir": "Chinatown Expansion B42 version",
       "workshop_id": "3703704638"
     },
+    "Clover Lake Highway KY-316.pyramid.zip": {
+      "map_dir": "Clover Lake Highway KY-316",
+      "workshop_id": "3759558202"
+    },
     "Clover Lake.pyramid.zip": {
       "map_dir": "Clover Lake",
       "workshop_id": "3759558202"
@@ -441,7 +445,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-15T10:33:30Z",
+  "generated_at": "2026-10-17T14:37:31Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",

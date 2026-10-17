@@ -2,7 +2,7 @@
 -- 由 scripts/gen_map_resources.py render 從 map-resources/*.json＋註冊清單產生；
 -- 資料用 bake 重烘，房名別名改 room-aliases.json。分類規則在主 MOD scripts/gen_poi_data.py，
 -- 停車場判定在主 MOD scripts/gen_parking_data.py（只重算停車場用 parking 子命令）。
--- 112 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
+-- 113 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
 -- parking 條目格式同 MinidoracatMiniMapParkingData（resourceApiVersion 3 起才讀，舊版主 MOD 不讀）。
 
 local R = MinidoracatMiniMapResourceAPI
@@ -2161,6 +2161,15 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
         { rn = 2, r = { { x = 11075, y = 8498, w = 4, h = 69 }, { x = 11087, y = 8498, w = 4, h = 69 } }, b = { x = 11075, y = 8498, w = 16, h = 69 }, i = 1 },
         { rn = 1, r = { { x = 11077, y = 8776, w = 18, h = 4 } }, b = { x = 11077, y = 8776, w = 18, h = 4 }, i = 1 },
         count = 30,
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "Clover Lake Highway KY-316", mapDir = "Clover Lake Highway KY-316",
+    cells300 = {
+    },
+    poi = {
+        count = 0,
     },
 })
 

@@ -2,7 +2,7 @@
 <!-- Steam 指南稿源（繁中）：MOD 的完整說明以本指南為準，簡介只放摘要。格式與同步方式見 pz-family-docs/release.md「完整說明：Steam 指南」 -->
 <!-- 支援地圖表來自 docs/road-data.md（road-scan 產生）；新增／移除地圖或道路資料變動時，同步更新本檔與 STEAM_GUIDE_EN.md -->
 <!-- 標題：📖 小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突 -->
-<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 87 個地圖 MOD（110 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
+<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 87 個地圖 MOD（111 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
 === 🚀 快速上手
 [b]English version:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide[/url]
 
@@ -24,7 +24,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/olist]
 {{img:01-mod-map-outlines-zh.jpg}}
 === 🧰 支援地圖（A–M）
-共 87 個地圖 MOD、110 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
+共 87 個地圖 MOD、111 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] [b]✅[/b]：原作者附有道路資料，地圖上有路名，可以搜尋與導航（數字是街道數）。
 [*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包修正或補上的道路」。
@@ -50,6 +50,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Chinatown[/td][td]唐人街[/td][td][/td][/tr]
 [tr][td]Chinatown Expansion[/td][td]唐人街擴張區[/td][td][/td][/tr]
 [tr][td]Clover Lake Farmhouse[/td][td]四葉草湖畔農莊[/td][td]✅ 1 條[/td][/tr]
+[tr][td]Clover Lake Highway KY-316[/td][td]四葉草湖 316 號公路[/td][td]✅ 1 條[/td][/tr]
 [tr][td]Community Center[/td][td]社區中心[/td][td]✅ 10 條[/td][/tr]
 [tr][td]Constown, KY[/td][td]康斯鎮[/td][td]🛠️[/td][/tr]
 [tr][td]Coryerdon[/td][td]科里爾登[/td][td][/td][/tr]
