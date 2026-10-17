@@ -34,6 +34,64 @@
       "reason": "gap-bridge：西端停在 Spoon Way 中線東側 13.2 格，超過導航吸附容差（兩路半寬和＋4.5＝12 格），All Saints Pl／Paradise View St／Clare Hall Dr 三條成為到不了的孤島。沿實際柏油路向西接 13 格到 Spoon Way 中線：road-surfaces 中線 27 取樣全為 paved，新端點距 Spoon Way 0.15 格。離線 NavCore（正式服 Map= 剪裁）可到達由 34/40 → 40/40。"
     },
     {
+      "index": 12,
+      "name": "Brooklawn Blvd",
+      "expectedWidth": 5,
+      "expectedPoints": [
+        15427,
+        10299.5,
+        15426.5,
+        9846
+      ],
+      "replacementWidth": 11,
+      "widthEvidence": {
+        "source": "pzmap road-surfaces --pz-build 42.21（Camden County B42 全圖 raster，2026-10-17）",
+        "sections": [
+          {
+            "from": [
+              15421,
+              9900
+            ],
+            "to": [
+              15431,
+              9900
+            ]
+          },
+          {
+            "from": [
+              15421,
+              10020
+            ],
+            "to": [
+              15431,
+              10020
+            ]
+          },
+          {
+            "from": [
+              15421,
+              10100
+            ],
+            "to": [
+              15431,
+              10100
+            ]
+          },
+          {
+            "from": [
+              15421,
+              10170
+            ],
+            "to": [
+              15431,
+              10170
+            ]
+          }
+        ]
+      },
+      "reason": "width-fix（2026-10-17 使用者核准）：有花台分隔島的林蔭大道，作者畫成單中線＋路寬 5，中線 x15426.5–15427 正好在島上，AutoDrive 照 w5 只靠右 ±1.25 m、車身壓上花台（正式服命中 plantz_03_13、plantz_02_8、boulders_17、street_decoration_01_3）。road-surfaces 每列橫截面一致：x15421–15424 paved（西車道）、x15425–15427 dirt-candidate（花台島）、x15428–15431 paved（東車道）、兩外側 gravel 人行道，總寬 11；島在 y9848–9993、10002–10063、10077–10174，只在 Salt Ridge St、Brooklawn Ln 路口斷開。改成 11 後靠右落點 ±2.75 m 落在兩條車道上。副作用：路寬不能分段，y>10175 沒有島的南段只有 8 格路面（x15422–15429，中心 x15426、作者中線偏東約 1 格），北上時車身外緣多出路緣約 0.6 m。只改有島那段做不到：這條街只有兩個點（沒有可切的內點），drop-vertex／gap-bridge 都不能拆段，用補充道路接南段是未核准的新用途。"
+    },
+    {
       "index": 22,
       "name": "Ramblewood Pl",
       "expectedWidth": 5,

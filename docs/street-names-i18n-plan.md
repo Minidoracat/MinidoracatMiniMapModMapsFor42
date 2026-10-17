@@ -45,6 +45,9 @@ Lua 字串中的非 ASCII 原名以 UTF-8 十進位位元組跳脫，避免 Kahl
   原點列不動、只在一端多接最多 4 點、接線 ≤ 48 格並寫明接到同圖哪條街）；
   Raven Creek 1 條移除多餘轉折點（drop-vertex，`dropVertex` 寫明點序、其餘點不動；內點 2026-10-01
   核准，頭尾端點須寫 `trimTo` 且新端點在該街半寬內，2026-10-06 擴充待核准）；
+  Camden County 1 條換路寬（width-fix，2026-10-17 核准：點列不動、只寫整數 `replacementWidth`，
+  `widthEvidence` 的 road-surfaces 橫截面每個都量到同一總寬、中線穿過且離路面中心 ≤ 1 格；
+  需主 MOD 認得 `replacementWidth`，舊主 MOD 略過該筆、照作者路寬）；
   Muldraugh 1993 913 筆完整複本標籤候選。
 - 名稱、points 與 width 的來源追蹤可以各自更新；原版道路修補仍由主 MOD 既有 RoadPatches 管理。
 
