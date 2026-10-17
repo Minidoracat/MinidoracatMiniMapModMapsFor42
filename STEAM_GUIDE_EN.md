@@ -157,7 +157,11 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] The game switches to the author's roads automatically if the author adds road data later.
 [*] The vanilla Deer Trail Road stretch the map covers (the gravel road north of KY-60) follows the vanilla route with its real 5-tile width, searchable as "Constown Rd 38 (MiniMap)".
 [/list]
-[*] [b]Camden County[/b]: 3 author roads stopped short of junctions; they now connect, so navigation can reach them.
+[*] [b]Camden County[/b]:
+[list]
+[*] 3 author roads stopped short of junctions; they now connect, so navigation can reach them.
+[*] Brooklawn Blvd is a two-way boulevard with a planted median, but the author marked it one lane wide; it now has its real width, so AutoDrive no longer runs onto the median planters (needs MiniMap 0.47.0 or later).
+[/list]
 [*] [b]Daisy County[/b]: 44 roads drawn as outlines are converted to centre lines, so names no longer appear twice.
 [*] [b]Raven Creek[/b]:
 [list]

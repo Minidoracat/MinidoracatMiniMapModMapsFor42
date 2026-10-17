@@ -4,7 +4,7 @@
 --
 -- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log
 -- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。
--- replacementWidth 只換路寬、點列不動；主 MOD 42.21.0-0.45.0 及更早版本不認得它，
+-- replacementWidth 只換路寬、點列不動；主 MOD 42.21.0-0.46.0 及更早版本不認得它，
 -- 該筆當空修正略過（log 一次），照作者路寬。
 -- hideLabel 只影響玩家地圖上的路名顯示，**不從導航路網移除該道路**；
 -- reference 是 vanilla 對應街道的 index/width/points，執行期須確認那條
