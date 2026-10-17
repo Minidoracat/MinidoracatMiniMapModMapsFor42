@@ -3,7 +3,8 @@
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "2463499011": {
       "assets": "edb79ec01aa4df992286162c5bc04656eb6b59e205744fd2b68a61987c64f7ec",
@@ -17,27 +18,37 @@
           ],
           "hash": "2ad0878a7e1c109ce9714486cf8a6a8f55cc66cee8bac288de0a0b94c5e820fd"
         }
+      },
+      "mods": {
+        "42Grapeseed": [
+          "Grapeseed"
+        ]
       }
     },
     "2599752664": {
       "assets": "c6ce584023e69d806caa84c70ce0d93078f9b667366c696802f3a6c57d0a4524",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "2837923608": {
       "assets": "f52ab82ffa3068a039da3a6b79e8f8d9b5cd245a6205e2c90c10dd7d99abe6fa",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "2844685624": {
       "assets": "3ec49a1a71569efe744ca631478121dcdeeac2cc4be1f6964b213b9a0115d7e0",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "2852704777": {
       "assets": "7b6538e7abe4c9ff5f5e0d21b43abf7d719c055e2c76cbabcdf3fe5918be177e",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "2879745353": {
       "assets": "7e616d6f84bcbc9f006d833bfbc276de52ac9b20a72c954b2df0d8643f4f2fd3",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "2963883586": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -51,6 +62,11 @@
           ],
           "hash": "207c6bfe1535498087f4a2050ae696766cf0c74cd50f5396eaa8f12f05bad87d"
         }
+      },
+      "mods": {
+        "Louisville_Riverboat": [
+          "Louisville_Riverboat"
+        ]
       }
     },
     "2968421358": {
@@ -65,11 +81,17 @@
           ],
           "hash": "cd1ab7c14a62ca0cb2aaa8f6b61ababadb8ed329c66105f634cad9d43a3f0556"
         }
+      },
+      "mods": {
+        "Fort_Boonesborough": [
+          "Fort_Boonesborough"
+        ]
       }
     },
     "2973698541": {
       "assets": "ed9beea1c7ab4cae1e4bd09814b6ac7ce36df1e3a7a0e64204aba83ef963ba83",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3037854728": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -83,11 +105,17 @@
           ],
           "hash": "071d10e446c5a9f9b1e0280a57dfd9985245d0c65044b932bf500ca789f7e243"
         }
+      },
+      "mods": {
+        "tikitown": [
+          "Tikitown"
+        ]
       }
     },
     "3046728955": {
       "assets": "42d18efa364498b9a563fb176f136b8f4c6ffa0d5d17ed6f6e00c9d48cf5507b",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3134394569": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -101,6 +129,11 @@
           ],
           "hash": "0f3bc716765dc6c59a93d623a805fbde54a3caada1dc0eded5e32fb45c9f7152"
         }
+      },
+      "mods": {
+        "Taylorsville": [
+          "Taylorsville"
+        ]
       }
     },
     "3318210146": {
@@ -115,11 +148,17 @@
           ],
           "hash": "b21764301c031eaca6530a8e8c3bab8485eb24cb805212716b579b33467c87ee"
         }
+      },
+      "mods": {
+        "Project Gurashi": [
+          "Megurigaoka City, Kanagawa"
+        ]
       }
     },
     "3346506593": {
       "assets": "617a7799caf98b11209f1e5f26546274cbd86b7bb4a37ec82f935347026cd746",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3363546437": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -133,6 +172,11 @@
           ],
           "hash": "ae212f3add595aa9790214eb06d47556e4c970445cb595388fb89792a001aa17"
         }
+      },
+      "mods": {
+        "Erikas_Furniture_Store": [
+          "Erikas_Furniture_Store"
+        ]
       }
     },
     "3388468313": {
@@ -147,11 +191,17 @@
           ],
           "hash": "6c8ac4a1a7f0edf856c9fa0ca81a0175ed70a374e7b84ce483c5ec9c731a595d"
         }
+      },
+      "mods": {
+        "RaccoonCityB42": [
+          "RaccoonCity"
+        ]
       }
     },
     "3390311555": {
       "assets": "b3b5ee7de9fe374871044e0b721f51d5afe1ec7b17bc41fa2c36df4a32c3cd52",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3390327877": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -165,6 +215,11 @@
           ],
           "hash": "0e088cd3c39e5ae84ea6161a8ffa2ed5ead01c5e742db0333f8c2ad477c40ebc"
         }
+      },
+      "mods": {
+        "TrapalaketownB42": [
+          "Trapalaketown"
+        ]
       }
     },
     "3390753141": {
@@ -179,6 +234,11 @@
           ],
           "hash": "29068cdd042b91a12110d871dcfe49a12230352d83eeb4c701418143a2a19890"
         }
+      },
+      "mods": {
+        "Daisy County B42 version": [
+          "Daisy County"
+        ]
       }
     },
     "3391349130": {
@@ -193,6 +253,11 @@
           ],
           "hash": "fba99b78f7ed3b11b3f9ad1a6ab7330235ca84b49b6f77f74263801cc647795a"
         }
+      },
+      "mods": {
+        "Nettle Township B42 version": [
+          "Nettle Township"
+        ]
       }
     },
     "3401261192": {
@@ -207,15 +272,22 @@
           ],
           "hash": "1315ee29136310995c1caf04a15c44676e6685d2250655788ea23e1dba36f05c"
         }
+      },
+      "mods": {
+        "Taibeiroad4": [
+          "taibeiroad"
+        ]
       }
     },
     "3404301631": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3436499337": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3446958402": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -229,6 +301,11 @@
           ],
           "hash": "ca6d8617c0fc1c74c4cff10ebfb783ba14ab7ea41da5730679f589f280a3010d"
         }
+      },
+      "mods": {
+        "KillMingLake": [
+          "KillMingLake"
+        ]
       }
     },
     "3449473111": {
@@ -243,6 +320,11 @@
           ],
           "hash": "bb88b7c553b6b1f899d68ad56e7c803c600d970e200a0e6481f53721e454e1a3"
         }
+      },
+      "mods": {
+        "Frogtown": [
+          "Frogtown"
+        ]
       }
     },
     "3452917446": {
@@ -257,6 +339,11 @@
           ],
           "hash": "67d7fed762e78063c5a635866b4d7d1735fc651c659020f49797cbeda92f4f37"
         }
+      },
+      "mods": {
+        "PZKNewCoalfieldTownMap": [
+          "pzkNewCoalfield"
+        ]
       }
     },
     "3475754603": {
@@ -271,6 +358,11 @@
           ],
           "hash": "09a7f846209008af6ef799d534fe2c50e366f3de5fe36e01b25e65450783abd7"
         }
+      },
+      "mods": {
+        "WestPointExpansionB42": [
+          "West Point Expansion_B42"
+        ]
       }
     },
     "3476333350": {
@@ -285,6 +377,11 @@
           ],
           "hash": "1422891797d48c68b909796fe87aa888893c1e9485eb4faf45bf4a06a16a9224"
         }
+      },
+      "mods": {
+        "EchoCreek MilitaryBase": [
+          "EchoCreek MilitaryBase回音河 军事基地"
+        ]
       }
     },
     "3477336014": {
@@ -299,6 +396,11 @@
           ],
           "hash": "86ba7731027f0a558de660fe26fdce0d4bd557ef71cdfcf7765dcf299375bc84"
         }
+      },
+      "mods": {
+        "LittleTownshipB42": [
+          "LittleTownshipB42"
+        ]
       }
     },
     "3478900814": {
@@ -313,6 +415,11 @@
           ],
           "hash": "d9b674f434ead66bea0073ae780f8e5e37d87a36ab17bbc2847291b6f594284a"
         }
+      },
+      "mods": {
+        "EdsAutoSalvageB42": [
+          "EdsAutoSalvageB42"
+        ]
       }
     },
     "3479667649": {
@@ -336,6 +443,17 @@
           ],
           "hash": "e84468ce2097fa43cffb4db5460582c53bad9585f3a034acecd061487418d5c4"
         }
+      },
+      "mods": {
+        "Willowbrook Bastion!": [
+          "Willowbrook Bastion!"
+        ],
+        "Willowbrook Bastion! 2": [
+          "Willowbrook Bastion! 2026"
+        ],
+        "Willowbrook Bastion! MO": [
+          "Willowbrook Bastion! 2026"
+        ]
       }
     },
     "3480990544": {
@@ -350,6 +468,11 @@
           ],
           "hash": "5f5cce29f5f2c9c0181354c63b5c1599d240458eb891fdd30c3317681987519f"
         }
+      },
+      "mods": {
+        "Constown42": [
+          "Constown, KY"
+        ]
       }
     },
     "3482962418": {
@@ -364,6 +487,11 @@
           ],
           "hash": "3454c5fdb434e26ccb7872686c0beb10bc7ffffaf7482d4cd679543765ee4b1e"
         }
+      },
+      "mods": {
+        "Asakusa lake town": [
+          "Asakusa lake town"
+        ]
       }
     },
     "3484263516": {
@@ -378,6 +506,11 @@
           ],
           "hash": "db42cf9dada4c22b8fb3d7d5daa5525252ff90a18db4a8365987e73235f91bcc"
         }
+      },
+      "mods": {
+        "RavenCreekB42": [
+          "Raven Creek B42"
+        ]
       }
     },
     "3485388592": {
@@ -392,6 +525,11 @@
           ],
           "hash": "5a821acffbaf78ee67ae28da9e4e969084a3f8012a2aba84ee7b5a59b42dcc95"
         }
+      },
+      "mods": {
+        "RMSafeHouseUnofficial": [
+          "RMSafeHouseUnofficial"
+        ]
       }
     },
     "3486814612": {
@@ -406,6 +544,11 @@
           ],
           "hash": "d9d0bbbd626522c259144c46c726bb0eec095b7d9d8515f018a0d6de726899b1"
         }
+      },
+      "mods": {
+        "Fort Waterfront B42": [
+          "Fort Waterfront B42"
+        ]
       }
     },
     "3490580478": {
@@ -420,6 +563,11 @@
           ],
           "hash": "31ac7a25292d41df7223cb548d439b1c738ad073034b86e5cc23aec01728de33"
         }
+      },
+      "mods": {
+        "FortBenningB42": [
+          "Fort Benning B42"
+        ]
       }
     },
     "3493916941": {
@@ -434,6 +582,11 @@
           ],
           "hash": "9854f7d2c97d61794c2ef3387a6b94e6bbce736234340548abf60bf54b2c192c"
         }
+      },
+      "mods": {
+        "AshenwoodmodNewB42": [
+          "AshenwoodNewB42"
+        ]
       }
     },
     "3494374578": {
@@ -574,6 +727,28 @@
           ],
           "hash": "52160ebb0250b9896bee6e6d795e6af6e3c2168c7fec87fbf94527f2e3aa8464"
         }
+      },
+      "mods": {
+        "SZ_Checkpoint6": [
+          "SZ_Checkpoint6"
+        ],
+        "Secretz42": [
+          "SZ_Bunker_3",
+          "SZ_Checkpoint1",
+          "SZ_Checkpoint5",
+          "SZ_Checkpoint6",
+          "SZ_Checkpoint8",
+          "SZ_DeerheadLake_Base",
+          "SZ_Louisville_Military_Complex",
+          "SZ_MarchRidge_ResearchFacility",
+          "SZ_MuldraughCrossroads_Checkpoint",
+          "SZ_Muldraugh_Traindepot_Refugee",
+          "SZ_North_Checkpoint",
+          "SZ_Riverside_Checkpoint_1",
+          "SZ_Riverside_Checkpoint_2",
+          "SZ_The_Mall",
+          "SZ_Westpoint_Bridge_Checkpoint"
+        ]
       }
     },
     "3494693499": {
@@ -611,6 +786,14 @@
           ],
           "hash": "eaae5f9a76cb6524e265e91e7c914c3b03e72ead1557b1078a501e1f42857c86"
         }
+      },
+      "mods": {
+        "HazelnutManor": [
+          "Hazelnut Manor"
+        ],
+        "HazelnutManor[Poor Version]": [
+          "Hazelnut Manor[Poor Version]"
+        ]
       }
     },
     "3496507146": {
@@ -625,6 +808,11 @@
           ],
           "hash": "646224daabf61a476657398b2f373cd645513f07a50dee9f47c6fab4243415a5"
         }
+      },
+      "mods": {
+        "muldraughmilitarybaseas24": [
+          "muldraughmilitarybaseas24"
+        ]
       }
     },
     "3498573050": {
@@ -639,6 +827,11 @@
           ],
           "hash": "51597c18248e29838e442f9e51b20cbbb8f4b6591fdfe0fc50e49d7d23766918"
         }
+      },
+      "mods": {
+        "KingsmouthNorthB42": [
+          "Kingsmouth North B42"
+        ]
       }
     },
     "3500846812": {
@@ -653,6 +846,11 @@
           ],
           "hash": "3f1da0eaf5722433fb14fcbed16bb3dbbde52f66feb65fcff479593e0716d789"
         }
+      },
+      "mods": {
+        "MountCrowCityVanilla": [
+          "Mount Crow City"
+        ]
       }
     },
     "3502623745": {
@@ -667,6 +865,11 @@
           ],
           "hash": "1c61b14cf882261f1876d7cf787e2f93822dbb69bd4741c33b75ed3261185b59"
         }
+      },
+      "mods": {
+        "CoryerdonB42": [
+          "Coryerdon B42"
+        ]
       }
     },
     "3504080284": {
@@ -681,6 +884,11 @@
           ],
           "hash": "1ebfb689274305cdc1eb20af9655000e32ed8a257e72dcef99f1493f74c03f5f"
         }
+      },
+      "mods": {
+        "CamdenCountyB42": [
+          "Camden County B42"
+        ]
       }
     },
     "3519054686": {
@@ -695,11 +903,17 @@
           ],
           "hash": "0ece4e2d11cff4491c0747141dbac4e027791bfa7e0aee1ca77f6bca5b9bef2c"
         }
+      },
+      "mods": {
+        "linzimod": [
+          "linzi"
+        ]
       }
     },
     "3520263838": {
       "assets": "2729d53d60dd8391de3855187eda36238ec015b4ed48fa9c934378064fa2f418",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3522517059": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -713,6 +927,11 @@
           ],
           "hash": "5410677d590ce5d63a8bcc7903d92ea28535a7c49f8dcae672645bf6dbe56108"
         }
+      },
+      "mods": {
+        "modid": [
+          "SafeharborGarrison"
+        ]
       }
     },
     "3524981481": {
@@ -727,6 +946,11 @@
           ],
           "hash": "411b6eb3ab3579731c71323e5197ef00721fa545e95b9b8002e230491d8fdb98"
         }
+      },
+      "mods": {
+        "VilaZMap": [
+          "vilaz"
+        ]
       }
     },
     "3525104670": {
@@ -741,6 +965,11 @@
           ],
           "hash": "b0b495c95fa893b5e394aa23327e46f98ab690b22cba70aa70c45d147f8cce36"
         }
+      },
+      "mods": {
+        "Atlanta Tower Survival": [
+          "Atlanta Tower Survival"
+        ]
       }
     },
     "3533315055": {
@@ -755,6 +984,11 @@
           ],
           "hash": "46c55aa47c8a3a4bc46915e784d9c9216251ee8b1f66fe1ca486bd71e433d043"
         }
+      },
+      "mods": {
+        "SafeWayHamlet": [
+          "SafeWayHamlet"
+        ]
       }
     },
     "3537326669": {
@@ -769,6 +1003,11 @@
           ],
           "hash": "18d65a4dcbee03871461a7f08abcc29b2b2edc0e0e75d1410e846e07f8d489ec"
         }
+      },
+      "mods": {
+        "Fort JadeLake": [
+          "Fort JadeLake"
+        ]
       }
     },
     "3545473388": {
@@ -783,6 +1022,11 @@
           ],
           "hash": "6d640712694e476c0829627046d91802ac58b9f37e677a41e823108f3ed75c6e"
         }
+      },
+      "mods": {
+        "IrisEyot": [
+          "IrisEyot"
+        ]
       }
     },
     "3565649631": {
@@ -797,6 +1041,11 @@
           ],
           "hash": "0f8bd74e038b1589db08f5463dedca6df8bd63b25993b76809960f9350c94769"
         }
+      },
+      "mods": {
+        "BlackpineCounty": [
+          "BlackpineCounty"
+        ]
       }
     },
     "3576150391": {
@@ -820,6 +1069,14 @@
           ],
           "hash": "43816a5ea8b49db2976ffe9585df0e8f87c7763cc043439076b07e85e8aef5dc"
         }
+      },
+      "mods": {
+        "Cathaya Valley 2.0 B42 version": [
+          "Cathaya Valley2.0"
+        ],
+        "Cathaya Valley 2.0 B42 version highway": [
+          "Cathaya Valley2.0 highway"
+        ]
       }
     },
     "3576750203": {
@@ -834,6 +1091,11 @@
           ],
           "hash": "2ed7bb4a9eb7064812393c7f66402510be3f3f32316f6c41c4d2ebcdd4fa52b9"
         }
+      },
+      "mods": {
+        "hartburgb42": [
+          "Hartburg, KY"
+        ]
       }
     },
     "3580819781": {
@@ -857,6 +1119,14 @@
           ],
           "hash": "9b2f8fe41e084926937c4ff2c97961ce6428dfab9ae2a0142ba922a9b1a1c9c6"
         }
+      },
+      "mods": {
+        "Atlanta": [
+          "Atlanta"
+        ],
+        "Atlanta - Safe Zone-Chinese Survivors’ Community": [
+          "Atlanta - Safe Zone-Chinese Survivors’ Community"
+        ]
       }
     },
     "3585472912": {
@@ -871,6 +1141,11 @@
           ],
           "hash": "9d6138cdde3672e03ad2f01ba79d43648c3314f4d88e43792184e13bfe97217f"
         }
+      },
+      "mods": {
+        "beek_muldraugh_firedept": [
+          "Muldraugh_FireDept"
+        ]
       }
     },
     "3589905072": {
@@ -885,6 +1160,11 @@
           ],
           "hash": "b93de5cbfc75e5555a6176e4e9a737a54175167881ae82f6cb46e81d2f0bb72a"
         }
+      },
+      "mods": {
+        "PZ_ACSM_LV": [
+          "Path of Zenith, Louisville"
+        ]
       }
     },
     "3600377019": {
@@ -899,6 +1179,11 @@
           ],
           "hash": "d755e666668e81c547d7e98164b20e2e6fb3c2bc042e550a3315a456e0ae911b"
         }
+      },
+      "mods": {
+        "FoxtrotWarehouse": [
+          "FoxtrotWarehouse"
+        ]
       }
     },
     "3602388131": {
@@ -913,6 +1198,11 @@
           ],
           "hash": "f3d06871e68fa10f32e53e0184c4733951f1ad53251f8faee13b500293d6ed5a"
         }
+      },
+      "mods": {
+        "Greenleaf B42 version": [
+          "Greenleaf"
+        ]
       }
     },
     "3606927986": {
@@ -927,11 +1217,17 @@
           ],
           "hash": "2e09ce15cb5c8494e499f08b60a6a155b18faa971a3bb49d05086f5256d065cf"
         }
+      },
+      "mods": {
+        "Estate 39": [
+          "Estate 39"
+        ]
       }
     },
     "3628736763": {
       "assets": "2b7a8a0cb24e244b89482f3e71ed547947f982a2f6dd3e8ed64f5da2914289bb",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3638880637": {
       "assets": "51e1f5e21d1001939f403f129834ff502b85fb8fa83a30d974145c1a131aac06",
@@ -945,6 +1241,11 @@
           ],
           "hash": "d74e07428a59058700e27ae23db38e4f5a843746bf07b08419a177776391e21d"
         }
+      },
+      "mods": {
+        "Yanghu Town": [
+          "Yanghu Town"
+        ]
       }
     },
     "3644794945": {
@@ -959,6 +1260,11 @@
           ],
           "hash": "4b318df0d0b377860d164a295d048a98d05e9411d7f3601b4f10136ac746f9b7"
         }
+      },
+      "mods": {
+        "Maplewood": [
+          "Maplewood"
+        ]
       }
     },
     "3659221974": {
@@ -973,6 +1279,11 @@
           ],
           "hash": "8063547231713f9a9769bda97a2019b10014194c530a96c64fa2ca41122ed1cd"
         }
+      },
+      "mods": {
+        "White_forest_ridge": [
+          "ningzi"
+        ]
       }
     },
     "3659676359": {
@@ -987,6 +1298,11 @@
           ],
           "hash": "659fc48edbe479c07faef110cb1449816113f5b9243894fe3e8320b147f5d65f"
         }
+      },
+      "mods": {
+        "AnruisiTown": [
+          "AnruisiTown"
+        ]
       }
     },
     "3664225685": {
@@ -1010,11 +1326,20 @@
           ],
           "hash": "9204fe8716321a9504ac6710f2952691ef3830ab8748ad37431bf8b464296b11"
         }
+      },
+      "mods": {
+        "Hunter'sBaseB42": [
+          "hunter's_base"
+        ],
+        "Hunter'sBaseB42Small": [
+          "hunter's_base_small"
+        ]
       }
     },
     "3666137359": {
       "assets": "bae18db5d86275913ed1082f3a8e1b1b1c04c3e705299a571a325d2f2cb71e23",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3666180085": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -1028,6 +1353,11 @@
           ],
           "hash": "d3b8421506143324c4d40e923485e7006a2d2ffcdaff130ca983359bff3980e6"
         }
+      },
+      "mods": {
+        "dawn_town": [
+          "DawnTown"
+        ]
       }
     },
     "3677600363": {
@@ -1042,6 +1372,11 @@
           ],
           "hash": "f694c1400849f9c9d145c0ed8014d87d1e692af6337acc5343cee040603a191a"
         }
+      },
+      "mods": {
+        "Muldraugh-Checkpoint": [
+          "Muldraugh-SouthernCheckpoint"
+        ]
       }
     },
     "3685508479": {
@@ -1056,6 +1391,11 @@
           ],
           "hash": "6bc175ca8aed3cd391b6ee1d42560317a745fd9377273b5dc2af16b84ef443ee"
         }
+      },
+      "mods": {
+        "Xixi's Serene Cottage": [
+          "Xixi's Serene Cottage"
+        ]
       }
     },
     "3691773420": {
@@ -1070,6 +1410,11 @@
           ],
           "hash": "2e0e32c5bbd90e6f96e2d30b9af77eeceec660bbd241b05e3a97c0d5bdfc8c2a"
         }
+      },
+      "mods": {
+        "WILDSTEEL": [
+          "WILDSTEEL"
+        ]
       }
     },
     "3691888819": {
@@ -1084,6 +1429,11 @@
           ],
           "hash": "d35c317b473f360bbd1725c8c100fb511e8b6c6f8168e2075f7a7b6c83ef23d2"
         }
+      },
+      "mods": {
+        "blackmaze": [
+          "Blackmaze"
+        ]
       }
     },
     "3693913206": {
@@ -1098,11 +1448,17 @@
           ],
           "hash": "9ab046ff4a8188fde942c8133e827425022757e378d9564c5ab94881968bac74"
         }
+      },
+      "mods": {
+        "Floatopia": [
+          "Floatopia"
+        ]
       }
     },
     "3694705423": {
       "assets": "ab0515546bb5f447c50327f4d05d34ab1e18656c2632b86cc856e74792f6a0b0",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3697082724": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -1143,6 +1499,14 @@
           ],
           "hash": "7bb92a9a764171034dc667ef4688bab83654eba1aa2a29de8e2f3fe42d82f79c"
         }
+      },
+      "mods": {
+        "VaultTec B42 version": [
+          "VaultTec_Louisville",
+          "VaultTec_Muldraugh",
+          "VaultTec_Rosewood",
+          "VaultTec_road"
+        ]
       }
     },
     "3701164856": {
@@ -1157,6 +1521,11 @@
           ],
           "hash": "d1d5638e368bba3e297f07c10914b4ea24883cba4b94e61651e94c45c79ce233"
         }
+      },
+      "mods": {
+        "Macon": [
+          "Macon"
+        ]
       }
     },
     "3701834205": {
@@ -1171,6 +1540,11 @@
           ],
           "hash": "6ffc373982b8ea0430d9b3682d11e5529ec3552d72643c290df008a8e8427e23"
         }
+      },
+      "mods": {
+        "muldraugh1993b42": [
+          "Muldraugh 1993 B42"
+        ]
       }
     },
     "3703704021": {
@@ -1185,6 +1559,11 @@
           ],
           "hash": "480710cfc1c362adfd78069c190e4b1ff1f4eb8f5bf313fbd3846a148b2ffc13"
         }
+      },
+      "mods": {
+        "Chinatown B42 version": [
+          "Chinatown B42 version"
+        ]
       }
     },
     "3703704638": {
@@ -1199,6 +1578,14 @@
           ],
           "hash": "cf26711efcdc2eaacbe6e489199ce616a7b857e1058e6ee7d58ffa77feb39021"
         }
+      },
+      "mods": {
+        "Chinatown Expansion B42 version": [
+          "Chinatown Expansion B42 version"
+        ],
+        "Chinatown Expansion B42 version (Less Traffic Jam)": [
+          "Chinatown Expansion B42 version"
+        ]
       }
     },
     "3710155331": {
@@ -1213,6 +1600,11 @@
           ],
           "hash": "84e1c38e906f47ac21398628e5dad55bbc76609845f157bfb017d7e926e16379"
         }
+      },
+      "mods": {
+        "DuoDuoCity": [
+          "DuoDuoCity"
+        ]
       }
     },
     "3711035052": {
@@ -1227,6 +1619,11 @@
           ],
           "hash": "80837d4351a6d7c3b310703ee148fe3d6d40c3f90afa63ccaffed83592140d2a"
         }
+      },
+      "mods": {
+        "blackmaze_wp": [
+          "Blackmaze_wp"
+        ]
       }
     },
     "3712968614": {
@@ -1241,6 +1638,11 @@
           ],
           "hash": "9a05ced5d8935c647ff06ac886b827521c133aaa6106c177a4a69041d6e0d955"
         }
+      },
+      "mods": {
+        "FCooperTWDPrison": [
+          "FCooperTWDPrison"
+        ]
       }
     },
     "3717208771": {
@@ -1255,6 +1657,11 @@
           ],
           "hash": "9d23402721909f082064f96ea4b5d2db2f4b56620f7ce367bf4e17ef6d69b092"
         }
+      },
+      "mods": {
+        "Atlas Underground": [
+          "Atlas Underground Complex"
+        ]
       }
     },
     "3721711345": {
@@ -1269,6 +1676,11 @@
           ],
           "hash": "8e373a9e7cbe06f369e0b4d915f1567bc5f58475e75aab6eea53fc4d0496505a"
         }
+      },
+      "mods": {
+        "rustbury_2026_b42": [
+          "RustBury"
+        ]
       }
     },
     "3728357493": {
@@ -1283,11 +1695,17 @@
           ],
           "hash": "790f9a3f02dbe9731799d378121b2a3658143c889c960aeb3fb5d8e353069611"
         }
+      },
+      "mods": {
+        "HavenFall": [
+          "HavenFall"
+        ]
       }
     },
     "3736154771": {
       "assets": "a74f1a3473f69ee5b36eb24e54949da4fb8ee23093567eb7e8e040a66c74e25c",
-      "maps": {}
+      "maps": {},
+      "mods": {}
     },
     "3736155379": {
       "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -1301,6 +1719,11 @@
           ],
           "hash": "562d6477dfc893a30aa1f6afcdf31ca6a25ffd1762c672239bf3372bbba583f1"
         }
+      },
+      "mods": {
+        "Begonia_Town": [
+          "Begonia_Town"
+        ]
       }
     },
     "3741334453": {
@@ -1315,6 +1738,11 @@
           ],
           "hash": "4dd3642ed260958f8ef0031a8831a9e64eb66be8c606e6aee99de709778a8698"
         }
+      },
+      "mods": {
+        "newhartburg": [
+          "New Hartburg, KY"
+        ]
       }
     },
     "3747339147": {
@@ -1338,6 +1766,12 @@
           ],
           "hash": "4cbdc2f277493d133110adfb32c8a4421a2194d04fae1f530f58818a6879a2fc"
         }
+      },
+      "mods": {
+        "NewEllroyShadysideB42": [
+          "New Ellroy",
+          "Shadyside"
+        ]
       }
     },
     "3747595202": {
@@ -1352,6 +1786,11 @@
           ],
           "hash": "f633497fc30e087444227e4d93315efe51af69878ddf70c083b5637dd0d2405c"
         }
+      },
+      "mods": {
+        "GreenportB42": [
+          "Greenport, KY"
+        ]
       }
     },
     "3748141823": {
@@ -1366,6 +1805,11 @@
           ],
           "hash": "e55586e4f1a52152ab8829c4469f5da0307d0760cc9269763f1fe5d215e331cc"
         }
+      },
+      "mods": {
+        "SunsetTower": [
+          "Sunset Tower"
+        ]
       }
     },
     "3752069346": {
@@ -1380,6 +1824,11 @@
           ],
           "hash": "87a37a0bb4478377cec97fc2bb08709d0aaaafa58ed4487c70e272cca848aad2"
         }
+      },
+      "mods": {
+        "Sunset Lake Town B42 version": [
+          "Sunset Lake Town B42 version"
+        ]
       }
     },
     "3759558202": {
@@ -1403,6 +1852,14 @@
           ],
           "hash": "c5bb11296ee22b84a679aef4d747d8287fd85dc2d5a54addb70e55ae976f70aa"
         }
+      },
+      "mods": {
+        "Clover Lake": [
+          "Clover Lake"
+        ],
+        "Clover Lake Highway KY-316": [
+          "Clover Lake Highway KY-316"
+        ]
       }
     },
     "3762184916": {
@@ -1417,6 +1874,11 @@
           ],
           "hash": "4cece43eeec598bc9982f63c251cf09246ed36d6b1d748f258a05ca68920dc4b"
         }
+      },
+      "mods": {
+        "Bunker42": [
+          "Bunker 42"
+        ]
       }
     },
     "3768876083": {
@@ -1431,6 +1893,11 @@
           ],
           "hash": "078c5859cf0dc490959f6cc26244c117e7cea2b96ab83d70cd3f1ea6434cf85b"
         }
+      },
+      "mods": {
+        "Trelai_B42": [
+          "Trelai_4x4"
+        ]
       }
     },
     "3769577696": {
@@ -1445,6 +1912,11 @@
           ],
           "hash": "fe1952bd9761489dbca20bd74adc7b5760bf3edb80cc7f2855abcaac59614f3f"
         }
+      },
+      "mods": {
+        "kardinal_ravencreek_B42": [
+          "Raven Creek B42"
+        ]
       }
     },
     "3774052732": {
@@ -1459,6 +1931,11 @@
           ],
           "hash": "bdec5b228210bb4191473e279f7cf95413e3c21b1adfd8215041ed3e8278011a"
         }
+      },
+      "mods": {
+        "sd_cc_test": [
+          "sd_cc"
+        ]
       }
     },
     "3782173659": {
@@ -1473,6 +1950,11 @@
           ],
           "hash": "308121a1d47db0de99281be02aeff775a2956185e6090d19fa0d0f15da132589"
         }
+      },
+      "mods": {
+        "Nekomata Ridge": [
+          "Nekomata Ridge"
+        ]
       }
     },
     "3783433804": {
@@ -1487,6 +1969,11 @@
           ],
           "hash": "599e836f79d18580b58c84534c3f8ccd6ddf53fce31f23698bf493a4dd6a3f35"
         }
+      },
+      "mods": {
+        "NellisAFB": [
+          "Nellis Air Force Base"
+        ]
       }
     },
     "3816175183": {
@@ -1501,6 +1988,11 @@
           ],
           "hash": "786ea27d53a49b3a3eeec6b8d32b3596025c54d2981fe87db027f3f435944bdf"
         }
+      },
+      "mods": {
+        "bigbearlake42": [
+          "BBL_b42"
+        ]
       }
     },
     "3818580211": {
@@ -1515,6 +2007,11 @@
           ],
           "hash": "e87182ab63a70e107d15ae3b33363868cbf575a4a810ff0474f831f8175a331d"
         }
+      },
+      "mods": {
+        "ICFCompound": [
+          "ICF Compound"
+        ]
       }
     }
   }

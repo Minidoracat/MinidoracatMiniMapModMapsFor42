@@ -386,8 +386,8 @@ def _find_map_file(roots: list[Path], wid: str, map_dir: str, name: str) -> Path
     if found is not None:
         cand = found.with_name(name)
         return cand if cand.is_file() else None
-    for root in roots:
-        for p in sorted((root / wid).glob(f"mods/*/*/media/maps/{map_dir}/{name}")):
+    for item in gsi.item_dirs(roots, wid):
+        for p in sorted(item.glob(f"mods/*/*/media/maps/{map_dir}/{name}")):
             return p
     return None
 

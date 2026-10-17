@@ -7,7 +7,8 @@ watchlist＝Steam「支援地圖收藏」3766382352（發現來源，發版流�
 
 MOD 軸（time_updated 變動）→ steamcmd 下載該項 → hash 圖資（media/maps/ 的
   .lotheader/.lotpack/.bin＋mod 自帶 texturepack/.tiles）→ 與基準比對 →
-  issue 直接標「需重渲（哪些 mapDir、bounds 是否變動）」或「免重渲（僅腳本/loot）」。
+  issue 直接標「需重渲（哪些 mapDir、bounds 是否變動）」或「免重渲（僅腳本/loot）」；
+  項目裡新出現的 mod ID 或地圖目錄另標 🆕（要收錄，不是重渲）。
   材質包軸（同一條 MOD 軸，watchlist 多一組來源）：收藏只含地圖 MOD，地圖 require= 的
   tile pack 不在其中——材質包單獨更新時原本零 issue、圖靜默停在舊材質（2026-08-12
   Tikitown＋Drazion's Tilepack 同批更新實案）。清單由本機 `deps-scan` 由註冊表推導成
@@ -283,9 +284,9 @@ def _file_sha256(path: Path) -> str:
 _VERSION_DIR_RE = re.compile(r"^42(\.\d+)*$")  # B42 版本資料夾：42、42.0、42.13…
 
 
-def _mod_content_bases(root: Path) -> list[Path]:
-    """B42 有效內容基底。mods/<name>/ 有 42* 版本資料夾 → 只取 42*＋common
-    （排除 B41 根層副本——雙版本 mod 的根層 media/maps 是 B41 資料，混入會造成
+def _b42_mods(root: Path) -> list[tuple[Path, list[Path]]]:
+    """workshop item 根 → [(mod 資料夾, B42 有效內容基底)]。mods/<name>/ 有 42* 版本資料夾 →
+    只取 42*＋common（排除 B41 根層副本——雙版本 mod 的根層 media/maps 是 B41 資料，混入會造成
     假「需重渲」與錯誤 bounds）；無版本資料夾 → 取該 mod 根。無 mods/ 佈局時
     以同一規則套用在 item 根（防禦性退路）。"""
     def bases_for(mod: Path) -> list[Path]:
@@ -296,39 +297,64 @@ def _mod_content_bases(root: Path) -> list[Path]:
         return vers + ([common] if common.is_dir() else [])
 
     mods_dirs = sorted(d for d in root.glob("mods/*") if d.is_dir())
-    if not mods_dirs:
-        return bases_for(root)
-    out: list[Path] = []
-    for mod in mods_dirs:
-        out += bases_for(mod)
-    return out
+    return [(mod, bases_for(mod)) for mod in (mods_dirs or [root])]
+
+
+def _mod_content_bases(root: Path) -> list[Path]:
+    """B42 有效內容基底（全部 mod 資料夾攤平，規則見 _b42_mods）。"""
+    return [base for _mod, bases in _b42_mods(root) for base in bases]
+
+
+def _b42_mod_id(mod: Path) -> str | None:
+    """引擎採用的 mod.info 的 id=：版本資料夾（新→舊）、common、mod 根，取第一份存在的
+    （ChooseGameInfo.readModInfoAux）。common／根層的 id 可以和版本資料夾不同
+    （柳溪堡壘 Map Only 的 common 照抄 2026 版的 id），不能只讀 common。"""
+    vers = sorted((d for d in mod.iterdir() if d.is_dir() and _VERSION_DIR_RE.match(d.name)),
+                  key=lambda d: [int(x) for x in d.name.split(".")], reverse=True)
+    for d in (*vers, mod / "common", mod):
+        try:
+            text = (d / "mod.info").read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        m = re.search(r"(?m)^id=(.*)$", text)
+        return m[1].strip() if m else None
+    return None
 
 
 def hash_mod_mapdata(root: Path) -> dict:
-    """workshop item 根目錄 → {"maps": {mapDir: {"hash", "bounds"}}, "assets": <hash>}。
+    """workshop item 根目錄 → {"maps": {mapDir: {"hash", "bounds"}}, "assets": <hash>,
+    "mods": {mod id: [它提供的 mapDir]}}。
     只掃 B42 有效內容基底的 media/maps/（錨定固定路徑，不用啟發式找 "maps" 片段——
     上游資料夾名恰為 maps 時啟發式會讓整包圖資隱形）；maps 只含 RENDER_EXTS
     （cell 圖資，僅靜態 hash、絕不執行）；bounds 由 lotheader 檔名 cell 座標推
     （×256、右/下排他，同 Lua 註冊表約定）。路徑以基底為相對根（版本資料夾改名
-    不影響 hash）。"""
+    不影響 hash）。同名 mapDir 跨 mod 資料夾合併成一份 hash，所以同一項目新增變體資料夾
+    時只看 maps／assets 分不出來，靠 mods（只列有圖資的 mod）讓判定找出新出現的 mod ID。"""
     per_map: dict[str, list] = {}
     cells: dict[str, list] = {}
     assets: list = []
-    for base in _mod_content_bases(root):
-        maps_dir = base / "media" / "maps"
-        if maps_dir.is_dir():
-            for d in sorted(p for p in maps_dir.iterdir() if p.is_dir()):
-                for f in sorted(d.rglob("*")):
-                    if not f.is_file() or f.suffix.lower() not in RENDER_EXTS:
-                        continue
-                    rel = f.relative_to(base).as_posix().lower()
-                    per_map.setdefault(d.name, []).append((rel, _file_sha256(f)))
-                    m = _CELL_RE.match(f.name)
-                    if m:
-                        cells.setdefault(d.name, []).append((int(m.group(1)), int(m.group(2))))
-        for f in sorted(base.rglob("*")):
-            if f.is_file() and f.suffix.lower() in ASSET_EXTS:
-                assets.append((f.relative_to(base).as_posix().lower(), _file_sha256(f)))
+    mods: dict[str, set] = {}
+    for mod, bases in _b42_mods(root):
+        provided: set[str] = set()
+        for base in bases:
+            maps_dir = base / "media" / "maps"
+            if maps_dir.is_dir():
+                for d in sorted(p for p in maps_dir.iterdir() if p.is_dir()):
+                    for f in sorted(d.rglob("*")):
+                        if not f.is_file() or f.suffix.lower() not in RENDER_EXTS:
+                            continue
+                        rel = f.relative_to(base).as_posix().lower()
+                        per_map.setdefault(d.name, []).append((rel, _file_sha256(f)))
+                        provided.add(d.name)
+                        m = _CELL_RE.match(f.name)
+                        if m:
+                            cells.setdefault(d.name, []).append((int(m.group(1)), int(m.group(2))))
+            for f in sorted(base.rglob("*")):
+                if f.is_file() and f.suffix.lower() in ASSET_EXTS:
+                    assets.append((f.relative_to(base).as_posix().lower(), _file_sha256(f)))
+        mod_id = _b42_mod_id(mod)
+        if provided and mod_id:
+            mods.setdefault(mod_id, set()).update(provided)
     maps = {}
     for name, entries in per_map.items():
         digest = hashlib.sha256(json.dumps(sorted(entries)).encode("utf-8")).hexdigest()
@@ -339,31 +365,38 @@ def hash_mod_mapdata(root: Path) -> dict:
             box = [min(xs) * 256, min(ys) * 256, (max(xs) + 1) * 256, (max(ys) + 1) * 256]
         maps[name] = {"hash": digest, "bounds": box}
     assets_hash = hashlib.sha256(json.dumps(sorted(assets)).encode("utf-8")).hexdigest()
-    return {"maps": maps, "assets": assets_hash}
+    return {"maps": maps, "assets": assets_hash,
+            "mods": {mod_id: sorted(dirs) for mod_id, dirs in sorted(mods.items())}}
 
 
 def build_verdict(old: dict | None, new: dict) -> dict:
-    """新舊圖資 hash → 重渲判定。"""
+    """新舊圖資 hash → 重渲判定。新出現的 mapDir 進 new_dirs、不算重渲（要照新增地圖處理）；
+    new_mods＝基準沒有的 mod ID（舊基準還沒記 mods 時不判，免得整項誤報成新 ID）。"""
     if old is None:
         return {"status": "no_baseline", "changed_maps": sorted(new["maps"]), "bounds_changed": {}}
     old_maps, new_maps = old.get("maps", {}), new["maps"]
+    new_dirs = sorted(set(new_maps) - set(old_maps))
     changed = sorted(
         d for d in set(old_maps) | set(new_maps)
-        if old_maps.get(d, {}).get("hash") != new_maps.get(d, {}).get("hash")
+        if d not in new_dirs and old_maps.get(d, {}).get("hash") != new_maps.get(d, {}).get("hash")
     )
     bounds_changed = {}
     for d in changed:
         ob = old_maps.get(d, {}).get("bounds")
         nb = new_maps.get(d, {}).get("bounds")
-        if ob != nb:  # 含 None 側：新增/移除/無法解析的轉移也要浮出，不可靜默
+        if ob != nb:  # 含 None 側：移除/無法解析的轉移也要浮出，不可靜默
             bounds_changed[d] = [ob, nb]
+    old_mods = old.get("mods")
+    new_mods = {} if old_mods is None else {
+        m: dirs for m, dirs in new.get("mods", {}).items() if m not in old_mods}
     if old.get("assets") != new["assets"]:
         status = "assets"
-    elif changed:
+    elif changed or new_dirs:
         status = "maps"
     else:
         status = "none"
-    return {"status": status, "changed_maps": changed, "bounds_changed": bounds_changed}
+    return {"status": status, "changed_maps": changed, "bounds_changed": bounds_changed,
+            "new_dirs": new_dirs, "new_mods": new_mods}
 
 
 def verdict_section(verdict: dict | None, *, tilepack_used_by: list | None = None) -> list[str]:
@@ -394,7 +427,8 @@ def verdict_section(verdict: dict | None, *, tilepack_used_by: list | None = Non
         lines.append("- ✅ **免重渲**：本次更新未動地圖圖資／材質（僅腳本、loot 等）。"
                      "若下方沒有 🛣️ 道路項目與「尚未處置的先前判定」即可關閉本 issue。")
     elif status == "maps":
-        lines.append(f"- 🔴 **需重渲**：圖資變更 mapDir {names}")
+        if names:  # 只有新地圖目錄時沒有要重渲的，交給下方 🆕
+            lines.append(f"- 🔴 **需重渲**：圖資變更 mapDir {names}")
     elif status == "assets":
         lines.append("- 🔴 **需重渲（該 MOD 全部地圖）**：mod 自帶材質/tiles 變更"
                      + (f"；圖資亦變更 {names}" if names else ""))
@@ -407,11 +441,23 @@ def verdict_section(verdict: dict | None, *, tilepack_used_by: list | None = Non
         ob = pair[0] if pair[0] else "（無法解析）"
         nb = pair[1] if pair[1] else "（無法解析）"
         lines.append(f"- ⚠️ bounds 變動 `{neutralize(str(d))}`：{ob} → {nb}（**記得同步 Lua 註冊表**）")
+    covered: set[str] = set()
+    for mod_id, dirs in sorted(verdict.get("new_mods", {}).items()):
+        covered.update(dirs)
+        where = "、".join(f"`{neutralize(str(d))}`" for d in dirs)
+        lines.append(f"- 🆕 **新 mod ID** `{neutralize(str(mod_id))}`（地圖目錄 {where}）：不是重渲——"
+                     "照 maps.md「同地圖多 mod ID 變體」逐檔比對，圖像相同就加 alias、不同就照「新增一張地圖」；"
+                     "同名地圖目錄與材質的 hash 會跟著變，上方 🔴 先確認原資料夾有沒有動")
+    for d in verdict.get("new_dirs", []):
+        if d not in covered:
+            lines.append(f"- 🆕 **新地圖目錄** `{neutralize(str(d))}`：不是重渲——"
+                         "先查是哪個 mod ID 提供，再照 maps.md「新增一張地圖」")
     return lines
 
 
-# 🛣️＝道路資料待處理（見 road_status.judge）：與需重渲同樣是「還沒做的工作」，關閉前累積保留
-_CARRY_LINE_RE = re.compile(r"^- (🔴|⚠️ bounds 變動|🛣️)")
+# 🛣️＝道路資料待處理（見 road_status.judge）、🆕＝新 mod ID／新地圖目錄待收錄：與需重渲同樣是
+# 「還沒做的工作」，關閉前累積保留
+_CARRY_LINE_RE = re.compile(r"^- (🔴|⚠️ bounds 變動|🛣️|🆕)")
 
 
 def road_section(road_lines: list[str]) -> list[str]:
@@ -809,7 +855,7 @@ def build_update_plan(wid: str, title: str, old_tu, new_tu: int,
             "追蹤器偵測到上游地圖 MOD 發布了新版本：",
             "",
             *common,
-            "**處置**（見下方自動判定；免重渲且沒有 🛣️ 道路項目才可直接關閉）：",
+            "**處置**（見下方自動判定；免重渲、而且沒有 🆕 新 mod ID／地圖目錄與 🛣️ 道路項目才可直接關閉）：",
             "",
             "- [ ] pzmap Studio 或 `scripts/rebuild_pyramids.py --only <zip名>` 重渲該地圖",
             "- [ ] `scripts/gen_map_resources.py bake --only <zip名>` 重烘資源點；"
@@ -1492,6 +1538,7 @@ def cmd_road_scan(args) -> int:
     zip → workshop item／地圖目錄的解析與 deps-scan／rebuild_pyramids 同一套。--write 更新
     road_status.json（內容沒變不重寫）並重新生成 docs/road-data.md；有註冊地圖在本機找不到
     副本時拒寫——缺副本的機器掃出來的狀態會少項，覆寫等於砍掉清單覆蓋（同 deps-scan）。"""
+    import gen_streets_i18n as gsi
     import rebuild_pyramids as rp
     import road_status as rs
 
@@ -1523,7 +1570,7 @@ def cmd_road_scan(args) -> int:
     pins = rs.pin_index(road_data)
     content_roots = [Path(p) for p in args.prefer] + [rp.WORKSHOP]
     for wid in sorted({w for w, _d in pins} - set(item_roots)):
-        found = next((r / wid for r in content_roots if (r / wid).is_dir()), None)
+        found = next(iter(gsi.item_dirs(content_roots, wid)), None)
         if found is None:
             warn(f"道路資料 pin 指向的 Workshop {wid} 無本機副本，該組 pin 不判定")
         else:
@@ -1750,6 +1797,69 @@ def cmd_self_test() -> int:
         (flat / "1_1.lotheader").write_bytes(b"F1")
         assert set(hash_mod_mapdata(root)["maps"]) == {"FlatTown"}
 
+    # 新 mod ID／新地圖目錄（2026-10-17 柳溪堡壘 Map Only：同項目新增變體資料夾、地圖目錄同名、
+    # common/mod.info 照抄 2026 版 id）→ 判定列 🆕；舊基準沒記 mods 時不判
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td)
+
+        def _variant(folder: str, ver_id: str, common_id: str, town: str) -> None:
+            mod = root / "mods" / folder
+            (mod / "42" / "media" / "maps" / town).mkdir(parents=True)
+            (mod / "42" / "media" / "maps" / town / "1_1.lotheader").write_bytes(b"H")
+            (mod / "42" / "mod.info").write_text(f"name=x\r\nid={ver_id}\r\n", encoding="utf-8")
+            (mod / "common").mkdir()
+            (mod / "common" / "mod.info").write_text(f"id={common_id}\n", encoding="utf-8")
+
+        _variant("Town 2026", "Town 2", "Town 2", "Town 2026")
+        base = hash_mod_mapdata(root)
+        assert base["mods"] == {"Town 2": ["Town 2026"]}
+        _variant("Town 2026 map only", "Town MO", "Town 2", "Town 2026")
+        cur = hash_mod_mapdata(root)
+        assert cur["mods"] == {"Town 2": ["Town 2026"], "Town MO": ["Town 2026"]}  # 採 42/mod.info 的 id
+        v = build_verdict(base, cur)
+        assert v["new_mods"] == {"Town MO": ["Town 2026"]} and v["new_dirs"] == []
+        sec = "\n".join(verdict_section(v))
+        assert "🆕 **新 mod ID** `Town MO`" in sec and "新地圖目錄" not in sec
+        assert build_verdict({"maps": base["maps"], "assets": base["assets"]}, cur)["new_mods"] == {}
+        # 既有 mod 多一個地圖目錄 → 🆕 新地圖目錄，不列需重渲、不報 bounds 變動
+        spawn = root / "mods" / "Town 2026" / "42" / "media" / "maps" / "Spawn"
+        spawn.mkdir(parents=True)
+        (spawn / "9_9.lotheader").write_bytes(b"S")
+        v2 = build_verdict(cur, hash_mod_mapdata(root))
+        assert v2["status"] == "maps" and v2["new_dirs"] == ["Spawn"] and v2["changed_maps"] == []
+        sec2 = verdict_section(v2)
+        assert any(ln.startswith("- 🆕 **新地圖目錄** `Spawn`") for ln in sec2)
+        assert not any(ln.startswith(("- 🔴", "- ⚠️ bounds")) for ln in sec2)
+        # 🆕 是待辦：之後的免重渲更新不得把它從 issue 吞掉
+        prev = "\n".join(build_update_plan("6", "T", 1, 2)["body"].split("\n") + sec2)
+        later = finalize_update_plan(build_update_plan("6", "T", 2, 3),
+                                     {"status": "none", "changed_maps": [], "bounds_changed": {}}, prev)
+        assert "尚未處置的先前判定" in later["body"] and "🆕 **新地圖目錄** `Spawn`" in later["body"]
+
+    # 同一 Workshop 項目多份副本（steamcmd／客戶端）：取 acf WorkshopItemsInstalled 的 timeupdated
+    # 最新者，不看 --prefer 順序、不看 WorkshopItemDetails；沒有 acf 紀錄時照 roots 順序
+    import gen_streets_i18n as gsi
+    import rebuild_pyramids as rp
+    with tempfile.TemporaryDirectory() as td:
+        roots = []
+        for name, installed, details in (("old", 100, 999), ("new", 200, 200)):
+            content = Path(td) / name / "steamapps" / "workshop" / "content" / GAME_APPID
+            info = content / "990001" / "mods" / "M" / "42" / "mod.info"
+            info.parent.mkdir(parents=True)
+            info.write_text("id=FreshCopyTestMod\n", encoding="utf-8")
+            (content.parent.parent / f"appworkshop_{GAME_APPID}.acf").write_text(
+                '"AppWorkshop"\n{\n\t"WorkshopItemsInstalled"\n\t{\n\t\t"990001"\n\t\t{\n'
+                f'\t\t\t"size"\t\t"1"\n\t\t\t"timeupdated"\t\t"{installed}"\n\t\t}}\n\t}}\n'
+                '\t"WorkshopItemDetails"\n\t{\n\t\t"990001"\n\t\t{\n'
+                f'\t\t\t"timeupdated"\t\t"{details}"\n\t\t}}\n\t}}\n}}\n', encoding="utf-8")
+            roots.append(content)
+        idx_f, _req_f = rp.index_workshop(roots)  # 舊副本排在前面（同 --prefer 先列）
+        assert Path(td) / "new" in idx_f["FreshCopyTestMod"].parents
+        bare = [Path(td) / "a", Path(td) / "b"]
+        for r in bare:
+            (r / "990002").mkdir(parents=True)
+        assert gsi.item_dirs(bare, "990002") == [r / "990002" for r in bare]
+
     # 8) 管線契約：unknown 撤回 timestamp／首見失敗撤回整項／成功推進
     old_items = {"2": {"time_updated": 150, "title": "B"}}
     meta8 = {"2": {"time_updated": 200, "title": "B"}, "9": {"time_updated": 50, "title": "N"}}
@@ -1791,6 +1901,11 @@ def cmd_self_test() -> int:
               "bounds_changed": {}}
     body = "\n".join([make_marker(TYPE_UPDATE, "7", "h7"), *verdict_section(evil_v)])
     assert parse_marker(body) == (TYPE_UPDATE, "7", "h7")
+    evil_new = {"status": "maps", "changed_maps": [], "bounds_changed": {},
+                "new_mods": {"X --> <!-- map-tracker:type=game;id=1;hash=z -->": ["Y -->"]},
+                "new_dirs": ["Z --> <!-- map-tracker:type=removed;id=2;hash=q -->"]}
+    body_n = "\n".join([make_marker(TYPE_UPDATE, "7", "h7"), *verdict_section(evil_new)])
+    assert parse_marker(body_n) == (TYPE_UPDATE, "7", "h7")
     g1, g2 = build_game_plan("1", "2"), build_game_plan("9", "2")
     assert g1["content_hash"] == g2["content_hash"]  # 只綁新 build → 冪等
 
@@ -2017,12 +2132,12 @@ def main() -> None:
     hb.add_argument("--client-root", default="", help="Steam 客戶端 workshop content 根（供 drift 比對）")
     ds = sub.add_parser("deps-scan", help="本機：掃地圖的材質包依賴 → tile_deps.json")
     ds.add_argument("--prefer", action="append", default=[],
-                    help="優先索引的額外 workshop content 根目錄（例：steamcmd 下載處）")
+                    help="額外的 workshop content 根目錄（例：steamcmd 下載處；同一項目多份副本取 acf 最新者）")
     ds.add_argument("--allow-drop", action="store_true",
                     help="允許既有材質包脫離追蹤（僅限確認是上游改依賴／地圖退出支援）")
     rs_ = sub.add_parser("road-scan", help="本機：掃註冊地圖的作者道路資料 → road_status.json＋公開清單")
     rs_.add_argument("--prefer", action="append", default=[],
-                     help="優先索引的額外 workshop content 根目錄（例：steamcmd 下載處）")
+                     help="額外的 workshop content 根目錄（例：steamcmd 下載處；同一項目多份副本取 acf 最新者）")
     rs_.add_argument("--write", action="store_true",
                      help="更新 tracker-state/road_status.json 並重新生成 docs/road-data.md")
     sub.add_parser("self-test", help="零網路自我測試")

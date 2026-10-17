@@ -66,9 +66,9 @@ MATCH_RATIO = 0.6
 # 上游定位
 # ============================================================
 def find_map_dir(roots: list[Path], wid: str, map_dir: str) -> Path | None:
-    """有 lotheader 的地圖目錄；版本資料夾優先於 common（同 find_streets_xml）。"""
-    for root in roots:
-        base = root / wid / "mods"
+    """有 lotheader 的地圖目錄；版本資料夾優先於 common、多份副本先找最新的（同 find_streets_xml）。"""
+    for item in gsi.item_dirs(roots, wid):
+        base = item / "mods"
         if not base.is_dir():
             continue
         for mod in sorted(p for p in base.iterdir() if p.is_dir()):

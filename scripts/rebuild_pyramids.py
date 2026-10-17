@@ -17,6 +17,8 @@ pzmap render-minimap 重渲到 42/media/minimap/。
 import argparse, json, re, subprocess, sys, time, zipfile
 from pathlib import Path
 
+from gen_streets_i18n import item_dirs
+
 REPO = Path(__file__).resolve().parent.parent
 LUA = REPO / "MOD/MinidoracatMiniMapModMapsFor42/Contents/mods/MinidoracatMiniMapModMapsFor42/42/media/lua/client/MinidoracatMiniMapModMaps.lua"
 OUT_DIR = REPO / "MOD/MinidoracatMiniMapModMapsFor42/Contents/mods/MinidoracatMiniMapModMapsFor42/42/media/minimap"
@@ -68,15 +70,24 @@ VERSION_DIR = re.compile(r"^42(\.\d+)*$")  # B42 版本資料夾：42、42.0、4
 
 
 def index_workshop(extra_roots=()):
-    """id -> mod 根目錄（mods/<name>/）；同 id 首見為準——extra_roots 先掃、優先勝出
-    （steamcmd 下載的新鮮副本蓋過 Steam 客戶端的過期目錄）。"""
+    """id -> mod 根目錄（mods/<name>/）。同一 Workshop 項目在多個 content 根都有副本時只看
+    最新那份（item_dirs：acf timeupdated，同分照 extra_roots 在前）；不同項目宣告同一 id 時首見為準。"""
     idx, requires = {}, {}
-    for ws in [*extra_roots, WORKSHOP]:
+    roots = [*extra_roots, WORKSHOP]
+    chosen = {}
+
+    def fresh(item):
+        if item.name not in chosen:
+            chosen[item.name] = item_dirs(roots, item.name)[0]
+        return chosen[item.name] == item
+
+    for ws in roots:
         for info in ws.glob("*/mods/*/mod.info"):
-            _index_info(info, info.parent, idx, requires)
+            if fresh(info.parents[2]):
+                _index_info(info, info.parent, idx, requires)
         for info in ws.glob("*/mods/*/*/mod.info"):
             sub = info.parent.name
-            if sub.lower() == "common" or VERSION_DIR.match(sub):
+            if (sub.lower() == "common" or VERSION_DIR.match(sub)) and fresh(info.parents[3]):
                 _index_info(info, info.parent.parent, idx, requires)
     return idx, requires
 
@@ -131,7 +142,7 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--only", default="", help="zip 名子字串過濾")
     ap.add_argument("--prefer", action="append", default=[],
-                    help="優先索引的額外 workshop content 根目錄（例：steamcmd 下載處）")
+                    help="額外的 workshop content 根目錄（例：steamcmd 下載處；同一項目多份副本取 acf 最新者）")
     ap.add_argument("--skip-fresh-min", type=int, default=0,
                     help="輸出 zip 在 N 分鐘內已更新者跳過（批次中斷後續跑用）")
     args = ap.parse_args()

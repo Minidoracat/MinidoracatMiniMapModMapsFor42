@@ -633,7 +633,8 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="cmd")
     pick = argparse.ArgumentParser(add_help=False)
     pick.add_argument("--only", default="", help="zip 名子字串過濾（不分大小寫）")
-    pick.add_argument("--prefer", action="append", default=[], help="優先索引的額外 workshop content 根")
+    pick.add_argument("--prefer", action="append", default=[],
+                      help="額外的 workshop content 根（同一項目多份副本取 acf 最新者）")
     sub.add_parser("bake", parents=[pick], help="重烘選到的地圖並重產 Lua（有沒審過的 loot 房名就整批不寫）")
     c = sub.add_parser("candidates", parents=[pick], help="列出沒審過的 loot 房名給審查（不會因此失敗）")
     c.add_argument("--out", required=True)

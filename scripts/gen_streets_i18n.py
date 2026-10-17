@@ -34,8 +34,8 @@ names.json 的鍵必須是上游 `streets.xml` 的**原字串**（逐字節，�
 是 `names[原名]` 精確查表（主 MOD `translateStreetName`），鍵差一個空白就查不到＝
 該街顯示英文。
 
-`--prefer` 與 map_tracker deps-scan 同語意：優先的 workshop content 根
-（`<root>/<workshop_id>/mods/…`）。gen 拿它做**非阻擋**的上游對照（照上述精確語意
+`--prefer` 與 map_tracker deps-scan 同語意：額外的 workshop content 根
+（`<root>/<workshop_id>/mods/…`），同一項目多份副本取 acf 最新者（item_dirs）。gen 拿它做**非阻擋**的上游對照（照上述精確語意
 列出未收錄街名、sha256 是否已變），verify 拿它擋漏譯；生成物本身不依賴上游副本 ⇒
 CI 無需 workshop。
 """
@@ -43,6 +43,7 @@ CI 無需 workshop。
 from __future__ import annotations
 
 import argparse
+import functools
 import hashlib
 import html
 import json
@@ -139,17 +140,41 @@ def iter_workshop_roots(prefer: list[str] | None) -> list[Path]:
     return roots
 
 
+@functools.lru_cache(maxsize=None)
+def _acf_timeupdated(root: Path) -> dict[str, int]:
+    """content 根（…/steamapps/workshop/content/<appid>）→ {workshop id: 磁碟上那版的 timeupdated}，
+    讀同一個 steamapps 的 appworkshop_<appid>.acf（WorkshopItemsInstalled 段）；沒有檔回空。"""
+    try:
+        text = (root.parent.parent / f"appworkshop_{root.name}.acf").read_text(
+            encoding="utf-8", errors="replace")
+    except OSError:
+        return {}
+    installed = text.split('"WorkshopItemDetails"')[0]
+    return {wid: int(stamp) for wid, stamp in re.findall(
+        r'"(\d+)"\s*\{[^}]*?"timeupdated"\s*"(\d+)"', installed)}
+
+
+def item_dirs(roots: list[Path], workshop_id: str) -> list[Path]:
+    """各 content 根裡這個 Workshop 項目的副本，新的在前：依 acf 的 timeupdated 排，
+    同分或沒有紀錄時照 roots 順序（沒有紀錄的排在有紀錄的後面）。
+    同一項目在 Steam 客戶端與 steamcmd 都有副本時，誰先列不等於誰比較新。"""
+    found = [(i, root / workshop_id) for i, root in enumerate(roots)
+             if workshop_id and (root / workshop_id).is_dir()]
+    found.sort(key=lambda p: (-_acf_timeupdated(roots[p[0]]).get(workshop_id, -1), p[0]))
+    return [item for _i, item in found]
+
+
 def find_streets_xml(
     roots: list[Path], workshop_id: str, map_dir: str
 ) -> Path | None:
     """`<root>/<workshop_id>/mods/*/{common,42*}/media/maps/<map_dir>/streets.xml`。
 
-    版本目錄優先於 common（B42 專屬圖資勝出），首見為準。
+    版本目錄優先於 common（B42 專屬圖資勝出）；多個根都有副本時先找最新的（item_dirs）。
     """
     if not workshop_id or not map_dir:
         return None
-    for root in roots:
-        base = root / workshop_id / "mods"
+    for item in item_dirs(roots, workshop_id):
+        base = item / "mods"
         if not base.is_dir():
             continue
         for mod_dir in sorted(p for p in base.iterdir() if p.is_dir()):
@@ -893,12 +918,12 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="cmd")
     g = sub.add_parser("gen", help="生成街名索引表與四語 UI.json")
     g.add_argument("--prefer", action="append", default=[],
-                   help="優先索引的額外 workshop content 根（僅供上游對照提示）")
+                   help="額外的 workshop content 根（多份副本取 acf 最新者；僅供上游對照提示）")
     g.add_argument("--update-hash", action="store_true",
                    help="接受上游新 sha256（寫回 names.json 的 source）")
     v = sub.add_parser("verify", help="重跑生成器與磁碟逐字節比對＋註冊清單交叉核對＋漏譯閘門")
     v.add_argument("--prefer", action="append", default=[],
-                   help="優先索引的額外 workshop content 根（漏譯閘門用）")
+                   help="額外的 workshop content 根（多份副本取 acf 最新者；漏譯閘門用）")
     args = parser.parse_args(argv)
     if args.selftest:
         return cmd_selftest()
