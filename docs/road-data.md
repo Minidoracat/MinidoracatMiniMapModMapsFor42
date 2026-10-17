@@ -35,6 +35,7 @@
 
 - **卡姆登郡（Camden County）**
   - 斷點接線 3 處：作者的路停在路口前，導航／自動駕駛到不了；接回路網後可以走
+  - 路寬校正 1 條：作者標的路寬比實際路面窄（例如有分隔島的林蔭大道只標一條車道），自動駕駛會把車帶上分隔島；改成實際路面寬後靠右行駛落在車道上
 - **康斯鎮（Constown, KY）**
   - 補充道路 38 條：作者沒放進道路資料的路由本包補上，路名 `康斯鎮 01 號路（小地圖補）`～`康斯鎮 38 號路（小地圖補）`（英文 `Constown Rd 01 (MiniMap)`～`Constown Rd 38 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **雛菊郡（Daisy County）**
@@ -65,7 +66,7 @@
 | 大熊湖<br>Big Bear Lake | [3816175183](https://steamcommunity.com/sharedfiles/filedetails/?id=3816175183) | ✅ 87 條 | ✅ 87 條 | — | — |
 | 黑迷宮<br>BlackMaze | [3691888819](https://steamcommunity.com/sharedfiles/filedetails/?id=3691888819) | ✅ 4 條 | ✅ 4 條 | — | — |
 | 黑松郡<br>Blackpine County | [3565649631](https://steamcommunity.com/sharedfiles/filedetails/?id=3565649631) | ❌ 無 | — | — | — |
-| 卡姆登郡<br>Camden County | [3504080284](https://steamcommunity.com/sharedfiles/filedetails/?id=3504080284) | ✅ 40 條 | ✅ 40 條 | 斷點接線 3 處 | — |
+| 卡姆登郡<br>Camden County | [3504080284](https://steamcommunity.com/sharedfiles/filedetails/?id=3504080284) | ✅ 40 條 | ✅ 40 條 | 斷點接線 3 處、路寬校正 1 條 | — |
 | 銀杉谷 2.0－公路<br>Cathaya Valley 2.0 Highway | [3576150391](https://steamcommunity.com/sharedfiles/filedetails/?id=3576150391) | ❌ 無 | — | — | — |
 | 銀杉谷 2.0<br>Cathaya Valley 2.0 | [3576150391](https://steamcommunity.com/sharedfiles/filedetails/?id=3576150391) | ❌ 無 | — | — | — |
 | 康斯鎮<br>Constown, KY | [3480990544](https://steamcommunity.com/sharedfiles/filedetails/?id=3480990544) | ❌ 無 | — | — | ✅ 38 條 |

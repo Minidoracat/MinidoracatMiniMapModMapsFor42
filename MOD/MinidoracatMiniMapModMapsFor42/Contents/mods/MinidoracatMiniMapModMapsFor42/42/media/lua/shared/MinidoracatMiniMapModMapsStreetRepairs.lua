@@ -1,9 +1,11 @@
 -- MinidoracatMiniMapModMapsStreetRepairs.lua（生成檔，勿手編）
 -- 由 scripts/gen_street_repairs.py 從 road-repairs/*.json 編譯
--- 4 個 dataset／961 筆修正（中心線 44、接線 3、移除轉折點 1、隱藏標籤候選 913）
+-- 4 個 dataset／962 筆修正（中心線 44、接線 3、移除轉折點 1、換路寬 1、隱藏標籤候選 913）
 --
 -- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log
 -- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。
+-- replacementWidth 只換路寬、點列不動；主 MOD 42.21.0-0.45.0 及更早版本不認得它，
+-- 該筆當空修正略過（log 一次），照作者路寬。
 -- hideLabel 只影響玩家地圖上的路名顯示，**不從導航路網移除該道路**；
 -- reference 是 vanilla 對應街道的 index/width/points，執行期須確認那條
 -- canonical 道路仍在且看得見，才真的隱藏我方這份重複標籤。
@@ -12,11 +14,13 @@ MinidoracatMiniMapModMapsStreetRepairs = MinidoracatMiniMapModMapsStreetRepairs 
 local Repairs = MinidoracatMiniMapModMapsStreetRepairs
 
 -- ==== camden-county (CamdenCountyB42 / Camden County B42) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／exact-copy）在 road-repairs/camden-county.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／exact-copy）在 road-repairs/camden-county.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名
 do
     local ops = {}
     -- #5 All Saints Pl
     ops[5] = { expectedWidth = 5, expectedPoints = { 14876.5, 12228.5, 15098.5, 12228 }, replacementPoints = { 14863.5, 12228.5, 14876.5, 12228.5, 15098.5, 12228 } }
+    -- #12 Brooklawn Blvd
+    ops[12] = { expectedWidth = 5, expectedPoints = { 15427, 10299.5, 15426.5, 9846 }, replacementWidth = 11 }
     -- #22 Ramblewood Pl
     ops[22] = { expectedWidth = 5, expectedPoints = { 15053.5, 9615.5, 15016.5, 9581.5, 14161.5, 9580.5 }, replacementPoints = { 15056, 9625.1875, 15053.5, 9615.5, 15016.5, 9581.5, 14161.5, 9580.5 } }
     -- #35 Crystal Lake Rd
@@ -25,7 +29,7 @@ do
 end
 
 -- ==== daisy-county (Daisy County B42 version / Daisy County) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／exact-copy）在 road-repairs/daisy-county.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／exact-copy）在 road-repairs/daisy-county.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名
 do
     local ops = {}
     -- #0 Weinifan Street
@@ -120,7 +124,7 @@ do
 end
 
 -- ==== muldraugh-1993 (muldraugh1993b42 / Muldraugh 1993 B42) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／exact-copy）在 road-repairs/muldraugh-1993.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／exact-copy）在 road-repairs/muldraugh-1993.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名
 do
     local ops = {}
     -- #3 Goggins St
@@ -1953,7 +1957,7 @@ do
 end
 
 -- ==== raven-creek (RavenCreekB42 / Raven Creek B42) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／exact-copy）在 road-repairs/raven-creek.json 的 reason；有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／exact-copy）在 road-repairs/raven-creek.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名
 do
     local ops = {}
     -- #0 David Blane Rd

@@ -18,7 +18,7 @@ width 與完整點列長這樣」，以及要對它做什麼（壓成中心線�
 canonical 道路仍在、仍看得見，才真的隱藏。所以「上游漂移」與「官方路網改版」兩種
 情況都退回原樣，不會把路弄丟。
 
-## pin 是怎麼得出來的（人工核准過的四條規則，生成時逐筆強制驗）
+## pin 是怎麼得出來的（人工核准過的五條規則，生成時逐筆強制驗）
 
 1. **rect-outline → 中心線**（只有 Daisy County 44/44 條）：4 點、軸對齊、四角互異
    的閉合矩形，短邊 <= max(width*1.5, 16)、長邊 >= 短邊*3。作者把街道畫成輪廓矩形，
@@ -42,6 +42,14 @@ canonical 道路仍在、仍看得見，才真的隱藏。所以「上游漂移�
    （同圖哪一條街，0-based index），且一次只准移除頭或尾其中一個端點、不可連同它的
    相鄰點——只剪掉一段；新端點要落在 `trimTo` 街的半寬內（仍接得上），由 verify 讀
    上游檢查。實機／離線證據寫在 reason，generator 不重算。
+5. **width-fix → 換路寬**（2026-10-17 使用者核准；Camden County Brooklawn Blvd）：作者把
+   分隔林蔭大道畫成單中線、路寬只標一條車道，AutoDrive 照路寬算靠右落點、車身壓上
+   分隔島。點列不動，只寫 `replacementWidth`（整數），不可與 `replacementPoints`／
+   `hideLabel` 並用；證據 `widthEvidence` 是 `pzmap road-surfaces` 的橫截面
+   （`sections` 每個是水平或垂直的 `from`／`to` 兩端路面格，含中間的分隔島），每個量到的
+   總寬都要等於 `replacementWidth`、中線要穿過橫截面且離路面中心 <= `_WIDTH_MAX_OFFSET`
+   格（路寬以中線對稱展開，偏心就會整邊溢出）。橫截面座標是量測結果，generator 只驗
+   一致性、不重跑 road-surfaces。路寬不能分段：沒有分隔島的段落會一起變寬，寫在 reason。
 
 `replacementPoints` 必須等於 `rect_centerline(expectedPoints, expectedWidth)`、合法的
 gap-bridge 延伸或合法的 drop-vertex，`hideLabel` 的 `reference.points` 必須等於
@@ -106,6 +114,12 @@ _RECT_MIN_RATIO = 3.0
 _BRIDGE_MAX_LEN = 48.0
 _BRIDGE_MAX_ADDED = 4
 _BRIDGE_SNAP = 1.0  # 新端點離目標街的最大距離（格）；verify 讀上游時檢查
+# width-fix：主 MOD validWidth 上限（MAX_WIDTH）；至少兩個橫截面；中線離路面中心的上限（格）；
+# 橫截面要和街近乎垂直（街段沿截面方向的分量 <= 長度×此比例），斜交量出的寬會偏大
+_WIDTH_MAX = 64
+_WIDTH_MIN_SECTIONS = 2
+_WIDTH_MAX_OFFSET = 1.0
+_WIDTH_MAX_SKEW = 0.2
 
 # operations[] 認得的欄位；多打一個字（replacmentPoints）不該變成靜默的空修正
 _OP_KEYS = {
@@ -119,6 +133,8 @@ _OP_KEYS = {
     "bridgeTo",
     "dropVertex",
     "trimTo",
+    "replacementWidth",
+    "widthEvidence",
     "reason",
 }
 # 註冊清單引用形如 `streetRepairs = StreetRepairs["daisy-county"]`
@@ -209,6 +225,42 @@ def point_polyline_distance(x: float, y: float, flat: list[float]) -> float:
     return best
 
 
+def _tile(v: object) -> bool:
+    return (isinstance(v, list) and len(v) == 2
+            and all(isinstance(c, int) and not isinstance(c, bool) for c in v))
+
+
+def width_evidence_error(exp: list[float], new_width: int, ev: object) -> str | None:
+    """width-fix 證據：每個橫截面（水平或垂直、from／to 是兩端路面格）量到的總寬等於
+    new_width，中線近乎垂直地穿過它、交點離路面中心 <= _WIDTH_MAX_OFFSET 格。"""
+    if not isinstance(ev, dict) or not isinstance(ev.get("source"), str) or not ev["source"].strip():
+        return "必填，且要寫 source（量測工具與版本）"
+    secs = ev.get("sections")
+    if not isinstance(secs, list) or len(secs) < _WIDTH_MIN_SECTIONS:
+        return f"sections 至少要 {_WIDTH_MIN_SECTIONS} 個橫截面"
+    for n, s in enumerate(secs):
+        a, b = (s.get("from"), s.get("to")) if isinstance(s, dict) else (None, None)
+        if not (_tile(a) and _tile(b)):
+            return f"sections[{n}] 的 from／to 必須是 [x, y] 整數格"
+        horiz = a[1] == b[1]
+        if a == b or (not horiz and a[0] != b[0]):
+            return f"sections[{n}] 必須是水平或垂直的橫截面"
+        lo, hi = sorted((a[0], b[0]) if horiz else (a[1], b[1]))
+        if hi - lo + 1 != new_width:
+            return f"sections[{n}] 量到 {hi - lo + 1} 格，不等於 replacementWidth {new_width}"
+        at, mid = (a[1] if horiz else a[0]) + 0.5, (lo + hi + 1) / 2
+        hits = []
+        for i in range(0, len(exp) - 3, 2):
+            # 一律換成「截面是 v=at 這條線」：u 沿截面、v 垂直截面
+            u0, v0, u1, v1 = exp[i:i + 4] if horiz else (exp[i + 1], exp[i], exp[i + 3], exp[i + 2])
+            if v0 != v1 and min(v0, v1) <= at <= max(v0, v1) and abs(u1 - u0) <= _WIDTH_MAX_SKEW * abs(v1 - v0):
+                hits.append(u0 + (u1 - u0) * (at - v0) / (v1 - v0))
+        if not any(abs(u - mid) <= _WIDTH_MAX_OFFSET for u in hits):
+            return (f"sections[{n}] 中線沒有近乎垂直地穿過、或離路面中心 {mid:g} 超過"
+                    f" {_WIDTH_MAX_OFFSET:g} 格（交點 {[round(u, 2) for u in hits]}）")
+    return None
+
+
 # ============================================================
 # 上游 / vanilla streets.xml
 # ============================================================
@@ -294,11 +346,13 @@ class Op(NamedTuple):
     bridge_to: int | None = None
     drop_vertex: tuple[int, ...] | None = None
     trim_to: int | None = None
+    replacement_width: int | None = None
 
 
 KIND_RECT = "rect-centerline"
 KIND_BRIDGE = "gap-bridge"
 KIND_DROP = "drop-vertex"
+KIND_WIDTH = "width-fix"
 KIND_HIDE = "hide-label"
 
 
@@ -306,6 +360,8 @@ def classify_op(op: Op) -> str:
     """已通過 `_load_op` 的修正 → 規則種類（公開道路資料清單依此分類計數）。"""
     if op.hide_label:
         return KIND_HIDE
+    if op.replacement_width is not None:
+        return KIND_WIDTH
     if op.drop_vertex is not None:
         return KIND_DROP
     return KIND_BRIDGE if op.bridge_to is not None else KIND_RECT
@@ -408,7 +464,24 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
     if hide is not True and hide is not False:
         errors.append(f"{where}.hideLabel 只能是 true 或省略")
         hide = False
-    if not hide and rep is None:
+    new_width = None
+    if "replacementWidth" in raw:
+        rw = raw["replacementWidth"]
+        if not isinstance(rw, int) or isinstance(rw, bool) or not 1 <= rw <= _WIDTH_MAX:
+            errors.append(f"{where}.replacementWidth 必須是 1..{_WIDTH_MAX} 的整數（主 MOD 只收整數路寬）")
+        elif "replacementPoints" in raw or hide:
+            errors.append(f"{where}.replacementWidth 只能單獨使用（width-fix 點列不動、不隱藏路名）")
+        elif width is not None and rw == width:
+            errors.append(f"{where}.replacementWidth 等於 expectedWidth＝空修正")
+        elif exp is not None:
+            problem = width_evidence_error(exp, rw, raw.get("widthEvidence"))
+            if problem:
+                errors.append(f"{where}.widthEvidence {problem}")
+            else:
+                new_width = rw
+    elif "widthEvidence" in raw:
+        errors.append(f"{where}.widthEvidence 只用於 width-fix（這筆沒有 replacementWidth）")
+    if not hide and rep is None and "replacementWidth" not in raw:
         errors.append(f"{where} 既不改幾何也不隱藏路名＝空修正，請刪除")
     if "bridgeTo" in raw and rep is None:
         errors.append(f"{where}.bridgeTo 只用於 gap-bridge（這筆沒有 replacementPoints）")
@@ -454,6 +527,7 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         bridge_to,
         drop_k,
         trim_to,
+        new_width,
     )
 
 
@@ -545,10 +619,12 @@ def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
         f"-- 由 scripts/gen_street_repairs.py 從 {REPAIRS_DIR_NAME}/*.json 編譯",
         f"-- {len(pins_by_ds)} 個 dataset／{total} 筆修正（中心線 {kinds.count(KIND_RECT)}、"
         f"接線 {kinds.count(KIND_BRIDGE)}、移除轉折點 {kinds.count(KIND_DROP)}、"
-        f"隱藏標籤候選 {kinds.count(KIND_HIDE)}）",
+        f"換路寬 {kinds.count(KIND_WIDTH)}、隱藏標籤候選 {kinds.count(KIND_HIDE)}）",
         "--",
         "-- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log",
         "-- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。",
+        "-- replacementWidth 只換路寬、點列不動；主 MOD 42.21.0-0.45.0 及更早版本不認得它，",
+        "-- 該筆當空修正略過（log 一次），照作者路寬。",
         "-- hideLabel 只影響玩家地圖上的路名顯示，**不從導航路網移除該道路**；",
         "-- reference 是 vanilla 對應街道的 index/width/points，執行期須確認那條",
         "-- canonical 道路仍在且看得見，才真的隱藏我方這份重複標籤。",
@@ -561,9 +637,9 @@ def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
         p = pins_by_ds[ds]
         lines.append(f"-- ==== {ds} ({p.map_mod} / {p.map_dir}) ====")
         lines.append(
-            f"-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／exact-copy）在"
+            f"-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／exact-copy）在"
             f" {REPAIRS_DIR_NAME}/{ds}.json 的 reason；"
-            "有 replacementPoints＝改幾何，有 hideLabel＝藏重複路名"
+            "有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名"
         )
         lines.append("do")
         lines.append("    local ops = {}")
@@ -574,6 +650,8 @@ def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
                 f"expectedWidth = {_fmt_num(o.expected_width)}",
                 f"expectedPoints = {_fmt_flat(o.expected_points)}",
             ]
+            if o.replacement_width is not None:
+                parts.append(f"replacementWidth = {o.replacement_width}")
             if o.replacement_points:
                 parts.append(f"replacementPoints = {_fmt_flat(o.replacement_points)}")
             if o.hide_label:
@@ -796,6 +874,9 @@ _XML = (
     '    <street name="Long Ave" width="10">\n'
     '        <points><point x="432" y="580" /><point x="432" y="700" /></points>\n'
     "    </street>\n"
+    '    <street name="Wide Blvd" width="5">\n'
+    '        <points><point x="500" y="700" /><point x="500.5" y="800" /></points>\n'
+    "    </street>\n"
     "</streets>\n"
 )
 _VAN_XML = (
@@ -864,6 +945,18 @@ def _pin_doc(**over: object) -> dict:
                 "trimTo": {"index": 6, "name": "Long Ave"},
                 "replacementPoints": [400, 600, 430, 600],
                 "reason": "drop-vertex（內點＋尾端點）",
+            },
+            {
+                "index": 7,
+                "name": "Wide Blvd",
+                "expectedWidth": 5,
+                "expectedPoints": [500, 700, 500.5, 800],
+                "replacementWidth": 11,
+                "widthEvidence": {
+                    "source": "pzmap road-surfaces --pz-build 42.21",
+                    "sections": [{"from": [495, 720], "to": [505, 720]}, {"from": [505, 780], "to": [495, 780]}],
+                },
+                "reason": "width-fix",
             },
         ],
     }
@@ -965,6 +1058,34 @@ def _reject_cases() -> list[tuple[str, dict, str]]:
     cases.append(("dropVertex 缺 replacementPoints", doc, "必須搭配 replacementPoints"))
     doc = _pin_doc(); doc["operations"][3]["bridgeTo"] = {"index": 3}
     cases.append(("bridgeTo 用在 drop-vertex", doc, "只用於 gap-bridge"))
+    for bad in (10.5, 0, 65, True, "11"):
+        doc = _pin_doc(); doc["operations"][5]["replacementWidth"] = bad
+        cases.append((f"width-fix 路寬 {bad!r} 不合法", doc, "1..64 的整數"))
+    doc = _pin_doc(); doc["operations"][5]["replacementWidth"] = 5
+    cases.append(("width-fix 路寬沒變", doc, "等於 expectedWidth"))
+    doc = _pin_doc(); doc["operations"][5]["replacementPoints"] = [500, 700, 500.5, 800]
+    cases.append(("width-fix 搭配 replacementPoints", doc, "只能單獨使用"))
+    doc = _pin_doc(); doc["operations"][5].update(hideLabel=True, reference={"index": 0, "width": 5, "points": [500, 700, 500.5, 800]})
+    cases.append(("width-fix 搭配 hideLabel", doc, "只能單獨使用"))
+    doc = _pin_doc(); doc["operations"][5].pop("widthEvidence")
+    cases.append(("width-fix 缺證據", doc, "widthEvidence 必填"))
+    doc = _pin_doc(); doc["operations"][5]["widthEvidence"]["sections"].pop()
+    cases.append(("width-fix 只有一個橫截面", doc, "至少要 2 個"))
+    doc = _pin_doc(); doc["operations"][5]["widthEvidence"]["sections"][1]["to"] = [494, 780]
+    cases.append(("width-fix 橫截面量到的寬不符", doc, "量到 12 格"))
+    doc = _pin_doc(); doc["operations"][5]["widthEvidence"]["sections"][0] = {"from": [498, 720], "to": [508, 720]}
+    cases.append(("width-fix 中線偏離路面中心", doc, "離路面中心"))
+    doc = _pin_doc(); doc["operations"][5]["widthEvidence"]["sections"][0] = {"from": [495, 650], "to": [505, 650]}
+    cases.append(("width-fix 橫截面沒碰到這條街", doc, "沒有近乎垂直地穿過"))
+    doc = _pin_doc(); doc["operations"][5]["widthEvidence"]["sections"][0] = {"from": [495, 715], "to": [505, 725]}
+    cases.append(("width-fix 斜的橫截面", doc, "水平或垂直"))
+    doc = _pin_doc(); doc["operations"][5]["widthEvidence"]["sections"][0] = {"from": [500, 695], "to": [500, 705]}
+    cases.append(("width-fix 橫截面沿著街走", doc, "沒有近乎垂直地穿過"))
+    doc = _pin_doc(); doc["operations"][5].update(expectedPoints=[480.5, 700, 520.5, 800], widthEvidence={
+        "source": "x", "sections": [{"from": [495, 749], "to": [505, 749]}, {"from": [495, 750], "to": [505, 750]}]})
+    cases.append(("width-fix 街斜交橫截面（量到的寬偏大）", doc, "沒有近乎垂直地穿過"))
+    doc = _pin_doc(); doc["operations"][0]["widthEvidence"] = {"source": "x", "sections": []}
+    cases.append(("widthEvidence 用在中心線", doc, "只用於 width-fix"))
     return cases
 
 
@@ -1008,6 +1129,12 @@ def cmd_selftest() -> int:
             lua,
         )
         check(
+            "width-fix 原樣落表（整數路寬、不帶 replacementPoints）、widthEvidence 不進執行期",
+            "ops[7] = { expectedWidth = 5, expectedPoints = { 500, 700, 500.5, 800 }, replacementWidth = 11 }" in lua
+            and "widthEvidence" not in lua and "sections" not in lua,
+            lua,
+        )
+        check(
             "drop-vertex 原樣落表、dropVertex／trimTo 不進執行期",
             "replacementPoints = { 300, 500, 360, 500, 390, 500 }" in lua
             and "replacementPoints = { 400, 600, 430, 600 }" in lua
@@ -1016,10 +1143,12 @@ def cmd_selftest() -> int:
         )
         pins, _e, _w = load_pins(root / REPAIRS_DIR_NAME / "demo.json")
         check(
-            "四種規則分類正確（剪端點仍屬 drop-vertex）",
+            "五種規則分類正確（剪端點仍屬 drop-vertex）",
             pins is not None
-            and [classify_op(o) for o in pins.ops] == [KIND_RECT, KIND_HIDE, KIND_BRIDGE, KIND_DROP, KIND_DROP]
-            and pins.ops[4].drop_vertex == (1, 3) and pins.ops[4].trim_to == 6,
+            and [classify_op(o) for o in pins.ops]
+            == [KIND_RECT, KIND_HIDE, KIND_BRIDGE, KIND_DROP, KIND_DROP, KIND_WIDTH]
+            and pins.ops[4].drop_vertex == (1, 3) and pins.ops[4].trim_to == 6
+            and pins.ops[5].replacement_width == 11 and pins.ops[5].replacement_points is None,
         )
         res = _verify(root)
         check("verify 通過剛生成的檔",
@@ -1137,7 +1266,8 @@ def main(argv: list[str] | None = None) -> int:
             kinds = [classify_op(o) for o in pins_by_ds[ds].ops]
             print(
                 f"   {ds:24s} 中心線 {kinds.count(KIND_RECT):4d} 接線 {kinds.count(KIND_BRIDGE):4d}"
-                f" 移除轉折點 {kinds.count(KIND_DROP):4d} 隱藏標籤候選 {kinds.count(KIND_HIDE):4d}"
+                f" 移除轉折點 {kinds.count(KIND_DROP):4d} 換路寬 {kinds.count(KIND_WIDTH):4d}"
+                f" 隱藏標籤候選 {kinds.count(KIND_HIDE):4d}"
             )
         return 0 if result.ok else 1
     if args.cmd == "verify":
