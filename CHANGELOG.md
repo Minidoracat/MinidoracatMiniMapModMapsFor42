@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### 更新
+
+- **汐汐的靜謐小屋小地圖圖像更新**：原作者 2026-10-21 修改了湖中小屋一帶的建築，也更新了地圖自帶的材質；小地圖圖像已依最新資料重新產生。範圍、名稱與資源點不變。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：追蹤器 #53：[B42]Xixi's Serene Cottage（3685508479）2026-10-21 15:41 UTC 更新，Steam 客戶端副本 timeupdated 與上游一致，`hash_mod_mapdata` 等於追蹤器新基準（assets `3118f85`、圖資 `15d588f`）。圖資只有 cell 29_32 的 lotheader／lotpack／chunkdata 變更，lotheader 範圍不變（29–30 × 31–32，bounds 與註冊值一致）；自帶 `xixicici.pack`／`.tiles` 一併變更，mod.info 與 worldmap.xml 未動、沒有 streets.xml。`rebuild_pyramids.py --only Xixi` 重渲，與已發布 0.20.1 比對 6 個分片中 2 個不同，第 0 層 108 像素，全部落在 cell 29_32；`gen_map_resources.py bake --only` 後資源點與停車場資料不變。
+
 ## [42.21.0-0.20.1] - 2026-10-18
 
 ### 修正
