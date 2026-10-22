@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17T09:41:55Z",
+  "generated_at": "2026-10-22T10:40:11Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -1380,7 +1380,7 @@
       }
     },
     "3685508479": {
-      "assets": "e6918ed2b26dfa82f64c7b32aa7f4adbe054ce287a42d4ad5080cfa271fa822c",
+      "assets": "3118f85c0ce87fee169e3b09996c000c33cdc2f29170c4d1699ade96882f28a2",
       "maps": {
         "Xixi's Serene Cottage": {
           "bounds": [
@@ -1389,7 +1389,7 @@
             7936,
             8448
           ],
-          "hash": "6bc175ca8aed3cd391b6ee1d42560317a745fd9377273b5dc2af16b84ef443ee"
+          "hash": "15d588f067878b25fcbb90f4d5667a821eebb04a4bcd66828189cd50fd43e117"
         }
       },
       "mods": {
