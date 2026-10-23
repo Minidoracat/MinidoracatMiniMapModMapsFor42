@@ -343,16 +343,16 @@ def map_dir_path(mod_root: Path, name: str) -> Path | None:
 
 def locate(entries: list[dict], only: str, prefer: list[str]) -> tuple[list[dict], list[str]]:
     """選到的 zip → [{zip, entry, root, mapDir, path}]；本機找不到的 zip 另列。"""
-    idx, _req = rp.index_workshop([Path(p) for p in prefer])
+    idx, req, alts = rp.index_workshop([Path(p) for p in prefer])
     found, missing = [], []
     for zip_name in dict.fromkeys(e["zip"] for e in entries):
         if only and only.lower() not in zip_name.lower():
             continue
         hit = None
-        # alias 條目（互斥變體共用同 zip）：依序換用同 zip 其他 mapMod，同 rebuild_pyramids
+        # alias 條目（互斥變體共用同 zip）：依序換用同 zip 其他條目，同 rebuild_pyramids
         for e in (x for x in entries if x["zip"] == zip_name):
-            root = idx.get(e["mapMod"])
-            name = rp.find_map_dir(root, e["mapDir"], stem(zip_name), e["mapMod"]) if root else None
+            got = rp.entry_root(idx, req, alts, e)
+            root, name = got[:2] if got else (None, None)
             path = map_dir_path(root, name) if name else None
             if path:
                 hit = {"zip": zip_name, "entry": e, "root": root, "mapDir": name, "path": path}

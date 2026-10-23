@@ -89,6 +89,12 @@
       "junkyard"
     ]
   },
+  "Coryerdon.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "junkyard"
+    ]
+  },
   "Daisy County.pyramid.zip": {
     "aliases": {
       "Dachui": "toolstore",

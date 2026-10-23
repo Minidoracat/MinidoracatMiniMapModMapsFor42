@@ -582,7 +582,7 @@ def _workshop_id_of(root: Path) -> str | None:
 
 
 def build_tile_deps(
-    entries: list[dict], idx: dict, requires: dict
+    entries: list[dict], idx: dict, requires: dict, alts: dict | None = None
 ) -> tuple[dict[str, dict], dict[str, list[str]]]:
     """註冊表 entries＋workshop 索引 → ({tile pack workshop id: {mod_ids, used_by}}, 診斷)。
 
@@ -596,7 +596,20 @@ def build_tile_deps(
     追蹤範圍刻意等同「渲染時實際餵給 pzmap 的 --mod 集合」（rebuild_pyramids 的
     deps 解析同一份 requires/idx），追蹤器與渲染器才不會對「什麼會影響輸出」有兩套看法。
     同一 Workshop 項目內的 mod 不另外追蹤（本體更新時本來就會偵測到）。
-    純函式、不碰檔案系統：workshop id 由路徑推導，故 self-test 可直接餵假 Path。"""
+    純函式、不碰檔案系統：workshop id 由路徑推導，故 self-test 可直接餵假 Path。例外是同一 mod id
+    由多個 Workshop 項目宣告（alts，Coryerdon 舊移植與 2026 移植版）：要看 media/maps 依 mapDir 挑。"""
+    alts = alts or {}
+
+    def resolve(entry: dict) -> tuple[Path, list[str]] | None:
+        mid = entry["mapMod"]
+        if mid not in idx:
+            return None
+        if mid not in alts:
+            return idx[mid], requires.get(mid, [])
+        import rebuild_pyramids as rp  # 延後匯入：CI 的 check/diff/issue 用不到
+        hit = rp.entry_root(idx, requires, alts, entry)
+        return (hit[0], hit[2]) if hit else None
+
     items: dict[str, dict] = {}
     seen_zip: set[str] = set()
     unresolved: list[str] = []
@@ -606,22 +619,21 @@ def build_tile_deps(
         zip_name = entry["zip"]
         if zip_name in seen_zip:
             continue
-        root = idx.get(entry["mapMod"])
-        if root is None:
+        resolved = resolve(entry)
+        if resolved is None:
             # alias 條目（互斥變體共用同 zip）：換用同 zip 其他 mapMod 再試，同 rebuild_pyramids
-            alt = next(
-                (x for x in entries if x["zip"] == zip_name and idx.get(x["mapMod"])), None
-            )
+            alt = next((x for x in entries if x["zip"] == zip_name and resolve(x)), None)
             if alt is None:
                 # 本機沒有該地圖副本 → 它的材質包依賴這輪看不到。必須浮上來：
                 # 靜默略過會讓 tile_deps.json 在缺副本的機器上「掃出較少項目」而砍掉追蹤覆蓋
                 unresolved.append(zip_name)
                 seen_zip.add(zip_name)
                 continue
-            entry, root = alt, idx[alt["mapMod"]]
+            entry, resolved = alt, resolve(alt)
+        root, reqs = resolved
         seen_zip.add(zip_name)
         map_wid = _workshop_id_of(root)
-        for dep_mod in requires.get(entry["mapMod"], []):
+        for dep_mod in reqs:
             dep_root = idx.get(dep_mod)
             if dep_root is None:
                 missing_deps.add(dep_mod)   # 本機沒這個包 → 無從推 workshop id，但要看得見
@@ -1482,8 +1494,8 @@ def cmd_deps_scan(args) -> int:
     import rebuild_pyramids as rp  # 延後匯入：CI 的 check/diff/issue 用不到
 
     entries = rp.parse_registrations(rp.LUA.read_text(encoding="utf-8"))
-    idx, requires = rp.index_workshop([Path(p) for p in args.prefer])
-    items, diag = build_tile_deps(entries, idx, requires)
+    idx, requires, alts = rp.index_workshop([Path(p) for p in args.prefer])
+    items, diag = build_tile_deps(entries, idx, requires, alts)
     for label, key in (("依賴推不出 workshop id（本機副本不在 workshop 佈局下？）", "unlocatable_deps"),
                        ("require= 指名但本機沒有的 mod（B41 時代 require 常含 B42 用不到的包）",
                         "missing_deps")):
@@ -1543,20 +1555,18 @@ def cmd_road_scan(args) -> int:
     import road_status as rs
 
     entries = rp.parse_registrations(rp.LUA.read_text(encoding="utf-8"))
-    idx, _requires = rp.index_workshop([Path(p) for p in args.prefer])
+    idx, requires, alts = rp.index_workshop([Path(p) for p in args.prefer])
     resolved: dict[str, dict] = {}
     item_roots: dict[str, Path] = {}
     unresolved: list[str] = []
     for zip_name in dict.fromkeys(e["zip"] for e in entries):
         hit = None
-        # alias 條目（互斥變體共用同 zip）：依序換用同 zip 其他 mapMod，同 rebuild_pyramids
+        # alias 條目（互斥變體共用同 zip）：依序換用同 zip 其他條目，同 rebuild_pyramids
         for e in (x for x in entries if x["zip"] == zip_name):
-            root = idx.get(e["mapMod"])
-            item = _item_root(root) if root is not None else None
-            map_dir = (rp.find_map_dir(root, e["mapDir"], zip_name.removesuffix(".pyramid.zip"),
-                                       e["mapMod"]) if item is not None else None)
-            if map_dir:
-                hit = (item, map_dir)
+            got = rp.entry_root(idx, requires, alts, e)
+            item = _item_root(got[0]) if got else None
+            if item is not None:
+                hit = (item, got[1])
                 break
         if hit is None:
             unresolved.append(zip_name)
@@ -1853,8 +1863,20 @@ def cmd_self_test() -> int:
                 '\t"WorkshopItemDetails"\n\t{\n\t\t"990001"\n\t\t{\n'
                 f'\t\t\t"timeupdated"\t\t"{details}"\n\t\t}}\n\t}}\n}}\n', encoding="utf-8")
             roots.append(content)
-        idx_f, _req_f = rp.index_workshop(roots)  # 舊副本排在前面（同 --prefer 先列）
+        # 不同 Workshop 項目宣告同一 mod id（Coryerdon 舊移植 3502623745 與 2026 移植版 3821470553 都是
+        # CoryerdonB42）：依 mapDir 挑對項目，require= 也要用那一份的（新版才依賴 Melos Tiles）
+        for wid, folder, req in (("990003", "Old Port", ""), ("990004", "New Port", "require=TilesX\n")):
+            mod_dir = roots[1] / wid / "mods" / folder
+            (mod_dir / "common" / "media" / "maps" / folder).mkdir(parents=True)
+            (mod_dir / "42").mkdir()
+            (mod_dir / "42" / "mod.info").write_text(f"id=DupIdTestMod\n{req}", encoding="utf-8")
+        idx_f, req_f, alts_f = rp.index_workshop(roots)  # 舊副本排在前面（同 --prefer 先列）
         assert Path(td) / "new" in idx_f["FreshCopyTestMod"].parents
+        for folder, wid, want_req in (("New Port", "990004", ["TilesX"]), ("Old Port", "990003", [])):
+            got = rp.entry_root(idx_f, req_f, alts_f, {"zip": f"{folder}.pyramid.zip",
+                                                         "mapMod": "DupIdTestMod", "mapDir": folder})
+            assert got is not None and got[0].parent.parent.name == wid and got[1] == folder, got
+            assert got[2] == want_req, got
         bare = [Path(td) / "a", Path(td) / "b"]
         for r in bare:
             (r / "990002").mkdir(parents=True)

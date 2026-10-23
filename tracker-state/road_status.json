@@ -88,6 +88,10 @@
       "map_dir": "Coryerdon B42",
       "workshop_id": "3502623745"
     },
+    "Coryerdon.pyramid.zip": {
+      "map_dir": "Coryerdon",
+      "workshop_id": "3821470553"
+    },
     "Daisy County.pyramid.zip": {
       "map_dir": "Daisy County",
       "workshop_id": "3390753141"
@@ -449,7 +453,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-23T13:56:46Z",
+  "generated_at": "2026-10-23T16:35:53Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1508,6 +1512,16 @@
           "street_count": 696,
           "streets_sha256": "9a619079639d0e99e0712eb323d1dfc1b54385ecb5976fddca4b791e078b6758",
           "worldmap_sha256": "df63b5693ac531e18869d70a0bcff6972bcc39e7c34fb696316619e35a0f64be"
+        }
+      }
+    },
+    "3821470553": {
+      "checked": "2026-10-23T16:35:53Z",
+      "maps": {
+        "Coryerdon": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "3511feb33e013d371683cd7382e8a9249bb52f18dd7b3629db64fe6a60b61c08"
         }
       }
     }

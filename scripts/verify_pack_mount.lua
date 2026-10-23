@@ -212,6 +212,15 @@ local ATL_ZIP = "Atlanta - Safe Zone.pyramid.zip"
 g = run({ ATL_ID }, ATL_ID .. ";Muldraugh, KY", { [ATL_ID] = { ATL_ID } })
 pass = check("亞特蘭大安全區：真 mod ID（含 ’）啟用 → 掛 " .. ATL_ZIP, g[ATL_ZIP] ~= nil) and pass
 
+-- 4d) 案例：兩個 Workshop 項目同一個 mod id（Coryerdon 舊移植 3502623745 與 2026 移植版 3821470553 都是
+--     CoryerdonB42），圖資不同。activated mods 分不出來，只能靠實際載入的地圖資料夾（mapDir）各掛各的
+local CORY_ID = "CoryerdonB42"
+local CORY_OLD, CORY_NEW = "Coryerdon B42.pyramid.zip", "Coryerdon.pyramid.zip"
+g = run({ CORY_ID }, "Coryerdon;Muldraugh, KY", { [CORY_ID] = { "Coryerdon" } })
+pass = check("科里爾登：裝 2026 移植版 → 只掛 " .. CORY_NEW, g[CORY_NEW] ~= nil and g[CORY_OLD] == nil) and pass
+g = run({ CORY_ID }, "Coryerdon B42;Muldraugh, KY", { [CORY_ID] = { "Coryerdon B42" } })
+pass = check("科里爾登：裝舊移植 → 只掛 " .. CORY_OLD, g[CORY_OLD] ~= nil and g[CORY_NEW] == nil) and pass
+
 -- 5) 全量：所有 mapMod 啟用且所有地圖目錄都載入 → 91 顆 zip 全數掛上（alias 去重後）。
 --    有 mapDir 的條目（SecretZ 據點類）吃「該目錄實際載入」閘門，故 mapStr 要含全部目錄
 local allMods, uniq, dirList, folders = {}, {}, {}, {}

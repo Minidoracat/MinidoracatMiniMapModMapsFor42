@@ -25,8 +25,8 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**112** 張
-- 作者附道路資料（Author road data）：**30** 張；沒有 **82** 張
+- 收錄地圖（Maps）：**113** 張
+- 作者附道路資料（Author road data）：**30** 張；沒有 **83** 張
 - 本包路名翻譯（Translated names）：**23** 張
 - 本包道路修正（Fixes）：**4** 張
 - 本包補充道路（Added roads）：**4** 張
@@ -73,6 +73,7 @@
 | 銀杉谷 2.0<br>Cathaya Valley 2.0 | [3576150391](https://steamcommunity.com/sharedfiles/filedetails/?id=3576150391) | ❌ 無 | — | — | — |
 | 康斯鎮<br>Constown, KY | [3480990544](https://steamcommunity.com/sharedfiles/filedetails/?id=3480990544) | ❌ 無 | — | — | ✅ 38 條 |
 | 科里爾登<br>Coryerdon | [3502623745](https://steamcommunity.com/sharedfiles/filedetails/?id=3502623745) | ❌ 無 | — | — | — |
+| 科里爾登（2026 移植版）<br>Coryerdon (2026 port) | [3821470553](https://steamcommunity.com/sharedfiles/filedetails/?id=3821470553) | ❌ 無 | — | — | — |
 | 雛菊郡<br>Daisy County | [3390753141](https://steamcommunity.com/sharedfiles/filedetails/?id=3390753141) | ✅ 44 條 | ✅ 44 條 | 輪廓道路改中心線 44 條 | — |
 | 拂曉鎮<br>Dawn Town | [3666180085](https://steamcommunity.com/sharedfiles/filedetails/?id=3666180085) | ❌ 無 | — | — | — |
 | 德克丹<br>Dirkerdam | [3818766091](https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091) | ✅ 696 條（[3821109144](https://steamcommunity.com/sharedfiles/filedetails/?id=3821109144)） | ✅ 221 條 | — | ✅ 1 條 |

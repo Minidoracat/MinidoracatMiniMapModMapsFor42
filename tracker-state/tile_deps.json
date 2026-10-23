@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T13:52:31Z",
+  "generated_at": "2026-10-23T16:35:51Z",
   "items": {
     "2384329562": {
       "mod_ids": [
@@ -130,6 +130,11 @@
           "map_mod": "Chinatown Expansion B42 version",
           "workshop_id": "3703704638",
           "zip": "Chinatown Expansion B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "CoryerdonB42",
+          "workshop_id": "3821470553",
+          "zip": "Coryerdon.pyramid.zip"
         },
         {
           "map_mod": "Floatopia",

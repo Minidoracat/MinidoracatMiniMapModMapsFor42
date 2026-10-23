@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **112 張**（89 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **113 張**（90 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯**：下列 **23 組**地圖資料提供繁中／簡中／
@@ -72,7 +72,8 @@
 | 銀杉谷 2.0－公路 | `Cathaya Valley 2.0 B42 version highway` | 7424,12288 – 7936,13312 |
 | 銀杉谷 2.0 | `Cathaya Valley 2.0 B42 version` | 7168,12544 – 7680,13312 |
 | 康斯鎮 | `Constown42` | 4864,10752 – 6400,11520 |
-| 科里爾登 | `CoryerdonB42` | 7168,5632 – 10752,7424 |
+| 科里爾登 | `CoryerdonB42`（地圖資料夾 `Coryerdon B42`） | 7168,5632 – 10752,7424 |
+| 科里爾登（2026 移植版） | `CoryerdonB42`（與上者同 mod id、另一位作者的新移植；地圖資料夾 `Coryerdon`，需要 Melos Tiles for Miles） | 7168,5632 – 10752,7424 |
 | 雛菊郡 | `Daisy County B42 version` | 9728,7168 – 10752,8192 |
 | 拂曉鎮 | `dawn_town` | 2816,7936 – 3328,8448 |
 | 德克丹 | `DirkerdamIntegratedB42`（路名需 `DirkerdamMapFix`） | 1280,1792 – 10496,5632 |

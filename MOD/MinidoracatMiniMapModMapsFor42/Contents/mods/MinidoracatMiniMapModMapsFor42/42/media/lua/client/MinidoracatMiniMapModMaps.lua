@@ -104,8 +104,12 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "Constown, KY.pyramid.zip", mapMod = "Constown42", mapDir = "Constown, KY",
             streetSupplement = StreetSupplements["constown"],
             bounds = { 4864, 10752, 6400, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_Constown" },
-        { zip = "Coryerdon B42.pyramid.zip", mapMod = "CoryerdonB42",
+        -- 舊移植（3502623745）與 2026 移植版（3821470553，另一位作者）mod id 都是 CoryerdonB42，
+        -- 圖資不同（新版多 8 個 cell、河岸與東南緣重畫）⇒ 各自一顆 zip，只能靠地圖資料夾名（mapDir）分辨
+        { zip = "Coryerdon B42.pyramid.zip", mapMod = "CoryerdonB42", mapDir = "Coryerdon B42",
             bounds = { 7168, 5632, 10752, 7424 }, nameKey = "UI_MinidoracatMiniMapModMaps_Coryerdon" },
+        { zip = "Coryerdon.pyramid.zip", mapMod = "CoryerdonB42", mapDir = "Coryerdon",
+            bounds = { 7168, 5632, 10752, 7424 }, nameKey = "UI_MinidoracatMiniMapModMaps_Coryerdon2026" },
         -- 上游把 44/44 條街全畫成輪廓矩形（width 已表達寬度 ⇒ 重複表達）：引擎在兩條
         -- 長邊各畫一次路名，玩家看到上下兩行；修正壓成中心線，粗細與導航都不變
         { zip = "Daisy County.pyramid.zip", mapMod = "Daisy County B42 version", mapDir = "Daisy County",

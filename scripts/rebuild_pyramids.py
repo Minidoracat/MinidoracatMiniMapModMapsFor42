@@ -71,8 +71,9 @@ VERSION_DIR = re.compile(r"^42(\.\d+)*$")  # B42 版本資料夾：42、42.0、4
 
 def index_workshop(extra_roots=()):
     """id -> mod 根目錄（mods/<name>/）。同一 Workshop 項目在多個 content 根都有副本時只看
-    最新那份（item_dirs：acf timeupdated，同分照 extra_roots 在前）；不同項目宣告同一 id 時首見為準。"""
-    idx, requires = {}, {}
+    最新那份（item_dirs：acf timeupdated，同分照 extra_roots 在前）。不同項目宣告同一 id 時首見進 idx，
+    其餘進 alts（Coryerdon 舊移植與 2026 移植版都是 CoryerdonB42）；地圖條目一律經 entry_root 依 mapDir 挑。"""
+    idx, requires, alts = {}, {}, {}
     roots = [*extra_roots, WORKSHOP]
     chosen = {}
 
@@ -84,15 +85,15 @@ def index_workshop(extra_roots=()):
     for ws in roots:
         for info in ws.glob("*/mods/*/mod.info"):
             if fresh(info.parents[2]):
-                _index_info(info, info.parent, idx, requires)
+                _index_info(info, info.parent, idx, requires, alts)
         for info in ws.glob("*/mods/*/*/mod.info"):
             sub = info.parent.name
             if (sub.lower() == "common" or VERSION_DIR.match(sub)) and fresh(info.parents[3]):
-                _index_info(info, info.parent.parent, idx, requires)
-    return idx, requires
+                _index_info(info, info.parent.parent, idx, requires, alts)
+    return idx, requires, alts
 
 
-def _index_info(info, root, idx, requires):
+def _index_info(info, root, idx, requires, alts):
     try:
         text = info.read_text(encoding="utf-8", errors="replace")
     except OSError:
@@ -104,9 +105,27 @@ def _index_info(info, root, idx, requires):
         elif line.startswith("require="):
             # B42 mod.info 可寫 require=\Name（反斜線前綴），依 id 索引時要剝掉
             req = [r.strip().lstrip("\\") for r in line[8:].split(",") if r.strip().lstrip("\\")]
-    if mid and mid not in idx:
+    if not mid:
+        return
+    if mid not in idx:
         idx[mid] = root
         requires[mid] = req or []
+    elif root != idx[mid] and all(r != root for r, _ in alts.get(mid, [])):
+        alts.setdefault(mid, []).append((root, req or []))
+
+
+def entry_root(idx, requires, alts, e):
+    """註冊條目 → (mod 根目錄, 地圖目錄名, require= 清單)；本機找不到回 None。
+    同一 id 有多份（alts）時依序試，取 media/maps 下有該地圖目錄的那份。"""
+    mid = e["mapMod"]
+    if mid not in idx:
+        return None
+    stem = e["zip"].removesuffix(".pyramid.zip")
+    for root, req in [(idx[mid], requires[mid]), *alts.get(mid, [])]:
+        name = find_map_dir(root, e["mapDir"], stem, mid)
+        if name:
+            return root, name, req
+    return None
 
 
 def find_map_dir(root, want, zip_stem, map_mod):
@@ -148,31 +167,25 @@ def main():
     args = ap.parse_args()
 
     entries = parse_registrations(LUA.read_text(encoding="utf-8"))
-    idx, requires = index_workshop([Path(p) for p in args.prefer])
+    idx, requires, alts = index_workshop([Path(p) for p in args.prefer])
     seen, plan, missing = set(), [], []
     for e in entries:
         if e["zip"] in seen or (args.only and args.only.lower() not in e["zip"].lower()):
             continue
-        root = idx.get(e["mapMod"])
-        if root is None:
-            # alias 條目：換用同 zip 其他 mapMod 再試
-            alt = next((x for x in entries if x["zip"] == e["zip"] and idx.get(x["mapMod"])), None)
-            if alt is None:
-                missing.append((e["zip"], e["mapMod"], "mod 不在本機 workshop"))
-                seen.add(e["zip"])
-                continue
-            e, root = alt, idx[alt["mapMod"]]
-        map_name = find_map_dir(root, e["mapDir"], e["zip"].removesuffix(".pyramid.zip"), e["mapMod"])
-        if map_name is None:
-            missing.append((e["zip"], e["mapMod"], f"media/maps 下找不到地圖目錄（mapDir={e['mapDir']}）"))
-            seen.add(e["zip"])
+        seen.add(e["zip"])
+        # alias 條目：同 zip 依序換用其他條目再試
+        hit = next((h for x in entries if x["zip"] == e["zip"]
+                    for h in [entry_root(idx, requires, alts, x)] if h), None)
+        if hit is None:
+            missing.append((e["zip"], e["mapMod"],
+                            f"mod 不在本機 workshop，或 media/maps 下找不到地圖目錄（mapDir={e['mapDir']}）"))
             continue
-        deps = [idx[r] for r in requires.get(e["mapMod"], []) if r in idx and idx[r] != root]
+        root, map_name, req = hit
+        deps = [idx[r] for r in req if r in idx and idx[r] != root]
         b = e["bounds"]
         region = (b[0] // 256, b[1] // 256, b[2] // 256 - 1, b[3] // 256 - 1)
         plan.append({"zip": e["zip"], "mod_root": root, "map": map_name,
                      "deps": deps, "region": region, "bounds": b})
-        seen.add(e["zip"])
 
     print(f"註冊 {len(entries)} 條 → 待渲 {len(plan)} 張，無法定位 {len(missing)} 張")
     for z, m, why in missing:
