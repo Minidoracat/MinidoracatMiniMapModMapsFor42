@@ -318,7 +318,10 @@ def render_doc(root: Path, status: dict) -> str:
         title = ch if ch == en else f"{ch}<br>{en}"
         entry = entries.get(m["zip"]) or {}
         wid = str(entry.get("workshop_id") or "")
-        author = ((items.get(wid) or {}).get("maps") or {}).get(entry.get("map_dir") or "")
+        names = data["names"].get(m["names"] or "")
+        # 街道可能在另一個項目（Dirkerdam Map Fix 替沒有 streets.xml 的本體帶街道）：作者道路照街名翻譯的來源算
+        src_wid, src_dir = (names["workshop_id"], names["map_dir"]) if names else (wid, entry.get("map_dir") or "")
+        author = ((items.get(src_wid) or {}).get("maps") or {}).get(src_dir)
         link = (f"[{wid}](https://steamcommunity.com/sharedfiles/filedetails/?id={wid})"
                 if wid.isdigit() else "❔")
         if author is None:
@@ -327,10 +330,11 @@ def render_doc(root: Path, status: dict) -> str:
         elif int(author.get("street_count") or 0):
             n_yes += 1
             roads = f"✅ {author['street_count']} 條"
+            if src_wid != wid:
+                roads += f"（[{src_wid}](https://steamcommunity.com/sharedfiles/filedetails/?id={src_wid})）"
         else:  # 沒有 streets.xml，或檔案裡沒有任何街道（有作者附空檔）
             n_no += 1
             roads = "❌ 無"
-        names = data["names"].get(m["names"] or "")
         if names:
             n_names += 1
         pins = data["repairs"].get(m["repairs"] or "")

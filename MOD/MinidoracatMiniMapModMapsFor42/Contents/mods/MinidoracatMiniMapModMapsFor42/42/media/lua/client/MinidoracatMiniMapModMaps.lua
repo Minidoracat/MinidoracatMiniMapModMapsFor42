@@ -113,6 +113,18 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 9728, 7168, 10752, 8192 }, nameKey = "UI_MinidoracatMiniMapModMaps_DaisyCounty" },
         { zip = "DawnTown.pyramid.zip", mapMod = "dawn_town",
             bounds = { 2816, 7936, 3328, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_DawnTown" },
+        -- 德克丹 440 cell（x 5–40、y 7–21），其中 54 個與原版同座標、整格重畫（含 Riverside 東 28,21／29,20／30,20
+        -- 與 Brandenburg 北 5,20／5,21 兩座接橋）；與河畔豪宅地塊重疊 2 cell＝事實上互斥，各自依啟用 mod 顯示。
+        -- 外框內另有 90 個本圖沒有的原版 cell 照原版畫進 zip：漂浮烏托邦（2 cell）、河畔豪宅（另 4 cell）排在本圖
+        -- 後面時，那幾格會被本圖的原版影像蓋住。
+        { zip = "Dirkerdam Integrated B42.pyramid.zip", mapMod = "DirkerdamIntegratedB42", mapDir = "Dirkerdam Integrated B42",
+            bounds = { 1280, 1792, 10496, 5632 }, nameKey = "UI_MinidoracatMiniMapModMaps_Dirkerdam" },
+        -- Dirkerdam Map Fix（另一位作者）沒有 cell，只帶修好的世界地圖資料與 streets.xml，Map= 規定排在本體正前方。
+        -- 街名翻譯要有明寫 mapDir 的來源條目 ⇒ 同 zip/bounds 作 alias（主 MOD 掛載去重）；資源點只由本體條目註冊。
+        -- 必須排在本體條目之後：rebuild_pyramids 等工具同 zip 取第一條可解析的條目渲染
+        { zip = "Dirkerdam Integrated B42.pyramid.zip", mapMod = "DirkerdamMapFix", mapDir = "Dirkerdam Integrated B42 Fix",
+            streetNames = StreetNames["dirkerdam"],
+            bounds = { 1280, 1792, 10496, 5632 }, nameKey = "UI_MinidoracatMiniMapModMaps_Dirkerdam" },
         -- 與海文弗爾（4 cell）、蕁麻鎮（2 cell）、提基鎮與特雷萊 4x4（各 1 cell）地塊重疊＝事實上互斥，各自依啟用 mod 顯示。
         { zip = "DuoDuoCity.pyramid.zip", mapMod = "DuoDuoCity",
             bounds = { 4864, 7680, 6656, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_DuoDuoCity" },

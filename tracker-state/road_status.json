@@ -96,6 +96,10 @@
       "map_dir": "DawnTown",
       "workshop_id": "3666180085"
     },
+    "Dirkerdam Integrated B42.pyramid.zip": {
+      "map_dir": "Dirkerdam Integrated B42",
+      "workshop_id": "3818766091"
+    },
     "DuoDuoCity.pyramid.zip": {
       "map_dir": "DuoDuoCity",
       "workshop_id": "3710155331"
@@ -445,7 +449,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-17T14:37:31Z",
+  "generated_at": "2026-10-23T13:56:46Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1484,6 +1488,26 @@
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": "acd5b708687cdb42c9179da25eb5359038f3ec65f33e2fd1cd638163e180555d"
+        }
+      }
+    },
+    "3818766091": {
+      "checked": "2026-10-23T13:56:46Z",
+      "maps": {
+        "Dirkerdam Integrated B42": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "e3d95f00cc33176f505d3cc3ef010ac651c0c527c1e8df0e830460d50ced6b01"
+        }
+      }
+    },
+    "3821109144": {
+      "checked": "2026-10-23T13:56:46Z",
+      "maps": {
+        "Dirkerdam Integrated B42 Fix": {
+          "street_count": 696,
+          "streets_sha256": "9a619079639d0e99e0712eb323d1dfc1b54385ecb5976fddca4b791e078b6758",
+          "worldmap_sha256": "df63b5693ac531e18869d70a0bcff6972bcc39e7c34fb696316619e35a0f64be"
         }
       }
     }

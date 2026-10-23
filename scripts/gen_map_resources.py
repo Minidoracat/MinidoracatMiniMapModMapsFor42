@@ -18,7 +18,8 @@
    worldmap.xml 把停車場也畫成道路，不做貼路排除）→ `map-resources/<zip 主檔名>.json`（進版控的
    唯一來源：zip、mapDir、rawRecords、cells300、aliases、entries、parking）。
 4. `render` 從全部 json＋註冊清單產生 shared
-   `MinidoracatMiniMapModMapsResources.lua`（每個註冊條目 zip＋mapMod 一次註冊）。
+   `MinidoracatMiniMapModMapsResources.lua`（每個註冊條目 zip＋mapMod 一次註冊；註冊明寫的 mapDir 不是
+   烘焙的地圖目錄＝那個目錄沒有這批建築（Dirkerdam Map Fix 只帶街道），不註冊）。
 
 ## 用法
 
@@ -224,15 +225,18 @@ def render_lua(entries: list[dict], resources: dict[str, dict], render_entry,
     s = gsi._lua_str
     regs = sorted({(e["zip"], e["mapMod"]): e for e in entries}.values(),
                   key=lambda e: (e["zip"], e["mapMod"]))
-    body, skipped = [], []
+    body, skipped, count = [], [], 0
     for e in regs:
         doc = resources.get(e["zip"])
         if doc is None:
             skipped.append(e["zip"])
             continue
+        if e["mapDir"] and e["mapDir"] != doc["mapDir"]:
+            continue
+        count += 1
         flat = [n for c in doc["cells300"] for n in c]
         body += ["", f"R.registerMapResources({s(OWNER_MOD_ID)}, {{",
-                 f"    mapMod = {s(e['mapMod'])}, mapDir = {s(e['mapDir'] or doc['mapDir'])},",
+                 f"    mapMod = {s(e['mapMod'])}, mapDir = {s(doc['mapDir'])},",
                  "    cells300 = {"]
         body += ["        " + ", ".join(map(str, flat[i:i + 32])) + "," for i in range(0, len(flat), 32)]
         body += ["    },", "    poi = {"]
@@ -252,7 +256,7 @@ def render_lua(entries: list[dict], resources: dict[str, dict], render_entry,
         f"-- 由 scripts/gen_map_resources.py render 從 {RES_DIR_NAME}/*.json＋註冊清單產生；",
         f"-- 資料用 bake 重烘，房名別名改 {ALIASES_NAME}。分類規則在主 MOD scripts/gen_poi_data.py，",
         "-- 停車場判定在主 MOD scripts/gen_parking_data.py（只重算停車場用 parking 子命令）。",
-        f"-- {len(regs) - len(skipped)} 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，",
+        f"-- {count} 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，",
         "-- parking 條目格式同 MinidoracatMiniMapParkingData（resourceApiVersion 3 起才讀，舊版主 MOD 不讀）。",
         "",
         "local R = MinidoracatMiniMapResourceAPI",
@@ -571,14 +575,15 @@ def cmd_selftest() -> int:
         reg = root / gsi.REGISTRY_REL
         reg.parent.mkdir(parents=True)
         reg.write_text(_reg_text([("A.pyramid.zip", "ModA2", None), ("A.pyramid.zip", "ModA", None),
+                                  ("A.pyramid.zip", "ModAFix", "A Fix"),
                                   ("hunter's_base.pyramid.zip", "Hunter'sBase", "回音河 base"),
                                   ("C.pyramid.zip", "ModC", None)]), encoding="utf-8")
         (root / ALIASES_NAME).write_text("{}", encoding="utf-8")
         (root / RES_DIR_NAME).mkdir()
         empty, skipped = render(root, poi.render_entry)
         ok("零份資料：只有守門、無註冊", b"registerMapResources(" not in empty and b"resourceApiVersion" in empty
-           and len(skipped) == 4, empty)
-        h_doc = {**doc, "zip": "hunter's_base.pyramid.zip", "mapDir": "x", "aliases": {}, "parking": []}
+           and len(skipped) == 5, empty)
+        h_doc = {**doc, "zip": "hunter's_base.pyramid.zip", "mapDir": "回音河 base", "aliases": {}, "parking": []}
         (root / RES_DIR_NAME / "hunter's_base.json").write_text(dump_resource(h_doc), encoding="utf-8")
         (root / RES_DIR_NAME / "A.json").write_text(dump_resource({**doc, "aliases": {}}), encoding="utf-8")
         first, skipped = render(root, poi.render_entry)
@@ -587,7 +592,9 @@ def cmd_selftest() -> int:
         ok("每個 zip＋mapMod 一次註冊、依序排列、缺資料略過",
            text.count("R.registerMapResources(") == 3 and text.index('"ModA"') < text.index('"ModA2"')
            and skipped == ["C.pyramid.zip"], text)
-        ok("字串跳脫：註冊 mapDir 優先、非 ASCII 走 \\ddd、純 ASCII",
+        ok("註冊明寫的 mapDir 不是烘焙目錄（只帶街道的 alias）不註冊", '"ModAFix"' not in text
+           and "3 個註冊" in text, text)
+        ok("字串跳脫：mapDir 非 ASCII 走 \\ddd、純 ASCII",
            'mapMod = "Hunter\'sBase", mapDir = "\\229\\155\\158' in text
            and all(ord(c) < 128 for line in text.splitlines() if not line.startswith("--") for c in line), text)
         esc = rp.parse_registrations(_reg_text([("E.pyramid.zip", "S\\226\\128\\153 C", "D\\226\\128\\153")]))

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T05:11:41Z",
+  "generated_at": "2026-10-23T13:52:31Z",
   "items": {
     "2384329562": {
       "mod_ids": [
@@ -34,6 +34,11 @@
           "map_mod": "Chinatown Expansion B42 version",
           "workshop_id": "3703704638",
           "zip": "Chinatown Expansion B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "DirkerdamIntegratedB42",
+          "workshop_id": "3818766091",
+          "zip": "Dirkerdam Integrated B42.pyramid.zip"
         },
         {
           "map_mod": "Floatopia",
@@ -324,6 +329,11 @@
           "map_mod": "Daisy County B42 version",
           "workshop_id": "3390753141",
           "zip": "Daisy County.pyramid.zip"
+        },
+        {
+          "map_mod": "DirkerdamIntegratedB42",
+          "workshop_id": "3818766091",
+          "zip": "Dirkerdam Integrated B42.pyramid.zip"
         },
         {
           "map_mod": "Floatopia",

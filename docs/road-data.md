@@ -25,9 +25,9 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**111** 張
-- 作者附道路資料（Author road data）：**29** 張；沒有 **82** 張
-- 本包路名翻譯（Translated names）：**22** 張
+- 收錄地圖（Maps）：**112** 張
+- 作者附道路資料（Author road data）：**30** 張；沒有 **82** 張
+- 本包路名翻譯（Translated names）：**23** 張
 - 本包道路修正（Fixes）：**4** 張
 - 本包補充道路（Added roads）：**3** 張
 
@@ -73,6 +73,7 @@
 | 科里爾登<br>Coryerdon | [3502623745](https://steamcommunity.com/sharedfiles/filedetails/?id=3502623745) | ❌ 無 | — | — | — |
 | 雛菊郡<br>Daisy County | [3390753141](https://steamcommunity.com/sharedfiles/filedetails/?id=3390753141) | ✅ 44 條 | ✅ 44 條 | 輪廓道路改中心線 44 條 | — |
 | 拂曉鎮<br>Dawn Town | [3666180085](https://steamcommunity.com/sharedfiles/filedetails/?id=3666180085) | ❌ 無 | — | — | — |
+| 德克丹<br>Dirkerdam | [3818766091](https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091) | ✅ 696 條（[3821109144](https://steamcommunity.com/sharedfiles/filedetails/?id=3821109144)） | ✅ 221 條 | — | — |
 | 多多市<br>DuoDuo City | [3710155331](https://steamcommunity.com/sharedfiles/filedetails/?id=3710155331) | ❌ 無 | — | — | — |
 | 迴音河軍事基地<br>EchoCreek Military Base | [3476333350](https://steamcommunity.com/sharedfiles/filedetails/?id=3476333350) | ❌ 無 | — | — | — |
 | 艾德汽車回收場<br>Ed's Auto Salvage | [3478900814](https://steamcommunity.com/sharedfiles/filedetails/?id=3478900814) | ✅ 3 條 | ✅ 3 條 | — | — |
