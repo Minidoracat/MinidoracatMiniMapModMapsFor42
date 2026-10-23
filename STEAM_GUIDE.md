@@ -53,8 +53,8 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Clover Lake Highway KY-316[/td][td]四葉草湖 316 號公路[/td][td]✅ 1 條[/td][/tr]
 [tr][td]Community Center[/td][td]社區中心[/td][td]✅ 10 條[/td][/tr]
 [tr][td]Constown, KY[/td][td]康斯鎮[/td][td]🛠️[/td][/tr]
-[tr][td]Coryerdon[/td][td]科里爾登[/td][td][/td][/tr]
-[tr][td]Coryerdon (2026 port)[/td][td]科里爾登（2026 移植版）[/td][td][/td][/tr]
+[tr][td]Coryerdon[/td][td]科里爾登[/td][td]🛠️[/td][/tr]
+[tr][td]Coryerdon (2026 port)[/td][td]科里爾登（2026 移植版）[/td][td]🛠️[/td][/tr]
 [tr][td]Daisy County[/td][td]雛菊郡[/td][td]✅ 44 條 🛠️[/td][/tr]
 [tr][td]Dawn Town[/td][td]拂曉鎮[/td][td][/td][/tr]
 [tr][td]Dirkerdam[/td][td]德克丹[/td][td]✅ 696 條（路名來自 Dirkerdam Map Fix）🛠️[/td][/tr]
@@ -163,6 +163,11 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [list]
 [*] 3 處原作者的路停在路口前，接上後可以導航到達。
 [*] Brooklawn Blvd 是中間有花台分隔島的雙向林蔭大道，原作者只標了一條車道寬；路寬改成實際寬度，自動駕駛不再壓上中間的花台（需要小地圖主 MOD 0.47.0 以上）。
+[/list]
+[*] [b]Coryerdon（科里爾登）[/b]：原作者沒附道路資料，地圖又蓋住幾段原版的路，那幾段沒有導航資料、要繞一大圈（例：沿 Rock Ridge Road 約 600 格的路要繞約 2,300 格）；本包沿原版路線補上，搜尋名稱是「科里爾登 01 號路（小地圖補）」這種格式。
+[list]
+[*] 舊移植版：Rock Ridge Road（01 號）、Crowbar Road（02 號）。
+[*] 2026 移植版：同上兩條，另加 River Walk Road（03 號）、Prewitt Dr（04 號）、Kiss Road（05 號）、Lipstick Road（06 號）。
 [/list]
 [*] [b]Daisy County（雛菊郡）[/b]：44 條畫成外框的路改成中心線，路名不再上下各顯示一次。
 [*] [b]Dirkerdam（德克丹）[/b]：Dirkerdam Map Fix 的道路資料停在 Brandenburg 北邊那座接橋的北端，到原版橋段之間約 290 格沒有導航資料，從 Brandenburg 導航過不了河；本包沿實際路面補上，搜尋名稱是「德克丹 01 號路（小地圖補）」。

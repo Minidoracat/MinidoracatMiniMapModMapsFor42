@@ -1,0 +1,145 @@
+{
+  "dataset": "coryerdon-2026",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3821470553",
+    "map_mod": "CoryerdonB42",
+    "map_dir": "Coryerdon",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "3511feb33e013d371683cd7382e8a9249bb52f18dd7b3629db64fe6a60b61c08",
+    "captured": "2026-10-24",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Coryerdon",
+    "ch": "科里爾登",
+    "cn": "科里尔登",
+    "jp": "コリアードン"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 8,
+      "points": [
+        7300,
+        5699,
+        7308.5,
+        5715.5,
+        7322,
+        5729,
+        7336,
+        5736,
+        7410.5,
+        5736,
+        7416,
+        5738.5,
+        7420,
+        5743,
+        7422,
+        5747,
+        7422,
+        6000
+      ],
+      "evidence": {
+        "samples": 396,
+        "on_road": 396
+      }
+    },
+    {
+      "no": 2,
+      "width": 5,
+      "points": [
+        7358,
+        6092.5,
+        7358,
+        5946.5,
+        7362,
+        5940,
+        7368,
+        5937,
+        7418,
+        5936.5
+      ],
+      "evidence": {
+        "samples": 210,
+        "on_road": 210
+      }
+    },
+    {
+      "no": 3,
+      "width": 7,
+      "points": [
+        9749.5,
+        6742,
+        9924.5,
+        6743,
+        9992,
+        6775.5,
+        10065.5,
+        6848.5,
+        10166,
+        6899,
+        10360,
+        6899
+      ],
+      "evidence": {
+        "samples": 659,
+        "on_road": 659
+      }
+    },
+    {
+      "no": 4,
+      "width": 6,
+      "points": [
+        10130,
+        6656,
+        10239,
+        6656,
+        10261,
+        6678,
+        10360,
+        6678
+      ],
+      "evidence": {
+        "samples": 240,
+        "on_road": 240
+      }
+    },
+    {
+      "no": 5,
+      "width": 4,
+      "points": [
+        10364,
+        6675,
+        10364,
+        6654,
+        10368,
+        6646,
+        10375.5,
+        6642,
+        10510,
+        6642
+      ],
+      "evidence": {
+        "samples": 172,
+        "on_road": 162
+      }
+    },
+    {
+      "no": 6,
+      "width": 6,
+      "points": [
+        10363,
+        7106,
+        10363,
+        6675
+      ],
+      "evidence": {
+        "samples": 432,
+        "on_road": 429
+      }
+    }
+  ],
+  "retired": []
+}

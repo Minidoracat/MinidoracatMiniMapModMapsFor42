@@ -209,8 +209,9 @@ def load_supplement(path: Path) -> tuple[Supplement | None, list[str], list[str]
     streets_sha = _sha(errors, f"{path.name} source.streets_xml_sha256", src.get("streets_xml_sha256"))
     upstream = _count(errors, f"{path.name} source.upstream_street_count",
                       src.get("upstream_street_count"), 0, 65535)
-    if upstream is not None and (upstream == 0) != (src.get("streets_xml_sha256") is None):
-        errors.append(f"{path.name} source.upstream_street_count 為 0 ⇔ streets_xml_sha256 為 null（作者沒有道路資料）")
+    # 0 條可以是沒有檔（null）或作者附了空檔（科里爾登舊移植，pin 它的 sha 才看得出作者之後補上）
+    if upstream and src.get("streets_xml_sha256") is None:
+        errors.append(f"{path.name} source.upstream_street_count 非 0 時 streets_xml_sha256 必填")
     worldmap_sha = _sha(errors, f"{path.name} source.worldmap_xml_sha256", src.get("worldmap_xml_sha256"))
     label_raw = data.get("label") if isinstance(data.get("label"), dict) else {}
     label: dict[str, str] = {}

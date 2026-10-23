@@ -53,8 +53,8 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 [tr][td]Clover Lake Highway KY-316[/td][td]✅ 1 street[/td][/tr]
 [tr][td]Community Center[/td][td]✅ 10 streets[/td][/tr]
 [tr][td]Constown, KY[/td][td]🛠️[/td][/tr]
-[tr][td]Coryerdon[/td][td][/td][/tr]
-[tr][td]Coryerdon (2026 port)[/td][td][/td][/tr]
+[tr][td]Coryerdon[/td][td]🛠️[/td][/tr]
+[tr][td]Coryerdon (2026 port)[/td][td]🛠️[/td][/tr]
 [tr][td]Daisy County[/td][td]✅ 44 streets 🛠️[/td][/tr]
 [tr][td]Dawn Town[/td][td][/td][/tr]
 [tr][td]Dirkerdam[/td][td]✅ 696 streets (street names come from Dirkerdam Map Fix) 🛠️[/td][/tr]
@@ -163,6 +163,11 @@ For what the marks mean, see "Supported maps (A–M)".
 [list]
 [*] 3 author roads stopped short of junctions; they now connect, so navigation can reach them.
 [*] Brooklawn Blvd is a two-way boulevard with a planted median, but the author marked it one lane wide; it now has its real width, so AutoDrive no longer runs onto the median planters (needs MiniMap 0.47.0 or later).
+[/list]
+[*] [b]Coryerdon[/b]: the author ships no road data, and the map covers a few stretches of vanilla road, which therefore had no navigation data and needed long detours (e.g. a trip of about 600 tiles along Rock Ridge Road took about 2,300); this pack adds them along the vanilla route, searchable as names like "Coryerdon Rd 01 (MiniMap)".
+[list]
+[*] Older port: Rock Ridge Road (01) and Crowbar Road (02).
+[*] 2026 port: the same two, plus River Walk Road (03), Prewitt Dr (04), Kiss Road (05) and Lipstick Road (06).
 [/list]
 [*] [b]Daisy County[/b]: 44 roads drawn as outlines are converted to centre lines, so names no longer appear twice.
 [*] [b]Dirkerdam[/b]: Dirkerdam Map Fix's road data stops at the north end of the bridge north of Brandenburg, so the roughly 290 tiles between it and the vanilla stretch of the bridge had no navigation data and routes from Brandenburg could not cross the river; this pack adds them along the actual road surface, searchable as "Dirkerdam Rd 01 (MiniMap)".

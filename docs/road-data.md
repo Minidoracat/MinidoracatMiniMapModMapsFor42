@@ -29,7 +29,7 @@
 - 作者附道路資料（Author road data）：**30** 張；沒有 **83** 張
 - 本包路名翻譯（Translated names）：**23** 張
 - 本包道路修正（Fixes）：**4** 張
-- 本包補充道路（Added roads）：**4** 張
+- 本包補充道路（Added roads）：**6** 張
 
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
 
@@ -38,6 +38,10 @@
   - 路寬校正 1 條：作者標的路寬比實際路面窄（例如有分隔島的林蔭大道只標一條車道），自動駕駛會把車帶上分隔島；改成實際路面寬後靠右行駛落在車道上
 - **康斯鎮（Constown, KY）**
   - 補充道路 38 條：作者沒放進道路資料的路由本包補上，路名 `康斯鎮 01 號路（小地圖補）`～`康斯鎮 38 號路（小地圖補）`（英文 `Constown Rd 01 (MiniMap)`～`Constown Rd 38 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **科里爾登（Coryerdon）**
+  - 補充道路 2 條：作者沒放進道路資料的路由本包補上，路名 `科里爾登 01 號路（小地圖補）`～`科里爾登 02 號路（小地圖補）`（英文 `Coryerdon Rd 01 (MiniMap)`～`Coryerdon Rd 02 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **科里爾登（2026 移植版）（Coryerdon (2026 port)）**
+  - 補充道路 6 條：作者沒放進道路資料的路由本包補上，路名 `科里爾登 01 號路（小地圖補）`～`科里爾登 06 號路（小地圖補）`（英文 `Coryerdon Rd 01 (MiniMap)`～`Coryerdon Rd 06 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **雛菊郡（Daisy County）**
   - 輪廓道路改中心線 44 條：作者把路畫成外框，路名會上下各顯示一次；改成中心線後顯示與導航都正常
 - **德克丹（Dirkerdam）**
@@ -72,8 +76,8 @@
 | 銀杉谷 2.0－公路<br>Cathaya Valley 2.0 Highway | [3576150391](https://steamcommunity.com/sharedfiles/filedetails/?id=3576150391) | ❌ 無 | — | — | — |
 | 銀杉谷 2.0<br>Cathaya Valley 2.0 | [3576150391](https://steamcommunity.com/sharedfiles/filedetails/?id=3576150391) | ❌ 無 | — | — | — |
 | 康斯鎮<br>Constown, KY | [3480990544](https://steamcommunity.com/sharedfiles/filedetails/?id=3480990544) | ❌ 無 | — | — | ✅ 38 條 |
-| 科里爾登<br>Coryerdon | [3502623745](https://steamcommunity.com/sharedfiles/filedetails/?id=3502623745) | ❌ 無 | — | — | — |
-| 科里爾登（2026 移植版）<br>Coryerdon (2026 port) | [3821470553](https://steamcommunity.com/sharedfiles/filedetails/?id=3821470553) | ❌ 無 | — | — | — |
+| 科里爾登<br>Coryerdon | [3502623745](https://steamcommunity.com/sharedfiles/filedetails/?id=3502623745) | ❌ 無 | — | — | ✅ 2 條 |
+| 科里爾登（2026 移植版）<br>Coryerdon (2026 port) | [3821470553](https://steamcommunity.com/sharedfiles/filedetails/?id=3821470553) | ❌ 無 | — | — | ✅ 6 條 |
 | 雛菊郡<br>Daisy County | [3390753141](https://steamcommunity.com/sharedfiles/filedetails/?id=3390753141) | ✅ 44 條 | ✅ 44 條 | 輪廓道路改中心線 44 條 | — |
 | 拂曉鎮<br>Dawn Town | [3666180085](https://steamcommunity.com/sharedfiles/filedetails/?id=3666180085) | ❌ 無 | — | — | — |
 | 德克丹<br>Dirkerdam | [3818766091](https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091) | ✅ 696 條（[3821109144](https://steamcommunity.com/sharedfiles/filedetails/?id=3821109144)） | ✅ 221 條 | — | ✅ 1 條 |

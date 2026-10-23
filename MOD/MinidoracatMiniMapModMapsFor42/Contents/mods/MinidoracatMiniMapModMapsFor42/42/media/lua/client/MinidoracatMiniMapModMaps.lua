@@ -105,10 +105,13 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             streetSupplement = StreetSupplements["constown"],
             bounds = { 4864, 10752, 6400, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_Constown" },
         -- 舊移植（3502623745）與 2026 移植版（3821470553，另一位作者）mod id 都是 CoryerdonB42，
-        -- 圖資不同（新版多 8 個 cell、河岸與東南緣重畫）⇒ 各自一顆 zip，只能靠地圖資料夾名（mapDir）分辨
+        -- 圖資不同（新版多 8 個 cell、河岸與東南緣重畫）⇒ 各自一顆 zip，只能靠地圖資料夾名（mapDir）分辨。
+        -- 兩版都沒有 streets.xml、lotheader 佔滿的 300 格把原版路裁掉：補充道路沿原版補回（號碼兩版共用：01 Rock Ridge、02 Crowbar）
         { zip = "Coryerdon B42.pyramid.zip", mapMod = "CoryerdonB42", mapDir = "Coryerdon B42",
+            streetSupplement = StreetSupplements["coryerdon"],
             bounds = { 7168, 5632, 10752, 7424 }, nameKey = "UI_MinidoracatMiniMapModMaps_Coryerdon" },
         { zip = "Coryerdon.pyramid.zip", mapMod = "CoryerdonB42", mapDir = "Coryerdon",
+            streetSupplement = StreetSupplements["coryerdon-2026"],
             bounds = { 7168, 5632, 10752, 7424 }, nameKey = "UI_MinidoracatMiniMapModMaps_Coryerdon2026" },
         -- 上游把 44/44 條街全畫成輪廓矩形（width 已表達寬度 ⇒ 重複表達）：引擎在兩條
         -- 長邊各畫一次路名，玩家看到上下兩行；修正壓成中心線，粗細與導航都不變

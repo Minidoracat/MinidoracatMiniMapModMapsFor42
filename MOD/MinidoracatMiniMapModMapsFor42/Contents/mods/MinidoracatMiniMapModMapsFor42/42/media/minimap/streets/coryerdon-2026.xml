@@ -1,0 +1,57 @@
+<streets version="1">
+    <street name="Coryerdon Rd 01 (MiniMap)" width="8">
+        <points>
+            <point x="7300.0" y="5699.0"/>
+            <point x="7308.5" y="5715.5"/>
+            <point x="7322.0" y="5729.0"/>
+            <point x="7336.0" y="5736.0"/>
+            <point x="7410.5" y="5736.0"/>
+            <point x="7416.0" y="5738.5"/>
+            <point x="7420.0" y="5743.0"/>
+            <point x="7422.0" y="5747.0"/>
+            <point x="7422.0" y="6000.0"/>
+        </points>
+    </street>
+    <street name="Coryerdon Rd 02 (MiniMap)" width="5">
+        <points>
+            <point x="7358.0" y="6092.5"/>
+            <point x="7358.0" y="5946.5"/>
+            <point x="7362.0" y="5940.0"/>
+            <point x="7368.0" y="5937.0"/>
+            <point x="7418.0" y="5936.5"/>
+        </points>
+    </street>
+    <street name="Coryerdon Rd 03 (MiniMap)" width="7">
+        <points>
+            <point x="9749.5" y="6742.0"/>
+            <point x="9924.5" y="6743.0"/>
+            <point x="9992.0" y="6775.5"/>
+            <point x="10065.5" y="6848.5"/>
+            <point x="10166.0" y="6899.0"/>
+            <point x="10360.0" y="6899.0"/>
+        </points>
+    </street>
+    <street name="Coryerdon Rd 04 (MiniMap)" width="6">
+        <points>
+            <point x="10130.0" y="6656.0"/>
+            <point x="10239.0" y="6656.0"/>
+            <point x="10261.0" y="6678.0"/>
+            <point x="10360.0" y="6678.0"/>
+        </points>
+    </street>
+    <street name="Coryerdon Rd 05 (MiniMap)" width="4">
+        <points>
+            <point x="10364.0" y="6675.0"/>
+            <point x="10364.0" y="6654.0"/>
+            <point x="10368.0" y="6646.0"/>
+            <point x="10375.5" y="6642.0"/>
+            <point x="10510.0" y="6642.0"/>
+        </points>
+    </street>
+    <street name="Coryerdon Rd 06 (MiniMap)" width="6">
+        <points>
+            <point x="10363.0" y="7106.0"/>
+            <point x="10363.0" y="6675.0"/>
+        </points>
+    </street>
+</streets>

@@ -1,0 +1,24 @@
+<streets version="1">
+    <street name="Coryerdon Rd 01 (MiniMap)" width="8">
+        <points>
+            <point x="7300.0" y="5699.0"/>
+            <point x="7308.5" y="5715.5"/>
+            <point x="7322.0" y="5729.0"/>
+            <point x="7336.0" y="5736.0"/>
+            <point x="7410.5" y="5736.0"/>
+            <point x="7416.0" y="5738.5"/>
+            <point x="7420.0" y="5743.0"/>
+            <point x="7422.0" y="5747.0"/>
+            <point x="7422.0" y="6000.0"/>
+        </points>
+    </street>
+    <street name="Coryerdon Rd 02 (MiniMap)" width="5">
+        <points>
+            <point x="7358.0" y="6092.5"/>
+            <point x="7358.0" y="5946.5"/>
+            <point x="7362.0" y="5940.0"/>
+            <point x="7368.0" y="5937.0"/>
+            <point x="7418.0" y="5936.5"/>
+        </points>
+    </street>
+</streets>

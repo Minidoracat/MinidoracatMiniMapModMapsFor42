@@ -7,6 +7,7 @@
 - **新增支援德克丹（Dirkerdam Integrated B42）與 Dirkerdam Map Fix**：Riverside 北邊一大片新土地上的城市地圖，共 440 個地塊，另有 Riverside 東邊與 Brandenburg 北邊兩座橋接回原版。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點與停車場。原地圖沒有附道路資料，路名來自另一位作者的 Dirkerdam Map Fix：一起裝時有 696 條街的路名，可以搜尋與導航，繁中／簡中／日文顯示譯名；只裝本體只有地圖圖片和下面這條補上的橋。它和河畔豪宅（非官方修改版）重疊兩個地塊，請擇一；漂浮烏托邦與河畔豪宅另有幾個地塊落在德克丹的範圍框內，一起用時那幾格的小地圖圖片以伺服器地圖順序（`Map=`）在前的那張為準。
 - **補上德克丹 Brandenburg 北邊接橋的導航資料**：Map Fix 的道路資料停在這座橋的北端，到原版橋段之間約 290 格沒有導航資料，從 Brandenburg 導航到德克丹西邊過不了河。本包沿實際路面補上這段，搜尋名稱是「德克丹 01 號路（小地圖補）」（英文「Dirkerdam Rd 01 (MiniMap)」），導航與自動駕駛可以直接過橋。
 - **新增支援科里爾登 2026 移植版（Coryerdon (科里尔登) [B42]）**：另一位作者 2026-10 重新移植的科里爾登，比舊移植多 8 個地塊，河岸與東南邊緣也重畫過。它和舊移植的 mod id 都是 `CoryerdonB42`，之前裝新版的玩家會看到舊移植的圖；現在小地圖依伺服器實際載入的地圖資料夾分辨，裝新版顯示新版的圖，裝舊版照舊。也會標出資源點與停車場。地圖名稱是「科里爾登（2026 移植版）」；這張圖需要 Melos Tiles for Miles。兩個版本請二選一。
+- **補上科里爾登蓋住的原版道路導航資料**：兩個版本都沒有附道路資料，地圖又蓋住幾段原版的路；路面還在，但那幾段沒有導航資料，導航與自動駕駛要繞一大圈或到不了（例：沿 Rock Ridge Road 約 600 格的路要繞約 2,300 格）。本包沿原版路線補上：舊移植版 Rock Ridge Road、Crowbar Road，2026 移植版另加 River Walk Road、Prewitt Dr、Kiss Road、Lipstick Road，搜尋名稱是「科里爾登 01 號路（小地圖補）」這種格式（英文「Coryerdon Rd 01 (MiniMap)」），兩版同一條路號碼相同。
 
 ### 備註
 
@@ -15,6 +16,8 @@
 > 技術要點：Map Fix 沒有地塊，只帶世界地圖資料與道路資料。伺服器照 Map Fix 作者的要求，把 `Dirkerdam Integrated B42 Fix` 排在 `Dirkerdam Integrated B42` 正前方。補充道路 `road-supplements/dirkerdam.json` 掛在本體條目（本體沒有 `streets.xml`，`upstream_street_count` 0；掛 Map Fix 的話它每次改街道數都會讓補充道路停用）：從 Map Fix Village Dr 南端旁 (1503,5112) 沿 pzmap 路面中線到原版 Esther Kinsella Memorial Bridge 北端 (1501.5,5400)，寬 13（橋面實測 x 1494–1506），路面取樣 289/289，左右車道（±3.25、±5 格）全在路面上。外框跨進原版擁有的 300 格，地圖上不另畫這個路名，搜尋與導航照常。
 
 > 技術要點（科里爾登）：新版 Workshop 3821470553，地圖資料夾 `Coryerdon`，69 個 lotheader（cell 28–41 × 22–28，範圍與舊移植相同），`require=melos_tiles_for_miles_pack`，沒有 `streets.xml`。舊條目補 `mapDir = "Coryerdon B42"`、新條目 `mapDir = "Coryerdon"`；舊 zip 重渲後與已發布版 sha256 相同。渲染時 194 個 sprite（27 種 `melos_tiles_*` 名稱，多半是牆面裝飾與園藝店擺設）不在 Melos Tiles 目前版本的 atlas。資源點 197 個、停車場 65 區；`junkyard` 照舊移植列 ignored（objects.lua 的車輛區名，不是 loot 表）。工具：`rebuild_pyramids.index_workshop` 把同 id 的其他 Workshop 項目收進 `alts`，`entry_root` 依 mapDir 挑項目與它自己的 `require=`；rebuild、`gen_map_resources` bake／parking、deps-scan、road-scan 都改走它。
+
+> 技術要點（科里爾登補充道路）：`road-supplements/coryerdon.json`（舊移植，2 條）、`coryerdon-2026.json`（6 條），`method: vanilla-continuation-v1`，逐點沿用原版頂點，伸出裁切範圍的一端多取一個原版頂點和未裁段重疊。例外是 Kiss Road：原版最後一段伸出裁切範圍 216 格、外段是土路，只重疊到 (10510,6642)（仍在原版線上），路面取樣 162/172；其餘 100% 或 429/432。舊移植附了一個 0 條街的 `streets.xml`，pin 它的 sha256；`gen_road_supplements` 原本要求「0 條 ⇔ sha 為 null」，改成「非 0 才必填 sha」。離線 NavCore（照主 MOD cell winner 裁段）：Rock Ridge 補前 2268→補後 596、River Walk 2960→764、Prewitt Dr／Lipstick Road／Crowbar Road 補前停在離目標 87–145 格處、補後到點。只有 04 號 Prewitt Dr 整條落在科里爾登擁有的格子裡、地圖上會畫路名；其餘外框跨進原版擁有的 300 格，不另畫路名，搜尋與導航照常（log `2 labels under other maps`／`5 labels under other maps`）。
 
 ## [42.21.0-0.20.2] - 2026-10-22
 

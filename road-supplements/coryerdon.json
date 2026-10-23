@@ -1,0 +1,71 @@
+{
+  "dataset": "coryerdon",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3502623745",
+    "map_mod": "CoryerdonB42",
+    "map_dir": "Coryerdon B42",
+    "streets_xml_sha256": "e63287e7fadf1249acd8e5b2a2cd7fc37cace4d2cb068f530d42c69eed0d5f78",
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "7ce8d73f8c3211eca78701fe403ea0589a2ecca47e61f78fc580cbb8d670b4cf",
+    "captured": "2026-10-24",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Coryerdon",
+    "ch": "科里爾登",
+    "cn": "科里尔登",
+    "jp": "コリアードン"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 8,
+      "points": [
+        7300,
+        5699,
+        7308.5,
+        5715.5,
+        7322,
+        5729,
+        7336,
+        5736,
+        7410.5,
+        5736,
+        7416,
+        5738.5,
+        7420,
+        5743,
+        7422,
+        5747,
+        7422,
+        6000
+      ],
+      "evidence": {
+        "samples": 396,
+        "on_road": 396
+      }
+    },
+    {
+      "no": 2,
+      "width": 5,
+      "points": [
+        7358,
+        6092.5,
+        7358,
+        5946.5,
+        7362,
+        5940,
+        7368,
+        5937,
+        7418,
+        5936.5
+      ],
+      "evidence": {
+        "samples": 210,
+        "on_road": 210
+      }
+    }
+  ],
+  "retired": []
+}

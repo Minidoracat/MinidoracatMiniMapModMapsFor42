@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 4 個 dataset／42 條補充道路
+-- 6 個 dataset／50 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -52,6 +52,30 @@ Supplements["constown"] = {
         ["Constown Rd 36 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_36",
         ["Constown Rd 37 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_37",
         ["Constown Rd 38 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_constown_38",
+    },
+}
+
+-- ==== coryerdon (CoryerdonB42 / Coryerdon B42) ====
+Supplements["coryerdon"] = {
+    schemaVersion = 1, mapMod = "CoryerdonB42", mapDir = "Coryerdon B42",
+    file = "media/minimap/streets/coryerdon.xml", upstreamStreetCount = 0, roadCount = 2,
+    names = {
+        ["Coryerdon Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_coryerdon_01",
+        ["Coryerdon Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_coryerdon_02",
+    },
+}
+
+-- ==== coryerdon-2026 (CoryerdonB42 / Coryerdon) ====
+Supplements["coryerdon-2026"] = {
+    schemaVersion = 1, mapMod = "CoryerdonB42", mapDir = "Coryerdon",
+    file = "media/minimap/streets/coryerdon-2026.xml", upstreamStreetCount = 0, roadCount = 6,
+    names = {
+        ["Coryerdon Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_coryerdon-2026_01",
+        ["Coryerdon Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_coryerdon-2026_02",
+        ["Coryerdon Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_coryerdon-2026_03",
+        ["Coryerdon Rd 04 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_coryerdon-2026_04",
+        ["Coryerdon Rd 05 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_coryerdon-2026_05",
+        ["Coryerdon Rd 06 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_coryerdon-2026_06",
     },
 }
 
