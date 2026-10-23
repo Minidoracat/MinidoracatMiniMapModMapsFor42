@@ -56,7 +56,7 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 [tr][td]Coryerdon[/td][td][/td][/tr]
 [tr][td]Daisy County[/td][td]✅ 44 streets 🛠️[/td][/tr]
 [tr][td]Dawn Town[/td][td][/td][/tr]
-[tr][td]Dirkerdam[/td][td]✅ 696 streets (street names come from Dirkerdam Map Fix)[/td][/tr]
+[tr][td]Dirkerdam[/td][td]✅ 696 streets (street names come from Dirkerdam Map Fix) 🛠️[/td][/tr]
 [tr][td]DuoDuo City[/td][td][/td][/tr]
 [tr][td]EchoCreek Military Base[/td][td][/td][/tr]
 [tr][td]Ed's Auto Salvage[/td][td]✅ 3 streets[/td][/tr]
@@ -164,6 +164,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] Brooklawn Blvd is a two-way boulevard with a planted median, but the author marked it one lane wide; it now has its real width, so AutoDrive no longer runs onto the median planters (needs MiniMap 0.47.0 or later).
 [/list]
 [*] [b]Daisy County[/b]: 44 roads drawn as outlines are converted to centre lines, so names no longer appear twice.
+[*] [b]Dirkerdam[/b]: Dirkerdam Map Fix's road data stops at the north end of the bridge north of Brandenburg, so the roughly 290 tiles between it and the vanilla stretch of the bridge had no navigation data and routes from Brandenburg could not cross the river; this pack adds them along the actual road surface, searchable as "Dirkerdam Rd 01 (MiniMap)".
 [*] [b]Raven Creek[/b]:
 [list]
 [*] The KY-79 bend where the vanilla highway enters Raven Creek had no navigation data, so routes took a long detour; this pack adds it as "Raven Creek Rd 01 (MiniMap)".
@@ -186,7 +187,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] [b]Community Center[/b]: partly overlaps Chinatown, Chinatown Expansion, Fort JadeLake, Muldraugh 1993 and Muldraugh Fire Dept; choose one.
 [*] [b]Rosewood Compound[/b]: shares one cell with Fort Preston and Taibei Road; choose one.
 [*] [b]The Walking Dead Prison[/b]: partly overlaps VaultTec Road (including the north side of the prison), SecretZ Train Depot Refugee Camp and VaultTec Vault - Muldraugh; choose one.
-[*] [b]Dirkerdam[/b]: overlaps two cells of Riverside Mansion (Unofficial); choose one. A few cells of Floatopia and Riverside Mansion also lie inside Dirkerdam's bounds; when used together, the minimap image of those cells comes from whichever map is listed first in the server map order (Map=). Street names, search and navigation come from Dirkerdam Map Fix; without it you only get the map image.
+[*] [b]Dirkerdam[/b]: overlaps two cells of Riverside Mansion (Unofficial); choose one. A few cells of Floatopia and Riverside Mansion also lie inside Dirkerdam's bounds; when used together, the minimap image of those cells comes from whichever map is listed first in the server map order (Map=). Street names, search and navigation come from Dirkerdam Map Fix; without it you only get the map image, plus the Brandenburg bridge this pack adds.
 [*] [b]Atlas Underground Complex[/b]: surface imagery only (no underground floors); it partly overlaps several nearby maps, and using them together is not guaranteed.
 [/list]
 === ❓ FAQ

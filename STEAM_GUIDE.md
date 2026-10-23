@@ -56,7 +56,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Coryerdon[/td][td]科里爾登[/td][td][/td][/tr]
 [tr][td]Daisy County[/td][td]雛菊郡[/td][td]✅ 44 條 🛠️[/td][/tr]
 [tr][td]Dawn Town[/td][td]拂曉鎮[/td][td][/td][/tr]
-[tr][td]Dirkerdam[/td][td]德克丹[/td][td]✅ 696 條（路名來自 Dirkerdam Map Fix）[/td][/tr]
+[tr][td]Dirkerdam[/td][td]德克丹[/td][td]✅ 696 條（路名來自 Dirkerdam Map Fix）🛠️[/td][/tr]
 [tr][td]DuoDuo City[/td][td]多多市[/td][td][/td][/tr]
 [tr][td]EchoCreek Military Base[/td][td]迴音河軍事基地[/td][td][/td][/tr]
 [tr][td]Ed's Auto Salvage[/td][td]艾德汽車回收場[/td][td]✅ 3 條[/td][/tr]
@@ -164,6 +164,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] Brooklawn Blvd 是中間有花台分隔島的雙向林蔭大道，原作者只標了一條車道寬；路寬改成實際寬度，自動駕駛不再壓上中間的花台（需要小地圖主 MOD 0.47.0 以上）。
 [/list]
 [*] [b]Daisy County（雛菊郡）[/b]：44 條畫成外框的路改成中心線，路名不再上下各顯示一次。
+[*] [b]Dirkerdam（德克丹）[/b]：Dirkerdam Map Fix 的道路資料停在 Brandenburg 北邊那座接橋的北端，到原版橋段之間約 290 格沒有導航資料，從 Brandenburg 導航過不了河；本包沿實際路面補上，搜尋名稱是「德克丹 01 號路（小地圖補）」。
 [*] [b]Raven Creek（渡鴉溪）[/b]：
 [list]
 [*] 原版 KY-79 轉進渡鴉溪的彎道沒有導航資料，導航會繞一大圈；本包補上這段，路名「渡鴉溪 01 號路（小地圖補）」。
@@ -186,7 +187,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Community Center[/b]：與 Chinatown、Chinatown Expansion、Fort JadeLake、Muldraugh 1993、Muldraugh Fire Dept 部分地塊重疊，請擇一。
 [*] [b]Rosewood Compound[/b]：與 Fort Preston、Taibei Road 重疊一個地塊，請擇一。
 [*] [b]The Walking Dead Prison[/b]：與 VaultTec Road（含監獄建築北側）、SecretZ Train Depot Refugee Camp、VaultTec Vault - Muldraugh 部分地塊重疊，請擇一。
-[*] [b]Dirkerdam[/b]：與 Riverside Mansion (Unofficial) 重疊兩個地塊，請擇一；Floatopia 與 Riverside Mansion 另有幾個地塊落在德克丹的範圍框內，一起用時那幾格的小地圖圖片以伺服器地圖順序（Map=）在前的那張為準。路名、搜尋與導航來自 Dirkerdam Map Fix，沒裝它只有地圖圖片。
+[*] [b]Dirkerdam[/b]：與 Riverside Mansion (Unofficial) 重疊兩個地塊，請擇一；Floatopia 與 Riverside Mansion 另有幾個地塊落在德克丹的範圍框內，一起用時那幾格的小地圖圖片以伺服器地圖順序（Map=）在前的那張為準。路名、搜尋與導航來自 Dirkerdam Map Fix；沒裝它時，除了本包補的 Brandenburg 接橋，只有地圖圖片。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。
 [/list]
 === ❓ 常見問題

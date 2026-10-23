@@ -4,13 +4,14 @@
 
 ### 新增
 
-- **新增支援德克丹（Dirkerdam Integrated B42）與 Dirkerdam Map Fix**：Riverside 北邊一大片新土地上的城市地圖，共 440 個地塊，另有 Riverside 東邊與 Brandenburg 北邊兩座橋接回原版。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點與停車場。原地圖沒有附道路資料，路名來自另一位作者的 Dirkerdam Map Fix：一起裝時有 696 條街的路名，可以搜尋與導航，繁中／簡中／日文顯示譯名；只裝本體只有地圖圖片。它和河畔豪宅（非官方修改版）重疊兩個地塊，請擇一；漂浮烏托邦與河畔豪宅另有幾個地塊落在德克丹的範圍框內，一起用時那幾格的小地圖圖片以伺服器地圖順序（`Map=`）在前的那張為準。
+- **新增支援德克丹（Dirkerdam Integrated B42）與 Dirkerdam Map Fix**：Riverside 北邊一大片新土地上的城市地圖，共 440 個地塊，另有 Riverside 東邊與 Brandenburg 北邊兩座橋接回原版。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點與停車場。原地圖沒有附道路資料，路名來自另一位作者的 Dirkerdam Map Fix：一起裝時有 696 條街的路名，可以搜尋與導航，繁中／簡中／日文顯示譯名；只裝本體只有地圖圖片和下面這條補上的橋。它和河畔豪宅（非官方修改版）重疊兩個地塊，請擇一；漂浮烏托邦與河畔豪宅另有幾個地塊落在德克丹的範圍框內，一起用時那幾格的小地圖圖片以伺服器地圖順序（`Map=`）在前的那張為準。
+- **補上德克丹 Brandenburg 北邊接橋的導航資料**：Map Fix 的道路資料停在這座橋的北端，到原版橋段之間約 290 格沒有導航資料，從 Brandenburg 導航到德克丹西邊過不了河。本包沿實際路面補上這段，搜尋名稱是「德克丹 01 號路（小地圖補）」（英文「Dirkerdam Rd 01 (MiniMap)」），導航與自動駕駛可以直接過橋。
 
 ### 備註
 
 - 更新後請重新啟動遊戲。
 
-> 技術要點：Map Fix 沒有地塊，只帶世界地圖資料與道路資料。伺服器照 Map Fix 作者的要求，把 `Dirkerdam Integrated B42 Fix` 排在 `Dirkerdam Integrated B42` 正前方。
+> 技術要點：Map Fix 沒有地塊，只帶世界地圖資料與道路資料。伺服器照 Map Fix 作者的要求，把 `Dirkerdam Integrated B42 Fix` 排在 `Dirkerdam Integrated B42` 正前方。補充道路 `road-supplements/dirkerdam.json` 掛在本體條目（本體沒有 `streets.xml`，`upstream_street_count` 0；掛 Map Fix 的話它每次改街道數都會讓補充道路停用）：從 Map Fix Village Dr 南端旁 (1503,5112) 沿 pzmap 路面中線到原版 Esther Kinsella Memorial Bridge 北端 (1501.5,5400)，寬 13（橋面實測 x 1494–1506），路面取樣 289/289，左右車道（±3.25、±5 格）全在路面上。外框跨進原版擁有的 300 格，地圖上不另畫這個路名，搜尋與導航照常。
 
 ## [42.21.0-0.20.2] - 2026-10-22
 

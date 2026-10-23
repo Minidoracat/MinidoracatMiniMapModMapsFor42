@@ -1,0 +1,45 @@
+{
+  "dataset": "dirkerdam",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3818766091",
+    "map_mod": "DirkerdamIntegratedB42",
+    "map_dir": "Dirkerdam Integrated B42",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "e3d95f00cc33176f505d3cc3ef010ac651c0c527c1e8df0e830460d50ced6b01",
+    "captured": "2026-10-23",
+    "method": "surface-link-v1"
+  },
+  "label": {
+    "en": "Dirkerdam",
+    "ch": "德克丹",
+    "cn": "德克丹",
+    "jp": "ダーカーダム"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 13,
+      "points": [
+        1503,
+        5112,
+        1503,
+        5140,
+        1502,
+        5172,
+        1500.5,
+        5185,
+        1500.5,
+        5395,
+        1501.5,
+        5400
+      ],
+      "evidence": {
+        "samples": 289,
+        "on_road": 289
+      }
+    }
+  ],
+  "retired": []
+}

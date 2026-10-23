@@ -29,7 +29,7 @@
 - 作者附道路資料（Author road data）：**30** 張；沒有 **82** 張
 - 本包路名翻譯（Translated names）：**23** 張
 - 本包道路修正（Fixes）：**4** 張
-- 本包補充道路（Added roads）：**3** 張
+- 本包補充道路（Added roads）：**4** 張
 
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
 
@@ -40,6 +40,8 @@
   - 補充道路 38 條：作者沒放進道路資料的路由本包補上，路名 `康斯鎮 01 號路（小地圖補）`～`康斯鎮 38 號路（小地圖補）`（英文 `Constown Rd 01 (MiniMap)`～`Constown Rd 38 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **雛菊郡（Daisy County）**
   - 輪廓道路改中心線 44 條：作者把路畫成外框，路名會上下各顯示一次；改成中心線後顯示與導航都正常
+- **德克丹（Dirkerdam）**
+  - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `德克丹 01 號路（小地圖補）`（英文 `Dirkerdam Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **陰屍路監獄（The Walking Dead Prison）**
   - 補充道路 2 條：作者沒放進道路資料的路由本包補上，路名 `陰屍路監獄 01 號路（小地圖補）`～`陰屍路監獄 02 號路（小地圖補）`（英文 `The Walking Dead Prison Rd 01 (MiniMap)`～`The Walking Dead Prison Rd 02 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **馬爾德勞 1993（Muldraugh 1993）**
@@ -73,7 +75,7 @@
 | 科里爾登<br>Coryerdon | [3502623745](https://steamcommunity.com/sharedfiles/filedetails/?id=3502623745) | ❌ 無 | — | — | — |
 | 雛菊郡<br>Daisy County | [3390753141](https://steamcommunity.com/sharedfiles/filedetails/?id=3390753141) | ✅ 44 條 | ✅ 44 條 | 輪廓道路改中心線 44 條 | — |
 | 拂曉鎮<br>Dawn Town | [3666180085](https://steamcommunity.com/sharedfiles/filedetails/?id=3666180085) | ❌ 無 | — | — | — |
-| 德克丹<br>Dirkerdam | [3818766091](https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091) | ✅ 696 條（[3821109144](https://steamcommunity.com/sharedfiles/filedetails/?id=3821109144)） | ✅ 221 條 | — | — |
+| 德克丹<br>Dirkerdam | [3818766091](https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091) | ✅ 696 條（[3821109144](https://steamcommunity.com/sharedfiles/filedetails/?id=3821109144)） | ✅ 221 條 | — | ✅ 1 條 |
 | 多多市<br>DuoDuo City | [3710155331](https://steamcommunity.com/sharedfiles/filedetails/?id=3710155331) | ❌ 無 | — | — | — |
 | 迴音河軍事基地<br>EchoCreek Military Base | [3476333350](https://steamcommunity.com/sharedfiles/filedetails/?id=3476333350) | ❌ 無 | — | — | — |
 | 艾德汽車回收場<br>Ed's Auto Salvage | [3478900814](https://steamcommunity.com/sharedfiles/filedetails/?id=3478900814) | ✅ 3 條 | ✅ 3 條 | — | — |

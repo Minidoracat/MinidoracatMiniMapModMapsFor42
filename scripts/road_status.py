@@ -346,7 +346,8 @@ def render_doc(root: Path, status: dict) -> str:
         bullets = [_KIND_TEXT[k][0].format(n=n) + f"：{_KIND_TEXT[k][1]}" for k, n in counts]
         if sup:
             n_sup += 1
-            note = _supplement_note(sup, author)
+            # 補充道路照自己 pin 的目錄判（德克丹掛本體，作者道路欄卻是 Map Fix 的）
+            note = _supplement_note(sup, ((items.get(sup.workshop_id) or {}).get("maps") or {}).get(sup.map_dir))
             sup_cell = f"✅ {len(sup.roads)} 條" + (f"（{note}）" if note else "")
             first, last = sup.roads[0].no, sup.roads[-1].no
 

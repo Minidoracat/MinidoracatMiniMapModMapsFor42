@@ -1,0 +1,12 @@
+<streets version="1">
+    <street name="Dirkerdam Rd 01 (MiniMap)" width="13">
+        <points>
+            <point x="1503.0" y="5112.0"/>
+            <point x="1503.0" y="5140.0"/>
+            <point x="1502.0" y="5172.0"/>
+            <point x="1500.5" y="5185.0"/>
+            <point x="1500.5" y="5395.0"/>
+            <point x="1501.5" y="5400.0"/>
+        </points>
+    </street>
+</streets>

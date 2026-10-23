@@ -117,7 +117,10 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         -- 與 Brandenburg 北 5,20／5,21 兩座接橋）；與河畔豪宅地塊重疊 2 cell＝事實上互斥，各自依啟用 mod 顯示。
         -- 外框內另有 90 個本圖沒有的原版 cell 照原版畫進 zip：漂浮烏托邦（2 cell）、河畔豪宅（另 4 cell）排在本圖
         -- 後面時，那幾格會被本圖的原版影像蓋住。
+        -- 補充道路掛本體（本體沒有 streets.xml＝0 條）：Map Fix 的 Village Dr 停在 Brandenburg 北接橋北端，
+        -- 01 號補橋面接原版橋。掛 Fix 的話 Fix 每次改街道數都會讓它停用。
         { zip = "Dirkerdam Integrated B42.pyramid.zip", mapMod = "DirkerdamIntegratedB42", mapDir = "Dirkerdam Integrated B42",
+            streetSupplement = StreetSupplements["dirkerdam"],
             bounds = { 1280, 1792, 10496, 5632 }, nameKey = "UI_MinidoracatMiniMapModMaps_Dirkerdam" },
         -- Dirkerdam Map Fix（另一位作者）沒有 cell，只帶修好的世界地圖資料與 streets.xml，Map= 規定排在本體正前方。
         -- 街名翻譯要有明寫 mapDir 的來源條目 ⇒ 同 zip/bounds 作 alias（主 MOD 掛載去重）；資源點只由本體條目註冊。
