@@ -1,5 +1,12 @@
-[h1]Minidoracat MiniMap - MOD Maps for B42 42.21.0-0.21.2[/h1]
+[h1]Minidoracat MiniMap - MOD Maps for B42 42.21.0-0.22.0[/h1]
 [i]2026-10-25[/i]
+
+[h3]✨ 新增[/h3]
+[list]
+[*] [b]支援 Snake's ModPack Build 42 的 6 張地圖[/b]：Barco Abandonado（河上的廢棄船）、Factory（工廠）、Military Complex、Numark Complex、Snake Mansion（豪宅），以及分成零號區、一號區的小鎮 SnakeVille。啟用哪個子 MOD 就顯示哪張的圖片、框線與名稱，也會標出資源點與停車場；SnakeVille 的路名有繁中／簡中／日文翻譯。作者目前只支援單人；這幾張圖和多多市、獵人基地、途安里等地圖重疊，請擇一。
+[*] [b]Snake's Mechanical Overhaul 的 3 處修車廠[/b]（路易斯維爾、三月嶺、山谷站）：啟用這個子 MOD 時，小地圖在那 3 處會顯示修車廠。
+[*] [b]Snake 工廠門口可以導航了[/b]：工廠蓋住原版 KY-60 的最後約 300 格，導航會停在工廠前；本包沿原版路線補上，搜尋名稱是「Snake 工廠 01 號路（小地圖補）」。
+[/list]
 
 [h3]🔄 更新[/h3]
 [list]
@@ -10,4 +17,5 @@
 [h3]📝 備註[/h3]
 [list]
 [*] 更新後請重新啟動遊戲（多人伺服器請重新連線）。
+[*] 支援清單、重疊清單與道路資料見指南「小地圖 - MOD 地圖擴充 完整說明」。
 [/list]
