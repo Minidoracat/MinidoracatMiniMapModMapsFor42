@@ -1,0 +1,37 @@
+{
+  "dataset": "snake-factory",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3800233932",
+    "map_mod": "SMP_Factory",
+    "map_dir": "Factory",
+    "streets_xml_sha256": "e63287e7fadf1249acd8e5b2a2cd7fc37cace4d2cb068f530d42c69eed0d5f78",
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "97f2ae9aeb390efe14421b3e7d3acc5c50e8dd67c04cad7f3002ff596c7b2776",
+    "captured": "2026-10-25",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Snake's Factory",
+    "ch": "Snake 工廠",
+    "cn": "Snake 工厂",
+    "jp": "Snake 工場"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 15,
+      "points": [
+        12500,
+        11204.5,
+        12900,
+        11204.5
+      ],
+      "evidence": {
+        "samples": 401,
+        "on_road": 397
+      }
+    }
+  ],
+  "retired": []
+}

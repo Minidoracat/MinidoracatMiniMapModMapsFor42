@@ -58,6 +58,12 @@
       "mymod_toolshed"
     ]
   },
+  "BarcoAbandonado.pyramid.zip": {
+    "aliases": {
+      "petrolroom": "gasstorage",
+      "shiptools": "toolstorage"
+    }
+  },
   "BlackpineCounty.pyramid.zip": {
     "aliases": {},
     "ignored": [
@@ -162,6 +168,16 @@
       "fcooperprisonkeystorage"
     ]
   },
+  "Factory.pyramid.zip": {
+    "aliases": {
+      "metalfactory": "factory",
+      "sawstorage": "toolstore",
+      "sawstorage2": "construction"
+    },
+    "ignored": [
+      "bossoffice"
+    ]
+  },
   "Fort Benning B42.pyramid.zip": {
     "aliases": {
       "armyhanger": "armystorage",
@@ -257,6 +273,29 @@
       "armyhanger": "armystorage"
     },
     "ignored": []
+  },
+  "MilitaryComplex.pyramid.zip": {
+    "aliases": {
+      "DiningRoom": "restaurant",
+      "ammomakerroom": "gunstore",
+      "ammostorage": "armystorage",
+      "ammostorage2": "armystorage",
+      "mcbunker": "armystorage",
+      "mcbunkercans": "grocery",
+      "mcgunstorestorage": "gunstorestorage",
+      "mcmechanic": "mechanic",
+      "mcmedicalstorage": "medicalstorage",
+      "mcpolicestorage": "policestorage",
+      "mcspiffosstorage": "spiffosstorage",
+      "mcstorageunit": "storageunit",
+      "trainingcamp": "firearmtraining",
+      "vigtower": "armystorage"
+    },
+    "ignored": [
+      "MilitaryGeneralRoom",
+      "hangarclothes",
+      "mcgaragestorage"
+    ]
   },
   "Mount Crow City.pyramid.zip": {
     "aliases": {},
@@ -441,6 +480,14 @@
       "fz2",
       "fz3",
       "m9shk"
+    ]
+  },
+  "SnakeMansion.pyramid.zip": {
+    "ignored": [
+      "Gym",
+      "SnakeRoom",
+      "barmansion",
+      "officex"
     ]
   },
   "Sunset Lake Town B42 version.pyramid.zip": {
@@ -696,6 +743,47 @@
     "aliases": {},
     "ignored": [
       "Church"
+    ]
+  },
+  "snakeville_0.pyramid.zip": {
+    "aliases": {
+      "beerbottling": "brewery",
+      "beerbottlingstorage": "brewerystorage",
+      "labgarage": "medicalstorage",
+      "labstorage": "medicalstorage",
+      "lightingstorestorage": "lightingstorage",
+      "plantsshop": "gardenstore"
+    },
+    "ignored": [
+      "BoxRing",
+      "bathroomboxing",
+      "bedroompela",
+      "canestorage"
+    ]
+  },
+  "snakeville_1.pyramid.zip": {
+    "aliases": {
+      "apicultureshop": "grocery",
+      "displayfishingstore": "outdoorsupply",
+      "fishingstore": "outdoorsupply",
+      "fishingstorestorage": "fishingstorage",
+      "honeylovekitchen": "kitchen_crepe",
+      "huntingstore": "hunting",
+      "ninkasibasement": "brewery",
+      "ninkasibasementstorage": "brewerystorage",
+      "ninkasigarage": "brewerystorage",
+      "riversidegunstore": "gunstore",
+      "riversidegunstorestorage": "gunstorestorage",
+      "riversidepolicestorage": "policestorage"
+    },
+    "ignored": [
+      "apiculturegarage",
+      "apiculturestorage",
+      "bowling",
+      "bowlingclothes",
+      "bowlingstorage",
+      "floorstorage",
+      "svbunker"
     ]
   },
   "taibeiroad.pyramid.zip": {

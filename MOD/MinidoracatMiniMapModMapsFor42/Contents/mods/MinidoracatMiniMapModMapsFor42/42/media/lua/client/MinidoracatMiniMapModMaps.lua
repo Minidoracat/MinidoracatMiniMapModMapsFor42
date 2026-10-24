@@ -385,6 +385,37 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 11776, 8960, 12544, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_VaultTecRoad" },
         { zip = "VaultTec_Rosewood.pyramid.zip", mapMod = "VaultTec B42 version", mapDir = "VaultTec_Rosewood",
             bounds = { 5888, 10496, 6400, 11008 }, nameKey = "UI_MinidoracatMiniMapModMaps_VaultTecRosewood" },
+        -- Snake's ModPack Build 42（3800233932）：一個 Workshop 項目、每張圖一個子 MOD（SMP_*），全部蓋在原版
+        -- 地塊上（lots=Muldraugh, KY）；作者目前只支援單人。require= 只有材質包 SMP_CustomMapBridge
+        -- （SnakeVille 另加 SMP_AquaFarmResources）。和已支援地圖的重疊見指南衝突段（各自依啟用 mod 顯示）
+        { zip = "BarcoAbandonado.pyramid.zip", mapMod = "SMP_BarcoAbandonado",
+            bounds = { 12032, 6400, 12288, 6656 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeBarco" },
+        -- Factory 佔滿 300 格 (42,37)、streets.xml 0 條 ⇒ 原版 KY-60 東端 300 格被裁，補充道路沿原版補回
+        { zip = "Factory.pyramid.zip", mapMod = "SMP_Factory", mapDir = "Factory",
+            streetSupplement = StreetSupplements["snake-factory"],
+            bounds = { 12544, 11008, 13056, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeFactory" },
+        { zip = "MilitaryComplex.pyramid.zip", mapMod = "SMP_MilitaryComplex",
+            bounds = { 5376, 8960, 5888, 9472 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeMilitaryComplex" },
+        { zip = "NumarkComplex.pyramid.zip", mapMod = "SMP_NumarkComplex",
+            bounds = { 15872, 3584, 16384, 4096 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeNumarkComplex" },
+        { zip = "SnakeMansion.pyramid.zip", mapMod = "SMP_SnakeMansion",
+            bounds = { 11008, 10752, 11520, 11264 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeMansion" },
+        -- SnakeVille 兩個地圖目錄在 cell 24_22、24_23 重疊且內容不同：各自一顆 zip、逐條 mapDir，
+        -- 那兩格以 Map= 在前的為準（主 MOD 疊圖同序）
+        { zip = "snakeville_0.pyramid.zip", mapMod = "SMP_SnakeVille", mapDir = "snakeville_0",
+            streetNames = StreetNames["snakeville-0"],
+            bounds = { 5888, 5632, 6400, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeVille0" },
+        { zip = "snakeville_1.pyramid.zip", mapMod = "SMP_SnakeVille", mapDir = "snakeville_1",
+            streetNames = StreetNames["snakeville-1"],
+            bounds = { 6144, 5632, 6656, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeVille1" },
+        -- Snake's Mechanical Overhaul（玩法子 MOD）附帶三處修車廠地塊，逐條 mapDir。用到 SMP_CustomMapBridge
+        -- 的材質卻沒寫 require=，照宣告渲染（加掛該包只差 8–13 像素）
+        { zip = "tlv.pyramid.zip", mapMod = "SMP_SnakeMechanicalOverhaul", mapDir = "tlv",
+            bounds = { 14336, 2816, 14592, 3072 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeShopLouisville" },
+        { zip = "tmarch.pyramid.zip", mapMod = "SMP_SnakeMechanicalOverhaul", mapDir = "tmarch",
+            bounds = { 9984, 12288, 10240, 12544 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeShopMarchRidge" },
+        { zip = "tvs.pyramid.zip", mapMod = "SMP_SnakeMechanicalOverhaul", mapDir = "tvs",
+            bounds = { 13312, 5632, 13568, 5888 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeShopValleyStation" },
     })
 else
     print("[MinidoracatMiniMapModMaps] main MOD API (MinidoracatMiniMapAPI) not found -- install and enable the Minidoracat MiniMap for B42 main MOD")

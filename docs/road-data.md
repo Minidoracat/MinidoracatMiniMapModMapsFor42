@@ -25,11 +25,11 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**113** 張
-- 作者附道路資料（Author road data）：**30** 張；沒有 **83** 張
-- 本包路名翻譯（Translated names）：**23** 張
+- 收錄地圖（Maps）：**123** 張
+- 作者附道路資料（Author road data）：**33** 張；沒有 **90** 張
+- 本包路名翻譯（Translated names）：**25** 張
 - 本包道路修正（Fixes）：**4** 張
-- 本包補充道路（Added roads）：**6** 張
+- 本包補充道路（Added roads）：**7** 張
 
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
 
@@ -53,6 +53,8 @@
 - **渡鴉溪（Raven Creek）**
   - 移除多餘轉折點 1 處：作者的路在路口旁多畫了轉折點或尾巴，導航會把路線拉到隔壁路上或走成 Z 字而偏離路面；拿掉這些點後沿實際路面走
   - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `渡鴉溪 01 號路（小地圖補）`（英文 `Raven Creek Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **Snake 工廠（Snake's Factory）**
+  - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `Snake 工廠 01 號路（小地圖補）`（英文 `Snake's Factory Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 
 ## 全部地圖（All maps）
 
@@ -171,3 +173,13 @@
 | VaultTec 避難所－馬爾德勞<br>VaultTec Vault - Muldraugh | [3697082724](https://steamcommunity.com/sharedfiles/filedetails/?id=3697082724) | ❌ 無 | — | — | — |
 | VaultTec 聯絡道路<br>VaultTec Road | [3697082724](https://steamcommunity.com/sharedfiles/filedetails/?id=3697082724) | ❌ 無 | — | — | — |
 | VaultTec 避難所－羅斯伍德<br>VaultTec Vault - Rosewood | [3697082724](https://steamcommunity.com/sharedfiles/filedetails/?id=3697082724) | ❌ 無 | — | — | — |
+| Snake 廢棄船<br>Snake's Barco Abandonado | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ❌ 無 | — | — | — |
+| Snake 工廠<br>Snake's Factory | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ❌ 無 | — | — | ✅ 1 條 |
+| Snake 軍事複合區<br>Snake's Military Complex | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ❌ 無 | — | — | — |
+| Snake Numark 複合區<br>Snake's Numark Complex | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ❌ 無 | — | — | — |
+| Snake 豪宅<br>Snake Mansion | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ✅ 1 條 | — | — | — |
+| SnakeVille 零號區<br>SnakeVille (Site 0) | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ✅ 12 條 | ✅ 10 條 | — | — |
+| SnakeVille 一號區<br>SnakeVille (Site 1) | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ✅ 7 條 | ✅ 7 條 | — | — |
+| Snake 修車廠－路易斯維爾<br>Snake's Auto Shop - Louisville | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ❌ 無 | — | — | — |
+| Snake 修車廠－三月嶺<br>Snake's Auto Shop - March Ridge | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ❌ 無 | — | — | — |
+| Snake 修車廠－山谷站<br>Snake's Auto Shop - Valley Station | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ❌ 無 | — | — | — |

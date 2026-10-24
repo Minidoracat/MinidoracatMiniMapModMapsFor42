@@ -2,7 +2,7 @@
 -- 由 scripts/gen_map_resources.py render 從 map-resources/*.json＋註冊清單產生；
 -- 資料用 bake 重烘，房名別名改 room-aliases.json。分類規則在主 MOD scripts/gen_poi_data.py，
 -- 停車場判定在主 MOD scripts/gen_parking_data.py（只重算停車場用 parking 子命令）。
--- 115 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
+-- 125 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
 -- parking 條目格式同 MinidoracatMiniMapParkingData（resourceApiVersion 3 起才讀，舊版主 MOD 不讀）。
 
 local R = MinidoracatMiniMapResourceAPI
@@ -882,6 +882,20 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
         { rn = 1, r = { { x = 5702, y = 7955, w = 4, h = 27 } }, b = { x = 5702, y = 7955, w = 4, h = 27 }, i = 1 },
         { rn = 3, r = { { x = 5721, y = 7977, w = 21, h = 5 }, { x = 5723, y = 7949, w = 5, h = 15 }, { x = 5731, y = 7966, w = 12, h = 4 } }, b = { x = 5721, y = 7949, w = 22, h = 33 }, i = 1 },
         count = 106,
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "SMP_BarcoAbandonado", mapDir = "BarcoAbandonado",
+    cells300 = {
+    },
+    poi = {
+        { cat = "police", rn = 5, r = { { x = 12147, y = 6465, w = 5, h = 10 }, { x = 12152, y = 6466, w = 4, h = 10 }, { x = 12147, y = 6462, w = 9, h = 3 }, { x = 12149, y = 6475, w = 3, h = 1 }, { x = 12152, y = 6465, w = 2, h = 1 } }, b = { x = 12145, y = 6445, w = 136, h = 33 } },
+        count = 1,
+    },
+    aliases = {
+        ["petrolroom"] = "gasstorage",
+        ["shiptools"] = "toolstorage",
     },
 })
 
@@ -4654,6 +4668,30 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
 })
 
 R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "SMP_Factory", mapDir = "Factory",
+    cells300 = {
+        42, 37,
+    },
+    poi = {
+        { cat = "gunstore", rn = 1, r = { { x = 12735, y = 11189, w = 3, h = 3 } }, b = { x = 12735, y = 11189, w = 3, h = 3 } },
+        { cat = "gunstore", rn = 1, r = { { x = 12826, y = 11187, w = 3, h = 3 } }, b = { x = 12826, y = 11187, w = 3, h = 3 } },
+        { cat = "industry", rn = 3, r = { { x = 12803, y = 11216, w = 18, h = 16 }, { x = 12800, y = 11232, w = 21, h = 3 }, { x = 12800, y = 11224, w = 3, h = 8 } }, b = { x = 12794, y = 11216, w = 27, h = 36 } },
+        { cat = "tools", rn = 7, r = { { x = 12741, y = 11138, w = 22, h = 17 }, { x = 12770, y = 11138, w = 21, h = 17 }, { x = 12770, y = 11170, w = 21, h = 7 }, { x = 12762, y = 11181, w = 29, h = 5 }, { x = 12774, y = 11177, w = 17, h = 4 }, { x = 12741, y = 11183, w = 13, h = 3 }, { x = 12741, y = 11186, w = 6, h = 6 } }, b = { x = 12741, y = 11138, w = 50, h = 54 } },
+        count = 4,
+    },
+    parking = {
+        { rn = 12, r = { { x = 12735, y = 11152, w = 3, h = 5 }, { x = 12735, y = 11173, w = 3, h = 15 }, { x = 12736, y = 11147, w = 5, h = 3 }, { x = 12740, y = 11158, w = 25, h = 3 }, { x = 12740, y = 11167, w = 27, h = 5 }, { x = 12768, y = 11158, w = 15, h = 3 }, { x = 12770, y = 11191, w = 6, h = 5 }, { x = 12776, y = 11186, w = 3, h = 5 }, { x = 12781, y = 11186, w = 3, h = 5 }, { x = 12786, y = 11186, w = 3, h = 5 }, { x = 12788, y = 11158, w = 40, h = 3 }, { x = 12789, y = 11191, w = 30, h = 5 } }, b = { x = 12735, y = 11147, w = 93, h = 49 }, i = 1 },
+        { rn = 2, r = { { x = 12801, y = 11236, w = 5, h = 9 }, { x = 12811, y = 11248, w = 20, h = 3 } }, b = { x = 12801, y = 11236, w = 30, h = 15 }, i = 1 },
+        count = 2,
+    },
+    aliases = {
+        ["metalfactory"] = "factory",
+        ["sawstorage"] = "toolstore",
+        ["sawstorage2"] = "construction",
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
     mapMod = "Floatopia", mapDir = "Floatopia",
     cells300 = {
         15, 18,
@@ -6765,6 +6803,74 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
 })
 
 R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "SMP_MilitaryComplex", mapDir = "MilitaryComplex",
+    cells300 = {
+        18, 30,
+    },
+    poi = {
+        { cat = "gunstore", rn = 1, r = { { x = 5407, y = 9265, w = 5, h = 5 } }, b = { x = 5407, y = 9265, w = 5, h = 5 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5410, y = 9091, w = 3, h = 3 } }, b = { x = 5407, y = 9091, w = 6, h = 6 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5411, y = 9101, w = 2, h = 2 } }, b = { x = 5411, y = 9101, w = 2, h = 2 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5421, y = 9100, w = 3, h = 3 } }, b = { x = 5421, y = 9100, w = 3, h = 3 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5433, y = 9064, w = 6, h = 3 } }, b = { x = 5433, y = 9064, w = 6, h = 3 } },
+        { cat = "gunstore", rn = 2, r = { { x = 5437, y = 9044, w = 6, h = 4 }, { x = 5437, y = 9048, w = 5, h = 3 } }, b = { x = 5434, y = 9024, w = 14, h = 30 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5456, y = 9243, w = 3, h = 3 } }, b = { x = 5456, y = 9243, w = 3, h = 3 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5501, y = 9216, w = 3, h = 3 } }, b = { x = 5501, y = 9216, w = 3, h = 3 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5511, y = 9216, w = 3, h = 3 } }, b = { x = 5511, y = 9216, w = 3, h = 3 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5610, y = 9109, w = 3, h = 3 } }, b = { x = 5607, y = 9109, w = 6, h = 6 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5611, y = 9119, w = 2, h = 2 } }, b = { x = 5611, y = 9119, w = 2, h = 2 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5621, y = 9118, w = 3, h = 3 } }, b = { x = 5621, y = 9118, w = 3, h = 3 } },
+        { cat = "gunstore", rn = 1, r = { { x = 5627, y = 9050, w = 6, h = 8 } }, b = { x = 5627, y = 9050, w = 6, h = 8 } },
+        { cat = "military", rn = 1, r = { { x = 5424, y = 9081, w = 4, h = 4 } }, b = { x = 5424, y = 9081, w = 4, h = 4 } },
+        { cat = "military", rn = 1, r = { { x = 5440, y = 9134, w = 6, h = 5 } }, b = { x = 5440, y = 9134, w = 6, h = 5 } },
+        { cat = "military", rn = 1, r = { { x = 5443, y = 9106, w = 6, h = 6 } }, b = { x = 5443, y = 9106, w = 6, h = 6 } },
+        { cat = "military", rn = 1, r = { { x = 5456, y = 9147, w = 10, h = 7 } }, b = { x = 5456, y = 9147, w = 10, h = 7 } },
+        { cat = "military", rn = 1, r = { { x = 5459, y = 9114, w = 3, h = 3 } }, b = { x = 5459, y = 9114, w = 3, h = 3 } },
+        { cat = "military", rn = 1, r = { { x = 5471, y = 9106, w = 14, h = 4 } }, b = { x = 5471, y = 9106, w = 14, h = 4 } },
+        { cat = "military", rn = 1, r = { { x = 5474, y = 9222, w = 10, h = 10 } }, b = { x = 5437, y = 9164, w = 71, h = 68 } },
+        { cat = "military", rn = 1, r = { { x = 5478, y = 9143, w = 3, h = 3 } }, b = { x = 5478, y = 9143, w = 3, h = 3 } },
+        { cat = "military", rn = 13, r = { { x = 5490, y = 9124, w = 6, h = 12 }, { x = 5496, y = 9130, w = 11, h = 6 }, { x = 5496, y = 9124, w = 11, h = 5 }, { x = 5490, y = 9121, w = 17, h = 2 }, { x = 5490, y = 9137, w = 17, h = 2 }, { x = 5493, y = 9123, w = 11, h = 1 }, { x = 5493, y = 9136, w = 11, h = 1 }, { x = 5499, y = 9129, w = 8, h = 1 }, { x = 5490, y = 9123, w = 2, h = 1 }, { x = 5490, y = 9136, w = 2, h = 1 }, { x = 5496, y = 9129, w = 2, h = 1 }, { x = 5505, y = 9123, w = 2, h = 1 }, { x = 5505, y = 9136, w = 2, h = 1 } }, b = { x = 5490, y = 9121, w = 17, h = 18 } },
+        { cat = "military", rn = 1, r = { { x = 5664, y = 9033, w = 2, h = 5 } }, b = { x = 5664, y = 9033, w = 2, h = 5 } },
+        { cat = "military", rn = 2, r = { { x = 5665, y = 9032, w = 7, h = 9 }, { x = 5666, y = 9041, w = 5, h = 4 } }, b = { x = 5661, y = 9032, w = 14, h = 17 }, u = 1 },
+        { cat = "police", rn = 1, r = { { x = 5433, y = 9069, w = 5, h = 4 } }, b = { x = 5432, y = 9068, w = 35, h = 20 } },
+        { cat = "police", rn = 1, r = { { x = 5495, y = 9009, w = 4, h = 5 } }, b = { x = 5480, y = 9008, w = 20, h = 35 } },
+        { cat = "police", rn = 1, r = { { x = 5522, y = 9009, w = 4, h = 5 } }, b = { x = 5507, y = 9008, w = 20, h = 35 } },
+        { cat = "police", rn = 1, r = { { x = 5549, y = 9009, w = 4, h = 5 } }, b = { x = 5534, y = 9008, w = 20, h = 35 } },
+        { cat = "police", rn = 1, r = { { x = 5576, y = 9009, w = 4, h = 5 } }, b = { x = 5561, y = 9008, w = 20, h = 35 } },
+        { cat = "police", rn = 1, r = { { x = 5577, y = 9175, w = 8, h = 18 } }, b = { x = 5539, y = 9171, w = 66, h = 60 } },
+        { cat = "police", rn = 1, r = { { x = 5603, y = 9009, w = 4, h = 5 } }, b = { x = 5588, y = 9008, w = 20, h = 35 } },
+        { cat = "storage", rn = 1, r = { { x = 5460, y = 9030, w = 6, h = 3 } }, b = { x = 5457, y = 9013, w = 17, h = 20 } },
+        { cat = "storage", rn = 1, r = { { x = 5460, y = 9034, w = 6, h = 3 } }, b = { x = 5460, y = 9034, w = 6, h = 3 } },
+        { cat = "tools", rn = 1, r = { { x = 5434, y = 9013, w = 6, h = 3 } }, b = { x = 5434, y = 9010, w = 6, h = 6 } },
+        { cat = "tools", rn = 1, r = { { x = 5445, y = 9058, w = 3, h = 6 } }, b = { x = 5445, y = 9058, w = 3, h = 6 } },
+        count = 35,
+    },
+    parking = {
+        { rn = 2, r = { { x = 5402, y = 9011, w = 5, h = 54 }, { x = 5402, y = 9066, w = 5, h = 3 } }, b = { x = 5402, y = 9011, w = 5, h = 58 }, i = 1 },
+        { rn = 3, r = { { x = 5437, y = 9225, w = 12, h = 5 }, { x = 5437, y = 9241, w = 18, h = 5 }, { x = 5449, y = 9232, w = 9, h = 5 } }, b = { x = 5437, y = 9225, w = 21, h = 21 }, i = 1 },
+        { rn = 1, r = { { x = 5469, y = 9202, w = 5, h = 9 } }, b = { x = 5469, y = 9202, w = 5, h = 9 }, i = 1 },
+        { rn = 4, r = { { x = 5585, y = 9213, w = 5, h = 6 }, { x = 5595, y = 9219, w = 5, h = 24 }, { x = 5596, y = 9207, w = 9, h = 5 }, { x = 5604, y = 9219, w = 5, h = 24 } }, b = { x = 5585, y = 9207, w = 24, h = 36 }, i = 1 },
+        count = 4,
+    },
+    aliases = {
+        ["DiningRoom"] = "restaurant",
+        ["ammomakerroom"] = "gunstore",
+        ["ammostorage"] = "armystorage",
+        ["ammostorage2"] = "armystorage",
+        ["mcbunker"] = "armystorage",
+        ["mcbunkercans"] = "grocery",
+        ["mcgunstorestorage"] = "gunstorestorage",
+        ["mcmechanic"] = "mechanic",
+        ["mcmedicalstorage"] = "medicalstorage",
+        ["mcpolicestorage"] = "policestorage",
+        ["mcspiffosstorage"] = "spiffosstorage",
+        ["mcstorageunit"] = "storageunit",
+        ["trainingcamp"] = "firearmtraining",
+        ["vigtower"] = "armystorage",
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
     mapMod = "MountCrowCityVanilla", mapDir = "Mount Crow City",
     cells300 = {
         43, 32, 44, 32, 45, 32, 46, 32, 47, 32, 48, 32, 43, 33, 44, 33, 45, 33, 46, 33, 47, 33, 48, 33, 43, 34, 44, 34, 45, 34, 46, 34,
@@ -8137,6 +8243,28 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
         { rn = 1, r = { { x = 7094, y = 11412, w = 5, h = 42 } }, b = { x = 7094, y = 11412, w = 5, h = 42 }, i = 1 },
         { rn = 1, r = { { x = 7143, y = 11337, w = 9, h = 5 } }, b = { x = 7143, y = 11337, w = 9, h = 5 }, i = 1 },
         count = 9,
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "SMP_NumarkComplex", mapDir = "NumarkComplex",
+    cells300 = {
+        53, 12,
+    },
+    poi = {
+        { cat = "gunstore", rn = 1, r = { { x = 15998, y = 3732, w = 8, h = 8 } }, b = { x = 15998, y = 3732, w = 8, h = 8 } },
+        { cat = "gunstore", rn = 1, r = { { x = 16096, y = 3732, w = 5, h = 5 } }, b = { x = 16096, y = 3732, w = 5, h = 5 } },
+        { cat = "medical", rn = 37, r = { { x = 16109, y = 3690, w = 43, h = 6 }, { x = 16038, y = 3690, w = 36, h = 6 }, { x = 16156, y = 3659, w = 5, h = 33 }, { x = 16021, y = 3642, w = 16, h = 9 }, { x = 16040, y = 3676, w = 36, h = 4 }, { x = 16105, y = 3651, w = 15, h = 9 }, { x = 16021, y = 3661, w = 11, h = 12 }, { x = 16040, y = 3649, w = 12, h = 11 }, { x = 16081, y = 3700, w = 10, h = 8 }, { x = 16124, y = 3680, w = 13, h = 4 }, { x = 16032, y = 3659, w = 3, h = 17 }, { x = 16040, y = 3664, w = 12, h = 4 }, { x = 16149, y = 3696, w = 12, h = 4 }, { x = 16080, y = 3658, w = 7, h = 5 }, { x = 16095, y = 3658, w = 7, h = 5 }, { x = 16024, y = 3656, w = 11, h = 3 }, { x = 16040, y = 3683, w = 8, h = 4 }, { x = 16052, y = 3683, w = 8, h = 4 }, { x = 16064, y = 3683, w = 8, h = 4 }, { x = 16048, y = 3683, w = 4, h = 7 }, { x = 16060, y = 3683, w = 4, h = 7 }, { x = 16072, y = 3683, w = 4, h = 7 }, { x = 16131, y = 3647, w = 3, h = 8 }, { x = 16131, y = 3676, w = 6, h = 4 }, { x = 16142, y = 3669, w = 6, h = 4 }, { x = 16109, y = 3646, w = 11, h = 2 }, { x = 16021, y = 3673, w = 3, h = 7 }, { x = 16156, y = 3646, w = 5, h = 4 }, { x = 16105, y = 3648, w = 15, h = 1 }, { x = 16105, y = 3649, w = 7, h = 2 }, { x = 16109, y = 3642, w = 7, h = 2 }, { x = 16114, y = 3644, w = 6, h = 2 }, { x = 16114, y = 3649, w = 6, h = 2 }, { x = 16021, y = 3659, w = 3, h = 2 }, { x = 16025, y = 3659, w = 3, h = 2 }, { x = 16029, y = 3659, w = 3, h = 2 }, { x = 16109, y = 3644, w = 3, h = 2 } }, b = { x = 16020, y = 3641, w = 142, h = 68 } },
+        { cat = "military", rn = 1, r = { { x = 15905, y = 3873, w = 9, h = 6 } }, b = { x = 15905, y = 3873, w = 9, h = 6 } },
+        count = 4,
+    },
+    parking = {
+        { rn = 1, r = { { x = 16017, y = 3712, w = 63, h = 5 } }, b = { x = 16017, y = 3712, w = 63, h = 5 }, i = 1 },
+        { rn = 1, r = { { x = 16017, y = 3730, w = 63, h = 5 } }, b = { x = 16017, y = 3730, w = 63, h = 5 }, i = 1 },
+        { rn = 1, r = { { x = 16102, y = 3712, w = 60, h = 5 } }, b = { x = 16102, y = 3712, w = 60, h = 5 }, i = 1 },
+        { rn = 2, r = { { x = 16102, y = 3730, w = 30, h = 5 }, { x = 16138, y = 3730, w = 24, h = 5 } }, b = { x = 16102, y = 3730, w = 60, h = 5 }, i = 1 },
+        { rn = 1, r = { { x = 16148, y = 3631, w = 6, h = 5 } }, b = { x = 16148, y = 3631, w = 6, h = 5 }, i = 1 },
+        count = 5,
     },
 })
 
@@ -9910,6 +10038,29 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
     parking = {
         { rn = 1, r = { { x = 6269, y = 10062, w = 4, h = 6 } }, b = { x = 6269, y = 10062, w = 4, h = 6 }, i = 1 },
         count = 1,
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "SMP_SnakeMansion", mapDir = "SnakeMansion",
+    cells300 = {
+        37, 36,
+    },
+    poi = {
+        { cat = "gunstore", rn = 6, r = { { x = 11198, y = 10980, w = 1, h = 5 }, { x = 11198, y = 10988, w = 1, h = 5 }, { x = 11212, y = 10980, w = 1, h = 5 }, { x = 11212, y = 10988, w = 1, h = 5 }, { x = 11224, y = 10976, w = 5, h = 1 }, { x = 11173, y = 10980, w = 1, h = 1 } }, b = { x = 11170, y = 10942, w = 71, h = 56 } },
+        { cat = "military", rn = 2, r = { { x = 11205, y = 10935, w = 3, h = 5 }, { x = 11206, y = 10930, w = 1, h = 5 } }, b = { x = 11194, y = 10929, w = 23, h = 12 }, u = 1 },
+        { cat = "police", rn = 1, r = { { x = 11158, y = 11027, w = 5, h = 5 } }, b = { x = 11158, y = 11027, w = 5, h = 5 } },
+        { cat = "police", rn = 1, r = { { x = 11169, y = 10916, w = 3, h = 3 } }, b = { x = 11169, y = 10916, w = 3, h = 3 } },
+        { cat = "police", rn = 1, r = { { x = 11239, y = 10916, w = 3, h = 3 } }, b = { x = 11239, y = 10916, w = 3, h = 3 } },
+        { cat = "police", rn = 1, r = { { x = 11247, y = 11027, w = 5, h = 5 } }, b = { x = 11247, y = 11027, w = 5, h = 5 } },
+        { cat = "tools", rn = 1, r = { { x = 11182, y = 10986, w = 5, h = 9 } }, b = { x = 11182, y = 10986, w = 5, h = 9 } },
+        { cat = "tools", rn = 1, r = { { x = 11224, y = 10986, w = 5, h = 9 } }, b = { x = 11224, y = 10986, w = 5, h = 9 } },
+        count = 8,
+    },
+    parking = {
+        { rn = 6, r = { { x = 11171, y = 10986, w = 3, h = 5 }, { x = 11171, y = 10992, w = 3, h = 5 }, { x = 11171, y = 10998, w = 3, h = 5 }, { x = 11176, y = 10986, w = 3, h = 5 }, { x = 11176, y = 10992, w = 3, h = 5 }, { x = 11176, y = 10998, w = 3, h = 5 } }, b = { x = 11171, y = 10986, w = 8, h = 17 }, i = 1 },
+        { rn = 6, r = { { x = 11232, y = 10986, w = 3, h = 5 }, { x = 11232, y = 10992, w = 3, h = 5 }, { x = 11232, y = 10998, w = 3, h = 5 }, { x = 11237, y = 10986, w = 3, h = 5 }, { x = 11237, y = 10992, w = 3, h = 5 }, { x = 11237, y = 10998, w = 3, h = 5 } }, b = { x = 11232, y = 10986, w = 8, h = 17 }, i = 1 },
+        count = 2,
     },
 })
 
@@ -12699,6 +12850,115 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
 })
 
 R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "SMP_SnakeVille", mapDir = "snakeville_0",
+    cells300 = {
+        20, 19,
+    },
+    poi = {
+        { cat = "church", rn = 1, r = { { x = 6133, y = 5817, w = 20, h = 10 } }, b = { x = 6133, y = 5817, w = 20, h = 10 } },
+        { cat = "fire", rn = 2, r = { { x = 6093, y = 5864, w = 12, h = 10 }, { x = 6101, y = 5874, w = 4, h = 6 } }, b = { x = 6088, y = 5863, w = 17, h = 18 } },
+        { cat = "food", rn = 1, r = { { x = 6002, y = 5828, w = 1, h = 1 } }, b = { x = 6002, y = 5828, w = 1, h = 1 } },
+        { cat = "food", rn = 4, r = { { x = 6003, y = 5785, w = 7, h = 7 }, { x = 6001, y = 5792, w = 9, h = 2 }, { x = 6003, y = 5794, w = 7, h = 2 }, { x = 6003, y = 5782, w = 4, h = 3 } }, b = { x = 6001, y = 5782, w = 9, h = 14 } },
+        { cat = "food", rn = 2, r = { { x = 6003, y = 5808, w = 7, h = 13 }, { x = 6000, y = 5811, w = 3, h = 7 } }, b = { x = 6000, y = 5808, w = 10, h = 18 } },
+        { cat = "food", rn = 2, r = { { x = 6004, y = 5768, w = 20, h = 11 }, { x = 6004, y = 5759, w = 15, h = 9 } }, b = { x = 6004, y = 5759, w = 20, h = 20 } },
+        { cat = "food", rn = 1, r = { { x = 6009, y = 5828, w = 1, h = 1 } }, b = { x = 6009, y = 5828, w = 1, h = 1 } },
+        { cat = "food", rn = 2, r = { { x = 6016, y = 5850, w = 7, h = 2 }, { x = 6016, y = 5844, w = 1, h = 6 } }, b = { x = 6016, y = 5844, w = 10, h = 11 }, u = 1 },
+        { cat = "food", rn = 2, r = { { x = 6167, y = 5815, w = 3, h = 9 }, { x = 6167, y = 5824, w = 5, h = 5 } }, b = { x = 6167, y = 5813, w = 13, h = 16 } },
+        { cat = "food", rn = 1, r = { { x = 6220, y = 5906, w = 8, h = 4 } }, b = { x = 6213, y = 5890, w = 22, h = 20 } },
+        { cat = "food", rn = 1, r = { { x = 6238, y = 5890, w = 6, h = 8 } }, b = { x = 6238, y = 5890, w = 6, h = 8 } },
+        { cat = "grocery", rn = 1, r = { { x = 6194, y = 5798, w = 2, h = 5 } }, b = { x = 6194, y = 5786, w = 21, h = 23 } },
+        { cat = "gunstore", rn = 1, r = { { x = 6064, y = 5862, w = 5, h = 4 } }, b = { x = 6035, y = 5862, w = 36, h = 18 } },
+        { cat = "industry", rn = 2, r = { { x = 6129, y = 5844, w = 11, h = 7 }, { x = 6129, y = 5851, w = 5, h = 8 } }, b = { x = 6117, y = 5844, w = 23, h = 15 } },
+        { cat = "medical", rn = 1, r = { { x = 6278, y = 5866, w = 5, h = 12 } }, b = { x = 6278, y = 5862, w = 11, h = 16 } },
+        { cat = "military", rn = 1, r = { { x = 6257, y = 5813, w = 5, h = 7 } }, b = { x = 6257, y = 5813, w = 12, h = 7 }, u = 1 },
+        { cat = "pharmacy", rn = 2, r = { { x = 6252, y = 5823, w = 8, h = 4 }, { x = 6254, y = 5821, w = 6, h = 2 } }, b = { x = 6230, y = 5801, w = 36, h = 26 } },
+        { cat = "retail", rn = 1, r = { { x = 6012, y = 5850, w = 5, h = 9 } }, b = { x = 6012, y = 5843, w = 20, h = 16 } },
+        { cat = "retail", rn = 1, r = { { x = 6170, y = 5789, w = 10, h = 12 } }, b = { x = 6170, y = 5789, w = 10, h = 12 } },
+        { cat = "retail", rn = 2, r = { { x = 6204, y = 5890, w = 6, h = 6 }, { x = 6206, y = 5896, w = 4, h = 2 } }, b = { x = 6204, y = 5890, w = 6, h = 8 } },
+        { cat = "retail", rn = 1, r = { { x = 6225, y = 5874, w = 15, h = 6 } }, b = { x = 6225, y = 5870, w = 15, h = 10 } },
+        { cat = "retail", rn = 1, r = { { x = 6230, y = 5863, w = 10, h = 3 } }, b = { x = 6225, y = 5863, w = 15, h = 3 } },
+        { cat = "retail", rn = 6, r = { { x = 6242, y = 5874, w = 17, h = 5 }, { x = 6242, y = 5870, w = 15, h = 4 }, { x = 6252, y = 5865, w = 5, h = 5 }, { x = 6247, y = 5867, w = 2, h = 3 }, { x = 6255, y = 5879, w = 4, h = 1 }, { x = 6242, y = 5879, w = 1, h = 1 } }, b = { x = 6242, y = 5865, w = 17, h = 15 } },
+        { cat = "retail", rn = 5, r = { { x = 6276, y = 5809, w = 10, h = 6 }, { x = 6269, y = 5817, w = 7, h = 8 }, { x = 6268, y = 5825, w = 8, h = 2 }, { x = 6282, y = 5815, w = 4, h = 4 }, { x = 6272, y = 5814, w = 4, h = 3 } }, b = { x = 6268, y = 5801, w = 19, h = 26 } },
+        { cat = "retail", rn = 1, r = { { x = 6288, y = 5890, w = 6, h = 9 } }, b = { x = 6288, y = 5890, w = 6, h = 12 } },
+        { cat = "storage", rn = 1, r = { { x = 6052, y = 5874, w = 26, h = 13 } }, b = { x = 6052, y = 5874, w = 26, h = 13 }, u = 1 },
+        { cat = "storage", rn = 1, r = { { x = 6213, y = 5815, w = 8, h = 10 } }, b = { x = 6213, y = 5815, w = 8, h = 10 }, u = 1 },
+        { cat = "tools", rn = 2, r = { { x = 6047, y = 5784, w = 26, h = 12 }, { x = 6042, y = 5796, w = 5, h = 5 } }, b = { x = 6035, y = 5784, w = 38, h = 17 } },
+        { cat = "tools", rn = 2, r = { { x = 6217, y = 5814, w = 6, h = 5 }, { x = 6216, y = 5812, w = 7, h = 2 } }, b = { x = 6207, y = 5812, w = 16, h = 17 } },
+        count = 29,
+    },
+    parking = {
+        { rn = 1, r = { { x = 6012, y = 5787, w = 3, h = 15 } }, b = { x = 6012, y = 5787, w = 3, h = 15 }, i = 1 },
+        { rn = 3, r = { { x = 6012, y = 5862, w = 20, h = 3 }, { x = 6018, y = 5870, w = 12, h = 5 }, { x = 6019, y = 5859, w = 10, h = 3 } }, b = { x = 6012, y = 5859, w = 20, h = 16 }, i = 1 },
+        { rn = 8, r = { { x = 6019, y = 5760, w = 5, h = 3 }, { x = 6019, y = 5764, w = 5, h = 3 }, { x = 6024, y = 5777, w = 5, h = 3 }, { x = 6029, y = 5771, w = 3, h = 5 }, { x = 6034, y = 5770, w = 5, h = 9 }, { x = 6042, y = 5773, w = 5, h = 6 }, { x = 6048, y = 5773, w = 5, h = 6 }, { x = 6056, y = 5770, w = 5, h = 9 } }, b = { x = 6019, y = 5760, w = 42, h = 20 }, i = 1 },
+        { rn = 3, r = { { x = 6054, y = 5797, w = 12, h = 5 }, { x = 6070, y = 5797, w = 3, h = 5 }, { x = 6074, y = 5787, w = 5, h = 9 } }, b = { x = 6054, y = 5787, w = 25, h = 15 }, i = 1 },
+        { rn = 3, r = { { x = 6088, y = 5892, w = 6, h = 5 }, { x = 6094, y = 5883, w = 12, h = 5 }, { x = 6097, y = 5892, w = 12, h = 5 } }, b = { x = 6088, y = 5883, w = 21, h = 14 }, i = 1 },
+        { rn = 5, r = { { x = 6090, y = 5787, w = 5, h = 12 }, { x = 6090, y = 5800, w = 5, h = 3 }, { x = 6090, y = 5809, w = 5, h = 6 }, { x = 6098, y = 5787, w = 5, h = 12 }, { x = 6098, y = 5803, w = 5, h = 9 } }, b = { x = 6090, y = 5787, w = 13, h = 28 }, i = 1 },
+        { rn = 2, r = { { x = 6115, y = 5787, w = 5, h = 12 }, { x = 6115, y = 5800, w = 5, h = 12 } }, b = { x = 6115, y = 5787, w = 5, h = 25 }, i = 1 },
+        { rn = 2, r = { { x = 6173, y = 5750, w = 5, h = 9 }, { x = 6173, y = 5762, w = 5, h = 15 } }, b = { x = 6173, y = 5750, w = 5, h = 27 }, i = 1 },
+        { rn = 1, r = { { x = 6191, y = 5852, w = 5, h = 9 } }, b = { x = 6191, y = 5852, w = 5, h = 9 }, i = 1 },
+        { rn = 6, r = { { x = 6194, y = 5778, w = 12, h = 5 }, { x = 6209, y = 5778, w = 9, h = 5 }, { x = 6218, y = 5783, w = 5, h = 24 }, { x = 6222, y = 5771, w = 5, h = 6 }, { x = 6224, y = 5813, w = 3, h = 5 }, { x = 6224, y = 5819, w = 3, h = 5 } }, b = { x = 6194, y = 5771, w = 33, h = 53 }, i = 1 },
+        { rn = 1, r = { { x = 6198, y = 5882, w = 5, h = 6 } }, b = { x = 6198, y = 5882, w = 5, h = 6 }, i = 1 },
+        { rn = 4, r = { { x = 6264, y = 5844, w = 21, h = 5 }, { x = 6270, y = 5855, w = 18, h = 5 }, { x = 6271, y = 5868, w = 5, h = 9 }, { x = 6283, y = 5877, w = 6, h = 5 } }, b = { x = 6264, y = 5844, w = 25, h = 38 }, i = 1 },
+        { rn = 1, r = { { x = 6304, y = 5784, w = 21, h = 5 } }, b = { x = 6304, y = 5784, w = 21, h = 5 }, i = 1 },
+        { rn = 2, r = { { x = 6346, y = 5846, w = 5, h = 18 }, { x = 6359, y = 5862, w = 12, h = 5 } }, b = { x = 6346, y = 5846, w = 25, h = 21 }, i = 1 },
+        { rn = 3, r = { { x = 6381, y = 5846, w = 5, h = 3 }, { x = 6381, y = 5852, w = 5, h = 9 }, { x = 6388, y = 5842, w = 3, h = 10 } }, b = { x = 6381, y = 5842, w = 10, h = 19 }, i = 1 },
+        { rn = 1, r = { { x = 6383, y = 5779, w = 5, h = 18 } }, b = { x = 6383, y = 5779, w = 5, h = 18 }, i = 1 },
+        { rn = 2, r = { { x = 6397, y = 5785, w = 5, h = 15 }, { x = 6405, y = 5779, w = 5, h = 21 } }, b = { x = 6397, y = 5779, w = 13, h = 21 }, i = 1 },
+        { rn = 1, r = { { x = 6413, y = 5842, w = 5, h = 24 } }, b = { x = 6413, y = 5842, w = 5, h = 24 }, i = 1 },
+        count = 18,
+    },
+    aliases = {
+        ["beerbottling"] = "brewery",
+        ["beerbottlingstorage"] = "brewerystorage",
+        ["labgarage"] = "medicalstorage",
+        ["labstorage"] = "medicalstorage",
+        ["lightingstorestorage"] = "lightingstorage",
+        ["plantsshop"] = "gardenstore",
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "SMP_SnakeVille", mapDir = "snakeville_1",
+    cells300 = {
+        21, 19,
+    },
+    poi = {
+        { cat = "food", rn = 3, r = { { x = 6304, y = 5844, w = 16, h = 6 }, { x = 6304, y = 5850, w = 4, h = 3 }, { x = 6316, y = 5850, w = 4, h = 3 } }, b = { x = 6301, y = 5844, w = 22, h = 9 } },
+        { cat = "food", rn = 1, r = { { x = 6311, y = 5735, w = 14, h = 14 } }, b = { x = 6311, y = 5735, w = 14, h = 14 }, u = 1 },
+        { cat = "food", rn = 4, r = { { x = 6311, y = 5743, w = 14, h = 6 }, { x = 6311, y = 5735, w = 14, h = 4 }, { x = 6318, y = 5739, w = 7, h = 4 }, { x = 6311, y = 5739, w = 4, h = 3 } }, b = { x = 6311, y = 5735, w = 15, h = 22 } },
+        { cat = "food", rn = 2, r = { { x = 6349, y = 5760, w = 4, h = 3 }, { x = 6351, y = 5758, w = 2, h = 2 } }, b = { x = 6349, y = 5747, w = 12, h = 16 } },
+        { cat = "food", rn = 6, r = { { x = 6424, y = 5783, w = 12, h = 5 }, { x = 6424, y = 5775, w = 7, h = 5 }, { x = 6423, y = 5781, w = 13, h = 2 }, { x = 6431, y = 5778, w = 5, h = 3 }, { x = 6429, y = 5769, w = 2, h = 6 }, { x = 6423, y = 5780, w = 8, h = 1 } }, b = { x = 6423, y = 5769, w = 13, h = 19 } },
+        { cat = "gas", rn = 5, r = { { x = 6390, y = 5858, w = 8, h = 5 }, { x = 6392, y = 5865, w = 13, h = 2 }, { x = 6394, y = 5867, w = 11, h = 2 }, { x = 6394, y = 5864, w = 11, h = 1 }, { x = 6394, y = 5863, w = 4, h = 1 } }, b = { x = 6390, y = 5858, w = 15, h = 11 } },
+        { cat = "gas", rn = 4, r = { { x = 6397, y = 5845, w = 1, h = 1 }, { x = 6397, y = 5853, w = 1, h = 1 }, { x = 6403, y = 5845, w = 1, h = 1 }, { x = 6403, y = 5853, w = 1, h = 1 } }, b = { x = 6397, y = 5845, w = 7, h = 9 } },
+        { cat = "grocery", rn = 7, r = { { x = 6311, y = 5772, w = 14, h = 4 }, { x = 6311, y = 5767, w = 14, h = 2 }, { x = 6311, y = 5769, w = 9, h = 3 }, { x = 6313, y = 5764, w = 7, h = 2 }, { x = 6311, y = 5766, w = 9, h = 1 }, { x = 6311, y = 5776, w = 5, h = 1 }, { x = 6320, y = 5776, w = 5, h = 1 } }, b = { x = 6311, y = 5758, w = 14, h = 19 } },
+        { cat = "gunstore", rn = 2, r = { { x = 6369, y = 5752, w = 12, h = 10 }, { x = 6369, y = 5762, w = 5, h = 6 } }, b = { x = 6369, y = 5752, w = 12, h = 16 }, u = 1 },
+        { cat = "gunstore", rn = 1, r = { { x = 6382, y = 5803, w = 5, h = 5 } }, b = { x = 6358, y = 5773, w = 51, h = 57 } },
+        { cat = "military", rn = 2, r = { { x = 6376, y = 5752, w = 8, h = 11 }, { x = 6380, y = 5749, w = 4, h = 3 } }, b = { x = 6369, y = 5749, w = 17, h = 14 } },
+        { cat = "military", rn = 1, r = { { x = 6568, y = 5915, w = 2, h = 5 } }, b = { x = 6568, y = 5915, w = 2, h = 5 } },
+        { cat = "outdoor", rn = 4, r = { { x = 6338, y = 5754, w = 9, h = 6 }, { x = 6339, y = 5751, w = 5, h = 3 }, { x = 6338, y = 5760, w = 2, h = 2 }, { x = 6343, y = 5760, w = 2, h = 2 } }, b = { x = 6338, y = 5751, w = 9, h = 11 } },
+        { cat = "retail", rn = 3, r = { { x = 6305, y = 5809, w = 4, h = 5 }, { x = 6305, y = 5814, w = 5, h = 3 }, { x = 6305, y = 5825, w = 5, h = 2 } }, b = { x = 6302, y = 5791, w = 23, h = 36 } },
+        { cat = "retail", rn = 2, r = { { x = 6325, y = 5844, w = 7, h = 5 }, { x = 6325, y = 5849, w = 10, h = 3 } }, b = { x = 6325, y = 5844, w = 10, h = 8 } },
+        { cat = "retail", rn = 3, r = { { x = 6388, y = 5736, w = 13, h = 4 }, { x = 6390, y = 5733, w = 11, h = 3 }, { x = 6386, y = 5733, w = 2, h = 7 } }, b = { x = 6386, y = 5733, w = 15, h = 7 } },
+        { cat = "retail", rn = 3, r = { { x = 6423, y = 5756, w = 8, h = 5 }, { x = 6424, y = 5752, w = 7, h = 4 }, { x = 6424, y = 5761, w = 7, h = 4 } }, b = { x = 6423, y = 5752, w = 8, h = 13 } },
+        count = 17,
+    },
+    aliases = {
+        ["apicultureshop"] = "grocery",
+        ["displayfishingstore"] = "outdoorsupply",
+        ["fishingstore"] = "outdoorsupply",
+        ["fishingstorestorage"] = "fishingstorage",
+        ["honeylovekitchen"] = "kitchen_crepe",
+        ["huntingstore"] = "hunting",
+        ["ninkasibasement"] = "brewery",
+        ["ninkasibasementstorage"] = "brewerystorage",
+        ["ninkasigarage"] = "brewerystorage",
+        ["riversidegunstore"] = "gunstore",
+        ["riversidegunstorestorage"] = "gunstorestorage",
+        ["riversidepolicestorage"] = "policestorage",
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
     mapMod = "Taibeiroad4", mapDir = "taibeiroad",
     cells300 = {
         28, 34, 29, 34, 27, 35, 28, 35, 29, 35, 27, 36, 28, 36, 29, 36, 27, 37, 28, 37, 29, 37, 28, 38, 29, 38,
@@ -12999,6 +13259,43 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
         ["weldroom"] = "factory",
         ["xiaochao"] = "restaurant",
         ["zhongbaistore"] = "grocery",
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "SMP_SnakeMechanicalOverhaul", mapDir = "tlv",
+    cells300 = {
+    },
+    poi = {
+        { cat = "tools", rn = 1, r = { { x = 14511, y = 2959, w = 9, h = 12 } }, b = { x = 14511, y = 2959, w = 9, h = 16 } },
+        { cat = "tools", rn = 6, r = { { x = 14513, y = 2963, w = 6, h = 1 }, { x = 14514, y = 2967, w = 5, h = 1 }, { x = 14517, y = 2965, w = 2, h = 1 }, { x = 14517, y = 2968, w = 2, h = 1 }, { x = 14518, y = 2964, w = 1, h = 1 }, { x = 14518, y = 2966, w = 1, h = 1 } }, b = { x = 14513, y = 2963, w = 6, h = 6 }, u = 1 },
+        count = 2,
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "SMP_SnakeMechanicalOverhaul", mapDir = "tmarch",
+    cells300 = {
+    },
+    poi = {
+        { cat = "tools", rn = 1, r = { { x = 10139, y = 12344, w = 26, h = 12 } }, b = { x = 10127, y = 12344, w = 38, h = 17 } },
+        { cat = "tools", rn = 8, r = { { x = 10143, y = 12347, w = 18, h = 1 }, { x = 10149, y = 12351, w = 6, h = 1 }, { x = 10153, y = 12348, w = 2, h = 2 }, { x = 10144, y = 12349, w = 1, h = 3 }, { x = 10159, y = 12349, w = 1, h = 3 }, { x = 10143, y = 12348, w = 2, h = 1 }, { x = 10159, y = 12348, w = 2, h = 1 }, { x = 10154, y = 12350, w = 1, h = 1 } }, b = { x = 10143, y = 12347, w = 18, h = 5 }, u = 1 },
+        count = 2,
+    },
+    parking = {
+        { rn = 2, r = { { x = 10140, y = 12357, w = 6, h = 5 }, { x = 10149, y = 12357, w = 15, h = 5 } }, b = { x = 10140, y = 12357, w = 24, h = 5 }, i = 1 },
+        count = 1,
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "SMP_SnakeMechanicalOverhaul", mapDir = "tvs",
+    cells300 = {
+    },
+    poi = {
+        { cat = "tools", rn = 1, r = { { x = 13475, y = 5727, w = 19, h = 11 } }, b = { x = 13469, y = 5727, w = 25, h = 11 } },
+        { cat = "tools", rn = 7, r = { { x = 13478, y = 5736, w = 13, h = 1 }, { x = 13486, y = 5730, w = 1, h = 6 }, { x = 13479, y = 5731, w = 1, h = 4 }, { x = 13489, y = 5731, w = 1, h = 4 }, { x = 13478, y = 5735, w = 2, h = 1 }, { x = 13483, y = 5735, w = 2, h = 1 }, { x = 13489, y = 5735, w = 2, h = 1 } }, b = { x = 13478, y = 5730, w = 13, h = 7 }, u = 1 },
+        count = 2,
     },
 })
 

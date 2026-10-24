@@ -18,14 +18,14 @@
 
 ## 收錄地圖
 
-共 **113 張**（90 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **123 張**（91 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
-**街名翻譯**：下列 **23 組**地圖資料提供繁中／簡中／
-日文翻譯，共 818 條——提基鎮、安瑞斯鎮、渡鴉溪（本體與 Kardinal 移植版各一套）、雛菊郡、
+**街名翻譯**：下列 **25 組**地圖資料提供繁中／簡中／
+日文翻譯，共 835 條——提基鎮、安瑞斯鎮、渡鴉溪（本體與 Kardinal 移植版各一套）、雛菊郡、
 坎登郡、西點擴張、綠港、小鎮、狂鋼、黑迷宮橋頭堡、艾德汽車回收場、三葉湖、目黑丘城、
 馬爾德勞 1993 重製版、楓木林鎮、烏鴉山市、大熊湖、黑迷宮、新哈特堡、社區中心、四葉草湖 316 號公路、
-德克丹（路名來自 Dirkerdam Map Fix）。英文與其他語言維持地圖作者原本的英文路名。
+德克丹（路名來自 Dirkerdam Map Fix）、SnakeVille 兩區。英文與其他語言維持地圖作者原本的英文路名。
 與官方地圖同名的路直接沿用官方譯名，跨地圖用詞一致。
 其餘地圖多半**上游本來就沒有路名資料**（如浣熊市），不是翻譯缺漏——每張地圖有沒有作者道路資料、
 本包有沒有翻譯／修正／補充道路，見 [道路資料清單](docs/road-data.md)（追蹤器每日隨作者更新自動維護）。
@@ -167,12 +167,23 @@
 | VaultTec 避難所－馬爾德勞 | `VaultTec B42 version` | 12288,8960 – 12800,9472 |
 | VaultTec 聯絡道路 | `VaultTec B42 version` | 11776,8960 – 12544,9472 |
 | VaultTec 避難所－羅斯伍德 | `VaultTec B42 version` | 5888,10496 – 6400,11008 |
+| Snake 廢棄船 | `SMP_BarcoAbandonado` | 12032,6400 – 12288,6656 |
+| Snake 工廠 | `SMP_Factory` | 12544,11008 – 13056,11520 |
+| Snake 軍事複合區 | `SMP_MilitaryComplex` | 5376,8960 – 5888,9472 |
+| Snake Numark 複合區 | `SMP_NumarkComplex` | 15872,3584 – 16384,4096 |
+| Snake 豪宅 | `SMP_SnakeMansion` | 11008,10752 – 11520,11264 |
+| SnakeVille 零號區 | `SMP_SnakeVille` | 5888,5632 – 6400,6144 |
+| SnakeVille 一號區 | `SMP_SnakeVille` | 6144,5632 – 6656,6144 |
+| Snake 修車廠－路易斯維爾 | `SMP_SnakeMechanicalOverhaul` | 14336,2816 – 14592,3072 |
+| Snake 修車廠－三月嶺 | `SMP_SnakeMechanicalOverhaul` | 9984,12288 – 10240,12544 |
+| Snake 修車廠－山谷站 | `SMP_SnakeMechanicalOverhaul` | 13312,5632 – 13568,5888 |
 
 ### 新增地圖的限制與衝突
 
 - [Foxtrot Warehouse](https://steamcommunity.com/sharedfiles/filedetails/?id=3600377019)（原作者 Caçador）：4 個地塊全部與 Atlanta 重疊，請二選一；本包收錄圖片不代表兩張原地圖可共用。
 - [Atlas Underground Complex](https://steamcommunity.com/sharedfiles/filedetails/?id=3717208771)（原作者 SD JUAN）：**只提供地表頂視圖，不提供地下樓層平面圖**。實際地塊與淺草湖畔小鎮、Atlanta、馬爾德勞軍事檢查站－天橋、日落湖鎮、SecretZ 三月嶺研究設施及十字路口檢查站部分重疊；不保證混用相容。
 - 兩張圖都沒有上游 `streets.xml`，本次不新增街名翻譯或導航路網；亦不自動加入全地圖測試組合，避免與既有地圖同時載入。
+- [Snake's ModPack Build 42](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932)（原作者 Snake）：作者目前只支援單人。每張圖是合集裡的一個子 MOD，啟用哪個就掛哪張；修車廠三處跟著玩法子 MOD Snake's Mechanical Overhaul。地塊和已收錄地圖重疊：軍事複合區整張落在多多市裡，SnakeVille 零號區與獵人基地兩版整格重疊、和 SecretZ 六號檢查站、SecretZ 河畔鎮二號檢查站、提基鎮部分重疊，SnakeVille 一號區與獵人基地、提基鎮部分重疊，工廠與途安里整格重疊、和安瑞斯鎮、卡姆登郡、安泊戍鎮部分重疊，Numark 複合區與黑迷宮、豪宅與灰木鎮／馬爾德勞 1993／SecretZ 五號檢查站、廢棄船與西點擴張區各重疊一部分；修車廠路易斯維爾那處與 SecretZ 路易斯維爾軍事複合區、VaultTec 避難所－路易斯維爾同格，三月嶺那處與阿特拉斯地下複合設施、SecretZ 三月嶺研究設施同格。SnakeVille 兩區彼此重疊兩格，以 `Map=` 在前的為準。不加入全地圖測試組合，掛載用 E2E 單機情境 `snake-sp` 驗。
 
 ### 已下架地圖（記錄保留、每日追蹤不含）
 

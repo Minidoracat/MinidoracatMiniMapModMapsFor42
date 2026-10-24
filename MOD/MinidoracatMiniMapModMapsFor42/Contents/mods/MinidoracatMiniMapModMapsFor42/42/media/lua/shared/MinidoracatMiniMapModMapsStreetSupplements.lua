@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 6 個 dataset／50 條補充道路
+-- 7 個 dataset／51 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -94,6 +94,15 @@ Supplements["raven-creek"] = {
     file = "media/minimap/streets/raven-creek.xml", upstreamStreetCount = 45, roadCount = 1,
     names = {
         ["Raven Creek Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_raven-creek_01",
+    },
+}
+
+-- ==== snake-factory (SMP_Factory / Factory) ====
+Supplements["snake-factory"] = {
+    schemaVersion = 1, mapMod = "SMP_Factory", mapDir = "Factory",
+    file = "media/minimap/streets/snake-factory.xml", upstreamStreetCount = 0, roadCount = 1,
+    names = {
+        ["Snake's Factory Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_snake-factory_01",
     },
 }
 

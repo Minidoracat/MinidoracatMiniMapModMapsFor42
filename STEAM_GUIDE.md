@@ -2,7 +2,7 @@
 <!-- Steam 指南稿源（繁中）：MOD 的完整說明以本指南為準，簡介只放摘要。格式與同步方式見 pz-family-docs/release.md「完整說明：Steam 指南」 -->
 <!-- 支援地圖表來自 docs/road-data.md（road-scan 產生）；新增／移除地圖或道路資料變動時，同步更新本檔與 STEAM_GUIDE_EN.md -->
 <!-- 標題：📖 小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突 -->
-<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 90 個地圖 MOD（113 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
+<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 91 個地圖 MOD（123 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
 === 🚀 快速上手
 [b]English version:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide[/url]
 
@@ -24,7 +24,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/olist]
 {{img:01-mod-map-outlines-zh.jpg}}
 === 🧰 支援地圖（A–M）
-共 90 個地圖 MOD、113 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
+共 91 個地圖 MOD、123 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] [b]✅[/b]：原作者附有道路資料，地圖上有路名，可以搜尋與導航（數字是街道數）。
 [*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包修正或補上的道路」。
@@ -128,6 +128,16 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]SecretZ Train Depot Refugee Camp[/td][td]SecretZ 火車站難民營[/td][td][/td][/tr]
 [tr][td]SecretZ West Point Bridge Checkpoint[/td][td]SecretZ 西點大橋檢查站[/td][td]✅ 4 條[/td][/tr]
 [tr][td]Shadyside[/td][td]沙德賽德[/td][td][/td][/tr]
+[tr][td]Snake Mansion[/td][td]Snake 豪宅[/td][td]✅ 1 條[/td][/tr]
+[tr][td]Snake's Auto Shop - Louisville[/td][td]Snake 修車廠－路易斯維爾[/td][td][/td][/tr]
+[tr][td]Snake's Auto Shop - March Ridge[/td][td]Snake 修車廠－三月嶺[/td][td][/td][/tr]
+[tr][td]Snake's Auto Shop - Valley Station[/td][td]Snake 修車廠－山谷站[/td][td][/td][/tr]
+[tr][td]Snake's Barco Abandonado[/td][td]Snake 廢棄船[/td][td][/td][/tr]
+[tr][td]Snake's Factory[/td][td]Snake 工廠[/td][td]🛠️[/td][/tr]
+[tr][td]Snake's Military Complex[/td][td]Snake 軍事複合區[/td][td][/td][/tr]
+[tr][td]Snake's Numark Complex[/td][td]Snake Numark 複合區[/td][td][/td][/tr]
+[tr][td]SnakeVille (Site 0)[/td][td]SnakeVille 零號區[/td][td]✅ 12 條[/td][/tr]
+[tr][td]SnakeVille (Site 1)[/td][td]SnakeVille 一號區[/td][td]✅ 7 條[/td][/tr]
 [tr][td]Sunset Lake Town[/td][td]日落湖鎮[/td][td][/td][/tr]
 [tr][td]Sunset Tower[/td][td]日落塔（17 層住宅樓）[/td][td][/td][/tr]
 [tr][td]Taibei Road[/td][td]台北路[/td][td][/td][/tr]
@@ -176,6 +186,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 原版 KY-79 轉進渡鴉溪的彎道沒有導航資料，導航會繞一大圈；本包補上這段，路名「渡鴉溪 01 號路（小地圖補）」。
 [*] 東入口往西的導航不再穿過中央分隔島樹叢。
 [/list]
+[*] [b]Snake's Factory（Snake 工廠）[/b]：這張地圖蓋住原版 KY-60 東端通往工廠的最後約 300 格，那段沒有導航資料，導航會停在工廠前約 300 格；本包沿原版路線補上，搜尋名稱是「Snake 工廠 01 號路（小地圖補）」。
 [*] [b]The Walking Dead Prison（陰屍路監獄）[/b]：這張地圖蓋住監獄旁原版 Tioga Road 與 Magazine Road 各一段，那兩段沒有導航資料，沿 Tioga Road 南北走要繞一大圈（約 950 格變成約 5,300 格），也到不了監獄東門；本包沿原版路線補上，搜尋名稱是「陰屍路監獄 01 號路（小地圖補）」「陰屍路監獄 02 號路（小地圖補）」。
 [*] [b]Muldraugh 1993（馬爾德勞 1993）[/b]：和官方地圖完全相同的 913 個重複路名只隱藏顯示，導航不受影響。
 [/list]
@@ -195,6 +206,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Rosewood Compound[/b]：與 Fort Preston、Taibei Road 重疊一個地塊，請擇一。
 [*] [b]The Walking Dead Prison[/b]：與 VaultTec Road（含監獄建築北側）、SecretZ Train Depot Refugee Camp、VaultTec Vault - Muldraugh 部分地塊重疊，請擇一。
 [*] [b]Dirkerdam[/b]：與 Riverside Mansion (Unofficial) 重疊兩個地塊，請擇一；Floatopia 與 Riverside Mansion 另有幾個地塊落在德克丹的範圍框內，一起用時那幾格的小地圖圖片以伺服器地圖順序（Map=）在前的那張為準。路名、搜尋與導航來自 Dirkerdam Map Fix；沒裝它時，除了本包補的 Brandenburg 接橋，只有地圖圖片。
+[*] [b]Snake's ModPack Build 42[/b]：作者目前只支援單人。Military Complex 整張落在 DuoDuo City 裡；SnakeVille 與 Hunter's Base 兩版整格重疊，也和 Tikitown、SecretZ 六號檢查站、SecretZ 河畔鎮二號檢查站部分重疊；Factory 與 SafeWayHamlet 整格重疊，也和 AnruisiTown、Camden County、Safeharbor Garrison 部分重疊；Numark Complex 與 Blackmaze、Snake Mansion 與 Ashenwood／Muldraugh 1993／SecretZ 五號檢查站、Barco Abandonado 與 West Point Expansion、修車廠（路易斯維爾）與 SecretZ 路易斯維爾軍事複合區／VaultTec Vault - Louisville、修車廠（三月嶺）與 Atlas Underground Complex／SecretZ 三月嶺研究設施各有部分重疊，請擇一。SnakeVille 兩區彼此重疊兩個地塊，以地圖順序在前的為準。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。
 [/list]
 === ❓ 常見問題

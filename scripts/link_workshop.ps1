@@ -104,7 +104,12 @@ $MapModExclude = @(
     'kardinal_ravencreek_B42',
     # Willowbrook Bastion! MO：柳溪堡壘 2026 的純地圖版，與 2026 版同 mapDir、圖資相同、mod.info 互斥；
     # 兩個都進 Mods= 會讓同路徑的 loot lua 互相覆蓋。同樣取本體，MO 的掛載用 E2E 單圖變體驗。
-    'Willowbrook Bastion! MO'
+    'Willowbrook Bastion! MO',
+    # Snake's ModPack Build 42：作者只支援單人（Workshop 簡介「MP compatibility coming soon」），
+    # 且多張與已在 maptest 的地圖整格重疊（Military Complex 落在 DuoDuoCity 裡、SnakeVille 與 hunter's base）。
+    # 掛載用 E2E 單機情境 snake-sp 驗。
+    'SMP_BarcoAbandonado', 'SMP_Factory', 'SMP_MilitaryComplex', 'SMP_NumarkComplex',
+    'SMP_SnakeMansion', 'SMP_SnakeVille', 'SMP_SnakeMechanicalOverhaul'
 )
 
 # 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）

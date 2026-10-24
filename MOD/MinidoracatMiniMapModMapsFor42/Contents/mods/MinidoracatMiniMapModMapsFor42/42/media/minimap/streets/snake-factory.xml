@@ -1,0 +1,8 @@
+<streets version="1">
+    <street name="Snake's Factory Rd 01 (MiniMap)" width="15">
+        <points>
+            <point x="12500.0" y="11204.5"/>
+            <point x="12900.0" y="11204.5"/>
+        </points>
+    </street>
+</streets>

@@ -7,7 +7,7 @@
 --
 -- 空白折疊後與原名不同者會多掛一個別名鍵，讓引擎索引裡的髒名（連續空白）
 -- 也查得到；兩者指向同一個 UI 鍵。
--- 共 23 個 dataset／818 條街名。
+-- 共 25 個 dataset／835 條街名。
 MinidoracatMiniMapModMapsStreetNames = {
     ["anruisi-town"] = {
         ["Agriculture Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_f5e46c6a35",
@@ -744,6 +744,27 @@ MinidoracatMiniMapModMapsStreetNames = {
         ["Vine Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_3e66068580",
         ["Walnut Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_887d5d9d30",
         ["Water Street"] = "UI_MinidoracatMiniMapModMaps_Street_raven-creek-kardinal_e272701994",
+    },
+    ["snakeville-0"] = {
+        ["Abye St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-0_6b77a31459",
+        ["Alexa St."] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-0_d3a767829b",
+        ["Boulevard Regga"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-0_3cf1222ad3",
+        ["Calle Riber"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-0_4f5ecdba5d",
+        ["Ditoseadio St."] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-0_c480d71208",
+        ["Gregory's St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-0_ca067da5ed",
+        ["Moly's St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-0_d373208aab",
+        ["Saint EstaFun St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-0_869e91db39",
+        ["Siniestra St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-0_ccd51bc2af",
+        ["Truji's St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-0_caa910431a",
+    },
+    ["snakeville-1"] = {
+        ["Cartmans St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-1_3516de4f67",
+        ["Darkeng St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-1_04c8596a51",
+        ["Florencia Natali St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-1_fb8a86f9a8",
+        ["Gilbert St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-1_43ab0b81d5",
+        ["Horchata St."] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-1_883945753f",
+        ["Kotenkesh St"] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-1_f49f1c993d",
+        ["Mr Pato St."] = "UI_MinidoracatMiniMapModMaps_Street_snakeville-1_99db0940d0",
     },
     ["tikitown"] = {
         ["Adams St"] = "UI_MinidoracatMiniMapModMaps_Street_tikitown_21533884d1",

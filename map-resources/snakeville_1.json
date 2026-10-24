@@ -1,0 +1,27 @@
+{
+  "zip": "snakeville_1.pyramid.zip",
+  "mapDir": "snakeville_1",
+  "rawRecords": 37,
+  "aliases": {"apicultureshop": "grocery", "displayfishingstore": "outdoorsupply", "fishingstore": "outdoorsupply", "fishingstorestorage": "fishingstorage", "honeylovekitchen": "kitchen_crepe", "huntingstore": "hunting", "ninkasibasement": "brewery", "ninkasibasementstorage": "brewerystorage", "ninkasigarage": "brewerystorage", "riversidegunstore": "gunstore", "riversidegunstorestorage": "gunstorestorage", "riversidepolicestorage": "policestorage"},
+  "cells300": [[21, 19]],
+  "entries": [
+    {"cat": "food", "rects": [[6304, 5844, 16, 6], [6304, 5850, 4, 3], [6316, 5850, 4, 3]], "bbox": [6301, 5844, 22, 9], "underground": false},
+    {"cat": "food", "rects": [[6311, 5735, 14, 14]], "bbox": [6311, 5735, 14, 14], "underground": true},
+    {"cat": "food", "rects": [[6311, 5743, 14, 6], [6311, 5735, 14, 4], [6318, 5739, 7, 4], [6311, 5739, 4, 3]], "bbox": [6311, 5735, 15, 22], "underground": false},
+    {"cat": "food", "rects": [[6349, 5760, 4, 3], [6351, 5758, 2, 2]], "bbox": [6349, 5747, 12, 16], "underground": false},
+    {"cat": "food", "rects": [[6424, 5783, 12, 5], [6424, 5775, 7, 5], [6423, 5781, 13, 2], [6431, 5778, 5, 3], [6429, 5769, 2, 6], [6423, 5780, 8, 1]], "bbox": [6423, 5769, 13, 19], "underground": false},
+    {"cat": "gas", "rects": [[6390, 5858, 8, 5], [6392, 5865, 13, 2], [6394, 5867, 11, 2], [6394, 5864, 11, 1], [6394, 5863, 4, 1]], "bbox": [6390, 5858, 15, 11], "underground": false},
+    {"cat": "gas", "rects": [[6397, 5845, 1, 1], [6397, 5853, 1, 1], [6403, 5845, 1, 1], [6403, 5853, 1, 1]], "bbox": [6397, 5845, 7, 9], "underground": false},
+    {"cat": "grocery", "rects": [[6311, 5772, 14, 4], [6311, 5767, 14, 2], [6311, 5769, 9, 3], [6313, 5764, 7, 2], [6311, 5766, 9, 1], [6311, 5776, 5, 1], [6320, 5776, 5, 1]], "bbox": [6311, 5758, 14, 19], "underground": false},
+    {"cat": "gunstore", "rects": [[6369, 5752, 12, 10], [6369, 5762, 5, 6]], "bbox": [6369, 5752, 12, 16], "underground": true},
+    {"cat": "gunstore", "rects": [[6382, 5803, 5, 5]], "bbox": [6358, 5773, 51, 57], "underground": false},
+    {"cat": "military", "rects": [[6376, 5752, 8, 11], [6380, 5749, 4, 3]], "bbox": [6369, 5749, 17, 14], "underground": false},
+    {"cat": "military", "rects": [[6568, 5915, 2, 5]], "bbox": [6568, 5915, 2, 5], "underground": false},
+    {"cat": "outdoor", "rects": [[6338, 5754, 9, 6], [6339, 5751, 5, 3], [6338, 5760, 2, 2], [6343, 5760, 2, 2]], "bbox": [6338, 5751, 9, 11], "underground": false},
+    {"cat": "retail", "rects": [[6305, 5809, 4, 5], [6305, 5814, 5, 3], [6305, 5825, 5, 2]], "bbox": [6302, 5791, 23, 36], "underground": false},
+    {"cat": "retail", "rects": [[6325, 5844, 7, 5], [6325, 5849, 10, 3]], "bbox": [6325, 5844, 10, 8], "underground": false},
+    {"cat": "retail", "rects": [[6388, 5736, 13, 4], [6390, 5733, 11, 3], [6386, 5733, 2, 7]], "bbox": [6386, 5733, 15, 7], "underground": false},
+    {"cat": "retail", "rects": [[6423, 5756, 8, 5], [6424, 5752, 7, 4], [6424, 5761, 7, 4]], "bbox": [6423, 5752, 8, 13], "underground": false}
+  ],
+  "parking": []
+}

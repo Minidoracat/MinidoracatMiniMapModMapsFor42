@@ -32,6 +32,10 @@
       "map_dir": "BBL_b42",
       "workshop_id": "3816175183"
     },
+    "BarcoAbandonado.pyramid.zip": {
+      "map_dir": "BarcoAbandonado",
+      "workshop_id": "3800233932"
+    },
     "Begonia_Town.pyramid.zip": {
       "map_dir": "Begonia_Town",
       "workshop_id": "3736155379"
@@ -127,6 +131,10 @@
     "FCooperTWDPrison.pyramid.zip": {
       "map_dir": "FCooperTWDPrison",
       "workshop_id": "3712968614"
+    },
+    "Factory.pyramid.zip": {
+      "map_dir": "Factory",
+      "workshop_id": "3800233932"
     },
     "Floatopia.pyramid.zip": {
       "map_dir": "Floatopia",
@@ -224,6 +232,10 @@
       "map_dir": "Megurigaoka City, Kanagawa",
       "workshop_id": "3318210146"
     },
+    "MilitaryComplex.pyramid.zip": {
+      "map_dir": "MilitaryComplex",
+      "workshop_id": "3800233932"
+    },
     "Mount Crow City.pyramid.zip": {
       "map_dir": "Mount Crow City",
       "workshop_id": "3500846812"
@@ -259,6 +271,10 @@
     "New Hartburg, KY.pyramid.zip": {
       "map_dir": "New Hartburg, KY",
       "workshop_id": "3741334453"
+    },
+    "NumarkComplex.pyramid.zip": {
+      "map_dir": "NumarkComplex",
+      "workshop_id": "3800233932"
     },
     "Path of Zenith, Louisville.pyramid.zip": {
       "map_dir": "Path of Zenith, Louisville",
@@ -352,6 +368,10 @@
       "map_dir": "Shadyside",
       "workshop_id": "3747339147"
     },
+    "SnakeMansion.pyramid.zip": {
+      "map_dir": "SnakeMansion",
+      "workshop_id": "3800233932"
+    },
     "Sunset Lake Town B42 version.pyramid.zip": {
       "map_dir": "Sunset Lake Town B42 version",
       "workshop_id": "3752069346"
@@ -444,16 +464,36 @@
       "map_dir": "sd_cc",
       "workshop_id": "3774052732"
     },
+    "snakeville_0.pyramid.zip": {
+      "map_dir": "snakeville_0",
+      "workshop_id": "3800233932"
+    },
+    "snakeville_1.pyramid.zip": {
+      "map_dir": "snakeville_1",
+      "workshop_id": "3800233932"
+    },
     "taibeiroad.pyramid.zip": {
       "map_dir": "taibeiroad",
       "workshop_id": "3401261192"
+    },
+    "tlv.pyramid.zip": {
+      "map_dir": "tlv",
+      "workshop_id": "3800233932"
+    },
+    "tmarch.pyramid.zip": {
+      "map_dir": "tmarch",
+      "workshop_id": "3800233932"
+    },
+    "tvs.pyramid.zip": {
+      "map_dir": "tvs",
+      "workshop_id": "3800233932"
     },
     "vilaz.pyramid.zip": {
       "map_dir": "vilaz",
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-24T15:23:17Z",
+  "generated_at": "2026-10-24T16:21:59Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1472,6 +1512,61 @@
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": "de2a461171a69dcc5fb1dc26dc07e931e27bf9830ad2260f28d75a310ef96c6c"
+        }
+      }
+    },
+    "3800233932": {
+      "checked": "2026-10-24T16:21:59Z",
+      "maps": {
+        "BarcoAbandonado": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": null
+        },
+        "Factory": {
+          "street_count": 0,
+          "streets_sha256": "e63287e7fadf1249acd8e5b2a2cd7fc37cace4d2cb068f530d42c69eed0d5f78",
+          "worldmap_sha256": "97f2ae9aeb390efe14421b3e7d3acc5c50e8dd67c04cad7f3002ff596c7b2776"
+        },
+        "MilitaryComplex": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "f6dcb2c1da26d343171380e149c8e24a8edd36cc1ea36c0a833544bffb9c51bd"
+        },
+        "NumarkComplex": {
+          "street_count": 0,
+          "streets_sha256": "e63287e7fadf1249acd8e5b2a2cd7fc37cace4d2cb068f530d42c69eed0d5f78",
+          "worldmap_sha256": "bb5426b928ad0b50164183fac8953c8edcc9baff1abb1309500767fba8e6ab2c"
+        },
+        "SnakeMansion": {
+          "street_count": 1,
+          "streets_sha256": "0338f57d15f42372472729a2f3217b38f220c04444ec386da5fd0529fed4e24c",
+          "worldmap_sha256": "2f2024188ef76b35bf6319e146067ab30afeb8fe695717598a7584c33c0f7c41"
+        },
+        "snakeville_0": {
+          "street_count": 12,
+          "streets_sha256": "805c241e3a6babb2c5240ab46628b2a94598c8674783b880893d872c723faffa",
+          "worldmap_sha256": "c988faea218f330c44031ae8f1d833a5da151b2efe7d6b49159bc88eb976e2f8"
+        },
+        "snakeville_1": {
+          "street_count": 7,
+          "streets_sha256": "7a3ac0f4c19a2e13d0de1b3be5288c85ac06955e9fc1640225f8e2622f61e5c5",
+          "worldmap_sha256": "a9a564ab23210656fc7a7a57d83cc1c342de0914a3da9d46da3ae021c68b7c8d"
+        },
+        "tlv": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "b9ba55ae97598c6ea6ed07f63775c5d1e4243752159f51716999ea745682bc34"
+        },
+        "tmarch": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "ddd3d069e05c441f8a3f960dafe7bbd2f90d9c89a5ad1a1f829ecc08c11af89d"
+        },
+        "tvs": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "5699b80bc9d5f4e44c0959085f7538401d0c55f88876bde0676a6dc7b7d0ec5e"
         }
       }
     },

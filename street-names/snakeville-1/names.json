@@ -1,0 +1,47 @@
+{
+  "dataset": "snakeville-1",
+  "source": {
+    "workshop_id": "3800233932",
+    "map_mod": "SMP_SnakeVille",
+    "map_dir": "snakeville_1",
+    "streets_xml_sha256": "7a3ac0f4c19a2e13d0de1b3be5288c85ac06955e9fc1640225f8e2622f61e5c5",
+    "captured": "2026-10-25"
+  },
+  "names": {
+    "Cartmans St": {
+      "ch": "卡特曼街",
+      "cn": "卡特曼街",
+      "jp": "カートマン通り"
+    },
+    "Darkeng St": {
+      "ch": "達肯街",
+      "cn": "达肯街",
+      "jp": "ダーケン通り"
+    },
+    "Florencia Natali St": {
+      "ch": "佛羅倫西亞·娜塔莉街",
+      "cn": "佛罗伦西亚·娜塔莉街",
+      "jp": "フロレンシア・ナタリ通り"
+    },
+    "Gilbert St": {
+      "ch": "吉爾伯特街",
+      "cn": "吉尔伯特街",
+      "jp": "ギルバート通り"
+    },
+    "Horchata St.": {
+      "ch": "歐恰塔街",
+      "cn": "欧恰塔街",
+      "jp": "オルチャータ通り"
+    },
+    "Kotenkesh St": {
+      "ch": "科坦凱什街",
+      "cn": "科坦凯什街",
+      "jp": "コテンケシュ通り"
+    },
+    "Mr Pato St.": {
+      "ch": "鴨子先生街",
+      "cn": "鸭子先生街",
+      "jp": "ミスター・パト通り"
+    }
+  }
+}

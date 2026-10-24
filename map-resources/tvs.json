@@ -1,0 +1,12 @@
+{
+  "zip": "tvs.pyramid.zip",
+  "mapDir": "tvs",
+  "rawRecords": 2,
+  "aliases": {},
+  "cells300": [],
+  "entries": [
+    {"cat": "tools", "rects": [[13475, 5727, 19, 11]], "bbox": [13469, 5727, 25, 11], "underground": false},
+    {"cat": "tools", "rects": [[13478, 5736, 13, 1], [13486, 5730, 1, 6], [13479, 5731, 1, 4], [13489, 5731, 1, 4], [13478, 5735, 2, 1], [13483, 5735, 2, 1], [13489, 5735, 2, 1]], "bbox": [13478, 5730, 13, 7], "underground": true}
+  ],
+  "parking": []
+}

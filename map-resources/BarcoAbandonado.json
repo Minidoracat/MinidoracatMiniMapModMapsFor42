@@ -1,0 +1,11 @@
+{
+  "zip": "BarcoAbandonado.pyramid.zip",
+  "mapDir": "BarcoAbandonado",
+  "rawRecords": 2,
+  "aliases": {"petrolroom": "gasstorage", "shiptools": "toolstorage"},
+  "cells300": [],
+  "entries": [
+    {"cat": "police", "rects": [[12147, 6465, 5, 10], [12152, 6466, 4, 10], [12147, 6462, 9, 3], [12149, 6475, 3, 1], [12152, 6465, 2, 1]], "bbox": [12145, 6445, 136, 33], "underground": false}
+  ],
+  "parking": []
+}

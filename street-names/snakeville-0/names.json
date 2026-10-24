@@ -1,0 +1,65 @@
+{
+  "dataset": "snakeville-0",
+  "source": {
+    "workshop_id": "3800233932",
+    "map_mod": "SMP_SnakeVille",
+    "map_dir": "snakeville_0",
+    "streets_xml_sha256": "805c241e3a6babb2c5240ab46628b2a94598c8674783b880893d872c723faffa",
+    "captured": "2026-10-25"
+  },
+  "names": {
+    "Abye St": {
+      "ch": "艾比街",
+      "cn": "艾比街",
+      "jp": "アビー通り"
+    },
+    "Alexa St.": {
+      "ch": "亞莉克莎街",
+      "cn": "亚莉克莎街",
+      "jp": "アレクサ通り"
+    },
+    "Boulevard Regga": {
+      "ch": "雷加大道",
+      "cn": "雷加大道",
+      "jp": "レガ大通り"
+    },
+    "Calle Riber": {
+      "ch": "里貝爾街",
+      "cn": "里贝尔街",
+      "jp": "リベル通り"
+    },
+    "Ditoseadio St.": {
+      "ch": "迪托塞阿迪奧街",
+      "cn": "迪托塞阿迪奥街",
+      "jp": "ディトセアディオ通り"
+    },
+    "Gregory's St": {
+      "ch": "格雷戈里街",
+      "cn": "格雷戈里街",
+      "jp": "グレゴリー通り"
+    },
+    "Moly's St": {
+      "ch": "莫莉街",
+      "cn": "莫莉街",
+      "jp": "モリー通り"
+    },
+    "Saint EstaFun St": {
+      "ch": "聖艾斯塔方街",
+      "cn": "圣艾斯塔方街",
+      "jp": "セント・エスタファン通り"
+    },
+    "Siniestra St": {
+      "ch": "西涅斯特拉街",
+      "cn": "西涅斯特拉街",
+      "jp": "シニエストラ通り"
+    },
+    "Truji's St": {
+      "ch": "特魯希街",
+      "cn": "特鲁希街",
+      "jp": "トルヒ通り"
+    }
+  },
+  "skip_names": [
+    "Olin Road"
+  ]
+}

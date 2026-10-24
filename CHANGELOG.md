@@ -1,5 +1,19 @@
 # Changelog
 
+## [Unreleased]
+
+### 新增
+
+- **新增支援 Snake's ModPack Build 42 的 6 張地圖**：Barco Abandonado（河上的廢棄船）、Factory（工廠）、Military Complex（軍事複合區）、Numark Complex、Snake Mansion（豪宅），以及分成零號區、一號區兩張圖的小鎮 SnakeVille。這個合集的每張圖是一個子 MOD，啟用哪個，小地圖就顯示哪張的圖片、框線與名稱，也會標出資源點與停車場；SnakeVille 作者自訂的 17 個路名有繁中／簡中／日文翻譯。作者目前只支援單人。這幾張圖蓋在原版地塊上，和多多市、獵人基地、途安里等已支援的地圖重疊，請擇一，重疊清單見指南的「衝突與重疊」。
+- **一併支援 Snake's Mechanical Overhaul 附帶的 3 處修車廠**（路易斯維爾、三月嶺、山谷站）：啟用這個玩法子 MOD 時，小地圖在那 3 處顯示加了修車廠的樣子。
+- **補上 Snake 工廠門口的導航資料**：工廠蓋住原版 KY-60 東端通往工廠的最後約 300 格，那段沒有導航資料，導航與自動駕駛會停在工廠前約 300 格。本包沿原版路線補上，搜尋名稱是「Snake 工廠 01 號路（小地圖補）」（英文「Snake's Factory Rd 01 (MiniMap)」）。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：Workshop 3800233932，10 顆 zip、10 條註冊（`SMP_BarcoAbandonado`、`SMP_Factory`、`SMP_MilitaryComplex`、`SMP_NumarkComplex`、`SMP_SnakeMansion`，`SMP_SnakeVille` 的 `snakeville_0`／`snakeville_1`，`SMP_SnakeMechanicalOverhaul` 的 `tlv`／`tmarch`／`tvs`），全部 `lots=Muldraugh, KY`。SnakeVille 兩個資料夾在 cell 24_22、24_23 都有、內容不同，各自一顆 zip 並寫明 `mapDir`。渲染：`require=` 只有材質包 `SMP_CustomMapBridge`（SnakeVille 另加 `SMP_AquaFarmResources`）；Military Complex 有 1 個 sprite（`furniture_military_02_47`）不在 atlas；修車廠三處用了 Custom Map Bridge 的材質卻沒宣告，照宣告渲染（加掛只差 8–13 像素）。資源點：房名審查 56 個（37 個別名、19 個 ignored，Snake Mansion 的私人軍火室、酒吧照「私人藏寶房不算」列 ignored），合計 104 個資源點、32 區停車場。補充道路 `road-supplements/snake-factory.json`（`vanilla-continuation-v1`，寬 15）：Factory 佔滿 300 格 (42,37)、`streets.xml` 0 條，原版 KY-60 x 12600–12900 被裁；原版 KY-60 只有兩個頂點（另一個在 x 6000），重疊段只取到原版線上的 (12500,11204.5)。路面取樣 397/401（鋪面到 x 12896 為止，原版端點 12900 前的最後 4 個取樣不在路面），左右車道 ±3.75、±5 同樣 397/401。離線 NavCore 從 (12300,11204.5) 到工廠前 (12880,11204.5)：補前停在離目標 288.5 格，補後 580 到點。`link_workshop.ps1` 把 7 個 SMP 子 MOD 加進 maptest 排除清單（作者只支援單人，且多張與 maptest 現有地圖整格重疊）。
+
 ## [42.21.0-0.21.2] - 2026-10-25
 
 ### 更新
