@@ -453,7 +453,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-23T16:35:53Z",
+  "generated_at": "2026-10-24T09:49:34Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -661,7 +661,7 @@
       }
     },
     "3479667649": {
-      "checked": "2026-09-27T14:48:47Z",
+      "checked": "2026-10-24T09:49:31Z",
       "maps": {
         "Willowbrook Bastion!": {
           "street_count": 0,
@@ -671,7 +671,7 @@
         "Willowbrook Bastion! 2026": {
           "street_count": 0,
           "streets_sha256": null,
-          "worldmap_sha256": "f675a2813d63afff5fc64341233dbfcd7d10d0f9937e3356b5069ad721ec9b3a"
+          "worldmap_sha256": "1844e949dc58e35a5412e0d1e090578e7de79cc633904143b67fb1432027160f"
         }
       }
     },
@@ -1161,12 +1161,12 @@
       }
     },
     "3685508479": {
-      "checked": "2026-09-27T14:48:47Z",
+      "checked": "2026-10-24T09:49:31Z",
       "maps": {
         "Xixi's Serene Cottage": {
           "street_count": 0,
           "streets_sha256": null,
-          "worldmap_sha256": "c270cd0d33ceafe6eed6c36d7f89edc22bad2f15a8eeaf534af37d35d6b00ca4"
+          "worldmap_sha256": "c7269cf9b5be5f25230d2e57f1d5a0a875c1c9fbeb755f701007c29fde4fa83d"
         }
       }
     },

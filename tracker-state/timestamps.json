@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-23T10:32:21Z",
+  "generated_at": "2026-10-24T09:49:34Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -233,7 +233,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1792222028,
+      "time_updated": 1792831737,
       "title": "Willowbrook Bastion!"
     },
     "3480990544": {
@@ -534,7 +534,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1792682994,
+      "time_updated": 1792828538,
       "title": "[B42]Xixi's Serene Cottage"
     },
     "3691773420": {
@@ -753,6 +753,27 @@
       "removed_at": null,
       "time_updated": 1791850859,
       "title": "Rosewood Compound"
+    },
+    "3818766091": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1791957508,
+      "title": "Dirkerdam Integrated B42"
+    },
+    "3821109144": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1792348357,
+      "title": "Dirkerdam Map Fix"
+    },
+    "3821470553": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1792829258,
+      "title": "Coryerdon (科里尔登) [B42]"
     }
   }
 }
