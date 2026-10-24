@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T10:32:21Z",
+  "generated_at": "2026-10-24T09:49:34Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -423,7 +423,7 @@
       }
     },
     "3479667649": {
-      "assets": "e5d251323c1d633131fdaa1ffedbca920c2ea88694d8d6b16a1ffff42a419c1f",
+      "assets": "19d36070a817e3c76d3dacd92229d02cdc459741d01f1469ee747f13ab85175b",
       "maps": {
         "Willowbrook Bastion!": {
           "bounds": [
@@ -441,7 +441,7 @@
             9728,
             10240
           ],
-          "hash": "e84468ce2097fa43cffb4db5460582c53bad9585f3a034acecd061487418d5c4"
+          "hash": "c009b43b1514a403645790468e5180959b6280df167697d2c3e53c9e59aeea18"
         }
       },
       "mods": {
@@ -1380,7 +1380,7 @@
       }
     },
     "3685508479": {
-      "assets": "78453a08b72d9970ba2b1a518c2fccf737dcaaf615533d312a2f7ab39a4a6051",
+      "assets": "dc74e3807d8e64f9014f00008edd8114d15224a009ba1f1c1979d07c8d398dd8",
       "maps": {
         "Xixi's Serene Cottage": {
           "bounds": [
@@ -1389,7 +1389,7 @@
             7936,
             8448
           ],
-          "hash": "df15f2b87311afcba22a2e85cb367a765c3529c3d49f34d4c45fe455eb0d2e26"
+          "hash": "e28a3114f373955b080f6e9a0e498cf4190fd6be2fec2cfaf3b5c03eced256bc"
         }
       },
       "mods": {
@@ -2011,6 +2011,58 @@
       "mods": {
         "ICFCompound": [
           "ICF Compound"
+        ]
+      }
+    },
+    "3818766091": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Dirkerdam Integrated B42": {
+          "bounds": [
+            1280,
+            1792,
+            10496,
+            5632
+          ],
+          "hash": "4512ea1fc82f2ff528cb6a38ce3a48714c958fb102ad23b000caba93f3473b5b"
+        }
+      },
+      "mods": {
+        "DirkerdamIntegratedB42": [
+          "Dirkerdam Integrated B42"
+        ]
+      }
+    },
+    "3821109144": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Dirkerdam Integrated B42 Fix": {
+          "bounds": null,
+          "hash": "6c84cf7926998936dd9f851a6cb5ff5f34614776698fce30eb1e359cc0ab591a"
+        }
+      },
+      "mods": {
+        "DirkerdamMapFix": [
+          "Dirkerdam Integrated B42 Fix"
+        ]
+      }
+    },
+    "3821470553": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Coryerdon": {
+          "bounds": [
+            7168,
+            5632,
+            10752,
+            7424
+          ],
+          "hash": "cbc1c198ee0792a3c39806d2df2e18be31504ba0e554f7c087e13a50a1aed4b4"
+        }
+      },
+      "mods": {
+        "CoryerdonB42": [
+          "Coryerdon"
         ]
       }
     }
