@@ -59,9 +59,9 @@ $MapOrderFirst = @('AnruisiTown', 'Taylorsville', 'Coryerdon B42', 'RaccoonCity'
 
 # 翻譯 MOD 必須排在 Mods= 最後：PZ 的 Mods= 順序＝載入序，**後載入者覆蓋先載入者**
 # （log 的 mod "X" overrides ... 就是這個機制）。翻譯包排前面會被後面的 MOD 蓋掉。
-# 順序＝模組漢化在前、本體漢化最後（本體翻譯是絕對權威）。
+# 順序＝本體漢化在前、模組漢化最後（ModLang 1.60.0 起條件譯文的本體鍵由載入順序決定，2026-10-24 起）。
 # 只重排既有條目、不新增：沒裝該漢化就不該被硬塞進 Mods=（EnsureLast 會硬塞，故不能用它）。
-$TranslationModsLast = @('CatModLangFor42', 'CatLangFor42')
+$TranslationModsLast = @('CatLangFor42', 'CatModLangFor42')
 
 # 伺服器排除清單（mod id）：選單 4/5 不建連結、不寫入 Mods=/Map=，且選單 4 會把既有
 # 條目順手拔掉（自癒）；選單 6/7 的移除照常涵蓋。想排除哪張圖就把它的 mod id 加進來。
