@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 8 個 dataset／126 條補充道路
+-- 8 個 dataset／132 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -165,9 +165,15 @@ Supplements["coryerdon-2026"] = {
 -- ==== dirkerdam (DirkerdamIntegratedB42 / Dirkerdam Integrated B42) ====
 Supplements["dirkerdam"] = {
     schemaVersion = 1, mapMod = "DirkerdamIntegratedB42", mapDir = "Dirkerdam Integrated B42",
-    file = "media/minimap/streets/dirkerdam.xml", upstreamStreetCount = 0, roadCount = 1,
+    file = "media/minimap/streets/dirkerdam.xml", upstreamStreetCount = 0, roadCount = 7,
     names = {
         ["Dirkerdam Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_dirkerdam_01",
+        ["Dirkerdam Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_dirkerdam_02",
+        ["Dirkerdam Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_dirkerdam_03",
+        ["Dirkerdam Rd 04 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_dirkerdam_04",
+        ["Dirkerdam Rd 05 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_dirkerdam_05",
+        ["Dirkerdam Rd 06 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_dirkerdam_06",
+        ["Dirkerdam Rd 07 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_dirkerdam_07",
     },
 }
 

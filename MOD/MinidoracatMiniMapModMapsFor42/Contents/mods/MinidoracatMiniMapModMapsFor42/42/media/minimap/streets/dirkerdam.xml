@@ -9,4 +9,54 @@
             <point x="1501.5" y="5400.0"/>
         </points>
     </street>
+    <street name="Dirkerdam Rd 02 (MiniMap)" width="3">
+        <points>
+            <point x="8799.5" y="4497.5"/>
+            <point x="8800.0" y="4513.0"/>
+            <point x="8804.0" y="4524.0"/>
+            <point x="8804.0" y="4561.0"/>
+            <point x="8800.0" y="4569.0"/>
+            <point x="8801.5" y="4573.5"/>
+        </points>
+    </street>
+    <street name="Dirkerdam Rd 03 (MiniMap)" width="4">
+        <points>
+            <point x="7886.5" y="5103.5"/>
+            <point x="7879.5" y="5117.5"/>
+            <point x="7881.0" y="5127.0"/>
+            <point x="7878.5" y="5160.5"/>
+        </points>
+    </street>
+    <street name="Dirkerdam Rd 04 (MiniMap)" width="6">
+        <points>
+            <point x="10467.5" y="4544.0"/>
+            <point x="8841.5" y="4544.0"/>
+        </points>
+    </street>
+    <street name="Dirkerdam Rd 05 (MiniMap)" width="6">
+        <points>
+            <point x="8759.5" y="4544.0"/>
+            <point x="7964.5" y="4544.0"/>
+        </points>
+    </street>
+    <street name="Dirkerdam Rd 06 (MiniMap)" width="6">
+        <points>
+            <point x="4350.5" y="2806.0"/>
+            <point x="3145.5" y="2807.5"/>
+            <point x="3072.0" y="2881.5"/>
+            <point x="3066.0" y="2884.0"/>
+            <point x="1898.5" y="2884.0"/>
+        </points>
+    </street>
+    <street name="Dirkerdam Rd 07 (MiniMap)" width="6">
+        <points>
+            <point x="4356.0" y="2796.5"/>
+            <point x="4410.0" y="2850.0"/>
+            <point x="4414.0" y="2856.0"/>
+            <point x="4414.0" y="4040.0"/>
+            <point x="4416.0" y="4044.0"/>
+            <point x="4909.0" y="4534.0"/>
+            <point x="7554.5" y="4534.0"/>
+        </points>
+    </street>
 </streets>

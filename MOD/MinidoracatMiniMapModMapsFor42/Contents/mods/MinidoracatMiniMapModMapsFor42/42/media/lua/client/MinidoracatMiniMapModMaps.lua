@@ -86,7 +86,7 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         -- 班寧堡（3）地塊重疊＝事實上互斥，各自依啟用 mod 顯示。根目錄 mod.info 是 B41 殘留（id=b42_bigbearlake），
         -- B42 讀 42.0/ 的 id=bigbearlake42（ChooseGameInfo.readModInfoAux 先讀版本資料夾）。
         { zip = "BBL_b42.pyramid.zip", mapMod = "bigbearlake42", mapDir = "BBL_b42",
-            streetNames = StreetNames["big-bear-lake"],
+            streetNames = StreetNames["big-bear-lake"], streetRepairs = StreetRepairs["big-bear-lake"],
             bounds = { 3584, 6656, 6144, 8704 }, nameKey = "UI_MinidoracatMiniMapModMaps_BigBearLake" },
         { zip = "Blackmaze.pyramid.zip", mapMod = "blackmaze", mapDir = "Blackmaze",
             streetNames = StreetNames["blackmaze"],
@@ -125,7 +125,8 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         -- 外框內另有 90 個本圖沒有的原版 cell 照原版畫進 zip：漂浮烏托邦（2 cell）、河畔豪宅（另 4 cell）排在本圖
         -- 後面時，那幾格會被本圖的原版影像蓋住。
         -- 補充道路掛本體（本體沒有 streets.xml＝0 條）：Map Fix 的 Village Dr 停在 Brandenburg 北接橋北端，
-        -- 01 號補橋面接原版橋。掛 Fix 的話 Fix 每次改街道數都會讓它停用。
+        -- 01 號補橋面接原版橋；02／03 號補 Map Fix 沒畫的兩個斷點；04–07 號是 Map Fix 分隔路拆線後的對向車道
+        -- （本線由下面 Fix 條目的 streetRepairs 移到單側車道）。掛 Fix 的話 Fix 每次改街道數都會讓它停用。
         { zip = "Dirkerdam Integrated B42.pyramid.zip", mapMod = "DirkerdamIntegratedB42", mapDir = "Dirkerdam Integrated B42",
             streetSupplement = StreetSupplements["dirkerdam"],
             bounds = { 1280, 1792, 10496, 5632 }, nameKey = "UI_MinidoracatMiniMapModMaps_Dirkerdam" },
@@ -133,7 +134,7 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         -- 街名翻譯要有明寫 mapDir 的來源條目 ⇒ 同 zip/bounds 作 alias（主 MOD 掛載去重）；資源點只由本體條目註冊。
         -- 必須排在本體條目之後：rebuild_pyramids 等工具同 zip 取第一條可解析的條目渲染
         { zip = "Dirkerdam Integrated B42.pyramid.zip", mapMod = "DirkerdamMapFix", mapDir = "Dirkerdam Integrated B42 Fix",
-            streetNames = StreetNames["dirkerdam"],
+            streetNames = StreetNames["dirkerdam"], streetRepairs = StreetRepairs["dirkerdam"],
             bounds = { 1280, 1792, 10496, 5632 }, nameKey = "UI_MinidoracatMiniMapModMaps_Dirkerdam" },
         -- 與海文弗爾（4 cell）、蕁麻鎮（2 cell）、提基鎮與特雷萊 4x4（各 1 cell）地塊重疊＝事實上互斥，各自依啟用 mod 顯示。
         { zip = "DuoDuoCity.pyramid.zip", mapMod = "DuoDuoCity",

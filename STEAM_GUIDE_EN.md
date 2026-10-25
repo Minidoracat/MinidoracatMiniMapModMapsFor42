@@ -41,7 +41,7 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 [tr][td]Atlas Underground Complex (Surface)[/td][td][/td][/tr]
 [tr][td]Bedford Falls[/td][td]🛠️[/td][/tr]
 [tr][td]Begonia Town[/td][td][/td][/tr]
-[tr][td]Big Bear Lake[/td][td]✅ 87 streets[/td][/tr]
+[tr][td]Big Bear Lake[/td][td]✅ 87 streets 🛠️[/td][/tr]
 [tr][td]BlackMaze[/td][td]✅ 4 streets[/td][/tr]
 [tr][td]Blackpine County[/td][td][/td][/tr]
 [tr][td]Bunker 42[/td][td][/td][/tr]
@@ -177,6 +177,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] The map covers the last roughly 300 tiles of the vanilla KY-60 at its east end; this pack adds them along the vanilla route, searchable as "Bedford Falls Rd 75 (MiniMap)", so you can navigate from KY-60 straight into town.
 [*] The two long roads leading north and south out of town are not on the author's world map, so they are not added.
 [/list]
+[*] [b]Big Bear Lake[/b]: the author marked Lakeview Dr and Deerhead Road wider than the actual road surface, so AutoDrive keeping right ran its wheels into the roadside bushes; they now have their real width (needs MiniMap 0.47.0 or later).
 [*] [b]Camden County[/b]:
 [list]
 [*] 3 author roads stopped short of junctions; they now connect, so navigation can reach them.
@@ -188,7 +189,14 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] 2026 port: the same two, plus River Walk Road (03), Prewitt Dr (04), Kiss Road (05) and Lipstick Road (06).
 [/list]
 [*] [b]Daisy County[/b]: 44 roads drawn as outlines are converted to centre lines, so names no longer appear twice.
-[*] [b]Dirkerdam[/b]: Dirkerdam Map Fix's road data stops at the north end of the bridge north of Brandenburg, so the roughly 290 tiles between it and the vanilla stretch of the bridge had no navigation data and routes from Brandenburg could not cross the river; this pack adds them along the actual road surface, searchable as "Dirkerdam Rd 01 (MiniMap)".
+[*] [b]Dirkerdam[/b]: street names and road data come from Dirkerdam Map Fix; this pack adds and fixes:
+[list]
+[*] The bridge north of Brandenburg: Map Fix's road stops at its north end, so the roughly 290 tiles to the vanilla stretch of the bridge had no navigation data; this pack adds them along the actual road surface ("Dirkerdam Rd 01 (MiniMap)").
+[*] About 55 streets in the south-east (around Lincoln Ave, Beachway Ave and Garfield Ave) were cut off from the main road network at two gaps; this pack adds River Road to Lincoln Ave (Rd 02; the junction is full of junk and leaves only a narrow lane) and Garfield Ave to Mack Dr (Rd 03; about 30 tiles in the middle are bare ground).
+[*] Highway 11 (west), Bristol Pike, Beachway Road and Montgomery Ave have a tree-lined median, but the author drew a single centre line on the median; they now have one line per carriageway, and the opposite carriageways are searchable as "Dirkerdam Rd 04–07 (MiniMap)".
+[*] Two places where the author drew a line doubling back (Stephen Ave, west end of River Road) are cleaned up, so AutoDrive no longer turns around on the spot; Euclid Ave no longer connects to Prospect Ave through the fence at its north end; the 5th Ave link to Old Turnpike now passes between the two posts in the junction.
+[*] 66 roads the author marked wider than the actual road surface now have their real width, so AutoDrive keeping right stays on the road (needs MiniMap 0.47.0 or later).
+[/list]
 [*] [b]Raven Creek[/b]:
 [list]
 [*] The KY-79 bend where the vanilla highway enters Raven Creek had no navigation data, so routes took a long detour; this pack adds it as "Raven Creek Rd 01 (MiniMap)".
@@ -213,7 +221,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] [b]Community Center[/b]: partly overlaps Chinatown, Chinatown Expansion, Fort JadeLake, Muldraugh 1993 and Muldraugh Fire Dept; choose one.
 [*] [b]Rosewood Compound[/b]: shares one cell with Fort Preston and Taibei Road; choose one.
 [*] [b]The Walking Dead Prison[/b]: partly overlaps VaultTec Road (including the north side of the prison), SecretZ Train Depot Refugee Camp and VaultTec Vault - Muldraugh; choose one.
-[*] [b]Dirkerdam[/b]: overlaps two cells of Riverside Mansion (Unofficial); choose one. A few cells of Floatopia and Riverside Mansion also lie inside Dirkerdam's bounds; when used together, the minimap image of those cells comes from whichever map is listed first in the server map order (Map=). Street names, search and navigation come from Dirkerdam Map Fix; without it you only get the map image, plus the Brandenburg bridge this pack adds.
+[*] [b]Dirkerdam[/b]: overlaps two cells of Riverside Mansion (Unofficial); choose one. A few cells of Floatopia and Riverside Mansion also lie inside Dirkerdam's bounds; when used together, the minimap image of those cells comes from whichever map is listed first in the server map order (Map=). Street names, search and navigation come from Dirkerdam Map Fix; without it you only get the map image, plus the 7 roads this pack adds.
 [*] [b]Snake's ModPack Build 42[/b]: the author currently supports single player only. Military Complex lies entirely inside DuoDuo City; SnakeVille fully overlaps both versions of Hunter's Base and partly overlaps Tikitown, SecretZ Checkpoint 6 and SecretZ Riverside Checkpoint 2; Factory fully overlaps SafeWayHamlet and partly overlaps AnruisiTown, Camden County and Safeharbor Garrison; Numark Complex partly overlaps Blackmaze, Snake Mansion partly overlaps Ashenwood, Muldraugh 1993 and SecretZ Checkpoint 5, Barco Abandonado partly overlaps West Point Expansion, the Louisville auto shop shares a cell with SecretZ Louisville Military Complex and VaultTec Vault - Louisville, and the March Ridge auto shop shares a cell with Atlas Underground Complex and SecretZ March Ridge Research Facility; choose one. The two SnakeVille sites overlap each other by two cells; whichever is listed first in the map order wins.
 [*] [b]Bedford Falls[/b]: most of its cells overlap Camden County, and it partly overlaps Mount Crow City, Nekomata Ridge, AnruisiTown, Atlanta, SafeWayHamlet, Safeharbor Garrison, Snake's Factory, West Point Expansion, SecretZ Checkpoint 1 and VaultTec Vault - Muldraugh; choose one. The two western columns of its bounds (x 12032–12544) are mostly not part of the map, and the minimap shows vanilla imagery there: when using it with The Walking Dead Prison, Begonia Town or VaultTec Road, list Bedford Falls after them in the server map order (Map=) so those cells show their images.
 [*] [b]Atlas Underground Complex[/b]: surface imagery only (no underground floors); it partly overlaps several nearby maps, and using them together is not guaranteed.

@@ -41,7 +41,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Atlas Underground Complex (Surface)[/td][td]阿特拉斯地下複合設施（地表）[/td][td][/td][/tr]
 [tr][td]Bedford Falls[/td][td]貝德福德瀑布[/td][td]🛠️[/td][/tr]
 [tr][td]Begonia Town[/td][td]海棠鎮[/td][td][/td][/tr]
-[tr][td]Big Bear Lake[/td][td]大熊湖[/td][td]✅ 87 條[/td][/tr]
+[tr][td]Big Bear Lake[/td][td]大熊湖[/td][td]✅ 87 條 🛠️[/td][/tr]
 [tr][td]BlackMaze[/td][td]黑迷宮[/td][td]✅ 4 條[/td][/tr]
 [tr][td]Blackpine County[/td][td]黑松郡[/td][td][/td][/tr]
 [tr][td]Bunker 42[/td][td]42 號地堡[/td][td][/td][/tr]
@@ -177,6 +177,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 地圖蓋住原版 KY-60 東端最後約 300 格，本包沿原版路線補上，搜尋名稱是「貝德福德瀑布 75 號路（小地圖補）」；從 KY-60 可以一路導航進鎮。
 [*] 鎮外往北、往南的兩條長聯絡道路不在原作者的世界地圖裡，沒有補。
 [/list]
+[*] [b]Big Bear Lake（大熊湖）[/b]：Lakeview Dr、Deerhead Road 原作者標的路寬比實際路面寬，自動駕駛靠右時車身會壓進路邊樹叢；路寬改成實際寬度（需要小地圖主 MOD 0.47.0 以上）。
 [*] [b]Camden County（卡姆登郡）[/b]：
 [list]
 [*] 3 處原作者的路停在路口前，接上後可以導航到達。
@@ -188,7 +189,14 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 2026 移植版：同上兩條，另加 River Walk Road（03 號）、Prewitt Dr（04 號）、Kiss Road（05 號）、Lipstick Road（06 號）。
 [/list]
 [*] [b]Daisy County（雛菊郡）[/b]：44 條畫成外框的路改成中心線，路名不再上下各顯示一次。
-[*] [b]Dirkerdam（德克丹）[/b]：Dirkerdam Map Fix 的道路資料停在 Brandenburg 北邊那座接橋的北端，到原版橋段之間約 290 格沒有導航資料，從 Brandenburg 導航過不了河；本包沿實際路面補上，搜尋名稱是「德克丹 01 號路（小地圖補）」。
+[*] [b]Dirkerdam（德克丹）[/b]：路名與道路資料來自 Dirkerdam Map Fix，本包補上與修正：
+[list]
+[*] Brandenburg 北邊那座接橋：Map Fix 的道路停在橋北端，到原版橋段之間約 290 格沒有導航資料；本包沿實際路面補上（「德克丹 01 號路（小地圖補）」）。
+[*] 東南一帶約 55 條街（Lincoln Ave、Beachway Ave、Garfield Ave 一帶）和主要路網之間有兩處斷點；本包補上 River Road 接 Lincoln Ave（02 號，路口中間堆滿廢棄物，只留一條窄道）與 Garfield Ave 接 Mack Dr（03 號，中間約 30 格是土地）。
+[*] Highway 11 西段、Bristol Pike、Beachway Road、Montgomery Ave 中間有種樹的分隔帶，原作者只畫一條中線、線落在分隔帶上；改成兩側車道各一條線，對向車道的搜尋名稱是「德克丹 04～07 號路（小地圖補）」。
+[*] Stephen Ave、River Road 西端兩處原作者多畫的折返線拿掉，自動駕駛不再原地反覆調頭；Euclid Ave 北端實際上被圍籬擋住，不再接到 Prospect Ave；5th Ave 接 Old Turnpike 那段改從路口兩根柱子中間過。
+[*] 66 條原作者標的路寬比實際路面寬，改成實際寬度，自動駕駛靠右時不再壓出路面（需要小地圖主 MOD 0.47.0 以上）。
+[/list]
 [*] [b]Raven Creek（渡鴉溪）[/b]：
 [list]
 [*] 原版 KY-79 轉進渡鴉溪的彎道沒有導航資料，導航會繞一大圈；本包補上這段，路名「渡鴉溪 01 號路（小地圖補）」。
@@ -213,7 +221,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Community Center[/b]：與 Chinatown、Chinatown Expansion、Fort JadeLake、Muldraugh 1993、Muldraugh Fire Dept 部分地塊重疊，請擇一。
 [*] [b]Rosewood Compound[/b]：與 Fort Preston、Taibei Road 重疊一個地塊，請擇一。
 [*] [b]The Walking Dead Prison[/b]：與 VaultTec Road（含監獄建築北側）、SecretZ Train Depot Refugee Camp、VaultTec Vault - Muldraugh 部分地塊重疊，請擇一。
-[*] [b]Dirkerdam[/b]：與 Riverside Mansion (Unofficial) 重疊兩個地塊，請擇一；Floatopia 與 Riverside Mansion 另有幾個地塊落在德克丹的範圍框內，一起用時那幾格的小地圖圖片以伺服器地圖順序（Map=）在前的那張為準。路名、搜尋與導航來自 Dirkerdam Map Fix；沒裝它時，除了本包補的 Brandenburg 接橋，只有地圖圖片。
+[*] [b]Dirkerdam[/b]：與 Riverside Mansion (Unofficial) 重疊兩個地塊，請擇一；Floatopia 與 Riverside Mansion 另有幾個地塊落在德克丹的範圍框內，一起用時那幾格的小地圖圖片以伺服器地圖順序（Map=）在前的那張為準。路名、搜尋與導航來自 Dirkerdam Map Fix；沒裝它時，除了本包補的 7 條路，只有地圖圖片。
 [*] [b]Snake's ModPack Build 42[/b]：作者目前只支援單人。Military Complex 整張落在 DuoDuo City 裡；SnakeVille 與 Hunter's Base 兩版整格重疊，也和 Tikitown、SecretZ 六號檢查站、SecretZ 河畔鎮二號檢查站部分重疊；Factory 與 SafeWayHamlet 整格重疊，也和 AnruisiTown、Camden County、Safeharbor Garrison 部分重疊；Numark Complex 與 Blackmaze、Snake Mansion 與 Ashenwood／Muldraugh 1993／SecretZ 五號檢查站、Barco Abandonado 與 West Point Expansion、修車廠（路易斯維爾）與 SecretZ 路易斯維爾軍事複合區／VaultTec Vault - Louisville、修車廠（三月嶺）與 Atlas Underground Complex／SecretZ 三月嶺研究設施各有部分重疊，請擇一。SnakeVille 兩區彼此重疊兩個地塊，以地圖順序在前的為準。
 [*] [b]Bedford Falls[/b]：大部分地塊與 Camden County 重疊，另與 Mount Crow City、Nekomata Ridge、AnruisiTown、Atlanta、SafeWayHamlet、Safeharbor Garrison、Snake's Factory、West Point Expansion、SecretZ 一號檢查站、VaultTec Vault - Muldraugh 部分重疊，請擇一。範圍框西側兩欄（x 12032–12544）大多沒有本圖地塊，小地圖在那裡畫的是原版影像：和 The Walking Dead Prison、Begonia Town、VaultTec Road 一起用時，把 Bedford Falls 排在伺服器地圖順序（Map=）的後面，那幾格才會顯示它們的圖。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。

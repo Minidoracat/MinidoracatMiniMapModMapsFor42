@@ -1,11 +1,13 @@
--- 離線導航：照 Map= 順序載入地圖目錄的 streets.xml，加上本包補充道路，用主 MOD 的 NavCore 與 cell 覆蓋規則（makeWinnerOf）算路線。
+-- 離線導航：照 Map= 順序載入地圖目錄的 streets.xml，套本包道路修正、加上本包補充道路，用主 MOD 的 NavCore 與 cell 覆蓋規則（makeWinnerOf）算路線。
 -- 寫 E2E 情境前，先用它算預期值（可搜名稱數、補前／補後路線長度），不要猜。
 -- 用法（repo 根目錄，主 MOD repo 在 ../MinidoracatMiniMapFor42）：
 --   lua scripts/offline_nav.lua --map "<地圖目錄>" [--map ...] [--sup <dataset>]... [--route sx sy tx ty]... [--dump]
 --   --map    地圖目錄的完整路徑（含 X_Y.lotheader 的那層），照 Map= 順序、第一個優先；原版 Muldraugh, KY 自動補在最後
 --   --sup    media/minimap/streets/<dataset>.xml，掛在註冊清單引用它的 mapDir 下，和遊戲一樣受該目錄的 cell 覆蓋規則裁段
---   --route  起點與終點；有 --sup 時印補前、補後兩組
+--   --route  起點與終點；有 --sup 或該目錄有本包道路修正時印補前（作者原始資料）、補後（套修正＋補充道路）兩組
 --   --dump   印出路線的每個點（判斷有沒有跨過某座橋、某條線）
+-- 道路修正讀生成的 shared 表（MinidoracatMiniMapModMapsStreetRepairs.lua），照主 MOD 規則逐筆比對 expectedWidth／
+-- expectedPoints，相符才換 replacementPoints／replacementWidth；hideLabel 只影響顯示，這裡不管。
 -- 例：lua scripts/offline_nav.lua --map "D:/SteamCMD/steamapps/workshop/content/108600/3821470553/mods/Coryerdon/common/media/maps/Coryerdon" \
 --       --sup coryerdon-2026 --route 7300 5500 7422 6000
 -- ponytail: 不重做主 MOD 的跨目錄重複街道去重（seenSig），重複的街只會多一份同樣的邊，路線長度不變。
@@ -51,6 +53,22 @@ while arg[i] do
 end
 if #maps == 0 or base(maps[#maps]) ~= "Muldraugh, KY" then maps[#maps + 1] = VANILLA end
 
+-- 本包道路修正：dataset 的 mapDir → operations（0-based raw street index）
+local repairsByDir = {}
+do
+    local chunk = assert((loadstring or load)(slurp(PACK .. "/lua/shared/MinidoracatMiniMapModMapsStreetRepairs.lua"), "repairs"))
+    chunk()
+    for _, ds in pairs(MinidoracatMiniMapModMapsStreetRepairs or {}) do repairsByDir[ds.mapDir] = ds.operations end
+end
+
+local function samePoints(a, b)
+    if #a ~= #b then return false end
+    for k = 1, #a do
+        if math.abs(a[k] - b[k]) > 1e-3 then return false end
+    end
+    return true
+end
+
 local source = slurp(MAIN)
 local NavCore = assert((loadstring or load)(block(source, "navroute-core") .. "\nreturn NavCore", "navcore"))()
 
@@ -71,18 +89,27 @@ local winnerChunk = assert((loadstring or load)(
 local winnerOf = assert(winnerChunk({ getLoadedMapDirs = function() return order end }, fileExists,
     tonumber(source:match("local STREET_CELL = (%d+)")), tonumber(source:match("local LOT_CELL = (%d+)")))())
 
--- 遊戲抽街道時跳過鐵路（NavCore.isRailroadStreet），可搜名稱與路網都不含它們
-local function readStreets(path, src, out)
+-- 遊戲抽街道時跳過鐵路（NavCore.isRailroadStreet），可搜名稱與路網都不含它們；ops＝本包修正（nil＝作者原始資料）
+local function readStreets(path, src, out, ops)
     local f = io.open(path, "rb")
     if not f then return nil end
     local xml = f:read("*a")
     f:close()
-    local names, searchable, rail = {}, {}, 0
+    local names, searchable, rail, idx, fixed = {}, {}, 0, -1, 0
     for name, attrs, body in xml:gmatch('<street name="([^"]*)"([^>]*)>(.-)</street>') do
+        idx = idx + 1
         local pts = {}
         for x, y in body:gmatch('<point x="([%d%.%-]+)" y="([%d%.%-]+)"') do
             pts[#pts + 1] = tonumber(x)
             pts[#pts + 1] = tonumber(y)
+        end
+        local width = tonumber(attrs:match('width="([%d%.]+)"'))
+        local op = ops and ops[idx]
+        if op and op.expectedWidth == width and samePoints(op.expectedPoints, pts)
+            and (op.replacementPoints or op.replacementWidth) then
+            pts = op.replacementPoints or pts
+            width = op.replacementWidth or width
+            fixed = fixed + 1
         end
         if #pts >= 4 then
             names[name] = true
@@ -90,24 +117,32 @@ local function readStreets(path, src, out)
                 rail = rail + 1
             else
                 searchable[name] = true
-                out[#out + 1] = { name = name, width = tonumber(attrs:match('width="([%d%.]+)"')), src = src, pts = pts }
+                out[#out + 1] = { name = name, width = width, src = src, pts = pts }
             end
         end
     end
     local function count(t) local n = 0 for _ in pairs(t) do n = n + 1 end return n end
     return ("名稱 %d、可搜 %d、鐵路段 %d"):format(count(names), count(searchable), rail)
+        .. (ops and ("、套用本包修正 %d 筆"):format(fixed) or "")
 end
 
-local base_streets = {}
+local base_streets, fixed_streets, anyRepair = {}, {}, false
 for _, path in ipairs(maps) do
+    local ops = repairsByDir[base(path)]
     print(("%s：%s"):format(base(path), readStreets(path .. "/streets.xml", base(path), base_streets) or "沒有 streets.xml"))
+    if ops then
+        anyRepair = true
+        print(("  修正後：%s"):format(readStreets(path .. "/streets.xml", base(path), fixed_streets, ops) or "沒有 streets.xml"))
+    else
+        readStreets(path .. "/streets.xml", base(path), fixed_streets)
+    end
 end
 
 local registry = slurp(PACK .. "/lua/client/MinidoracatMiniMapModMaps.lua")
 local supDir = {}
 for dir, ds in registry:gmatch('mapDir = "([^"]+)",%s*streetSupplement = StreetSupplements%["([^"]+)"%]') do supDir[ds] = dir end
 local with = {}
-for _, s in ipairs(base_streets) do with[#with + 1] = s end
+for _, s in ipairs(fixed_streets) do with[#with + 1] = s end
 for _, ds in ipairs(sups) do
     local dir = assert(supDir[ds], ds .. " 不在註冊清單的 streetSupplement")
     assert(order[dir], ds .. " 掛在 " .. dir .. "，--map 沒有這個目錄，遊戲不會載入它")
@@ -135,7 +170,7 @@ local function show(tag, g, r)
 end
 
 if #routes > 0 then
-    local before = #sups > 0 and build(base_streets) or nil
+    local before = (#sups > 0 or anyRepair) and build(base_streets) or nil
     local after = build(with)
     for _, r in ipairs(routes) do
         print(("路線 %g,%g → %g,%g"):format(r[1], r[2], r[3], r[4]))
