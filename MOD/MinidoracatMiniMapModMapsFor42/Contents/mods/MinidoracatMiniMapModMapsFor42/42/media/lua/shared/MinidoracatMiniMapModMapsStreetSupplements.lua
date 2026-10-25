@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 7 個 dataset／51 條補充道路
+-- 8 個 dataset／126 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -8,6 +8,89 @@
 
 MinidoracatMiniMapModMapsStreetSupplements = MinidoracatMiniMapModMapsStreetSupplements or {}
 local Supplements = MinidoracatMiniMapModMapsStreetSupplements
+
+-- ==== bedford-falls (BedfordFallsB42 / BedfordFalls) ====
+Supplements["bedford-falls"] = {
+    schemaVersion = 1, mapMod = "BedfordFallsB42", mapDir = "BedfordFalls",
+    file = "media/minimap/streets/bedford-falls.xml", upstreamStreetCount = 0, roadCount = 75,
+    names = {
+        ["Bedford Falls Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_01",
+        ["Bedford Falls Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_02",
+        ["Bedford Falls Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_03",
+        ["Bedford Falls Rd 04 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_04",
+        ["Bedford Falls Rd 05 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_05",
+        ["Bedford Falls Rd 06 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_06",
+        ["Bedford Falls Rd 07 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_07",
+        ["Bedford Falls Rd 08 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_08",
+        ["Bedford Falls Rd 09 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_09",
+        ["Bedford Falls Rd 10 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_10",
+        ["Bedford Falls Rd 11 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_11",
+        ["Bedford Falls Rd 12 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_12",
+        ["Bedford Falls Rd 13 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_13",
+        ["Bedford Falls Rd 14 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_14",
+        ["Bedford Falls Rd 15 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_15",
+        ["Bedford Falls Rd 16 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_16",
+        ["Bedford Falls Rd 17 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_17",
+        ["Bedford Falls Rd 18 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_18",
+        ["Bedford Falls Rd 19 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_19",
+        ["Bedford Falls Rd 20 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_20",
+        ["Bedford Falls Rd 21 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_21",
+        ["Bedford Falls Rd 22 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_22",
+        ["Bedford Falls Rd 23 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_23",
+        ["Bedford Falls Rd 24 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_24",
+        ["Bedford Falls Rd 25 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_25",
+        ["Bedford Falls Rd 26 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_26",
+        ["Bedford Falls Rd 27 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_27",
+        ["Bedford Falls Rd 28 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_28",
+        ["Bedford Falls Rd 29 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_29",
+        ["Bedford Falls Rd 30 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_30",
+        ["Bedford Falls Rd 31 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_31",
+        ["Bedford Falls Rd 32 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_32",
+        ["Bedford Falls Rd 33 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_33",
+        ["Bedford Falls Rd 34 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_34",
+        ["Bedford Falls Rd 35 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_35",
+        ["Bedford Falls Rd 36 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_36",
+        ["Bedford Falls Rd 37 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_37",
+        ["Bedford Falls Rd 38 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_38",
+        ["Bedford Falls Rd 39 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_39",
+        ["Bedford Falls Rd 40 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_40",
+        ["Bedford Falls Rd 41 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_41",
+        ["Bedford Falls Rd 42 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_42",
+        ["Bedford Falls Rd 43 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_43",
+        ["Bedford Falls Rd 44 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_44",
+        ["Bedford Falls Rd 45 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_45",
+        ["Bedford Falls Rd 46 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_46",
+        ["Bedford Falls Rd 47 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_47",
+        ["Bedford Falls Rd 48 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_48",
+        ["Bedford Falls Rd 49 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_49",
+        ["Bedford Falls Rd 50 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_50",
+        ["Bedford Falls Rd 51 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_51",
+        ["Bedford Falls Rd 52 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_52",
+        ["Bedford Falls Rd 53 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_53",
+        ["Bedford Falls Rd 54 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_54",
+        ["Bedford Falls Rd 55 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_55",
+        ["Bedford Falls Rd 56 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_56",
+        ["Bedford Falls Rd 57 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_57",
+        ["Bedford Falls Rd 58 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_58",
+        ["Bedford Falls Rd 59 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_59",
+        ["Bedford Falls Rd 60 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_60",
+        ["Bedford Falls Rd 61 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_61",
+        ["Bedford Falls Rd 62 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_62",
+        ["Bedford Falls Rd 63 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_63",
+        ["Bedford Falls Rd 64 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_64",
+        ["Bedford Falls Rd 65 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_65",
+        ["Bedford Falls Rd 66 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_66",
+        ["Bedford Falls Rd 67 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_67",
+        ["Bedford Falls Rd 68 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_68",
+        ["Bedford Falls Rd 69 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_69",
+        ["Bedford Falls Rd 70 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_70",
+        ["Bedford Falls Rd 71 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_71",
+        ["Bedford Falls Rd 72 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_72",
+        ["Bedford Falls Rd 73 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_73",
+        ["Bedford Falls Rd 74 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_74",
+        ["Bedford Falls Rd 75 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_75",
+    },
+}
 
 -- ==== constown (Constown42 / Constown, KY) ====
 Supplements["constown"] = {

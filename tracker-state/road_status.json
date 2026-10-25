@@ -36,6 +36,10 @@
       "map_dir": "BarcoAbandonado",
       "workshop_id": "3800233932"
     },
+    "BedfordFalls.pyramid.zip": {
+      "map_dir": "BedfordFalls",
+      "workshop_id": "3824438499"
+    },
     "Begonia_Town.pyramid.zip": {
       "map_dir": "Begonia_Town",
       "workshop_id": "3736155379"
@@ -493,7 +497,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-24T16:21:59Z",
+  "generated_at": "2026-10-25T12:30:36Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1617,6 +1621,16 @@
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": "3511feb33e013d371683cd7382e8a9249bb52f18dd7b3629db64fe6a60b61c08"
+        }
+      }
+    },
+    "3824438499": {
+      "checked": "2026-10-25T12:30:36Z",
+      "maps": {
+        "BedfordFalls": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "648ddedb68fc4b909424d51cc687c7facefd8b874eb69ea5951846c84498d5c3"
         }
       }
     }

@@ -416,6 +416,15 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 9984, 12288, 10240, 12544 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeShopMarchRidge" },
         { zip = "tvs.pyramid.zip", mapMod = "SMP_SnakeMechanicalOverhaul", mapDir = "tvs",
             bounds = { 13312, 5632, 13568, 5888 }, nameKey = "UI_MinidoracatMiniMapModMaps_SnakeShopValleyStation" },
+        -- Bedford Falls（3824438499，B41 舊圖的 B42 移植）：186 cell（x 49–56、y 29–51，另有 47_32／48_32 一段路），
+        -- lots=Muldraugh, KY、蓋在原版地塊上；和已支援地圖的重疊見指南衝突段。外框內 x 47–48 另有 44 個本圖沒有的
+        -- 原版 cell 照原版畫進 zip：陰屍路監獄、海棠鎮、VaultTec 聯絡道路（和本圖不重疊）與安瑞斯鎮等 8 張重疊圖
+        -- 排在本圖後面時，那幾格會被本圖的原版影像蓋住。
+        -- 作者沒有 streets.xml：補充道路 01–74 由作者 worldmap.xml 推導（骨架把寬 12 與寬 7 的路接成 20 號，
+        -- 窄段拆成 74 號），75 號沿原版補回被裁的 KY-60 東端（本圖佔滿 300 格 (42,37)，同 Snake 工廠 01 號）
+        { zip = "BedfordFalls.pyramid.zip", mapMod = "BedfordFallsB42", mapDir = "BedfordFalls",
+            streetSupplement = StreetSupplements["bedford-falls"],
+            bounds = { 12032, 7424, 14592, 13312 }, nameKey = "UI_MinidoracatMiniMapModMaps_BedfordFalls" },
     })
 else
     print("[MinidoracatMiniMapModMaps] main MOD API (MinidoracatMiniMapAPI) not found -- install and enable the Minidoracat MiniMap for B42 main MOD")

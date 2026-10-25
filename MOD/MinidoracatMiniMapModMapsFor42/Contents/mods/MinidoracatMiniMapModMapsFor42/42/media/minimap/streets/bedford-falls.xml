@@ -1,0 +1,507 @@
+<streets version="1">
+    <street name="Bedford Falls Rd 01 (MiniMap)" width="12">
+        <points>
+            <point x="13696.5" y="10120.5"/>
+            <point x="14008.5" y="10120.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 02 (MiniMap)" width="12">
+        <points>
+            <point x="13696.5" y="9905.5"/>
+            <point x="13694.5" y="10492.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 03 (MiniMap)" width="12">
+        <points>
+            <point x="14010.5" y="9905.5"/>
+            <point x="14008.5" y="10492.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 04 (MiniMap)" width="3">
+        <points>
+            <point x="13649.5" y="10511.5"/>
+            <point x="13632.5" y="10512.5"/>
+            <point x="13632.5" y="10530.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 05 (MiniMap)" width="3">
+        <points>
+            <point x="13623.5" y="10574.5"/>
+            <point x="13643.5" y="10574.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 06 (MiniMap)" width="3">
+        <points>
+            <point x="13669.5" y="10527.5"/>
+            <point x="13668.5" y="10597.5"/>
+            <point x="13645.5" y="10598.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 07 (MiniMap)" width="6">
+        <points>
+            <point x="13645.5" y="10561.5"/>
+            <point x="13694.5" y="10561.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 08 (MiniMap)" width="6">
+        <points>
+            <point x="13696.5" y="10552.5"/>
+            <point x="13785.5" y="10552.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 09 (MiniMap)" width="6">
+        <points>
+            <point x="14010.5" y="10541.5"/>
+            <point x="14050.5" y="10541.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 10 (MiniMap)" width="6">
+        <points>
+            <point x="14089.5" y="10519.5"/>
+            <point x="14087.5" y="10576.5"/>
+            <point x="14010.5" y="10576.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 11 (MiniMap)" width="3">
+        <points>
+            <point x="13543.5" y="10562.5"/>
+            <point x="13543.5" y="10596.5"/>
+            <point x="13517.5" y="10597.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 12 (MiniMap)" width="3">
+        <points>
+            <point x="13645.5" y="10616.5"/>
+            <point x="13667.5" y="10616.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 13 (MiniMap)" width="12">
+        <points>
+            <point x="14008.5" y="10607.5"/>
+            <point x="13902.5" y="10608.5"/>
+            <point x="13902.5" y="10735.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 14 (MiniMap)" width="6">
+        <points>
+            <point x="14010.5" y="10618.5"/>
+            <point x="14053.5" y="10618.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 15 (MiniMap)" width="3">
+        <points>
+            <point x="13622.5" y="10532.5"/>
+            <point x="13622.5" y="10609.5"/>
+            <point x="13618.5" y="10617.5"/>
+            <point x="13618.5" y="10640.5"/>
+            <point x="13616.5" y="10643.5"/>
+            <point x="13616.5" y="10658.5"/>
+            <point x="13667.5" y="10659.5"/>
+            <point x="13668.5" y="10617.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 16 (MiniMap)" width="6">
+        <points>
+            <point x="13542.5" y="10561.5"/>
+            <point x="13516.5" y="10562.5"/>
+            <point x="13517.5" y="10641.5"/>
+            <point x="13644.5" y="10640.5"/>
+            <point x="13643.5" y="10531.5"/>
+            <point x="13565.5" y="10531.5"/>
+            <point x="13564.5" y="10560.5"/>
+            <point x="13544.5" y="10561.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 17 (MiniMap)" width="6">
+        <points>
+            <point x="13903.5" y="10643.5"/>
+            <point x="13968.5" y="10643.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 18 (MiniMap)" width="6">
+        <points>
+            <point x="14010.5" y="10654.5"/>
+            <point x="14090.5" y="10654.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 19 (MiniMap)" width="6">
+        <points>
+            <point x="13729.5" y="10675.5"/>
+            <point x="13901.5" y="10675.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 20 (MiniMap)" width="12">
+        <points>
+            <point x="13696.5" y="10505.5"/>
+            <point x="13695.5" y="10637.5"/>
+            <point x="13728.5" y="10639.5"/>
+            <point x="13729.5" y="10736.5"/>
+            <point x="13901.5" y="10736.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 21 (MiniMap)" width="4">
+        <points>
+            <point x="14010.5" y="10748.5"/>
+            <point x="14069.5" y="10748.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 22 (MiniMap)" width="12">
+        <points>
+            <point x="13439.5" y="11005.5"/>
+            <point x="13438.5" y="10880.5"/>
+            <point x="13248.5" y="10880.5"/>
+            <point x="13247.5" y="11005.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 23 (MiniMap)" width="12">
+        <points>
+            <point x="14008.5" y="10859.5"/>
+            <point x="13727.5" y="10860.5"/>
+            <point x="13727.5" y="11186.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 24 (MiniMap)" width="6">
+        <points>
+            <point x="13173.5" y="10911.5"/>
+            <point x="12973.5" y="10911.5"/>
+            <point x="12972.5" y="10945.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 25 (MiniMap)" width="6">
+        <points>
+            <point x="13130.5" y="10912.5"/>
+            <point x="13130.5" y="10945.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 26 (MiniMap)" width="12">
+        <points>
+            <point x="13341.5" y="10881.5"/>
+            <point x="13340.5" y="10970.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 27 (MiniMap)" width="12">
+        <points>
+            <point x="13619.5" y="10915.5"/>
+            <point x="13726.5" y="10915.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 28 (MiniMap)" width="6">
+        <points>
+            <point x="13728.5" y="10927.5"/>
+            <point x="13771.5" y="10927.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 29 (MiniMap)" width="6">
+        <points>
+            <point x="13893.5" y="10860.5"/>
+            <point x="13893.5" y="10993.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 30 (MiniMap)" width="6">
+        <points>
+            <point x="14008.5" y="10912.5"/>
+            <point x="13951.5" y="10913.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 31 (MiniMap)" width="6">
+        <points>
+            <point x="13050.5" y="10947.5"/>
+            <point x="13050.5" y="11005.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 32 (MiniMap)" width="6">
+        <points>
+            <point x="13156.5" y="11005.5"/>
+            <point x="13155.5" y="10946.5"/>
+            <point x="12947.5" y="10946.5"/>
+            <point x="12946.5" y="11005.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 33 (MiniMap)" width="12">
+        <points>
+            <point x="13606.5" y="10896.5"/>
+            <point x="13615.5" y="10896.5"/>
+            <point x="13615.5" y="10912.5"/>
+            <point x="13618.5" y="10915.5"/>
+            <point x="13618.5" y="11005.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 34 (MiniMap)" width="12">
+        <points>
+            <point x="14010.5" y="10505.5"/>
+            <point x="14008.5" y="11394.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 35 (MiniMap)" width="6">
+        <points>
+            <point x="14010.5" y="10953.5"/>
+            <point x="14075.5" y="10953.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 36 (MiniMap)" width="4">
+        <points>
+            <point x="14010.5" y="10888.5"/>
+            <point x="14082.5" y="10889.5"/>
+            <point x="14082.5" y="11047.5"/>
+            <point x="14010.5" y="11048.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 37 (MiniMap)" width="12">
+        <points>
+            <point x="12905.5" y="11006.5"/>
+            <point x="13726.5" y="11006.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 38 (MiniMap)" width="6">
+        <points>
+            <point x="13728.5" y="10994.5"/>
+            <point x="14008.5" y="10994.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 39 (MiniMap)" width="6">
+        <points>
+            <point x="12927.5" y="11007.5"/>
+            <point x="12928.5" y="11048.5"/>
+            <point x="13044.5" y="11048.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 40 (MiniMap)" width="6">
+        <points>
+            <point x="13085.5" y="11007.5"/>
+            <point x="13086.5" y="11047.5"/>
+            <point x="13170.5" y="11047.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 41 (MiniMap)" width="6">
+        <points>
+            <point x="13352.5" y="11007.5"/>
+            <point x="13352.5" y="11066.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 42 (MiniMap)" width="12">
+        <points>
+            <point x="13601.5" y="11007.5"/>
+            <point x="13600.5" y="11085.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 43 (MiniMap)" width="6">
+        <points>
+            <point x="13602.5" y="11049.5"/>
+            <point x="13726.5" y="11049.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 44 (MiniMap)" width="6">
+        <points>
+            <point x="13257.5" y="11007.5"/>
+            <point x="13258.5" y="11067.5"/>
+            <point x="13445.5" y="11067.5"/>
+            <point x="13446.5" y="11007.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 45 (MiniMap)" width="6">
+        <points>
+            <point x="13726.5" y="11091.5"/>
+            <point x="13625.5" y="11092.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 46 (MiniMap)" width="6">
+        <points>
+            <point x="13728.5" y="11072.5"/>
+            <point x="13797.5" y="11072.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 47 (MiniMap)" width="6">
+        <points>
+            <point x="13859.5" y="10995.5"/>
+            <point x="13860.5" y="11072.5"/>
+            <point x="14008.5" y="11072.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 48 (MiniMap)" width="6">
+        <points>
+            <point x="12996.5" y="11148.5"/>
+            <point x="12996.5" y="11186.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 49 (MiniMap)" width="6">
+        <points>
+            <point x="13172.5" y="11186.5"/>
+            <point x="13171.5" y="11147.5"/>
+            <point x="12930.5" y="11147.5"/>
+            <point x="12929.5" y="11186.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 50 (MiniMap)" width="6">
+        <points>
+            <point x="13098.5" y="11148.5"/>
+            <point x="13098.5" y="11186.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 51 (MiniMap)" width="6">
+        <points>
+            <point x="13726.5" y="11119.5"/>
+            <point x="13593.5" y="11120.5"/>
+            <point x="13593.5" y="11356.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 52 (MiniMap)" width="6">
+        <points>
+            <point x="14008.5" y="11151.5"/>
+            <point x="13864.5" y="11151.5"/>
+            <point x="13863.5" y="11186.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 53 (MiniMap)" width="6">
+        <points>
+            <point x="13934.5" y="11152.5"/>
+            <point x="13934.5" y="11186.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 54 (MiniMap)" width="12">
+        <points>
+            <point x="12905.5" y="11187.5"/>
+            <point x="14008.5" y="11187.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 55 (MiniMap)" width="6">
+        <points>
+            <point x="13886.5" y="11215.5"/>
+            <point x="13945.5" y="11215.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 56 (MiniMap)" width="6">
+        <points>
+            <point x="14010.5" y="11197.5"/>
+            <point x="14052.5" y="11197.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 57 (MiniMap)" width="6">
+        <points>
+            <point x="14010.5" y="11165.5"/>
+            <point x="14053.5" y="11166.5"/>
+            <point x="14053.5" y="11229.5"/>
+            <point x="14010.5" y="11230.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 58 (MiniMap)" width="6">
+        <points>
+            <point x="13297.5" y="11235.5"/>
+            <point x="13258.5" y="11236.5"/>
+            <point x="13257.5" y="11295.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 59 (MiniMap)" width="6">
+        <points>
+            <point x="13298.5" y="11188.5"/>
+            <point x="13299.5" y="11245.5"/>
+            <point x="13409.5" y="11245.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 60 (MiniMap)" width="6">
+        <points>
+            <point x="13828.5" y="11247.5"/>
+            <point x="13884.5" y="11247.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 61 (MiniMap)" width="6">
+        <points>
+            <point x="13885.5" y="11188.5"/>
+            <point x="13885.5" y="11282.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 62 (MiniMap)" width="6">
+        <points>
+            <point x="13947.5" y="11225.5"/>
+            <point x="14008.5" y="11225.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 63 (MiniMap)" width="6">
+        <points>
+            <point x="13165.5" y="11188.5"/>
+            <point x="13164.5" y="11381.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 64 (MiniMap)" width="6">
+        <points>
+            <point x="13369.5" y="11188.5"/>
+            <point x="13370.5" y="11296.5"/>
+            <point x="13410.5" y="11295.5"/>
+            <point x="13410.5" y="11188.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 65 (MiniMap)" width="6">
+        <points>
+            <point x="13696.5" y="11188.5"/>
+            <point x="13695.5" y="11397.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 66 (MiniMap)" width="6">
+        <points>
+            <point x="13826.5" y="11188.5"/>
+            <point x="13827.5" y="11283.5"/>
+            <point x="13945.5" y="11283.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 67 (MiniMap)" width="6">
+        <points>
+            <point x="13947.5" y="11269.5"/>
+            <point x="14008.5" y="11269.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 68 (MiniMap)" width="6">
+        <points>
+            <point x="13864.5" y="11284.5"/>
+            <point x="13863.5" y="11336.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 69 (MiniMap)" width="6">
+        <points>
+            <point x="13907.5" y="11284.5"/>
+            <point x="13906.5" y="11321.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 70 (MiniMap)" width="6">
+        <points>
+            <point x="13946.5" y="11188.5"/>
+            <point x="13947.5" y="11327.5"/>
+            <point x="14008.5" y="11327.5"/>
+            <point x="14011.5" y="11329.5"/>
+            <point x="14049.5" y="11328.5"/>
+            <point x="14049.5" y="11263.5"/>
+            <point x="14010.5" y="11262.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 71 (MiniMap)" width="6">
+        <points>
+            <point x="13695.5" y="11289.5"/>
+            <point x="13513.5" y="11289.5"/>
+            <point x="13512.5" y="11356.5"/>
+            <point x="13769.5" y="11357.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 72 (MiniMap)" width="6">
+        <points>
+            <point x="14008.5" y="11366.5"/>
+            <point x="13834.5" y="11367.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 73 (MiniMap)" width="6">
+        <points>
+            <point x="14010.5" y="11375.5"/>
+            <point x="14051.5" y="11375.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 74 (MiniMap)" width="6">
+        <points>
+            <point x="13901.5" y="10736.5"/>
+            <point x="13904.5" y="10738.5"/>
+            <point x="14008.5" y="10738.5"/>
+        </points>
+    </street>
+    <street name="Bedford Falls Rd 75 (MiniMap)" width="15">
+        <points>
+            <point x="12500.0" y="11204.5"/>
+            <point x="12900.0" y="11204.5"/>
+        </points>
+    </street>
+</streets>

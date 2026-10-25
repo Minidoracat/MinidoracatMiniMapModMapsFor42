@@ -109,7 +109,10 @@ $MapModExclude = @(
     # 且多張與已在 maptest 的地圖整格重疊（Military Complex 落在 DuoDuoCity 裡、SnakeVille 與 hunter's base）。
     # 掛載用 E2E 單機情境 snake-sp 驗。
     'SMP_BarcoAbandonado', 'SMP_Factory', 'SMP_MilitaryComplex', 'SMP_NumarkComplex',
-    'SMP_SnakeMansion', 'SMP_SnakeVille', 'SMP_SnakeMechanicalOverhaul'
+    'SMP_SnakeMansion', 'SMP_SnakeVille', 'SMP_SnakeMechanicalOverhaul',
+    # Bedford Falls：和已在 maptest 的卡姆登郡（121 cell）、烏鴉山市（58）、貓又嶺等 11 張整格重疊，
+    # 外框內 x 47–48 另有 44 個原版 cell 會蓋住陰屍路監獄等圖。掛載與補充道路用 E2E 單圖情境 bedford-mp 驗。
+    'BedfordFallsB42'
 )
 
 # 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）

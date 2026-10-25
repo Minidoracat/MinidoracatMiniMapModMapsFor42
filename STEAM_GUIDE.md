@@ -2,7 +2,7 @@
 <!-- Steam 指南稿源（繁中）：MOD 的完整說明以本指南為準，簡介只放摘要。格式與同步方式見 pz-family-docs/release.md「完整說明：Steam 指南」 -->
 <!-- 支援地圖表來自 docs/road-data.md（road-scan 產生）；新增／移除地圖或道路資料變動時，同步更新本檔與 STEAM_GUIDE_EN.md -->
 <!-- 標題：📖 小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突 -->
-<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 91 個地圖 MOD（123 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
+<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 92 個地圖 MOD（124 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
 === 🚀 快速上手
 [b]English version:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide[/url]
 
@@ -24,7 +24,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/olist]
 {{img:01-mod-map-outlines-zh.jpg}}
 === 🧰 支援地圖（A–M）
-共 91 個地圖 MOD、123 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
+共 92 個地圖 MOD、124 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] [b]✅[/b]：原作者附有道路資料，地圖上有路名，可以搜尋與導航（數字是街道數）。
 [*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包修正或補上的道路」。
@@ -39,6 +39,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Atlanta Safe Zone[/td][td]亞特蘭大安全區（華人社區）[/td][td][/td][/tr]
 [tr][td]Atlanta Tower Survival[/td][td]亞特蘭大大廈生存[/td][td][/td][/tr]
 [tr][td]Atlas Underground Complex (Surface)[/td][td]阿特拉斯地下複合設施（地表）[/td][td][/td][/tr]
+[tr][td]Bedford Falls[/td][td]貝德福德瀑布[/td][td]🛠️[/td][/tr]
 [tr][td]Begonia Town[/td][td]海棠鎮[/td][td][/td][/tr]
 [tr][td]Big Bear Lake[/td][td]大熊湖[/td][td]✅ 87 條[/td][/tr]
 [tr][td]BlackMaze[/td][td]黑迷宮[/td][td]✅ 4 條[/td][/tr]
@@ -169,6 +170,13 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 原作者日後提供道路資料時，自動改用原作者的。
 [*] 地圖蓋住的原版 Deer Trail Road（KY-60 往北那段碎石路）沿原版路線補上，路寬和實際路面一樣是 5 格，搜尋名稱是「康斯鎮 38 號路（小地圖補）」。
 [/list]
+[*] [b]Bedford Falls（貝德福德瀑布）[/b]：原作者沒附道路資料，本包依原作者的世界地圖補上鎮內 74 條路，可以搜尋與導航。
+[list]
+[*] 路名是「貝德福德瀑布 01 號路（小地圖補）」這種格式。
+[*] 原作者日後提供道路資料時，自動改用原作者的。
+[*] 地圖蓋住原版 KY-60 東端最後約 300 格，本包沿原版路線補上，搜尋名稱是「貝德福德瀑布 75 號路（小地圖補）」；從 KY-60 可以一路導航進鎮。
+[*] 鎮外往北、往南的兩條長聯絡道路不在原作者的世界地圖裡，沒有補。
+[/list]
 [*] [b]Camden County（卡姆登郡）[/b]：
 [list]
 [*] 3 處原作者的路停在路口前，接上後可以導航到達。
@@ -207,6 +215,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]The Walking Dead Prison[/b]：與 VaultTec Road（含監獄建築北側）、SecretZ Train Depot Refugee Camp、VaultTec Vault - Muldraugh 部分地塊重疊，請擇一。
 [*] [b]Dirkerdam[/b]：與 Riverside Mansion (Unofficial) 重疊兩個地塊，請擇一；Floatopia 與 Riverside Mansion 另有幾個地塊落在德克丹的範圍框內，一起用時那幾格的小地圖圖片以伺服器地圖順序（Map=）在前的那張為準。路名、搜尋與導航來自 Dirkerdam Map Fix；沒裝它時，除了本包補的 Brandenburg 接橋，只有地圖圖片。
 [*] [b]Snake's ModPack Build 42[/b]：作者目前只支援單人。Military Complex 整張落在 DuoDuo City 裡；SnakeVille 與 Hunter's Base 兩版整格重疊，也和 Tikitown、SecretZ 六號檢查站、SecretZ 河畔鎮二號檢查站部分重疊；Factory 與 SafeWayHamlet 整格重疊，也和 AnruisiTown、Camden County、Safeharbor Garrison 部分重疊；Numark Complex 與 Blackmaze、Snake Mansion 與 Ashenwood／Muldraugh 1993／SecretZ 五號檢查站、Barco Abandonado 與 West Point Expansion、修車廠（路易斯維爾）與 SecretZ 路易斯維爾軍事複合區／VaultTec Vault - Louisville、修車廠（三月嶺）與 Atlas Underground Complex／SecretZ 三月嶺研究設施各有部分重疊，請擇一。SnakeVille 兩區彼此重疊兩個地塊，以地圖順序在前的為準。
+[*] [b]Bedford Falls[/b]：大部分地塊與 Camden County 重疊，另與 Mount Crow City、Nekomata Ridge、AnruisiTown、Atlanta、SafeWayHamlet、Safeharbor Garrison、Snake's Factory、West Point Expansion、SecretZ 一號檢查站、VaultTec Vault - Muldraugh 部分重疊，請擇一。範圍框西側兩欄（x 12032–12544）大多沒有本圖地塊，小地圖在那裡畫的是原版影像：和 The Walking Dead Prison、Begonia Town、VaultTec Road 一起用時，把 Bedford Falls 排在伺服器地圖順序（Map=）的後面，那幾格才會顯示它們的圖。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。
 [/list]
 === ❓ 常見問題

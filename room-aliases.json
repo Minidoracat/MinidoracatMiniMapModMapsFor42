@@ -64,6 +64,12 @@
       "shiptools": "toolstorage"
     }
   },
+  "BedfordFalls.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "Offices"
+    ]
+  },
   "BlackpineCounty.pyramid.zip": {
     "aliases": {},
     "ignored": [
