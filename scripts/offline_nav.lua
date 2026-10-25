@@ -1,17 +1,21 @@
 -- 離線導航：照 Map= 順序載入地圖目錄的 streets.xml，套本包道路修正、加上本包補充道路，用主 MOD 的 NavCore 與 cell 覆蓋規則（makeWinnerOf）算路線。
 -- 寫 E2E 情境前，先用它算預期值（可搜名稱數、補前／補後路線長度），不要猜。
--- 用法（repo 根目錄，主 MOD repo 在 ../MinidoracatMiniMapFor42）：
---   lua scripts/offline_nav.lua --map "<地圖目錄>" [--map ...] [--sup <dataset>]... [--route sx sy tx ty]... [--dump]
+-- 用法（repo 根目錄；主 MOD 預設在 ../MinidoracatMiniMapFor42，--main 可換成別的 checkout／worktree）：
+--   lua scripts/offline_nav.lua [--main <主 MOD repo 根或 NavRoute.lua>] --map "<地圖目錄>" [--map ...] [--sup <dataset>]... [--route sx sy tx ty]... [--dump]
+--   --main   主 MOD 的 repo 根目錄（或直接給 MinidoracatMiniMap_NavRoute.lua）：驗還沒發版的主 MOD、或拿舊版比對
 --   --map    地圖目錄的完整路徑（含 X_Y.lotheader 的那層），照 Map= 順序、第一個優先；原版 Muldraugh, KY 自動補在最後
 --   --sup    media/minimap/streets/<dataset>.xml，掛在註冊清單引用它的 mapDir 下，和遊戲一樣受該目錄的 cell 覆蓋規則裁段
 --   --route  起點與終點；有 --sup 或該目錄有本包道路修正時印補前（作者原始資料）、補後（套修正＋補充道路）兩組
 --   --dump   印出路線的每個點（判斷有沒有跨過某座橋、某條線）
 -- 道路修正讀生成的 shared 表（MinidoracatMiniMapModMapsStreetRepairs.lua），照主 MOD 規則逐筆比對 expectedWidth／
--- expectedPoints，相符才換 replacementPoints／replacementWidth；hideLabel 只影響顯示，這裡不管。
+-- expectedPoints，相符才換 replacementPoints／replacementWidth，並和主 MOD 抽取一樣帶上 repairIndex／noJunction、
+-- 把 navCut 換成 segRemoved（--main 指向還不認得 navCut 的舊主 MOD 時不套，同實機；舊 NavCore 也不認得 noJunction）；
+-- hideLabel 只影響顯示，這裡不管。
 -- 例：lua scripts/offline_nav.lua --map "D:/SteamCMD/steamapps/workshop/content/108600/3821470553/mods/Coryerdon/common/media/maps/Coryerdon" \
 --       --sup coryerdon-2026 --route 7300 5500 7422 6000
 -- ponytail: 不重做主 MOD 的跨目錄重複街道去重（seenSig），重複的街只會多一份同樣的邊，路線長度不變。
-local MAIN = "../MinidoracatMiniMapFor42/MOD/MinidoracatMiniMapFor42/Contents/mods/MinidoracatMiniMapFor42/42/media/lua/client/MinidoracatMiniMap_NavRoute.lua"
+local MAIN_REL = "MOD/MinidoracatMiniMapFor42/Contents/mods/MinidoracatMiniMapFor42/42/media/lua/client/MinidoracatMiniMap_NavRoute.lua"
+local MAIN = "../MinidoracatMiniMapFor42/" .. MAIN_REL
 local PACK = "MOD/MinidoracatMiniMapModMapsFor42/Contents/mods/MinidoracatMiniMapModMapsFor42/42/media"
 local VANILLA = "D:/SteamLibrary/steamapps/common/ProjectZomboid/media/maps/Muldraugh, KY"
 
@@ -35,7 +39,11 @@ local maps, sups, routes, dump = {}, {}, {}, false
 local i = 1
 while arg[i] do
     local a = arg[i]
-    if a == "--map" or a == "--sup" then
+    if a == "--main" then
+        local p = assert(arg[i + 1], "--main 後面要接主 MOD repo 根或 NavRoute.lua"):gsub("\\", "/"):gsub("/+$", "")
+        MAIN = p:match("%.lua$") and p or (p .. "/" .. MAIN_REL)
+        i = i + 2
+    elseif a == "--map" or a == "--sup" then
         local list = a == "--map" and maps or sups
         list[#list + 1] = assert(arg[i + 1], a .. " 後面要接值")
         i = i + 2
@@ -105,11 +113,16 @@ local function readStreets(path, src, out, ops)
         end
         local width = tonumber(attrs:match('width="([%d%.]+)"'))
         local op = ops and ops[idx]
-        if op and op.expectedWidth == width and samePoints(op.expectedPoints, pts)
-            and (op.replacementPoints or op.replacementWidth) then
+        local matched = op and op.expectedWidth == width and samePoints(op.expectedPoints, pts)
+        if matched and (op.replacementPoints or op.replacementWidth or op.noJunction or op.navCut) then
             pts = op.replacementPoints or pts
             width = op.replacementWidth or width
             fixed = fixed + 1
+        end
+        local segRemoved
+        if matched and op.navCut and source:find("navCut", 1, true) then
+            segRemoved = {}
+            for _, k in ipairs(op.navCut) do segRemoved[k + 1] = true end
         end
         if #pts >= 4 then
             names[name] = true
@@ -117,7 +130,8 @@ local function readStreets(path, src, out, ops)
                 rail = rail + 1
             else
                 searchable[name] = true
-                out[#out + 1] = { name = name, width = width, src = src, pts = pts }
+                out[#out + 1] = { name = name, width = width, src = src, pts = pts, segRemoved = segRemoved,
+                    repairIndex = matched and idx or nil, noJunction = matched and op.noJunction or nil }
             end
         end
     end

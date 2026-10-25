@@ -45,7 +45,7 @@ canonical 道路仍在、仍看得見，才真的隱藏。所以「上游漂移�
 5. **width-fix → 換路寬**（2026-10-17 使用者核准；Camden County Brooklawn Blvd）：作者把
    分隔林蔭大道畫成單中線、路寬只標一條車道，AutoDrive 照路寬算靠右落點、車身壓上
    分隔島。點列不動，只寫 `replacementWidth`（整數），不可與 `replacementPoints`／
-   `hideLabel` 並用；證據 `widthEvidence` 是 `pzmap road-surfaces` 的橫截面
+   `hideLabel` 並用（例外：同一條街另有 drop-vertex 時可以一起寫，證據照原點列量）；證據 `widthEvidence` 是 `pzmap road-surfaces` 的橫截面
    （`sections` 每個是水平或垂直的 `from`／`to` 兩端路面格，含中間的分隔島），每個量到的
    總寬都要等於 `replacementWidth`、中線要穿過橫截面且離路面中心 <= `_WIDTH_MAX_OFFSET`
    格（路寬以中線對稱展開，偏心就會整邊溢出）。橫截面座標是量測結果，generator 只驗
@@ -64,6 +64,19 @@ canonical 道路仍在、仍看得見，才真的隱藏。所以「上游漂移�
    （新端點落在原線某段上，其餘點不動），截掉長度 <= gap-bridge 上限；`detachFrom` 寫明
    退離哪一條街。verify 讀上游檢查：原端點本來在吸附距離內（真的有接）、新端點在
    吸附距離＋`_DETACH_MARGIN` 外、新線不和那條街相交。
+8. **no-junction → 兩條街不建路口**（2026-10-26 使用者核准 ND5–ND7 連同主 MOD 吸附規則一起處理，採 ATTACH_SLACK 審查建議 B；德克丹 ND6／ND7；
+   主 MOD 0.51.0 之後的下一版起認得 `noJunction`／`navCut`）：兩條街在 NavCore 相交或端點在吸附距離內、中間卻隔著圍籬／
+   樹籬分隔帶。`noJunction` 寫同圖另一條街的 0-based 序號（1–16 條、互異、不含自己），主 MOD 建圖時這兩條街
+   不切交點、不互相吸附；地圖上照作者畫的顯示。可以單獨一筆，也可以和其他規則並用。資料要**對稱**：列出的
+   街也要有一筆修正、`noJunction` 列回本筆（主 MOD 要兩條街都有相符的修正才生效，對方的 pin 防止上游改序號
+   指到別條街）。證據 `noJunctionEvidence.blockers` 是擋在兩街之間的地圖物件（`x`、`y`、`object`）。verify
+   讀上游：兩條街本來真的相通（相交或端點在吸附距離內），否則只警告（多餘的筆）。
+9. **median-cut → 穿過硬分隔帶的那一小段只從導航拿掉**（同上核准；德克丹 ND6 Main Ave、同一道圍籬的
+   Cedar Ave）：作者的街直直穿過另一條路的分隔圍籬，自己的線就是一條穿越路線，`noJunction` 拿不掉。
+   `replacementPoints` 必須是 expectedPoints 在**同一段**內插入兩個共線點（其餘點不動、地圖上同一條線），
+   `navCut` 寫兩點之間那一段的 0-based 段序（只一段、長度 <= `_CUT_MAX_LEN`），主 MOD 只從導航拿掉它；
+   必須同時帶 `noJunction`（列被穿過的那條街，否則兩截各自又吸回去）。verify 讀上游：拿掉的那段要和
+   `noJunction` 列的街相交，否則只警告。
 
 `replacementPoints` 必須等於 `rect_centerline(expectedPoints, expectedWidth)`、合法的
 gap-bridge 延伸、合法的 drop-vertex、median-split 或 trim-detach，`hideLabel` 的
@@ -145,6 +158,9 @@ _DETACH_SLACK = 4.5
 _DETACH_MARGIN = 1.0
 # 新端點要落在原線上（float32 量化誤差內）
 _ON_LINE_TOL = 0.01
+# no-junction：一筆最多列幾條街（主 MOD 同上限）；median-cut：拿掉的那段最長幾格（只跨分隔帶，不是刪路）
+_NOJ_MAX = 16
+_CUT_MAX_LEN = 8.0
 
 # operations[] 認得的欄位；多打一個字（replacmentPoints）不該變成靜默的空修正
 _OP_KEYS = {
@@ -162,6 +178,9 @@ _OP_KEYS = {
     "widthEvidence",
     "medianSplit",
     "detachFrom",
+    "noJunction",
+    "noJunctionEvidence",
+    "navCut",
     "reason",
 }
 # 註冊清單引用形如 `streetRepairs = StreetRepairs["daisy-county"]`
@@ -349,6 +368,31 @@ def trim_detach(exp: list[float], rep: list[float]) -> tuple[int, float] | None:
     return None
 
 
+def cut_insert(exp: list[float], rep: list[float]) -> tuple[int, float] | None:
+    """median-cut 判定：rep 是否為 exp 在同一段內依序插入兩個共線點（其餘點不動）。
+
+    → (兩新點之間那段在 rep 的 0-based 段序, 那段長度)；不符回 None。"""
+    if len(rep) != len(exp) + 4:
+        return None
+    for s in range(0, len(exp) - 2, 2):
+        if rep[:s + 2] != exp[:s + 2] or rep[s + 6:] != exp[s + 2:]:
+            continue
+        ax, ay, bx, by = exp[s:s + 4]
+        dx, dy = bx - ax, by - ay
+        ll = dx * dx + dy * dy
+        if ll == 0:
+            return None
+        ts = []
+        for px, py in (rep[s + 2:s + 4], rep[s + 4:s + 6]):
+            if point_polyline_distance(px, py, [ax, ay, bx, by]) > _ON_LINE_TOL:
+                return None
+            ts.append(((px - ax) * dx + (py - ay) * dy) / ll)
+        if not 0 < ts[0] < ts[1] < 1:
+            return None
+        return s // 2 + 1, polyline_length(rep[s + 2:s + 6])
+    return None
+
+
 def segments_cross(a: list[float], b: list[float]) -> bool:
     """兩條折線是否有任一對線段相交（含端點相觸）。"""
     def orient(px, py, qx, qy, rx, ry):
@@ -454,6 +498,8 @@ class Op(NamedTuple):
     replacement_width: int | None = None
     split_pair: tuple[str, int] | None = None  # median-split：對向車道的補充道路 (dataset, no)
     detach_from: int | None = None  # trim-detach：端點退離哪一條街（0-based index）
+    no_junction: tuple[int, ...] | None = None  # no-junction：不和這幾條同圖街建路口（進執行期）
+    nav_cut: int | None = None  # median-cut：只從導航拿掉的段序（0-based，進執行期）
 
 
 KIND_RECT = "rect-centerline"
@@ -463,20 +509,27 @@ KIND_WIDTH = "width-fix"
 KIND_HIDE = "hide-label"
 KIND_SPLIT = "median-split"
 KIND_DETACH = "trim-detach"
+KIND_CUT = "median-cut"
+KIND_NOJ = "no-junction"
 
 
 def classify_op(op: Op) -> str:
-    """已通過 `_load_op` 的修正 → 規則種類（公開道路資料清單依此分類計數）。"""
+    """已通過 `_load_op` 的修正 → 規則種類（公開道路資料清單依此分類計數）。
+    noJunction 可以掛在任何一筆上；只有它、沒有改幾何／路寬時才算 no-junction。"""
     if op.hide_label:
         return KIND_HIDE
     if op.split_pair is not None:
         return KIND_SPLIT
     if op.detach_from is not None:
         return KIND_DETACH
+    if op.nav_cut is not None:
+        return KIND_CUT
     if op.replacement_width is not None:
         return KIND_WIDTH
     if op.drop_vertex is not None:
         return KIND_DROP
+    if op.replacement_points is None:
+        return KIND_NOJ
     return KIND_BRIDGE if op.bridge_to is not None else KIND_RECT
 
 
@@ -507,6 +560,7 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
     trim_to = None
     split_pair = None
     detach_from = None
+    nav_cut = None
     if "replacementPoints" in raw:
         rep = _flat_points(errors, f"{where}.replacementPoints", raw["replacementPoints"])
         if rep is not None and len(rep) // 2 > MAX_REPLACEMENT_POINTS:
@@ -596,6 +650,24 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
                 detach_from = ti
             if "bridgeTo" in raw:
                 errors.append(f"{where}.bridgeTo 只用於 gap-bridge（這筆是 trim-detach）")
+        elif rep is not None and exp is not None and width is not None and "navCut" in raw:
+            cut = cut_insert(exp, rep)
+            nc = raw["navCut"]
+            if cut is None:
+                errors.append(
+                    f"{where}.replacementPoints 不是 expectedPoints 在同一段內依序插入兩個共線點"
+                    "（median-cut 地圖上要是同一條線、其餘點不動）"
+                )
+            elif not (isinstance(nc, list) and len(nc) == 1 and type(nc[0]) is int and nc[0] == cut[0]):
+                errors.append(f"{where}.navCut 必須是 [{cut[0]}]（只拿掉兩個插入點之間那一段，得到 {nc!r}）")
+            elif cut[1] > _CUT_MAX_LEN:
+                errors.append(f"{where} median-cut 拿掉 {cut[1]:.1f} 格超過上限 {_CUT_MAX_LEN:g}（只跨分隔帶，不是刪路）")
+            elif "noJunction" not in raw:
+                errors.append(f"{where}.navCut 必須搭配 noJunction（列被穿過的那條街，兩截才不會各自吸回去）")
+            else:
+                nav_cut = cut[0]
+            if "bridgeTo" in raw:
+                errors.append(f"{where}.bridgeTo 只用於 gap-bridge（這筆是 median-cut）")
         elif rep is not None and exp is not None and width is not None:
             # 只認核准過的規則：rect-outline → 中心線、gap-bridge 端點接線；其餘 fail-closed
             if rect_centerline(exp, width) == rep:
@@ -634,10 +706,10 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         rw = raw["replacementWidth"]
         if not isinstance(rw, int) or isinstance(rw, bool) or not 1 <= rw <= _WIDTH_MAX:
             errors.append(f"{where}.replacementWidth 必須是 1..{_WIDTH_MAX} 的整數（主 MOD 只收整數路寬）")
-        elif hide or ("replacementPoints" in raw and "medianSplit" not in raw):
+        elif hide or ("replacementPoints" in raw and "medianSplit" not in raw and "dropVertex" not in raw):
             errors.append(
                 f"{where}.replacementWidth 只能單獨使用（width-fix 點列不動、不隱藏路名；"
-                "只有 median-split 可以和 replacementPoints 並用）"
+                "只有 median-split、drop-vertex 可以和 replacementPoints 並用）"
             )
         elif width is not None and rw == width:
             errors.append(f"{where}.replacementWidth 等於 expectedWidth＝空修正")
@@ -652,7 +724,7 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
                 new_width = rw
     elif "widthEvidence" in raw:
         errors.append(f"{where}.widthEvidence 只用於 width-fix／median-split（這筆沒有 replacementWidth）")
-    if not hide and rep is None and "replacementWidth" not in raw:
+    if not hide and rep is None and "replacementWidth" not in raw and "noJunction" not in raw:
         errors.append(f"{where} 既不改幾何也不隱藏路名＝空修正，請刪除")
     if "bridgeTo" in raw and rep is None:
         errors.append(f"{where}.bridgeTo 只用於 gap-bridge（這筆沒有 replacementPoints）")
@@ -660,9 +732,28 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         errors.append(f"{where}.dropVertex 必須搭配 replacementPoints")
     if "trimTo" in raw and "dropVertex" not in raw:
         errors.append(f"{where}.trimTo 只用於 drop-vertex 移除頭尾端點")
-    for key in ("medianSplit", "detachFrom"):
+    for key in ("medianSplit", "detachFrom", "navCut"):
         if key in raw and rep is None:
             errors.append(f"{where}.{key} 必須搭配 replacementPoints")
+    if "navCut" in raw and any(k in raw for k in ("dropVertex", "medianSplit", "detachFrom")):
+        errors.append(f"{where}.navCut 不能和 dropVertex／medianSplit／detachFrom 並用（median-cut 只插兩點）")
+    no_junction = None
+    if "noJunction" in raw:
+        nj = raw["noJunction"]
+        if (not isinstance(nj, list) or not 1 <= len(nj) <= _NOJ_MAX
+                or not all(type(v) is int and v >= 0 for v in nj) or len(set(nj)) != len(nj) or idx in nj):
+            errors.append(f"{where}.noJunction 必須是 1..{_NOJ_MAX} 個互異、>= 0、不含自己的同圖街道序號（得到 {nj!r}）")
+        else:
+            ev = raw.get("noJunctionEvidence")
+            blockers = ev.get("blockers") if isinstance(ev, dict) else None
+            if not (isinstance(blockers, list) and blockers and all(
+                    isinstance(b, dict) and all(type(b.get(k)) in (int, float) for k in ("x", "y"))
+                    and isinstance(b.get("object"), str) and b["object"].strip() for b in blockers)):
+                errors.append(f"{where}.noJunctionEvidence.blockers 必填（擋在兩街之間的地圖物件，每個寫 x、y、object）")
+            else:
+                no_junction = tuple(nj)
+    elif "noJunctionEvidence" in raw:
+        errors.append(f"{where}.noJunctionEvidence 只用於 noJunction")
 
     ref_index = ref_width = ref_points = None
     if hide:
@@ -704,6 +795,8 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         new_width,
         split_pair,
         detach_from,
+        no_junction,
+        nav_cut,
     )
 
 
@@ -758,6 +851,16 @@ def load_pins(path: Path) -> tuple[Pins | None, list[str], list[str]]:
             continue
         seen.add(op.index)
         ops.append(op)
+    # no-junction 寫成對稱：主 MOD 要兩條街都有相符的修正才生效，列回本筆讓兩筆互相作證
+    by_index = {o.index: o for o in ops}
+    for o in ops:
+        for t in o.no_junction or ():
+            other = by_index.get(t)
+            if other is None or o.index not in (other.no_junction or ()):
+                errors.append(
+                    f"{path.name} #{o.index}.noJunction 列了 #{t}，但 #{t} 沒有一筆 noJunction 列回 #{o.index} 的修正"
+                    "（資料要對稱：主 MOD 要兩條街都有相符的修正才生效）"
+                )
     if errors:
         return None, errors, warnings
     return (
@@ -796,12 +899,15 @@ def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
         f"-- {len(pins_by_ds)} 個 dataset／{total} 筆修正（中心線 {kinds.count(KIND_RECT)}、"
         f"接線 {kinds.count(KIND_BRIDGE)}、移除轉折點 {kinds.count(KIND_DROP)}、"
         f"換路寬 {kinds.count(KIND_WIDTH)}、分隔路拆線 {kinds.count(KIND_SPLIT)}、"
-        f"端點退離 {kinds.count(KIND_DETACH)}、隱藏標籤候選 {kinds.count(KIND_HIDE)}）",
+        f"端點退離 {kinds.count(KIND_DETACH)}、拿掉穿越分隔帶的段 {kinds.count(KIND_CUT)}、"
+        f"不建路口 {kinds.count(KIND_NOJ)}、隱藏標籤候選 {kinds.count(KIND_HIDE)}）",
         "--",
         "-- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log",
         "-- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。",
         "-- replacementWidth 只換路寬、點列不動；主 MOD 42.21.0-0.46.0 及更早版本不認得它，",
         "-- 該筆當空修正略過（log 一次），照作者路寬。",
+        "-- noJunction（不和這幾條同圖街建路口）／navCut（只從導航拿掉這幾段）：主 MOD 0.51.0 及更早版本",
+        "-- 不認得——只帶 noJunction 的筆當空修正略過（log 一次），navCut 的筆只套插了共線點的點列，照舊相通。",
         "-- hideLabel 只影響玩家地圖上的路名顯示，**不從導航路網移除該道路**；",
         "-- reference 是 vanilla 對應街道的 index/width/points，執行期須確認那條",
         "-- canonical 道路仍在且看得見，才真的隱藏我方這份重複標籤。",
@@ -815,8 +921,9 @@ def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
         lines.append(f"-- ==== {ds} ({p.map_mod} / {p.map_dir}) ====")
         lines.append(
             f"-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／"
-            f"exact-copy）在 {REPAIRS_DIR_NAME}/{ds}.json 的 reason；"
-            "有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名"
+            f"median-cut／no-junction／exact-copy）在 {REPAIRS_DIR_NAME}/{ds}.json 的 reason；"
+            "有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，"
+            "有 navCut／noJunction＝只改導航路網"
         )
         lines.append("do")
         lines.append("    local ops = {}")
@@ -837,6 +944,10 @@ def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
                     "reference = { index = %d, width = %s, points = %s }"
                     % (o.ref_index, _fmt_num(o.ref_width), _fmt_flat(o.ref_points))
                 )
+            if o.nav_cut is not None:
+                parts.append(f"navCut = {{ {o.nav_cut} }}")
+            if o.no_junction:
+                parts.append("noJunction = { " + ", ".join(str(v) for v in o.no_junction) + " }")
             lines.append(f"    ops[{o.index}] = {{ " + ", ".join(parts) + " }")
         lines.append(
             "    Repairs[%s] = { schemaVersion = %d, mapMod = %s, mapDir = %s, operations = ops }"
@@ -962,6 +1073,40 @@ def survey_upstream(
                 warnings.append(
                     f"{ds} {len(stuck)} 筆 trim-detach 原端點不在 detachFrom 街吸附距離內、或新端點仍在"
                     f"吸附距離＋{_DETACH_MARGIN:g} 格內、或新線碰到那條街（須人工覆核）：index {stuck[:8]}"
+                )
+            # no-junction：兩條街在 NavCore 本來真的相通（相交或某一端點在吸附距離內），否則這對是多餘的；
+            # median-cut 拿掉的那段要穿過 noJunction 列的街。每對從序號小的那筆看一次，幾何用套用後的點列與路寬
+            ops_by = {o.index: o for o in p.ops}
+
+            def applied(o: Op) -> tuple[list[float], float]:
+                return o.replacement_points or o.expected_points, o.replacement_width or o.expected_width
+
+            idle, uncut = [], []
+            for o in p.ops:
+                if not o.no_junction or o.index in stale:
+                    continue
+                a, wa = applied(o)
+                for t in o.no_junction:
+                    if t < o.index or t in stale or t not in ops_by:
+                        continue
+                    b, wb = applied(ops_by[t])
+                    tol = wa / 2 + wb / 2 + _DETACH_SLACK
+                    ends = ((a[0], a[1], b), (a[-2], a[-1], b), (b[0], b[1], a), (b[-2], b[-1], a))
+                    if not segments_cross(a, b) and all(point_polyline_distance(x, y, ln) > tol for x, y, ln in ends):
+                        idle.append((o.index, t))
+                if o.nav_cut is not None:
+                    seg = a[2 * o.nav_cut:2 * o.nav_cut + 4]
+                    if not any(segments_cross(seg, applied(ops_by[t])[0]) for t in o.no_junction if t in ops_by):
+                        uncut.append(o.index)
+            if idle:
+                warnings.append(
+                    f"{ds} {len(idle)} 對 noJunction 的兩條街本來就不相交、端點也不在吸附距離內（多餘，須人工覆核）"
+                    f"：{idle[:8]}"
+                )
+            if uncut:
+                warnings.append(
+                    f"{ds} {len(uncut)} 筆 median-cut 拿掉的段沒有穿過 noJunction 列的街（切錯地方，須人工覆核）"
+                    f"：index {uncut[:8]}"
                 )
         if van is None:
             continue
@@ -1119,6 +1264,12 @@ _XML = (
     '    <street name="Fence Ave" width="10">\n'
     '        <points><point x="650" y="1000" /><point x="750" y="1000" /></points>\n'
     "    </street>\n"
+    '    <street name="Gate Rd" width="8">\n'
+    '        <points><point x="800" y="1000" /><point x="900" y="1000" /></points>\n'
+    "    </street>\n"
+    '    <street name="Fence Way" width="10">\n'
+    '        <points><point x="850" y="950" /><point x="850" y="1050" /></points>\n'
+    "    </street>\n"
     "</streets>\n"
 )
 _VAN_XML = (
@@ -1223,6 +1374,26 @@ def _pin_doc(**over: object) -> dict:
                 "replacementPoints": [700, 1015, 700, 1050, 700, 1100],
                 "detachFrom": {"index": 10, "name": "Fence Ave"},
                 "reason": "trim-detach",
+            },
+            {
+                "index": 11,
+                "name": "Gate Rd",
+                "expectedWidth": 8,
+                "expectedPoints": [800, 1000, 900, 1000],
+                "replacementPoints": [800, 1000, 848, 1000, 852, 1000, 900, 1000],
+                "navCut": [1],
+                "noJunction": [12],
+                "noJunctionEvidence": {"blockers": [{"x": 850, "y": 1000, "object": "fencing_01_0"}]},
+                "reason": "median-cut",
+            },
+            {
+                "index": 12,
+                "name": "Fence Way",
+                "expectedWidth": 10,
+                "expectedPoints": [850, 950, 850, 1050],
+                "noJunction": [11],
+                "noJunctionEvidence": {"blockers": [{"x": 850, "y": 1000, "object": "fencing_01_0"}]},
+                "reason": "no-junction",
             },
         ],
     }
@@ -1390,6 +1561,34 @@ def _reject_cases() -> list[tuple[str, dict, str]]:
     cases.append(("detachFrom 缺 replacementPoints", doc, "必須搭配 replacementPoints"))
     doc = _pin_doc(); doc["operations"][detach]["bridgeTo"] = {"index": 10}
     cases.append(("bridgeTo 用在 trim-detach", doc, "只用於 gap-bridge"))
+    cut, noj = 8, 9
+    doc = _pin_doc(); doc["operations"][noj]["noJunction"] = [12]
+    cases.append(("noJunction 指向自己", doc, "不含自己"))
+    for bad in ([11, 11], [-1], [True], list(range(13, 30)), [], "11"):
+        doc = _pin_doc(); doc["operations"][noj]["noJunction"] = bad
+        cases.append((f"noJunction 不合法 {bad!r}", doc, "noJunction 必須是"))
+    doc = _pin_doc(); doc["operations"][noj]["noJunction"] = [10]
+    cases.append(("noJunction 不對稱（對方沒列回）", doc, "列回"))
+    doc = _pin_doc(); doc["operations"][noj].pop("noJunctionEvidence")
+    cases.append(("noJunction 缺證據", doc, "blockers 必填"))
+    doc = _pin_doc(); doc["operations"][noj]["noJunctionEvidence"] = {"blockers": [{"x": 850, "y": 1000, "object": " "}]}
+    cases.append(("noJunction 證據沒寫物件", doc, "blockers 必填"))
+    doc = _pin_doc(); doc["operations"][0]["noJunctionEvidence"] = {"blockers": []}
+    cases.append(("noJunctionEvidence 單獨出現", doc, "只用於 noJunction"))
+    doc = _pin_doc(); doc["operations"][cut]["replacementPoints"] = [800, 1000, 848, 1001, 852, 1000, 900, 1000]
+    cases.append(("median-cut 插入點不共線", doc, "同一段內依序插入"))
+    doc = _pin_doc(); doc["operations"][cut]["replacementPoints"] = [800, 1000, 852, 1000, 848, 1000, 900, 1000]
+    cases.append(("median-cut 插入點順序反了", doc, "同一段內依序插入"))
+    doc = _pin_doc(); doc["operations"][cut]["navCut"] = [2]
+    cases.append(("median-cut 段序不是兩插入點之間", doc, "navCut 必須是 [1]"))
+    doc = _pin_doc(); doc["operations"][cut]["replacementPoints"] = [800, 1000, 840, 1000, 860, 1000, 900, 1000]
+    cases.append(("median-cut 拿掉太長", doc, "超過上限"))
+    doc = _pin_doc(); doc["operations"][cut].pop("noJunction"); doc["operations"][cut].pop("noJunctionEvidence")
+    cases.append(("median-cut 沒帶 noJunction", doc, "必須搭配 noJunction"))
+    doc = _pin_doc(); doc["operations"][cut].pop("replacementPoints")
+    cases.append(("navCut 缺 replacementPoints", doc, "必須搭配 replacementPoints"))
+    doc = _pin_doc(); doc["operations"][cut]["dropVertex"] = 1
+    cases.append(("navCut 和 dropVertex 並用", doc, "不能和"))
     return cases
 
 
@@ -1447,10 +1646,12 @@ def cmd_selftest() -> int:
         )
         pins, _e, _w = load_pins(root / REPAIRS_DIR_NAME / "demo.json")
         check(
-            "七種規則分類正確（剪端點仍屬 drop-vertex）",
+            "九種規則分類正確（剪端點仍屬 drop-vertex、只帶 noJunction 算 no-junction）",
             pins is not None
             and [classify_op(o) for o in pins.ops]
-            == [KIND_RECT, KIND_HIDE, KIND_BRIDGE, KIND_DROP, KIND_DROP, KIND_WIDTH, KIND_SPLIT, KIND_DETACH]
+            == [KIND_RECT, KIND_HIDE, KIND_BRIDGE, KIND_DROP, KIND_DROP, KIND_WIDTH, KIND_SPLIT, KIND_DETACH,
+                KIND_CUT, KIND_NOJ]
+            and pins.ops[8].nav_cut == 1 and pins.ops[8].no_junction == (12,) and pins.ops[9].no_junction == (11,)
             and pins.ops[4].drop_vertex == (1, 3) and pins.ops[4].trim_to == 6
             and pins.ops[5].replacement_width == 11 and pins.ops[5].replacement_points is None
             and pins.ops[6].split_pair == ("demo", 1) and pins.ops[6].replacement_width == 6
@@ -1464,9 +1665,18 @@ def cmd_selftest() -> int:
             and "medianSplit" not in lua and "detachFrom" not in lua,
             lua,
         )
+        check(
+            "median-cut 插點點列＋navCut、noJunction 落表（執行期要用），證據不進執行期",
+            "ops[11] = { expectedWidth = 8, expectedPoints = { 800, 1000, 900, 1000 },"
+            " replacementPoints = { 800, 1000, 848, 1000, 852, 1000, 900, 1000 }, navCut = { 1 }, noJunction = { 12 } }" in lua
+            and "ops[12] = { expectedWidth = 10, expectedPoints = { 850, 950, 850, 1050 }, noJunction = { 11 } }" in lua
+            and "noJunctionEvidence" not in lua and "blockers" not in lua,
+            lua,
+        )
         res = _verify(root)
         check("verify 通過剛生成的檔",
-              res.ok and not any("gap-bridge" in w or "trimTo" in w or "trim-detach" in w for w in res.warnings),
+              res.ok and not any(k in w for w in res.warnings
+                                 for k in ("gap-bridge", "trimTo", "trim-detach", "noJunction", "median-cut")),
               str(res.errors + res.warnings))
         p = root / REPAIR_TABLE_REL
         p.write_bytes(p.read_bytes() + b"\n-- tampered\n")
@@ -1570,6 +1780,26 @@ def cmd_selftest() -> int:
             str(res.errors + res.warnings),
         )
 
+    # no-junction 列了兩條本來就不相通的街、median-cut 切的段沒穿過那條街：只警告
+    with tempfile.TemporaryDirectory() as td:
+        doc = _pin_doc()
+        ev = {"blockers": [{"x": 850, "y": 1000, "object": "fencing_01_0"}]}
+        doc["operations"].append({"index": 10, "name": "Fence Ave", "expectedWidth": 10,
+                                  "expectedPoints": [650, 1000, 750, 1000], "noJunction": [12],
+                                  "noJunctionEvidence": ev, "reason": "多餘"})
+        doc["operations"][9]["noJunction"] = [11, 10]
+        doc["operations"][8]["replacementPoints"] = [800, 1000, 820, 1000, 824, 1000, 900, 1000]
+        root = _fixture(Path(td) / "j", doc)
+        res, _ = gen(root)
+        check("no-junction／median-cut 驗證資料本身合法", res.ok, str(res.errors))
+        res = _verify(root)
+        check(
+            "noJunction 兩街本來不相通、median-cut 沒切到那條街：只警告",
+            res.ok and any("多餘" in w and "(10, 12)" in w for w in res.warnings)
+            and any("切錯地方" in w for w in res.warnings),
+            str(res.errors + res.warnings),
+        )
+
     print(f"\n{'✅' if n_ok == n_all else '❌'} selftest {n_ok}/{n_all}")
     return 0 if n_ok == n_all else 1
 
@@ -1595,6 +1825,7 @@ def main(argv: list[str] | None = None) -> int:
                 f"   {ds:24s} 中心線 {kinds.count(KIND_RECT):4d} 接線 {kinds.count(KIND_BRIDGE):4d}"
                 f" 移除轉折點 {kinds.count(KIND_DROP):4d} 換路寬 {kinds.count(KIND_WIDTH):4d}"
                 f" 分隔路拆線 {kinds.count(KIND_SPLIT):4d} 端點退離 {kinds.count(KIND_DETACH):4d}"
+                f" 拿掉穿越段 {kinds.count(KIND_CUT):4d} 不建路口 {kinds.count(KIND_NOJ):4d}"
                 f" 隱藏標籤候選 {kinds.count(KIND_HIDE):4d}"
             )
         return 0 if result.ok else 1
