@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T09:49:34Z",
+  "generated_at": "2026-10-25T10:10:53Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -1389,7 +1389,7 @@
             7936,
             8448
           ],
-          "hash": "e28a3114f373955b080f6e9a0e498cf4190fd6be2fec2cfaf3b5c03eced256bc"
+          "hash": "a9a92a1d03efbf4ae869b7057cf16ff57a073909f0a8cb62ead8d08c6a895003"
         }
       },
       "mods": {
@@ -1973,6 +1973,127 @@
       "mods": {
         "NellisAFB": [
           "Nellis Air Force Base"
+        ]
+      }
+    },
+    "3800233932": {
+      "assets": "b41be47565c86668122cce0ac0da370e27e18b233c9e43f2c503069569dd4238",
+      "maps": {
+        "BarcoAbandonado": {
+          "bounds": [
+            12032,
+            6400,
+            12288,
+            6656
+          ],
+          "hash": "74916283cef5b18e3f894298acdaeda309ccb111725e11101192af1f9d3bd438"
+        },
+        "Factory": {
+          "bounds": [
+            12544,
+            11008,
+            13056,
+            11520
+          ],
+          "hash": "48b9ee5da27bc68ea58ddbf18b143b2ac088bcb8f071bef45d6667ec71b6c8de"
+        },
+        "MilitaryComplex": {
+          "bounds": [
+            5376,
+            8960,
+            5888,
+            9472
+          ],
+          "hash": "eddf772088af2e61c00aea35ce068f27598e95fe2dc880189bbb1b179f22cac2"
+        },
+        "NumarkComplex": {
+          "bounds": [
+            15872,
+            3584,
+            16384,
+            4096
+          ],
+          "hash": "d4b7ce9fe7664a71d3cc7709ecb6f8a0e49eb3ac521a72be913c052fe70dfb33"
+        },
+        "SnakeMansion": {
+          "bounds": [
+            11008,
+            10752,
+            11520,
+            11264
+          ],
+          "hash": "03bc3aed321a8f2ae86d29d6ce949a64ca2e8f2d68fe113a4bac60f3f927fb81"
+        },
+        "snakeville_0": {
+          "bounds": [
+            5888,
+            5632,
+            6400,
+            6144
+          ],
+          "hash": "c50ba11a83d21c319d0e8844ed0d611b756b320e3d25e243f783b403557de263"
+        },
+        "snakeville_1": {
+          "bounds": [
+            6144,
+            5632,
+            6656,
+            6144
+          ],
+          "hash": "461a9ff496a9449ccd971ae619f8f11572beee9d3dbac810892c16c59ca28916"
+        },
+        "tlv": {
+          "bounds": [
+            14336,
+            2816,
+            14592,
+            3072
+          ],
+          "hash": "2bac7eb9b579d81656decda473f59608a7b543547cd0a3b498ff113b161624b7"
+        },
+        "tmarch": {
+          "bounds": [
+            9984,
+            12288,
+            10240,
+            12544
+          ],
+          "hash": "0db43e006284dbc46537f219456dd94491b223d39b82387418a52d3442e469de"
+        },
+        "tvs": {
+          "bounds": [
+            13312,
+            5632,
+            13568,
+            5888
+          ],
+          "hash": "e605d6eb51f24e9e6e523196f6604b6f18b2cb48e156b520386cfc672de12543"
+        }
+      },
+      "mods": {
+        "SMP_BarcoAbandonado": [
+          "BarcoAbandonado"
+        ],
+        "SMP_Factory": [
+          "Factory"
+        ],
+        "SMP_MilitaryComplex": [
+          "MilitaryComplex"
+        ],
+        "SMP_NumarkComplex": [
+          "NumarkComplex"
+        ],
+        "SMP_SnakeMansion": [
+          "SnakeMansion"
+        ],
+        "SMP_SnakeMechanicalOverhaul": [
+          "tlv",
+          "tmarch",
+          "tvs"
+        ],
+        "SMP_SnakeVille": [
+          "snakeville_0",
+          "snakeville_1"
         ]
       }
     },
