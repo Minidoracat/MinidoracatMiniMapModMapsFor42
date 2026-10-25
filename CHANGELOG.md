@@ -7,13 +7,13 @@
 - **德克丹（Dirkerdam Map Fix 的道路資料）導航修正**：
   - 東南一帶約 55 條街（Lincoln Ave、Locust Lane、Beachway Ave、Hawthorn Ave、Garfield Ave 一帶）和主要路網之間有兩處斷點，從城裡導航不過去、在那一帶也導航不出來。本包沿實際路面補上 River Road 南端接 Lincoln Ave 的路段（「德克丹 02 號路（小地圖補）」，路口中間堆滿廢棄物，只留一條窄道）與 Garfield Ave 接 Mack Dr 的路段（「德克丹 03 號路（小地圖補）」，中間約 30 格是土地）。
   - Stephen Ave 一處原作者多畫一段往回折的線，路線在那裡折成髮夾彎、自動駕駛會原地反覆調頭；River Road 西端多畫一小段越過 State Road，同樣會調頭。兩處都拿掉多出來的點。
-  - Euclid Ave 北端原作者直接接到 Prospect Ave，但實際上那裡有一整排圍籬；路尾退回圍籬前，導航改走真正的路口。5th Ave 接 Old Turnpike 那段的線貼著路口的柱子，改成從兩根柱子中間過。
+  - Euclid Ave 北端原作者直接接到 Prospect Ave，但實際上那裡有一整排圍籬；Cedar Ave 東段是兩排圍籬中間 1 格寬的走道，原作者卻接到 Church St。兩處都把路尾退回能開的地方，導航改走真正的路口。5th Ave 接 Old Turnpike 那段的線貼著路口的柱子，改成從兩根柱子中間過。
   - Highway 11 西段、Bristol Pike、Beachway Road、Montgomery Ave 是中間有分隔帶（種樹）的雙向路，原作者只畫一條中線、線落在分隔帶上，自動駕駛會沿著分隔帶的樹開。改成兩側車道各一條線（對向車道的搜尋名稱是「德克丹 04～07 號路（小地圖補）」）。
   - 66 條原作者標的路寬比實際路面寬（多半標 8 格、實際 6 格），自動駕駛靠右時車身會壓出路面、擦到路邊的樹；路寬改成實際寬度。
 - **大熊湖**：Lakeview Dr、Deerhead Road 原作者標的路寬比實際路面寬，改成實際寬度。
 - 這些修正需要小地圖主 MOD 0.47.0 以上；原作者日後改動那幾條路時，該筆修正自動停用、改用作者版本。
 
-> 技術要點：`road-repairs/dirkerdam.json`（Map Fix 3821109144，sha 9a6190…）74 筆：drop-vertex 3（Stephen Ave #53、River Road #6 尾端點 trimTo State Road、5th Ave #144）、width-fix 66、新型態 median-split 4（#1 Bristol Pike、#5 Highway 11、#10 Beachway Road、#30 Montgomery Ave：本線改成一側 6 格車道中線＋`replacementWidth`，對向車道是補充道路 04–07 號）、新型態 trim-detach 1（Euclid Ave #147 北端退到 Prospect 吸附距離＋1 格外）。`road-repairs/big-bear-lake.json` width-fix 2。補充道路 `dirkerdam` 02–07（02、03 用 `evidence.dirt` 記裸土缺口取樣）。兩個新型態與裸土缺口欄位寫進 `gen_street_repairs.py`／`gen_road_supplements.py` 的判定與 selftest，主 MOD 不需改版（`replacementPoints`＋`replacementWidth` 並用 0.47.0 起支援）。離線 `offline_nav.lua`（本版起套本包修正）：(6157,2363)→(8887,4878) 修前 noroad、修後 5040；(7878.5,5200)→(7918,5101) 修前 noroad、修後 131；德克丹 300 組隨機起訖修前 43 組 noroad、修後 3 組（作者其他孤立小街），沒有任何一組變成 noroad 或變長。
+> 技術要點：`road-repairs/dirkerdam.json`（Map Fix 3821109144，sha 9a6190…）75 筆：drop-vertex 3（Stephen Ave #53、River Road #6 尾端點 trimTo State Road、5th Ave #144）、width-fix 66、新型態 median-split 4（#1 Bristol Pike、#5 Highway 11、#10 Beachway Road、#30 Montgomery Ave：本線改成一側 6 格車道中線＋`replacementWidth`，對向車道是補充道路 04–07 號）、新型態 trim-detach 2（Euclid Ave #147 北端退到 Prospect 吸附距離＋1 格外；Cedar Ave #532 東端退出 Church St）。`road-repairs/big-bear-lake.json` width-fix 2。補充道路 `dirkerdam` 02–07（02、03 用 `evidence.dirt` 記裸土缺口取樣）。兩個新型態與裸土缺口欄位寫進 `gen_street_repairs.py`／`gen_road_supplements.py` 的判定與 selftest，主 MOD 不需改版（`replacementPoints`＋`replacementWidth` 並用 0.47.0 起支援）。離線 `offline_nav.lua`（本版起套本包修正）：(6157,2363)→(8887,4878) 修前 noroad、修後 5040；(7878.5,5200)→(7918,5101) 修前 noroad、修後 131；德克丹 300 組隨機起訖修前 43 組 noroad、修後 3 組（作者其他孤立小街），沒有任何一組變成 noroad 或變長。
 
 ## [42.21.0-0.23.0] - 2026-10-25
 

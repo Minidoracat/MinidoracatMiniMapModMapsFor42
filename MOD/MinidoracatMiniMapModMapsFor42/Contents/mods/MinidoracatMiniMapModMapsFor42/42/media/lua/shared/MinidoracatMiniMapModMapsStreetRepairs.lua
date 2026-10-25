@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetRepairs.lua（生成檔，勿手編）
 -- 由 scripts/gen_street_repairs.py 從 road-repairs/*.json 編譯
--- 6 個 dataset／1038 筆修正（中心線 44、接線 3、移除轉折點 4、換路寬 69、分隔路拆線 4、端點退離 1、隱藏標籤候選 913）
+-- 6 個 dataset／1039 筆修正（中心線 44、接線 3、移除轉折點 4、換路寬 69、分隔路拆線 4、端點退離 2、隱藏標籤候選 913）
 --
 -- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log
 -- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。
@@ -286,6 +286,8 @@ do
     ops[527] = { expectedWidth = 10, expectedPoints = { 7929.5, 3045, 7855.5, 3045 }, replacementWidth = 6 }
     -- #531 Greenwood Ave
     ops[531] = { expectedWidth = 8, expectedPoints = { 9599.5, 5101.5, 9599.5, 5029.5, 9600.5, 5028.5 }, replacementWidth = 6 }
+    -- #532 Cedar Ave
+    ops[532] = { expectedWidth = 4, expectedPoints = { 8745.5, 2936.5, 8744.599609375, 2944, 8680.5, 2944 }, replacementPoints = { 8713.5, 2944, 8680.5, 2944 } }
     Repairs["dirkerdam"] = { schemaVersion = 1, mapMod = "DirkerdamMapFix", mapDir = "Dirkerdam Integrated B42 Fix", operations = ops }
 end
 

@@ -50,7 +50,7 @@
   - 移除多餘轉折點 3 處：作者的路在路口旁多畫了轉折點或尾巴，導航會把路線拉到隔壁路上或走成 Z 字而偏離路面；拿掉這些點後沿實際路面走
   - 路寬校正 66 條：作者標的路寬和實際路面不符（例如有分隔島的林蔭大道只標一條車道，或標得比路面寬），自動駕駛的靠右位置會落到分隔島或路邊；改成實際路面寬後靠右行駛落在車道上
   - 分隔路拆成兩條車道線 4 條：作者把有中央分隔帶的路只畫一條中線、線落在分隔帶上；改成兩側車道各一條線（對向車道由本包補充道路提供），自動駕駛不再沿分隔帶的樹走
-  - 穿過圍籬的路口斷開 1 處：作者的路尾穿過圍籬接到隔壁路，導航以為相通、實際過不去；把路尾退回圍籬前，導航改走真正的路口
+  - 穿過圍籬的路口斷開 2 處：作者的路尾穿過圍籬接到隔壁路，導航以為相通、實際過不去；把路尾退回圍籬前，導航改走真正的路口
   - 補充道路 7 條：作者沒放進道路資料的路由本包補上，路名 `德克丹 01 號路（小地圖補）`～`德克丹 07 號路（小地圖補）`（英文 `Dirkerdam Rd 01 (MiniMap)`～`Dirkerdam Rd 07 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **陰屍路監獄（The Walking Dead Prison）**
   - 補充道路 2 條：作者沒放進道路資料的路由本包補上，路名 `陰屍路監獄 01 號路（小地圖補）`～`陰屍路監獄 02 號路（小地圖補）`（英文 `The Walking Dead Prison Rd 01 (MiniMap)`～`The Walking Dead Prison Rd 02 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
@@ -90,7 +90,7 @@
 | 科里爾登（2026 移植版）<br>Coryerdon (2026 port) | [3821470553](https://steamcommunity.com/sharedfiles/filedetails/?id=3821470553) | ❌ 無 | — | — | ✅ 6 條 |
 | 雛菊郡<br>Daisy County | [3390753141](https://steamcommunity.com/sharedfiles/filedetails/?id=3390753141) | ✅ 44 條 | ✅ 44 條 | 輪廓道路改中心線 44 條 | — |
 | 拂曉鎮<br>Dawn Town | [3666180085](https://steamcommunity.com/sharedfiles/filedetails/?id=3666180085) | ❌ 無 | — | — | — |
-| 德克丹<br>Dirkerdam | [3818766091](https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091) | ✅ 696 條（[3821109144](https://steamcommunity.com/sharedfiles/filedetails/?id=3821109144)） | ✅ 221 條 | 移除多餘轉折點 3 處、路寬校正 66 條、分隔路拆成兩條車道線 4 條、穿過圍籬的路口斷開 1 處 | ✅ 7 條 |
+| 德克丹<br>Dirkerdam | [3818766091](https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091) | ✅ 696 條（[3821109144](https://steamcommunity.com/sharedfiles/filedetails/?id=3821109144)） | ✅ 221 條 | 移除多餘轉折點 3 處、路寬校正 66 條、分隔路拆成兩條車道線 4 條、穿過圍籬的路口斷開 2 處 | ✅ 7 條 |
 | 多多市<br>DuoDuo City | [3710155331](https://steamcommunity.com/sharedfiles/filedetails/?id=3710155331) | ❌ 無 | — | — | — |
 | 迴音河軍事基地<br>EchoCreek Military Base | [3476333350](https://steamcommunity.com/sharedfiles/filedetails/?id=3476333350) | ❌ 無 | — | — | — |
 | 艾德汽車回收場<br>Ed's Auto Salvage | [3478900814](https://steamcommunity.com/sharedfiles/filedetails/?id=3478900814) | ✅ 3 條 | ✅ 3 條 | — | — |

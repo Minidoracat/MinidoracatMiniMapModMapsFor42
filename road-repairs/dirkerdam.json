@@ -4655,6 +4655,30 @@
         ]
       },
       "reason": "width-fix（AutoDrive NC1／Map Fix 路寬偏寬）：作者標 w8，road-surfaces 沿線每 4 格一個橫剖面 15 個，中線所在連續路面寬中位 6 格（±1 內 100%、中線偏 -0.6），軸向橫截面 6 個量到恰好 6 格。照 w8 靠右，車身外緣落在路面外；改成 6。"
+    },
+    {
+      "index": 532,
+      "name": "Cedar Ave",
+      "expectedWidth": 4,
+      "expectedPoints": [
+        8745.5,
+        2936.5,
+        8744.599609375,
+        2944,
+        8680.5,
+        2944
+      ],
+      "replacementPoints": [
+        8713.5,
+        2944.0,
+        8680.5,
+        2944
+      ],
+      "detachFrom": {
+        "index": 112,
+        "name": "Church St"
+      },
+      "reason": "trim-detach（AutoDrive NB1Fix 回報，ND5 同型）：Cedar Ave 東段 (8744.6,2944)→x 8715 是兩排 fencing_01_5（y 2943、2945，lotpack 讀出）中間 1 格寬的碎石走道，車過不去；東端 (8745.5,2936.5) 吸附到 Church St（0.5 格），導航把車帶進走道，正式服 P97 拖車在 (8740.75,2943.05) 判堵→StopStuck。東端沿原線退到 (8713.5,2944)（西段 x 8695–8714 是正常路面），截掉 38.7 格；新端點 12 格內沒有其他街，西端照舊接 Spring Ave。"
     }
   ]
 }
