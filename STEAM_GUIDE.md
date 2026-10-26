@@ -195,6 +195,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 東南一帶約 55 條街（Lincoln Ave、Beachway Ave、Garfield Ave 一帶）和主要路網之間有兩處斷點；本包補上 River Road 接 Lincoln Ave（02 號，路口中間堆滿廢棄物，只留一條窄道）與 Garfield Ave 接 Mack Dr（03 號，中間約 30 格是土地）。
 [*] Highway 11 西段、Bristol Pike、Beachway Road、Montgomery Ave 中間有種樹的分隔帶，原作者只畫一條中線、線落在分隔帶上；改成兩側車道各一條線，對向車道的搜尋名稱是「德克丹 04～07 號路（小地圖補）」。
 [*] Stephen Ave、River Road 西端兩處原作者多畫的折返線拿掉，自動駕駛不再原地反覆調頭；Euclid Ave 北端實際上被圍籬擋住，不再接到 Prospect Ave；Cedar Ave 東段是兩排圍籬中間的窄走道，不再接到 Church St；5th Ave 接 Old Turnpike 那段改從路口兩根柱子中間過。
+[*] Mauri Ave 中間有一整排分隔圍籬，Main Ave、Cedar Ave 在地圖上直直穿過去；Cypress Lane 西端畫在 Mauri Ave 南段種樹的分隔帶上。導航不再從圍籬和樹中間穿過（地圖照原樣畫），改走真正通的路口（需要小地圖主 MOD 新版，舊版照舊）。
 [*] 66 條原作者標的路寬比實際路面寬，改成實際寬度，自動駕駛靠右時不再壓出路面（需要小地圖主 MOD 0.47.0 以上）。
 [/list]
 [*] [b]Raven Creek（渡鴉溪）[/b]：
