@@ -425,6 +425,19 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "BedfordFalls.pyramid.zip", mapMod = "BedfordFallsB42", mapDir = "BedfordFalls",
             streetSupplement = StreetSupplements["bedford-falls"],
             bounds = { 12032, 7424, 14592, 13312 }, nameKey = "UI_MinidoracatMiniMapModMaps_BedfordFalls" },
+        -- JIB - Peanut Butter Factory（3595453862）：6 cell（x 55–56、y 12–14），佔滿 300 格 (47,11)；作者沒有 streets.xml，
+        -- 補充道路沿原版補回被裁的 KY-841 雙向與 One Horse Road 兩段
+        { zip = "jibs.pyramid.zip", mapMod = "jibsMap", mapDir = "jibs",
+            streetSupplement = StreetSupplements["jib-factory"],
+            bounds = { 14080, 3072, 14592, 3840 }, nameKey = "UI_MinidoracatMiniMapModMaps_JIBPeanutButterFactory" },
+        { zip = "Basement06.pyramid.zip", mapMod = "Basement06",
+            bounds = { 4864, 11520, 5632, 12032 }, nameKey = "UI_MinidoracatMiniMapModMaps_Basement06" },
+        -- Oakshire（3535422434）：20 cell（x 31–35、y 29–32），和亞特蘭大安全區 9、綠港 6、艾德汽車回收場 3、
+        -- 小鎮區 2、楓木林鎮 2 個 cell 重疊。作者沒有 streets.xml：補充道路由作者 worldmap.xml 推導鎮內道路，
+        -- 被裁的原版 River Walk Road、Riverside Road、Riverside Link Road 沿原版頂點補回（佔滿 3×3 個 300 格）
+        { zip = "Oakshire42.pyramid.zip", mapMod = "Oakshire42", mapDir = "Oakshire42",
+            streetSupplement = StreetSupplements["oakshire"],
+            bounds = { 7936, 7424, 9216, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_Oakshire" },
     })
 else
     print("[MinidoracatMiniMapModMaps] main MOD API (MinidoracatMiniMapAPI) not found -- install and enable the Minidoracat MiniMap for B42 main MOD")

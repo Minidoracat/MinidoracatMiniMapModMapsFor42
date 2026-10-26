@@ -1,0 +1,79 @@
+{
+  "dataset": "jib-factory",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3595453862",
+    "map_mod": "jibsMap",
+    "map_dir": "jibs",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "a7212b54820d8443f331d1b6dfa5b67ca7de4011cd214113a9d494eb76dffb70",
+    "captured": "2026-10-27",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "JIB Peanut Butter Factory",
+    "ch": "JIB 花生醬工廠",
+    "cn": "JIB 花生酱工厂",
+    "jp": "JIB ピーナッツバター工場"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 6,
+      "points": [
+        14000,
+        3445,
+        14500,
+        3445
+      ],
+      "evidence": {
+        "samples": 501,
+        "on_road": 501
+      }
+    },
+    {
+      "no": 2,
+      "width": 6,
+      "points": [
+        14000,
+        3455,
+        14500,
+        3455
+      ],
+      "evidence": {
+        "samples": 501,
+        "on_road": 501
+      }
+    },
+    {
+      "no": 3,
+      "width": 4,
+      "points": [
+        14246.5,
+        3466,
+        14500,
+        3466
+      ],
+      "evidence": {
+        "samples": 254,
+        "on_road": 254
+      }
+    },
+    {
+      "no": 4,
+      "width": 3,
+      "points": [
+        13956,
+        3757.5,
+        14248,
+        3465.5
+      ],
+      "evidence": {
+        "samples": 413,
+        "on_road": 413
+      }
+    }
+  ],
+  "retired": []
+}

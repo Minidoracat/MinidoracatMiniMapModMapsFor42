@@ -112,7 +112,10 @@ $MapModExclude = @(
     'SMP_SnakeMansion', 'SMP_SnakeVille', 'SMP_SnakeMechanicalOverhaul',
     # Bedford Falls：和已在 maptest 的卡姆登郡（121 cell）、烏鴉山市（58）、貓又嶺等 11 張整格重疊，
     # 外框內 x 47–48 另有 44 個原版 cell 會蓋住陰屍路監獄等圖。掛載與補充道路用 E2E 單圖情境 bedford-mp 驗。
-    'BedfordFallsB42'
+    'BedfordFallsB42',
+    # Oakshire：和已在 maptest 的亞特蘭大安全區（9 cell）、綠港（6）、艾德汽車回收場、小鎮區、楓木林鎮整格重疊。
+    # 掛載與補充道路用 E2E 情境驗。
+    'Oakshire42'
 )
 
 # 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）

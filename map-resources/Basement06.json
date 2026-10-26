@@ -1,0 +1,13 @@
+{
+  "zip": "Basement06.pyramid.zip",
+  "mapDir": "Basement06",
+  "rawRecords": 10,
+  "aliases": {},
+  "cells300": [[17, 39]],
+  "entries": [
+    {"cat": "church", "rects": [[5126, 11929, 8, 5]], "bbox": [5126, 11929, 8, 5], "underground": false},
+    {"cat": "food", "rects": [[5177, 11797, 6, 6]], "bbox": [5177, 11797, 6, 6], "underground": false},
+    {"cat": "grocery", "rects": [[5212, 11782, 5, 6]], "bbox": [5209, 11782, 8, 6], "underground": false}
+  ],
+  "parking": []
+}

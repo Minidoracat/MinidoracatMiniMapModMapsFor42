@@ -1,0 +1,26 @@
+<streets version="1">
+    <street name="JIB Peanut Butter Factory Rd 01 (MiniMap)" width="6">
+        <points>
+            <point x="14000.0" y="3445.0"/>
+            <point x="14500.0" y="3445.0"/>
+        </points>
+    </street>
+    <street name="JIB Peanut Butter Factory Rd 02 (MiniMap)" width="6">
+        <points>
+            <point x="14000.0" y="3455.0"/>
+            <point x="14500.0" y="3455.0"/>
+        </points>
+    </street>
+    <street name="JIB Peanut Butter Factory Rd 03 (MiniMap)" width="4">
+        <points>
+            <point x="14246.5" y="3466.0"/>
+            <point x="14500.0" y="3466.0"/>
+        </points>
+    </street>
+    <street name="JIB Peanut Butter Factory Rd 04 (MiniMap)" width="3">
+        <points>
+            <point x="13956.0" y="3757.5"/>
+            <point x="14248.0" y="3465.5"/>
+        </points>
+    </street>
+</streets>

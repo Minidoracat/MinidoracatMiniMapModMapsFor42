@@ -1,0 +1,598 @@
+<streets version="1">
+    <street name="Oakshire Rd 01 (MiniMap)" width="6">
+        <points>
+            <point x="8079.0" y="7500.0"/>
+            <point x="9177.5" y="7500.0"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 02 (MiniMap)" width="6">
+        <points>
+            <point x="8731.5" y="7574.5"/>
+            <point x="8774.5" y="7575.5"/>
+            <point x="8774.5" y="7619.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 03 (MiniMap)" width="6">
+        <points>
+            <point x="8261.5" y="7503.5"/>
+            <point x="8262.5" y="7587.5"/>
+            <point x="8399.5" y="7587.5"/>
+            <point x="8399.5" y="7611.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 04 (MiniMap)" width="4">
+        <points>
+            <point x="8571.5" y="7555.5"/>
+            <point x="8570.5" y="7611.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 05 (MiniMap)" width="4">
+        <points>
+            <point x="8630.5" y="7560.5"/>
+            <point x="8629.5" y="7611.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 06 (MiniMap)" width="6">
+        <points>
+            <point x="8729.5" y="7583.5"/>
+            <point x="8663.5" y="7583.5"/>
+            <point x="8654.5" y="7592.5"/>
+            <point x="8654.5" y="7655.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 07 (MiniMap)" width="4">
+        <points>
+            <point x="8276.5" y="7588.5"/>
+            <point x="8275.5" y="7673.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 08 (MiniMap)" width="6">
+        <points>
+            <point x="8343.5" y="7588.5"/>
+            <point x="8343.5" y="7704.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 09 (MiniMap)" width="4">
+        <points>
+            <point x="8344.5" y="7623.5"/>
+            <point x="8390.5" y="7623.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 10 (MiniMap)" width="6">
+        <points>
+            <point x="8397.5" y="7657.5"/>
+            <point x="8344.5" y="7658.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 11 (MiniMap)" width="4">
+        <points>
+            <point x="8498.5" y="7605.5"/>
+            <point x="8496.5" y="7613.5"/>
+            <point x="8485.5" y="7614.5"/>
+            <point x="8485.5" y="7630.5"/>
+            <point x="8496.5" y="7642.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 12 (MiniMap)" width="6">
+        <points>
+            <point x="8522.5" y="7639.5"/>
+            <point x="8501.5" y="7639.5"/>
+            <point x="8497.5" y="7642.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 13 (MiniMap)" width="6">
+        <points>
+            <point x="8653.5" y="7612.5"/>
+            <point x="8535.5" y="7612.5"/>
+            <point x="8523.5" y="7624.5"/>
+            <point x="8523.5" y="7655.5"/>
+            <point x="8698.5" y="7656.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 14 (MiniMap)" width="4">
+        <points>
+            <point x="8655.5" y="7627.5"/>
+            <point x="8698.5" y="7627.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 15 (MiniMap)" width="6">
+        <points>
+            <point x="8699.5" y="7584.5"/>
+            <point x="8699.5" y="7688.5"/>
+            <point x="8729.5" y="7689.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 16 (MiniMap)" width="4">
+        <points>
+            <point x="8796.5" y="7592.5"/>
+            <point x="8795.5" y="7620.5"/>
+            <point x="8731.5" y="7620.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 17 (MiniMap)" width="4">
+        <points>
+            <point x="8764.5" y="7642.5"/>
+            <point x="8819.5" y="7642.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 18 (MiniMap)" width="4">
+        <points>
+            <point x="8821.5" y="7600.5"/>
+            <point x="8853.5" y="7601.5"/>
+            <point x="8853.5" y="7681.5"/>
+            <point x="8821.5" y="7682.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 19 (MiniMap)" width="4">
+        <points>
+            <point x="8118.5" y="7502.5"/>
+            <point x="8118.5" y="7832.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 20 (MiniMap)" width="6">
+        <points>
+            <point x="8260.5" y="7559.5"/>
+            <point x="8211.5" y="7560.5"/>
+            <point x="8211.5" y="7832.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 21 (MiniMap)" width="4">
+        <points>
+            <point x="8465.5" y="7646.5"/>
+            <point x="8464.5" y="7704.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 22 (MiniMap)" width="6">
+        <points>
+            <point x="8496.5" y="7643.5"/>
+            <point x="8493.5" y="7647.5"/>
+            <point x="8493.5" y="7704.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 23 (MiniMap)" width="4">
+        <points>
+            <point x="8552.5" y="7657.5"/>
+            <point x="8552.5" y="7704.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 24 (MiniMap)" width="6">
+        <points>
+            <point x="8730.5" y="7503.5"/>
+            <point x="8730.5" y="7831.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 25 (MiniMap)" width="6">
+        <points>
+            <point x="8775.5" y="7591.5"/>
+            <point x="8820.5" y="7592.5"/>
+            <point x="8819.5" y="7689.5"/>
+            <point x="8763.5" y="7688.5"/>
+            <point x="8763.5" y="7621.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 26 (MiniMap)" width="6">
+        <points>
+            <point x="8573.5" y="7704.5"/>
+            <point x="8212.5" y="7705.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 27 (MiniMap)" width="4">
+        <points>
+            <point x="8788.5" y="7690.5"/>
+            <point x="8787.5" y="7740.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 28 (MiniMap)" width="4">
+        <points>
+            <point x="8811.5" y="7690.5"/>
+            <point x="8812.5" y="7697.5"/>
+            <point x="8824.5" y="7698.5"/>
+            <point x="8823.5" y="7776.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 29 (MiniMap)" width="6">
+        <points>
+            <point x="8321.5" y="7706.5"/>
+            <point x="8321.5" y="7832.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 30 (MiniMap)" width="4">
+        <points>
+            <point x="8350.5" y="7706.5"/>
+            <point x="8350.5" y="7755.5"/>
+            <point x="8396.5" y="7755.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 31 (MiniMap)" width="6">
+        <points>
+            <point x="8485.5" y="7706.5"/>
+            <point x="8484.5" y="7831.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 32 (MiniMap)" width="6">
+        <points>
+            <point x="8486.5" y="7761.5"/>
+            <point x="8535.5" y="7761.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 33 (MiniMap)" width="6">
+        <points>
+            <point x="8536.5" y="7760.5"/>
+            <point x="8537.5" y="7755.5"/>
+            <point x="8573.5" y="7756.5"/>
+            <point x="8573.5" y="7833.0"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 34 (MiniMap)" width="6">
+        <points>
+            <point x="8574.5" y="7766.5"/>
+            <point x="8667.5" y="7766.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 35 (MiniMap)" width="10">
+        <points>
+            <point x="8654.5" y="7753.5"/>
+            <point x="8641.5" y="7755.5"/>
+            <point x="8618.5" y="7754.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 36 (MiniMap)" width="14">
+        <points>
+            <point x="8792.5" y="7758.5"/>
+            <point x="8779.5" y="7759.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 37 (MiniMap)" width="6">
+        <points>
+            <point x="8433.5" y="7706.5"/>
+            <point x="8433.5" y="7830.5"/>
+            <point x="8435.5" y="7832.5"/>
+            <point x="8432.5" y="7836.5"/>
+            <point x="8432.5" y="7892.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 38 (MiniMap)" width="6">
+        <points>
+            <point x="8536.5" y="7762.5"/>
+            <point x="8536.5" y="7800.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 39 (MiniMap)" width="4">
+        <points>
+            <point x="8486.5" y="7801.5"/>
+            <point x="8729.5" y="7802.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 40 (MiniMap)" width="4">
+        <points>
+            <point x="8784.5" y="7803.5"/>
+            <point x="8783.5" y="7826.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 41 (MiniMap)" width="6">
+        <points>
+            <point x="8765.5" y="7802.5"/>
+            <point x="8824.5" y="7803.5"/>
+            <point x="8824.5" y="7866.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 42 (MiniMap)" width="8">
+        <points>
+            <point x="8000.0" y="7833.0"/>
+            <point x="8312.0" y="7833.0"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 43 (MiniMap)" width="8">
+        <points>
+            <point x="8300.0" y="7833.0"/>
+            <point x="8435.0" y="7833.0"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 44 (MiniMap)" width="3">
+        <points>
+            <point x="8420.5" y="7817.5"/>
+            <point x="8419.5" y="7832.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 45 (MiniMap)" width="12">
+        <points>
+            <point x="8435.0" y="7833.0"/>
+            <point x="8698.5" y="7833.0"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 46 (MiniMap)" width="4">
+        <points>
+            <point x="8698.5" y="7829.0"/>
+            <point x="8764.5" y="7829.0"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 47 (MiniMap)" width="4">
+        <points>
+            <point x="8698.5" y="7835.0"/>
+            <point x="8764.5" y="7835.0"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 48 (MiniMap)" width="4">
+        <points>
+            <point x="8502.5" y="7834.5"/>
+            <point x="8502.5" y="7893.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 49 (MiniMap)" width="6">
+        <points>
+            <point x="8698.5" y="7872.5"/>
+            <point x="8763.5" y="7872.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 50 (MiniMap)" width="6">
+        <points>
+            <point x="8765.5" y="7867.5"/>
+            <point x="8851.5" y="7867.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 51 (MiniMap)" width="4">
+        <points>
+            <point x="8574.5" y="7906.5"/>
+            <point x="8652.5" y="7907.5"/>
+            <point x="8652.5" y="8001.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 52 (MiniMap)" width="4">
+        <points>
+            <point x="8698.5" y="7802.5"/>
+            <point x="8696.5" y="8065.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 53 (MiniMap)" width="6">
+        <points>
+            <point x="8698.5" y="7911.5"/>
+            <point x="8763.5" y="7911.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 54 (MiniMap)" width="8">
+        <points>
+            <point x="8764.5" y="8264.5"/>
+            <point x="8764.5" y="7728.5"/>
+            <point x="8669.5" y="7727.5"/>
+            <point x="8668.5" y="7800.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 55 (MiniMap)" width="6">
+        <points>
+            <point x="8765.5" y="7916.5"/>
+            <point x="8799.5" y="7916.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 56 (MiniMap)" width="6">
+        <points>
+            <point x="8800.5" y="7868.5"/>
+            <point x="8800.5" y="7976.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 57 (MiniMap)" width="6">
+        <points>
+            <point x="8856.5" y="7821.5"/>
+            <point x="8856.5" y="7866.5"/>
+            <point x="8852.5" y="7869.5"/>
+            <point x="8852.5" y="7943.5"/>
+            <point x="8801.5" y="7944.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 58 (MiniMap)" width="4">
+        <points>
+            <point x="8491.5" y="7895.5"/>
+            <point x="8491.5" y="7965.5"/>
+            <point x="8523.5" y="7966.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 59 (MiniMap)" width="4">
+        <points>
+            <point x="8524.5" y="7895.5"/>
+            <point x="8524.5" y="7989.5"/>
+            <point x="8572.5" y="7990.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 60 (MiniMap)" width="12">
+        <points>
+            <point x="8573.5" y="7833.0"/>
+            <point x="8573.5" y="8067.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 61 (MiniMap)" width="6">
+        <points>
+            <point x="8717.5" y="7912.5"/>
+            <point x="8717.5" y="7974.5"/>
+            <point x="8731.5" y="7976.5"/>
+            <point x="8763.5" y="7976.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 62 (MiniMap)" width="6">
+        <points>
+            <point x="8765.5" y="7981.5"/>
+            <point x="8799.5" y="7981.5"/>
+            <point x="8802.5" y="7977.5"/>
+            <point x="8884.5" y="7977.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 63 (MiniMap)" width="6">
+        <points>
+            <point x="8831.5" y="7945.5"/>
+            <point x="8831.5" y="7976.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 64 (MiniMap)" width="4">
+        <points>
+            <point x="8853.5" y="7922.5"/>
+            <point x="8885.5" y="7923.5"/>
+            <point x="8885.5" y="7967.5"/>
+            <point x="8849.5" y="7968.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 65 (MiniMap)" width="4">
+        <points>
+            <point x="8572.5" y="7894.5"/>
+            <point x="8411.5" y="7893.5"/>
+            <point x="8410.5" y="7916.5"/>
+            <point x="8434.5" y="7918.5"/>
+            <point x="8434.5" y="7992.5"/>
+            <point x="8475.5" y="7994.5"/>
+            <point x="8475.5" y="8051.5"/>
+            <point x="8493.5" y="8070.5"/>
+            <point x="8569.5" y="8071.5"/>
+            <point x="8572.5" y="8068.5"/>
+            <point x="8576.5" y="8070.5"/>
+            <point x="8629.5" y="8070.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 66 (MiniMap)" width="4">
+        <points>
+            <point x="8550.5" y="7991.5"/>
+            <point x="8549.5" y="8006.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 67 (MiniMap)" width="4">
+        <points>
+            <point x="8696.5" y="8002.5"/>
+            <point x="8574.5" y="8003.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 68 (MiniMap)" width="6">
+        <points>
+            <point x="8731.5" y="7976.5"/>
+            <point x="8731.5" y="8023.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 69 (MiniMap)" width="6">
+        <points>
+            <point x="8854.5" y="7978.5"/>
+            <point x="8854.5" y="8058.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 70 (MiniMap)" width="4">
+        <points>
+            <point x="8885.5" y="7978.5"/>
+            <point x="8884.5" y="8043.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 71 (MiniMap)" width="4">
+        <points>
+            <point x="8886.5" y="8005.5"/>
+            <point x="8936.5" y="8005.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 72 (MiniMap)" width="4">
+        <points>
+            <point x="8696.5" y="8039.5"/>
+            <point x="8623.5" y="8040.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 73 (MiniMap)" width="4">
+        <points>
+            <point x="8705.5" y="8039.5"/>
+            <point x="8725.5" y="8039.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 74 (MiniMap)" width="4">
+        <points>
+            <point x="8698.5" y="8024.5"/>
+            <point x="8763.5" y="8024.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 75 (MiniMap)" width="6">
+        <points>
+            <point x="8765.5" y="8048.5"/>
+            <point x="8853.5" y="8048.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 76 (MiniMap)" width="8">
+        <points>
+            <point x="8764.5" y="8059.0"/>
+            <point x="9100.0" y="8059.0"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 77 (MiniMap)" width="4">
+        <points>
+            <point x="8705.5" y="8060.5"/>
+            <point x="8725.5" y="8060.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 78 (MiniMap)" width="4">
+        <points>
+            <point x="8705.5" y="8081.5"/>
+            <point x="8725.5" y="8081.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 79 (MiniMap)" width="4">
+        <points>
+            <point x="8726.5" y="8025.5"/>
+            <point x="8726.5" y="8090.5"/>
+            <point x="8763.5" y="8091.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 80 (MiniMap)" width="4">
+        <points>
+            <point x="8691.5" y="8117.5"/>
+            <point x="8636.5" y="8118.5"/>
+            <point x="8635.5" y="8150.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 81 (MiniMap)" width="4">
+        <points>
+            <point x="8710.5" y="8134.5"/>
+            <point x="8763.5" y="8134.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 82 (MiniMap)" width="6">
+        <points>
+            <point x="8709.5" y="8188.5"/>
+            <point x="8710.5" y="8104.5"/>
+            <point x="8923.5" y="8103.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 83 (MiniMap)" width="4">
+        <points>
+            <point x="8679.5" y="8188.5"/>
+            <point x="8678.5" y="8151.5"/>
+            <point x="8586.5" y="8151.5"/>
+            <point x="8585.5" y="8173.5"/>
+            <point x="8557.5" y="8174.5"/>
+            <point x="8556.5" y="8188.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 84 (MiniMap)" width="8">
+        <points>
+            <point x="8539.5" y="8187.5"/>
+            <point x="8543.5" y="8189.5"/>
+            <point x="8763.5" y="8189.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 85 (MiniMap)" width="4">
+        <points>
+            <point x="8924.5" y="8060.5"/>
+            <point x="8924.5" y="8182.5"/>
+            <point x="8856.5" y="8181.5"/>
+            <point x="8856.5" y="8104.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 86 (MiniMap)" width="4">
+        <points>
+            <point x="8889.5" y="8183.5"/>
+            <point x="8888.5" y="8296.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 87 (MiniMap)" width="6">
+        <points>
+            <point x="8792.5" y="8265.5"/>
+            <point x="8747.5" y="8266.5"/>
+        </points>
+    </street>
+    <street name="Oakshire Rd 88 (MiniMap)" width="8">
+        <points>
+            <point x="8644.5" y="8557.5"/>
+            <point x="8644.0" y="8388.5"/>
+            <point x="8646.0" y="8386.5"/>
+            <point x="8646.0" y="8338.0"/>
+            <point x="8646.0" y="8189.5"/>
+        </points>
+    </street>
+</streets>

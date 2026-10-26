@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **124 張**（92 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **127 張**（95 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯**：下列 **25 組**地圖資料提供繁中／簡中／
@@ -40,9 +40,9 @@
 - **獨立道路修正**：雛菊郡 44 條已知輪廓道路恢復為中心線；卡姆登郡 3 處停在路口前的街道
   沿實際路面接回路網，Brooklawn Blvd（有花台分隔島的林蔭大道，作者只標一條車道寬）路寬改成實際的 11 格
   （需主 MOD 0.47.0 以上）。顯示與導航共用修正；原始點列或路寬改變就略過該筆，避免對新版上游盲套舊補丁。
-- **補充道路**：作者沒放進道路資料的路由本包依作者自己的世界地圖補上（目前康斯鎮 37 條、貝德福德瀑布 74 條）；
+- **補充道路**：作者沒放進道路資料的路由本包依作者自己的世界地圖補上（目前康斯鎮 37 條、貝德福德瀑布 74 條、奧克郡 84 條）；
   地圖蓋住原版道路、導航被截斷的路段則沿原版路線補上（渡鴉溪 1 條、陰屍路監獄 2 條、康斯鎮 1 條、
-  科里爾登 2 條、科里爾登 2026 移植版 6 條、Snake 工廠 1 條、貝德福德瀑布 1 條）；德克丹 Map Fix 的道路資料漏掉的 Brandenburg 接橋沿實際路面補上 1 條。
+  科里爾登 2 條、科里爾登 2026 移植版 6 條、Snake 工廠 1 條、貝德福德瀑布 1 條、JIB 花生醬工廠 4 條、奧克郡 4 條）；德克丹 Map Fix 的道路資料漏掉的 Brandenburg 接橋沿實際路面補上 1 條。
   路名固定帶「(MiniMap)」／「（小地圖補）」，一看就知道不是作者取的名字；可搜尋、可導航。
   作者之後補上或改動道路資料時自動停用、改用作者版本。需搭配支援補充道路的主 MOD 版本。
 - **重複名稱不靠刪路處理**：馬爾德勞 1993 提供 913 筆完整複本候選，僅在同張地圖已有
@@ -178,6 +178,9 @@
 | Snake 修車廠－三月嶺 | `SMP_SnakeMechanicalOverhaul` | 9984,12288 – 10240,12544 |
 | Snake 修車廠－山谷站 | `SMP_SnakeMechanicalOverhaul` | 13312,5632 – 13568,5888 |
 | 貝德福德瀑布 | `BedfordFallsB42` | 12032,7424 – 14592,13312 |
+| JIB 花生醬工廠 | `jibsMap` | 14080,3072 – 14592,3840 |
+| 地下室 06 | `Basement06` | 4864,11520 – 5632,12032 |
+| 奧克郡 | `Oakshire42` | 7936,7424 – 9216,8448 |
 
 ### 新增地圖的限制與衝突
 
@@ -186,6 +189,7 @@
 - 兩張圖都沒有上游 `streets.xml`，本次不新增街名翻譯或導航路網；亦不自動加入全地圖測試組合，避免與既有地圖同時載入。
 - [Snake's ModPack Build 42](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932)（原作者 Snake）：作者目前只支援單人。每張圖是合集裡的一個子 MOD，啟用哪個就掛哪張；修車廠三處跟著玩法子 MOD Snake's Mechanical Overhaul。地塊和已收錄地圖重疊：軍事複合區整張落在多多市裡，SnakeVille 零號區與獵人基地兩版整格重疊、和 SecretZ 六號檢查站、SecretZ 河畔鎮二號檢查站、提基鎮部分重疊，SnakeVille 一號區與獵人基地、提基鎮部分重疊，工廠與途安里整格重疊、和安瑞斯鎮、卡姆登郡、安泊戍鎮部分重疊，Numark 複合區與黑迷宮、豪宅與灰木鎮／馬爾德勞 1993／SecretZ 五號檢查站、廢棄船與西點擴張區各重疊一部分；修車廠路易斯維爾那處與 SecretZ 路易斯維爾軍事複合區、VaultTec 避難所－路易斯維爾同格，三月嶺那處與阿特拉斯地下複合設施、SecretZ 三月嶺研究設施同格。SnakeVille 兩區彼此重疊兩格，以 `Map=` 在前的為準。不加入全地圖測試組合，掛載用 E2E 單機情境 `snake-sp` 驗。
 - [Bedford Falls 贝德福德瀑布 [B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3824438499)（原作者 MX145，B41 舊圖的 B42 移植）：大部分地塊與卡姆登郡重疊，另與烏鴉山市、貓又嶺、安瑞斯鎮、亞特蘭大、途安里、安泊戍鎮、Snake 工廠、西點擴張區、SecretZ 一號檢查站、VaultTec 避難所－馬爾德勞部分重疊，請擇一。範圍框西側兩欄（x 12032–12544）大多沒有本圖地塊，小地圖在那裡畫原版影像：和陰屍路監獄、海棠鎮、VaultTec 聯絡道路一起用時，`Map=` 要把它排在這幾張後面。作者沒附 `streets.xml`，鎮內 74 條路由本包依作者世界地圖補上，另沿原版補回被裁的 KY-60 東端。不加入全地圖測試組合，掛載與補充道路用 E2E 單圖情境 `bedford-mp` 驗。
+- [Oakshire [B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3535422434)（原作者 Txoba）：和亞特蘭大安全區、綠港、艾德汽車回收場、小鎮區、楓木林鎮部分重疊，請擇一。作者沒附 `streets.xml`，鎮內 84 條路由本包依作者世界地圖補上，另沿原版補回被裁的 River Walk Road、Riverside Road 兩段與 Riverside Link Road。不加入全地圖測試組合，掛載與補充道路用 E2E 情境 `oakshire-jib-mp` 驗。
 
 ### 已下架地圖（記錄保留、每日追蹤不含）
 

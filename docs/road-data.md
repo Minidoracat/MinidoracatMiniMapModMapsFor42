@@ -25,11 +25,11 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**124** 張
-- 作者附道路資料（Author road data）：**33** 張；沒有 **91** 張
+- 收錄地圖（Maps）：**127** 張
+- 作者附道路資料（Author road data）：**33** 張；沒有 **94** 張
 - 本包路名翻譯（Translated names）：**25** 張
 - 本包道路修正（Fixes）：**4** 張
-- 本包補充道路（Added roads）：**8** 張
+- 本包補充道路（Added roads）：**10** 張
 
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
 
@@ -57,6 +57,10 @@
   - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `Snake 工廠 01 號路（小地圖補）`（英文 `Snake's Factory Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **貝德福德瀑布（Bedford Falls）**
   - 補充道路 75 條：作者沒放進道路資料的路由本包補上，路名 `貝德福德瀑布 01 號路（小地圖補）`～`貝德福德瀑布 75 號路（小地圖補）`（英文 `Bedford Falls Rd 01 (MiniMap)`～`Bedford Falls Rd 75 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **JIB 花生醬工廠（JIB Peanut Butter Factory）**
+  - 補充道路 4 條：作者沒放進道路資料的路由本包補上，路名 `JIB 花生醬工廠 01 號路（小地圖補）`～`JIB 花生醬工廠 04 號路（小地圖補）`（英文 `JIB Peanut Butter Factory Rd 01 (MiniMap)`～`JIB Peanut Butter Factory Rd 04 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **奧克郡（Oakshire）**
+  - 補充道路 88 條：作者沒放進道路資料的路由本包補上，路名 `奧克郡 01 號路（小地圖補）`～`奧克郡 88 號路（小地圖補）`（英文 `Oakshire Rd 01 (MiniMap)`～`Oakshire Rd 88 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 
 ## 全部地圖（All maps）
 
@@ -186,3 +190,6 @@
 | Snake 修車廠－三月嶺<br>Snake's Auto Shop - March Ridge | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ❌ 無 | — | — | — |
 | Snake 修車廠－山谷站<br>Snake's Auto Shop - Valley Station | [3800233932](https://steamcommunity.com/sharedfiles/filedetails/?id=3800233932) | ❌ 無 | — | — | — |
 | 貝德福德瀑布<br>Bedford Falls | [3824438499](https://steamcommunity.com/sharedfiles/filedetails/?id=3824438499) | ❌ 無 | — | — | ✅ 75 條 |
+| JIB 花生醬工廠<br>JIB Peanut Butter Factory | [3595453862](https://steamcommunity.com/sharedfiles/filedetails/?id=3595453862) | ❌ 無 | — | — | ✅ 4 條 |
+| 地下室 06<br>Basement 06 | [3599769747](https://steamcommunity.com/sharedfiles/filedetails/?id=3599769747) | ❌ 無 | — | — | — |
+| 奧克郡<br>Oakshire | [3535422434](https://steamcommunity.com/sharedfiles/filedetails/?id=3535422434) | ❌ 無 | — | — | ✅ 88 條 |

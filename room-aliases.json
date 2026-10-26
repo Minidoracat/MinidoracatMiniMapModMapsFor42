@@ -315,6 +315,7 @@
       "nekonekammo",
       "nekonekbb",
       "nekonekocall",
+      "nekonekodx",
       "nekonekoguns",
       "nekonekoym1",
       "nekonekoym2"
@@ -744,6 +745,12 @@
       "yinhang",
       "zhaoxiangguan"
     ]
+  },
+  "jibs.pyramid.zip": {
+    "aliases": {
+      "jibsroom": "grocery"
+    },
+    "ignored": []
   },
   "linzi.pyramid.zip": {
     "aliases": {},

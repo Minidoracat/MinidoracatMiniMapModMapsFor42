@@ -36,6 +36,10 @@
       "map_dir": "BarcoAbandonado",
       "workshop_id": "3800233932"
     },
+    "Basement06.pyramid.zip": {
+      "map_dir": "Basement06",
+      "workshop_id": "3599769747"
+    },
     "BedfordFalls.pyramid.zip": {
       "map_dir": "BedfordFalls",
       "workshop_id": "3824438499"
@@ -280,6 +284,10 @@
       "map_dir": "NumarkComplex",
       "workshop_id": "3800233932"
     },
+    "Oakshire42.pyramid.zip": {
+      "map_dir": "Oakshire42",
+      "workshop_id": "3535422434"
+    },
     "Path of Zenith, Louisville.pyramid.zip": {
       "map_dir": "Path of Zenith, Louisville",
       "workshop_id": "3589905072"
@@ -448,6 +456,10 @@
       "map_dir": "hunter's_base_small",
       "workshop_id": "3664225685"
     },
+    "jibs.pyramid.zip": {
+      "map_dir": "jibs",
+      "workshop_id": "3595453862"
+    },
     "linzi.pyramid.zip": {
       "map_dir": "linzi",
       "workshop_id": "3519054686"
@@ -497,7 +509,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-26T11:36:05Z",
+  "generated_at": "2026-10-26T16:22:10Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1004,6 +1016,16 @@
         }
       }
     },
+    "3535422434": {
+      "checked": "2026-10-26T16:22:10Z",
+      "maps": {
+        "Oakshire42": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "4d2bcc7523ad2c6b5bd5cc14ba61a061016d279e2d57f84a7bd8200c04af0d87"
+        }
+      }
+    },
     "3537326669": {
       "checked": "2026-09-27T14:48:47Z",
       "maps": {
@@ -1096,6 +1118,26 @@
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": "e6e4fd67b7622d4ce7e01455814d6b1190b30cb3381100f2e247790bceca7ccf"
+        }
+      }
+    },
+    "3595453862": {
+      "checked": "2026-10-26T16:22:10Z",
+      "maps": {
+        "jibs": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "a7212b54820d8443f331d1b6dfa5b67ca7de4011cd214113a9d494eb76dffb70"
+        }
+      }
+    },
+    "3599769747": {
+      "checked": "2026-10-26T16:22:10Z",
+      "maps": {
+        "Basement06": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "7a3c07782fac21d37cffd94170d850df023ee0db5e9914f516ad64611ba7235b"
         }
       }
     },
