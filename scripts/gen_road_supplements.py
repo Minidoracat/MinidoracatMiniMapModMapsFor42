@@ -71,6 +71,9 @@ UI_KEY_PREFIX = "UI_MinidoracatMiniMapModMaps_Road_"
 LANGS = ("en", "ch", "cn", "jp")
 UI_LANG = {"EN": "en", "CH": "ch", "CN": "cn", "JP": "jp"}
 MIN_ON_ROAD = 0.9  # 每條路中線取樣至少九成落在實際路面：推導錯的路不准出貨
+# 手寫接線跨過一小段裸土（`road_surfaces` 的 dirt-candidate：路面本體與曠野裸泥同 tile、分不出來）
+# 時，evidence.dirt 記那段取樣數，算進下限但總數有上限——只准補短缺口，不准沿土地畫新路
+MAX_DIRT_SAMPLES = 48
 MAX_WIDTH = 64.0
 MAX_NO = 999
 
@@ -169,14 +172,19 @@ def _road(errors: list[str], where: str, raw: object) -> Road | None:
     if not isinstance(ev, dict):
         errors.append(f"{where}.evidence 必填（中線取樣與落在路面的數量）")
     else:
+        unknown_ev = sorted(set(ev) - {"samples", "on_road", "dirt"})
+        if unknown_ev:
+            errors.append(f"{where}.evidence 有未知欄位 {unknown_ev}")
         samples = _count(errors, f"{where}.evidence.samples", ev.get("samples"), 1, 10**7)
         on_road = _count(errors, f"{where}.evidence.on_road", ev.get("on_road"), 0, 10**7)
-        if samples and on_road is not None:
-            if on_road > samples:
-                errors.append(f"{where}.evidence.on_road 大於 samples")
-            elif on_road / samples < MIN_ON_ROAD:
+        dirt = _count(errors, f"{where}.evidence.dirt", ev.get("dirt", 0), 0, MAX_DIRT_SAMPLES)
+        if samples and on_road is not None and dirt is not None:
+            if on_road + dirt > samples:
+                errors.append(f"{where}.evidence.on_road＋dirt 大於 samples")
+            elif (on_road + dirt) / samples < MIN_ON_ROAD:
                 errors.append(
-                    f"{where} 中線只有 {on_road}/{samples} 落在路面（下限 {MIN_ON_ROAD:.0%}）"
+                    f"{where} 中線只有 {on_road}/{samples} 落在路面"
+                    f"{f'（另 {dirt} 在裸土缺口）' if dirt else ''}（下限 {MIN_ON_ROAD:.0%}）"
                 )
     if no is None or width is None or pts is None:
         return None
@@ -543,6 +551,16 @@ def cmd_selftest() -> int:
     bad("重用退役號碼", doc, "不得重用")
     doc = _doc(); doc["roads"][0]["evidence"]["on_road"] = 8
     bad("路面取樣低於下限", doc, "落在路面")
+    doc = _doc(); doc["roads"][0]["evidence"].update(on_road=8, dirt=2)
+    with tempfile.TemporaryDirectory() as td:
+        res, _ = gen(_fixture(Path(td) / "d", doc))
+        check("裸土缺口算進路面下限", res.ok, str(res.errors))
+    doc = _doc(); doc["roads"][0]["evidence"].update(samples=100, on_road=40, dirt=MAX_DIRT_SAMPLES + 1)
+    bad("裸土缺口超過上限", doc, "evidence.dirt")
+    doc = _doc(); doc["roads"][0]["evidence"].update(on_road=9, dirt=2)
+    bad("路面＋裸土大於取樣數", doc, "大於 samples")
+    doc = _doc(); doc["roads"][0]["evidence"]["gravel"] = 1
+    bad("evidence 未知欄位", doc, "evidence 有未知欄位")
     doc = _doc(); doc["roads"][0]["points"] = [100, 100, 100.1, 100]
     bad("非 float32 座標", doc, "float32")
     doc = _doc(); doc["roads"][0]["points"] = [100, 100, 100, 100]

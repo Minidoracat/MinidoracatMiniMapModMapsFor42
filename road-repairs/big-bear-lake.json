@@ -1,0 +1,175 @@
+{
+  "dataset": "big-bear-lake",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3816175183",
+    "map_mod": "bigbearlake42",
+    "map_dir": "BBL_b42",
+    "streets_xml_sha256": "6e30437475d5dc333c6d3cafde89508e21017f068b31ac8b1645c4391574747d",
+    "captured": "2026-10-26"
+  },
+  "operations": [
+    {
+      "index": 13,
+      "name": "Lakeview Dr",
+      "expectedWidth": 8,
+      "expectedPoints": [
+        5134.5,
+        8097,
+        4525,
+        8101,
+        4520,
+        8103,
+        4515,
+        8106.5,
+        4510,
+        8110.5,
+        4502.5,
+        8119.5,
+        4500.5,
+        8126.5,
+        4500,
+        8353.5,
+        4501,
+        8361,
+        4523,
+        8385,
+        4501,
+        8361,
+        4500.5,
+        8373,
+        4500.5,
+        8387
+      ],
+      "replacementWidth": 6,
+      "widthEvidence": {
+        "source": "pzmap road-surfaces --pz-build 42.21（BBL_b42，z=0 地板分類；AutoDrive pm1025 量測 raster bbl-surf.json，2026-10-26）",
+        "sections": [
+          {
+            "from": [
+              4829,
+              8097
+            ],
+            "to": [
+              4829,
+              8102
+            ]
+          },
+          {
+            "from": [
+              4718,
+              8097
+            ],
+            "to": [
+              4718,
+              8102
+            ]
+          },
+          {
+            "from": [
+              4565,
+              8097
+            ],
+            "to": [
+              4565,
+              8102
+            ]
+          },
+          {
+            "from": [
+              4497,
+              8198
+            ],
+            "to": [
+              4502,
+              8198
+            ]
+          }
+        ]
+      },
+      "reason": "width-fix（AutoDrive NC1／BBL 路寬偏寬）：作者標 w8，road-surfaces 沿線每 4 格一個橫剖面 212 個，中線所在連續路面寬中位 6 格（±1 內 92%、中線偏 -0.1），軸向橫截面 29/80 個量到恰好 6 格。照 w8 靠右，車身外緣落在路面外（正式服 BBL Lakeview Dr 72 km/h 壓進路邊樹叢）；改成 6。"
+    },
+    {
+      "index": 84,
+      "name": "Deerhead Road",
+      "expectedWidth": 8,
+      "expectedPoints": [
+        3763,
+        8450,
+        3826,
+        8451,
+        3832,
+        8454.5,
+        3878,
+        8502,
+        3884.5,
+        8515,
+        3885,
+        8596,
+        3890.5,
+        8610,
+        3921.5,
+        8640,
+        3936.5,
+        8646,
+        3962.5,
+        8646,
+        3978,
+        8652,
+        3992.5,
+        8666.5,
+        4000,
+        8680.5,
+        4001,
+        8699.5
+      ],
+      "replacementWidth": 6,
+      "widthEvidence": {
+        "source": "pzmap road-surfaces --pz-build 42.21（BBL_b42，z=0 地板分類；AutoDrive pm1025 量測 raster bbl-surf.json，2026-10-26）",
+        "sections": [
+          {
+            "from": [
+              3773,
+              8448
+            ],
+            "to": [
+              3773,
+              8453
+            ]
+          },
+          {
+            "from": [
+              3882,
+              8525
+            ],
+            "to": [
+              3887,
+              8525
+            ]
+          },
+          {
+            "from": [
+              3882,
+              8555
+            ],
+            "to": [
+              3887,
+              8555
+            ]
+          },
+          {
+            "from": [
+              3949,
+              8643
+            ],
+            "to": [
+              3949,
+              8648
+            ]
+          }
+        ]
+      },
+      "reason": "width-fix（AutoDrive NC1／BBL 路寬偏寬）：作者標 w8，road-surfaces 沿線每 4 格一個橫剖面 55 個，中線所在連續路面寬中位 6 格（±1 內 83%、中線偏 -0.1），軸向橫截面 12/13 個量到恰好 6 格。照 w8 靠右，車身外緣落在路面外（正式服 BBL Lakeview Dr 72 km/h 壓進路邊樹叢）；改成 6。"
+    }
+  ]
+}

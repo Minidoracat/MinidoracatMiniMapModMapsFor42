@@ -1,11 +1,13 @@
 -- MinidoracatMiniMapModMapsStreetRepairs.lua（生成檔，勿手編）
 -- 由 scripts/gen_street_repairs.py 從 road-repairs/*.json 編譯
--- 4 個 dataset／962 筆修正（中心線 44、接線 3、移除轉折點 1、換路寬 1、隱藏標籤候選 913）
+-- 6 個 dataset／1043 筆修正（中心線 44、接線 3、移除轉折點 4、換路寬 69、分隔路拆線 4、端點退離 2、拿掉穿越分隔帶的段 2、不建路口 2、隱藏標籤候選 913）
 --
 -- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log
 -- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。
 -- replacementWidth 只換路寬、點列不動；主 MOD 42.21.0-0.46.0 及更早版本不認得它，
 -- 該筆當空修正略過（log 一次），照作者路寬。
+-- noJunction（不和這幾條同圖街建路口）／navCut（只從導航拿掉這幾段）：主 MOD 0.51.0 及更早版本
+-- 不認得——只帶 noJunction 的筆當空修正略過（log 一次），navCut 的筆只套插了共線點的點列，照舊相通。
 -- hideLabel 只影響玩家地圖上的路名顯示，**不從導航路網移除該道路**；
 -- reference 是 vanilla 對應街道的 index/width/points，執行期須確認那條
 -- canonical 道路仍在且看得見，才真的隱藏我方這份重複標籤。
@@ -13,8 +15,19 @@
 MinidoracatMiniMapModMapsStreetRepairs = MinidoracatMiniMapModMapsStreetRepairs or {}
 local Repairs = MinidoracatMiniMapModMapsStreetRepairs
 
+-- ==== big-bear-lake (bigbearlake42 / BBL_b42) ====
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/big-bear-lake.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
+do
+    local ops = {}
+    -- #13 Lakeview Dr
+    ops[13] = { expectedWidth = 8, expectedPoints = { 5134.5, 8097, 4525, 8101, 4520, 8103, 4515, 8106.5, 4510, 8110.5, 4502.5, 8119.5, 4500.5, 8126.5, 4500, 8353.5, 4501, 8361, 4523, 8385, 4501, 8361, 4500.5, 8373, 4500.5, 8387 }, replacementWidth = 6 }
+    -- #84 Deerhead Road
+    ops[84] = { expectedWidth = 8, expectedPoints = { 3763, 8450, 3826, 8451, 3832, 8454.5, 3878, 8502, 3884.5, 8515, 3885, 8596, 3890.5, 8610, 3921.5, 8640, 3936.5, 8646, 3962.5, 8646, 3978, 8652, 3992.5, 8666.5, 4000, 8680.5, 4001, 8699.5 }, replacementWidth = 6 }
+    Repairs["big-bear-lake"] = { schemaVersion = 1, mapMod = "bigbearlake42", mapDir = "BBL_b42", operations = ops }
+end
+
 -- ==== camden-county (CamdenCountyB42 / Camden County B42) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／exact-copy）在 road-repairs/camden-county.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/camden-county.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
 do
     local ops = {}
     -- #5 All Saints Pl
@@ -29,7 +42,7 @@ do
 end
 
 -- ==== daisy-county (Daisy County B42 version / Daisy County) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／exact-copy）在 road-repairs/daisy-county.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/daisy-county.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
 do
     local ops = {}
     -- #0 Weinifan Street
@@ -123,8 +136,173 @@ do
     Repairs["daisy-county"] = { schemaVersion = 1, mapMod = "Daisy County B42 version", mapDir = "Daisy County", operations = ops }
 end
 
+-- ==== dirkerdam (DirkerdamMapFix / Dirkerdam Integrated B42 Fix) ====
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/dirkerdam.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
+do
+    local ops = {}
+    -- #1 Bristol Pike
+    ops[1] = { expectedWidth = 18, expectedPoints = { 4352.5, 2800.300048828125, 4410, 2853.800048828125, 4410, 4044.39990234375, 4909.10009765625, 4539.5, 7554.5, 4539.5, 7556.5, 4538.5 }, replacementWidth = 6, replacementPoints = { 4350, 2803, 4357, 2807, 4401, 2851, 4405, 2858, 4405, 4042, 4905, 4542, 4909, 4544, 7554.5, 4544 } }
+    -- #4 Garfield Ave
+    ops[4] = { expectedWidth = 10, expectedPoints = { 10486.5, 4956, 10346.099609375, 4956, 10338.7998046875, 4950.2998046875, 10289.599609375, 4955.5, 9964.2001953125, 4955.5, 9950, 4967.89990234375, 9950, 5078.10009765625, 9930.5, 5101, 7918, 5101, 7906, 5098.5, 7894.7998046875, 5098.5, 7886.5, 5103.5 }, replacementWidth = 8 }
+    -- #5 Highway 11
+    ops[5] = { expectedWidth = 16, expectedPoints = { 4350.5, 2802.5, 3145.89990234375, 2802.5, 3065.89990234375, 2879.5, 1898.5, 2879.5 }, replacementWidth = 6, replacementPoints = { 4350.5, 2798, 3139.5, 2798.5, 3062, 2875, 1898.5, 2875 } }
+    -- #6 River Road
+    ops[6] = { expectedWidth = 14, expectedPoints = { 8799.5, 4497.5, 8800.5, 4496.5, 8800.5, 2552.800048828125, 8778.400390625, 2544.5, 8364.5, 2544.5, 8362.5, 2546.5 }, replacementPoints = { 8799.5, 4497.5, 8800.5, 4496.5, 8800.5, 2552.800048828125, 8778.400390625, 2544.5, 8364.5, 2544.5 } }
+    -- #7 Highway 11
+    ops[7] = { expectedWidth = 10, expectedPoints = { 6835.5, 2205, 6577, 2205, 6565, 2208.5, 6540, 2208.5, 6470.10009765625, 2248.60009765625, 6352.7001953125, 2351.699951171875, 6304.2998046875, 2362, 5797.7998046875, 2362, 5780, 2382.10009765625, 5780, 2403.199951171875, 5773.5, 2407.5, 5091.10009765625, 2407.5, 5073, 2425.60009765625, 5073, 2784.699951171875, 5050.2001953125, 2805.5, 5046.5, 2805.5 }, replacementWidth = 8 }
+    -- #10 Beachway Road
+    ops[10] = { expectedWidth = 18, expectedPoints = { 10467.5, 4539.5, 8841.5, 4539.5 }, replacementWidth = 6, replacementPoints = { 10467.5, 4534, 8841.5, 4534 } }
+    -- #11 Mauri Ave
+    ops[11] = { expectedWidth = 14, expectedPoints = { 6838.5, 1807.5, 6836.5, 1809.5, 6836.5, 3224.60009765625, 6850.10009765625, 3241.300048828125, 6855.89990234375, 3252, 6894.5, 3299.39990234375, 6916.5, 3302.5, 6917.5, 3303.5, 6920.5, 3298.5 }, noJunction = { 17, 64, 201 } }
+    -- #15 Filbert Ave
+    ops[15] = { expectedWidth = 8, expectedPoints = { 4013.5, 3279.5, 4012.5, 3278.5, 4018, 3264, 4028.800048828125, 3259.5, 4039.5, 3259.5, 4041.800048828125, 3261.800048828125, 4041.800048828125, 3290, 4029.5, 3305.5, 4029.5, 4266.39990234375, 4201.60009765625, 4441.39990234375 }, replacementWidth = 6 }
+    -- #17 Cedar Ave
+    ops[17] = { expectedWidth = 8, expectedPoints = { 6512, 2727.5, 6512, 2532, 6510.5, 2530.5, 6437.5, 2530.5, 6436.5, 2531.5, 6436.5, 2648, 6432, 2660, 6432, 2755.89990234375, 6463.10009765625, 2809.699951171875, 6507.2001953125, 2846.199951171875, 6543.2001953125, 2861, 7050.5, 2861 }, replacementPoints = { 6512, 2727.5, 6512, 2532, 6510.5, 2530.5, 6437.5, 2530.5, 6436.5, 2531.5, 6436.5, 2648, 6432, 2660, 6432, 2755.89990234375, 6463.10009765625, 2809.699951171875, 6507.2001953125, 2846.199951171875, 6543.2001953125, 2861, 6834, 2861, 6837, 2861, 7050.5, 2861 }, navCut = { 11 }, noJunction = { 11 } }
+    -- #18 5th Ave
+    ops[18] = { expectedWidth = 10, expectedPoints = { 9958.5, 4539.5, 9958.5, 4006.699951171875, 10041.5, 3917.699951171875, 10041.5, 3470.5, 10028.5, 3456.5 }, replacementWidth = 8 }
+    -- #19 Susan Ave
+    ops[19] = { expectedWidth = 8, expectedPoints = { 1896.5, 2537.5, 2178.199951171875, 2537.5, 2218, 2576.300048828125, 2218, 2631.5, 2266, 2676.5, 2466.10009765625, 2676.5, 2499, 2665.699951171875, 2631, 2665.699951171875, 2660.199951171875, 2643, 2696, 2643, 2730.5, 2608.5, 2730.5, 2436.5 }, replacementWidth = 6 }
+    -- #24 Bank St
+    ops[24] = { expectedWidth = 8, expectedPoints = { 2733.699951171875, 2532.800048828125, 2768.199951171875, 2502.5, 3665.5, 2502.5 }, replacementWidth = 6 }
+    -- #26 Patterson Ave
+    ops[26] = { expectedWidth = 8, expectedPoints = { 7169, 2680.5, 7169, 2487.5, 7170, 2475.5, 7170, 1804, 7171.5, 1802.5 }, replacementWidth = 6 }
+    -- #30 Montgomery Ave
+    ops[30] = { expectedWidth = 18, expectedPoints = { 8759.5, 4539.5, 7964.5, 4539.5, 7963.5, 4538.5 }, replacementWidth = 6, replacementPoints = { 8759.5, 4534, 7964.5, 4534 } }
+    -- #37 Beachway Ave
+    ops[37] = { expectedWidth = 8, expectedPoints = { 8515.5, 5101.5, 8515.5, 4690.89990234375, 8551, 4638.10009765625, 8575.900390625, 4617.5, 8799.5, 4617.5 }, replacementWidth = 6 }
+    -- #38 Highway 11
+    ops[38] = { expectedWidth = 10, expectedPoints = { 4350.5, 2802.5, 4351.5, 2801.5, 4351.5, 2778, 4410.39990234375, 2778, 4440, 2805.5, 5046.5, 2805.5 }, replacementWidth = 8 }
+    -- #48 Miller Ave
+    ops[48] = { expectedWidth = 8, expectedPoints = { 1896.5, 2375.5, 1928.5, 2375.5, 1929.5, 2374.5, 1932.4000244140625, 2351.300048828125, 2079.199951171875, 2205.5, 2328.199951171875, 2205.5, 2383.5, 2261.800048828125, 2383.5, 2294.5 }, replacementWidth = 6 }
+    -- #51 Dorset Ave
+    ops[51] = { expectedWidth = 8, expectedPoints = { 6392.5, 3406.5, 6248.5, 3406.5, 6230, 3423.199951171875, 6230, 3503.89990234375, 6203.7998046875, 3542, 6052.10009765625, 3542, 6009.10009765625, 3523.5, 5957.89990234375, 3523.5, 5924.7001953125, 3505.10009765625 }, replacementWidth = 6 }
+    -- #52 Emily Ave
+    ops[52] = { expectedWidth = 8, expectedPoints = { 4326.5, 3301.5, 4327.5, 3302.5, 4327.5, 3593.5, 4326.5, 3594.5, 4030.5, 3594.5 }, replacementWidth = 6 }
+    -- #53 Stephen Ave
+    ops[53] = { expectedWidth = 8, expectedPoints = { 6835.5, 2532, 6591.2001953125, 2532, 6496.10009765625, 2497.300048828125, 6410.2001953125, 2438.5, 6415.2998046875, 2438.5, 6330.10009765625, 2364.5, 6328.5, 2360.5 }, replacementPoints = { 6835.5, 2532, 6591.2001953125, 2532, 6496.10009765625, 2497.300048828125, 6415.2998046875, 2438.5, 6330.10009765625, 2364.5, 6328.5, 2360.5 } }
+    -- #61 Oak Ave
+    ops[61] = { expectedWidth = 8, expectedPoints = { 8700.5, 2476.5, 8698, 2479, 8698, 2436, 8696.5, 2434.5, 8612.7998046875, 2434.5, 8594.5, 2452.800048828125, 8594.5, 2844.5 }, replacementWidth = 6 }
+    -- #64 Main Ave
+    ops[64] = { expectedWidth = 8, expectedPoints = { 6804.39990234375, 3138.300048828125, 6826, 3128.699951171875, 7015.7998046875, 3128.699951171875, 7015.60009765625, 3135.699951171875, 7065.7001953125, 3141, 7066, 3138.60009765625, 7086.7998046875, 3138.60009765625, 7170.7998046875, 3102.5, 7322.5, 3102.5 }, replacementPoints = { 6804.39990234375, 3138.300048828125, 6826, 3128.699951171875, 6834, 3128.699951171875, 6837, 3128.699951171875, 7015.7998046875, 3128.699951171875, 7015.60009765625, 3135.699951171875, 7065.7001953125, 3141, 7066, 3138.60009765625, 7086.7998046875, 3138.60009765625, 7170.7998046875, 3102.5, 7322.5, 3102.5 }, navCut = { 2 }, noJunction = { 11 } }
+    -- #66 Church St
+    ops[66] = { expectedWidth = 8, expectedPoints = { 6559.5, 3715.5, 6551.5, 3713.5, 6479, 3641, 6479, 3487, 6478.5, 3486.5, 6394.5, 3486.5, 6393.5, 3485.5, 6393.5, 3320.5, 6394.5, 3319.5 }, replacementWidth = 6 }
+    -- #78 Mack Dr
+    ops[78] = { expectedWidth = 8, expectedPoints = { 4030.5, 3894.5, 4209.5, 3894.5, 4210, 3894, 4210, 3594.5 }, replacementWidth = 6 }
+    -- #82 Euclid Ave
+    ops[82] = { expectedWidth = 8, expectedPoints = { 4350, 2802.5, 4350, 3241, 4327.5, 3259.699951171875 }, replacementWidth = 6 }
+    -- #88 Coventry Lane
+    ops[88] = { expectedWidth = 10, expectedPoints = { 6502.5, 2843.5, 6501.5, 2844.5, 6501.5, 3286.5 }, replacementWidth = 8, replacementPoints = { 6501.5, 2844.5, 6501.5, 3286.5 } }
+    -- #91 Washington Ave
+    ops[91] = { expectedWidth = 8, expectedPoints = { 8748.5, 5048.5, 8742.5, 5047.5, 8742.5, 4617.5 }, replacementWidth = 6 }
+    -- #103 Brown Ave
+    ops[103] = { expectedWidth = 14, expectedPoints = { 1899.9000244140625, 2373.300048828125, 1884.300048828125, 2349, 1505.5, 2349 }, replacementWidth = 12 }
+    -- #110 Spencer Circle
+    ops[110] = { expectedWidth = 8, expectedPoints = { 2289.5, 2394.5, 2289.5, 2332.699951171875, 2323.5, 2295.5, 2560.800048828125, 2295.5, 2586.800048828125, 2320.5, 2590.5, 2320.5 }, replacementWidth = 6 }
+    -- #115 Central Ave
+    ops[115] = { expectedWidth = 6, expectedPoints = { 5350.5, 4452, 5320, 4452, 5316, 4448, 5316, 4396, 5315.5, 4395.5, 5184.5, 4395.5, 5183.5, 4394.5, 5183.5, 4232.5 }, replacementWidth = 4 }
+    -- #121 High St
+    ops[121] = { expectedWidth = 6, expectedPoints = { 6220.5, 3820.5, 6209.7998046875, 3820.5, 6197.39990234375, 3826, 6163, 3826, 6129.5, 3792.5, 6129.5, 3723.199951171875, 6154.5, 3698.199951171875, 6154.5, 3541.5 }, replacementWidth = 4 }
+    -- #125 Janet Ave
+    ops[125] = { expectedWidth = 8, expectedPoints = { 4028.5, 3801.5, 3667.5, 3801.5 }, replacementWidth = 6 }
+    -- #135 5th Ave
+    ops[135] = { expectedWidth = 6, expectedPoints = { 5941.5, 4201.5, 5940.5, 4202.5, 5940.5, 4539.5 }, replacementWidth = 4 }
+    -- #144 5th Ave
+    ops[144] = { expectedWidth = 8, expectedPoints = { 8364.5, 3712.5, 8365.5, 3709.5, 8373.400390625, 3707.10009765625, 8568.2998046875, 3516.800048828125, 8575.2998046875, 3506.800048828125, 8590.5, 3492 }, replacementPoints = { 8364.5, 3712.5, 8373.400390625, 3707.10009765625, 8568.2998046875, 3516.800048828125, 8575.2998046875, 3506.800048828125, 8590.5, 3492 } }
+    -- #146 Wyoming Ave
+    ops[146] = { expectedWidth = 8, expectedPoints = { 6394.5, 3319.5, 6391.7001953125, 3316.699951171875, 6410, 3292, 6426.60009765625, 3287.5, 6537.89990234375, 3287.5, 6556.5, 3307.800048828125, 6556.5, 3436.5 }, replacementWidth = 6 }
+    -- #147 Euclid Ave
+    ops[147] = { expectedWidth = 8, expectedPoints = { 7550.5, 2786.5, 7428.5, 2786.5, 7411.7001953125, 2776, 7311, 2776, 7309.5, 2774.5, 7309.5, 2701.5 }, replacementPoints = { 7550.5, 2786.5, 7428.5, 2786.5, 7411.7001953125, 2776, 7311, 2776, 7309.5, 2774.5, 7309.5, 2717.5 } }
+    -- #156 Patterson Ave
+    ops[156] = { expectedWidth = 6, expectedPoints = { 5079.5, 4050.5, 5079.5, 4122.5, 5080.5, 4123.5, 5199.5, 4123.5, 5200.5, 4124.5, 5200.5, 4231.5 }, replacementWidth = 4 }
+    -- #157 Ray Ave
+    ops[157] = { expectedWidth = 8, expectedPoints = { 4041.5, 3293.5, 4191.10009765625, 3293.5, 4226.10009765625, 3258.5, 4326.5, 3258.5 }, replacementWidth = 6 }
+    -- #159 Beacon Ave
+    ops[159] = { expectedWidth = 8, expectedPoints = { 7002.5, 2216.5, 7002.5, 2146.5, 7001.5, 2145.5, 7002.5, 2144.5, 7002.5, 2086.5, 6992.60009765625, 2082.5, 6838.5, 2082.5 }, replacementWidth = 6 }
+    -- #169 Poplar St
+    ops[169] = { expectedWidth = 10, expectedPoints = { 6518.5, 3682.5, 6528.5, 3686.5, 6529.5, 3685.5, 6529.5, 3452.10009765625, 6543.10009765625, 3438.5, 6556.5, 3438.5, 6558.5, 3436.5 }, replacementWidth = 8 }
+    -- #182 Wyoming Ave
+    ops[182] = { expectedWidth = 8, expectedPoints = { 3665.5, 3116.5, 3421.5, 3116.5, 3412.5, 3121.5 }, replacementWidth = 6 }
+    -- #190 5th Ave
+    ops[190] = { expectedWidth = 6, expectedPoints = { 6900.5, 3696.5, 6900.5, 3940.5 }, replacementWidth = 4 }
+    -- #201 Cypress Lane
+    ops[201] = { expectedWidth = 8, expectedPoints = { 6893.2001953125, 3287, 6933.60009765625, 3296.5, 7115.5, 3296.5, 7117.5, 3302.5 }, noJunction = { 11 } }
+    -- #202 Mack Dr
+    ops[202] = { expectedWidth = 10, expectedPoints = { 2307.5, 2721.5, 2314, 2717.199951171875, 2314, 2546.39990234375, 2349.800048828125, 2513.800048828125 }, replacementWidth = 8 }
+    -- #207 Hemlock Lane
+    ops[207] = { expectedWidth = 6, expectedPoints = { 7207.5, 3949.5, 7430.5, 3949.5, 7432.5, 3948.5 }, replacementWidth = 4 }
+    -- #216 Miller Ave
+    ops[216] = { expectedWidth = 8, expectedPoints = { 9354.5, 4907.5, 9138.5, 4907.5 }, replacementWidth = 6 }
+    -- #221 Mauri Ave
+    ops[221] = { expectedWidth = 6, expectedPoints = { 5572.5, 2407.5, 5572.5, 2194.5 }, replacementWidth = 4 }
+    -- #230 Dorset Ave
+    ops[230] = { expectedWidth = 6, expectedPoints = { 3765.5, 3380.5, 3896.5, 3380.5, 3898.5, 3382.5, 3898.5, 3454.5 }, replacementWidth = 4 }
+    -- #235 Spring Ave
+    ops[235] = { expectedWidth = 8, expectedPoints = { 8679.5, 3043.5, 8675.2998046875, 3047.699951171875, 8675.2998046875, 2845.5 }, replacementWidth = 6 }
+    -- #241 Harrison St
+    ops[241] = { expectedWidth = 8, expectedPoints = { 7293.5, 4401.5, 7290.5, 4392.5, 7154.2001953125, 4392.5, 7124.7001953125, 4426.7998046875 }, replacementWidth = 6 }
+    -- #258 Grant Ave
+    ops[258] = { expectedWidth = 8, expectedPoints = { 7333.5, 2812.5, 7217.5, 2812.5, 7216.5, 2813.5, 7216.5, 2849.5, 7219, 2852, 7230.5, 2852 }, replacementWidth = 6 }
+    -- #263 Clover Ave
+    ops[263] = { expectedWidth = 8, expectedPoints = { 6759.5, 2788.5, 6759.5, 2623.5 }, replacementWidth = 6 }
+    -- #282 Norwood Ave
+    ops[282] = { expectedWidth = 8, expectedPoints = { 10426.5, 5117.5, 10427.5, 5116.5, 10427.5, 4956.5 }, replacementWidth = 6 }
+    -- #289 Keystone St
+    ops[289] = { expectedWidth = 6, expectedPoints = { 3870.5, 3455.300048828125, 4028.5, 3455.300048828125 }, replacementWidth = 4 }
+    -- #295 College Ave
+    ops[295] = { expectedWidth = 8, expectedPoints = { 9704.5, 4946.5, 9704, 4947, 9704, 5101.5 }, replacementWidth = 5 }
+    -- #305 Linton Ave
+    ops[305] = { expectedWidth = 6, expectedPoints = { 8837.5, 3229, 8850.599609375, 3229, 8874.5, 3250.199951171875, 8874.5, 3355.5 }, replacementWidth = 4 }
+    -- #307 River St
+    ops[307] = { expectedWidth = 6, expectedPoints = { 8271.5, 2954.5, 8271.5, 3104.5 }, replacementWidth = 4 }
+    -- #314 Dock St
+    ops[314] = { expectedWidth = 8, expectedPoints = { 7228.5, 3017, 7212, 3017, 7212, 2887.5 }, replacementWidth = 6 }
+    -- #317 Brown Ave
+    ops[317] = { expectedWidth = 8, expectedPoints = { 5998.5, 3788.5, 5977.2001953125, 3788.5, 5940.5, 3826.199951171875, 5940.5, 3896.5, 5939.5, 3897.5 }, replacementWidth = 6 }
+    -- #329 Sunset Dr
+    ops[329] = { expectedWidth = 8, expectedPoints = { 7910, 2905.5, 7910, 2765.5 }, replacementWidth = 6 }
+    -- #337 Liberty St
+    ops[337] = { expectedWidth = 8, expectedPoints = { 8004.5, 2905.5, 8004.5, 2766.5 }, replacementWidth = 6 }
+    -- #341 Tulip Ave
+    ops[341] = { expectedWidth = 6, expectedPoints = { 8514.5, 5013.2998046875, 8435.5, 5013.2998046875, 8412.5, 4991.2001953125, 8412.5, 4971.5, 8415.5, 4968.5, 8416.5, 4968.5 }, replacementWidth = 4 }
+    -- #355 Bayberry Lane
+    ops[355] = { expectedWidth = 6, expectedPoints = { 7931.5, 2617.5, 7929.5, 2621.5, 7802.5, 2621.5 }, replacementWidth = 4 }
+    -- #368 Dover St
+    ops[368] = { expectedWidth = 6, expectedPoints = { 7271.5, 3009.5, 7269.5, 3007.5, 7269.5, 2887.5 }, replacementWidth = 4 }
+    -- #378 Janet Ave
+    ops[378] = { expectedWidth = 8, expectedPoints = { 6429.5, 3548.5, 6438.5, 3543.5, 6438.5, 3493.199951171875, 6450.5, 3477.199951171875, 6450.5, 3438.5, 6449.5, 3437.5 }, replacementWidth = 6 }
+    -- #386 Mack Dr
+    ops[386] = { expectedWidth = 6, expectedPoints = { 7932, 2516.5, 7932, 2526.5, 8020.5, 2526.5, 8028.5, 2544.5 }, replacementWidth = 4 }
+    -- #392 6th Ave
+    ops[392] = { expectedWidth = 8, expectedPoints = { 2264.5, 2726.5, 2261.5, 2730.5, 2263, 2732, 2263, 2842, 2262.5, 2842.5 }, replacementWidth = 6 }
+    -- #394 Bellevue Ave
+    ops[394] = { expectedWidth = 8, expectedPoints = { 8901, 4806.5, 8901, 4923.5 }, replacementWidth = 6 }
+    -- #397 Girard Ave
+    ops[397] = { expectedWidth = 8, expectedPoints = { 6513.2998046875, 3790.5, 6513.2998046875, 3686.300048828125, 6512.5, 3685.5, 6514.5, 3681.5, 6518.5, 3682.5 }, replacementWidth = 6 }
+    -- #403 Pecan Ave
+    ops[403] = { expectedWidth = 10, expectedPoints = { 7157.2001953125, 3822.10009765625, 7181.7001953125, 3801.5, 7189.5, 3801.5, 7190.5, 3800.5, 7190.5, 3732.5, 7189.5, 3730.5 }, replacementWidth = 8 }
+    -- #413 Center St
+    ops[413] = { expectedWidth = 8, expectedPoints = { 6726.5, 3172.5, 6618.5, 3172.5, 6617.5, 3171.5 }, replacementWidth = 6 }
+    -- #427 Front St
+    ops[427] = { expectedWidth = 6, expectedPoints = { 7863.5, 3893.5, 7864.5, 3896.5, 7964.5, 3896.5 }, replacementWidth = 4 }
+    -- #449 Highland Ave
+    ops[449] = { expectedWidth = 8, expectedPoints = { 8103.5, 2974, 8199.5, 2974 }, replacementWidth = 6 }
+    -- #461 Excelsior Ave
+    ops[461] = { expectedWidth = 6, expectedPoints = { 8700.5, 2995.5, 8700.5, 3088.5 }, replacementWidth = 4 }
+    -- #504 Kennedy Dr
+    ops[504] = { expectedWidth = 10, expectedPoints = { 7934.5, 2991.5, 7855.5, 2991.5 }, replacementWidth = 6 }
+    -- #514 Stella Ave
+    ops[514] = { expectedWidth = 8, expectedPoints = { 7092.5, 2276.5, 7169.5, 2276.5 }, replacementWidth = 6 }
+    -- #527 Princess Ave
+    ops[527] = { expectedWidth = 10, expectedPoints = { 7929.5, 3045, 7855.5, 3045 }, replacementWidth = 6 }
+    -- #531 Greenwood Ave
+    ops[531] = { expectedWidth = 8, expectedPoints = { 9599.5, 5101.5, 9599.5, 5029.5, 9600.5, 5028.5 }, replacementWidth = 6 }
+    -- #532 Cedar Ave
+    ops[532] = { expectedWidth = 4, expectedPoints = { 8745.5, 2936.5, 8744.599609375, 2944, 8680.5, 2944 }, replacementPoints = { 8713.5, 2944, 8680.5, 2944 } }
+    Repairs["dirkerdam"] = { schemaVersion = 1, mapMod = "DirkerdamMapFix", mapDir = "Dirkerdam Integrated B42 Fix", operations = ops }
+end
+
 -- ==== muldraugh-1993 (muldraugh1993b42 / Muldraugh 1993 B42) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／exact-copy）在 road-repairs/muldraugh-1993.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/muldraugh-1993.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
 do
     local ops = {}
     -- #3 Goggins St
@@ -1957,7 +2135,7 @@ do
 end
 
 -- ==== raven-creek (RavenCreekB42 / Raven Creek B42) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／exact-copy）在 road-repairs/raven-creek.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/raven-creek.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
 do
     local ops = {}
     -- #0 David Blane Rd
