@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-25T10:10:53Z",
+  "generated_at": "2026-10-26T11:36:05Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -233,7 +233,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1792918838,
+      "time_updated": 1793009809,
       "title": "Willowbrook Bastion!"
     },
     "3480990544": {
@@ -730,8 +730,8 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1787021336,
-      "title": "[B42]Nekomata Ridge"
+      "time_updated": 1793001134,
+      "title": "Nekomata Ridge"
     },
     "3783433804": {
       "last_result": 1,
@@ -781,6 +781,13 @@
       "removed_at": null,
       "time_updated": 1792829258,
       "title": "Coryerdon (科里尔登) [B42]"
+    },
+    "3824438499": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1792914057,
+      "title": "Bedford Falls 贝德福德瀑布 [B42]"
     }
   }
 }

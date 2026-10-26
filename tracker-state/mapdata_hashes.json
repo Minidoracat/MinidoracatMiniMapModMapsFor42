@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T10:10:53Z",
+  "generated_at": "2026-10-26T11:36:05Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -423,7 +423,7 @@
       }
     },
     "3479667649": {
-      "assets": "19d36070a817e3c76d3dacd92229d02cdc459741d01f1469ee747f13ab85175b",
+      "assets": "806bb4213fd8aabefd1a4b98625ad0cbc1bd50b696bdeb65dfe4dba8d8444136",
       "maps": {
         "Willowbrook Bastion!": {
           "bounds": [
@@ -1939,7 +1939,7 @@
       }
     },
     "3782173659": {
-      "assets": "d86fe495383401bc4195f3da547bd286bcdb61810832999d06fdd53e3423f1da",
+      "assets": "0752d7211fa05e00f4f48b8d7f607342ee7bc51a4e9b4c590701cf40e6c096d9",
       "maps": {
         "Nekomata Ridge": {
           "bounds": [
@@ -1948,7 +1948,7 @@
             13312,
             9216
           ],
-          "hash": "308121a1d47db0de99281be02aeff775a2956185e6090d19fa0d0f15da132589"
+          "hash": "1d5030a828e8a1063131256cf00e27a19ddf6029abf0b3e8d56ed3f86e561a16"
         }
       },
       "mods": {
@@ -2184,6 +2184,25 @@
       "mods": {
         "CoryerdonB42": [
           "Coryerdon"
+        ]
+      }
+    },
+    "3824438499": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "BedfordFalls": {
+          "bounds": [
+            12032,
+            7424,
+            14592,
+            13312
+          ],
+          "hash": "66272edd493944c11c51d32032604beb4c5afea4471df90fa6a84eb02f2c72c1"
+        }
+      },
+      "mods": {
+        "BedfordFallsB42": [
+          "BedfordFalls"
         ]
       }
     }
