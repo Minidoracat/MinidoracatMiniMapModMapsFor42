@@ -59,4 +59,10 @@
             <point x="7554.5" y="4534.0"/>
         </points>
     </street>
+    <street name="Dirkerdam Rd 08 (MiniMap)" width="6">
+        <points>
+            <point x="8795.5" y="3296.0"/>
+            <point x="8326.5" y="3296.0"/>
+        </points>
+    </street>
 </streets>

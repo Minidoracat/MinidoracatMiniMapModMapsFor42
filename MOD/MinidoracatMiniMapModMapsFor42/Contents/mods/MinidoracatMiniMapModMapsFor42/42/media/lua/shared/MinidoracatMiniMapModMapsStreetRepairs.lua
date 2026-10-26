@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetRepairs.lua（生成檔，勿手編）
 -- 由 scripts/gen_street_repairs.py 從 road-repairs/*.json 編譯
--- 6 個 dataset／1050 筆修正（中心線 44、接線 6、移除轉折點 4、換路寬 69、中線平移 4、分隔路拆線 4、端點退離 2、拿掉穿越分隔帶的段 2、不建路口 2、隱藏標籤候選 913）
+-- 6 個 dataset／1051 筆修正（中心線 44、接線 6、移除轉折點 4、換路寬 69、中線平移 4、分隔路拆線 5、端點退離 2、拿掉穿越分隔帶的段 2、不建路口 2、隱藏標籤候選 913）
 --
 -- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log
 -- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。
@@ -202,6 +202,8 @@ do
     ops[66] = { expectedWidth = 8, expectedPoints = { 6559.5, 3715.5, 6551.5, 3713.5, 6479, 3641, 6479, 3487, 6478.5, 3486.5, 6394.5, 3486.5, 6393.5, 3485.5, 6393.5, 3320.5, 6394.5, 3319.5 }, replacementWidth = 6 }
     -- #78 Mack Dr
     ops[78] = { expectedWidth = 8, expectedPoints = { 4030.5, 3894.5, 4209.5, 3894.5, 4210, 3894, 4210, 3594.5 }, replacementWidth = 6 }
+    -- #79 Louise Ave
+    ops[79] = { expectedWidth = 18, expectedPoints = { 8795.5, 3302, 8424, 3302, 8412, 3308.5, 8326.5, 3308.5, 8320.5, 3302.5 }, replacementWidth = 6, replacementPoints = { 8795.5, 3308, 8326.5, 3308, 8320.5, 3302.5 } }
     -- #82 Euclid Ave
     ops[82] = { expectedWidth = 8, expectedPoints = { 4350, 2802.5, 4350, 3241, 4327.5, 3259.699951171875 }, replacementWidth = 6 }
     -- #88 Coventry Lane

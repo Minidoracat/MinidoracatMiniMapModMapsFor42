@@ -152,6 +152,20 @@
         "samples": 4612,
         "on_road": 4608
       }
+    },
+    {
+      "no": 8,
+      "width": 6,
+      "points": [
+        8795.5,
+        3296.0,
+        8326.5,
+        3296.0
+      ],
+      "evidence": {
+        "samples": 469,
+        "on_road": 469
+      }
     }
   ],
   "retired": []

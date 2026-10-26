@@ -2105,6 +2105,88 @@
       "reason": "width-fix（AutoDrive NC1／Map Fix 路寬偏寬）：作者標 w8，road-surfaces 沿線每 4 格一個橫剖面 112 個，中線所在連續路面寬中位 6 格（±1 內 100%、中線偏 -0.1），軸向橫截面 44 個量到恰好 6 格。照 w8 靠右，車身外緣落在路面外；改成 6。"
     },
     {
+      "index": 79,
+      "name": "Louise Ave",
+      "expectedWidth": 18,
+      "expectedPoints": [
+        8795.5,
+        3302,
+        8424,
+        3302,
+        8412,
+        3308.5,
+        8326.5,
+        3308.5,
+        8320.5,
+        3302.5
+      ],
+      "replacementPoints": [
+        8795.5,
+        3308.0,
+        8326.5,
+        3308.0,
+        8320.5,
+        3302.5
+      ],
+      "replacementWidth": 6,
+      "widthEvidence": {
+        "source": "pzmap road-surfaces --pz-build 42.21（Dirkerdam Integrated B42 本體＋原版疊底，z=0 地板分類；AutoDrive pm1025 量測 raster dirk-surf.json，2026-10-26）",
+        "sections": [
+          {
+            "from": [
+              8701,
+              3305
+            ],
+            "to": [
+              8701,
+              3310
+            ]
+          },
+          {
+            "from": [
+              8631,
+              3305
+            ],
+            "to": [
+              8631,
+              3310
+            ]
+          },
+          {
+            "from": [
+              8561,
+              3305
+            ],
+            "to": [
+              8561,
+              3310
+            ]
+          },
+          {
+            "from": [
+              8490,
+              3305
+            ],
+            "to": [
+              8490,
+              3310
+            ]
+          }
+        ]
+      },
+      "medianSplit": {
+        "pair": {
+          "supplement": "dirkerdam",
+          "no": 8
+        },
+        "medianEvidence": {
+          "samples": 481,
+          "offCarriageway": 302
+        }
+      },
+      "reason": "median-split（AutoDrive ND11／NoJunction §6 部分路段分隔路）：作者把 Louise Ave 畫成一條 w18 中線，x 8424–8795 那段線在6 格寬的中央分隔帶上（y 3299–3304，原中線 302/481 取樣不在車道鋪面上），兩側車道 y 3293–3298、3305–3310 各 6 格；西段 x 8326–8424 本來就畫在南車道上。本線改成南車道中線 y 3308（西端點不動）＋車道寬 6，北車道是補充道路 08 號（y 3296，西段和 Canal Road #76 重疊、兩端在原端點 9 格內）。拖車（laneBias 0）走線本身出路面 73.4%→0%，非拖車靠右落點 8.7%→0%。路寬只有整條一個值：西段的寬路面一起變 6，只是靠右落點離路中心近一點（不用主 MOD replacementSegWidth）。"
+    },
+    {
       "index": 82,
       "name": "Euclid Ave",
       "expectedWidth": 8,
