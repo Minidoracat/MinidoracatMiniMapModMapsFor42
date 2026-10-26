@@ -34,7 +34,9 @@
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
 
 - **大熊湖（Big Bear Lake）**
+  - 斷點接線 3 處：作者的路停在路口前，導航／自動駕駛到不了；接回路網後可以走
   - 路寬校正 2 條：作者標的路寬和實際路面不符（例如有分隔島的林蔭大道只標一條車道，或標得比路面寬），自動駕駛的靠右位置會落到分隔島或路邊；改成實際路面寬後靠右行駛落在車道上
+  - 道路中線平移到路面中心 1 條：作者畫的道路中線偏到路邊（甚至畫在路外），路寬也標得比路面寬，自動駕駛靠右行駛時車身會壓出路面、擦路邊；把線逐點平移到實際路面中心並改成實際路寬後，靠右落在車道上
 - **卡姆登郡（Camden County）**
   - 斷點接線 3 處：作者的路停在路口前，導航／自動駕駛到不了；接回路網後可以走
   - 路寬校正 1 條：作者標的路寬和實際路面不符（例如有分隔島的林蔭大道只標一條車道，或標得比路面寬），自動駕駛的靠右位置會落到分隔島或路邊；改成實際路面寬後靠右行駛落在車道上
@@ -49,6 +51,7 @@
 - **德克丹（Dirkerdam）**
   - 移除多餘轉折點 3 處：作者的路在路口旁多畫了轉折點或尾巴，導航會把路線拉到隔壁路上或走成 Z 字而偏離路面；拿掉這些點後沿實際路面走
   - 路寬校正 66 條：作者標的路寬和實際路面不符（例如有分隔島的林蔭大道只標一條車道，或標得比路面寬），自動駕駛的靠右位置會落到分隔島或路邊；改成實際路面寬後靠右行駛落在車道上
+  - 道路中線平移到路面中心 3 條：作者畫的道路中線偏到路邊（甚至畫在路外），路寬也標得比路面寬，自動駕駛靠右行駛時車身會壓出路面、擦路邊；把線逐點平移到實際路面中心並改成實際路寬後，靠右落在車道上
   - 分隔路拆成兩條車道線 4 條：作者把有中央分隔帶的路只畫一條中線、線落在分隔帶上；改成兩側車道各一條線（對向車道由本包補充道路提供），自動駕駛不再沿分隔帶的樹走
   - 穿過圍籬的路口斷開 2 處：作者的路尾穿過圍籬接到隔壁路，導航以為相通、實際過不去；把路尾退回圍籬前，導航改走真正的路口
   - 穿過分隔圍籬的路段從導航拿掉 2 處：作者的路直直穿過另一條路的中央分隔圍籬，導航把它當成可以穿越的路口；地圖照原樣畫，導航不再從圍籬穿過去（需要主 MOD 新版）
@@ -85,7 +88,7 @@
 | 亞特蘭大安全區（華人社區）<br>Atlanta Safe Zone | [3580819781](https://steamcommunity.com/sharedfiles/filedetails/?id=3580819781) | ❌ 無 | — | — | — |
 | 亞特蘭大大廈生存<br>Atlanta Tower Survival | [3525104670](https://steamcommunity.com/sharedfiles/filedetails/?id=3525104670) | ❌ 無 | — | — | — |
 | 亞特蘭大<br>Atlanta | [3580819781](https://steamcommunity.com/sharedfiles/filedetails/?id=3580819781) | ❌ 無 | — | — | — |
-| 大熊湖<br>Big Bear Lake | [3816175183](https://steamcommunity.com/sharedfiles/filedetails/?id=3816175183) | ✅ 87 條 | ✅ 87 條 | 路寬校正 2 條 | — |
+| 大熊湖<br>Big Bear Lake | [3816175183](https://steamcommunity.com/sharedfiles/filedetails/?id=3816175183) | ✅ 87 條 | ✅ 87 條 | 斷點接線 3 處、路寬校正 2 條、道路中線平移到路面中心 1 條 | — |
 | 黑迷宮<br>BlackMaze | [3691888819](https://steamcommunity.com/sharedfiles/filedetails/?id=3691888819) | ✅ 4 條 | ✅ 4 條 | — | — |
 | 黑松郡<br>Blackpine County | [3565649631](https://steamcommunity.com/sharedfiles/filedetails/?id=3565649631) | ❌ 無 | — | — | — |
 | 卡姆登郡<br>Camden County | [3504080284](https://steamcommunity.com/sharedfiles/filedetails/?id=3504080284) | ✅ 40 條 | ✅ 40 條 | 斷點接線 3 處、路寬校正 1 條 | — |
@@ -96,7 +99,7 @@
 | 科里爾登（2026 移植版）<br>Coryerdon (2026 port) | [3821470553](https://steamcommunity.com/sharedfiles/filedetails/?id=3821470553) | ❌ 無 | — | — | ✅ 6 條 |
 | 雛菊郡<br>Daisy County | [3390753141](https://steamcommunity.com/sharedfiles/filedetails/?id=3390753141) | ✅ 44 條 | ✅ 44 條 | 輪廓道路改中心線 44 條 | — |
 | 拂曉鎮<br>Dawn Town | [3666180085](https://steamcommunity.com/sharedfiles/filedetails/?id=3666180085) | ❌ 無 | — | — | — |
-| 德克丹<br>Dirkerdam | [3818766091](https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091) | ✅ 696 條（[3821109144](https://steamcommunity.com/sharedfiles/filedetails/?id=3821109144)） | ✅ 221 條 | 移除多餘轉折點 3 處、路寬校正 66 條、分隔路拆成兩條車道線 4 條、穿過圍籬的路口斷開 2 處、穿過分隔圍籬的路段從導航拿掉 2 處、隔著圍籬／分隔帶的兩條路不連 2 條 | ✅ 7 條 |
+| 德克丹<br>Dirkerdam | [3818766091](https://steamcommunity.com/sharedfiles/filedetails/?id=3818766091) | ✅ 696 條（[3821109144](https://steamcommunity.com/sharedfiles/filedetails/?id=3821109144)） | ✅ 221 條 | 移除多餘轉折點 3 處、路寬校正 66 條、道路中線平移到路面中心 3 條、分隔路拆成兩條車道線 4 條、穿過圍籬的路口斷開 2 處、穿過分隔圍籬的路段從導航拿掉 2 處、隔著圍籬／分隔帶的兩條路不連 2 條 | ✅ 7 條 |
 | 多多市<br>DuoDuo City | [3710155331](https://steamcommunity.com/sharedfiles/filedetails/?id=3710155331) | ❌ 無 | — | — | — |
 | 迴音河軍事基地<br>EchoCreek Military Base | [3476333350](https://steamcommunity.com/sharedfiles/filedetails/?id=3476333350) | ❌ 無 | — | — | — |
 | 艾德汽車回收場<br>Ed's Auto Salvage | [3478900814](https://steamcommunity.com/sharedfiles/filedetails/?id=3478900814) | ✅ 3 條 | ✅ 3 條 | — | — |

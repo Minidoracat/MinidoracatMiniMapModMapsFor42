@@ -77,9 +77,18 @@ canonical 道路仍在、仍看得見，才真的隱藏。所以「上游漂移�
    `navCut` 寫兩點之間那一段的 0-based 段序（只一段、長度 <= `_CUT_MAX_LEN`），主 MOD 只從導航拿掉它；
    必須同時帶 `noJunction`（列被穿過的那條街，否則兩截各自又吸回去）。verify 讀上游：拿掉的那段要和
    `noJunction` 列的街相交，否則只警告。
+10. **center-shift → 中線平移到實測路面中心**（2026-10-26 使用者核准；大熊湖 KY-38、德克丹 US Highway 13／Newport Road／
+   Colonial Dr）：作者的中線偏離實際路面中心 1–幾格（常見於路寬也標太寬），AutoDrive 照線＋路寬算靠右落點，一側車身
+   出路面。`replacementPoints` 必須和 expectedPoints **點數相同、逐點平移**：每點移動 <= 原路半寬（線留在作者標的
+   路面帶內）、至少一點移動 >= `_SHIFT_MIN`（否則只是換路寬，用 width-fix）、各段方向不反轉；可以帶 `replacementWidth`
+   （比原路窄的整數）。證據 `centerShift`：`sections` 是 road-surfaces 的水平／垂直橫截面（`from`／`to` 兩端路面格），
+   新線要近乎垂直地穿過每一個、交點離路面中心 <= `_SHIFT_CENTER_TOL`，且以交點為中心的新路寬帶整條在截面內；
+   `lanes.before`／`lanes.after` 是修前（原線＋原路寬）／修後靠右落點車身（兩個行駛方向各算一次）在路面上的取樣數，
+   修後比例 >= `_SHIFT_MIN_ON_ROAD` 且比修前高。verify 讀上游：原本相接（相交或端點在吸附距離內）的街，套用本包
+   全部修正後仍要相接，否則**錯誤**（路口斷了不是上游漂移，是這份資料錯）。
 
 `replacementPoints` 必須等於 `rect_centerline(expectedPoints, expectedWidth)`、合法的
-gap-bridge 延伸、合法的 drop-vertex、median-split 或 trim-detach，`hideLabel` 的
+gap-bridge 延伸、合法的 drop-vertex、median-split、trim-detach、median-cut 或 center-shift，`hideLabel` 的
 `reference.points` 必須等於 `expectedPoints`：其他手繪新幾何、或沒有逐點相同證據的隱藏，
 一律 fail-closed。要走新規則就先有人核准，同時改這支的判定。
 
@@ -161,6 +170,10 @@ _ON_LINE_TOL = 0.01
 # no-junction：一筆最多列幾條街（主 MOD 同上限）；median-cut：拿掉的那段最長幾格（只跨分隔帶，不是刪路）
 _NOJ_MAX = 16
 _CUT_MAX_LEN = 8.0
+# center-shift：至少一點要移這麼多（格）才算平移；新線離截面路面中心的上限（格）；修後靠右車身在路面上的比例下限
+_SHIFT_MIN = 0.5
+_SHIFT_CENTER_TOL = 0.5
+_SHIFT_MIN_ON_ROAD = 0.9
 
 # operations[] 認得的欄位；多打一個字（replacmentPoints）不該變成靜默的空修正
 _OP_KEYS = {
@@ -181,6 +194,7 @@ _OP_KEYS = {
     "noJunction",
     "noJunctionEvidence",
     "navCut",
+    "centerShift",
     "reason",
 }
 # 註冊清單引用形如 `streetRepairs = StreetRepairs["daisy-county"]`
@@ -276,6 +290,25 @@ def _tile(v: object) -> bool:
             and all(isinstance(c, int) and not isinstance(c, bool) for c in v))
 
 
+def _section_crossings(line: list[float], s: object) -> tuple[int, float, list[float]] | str:
+    """水平或垂直橫截面（from／to 兩端路面格）→ (量到的格數, 路面中心, line 近乎垂直穿過它的交點)；不合法回錯誤字串。"""
+    a, b = (s.get("from"), s.get("to")) if isinstance(s, dict) else (None, None)
+    if not (_tile(a) and _tile(b)):
+        return "的 from／to 必須是 [x, y] 整數格"
+    horiz = a[1] == b[1]
+    if a == b or (not horiz and a[0] != b[0]):
+        return "必須是水平或垂直的橫截面"
+    lo, hi = sorted((a[0], b[0]) if horiz else (a[1], b[1]))
+    at, mid = (a[1] if horiz else a[0]) + 0.5, (lo + hi + 1) / 2
+    hits = []
+    for i in range(0, len(line) - 3, 2):
+        # 一律換成「截面是 v=at 這條線」：u 沿截面、v 垂直截面
+        u0, v0, u1, v1 = line[i:i + 4] if horiz else (line[i + 1], line[i], line[i + 3], line[i + 2])
+        if v0 != v1 and min(v0, v1) <= at <= max(v0, v1) and abs(u1 - u0) <= _WIDTH_MAX_SKEW * abs(v1 - v0):
+            hits.append(u0 + (u1 - u0) * (at - v0) / (v1 - v0))
+    return hi - lo + 1, mid, hits
+
+
 def width_evidence_error(exp: list[float], new_width: int, ev: object) -> str | None:
     """width-fix 證據：每個橫截面（水平或垂直、from／to 是兩端路面格）量到的總寬等於
     new_width，中線近乎垂直地穿過它、交點離路面中心 <= _WIDTH_MAX_OFFSET 格。"""
@@ -285,25 +318,59 @@ def width_evidence_error(exp: list[float], new_width: int, ev: object) -> str | 
     if not isinstance(secs, list) or len(secs) < _WIDTH_MIN_SECTIONS:
         return f"sections 至少要 {_WIDTH_MIN_SECTIONS} 個橫截面"
     for n, s in enumerate(secs):
-        a, b = (s.get("from"), s.get("to")) if isinstance(s, dict) else (None, None)
-        if not (_tile(a) and _tile(b)):
-            return f"sections[{n}] 的 from／to 必須是 [x, y] 整數格"
-        horiz = a[1] == b[1]
-        if a == b or (not horiz and a[0] != b[0]):
-            return f"sections[{n}] 必須是水平或垂直的橫截面"
-        lo, hi = sorted((a[0], b[0]) if horiz else (a[1], b[1]))
-        if hi - lo + 1 != new_width:
-            return f"sections[{n}] 量到 {hi - lo + 1} 格，不等於 replacementWidth {new_width}"
-        at, mid = (a[1] if horiz else a[0]) + 0.5, (lo + hi + 1) / 2
-        hits = []
-        for i in range(0, len(exp) - 3, 2):
-            # 一律換成「截面是 v=at 這條線」：u 沿截面、v 垂直截面
-            u0, v0, u1, v1 = exp[i:i + 4] if horiz else (exp[i + 1], exp[i], exp[i + 3], exp[i + 2])
-            if v0 != v1 and min(v0, v1) <= at <= max(v0, v1) and abs(u1 - u0) <= _WIDTH_MAX_SKEW * abs(v1 - v0):
-                hits.append(u0 + (u1 - u0) * (at - v0) / (v1 - v0))
+        got = _section_crossings(exp, s)
+        if isinstance(got, str):
+            return f"sections[{n}] {got}"
+        wd, mid, hits = got
+        if wd != new_width:
+            return f"sections[{n}] 量到 {wd} 格，不等於 replacementWidth {new_width}"
         if not any(abs(u - mid) <= _WIDTH_MAX_OFFSET for u in hits):
             return (f"sections[{n}] 中線沒有近乎垂直地穿過、或離路面中心 {mid:g} 超過"
                     f" {_WIDTH_MAX_OFFSET:g} 格（交點 {[round(u, 2) for u in hits]}）")
+    return None
+
+
+def center_shift_error(exp: list[float], half: float, rep: list[float], new_width: float, ev: object) -> str | None:
+    """center-shift：rep 是 exp 逐點平移（點數相同、每點 <= 原路半寬、至少一點 >= _SHIFT_MIN、各段不反向），
+    證據 sections 每個都被新線近乎垂直穿過、交點離路面中心 <= _SHIFT_CENTER_TOL、新路寬帶整條在截面內；
+    lanes 修後靠右車身在路面上的比例 >= _SHIFT_MIN_ON_ROAD 且比修前高。"""
+    if len(rep) != len(exp):
+        return "點數要和 expectedPoints 相同（逐點平移，不增刪點）"
+    moves = [((rep[i] - exp[i]) ** 2 + (rep[i + 1] - exp[i + 1]) ** 2) ** 0.5 for i in range(0, len(exp), 2)]
+    far = [k for k, m in enumerate(moves) if m > half]
+    if far:
+        return f"第 {far[:4]} 點平移超過原路半寬 {half:g}（最多 {max(moves):.2f} 格）"
+    if max(moves) < _SHIFT_MIN:
+        return f"每點平移都不到 {_SHIFT_MIN:g} 格（只換路寬請用 width-fix）"
+    flip = [i // 2 for i in range(0, len(exp) - 2, 2)
+            if (exp[i + 2] - exp[i]) * (rep[i + 2] - rep[i]) + (exp[i + 3] - exp[i + 1]) * (rep[i + 3] - rep[i + 1]) <= 0]
+    if flip:
+        return f"第 {flip[:4]} 段方向反了（平移不能把段翻過來）"
+    if not isinstance(ev, dict) or not isinstance(ev.get("source"), str) or not ev["source"].strip():
+        return "centerShift 必填，且要寫 source（量測工具與版本）"
+    secs = ev.get("sections")
+    if not isinstance(secs, list) or len(secs) < _WIDTH_MIN_SECTIONS:
+        return f"centerShift.sections 至少要 {_WIDTH_MIN_SECTIONS} 個橫截面"
+    for n, s in enumerate(secs):
+        got = _section_crossings(rep, s)
+        if isinstance(got, str):
+            return f"centerShift.sections[{n}] {got}"
+        wd, mid, hits = got
+        if not any(abs(u - mid) <= _SHIFT_CENTER_TOL and abs(u - mid) + new_width / 2 <= wd / 2 for u in hits):
+            return (f"centerShift.sections[{n}] 新線沒有近乎垂直地穿過、離路面中心 {mid:g} 超過 {_SHIFT_CENTER_TOL:g} 格、"
+                    f"或路寬 {new_width:g} 的帶超出量到的 {wd} 格（交點 {[round(u, 2) for u in hits]}）")
+    lanes = ev.get("lanes") if isinstance(ev.get("lanes"), dict) else {}
+    counts = []
+    for key in ("before", "after"):
+        c = lanes.get(key) if isinstance(lanes.get(key), dict) else {}
+        ns, on = c.get("samples"), c.get("onRoad")
+        if not (type(ns) is int and type(on) is int and ns >= _SPLIT_MIN_SAMPLES and 0 <= on <= ns):
+            return (f"centerShift.lanes.{key} 必填（靠右車身取樣數 samples >= {_SPLIT_MIN_SAMPLES}、"
+                    "其中在路面上的 onRoad）")
+        counts.append(on / ns)
+    if counts[1] < _SHIFT_MIN_ON_ROAD or counts[1] <= counts[0]:
+        return (f"centerShift.lanes 修後靠右車身在路面上 {counts[1]:.1%}（下限 {_SHIFT_MIN_ON_ROAD:.0%}，"
+                f"且要比修前 {counts[0]:.1%} 高）")
     return None
 
 
@@ -410,6 +477,13 @@ def segments_cross(a: list[float], b: list[float]) -> bool:
     return False
 
 
+def linked(a: list[float], wa: float, b: list[float], wb: float) -> bool:
+    """主 MOD NavCore 會不會把這兩條街接起來：線段相交，或任一端點離對方 <= 兩路半寬和＋_DETACH_SLACK。"""
+    tol = wa / 2 + wb / 2 + _DETACH_SLACK
+    ends = ((a[0], a[1], b), (a[-2], a[-1], b), (b[0], b[1], a), (b[-2], b[-1], a))
+    return segments_cross(a, b) or any(point_polyline_distance(x, y, ln) <= tol for x, y, ln in ends)
+
+
 # ============================================================
 # 上游 / vanilla streets.xml
 # ============================================================
@@ -500,6 +574,7 @@ class Op(NamedTuple):
     detach_from: int | None = None  # trim-detach：端點退離哪一條街（0-based index）
     no_junction: tuple[int, ...] | None = None  # no-junction：不和這幾條同圖街建路口（進執行期）
     nav_cut: int | None = None  # median-cut：只從導航拿掉的段序（0-based，進執行期）
+    center_shift: bool = False  # center-shift：replacementPoints 是逐點平移（證據不進執行期）
 
 
 KIND_RECT = "rect-centerline"
@@ -511,6 +586,7 @@ KIND_SPLIT = "median-split"
 KIND_DETACH = "trim-detach"
 KIND_CUT = "median-cut"
 KIND_NOJ = "no-junction"
+KIND_SHIFT = "center-shift"
 
 
 def classify_op(op: Op) -> str:
@@ -524,6 +600,8 @@ def classify_op(op: Op) -> str:
         return KIND_DETACH
     if op.nav_cut is not None:
         return KIND_CUT
+    if op.center_shift:
+        return KIND_SHIFT
     if op.replacement_width is not None:
         return KIND_WIDTH
     if op.drop_vertex is not None:
@@ -561,6 +639,7 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
     split_pair = None
     detach_from = None
     nav_cut = None
+    center_shift = False
     if "replacementPoints" in raw:
         rep = _flat_points(errors, f"{where}.replacementPoints", raw["replacementPoints"])
         if rep is not None and len(rep) // 2 > MAX_REPLACEMENT_POINTS:
@@ -569,6 +648,13 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
                 f" {MAX_REPLACEMENT_POINTS}"
             )
             rep = None
+        elif rep is not None and exp is not None and width is not None and "centerShift" in raw:
+            rw = raw.get("replacementWidth")
+            problem = center_shift_error(exp, width / 2, rep, rw if type(rw) is int else width, raw["centerShift"])
+            if problem:
+                errors.append(f"{where}.replacementPoints（center-shift）{problem}")
+            else:
+                center_shift = True
         elif rep is not None and exp is not None and width is not None and "dropVertex" in raw:
             k = raw["dropVertex"]
             ks = [k] if isinstance(k, int) else k if isinstance(k, list) else None
@@ -706,15 +792,17 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         rw = raw["replacementWidth"]
         if not isinstance(rw, int) or isinstance(rw, bool) or not 1 <= rw <= _WIDTH_MAX:
             errors.append(f"{where}.replacementWidth 必須是 1..{_WIDTH_MAX} 的整數（主 MOD 只收整數路寬）")
-        elif hide or ("replacementPoints" in raw and "medianSplit" not in raw and "dropVertex" not in raw):
+        elif hide or ("replacementPoints" in raw and not any(k in raw for k in ("medianSplit", "dropVertex", "centerShift"))):
             errors.append(
                 f"{where}.replacementWidth 只能單獨使用（width-fix 點列不動、不隱藏路名；"
-                "只有 median-split、drop-vertex 可以和 replacementPoints 並用）"
+                "只有 median-split、drop-vertex、center-shift 可以和 replacementPoints 並用）"
             )
         elif width is not None and rw == width:
             errors.append(f"{where}.replacementWidth 等於 expectedWidth＝空修正")
-        elif "medianSplit" in raw and width is not None and rw >= width:
-            errors.append(f"{where}.replacementWidth（車道寬）要比原路寬 {width:g} 窄")
+        elif ("medianSplit" in raw or "centerShift" in raw) and width is not None and rw >= width:
+            errors.append(f"{where}.replacementWidth 要比原路寬 {width:g} 窄（median-split 是車道寬、center-shift 只准收窄）")
+        elif "centerShift" in raw:
+            new_width = rw if center_shift else None  # 證據在 centerShift.sections，上面已驗
         elif exp is not None:
             line = rep if "medianSplit" in raw else exp
             problem = width_evidence_error(line, rw, raw.get("widthEvidence")) if line else "車道線不合法"
@@ -732,11 +820,15 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         errors.append(f"{where}.dropVertex 必須搭配 replacementPoints")
     if "trimTo" in raw and "dropVertex" not in raw:
         errors.append(f"{where}.trimTo 只用於 drop-vertex 移除頭尾端點")
-    for key in ("medianSplit", "detachFrom", "navCut"):
+    for key in ("medianSplit", "detachFrom", "navCut", "centerShift"):
         if key in raw and rep is None:
             errors.append(f"{where}.{key} 必須搭配 replacementPoints")
     if "navCut" in raw and any(k in raw for k in ("dropVertex", "medianSplit", "detachFrom")):
         errors.append(f"{where}.navCut 不能和 dropVertex／medianSplit／detachFrom 並用（median-cut 只插兩點）")
+    clash = [k for k in ("dropVertex", "trimTo", "bridgeTo", "medianSplit", "detachFrom", "navCut", "hideLabel",
+                         "widthEvidence") if k in raw]
+    if "centerShift" in raw and clash:
+        errors.append(f"{where}.centerShift 不能和 {clash} 並用（center-shift 只逐點平移，路寬證據寫在 centerShift）")
     no_junction = None
     if "noJunction" in raw:
         nj = raw["noJunction"]
@@ -797,6 +889,7 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         detach_from,
         no_junction,
         nav_cut,
+        center_shift,
     )
 
 
@@ -898,7 +991,7 @@ def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
         f"-- 由 scripts/gen_street_repairs.py 從 {REPAIRS_DIR_NAME}/*.json 編譯",
         f"-- {len(pins_by_ds)} 個 dataset／{total} 筆修正（中心線 {kinds.count(KIND_RECT)}、"
         f"接線 {kinds.count(KIND_BRIDGE)}、移除轉折點 {kinds.count(KIND_DROP)}、"
-        f"換路寬 {kinds.count(KIND_WIDTH)}、分隔路拆線 {kinds.count(KIND_SPLIT)}、"
+        f"換路寬 {kinds.count(KIND_WIDTH)}、中線平移 {kinds.count(KIND_SHIFT)}、分隔路拆線 {kinds.count(KIND_SPLIT)}、"
         f"端點退離 {kinds.count(KIND_DETACH)}、拿掉穿越分隔帶的段 {kinds.count(KIND_CUT)}、"
         f"不建路口 {kinds.count(KIND_NOJ)}、隱藏標籤候選 {kinds.count(KIND_HIDE)}）",
         "--",
@@ -920,7 +1013,7 @@ def render_repair_table(pins_by_ds: dict[str, Pins]) -> bytes:
         p = pins_by_ds[ds]
         lines.append(f"-- ==== {ds} ({p.map_mod} / {p.map_dir}) ====")
         lines.append(
-            f"-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／"
+            f"-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／center-shift／median-split／trim-detach／"
             f"median-cut／no-junction／exact-copy）在 {REPAIRS_DIR_NAME}/{ds}.json 的 reason；"
             "有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，"
             "有 navCut／noJunction＝只改導航路網"
@@ -987,13 +1080,15 @@ def survey_upstream(
     *,
     prefer: list[str],
     game_dir: Path | None,
-) -> list[str]:
-    """比對本機上游／vanilla 副本，回報 pin 已對不上的筆數。
+) -> tuple[list[str], list[str]]:
+    """比對本機上游／vanilla 副本，回報 pin 已對不上的筆數。→ (warnings, errors)
 
-    只回報。pin 是人工核准的資料，generator 不得覆蓋或抹掉——執行期本來就會逐值
-    比對後安全略過，漂移的代價是「該筆修正失效」，不是壞掉。
+    漂移只回報（warnings）。pin 是人工核准的資料，generator 不得覆蓋或抹掉——執行期本來就會逐值
+    比對後安全略過，漂移的代價是「該筆修正失效」，不是壞掉。只有 center-shift 讓原本相接的街斷開是
+    errors：那是這份資料自己錯（上游沒變也會斷）。
     """
     warnings: list[str] = []
+    errors: list[str] = []
     roots = gsi.iter_workshop_roots(prefer)
     van_path = find_vanilla_streets(game_dir)
     van: list[Street] | None = None
@@ -1025,14 +1120,23 @@ def survey_upstream(
                     f"{ds} {len(stale)}/{len(p.ops)} 筆 pin 與上游不符（執行期會安全略過）"
                     f"：index {stale[:8]}{' …' if len(stale) > 8 else ''}"
                 )
-            # gap-bridge 的新端點必須落在目標街上：目標街被上游改動時接線就懸空了
+            # 幾何一律用執行期真的會套的：相符的筆換成修正後的點列與路寬，漂移的筆照上游
+            ops_by = {o.index: o for o in p.ops if o.index not in stale}
+
+            def applied(o: Op) -> tuple[list[float], float]:
+                return o.replacement_points or o.expected_points, o.replacement_width or o.expected_width
+
+            def street_now(j: int) -> tuple[list[float], float]:
+                return applied(ops_by[j]) if j in ops_by else (up[j].flat, up[j].width or 0)
+
+            # gap-bridge 的新端點必須落在目標街上：目標街被上游改動、或被本包平移時接線就懸空了
             loose = []
             for o in p.ops:
                 if o.bridge_to is None or o.index in stale:
                     continue
                 _end, seg = bridge_extension(o.expected_points, o.replacement_points)
                 if (o.bridge_to >= len(up) or point_polyline_distance(
-                        seg[-2], seg[-1], up[o.bridge_to].flat) > _BRIDGE_SNAP):
+                        seg[-2], seg[-1], street_now(o.bridge_to)[0]) > _BRIDGE_SNAP):
                     loose.append(o.index)
             if loose:
                 warnings.append(
@@ -1074,25 +1178,42 @@ def survey_upstream(
                     f"{ds} {len(stuck)} 筆 trim-detach 原端點不在 detachFrom 街吸附距離內、或新端點仍在"
                     f"吸附距離＋{_DETACH_MARGIN:g} 格內、或新線碰到那條街（須人工覆核）：index {stuck[:8]}"
                 )
+            # center-shift：原本相接（相交或端點在吸附距離內）的街，套用本包全部修正後仍要相接。
+            # 刻意斷開的（trim-detach 退離它、noJunction 列了它）不算
+            broken = []
+            for o in p.ops:
+                if not o.center_shift or o.index in stale:
+                    continue
+                a, wa = applied(o)
+                xs, ys = o.expected_points[0::2], o.expected_points[1::2]
+                for j, st in enumerate(up):
+                    if j == o.index or len(st.flat) < 4 or not st.width or j in (o.no_junction or ()):
+                        continue
+                    other = ops_by.get(j)
+                    if other is not None and (other.detach_from == o.index or o.index in (other.no_junction or ())):
+                        continue
+                    m = o.expected_width / 2 + st.width / 2 + _DETACH_SLACK
+                    if (max(st.flat[0::2]) < min(xs) - m or min(st.flat[0::2]) > max(xs) + m
+                            or max(st.flat[1::2]) < min(ys) - m or min(st.flat[1::2]) > max(ys) + m):
+                        continue
+                    if linked(o.expected_points, o.expected_width, st.flat, st.width) and not linked(a, wa, *street_now(j)):
+                        broken.append((o.index, j))
+            if broken:
+                errors.append(
+                    f"{ds} {len(broken)} 對 center-shift 平移後原本相接的街斷開了（路口要用 gap-bridge 接回或少移一點）"
+                    f"：{broken[:8]}"
+                )
             # no-junction：兩條街在 NavCore 本來真的相通（相交或某一端點在吸附距離內），否則這對是多餘的；
             # median-cut 拿掉的那段要穿過 noJunction 列的街。每對從序號小的那筆看一次，幾何用套用後的點列與路寬
-            ops_by = {o.index: o for o in p.ops}
-
-            def applied(o: Op) -> tuple[list[float], float]:
-                return o.replacement_points or o.expected_points, o.replacement_width or o.expected_width
-
             idle, uncut = [], []
             for o in p.ops:
                 if not o.no_junction or o.index in stale:
                     continue
                 a, wa = applied(o)
                 for t in o.no_junction:
-                    if t < o.index or t in stale or t not in ops_by:
+                    if t < o.index or t not in ops_by:
                         continue
-                    b, wb = applied(ops_by[t])
-                    tol = wa / 2 + wb / 2 + _DETACH_SLACK
-                    ends = ((a[0], a[1], b), (a[-2], a[-1], b), (b[0], b[1], a), (b[-2], b[-1], a))
-                    if not segments_cross(a, b) and all(point_polyline_distance(x, y, ln) > tol for x, y, ln in ends):
+                    if not linked(a, wa, *applied(ops_by[t])):
                         idle.append((o.index, t))
                 if o.nav_cut is not None:
                     seg = a[2 * o.nav_cut:2 * o.nav_cut + 4]
@@ -1126,7 +1247,7 @@ def survey_upstream(
                 f"主 MOD RoadPatches 的 patch.legacy 收錄該上一版官方幾何者除外）"
                 f"：index {bad[:8]}{' …' if len(bad) > 8 else ''}"
             )
-    return warnings
+    return warnings, errors
 
 
 # ============================================================
@@ -1202,8 +1323,8 @@ def verify(project_root: Path, *, prefer: list[str], game_dir: Path | None) -> R
         errors.append(f"缺生成檔 {REPAIR_TABLE_REL}（跑 gen）")
     elif path.read_bytes() != render_repair_table(pins_by_ds):
         errors.append(f"{REPAIR_TABLE_REL} 與 {REPAIRS_DIR_NAME}/ 不同步（跑 gen）")
-    warnings.extend(survey_upstream(pins_by_ds, prefer=prefer, game_dir=game_dir))
-    return Result(errors, warnings)
+    warns, errs = survey_upstream(pins_by_ds, prefer=prefer, game_dir=game_dir)
+    return Result(errors + errs, warnings + warns)
 
 
 def _print_result(label: str, result: Result) -> None:
@@ -1269,6 +1390,13 @@ _XML = (
     "    </street>\n"
     '    <street name="Fence Way" width="10">\n'
     '        <points><point x="850" y="950" /><point x="850" y="1050" /></points>\n'
+    "    </street>\n"
+    # center-shift：作者線在 x 1000、實際路面 x 999–1004（中心 1002、寬 6）；Side St 端點離線 5 格（平移後 7）
+    '    <street name="Shift Rd" width="10">\n'
+    '        <points><point x="1000" y="100" /><point x="1000" y="200" /></points>\n'
+    "    </street>\n"
+    '    <street name="Side St" width="4">\n'
+    '        <points><point x="980" y="150" /><point x="995" y="150" /></points>\n'
     "    </street>\n"
     "</streets>\n"
 )
@@ -1394,6 +1522,20 @@ def _pin_doc(**over: object) -> dict:
                 "noJunction": [11],
                 "noJunctionEvidence": {"blockers": [{"x": 850, "y": 1000, "object": "fencing_01_0"}]},
                 "reason": "no-junction",
+            },
+            {
+                "index": 13,
+                "name": "Shift Rd",
+                "expectedWidth": 10,
+                "expectedPoints": [1000, 100, 1000, 200],
+                "replacementPoints": [1002, 100, 1002, 200],
+                "replacementWidth": 6,
+                "centerShift": {
+                    "source": "pzmap road-surfaces --pz-build 42.21",
+                    "sections": [{"from": [999, 120], "to": [1004, 120]}, {"from": [1004, 180], "to": [999, 180]}],
+                    "lanes": {"before": {"samples": 100, "onRoad": 40}, "after": {"samples": 100, "onRoad": 98}},
+                },
+                "reason": "center-shift",
             },
         ],
     }
@@ -1589,6 +1731,41 @@ def _reject_cases() -> list[tuple[str, dict, str]]:
     cases.append(("navCut 缺 replacementPoints", doc, "必須搭配 replacementPoints"))
     doc = _pin_doc(); doc["operations"][cut]["dropVertex"] = 1
     cases.append(("navCut 和 dropVertex 並用", doc, "不能和"))
+    shift = 10
+    doc = _pin_doc(); doc["operations"][shift]["replacementPoints"] = [1002, 100, 1002, 150, 1002, 200]
+    cases.append(("center-shift 增加點", doc, "點數要和"))
+    doc = _pin_doc(); doc["operations"][shift]["replacementPoints"] = [1006, 100, 1006, 200]
+    cases.append(("center-shift 平移超過原路半寬", doc, "超過原路半寬"))
+    doc = _pin_doc(); doc["operations"][shift]["replacementPoints"] = [1000.25, 100, 1000.25, 200]
+    cases.append(("center-shift 幾乎沒移（只換路寬）", doc, "每點平移都不到"))
+    doc = _pin_doc(); doc["operations"][shift].update(expectedPoints=[1000, 100, 1000, 103], replacementPoints=[1002, 103, 1002, 100])
+    cases.append(("center-shift 把段翻過來", doc, "方向反了"))
+    doc = _pin_doc(); doc["operations"][shift]["centerShift"].pop("source")
+    cases.append(("center-shift 證據沒寫 source", doc, "centerShift 必填"))
+    doc = _pin_doc(); doc["operations"][shift]["centerShift"]["sections"].pop()
+    cases.append(("center-shift 只有一個橫截面", doc, "至少要 2 個"))
+    doc = _pin_doc(); doc["operations"][shift]["centerShift"]["sections"][0] = {"from": [997, 120], "to": [1002, 120]}
+    cases.append(("center-shift 新線離截面路面中心太遠", doc, "超過 0.5 格"))
+    doc = _pin_doc(); doc["operations"][shift]["centerShift"]["sections"][0] = {"from": [1000, 120], "to": [1004, 120]}
+    cases.append(("center-shift 新路寬帶超出路面", doc, "的帶超出"))
+    doc = _pin_doc(); doc["operations"][shift]["centerShift"]["sections"][0] = {"from": [999, 120], "to": [1004, 121]}
+    cases.append(("center-shift 斜的橫截面", doc, "水平或垂直"))
+    doc = _pin_doc(); doc["operations"][shift]["centerShift"]["lanes"]["after"]["onRoad"] = 85
+    cases.append(("center-shift 修後靠右車身仍常出路面", doc, "下限 90%"))
+    doc = _pin_doc(); doc["operations"][shift]["centerShift"]["lanes"]["before"]["onRoad"] = 99
+    cases.append(("center-shift 沒比修前好", doc, "要比修前"))
+    doc = _pin_doc(); doc["operations"][shift]["centerShift"].pop("lanes")
+    cases.append(("center-shift 缺靠右取樣", doc, "lanes.before 必填"))
+    doc = _pin_doc(); doc["operations"][shift]["replacementWidth"] = 12
+    cases.append(("center-shift 路寬變寬", doc, "要比原路寬"))
+    doc = _pin_doc(); doc["operations"][shift]["dropVertex"] = 0
+    cases.append(("center-shift 和 dropVertex 並用", doc, "centerShift 不能和"))
+    doc = _pin_doc(); doc["operations"][shift]["widthEvidence"] = {"source": "x", "sections": []}
+    cases.append(("center-shift 另帶 widthEvidence", doc, "centerShift 不能和"))
+    doc = _pin_doc(); doc["operations"][shift].pop("replacementPoints")
+    cases.append(("centerShift 缺 replacementPoints", doc, "必須搭配 replacementPoints"))
+    doc = _pin_doc(); doc["operations"][shift].pop("centerShift"); doc["operations"][shift].pop("replacementWidth")
+    cases.append(("平移點列沒寫 centerShift（手繪新幾何）", doc, "rect-outline 中心線"))
     return cases
 
 
@@ -1646,16 +1823,16 @@ def cmd_selftest() -> int:
         )
         pins, _e, _w = load_pins(root / REPAIRS_DIR_NAME / "demo.json")
         check(
-            "九種規則分類正確（剪端點仍屬 drop-vertex、只帶 noJunction 算 no-junction）",
+            "十種規則分類正確（剪端點仍屬 drop-vertex、只帶 noJunction 算 no-junction、平移＋路寬算 center-shift）",
             pins is not None
             and [classify_op(o) for o in pins.ops]
             == [KIND_RECT, KIND_HIDE, KIND_BRIDGE, KIND_DROP, KIND_DROP, KIND_WIDTH, KIND_SPLIT, KIND_DETACH,
-                KIND_CUT, KIND_NOJ]
+                KIND_CUT, KIND_NOJ, KIND_SHIFT]
             and pins.ops[8].nav_cut == 1 and pins.ops[8].no_junction == (12,) and pins.ops[9].no_junction == (11,)
             and pins.ops[4].drop_vertex == (1, 3) and pins.ops[4].trim_to == 6
             and pins.ops[5].replacement_width == 11 and pins.ops[5].replacement_points is None
             and pins.ops[6].split_pair == ("demo", 1) and pins.ops[6].replacement_width == 6
-            and pins.ops[7].detach_from == 10,
+            and pins.ops[7].detach_from == 10 and pins.ops[10].center_shift and pins.ops[10].replacement_width == 6,
         )
         check(
             "median-split 點列＋車道寬一起落表、trim-detach 截短點列落表、pair／detachFrom 不進執行期",
@@ -1673,10 +1850,17 @@ def cmd_selftest() -> int:
             and "noJunctionEvidence" not in lua and "blockers" not in lua,
             lua,
         )
+        check(
+            "center-shift 平移點列＋路寬一起落表、centerShift 證據不進執行期",
+            "ops[13] = { expectedWidth = 10, expectedPoints = { 1000, 100, 1000, 200 }, replacementWidth = 6,"
+            " replacementPoints = { 1002, 100, 1002, 200 } }" in lua
+            and "centerShift" not in lua and "lanes" not in lua,
+            lua,
+        )
         res = _verify(root)
         check("verify 通過剛生成的檔",
               res.ok and not any(k in w for w in res.warnings
-                                 for k in ("gap-bridge", "trimTo", "trim-detach", "noJunction", "median-cut")),
+                                 for k in ("gap-bridge", "trimTo", "trim-detach", "noJunction", "median-cut", "center-shift")),
               str(res.errors + res.warnings))
         p = root / REPAIR_TABLE_REL
         p.write_bytes(p.read_bytes() + b"\n-- tampered\n")
@@ -1800,6 +1984,26 @@ def cmd_selftest() -> int:
             str(res.errors + res.warnings),
         )
 
+    # center-shift 讓原本相接的街斷開＝錯誤；用 gap-bridge 接到平移後的線就好（接線端點照套用後的幾何驗）
+    with tempfile.TemporaryDirectory() as td:
+        root = _fixture(Path(td) / "s", _pin_doc())
+        ws = root / "workshop" / "1" / "mods" / "demo" / "42" / "media" / "maps" / "Demo"
+        (ws / "streets.xml").write_text(_XML.replace('x="995" y="150"', 'x="991" y="150"'), encoding="utf-8")
+        gen(root)
+        res = _verify(root)
+        check("center-shift 平移後 Side St 端點離線 11 格（吸附 9.5）＝錯誤",
+              not res.ok and any("斷開" in e and "(13, 14)" in e for e in res.errors), str(res.errors + res.warnings))
+        doc = _pin_doc()
+        doc["operations"].append({"index": 14, "name": "Side St", "expectedWidth": 4,
+                                  "expectedPoints": [980, 150, 991, 150], "replacementPoints": [980, 150, 991, 150, 1002, 150],
+                                  "bridgeTo": {"index": 13, "name": "Shift Rd"}, "reason": "gap-bridge 接回平移後的線"})
+        _fixture(root, doc)
+        (ws / "streets.xml").write_text(_XML.replace('x="995" y="150"', 'x="991" y="150"'), encoding="utf-8")
+        gen(root)
+        res = _verify(root)
+        check("gap-bridge 接到平移後的線：路口接回、接線端點照套用後的幾何（離原線 2 格不警告）",
+              res.ok and not any("gap-bridge" in w for w in res.warnings), str(res.errors + res.warnings))
+
     print(f"\n{'✅' if n_ok == n_all else '❌'} selftest {n_ok}/{n_all}")
     return 0 if n_ok == n_all else 1
 
@@ -1823,7 +2027,7 @@ def main(argv: list[str] | None = None) -> int:
             kinds = [classify_op(o) for o in pins_by_ds[ds].ops]
             print(
                 f"   {ds:24s} 中心線 {kinds.count(KIND_RECT):4d} 接線 {kinds.count(KIND_BRIDGE):4d}"
-                f" 移除轉折點 {kinds.count(KIND_DROP):4d} 換路寬 {kinds.count(KIND_WIDTH):4d}"
+                f" 移除轉折點 {kinds.count(KIND_DROP):4d} 換路寬 {kinds.count(KIND_WIDTH):4d} 中線平移 {kinds.count(KIND_SHIFT):4d}"
                 f" 分隔路拆線 {kinds.count(KIND_SPLIT):4d} 端點退離 {kinds.count(KIND_DETACH):4d}"
                 f" 拿掉穿越段 {kinds.count(KIND_CUT):4d} 不建路口 {kinds.count(KIND_NOJ):4d}"
                 f" 隱藏標籤候選 {kinds.count(KIND_HIDE):4d}"

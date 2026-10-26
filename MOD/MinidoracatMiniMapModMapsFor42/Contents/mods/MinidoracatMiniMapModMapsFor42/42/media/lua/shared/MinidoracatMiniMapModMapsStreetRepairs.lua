@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetRepairs.lua（生成檔，勿手編）
 -- 由 scripts/gen_street_repairs.py 從 road-repairs/*.json 編譯
--- 6 個 dataset／1043 筆修正（中心線 44、接線 3、移除轉折點 4、換路寬 69、分隔路拆線 4、端點退離 2、拿掉穿越分隔帶的段 2、不建路口 2、隱藏標籤候選 913）
+-- 6 個 dataset／1050 筆修正（中心線 44、接線 6、移除轉折點 4、換路寬 69、中線平移 4、分隔路拆線 4、端點退離 2、拿掉穿越分隔帶的段 2、不建路口 2、隱藏標籤候選 913）
 --
 -- 執行期契約：逐值比對 expectedWidth／expectedPoints，不符就略過該筆並 log
 -- （上游改版＝安全退回原樣，不擋同圖其他修正、也不擋新道路）。
@@ -16,18 +16,26 @@ MinidoracatMiniMapModMapsStreetRepairs = MinidoracatMiniMapModMapsStreetRepairs 
 local Repairs = MinidoracatMiniMapModMapsStreetRepairs
 
 -- ==== big-bear-lake (bigbearlake42 / BBL_b42) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/big-bear-lake.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／center-shift／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/big-bear-lake.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
 do
     local ops = {}
+    -- #2 Standfield Cutoff
+    ops[2] = { expectedWidth = 10, expectedPoints = { 5524, 7731.5, 5524.5, 7604.5 }, replacementPoints = { 5524, 7731.5, 5524.5, 7604.5, 5517.5, 7598.5, 5516.5, 7589.5 } }
+    -- #3 KY-38
+    ops[3] = { expectedWidth = 15, expectedPoints = { 3808, 8392, 3820, 8378, 3824, 8277, 3828.5, 8267.5, 3842.5, 8257, 3853.5, 8254, 3877.5, 8252, 3896, 8237, 3900.5, 8096.5, 3902, 7990, 3919, 7970, 3982, 7936, 4098, 7821.5, 4196, 7770, 4305, 7717.5, 4380.5, 7718, 4434.5, 7665, 4439, 7569.5, 4442, 7555.5, 4466.5, 7534.5, 4555.5, 7486.5, 4611.5, 7485, 4634.5, 7469, 4738, 7466, 4770, 7451, 4899.5, 7451, 4932, 7449.5, 4961, 7463, 4979.5, 7480.5, 4996.5, 7515, 5016.5, 7536, 5055, 7555, 5071.5, 7557, 5089, 7567, 5114, 7590.5, 5511, 7591.5, 5572, 7591.5, 5591.5, 7585.5, 5613, 7576, 5663.5, 7576, 5698.5, 7546, 5809.5, 7539.5, 5821, 7544, 5837, 7558.5, 5837.5, 7644, 5824.5, 7660.5, 5823.5, 7671.5, 5821, 8676 }, replacementWidth = 8, replacementPoints = { 3808, 8392, 3823, 8378, 3823, 8277, 3828.5, 8267.5, 3842.5, 8257, 3853.5, 8255, 3878, 8253, 3899.5, 8235.5, 3900.5, 8096.5, 3900, 7990.5, 3920.5, 7966, 3986.5, 7933, 4098, 7821.5, 4197, 7772, 4307.5, 7717, 4382, 7717, 4437.5, 7661.5, 4438, 7569.5, 4442.5, 7556, 4463, 7535.5, 4552, 7491, 4611.5, 7491, 4634.5, 7473, 4739.5, 7473, 4771.5, 7455.5, 4899.5, 7455.5, 4937.5, 7453.5, 4964.5, 7464.5, 4980.5, 7479.5, 4997, 7517.5, 5014.5, 7535.5, 5052.5, 7555, 5068, 7557, 5092.5, 7571, 5115.5, 7593.5, 5511, 7590, 5572, 7586.5, 5593, 7588.5, 5613.5, 7576.5, 5664.5, 7576, 5705.5, 7544.5, 5809.5, 7539, 5821.5, 7543.5, 5838, 7558.5, 5838, 7644, 5825, 7660.5, 5824, 7671.5, 5823.5, 8676 } }
     -- #13 Lakeview Dr
     ops[13] = { expectedWidth = 8, expectedPoints = { 5134.5, 8097, 4525, 8101, 4520, 8103, 4515, 8106.5, 4510, 8110.5, 4502.5, 8119.5, 4500.5, 8126.5, 4500, 8353.5, 4501, 8361, 4523, 8385, 4501, 8361, 4500.5, 8373, 4500.5, 8387 }, replacementWidth = 6 }
+    -- #37 Steinbach Rd
+    ops[37] = { expectedWidth = 6, expectedPoints = { 5269.5, 8247.5, 5782.5, 8244, 5801, 8234.5, 5812, 8224.5 }, replacementPoints = { 5269.5, 8247.5, 5782.5, 8244, 5801, 8234.5, 5812, 8224.5, 5823.5, 8224.5 } }
+    -- #78 Green Valley Lake Dr
+    ops[78] = { expectedWidth = 5, expectedPoints = { 4651, 7459.5, 4658, 7449.5, 4664.5, 7443.5, 4665, 7425.5, 4667, 7394, 4665, 7379.5, 4663.5, 7370, 4622, 7327, 4620, 7324, 4620, 7319, 4625.5, 7314.5, 4645, 7292, 4652.5, 7287.5, 4664, 7287.5, 4677.5, 7288, 4689, 7289.5, 4697, 7288, 4704, 7285.5, 4708, 7272, 4708, 7266, 4708, 7253, 4707.5, 7241, 4707, 7233.5, 4711.5, 7227.5, 4715, 7221.5, 4716.5, 7213, 4717, 7204.5, 4717, 7193, 4716.5, 7187.5, 4716, 7183, 4716, 7173.5, 4720, 7165.5, 4724.5, 7161, 4731, 7155, 4735.5, 7146.5, 4736, 7143.5, 4733.5, 7137.5, 4728.5, 7133, 4721.5, 7131.5, 4714.5, 7131.5, 4699, 7132, 4693, 7131.5, 4679.5, 7132.5, 4671, 7133, 4661, 7133.5, 4654, 7133, 4647, 7129.5, 4642.5, 7123.5, 4641, 7115.5, 4640, 7106.5, 4639, 7102.5, 4636, 7098.5, 4629, 7095.5, 4591.5, 7095.5, 4561.5, 7096.5, 4293.5, 7098 }, replacementPoints = { 4651, 7473, 4651, 7459.5, 4658, 7449.5, 4664.5, 7443.5, 4665, 7425.5, 4667, 7394, 4665, 7379.5, 4663.5, 7370, 4622, 7327, 4620, 7324, 4620, 7319, 4625.5, 7314.5, 4645, 7292, 4652.5, 7287.5, 4664, 7287.5, 4677.5, 7288, 4689, 7289.5, 4697, 7288, 4704, 7285.5, 4708, 7272, 4708, 7266, 4708, 7253, 4707.5, 7241, 4707, 7233.5, 4711.5, 7227.5, 4715, 7221.5, 4716.5, 7213, 4717, 7204.5, 4717, 7193, 4716.5, 7187.5, 4716, 7183, 4716, 7173.5, 4720, 7165.5, 4724.5, 7161, 4731, 7155, 4735.5, 7146.5, 4736, 7143.5, 4733.5, 7137.5, 4728.5, 7133, 4721.5, 7131.5, 4714.5, 7131.5, 4699, 7132, 4693, 7131.5, 4679.5, 7132.5, 4671, 7133, 4661, 7133.5, 4654, 7133, 4647, 7129.5, 4642.5, 7123.5, 4641, 7115.5, 4640, 7106.5, 4639, 7102.5, 4636, 7098.5, 4629, 7095.5, 4591.5, 7095.5, 4561.5, 7096.5, 4293.5, 7098 } }
     -- #84 Deerhead Road
     ops[84] = { expectedWidth = 8, expectedPoints = { 3763, 8450, 3826, 8451, 3832, 8454.5, 3878, 8502, 3884.5, 8515, 3885, 8596, 3890.5, 8610, 3921.5, 8640, 3936.5, 8646, 3962.5, 8646, 3978, 8652, 3992.5, 8666.5, 4000, 8680.5, 4001, 8699.5 }, replacementWidth = 6 }
     Repairs["big-bear-lake"] = { schemaVersion = 1, mapMod = "bigbearlake42", mapDir = "BBL_b42", operations = ops }
 end
 
 -- ==== camden-county (CamdenCountyB42 / Camden County B42) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/camden-county.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／center-shift／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/camden-county.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
 do
     local ops = {}
     -- #5 All Saints Pl
@@ -42,7 +50,7 @@ do
 end
 
 -- ==== daisy-county (Daisy County B42 version / Daisy County) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/daisy-county.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／center-shift／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/daisy-county.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
 do
     local ops = {}
     -- #0 Weinifan Street
@@ -137,9 +145,11 @@ do
 end
 
 -- ==== dirkerdam (DirkerdamMapFix / Dirkerdam Integrated B42 Fix) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/dirkerdam.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／center-shift／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/dirkerdam.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
 do
     local ops = {}
+    -- #0 US Highway 13
+    ops[0] = { expectedWidth = 10, expectedPoints = { 6301.5, 1945.5, 6299, 1944.5, 6278.5, 1940.4000244140625, 6210.39990234375, 1888, 6148.2001953125, 1888, 6122.89990234375, 1877.9000244140625, 6047.39990234375, 1865, 5926, 1865, 5920.2001953125, 1870.800048828125, 5823.10009765625, 1890.5999755859375, 5780, 1934.699951171875, 5780, 2139.699951171875, 5723.2001953125, 2194.5, 4987.89990234375, 2194.5, 4817.89990234375, 2361.5, 3694.800048828125, 2361.5, 3666, 2390.300048828125, 3666, 3983.800048828125, 3636.300048828125, 4023.300048828125, 3605.699951171875, 4032.5, 3303.5, 4032.5 }, replacementWidth = 6, replacementPoints = { 6301.5, 1945.5, 6299, 1944, 6279, 1940, 6212, 1889.5, 6148, 1886.5, 6123, 1877.5, 6051, 1863.5, 5926, 1864.5, 5920, 1869.5, 5821.5, 1891.5, 5780, 1932.5, 5780, 2137.5, 5723.5, 2194, 4986, 2194, 4819, 2361, 3694, 2361, 3666, 2389, 3666, 3983.5, 3638, 4019.5, 3606, 4033, 3303.5, 4032 } }
     -- #1 Bristol Pike
     ops[1] = { expectedWidth = 18, expectedPoints = { 4352.5, 2800.300048828125, 4410, 2853.800048828125, 4410, 4044.39990234375, 4909.10009765625, 4539.5, 7554.5, 4539.5, 7556.5, 4538.5 }, replacementWidth = 6, replacementPoints = { 4350, 2803, 4357, 2807, 4401, 2851, 4405, 2858, 4405, 4042, 4905, 4542, 4909, 4544, 7554.5, 4544 } }
     -- #4 Garfield Ave
@@ -150,6 +160,8 @@ do
     ops[6] = { expectedWidth = 14, expectedPoints = { 8799.5, 4497.5, 8800.5, 4496.5, 8800.5, 2552.800048828125, 8778.400390625, 2544.5, 8364.5, 2544.5, 8362.5, 2546.5 }, replacementPoints = { 8799.5, 4497.5, 8800.5, 4496.5, 8800.5, 2552.800048828125, 8778.400390625, 2544.5, 8364.5, 2544.5 } }
     -- #7 Highway 11
     ops[7] = { expectedWidth = 10, expectedPoints = { 6835.5, 2205, 6577, 2205, 6565, 2208.5, 6540, 2208.5, 6470.10009765625, 2248.60009765625, 6352.7001953125, 2351.699951171875, 6304.2998046875, 2362, 5797.7998046875, 2362, 5780, 2382.10009765625, 5780, 2403.199951171875, 5773.5, 2407.5, 5091.10009765625, 2407.5, 5073, 2425.60009765625, 5073, 2784.699951171875, 5050.2001953125, 2805.5, 5046.5, 2805.5 }, replacementWidth = 8 }
+    -- #9 Newport Road
+    ops[9] = { expectedWidth = 8, expectedPoints = { 4877.5, 3769.5, 4641.60009765625, 3769.5, 4618.10009765625, 3791.5, 4618.10009765625, 4031.10009765625, 4637.5, 4050.5, 5337.5, 4050.5, 5349.5, 4038.5, 5621.5, 4038.5, 5633.5, 4026.5, 5633.5, 3978.5, 5646.5, 3965.5, 5696.5, 3965.5, 5698.5, 3964.5 }, replacementWidth = 6, replacementPoints = { 4877.5, 3769.5, 4640.5, 3769.5, 4617.5, 3790.5, 4617.5, 4030, 4637.5, 4050, 5336.5, 4050, 5348.5, 4038, 5622, 4038, 5633, 4027, 5633, 3977.5, 5645.5, 3965, 5696.5, 3965, 5698.5, 3964.5 } }
     -- #10 Beachway Road
     ops[10] = { expectedWidth = 18, expectedPoints = { 10467.5, 4539.5, 8841.5, 4539.5 }, replacementWidth = 6, replacementPoints = { 10467.5, 4534, 8841.5, 4534 } }
     -- #11 Mauri Ave
@@ -166,6 +178,8 @@ do
     ops[24] = { expectedWidth = 8, expectedPoints = { 2733.699951171875, 2532.800048828125, 2768.199951171875, 2502.5, 3665.5, 2502.5 }, replacementWidth = 6 }
     -- #26 Patterson Ave
     ops[26] = { expectedWidth = 8, expectedPoints = { 7169, 2680.5, 7169, 2487.5, 7170, 2475.5, 7170, 1804, 7171.5, 1802.5 }, replacementWidth = 6 }
+    -- #28 Colonial Dr
+    ops[28] = { expectedWidth = 16, expectedPoints = { 7873.5, 5253, 7323, 5253, 7300, 5278.2001953125, 7300, 5484, 7299.5, 5484.5, 7288, 5479.2001953125, 7277.5, 5469.5, 7276.5, 5465.5 }, replacementWidth = 8, replacementPoints = { 7873.5, 5252.5, 7322, 5252.5, 7300, 5277.5, 7300, 5484, 7299.5, 5484.5, 7288, 5479.2001953125, 7277.5, 5469.5, 7276.5, 5465.5 } }
     -- #30 Montgomery Ave
     ops[30] = { expectedWidth = 18, expectedPoints = { 8759.5, 4539.5, 7964.5, 4539.5, 7963.5, 4538.5 }, replacementWidth = 6, replacementPoints = { 8759.5, 4534, 7964.5, 4534 } }
     -- #37 Beachway Ave
@@ -302,7 +316,7 @@ do
 end
 
 -- ==== muldraugh-1993 (muldraugh1993b42 / Muldraugh 1993 B42) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/muldraugh-1993.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／center-shift／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/muldraugh-1993.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
 do
     local ops = {}
     -- #3 Goggins St
@@ -2135,7 +2149,7 @@ do
 end
 
 -- ==== raven-creek (RavenCreekB42 / Raven Creek B42) ====
--- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/raven-creek.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
+-- 逐筆理由（rect-outline／gap-bridge／drop-vertex／width-fix／center-shift／median-split／trim-detach／median-cut／no-junction／exact-copy）在 road-repairs/raven-creek.json 的 reason；有 replacementPoints＝改幾何，有 replacementWidth＝換路寬，有 hideLabel＝藏重複路名，有 navCut／noJunction＝只改導航路網
 do
     local ops = {}
     -- #0 David Blane Rd
