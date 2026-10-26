@@ -186,7 +186,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 原作者日後提供道路資料時，自動改用原作者的。
 [*] 地圖蓋住鎮旁原版 River Walk Road、Riverside Road（兩段）與 Riverside Link Road，那幾段沒有導航資料、要繞一大圈（例：沿 River Walk Road 穿過鎮北約 1,200 格的路要繞約 9,200 格）；本包沿原版路線補上（01、42、76、88 號），從鎮外可以一路導航進鎮。原版 Riverside Road 有一段彎路被原作者改成湖與樹林，那段沒有補。
 [/list]
-[*] [b]Big Bear Lake（大熊湖）[/b]：Lakeview Dr、Deerhead Road 原作者標的路寬比實際路面寬，自動駕駛靠右時車身會壓進路邊樹叢；路寬改成實際寬度。KY-38 原作者畫的中線偏到路邊、有一段整條畫在路外，自動駕駛靠右時常開出路面；線移到路面中間、路寬改成實際寬度，旁邊的 Standfield Cutoff、Steinbach Rd、Green Valley Lake Dr 路尾跟著延伸到 KY-38 上，照樣接得上（需要小地圖主 MOD 0.47.0 以上）。
+[*] [b]Big Bear Lake（大熊湖）[/b]：Lakeview Dr、Deerhead Road 原作者標的路寬比實際路面寬，自動駕駛靠右時車身會壓進路邊樹叢；路寬改成實際寬度。KY-38 原作者畫的中線偏到路邊、有一段整條畫在路外，自動駕駛靠右時常開出路面；線移到路面中間、路寬改成實際寬度，旁邊的 Standfield Cutoff、Steinbach Rd、Green Valley Lake Dr 路尾跟著延伸到 KY-38 上，照樣接得上（需要小地圖主 MOD 0.47.0 以上）。KY-18 西段中間有分隔帶，原作者只畫一條很寬的線、多半畫在北側車道上，自動駕駛靠右時一邊壓到分隔帶、一邊壓到對向車道；改成北側車道一條線，南側車道的搜尋名稱是「大熊湖 01 號路（小地圖補）」，分隔帶的缺口與 Standfield Cutoff 北端補上短接線（02～06 號），Tofu Rd 路尾延伸到新線上。
 [*] [b]Camden County（卡姆登郡）[/b]：
 [list]
 [*] 3 處原作者的路停在路口前，接上後可以導航到達。

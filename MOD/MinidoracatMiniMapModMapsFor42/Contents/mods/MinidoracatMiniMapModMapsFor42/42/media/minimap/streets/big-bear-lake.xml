@@ -1,0 +1,60 @@
+<streets version="1">
+    <street name="Big Bear Lake Rd 01 (MiniMap)" width="6">
+        <points>
+            <point x="3764.0" y="8402.0"/>
+            <point x="4597.0" y="8402.0"/>
+            <point x="4624.5" y="8391.0"/>
+            <point x="4647.5" y="8379.0"/>
+            <point x="4675.5" y="8351.0"/>
+            <point x="4697.0" y="8308.0"/>
+            <point x="4697.5" y="8250.5"/>
+            <point x="4713.0" y="8214.0"/>
+            <point x="4742.5" y="8183.5"/>
+            <point x="4783.0" y="8163.5"/>
+            <point x="4790.0" y="8163.0"/>
+            <point x="5246.5" y="8163.0"/>
+            <point x="5292.0" y="8140.0"/>
+            <point x="5320.0" y="8111.0"/>
+            <point x="5339.5" y="8070.0"/>
+            <point x="5341.5" y="8045.0"/>
+            <point x="5342.0" y="8033.5"/>
+            <point x="5359.5" y="7998.5"/>
+            <point x="5386.0" y="7971.0"/>
+            <point x="5398.0" y="7964.0"/>
+            <point x="5428.0" y="7949.0"/>
+            <point x="5455.0" y="7949.0"/>
+            <point x="5532.5" y="7949.0"/>
+        </points>
+    </street>
+    <street name="Big Bear Lake Rd 02 (MiniMap)" width="6">
+        <points>
+            <point x="5524.0" y="7731.5"/>
+            <point x="5522.5" y="7745.0"/>
+            <point x="5522.0" y="7761.0"/>
+        </points>
+    </street>
+    <street name="Big Bear Lake Rd 03 (MiniMap)" width="6">
+        <points>
+            <point x="3814.0" y="8394.0"/>
+            <point x="3814.0" y="8402.0"/>
+        </points>
+    </street>
+    <street name="Big Bear Lake Rd 04 (MiniMap)" width="6">
+        <points>
+            <point x="4500.0" y="8394.0"/>
+            <point x="4500.0" y="8402.0"/>
+        </points>
+    </street>
+    <street name="Big Bear Lake Rd 05 (MiniMap)" width="6">
+        <points>
+            <point x="4894.5" y="8155.0"/>
+            <point x="4894.5" y="8163.0"/>
+        </points>
+    </street>
+    <street name="Big Bear Lake Rd 06 (MiniMap)" width="6">
+        <points>
+            <point x="5142.5" y="8154.5"/>
+            <point x="5142.5" y="8163.0"/>
+        </points>
+    </street>
+</streets>

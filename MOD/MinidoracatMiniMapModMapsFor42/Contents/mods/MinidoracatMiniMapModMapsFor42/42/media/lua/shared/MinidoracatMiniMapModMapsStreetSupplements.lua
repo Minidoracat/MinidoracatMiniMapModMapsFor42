@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 10 個 dataset／225 條補充道路
+-- 11 個 dataset／231 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -89,6 +89,20 @@ Supplements["bedford-falls"] = {
         ["Bedford Falls Rd 73 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_73",
         ["Bedford Falls Rd 74 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_74",
         ["Bedford Falls Rd 75 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_bedford-falls_75",
+    },
+}
+
+-- ==== big-bear-lake (bigbearlake42 / BBL_b42) ====
+Supplements["big-bear-lake"] = {
+    schemaVersion = 1, mapMod = "bigbearlake42", mapDir = "BBL_b42",
+    file = "media/minimap/streets/big-bear-lake.xml", upstreamStreetCount = 87, roadCount = 6,
+    names = {
+        ["Big Bear Lake Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_big-bear-lake_01",
+        ["Big Bear Lake Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_big-bear-lake_02",
+        ["Big Bear Lake Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_big-bear-lake_03",
+        ["Big Bear Lake Rd 04 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_big-bear-lake_04",
+        ["Big Bear Lake Rd 05 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_big-bear-lake_05",
+        ["Big Bear Lake Rd 06 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_big-bear-lake_06",
     },
 }
 

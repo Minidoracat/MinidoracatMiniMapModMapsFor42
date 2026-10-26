@@ -86,6 +86,7 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         -- 班寧堡（3）地塊重疊＝事實上互斥，各自依啟用 mod 顯示。根目錄 mod.info 是 B41 殘留（id=b42_bigbearlake），
         -- B42 讀 42.0/ 的 id=bigbearlake42（ChooseGameInfo.readModInfoAux 先讀版本資料夾）。
         { zip = "BBL_b42.pyramid.zip", mapMod = "bigbearlake42", mapDir = "BBL_b42",
+            streetSupplement = StreetSupplements["big-bear-lake"],
             streetNames = StreetNames["big-bear-lake"], streetRepairs = StreetRepairs["big-bear-lake"],
             bounds = { 3584, 6656, 6144, 8704 }, nameKey = "UI_MinidoracatMiniMapModMaps_BigBearLake" },
         { zip = "Blackmaze.pyramid.zip", mapMod = "blackmaze", mapDir = "Blackmaze",

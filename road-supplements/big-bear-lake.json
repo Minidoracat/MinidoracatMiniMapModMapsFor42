@@ -1,0 +1,151 @@
+{
+  "dataset": "big-bear-lake",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3816175183",
+    "map_mod": "bigbearlake42",
+    "map_dir": "BBL_b42",
+    "streets_xml_sha256": "6e30437475d5dc333c6d3cafde89508e21017f068b31ac8b1645c4391574747d",
+    "upstream_street_count": 87,
+    "worldmap_xml_sha256": "76bed498eda75af84661da41c31bd3cb5e314675057bb9af6850ec9ebc0fda17",
+    "captured": "2026-10-26",
+    "method": "surface-link-v1"
+  },
+  "label": {
+    "en": "Big Bear Lake",
+    "ch": "大熊湖",
+    "cn": "大熊湖",
+    "jp": "ビッグベアーレイク"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 6,
+      "points": [
+        3764,
+        8402,
+        4597,
+        8402,
+        4624.5,
+        8391,
+        4647.5,
+        8379,
+        4675.5,
+        8351,
+        4697,
+        8308,
+        4697.5,
+        8250.5,
+        4713,
+        8214,
+        4742.5,
+        8183.5,
+        4783,
+        8163.5,
+        4790,
+        8163,
+        5246.5,
+        8163,
+        5292,
+        8140,
+        5320,
+        8111,
+        5339.5,
+        8070,
+        5341.5,
+        8045,
+        5342,
+        8033.5,
+        5359.5,
+        7998.5,
+        5386,
+        7971,
+        5398,
+        7964,
+        5428,
+        7949,
+        5455,
+        7949,
+        5532.5,
+        7949
+      ],
+      "evidence": {
+        "samples": 2040,
+        "on_road": 2040
+      }
+    },
+    {
+      "no": 2,
+      "width": 6,
+      "points": [
+        5524,
+        7731.5,
+        5522.5,
+        7745,
+        5522,
+        7761
+      ],
+      "evidence": {
+        "samples": 31,
+        "on_road": 31
+      }
+    },
+    {
+      "no": 3,
+      "width": 6,
+      "points": [
+        3814,
+        8394,
+        3814,
+        8402
+      ],
+      "evidence": {
+        "samples": 9,
+        "on_road": 9
+      }
+    },
+    {
+      "no": 4,
+      "width": 6,
+      "points": [
+        4500,
+        8394,
+        4500,
+        8402
+      ],
+      "evidence": {
+        "samples": 9,
+        "on_road": 9
+      }
+    },
+    {
+      "no": 5,
+      "width": 6,
+      "points": [
+        4894.5,
+        8155,
+        4894.5,
+        8163
+      ],
+      "evidence": {
+        "samples": 9,
+        "on_road": 9
+      }
+    },
+    {
+      "no": 6,
+      "width": 6,
+      "points": [
+        5142.5,
+        8154.5,
+        5142.5,
+        8163
+      ],
+      "evidence": {
+        "samples": 9,
+        "on_road": 9
+      }
+    }
+  ],
+  "retired": []
+}

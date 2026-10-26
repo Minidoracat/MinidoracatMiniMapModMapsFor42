@@ -58,6 +58,17 @@ canonical 道路仍在、仍看得見，才真的隱藏。所以「上游漂移�
    pair 每個點都要在原路半寬內、兩端各離原端點 <= 原路半寬（路口吸附語義不變），兩條線
    分在原線兩側；`medianSplit.medianEvidence` 是原中線取樣不在車道鋪面上的數量（分隔帶的草、土、碎石、樹；>= 一半，證明
    原線真的在分隔帶上）。原版雙線公路（KY-841）就是兩條平行線，NavCore 沒有單向概念。
+   **線在一側車道上**（`medianSplit.onCarriageway: true`；2026-10-26 使用者核准；大熊湖 KY-18）：作者的中線多半畫在
+   其中一條車道上（`medianEvidence` 不在車道鋪面上的比例 < `_SPLIT_MIN_OFF_ROAD`，和上面相反），照線＋路寬算靠右，
+   車身壓分隔帶或另一條車道。本筆改成**線所在那條車道**（near）的中線，車道寬寫 `replacementWidth`、不用
+   `widthEvidence`；對向車道（far）照樣由 `pair` 補充道路提供，可以只蓋有分隔帶的那一段。證據
+   `medianEvidence.sections` >= `_SPLIT_LANE_MIN_SECTIONS` 個，每個是同一條水平／垂直截面線上的 `near`、`far` 兩段路面格
+   （各自 `from`／`to`），中間隔 >= `_SPLIT_LANE_MIN_MEDIAN` 格分隔帶；原線穿過截面的點落在 near 或分隔帶上（不在 far 那側），
+   新線穿過 near、pair 穿過 far，交點離各自車道中心 <= `_SHIFT_CENTER_TOL` 且路寬帶整條在車道內；`medianSplit.lanes`
+   同 center-shift（修後靠右車身在路面上 >= `_SHIFT_MIN_ON_ROAD` 且比修前高）。新線每點仍在原路半寬內、兩端各離原端點
+   <= 原路半寬；pair 每點在原路寬內（對向車道中心可能離線超過半寬）、平均橫向位置和新線差 >= 2×`_SPLIT_MIN_SIDE` 且
+   離原線比新線遠、兩端各在新線的吸附距離（兩路半寬和＋`_DETACH_SLACK`）內。verify 讀上游：原本相接的街，套用本包
+   全部修正、加上同一份地圖的補充道路後仍要相接（同 center-shift），否則錯誤。
 7. **trim-detach → 端點退出吸附距離**（2026-10-26 使用者核准；德克丹 Map Fix ND5）：作者的街
    尾穿過圍籬接到隔壁街，主 MOD NavCore 端點吸附（兩路半寬和＋`ATTACH_SLACK`）讓兩街在
    圖上相通，實際過不去。`replacementPoints` 必須是 expectedPoints 從頭或尾**沿原線截短**
@@ -85,7 +96,7 @@ canonical 道路仍在、仍看得見，才真的隱藏。所以「上游漂移�
    新線要近乎垂直地穿過每一個、交點離路面中心 <= `_SHIFT_CENTER_TOL`，且以交點為中心的新路寬帶整條在截面內；
    `lanes.before`／`lanes.after` 是修前（原線＋原路寬）／修後靠右落點車身（兩個行駛方向各算一次）在路面上的取樣數，
    修後比例 >= `_SHIFT_MIN_ON_ROAD` 且比修前高。verify 讀上游：原本相接（相交或端點在吸附距離內）的街，套用本包
-   全部修正後仍要相接，否則**錯誤**（路口斷了不是上游漂移，是這份資料錯）。
+   全部修正後仍要相接，否則**錯誤**（路口斷了不是上游漂移，是這份資料錯）。同一份地圖的補充道路也算在套用後的路網裡。
 
 `replacementPoints` 必須等於 `rect_centerline(expectedPoints, expectedWidth)`、合法的
 gap-bridge 延伸、合法的 drop-vertex、median-split、trim-detach、median-cut 或 center-shift，`hideLabel` 的
@@ -174,6 +185,9 @@ _CUT_MAX_LEN = 8.0
 _SHIFT_MIN = 0.5
 _SHIFT_CENTER_TOL = 0.5
 _SHIFT_MIN_ON_ROAD = 0.9
+# median-split 線在一側車道上（onCarriageway）：near／far 橫截面下限、中間分隔帶最少格數
+_SPLIT_LANE_MIN_SECTIONS = 4
+_SPLIT_LANE_MIN_MEDIAN = 1
 
 # operations[] 認得的欄位；多打一個字（replacmentPoints）不該變成靜默的空修正
 _OP_KEYS = {
@@ -290,8 +304,8 @@ def _tile(v: object) -> bool:
             and all(isinstance(c, int) and not isinstance(c, bool) for c in v))
 
 
-def _section_crossings(line: list[float], s: object) -> tuple[int, float, list[float]] | str:
-    """水平或垂直橫截面（from／to 兩端路面格）→ (量到的格數, 路面中心, line 近乎垂直穿過它的交點)；不合法回錯誤字串。"""
+def _section_line(s: object) -> tuple[bool, float, int, int] | str:
+    """水平或垂直橫截面（from／to 兩端路面格）→ (是否水平, 截面線座標＋0.5, 起格, 迄格)；不合法回錯誤字串。"""
     a, b = (s.get("from"), s.get("to")) if isinstance(s, dict) else (None, None)
     if not (_tile(a) and _tile(b)):
         return "的 from／to 必須是 [x, y] 整數格"
@@ -299,14 +313,55 @@ def _section_crossings(line: list[float], s: object) -> tuple[int, float, list[f
     if a == b or (not horiz and a[0] != b[0]):
         return "必須是水平或垂直的橫截面"
     lo, hi = sorted((a[0], b[0]) if horiz else (a[1], b[1]))
-    at, mid = (a[1] if horiz else a[0]) + 0.5, (lo + hi + 1) / 2
-    hits = []
+    return horiz, (a[1] if horiz else a[0]) + 0.5, lo, hi
+
+
+def _section_crossings(line: list[float], s: object) -> tuple[int, float, list[float], list[int]] | str:
+    """橫截面 → (量到的格數, 路面中心, line 近乎垂直穿過它的交點, 各交點所在的段序)；不合法回錯誤字串。"""
+    got = _section_line(s)
+    if isinstance(got, str):
+        return got
+    horiz, at, lo, hi = got
+    hits, segs = [], []
     for i in range(0, len(line) - 3, 2):
         # 一律換成「截面是 v=at 這條線」：u 沿截面、v 垂直截面
         u0, v0, u1, v1 = line[i:i + 4] if horiz else (line[i + 1], line[i], line[i + 3], line[i + 2])
         if v0 != v1 and min(v0, v1) <= at <= max(v0, v1) and abs(u1 - u0) <= _WIDTH_MAX_SKEW * abs(v1 - v0):
             hits.append(u0 + (u1 - u0) * (at - v0) / (v1 - v0))
-    return hi - lo + 1, mid, hits
+            segs.append(i // 2)
+    return hi - lo + 1, (lo + hi + 1) / 2, hits, segs
+
+
+def _band_hits(line: list[float], s: object, width: float) -> list[int] | str:
+    """line 穿過橫截面、交點離截面中心 <= _SHIFT_CENTER_TOL 且路寬帶整條在截面內的那些段序；不合法回錯誤字串。"""
+    got = _section_crossings(line, s)
+    if isinstance(got, str):
+        return got
+    wd, mid, hits, segs = got
+    return [k for u, k in zip(hits, segs) if abs(u - mid) <= _SHIFT_CENTER_TOL and abs(u - mid) + width / 2 <= wd / 2]
+
+
+def _band_miss(s: object, line: list[float], width: float) -> str:
+    """_band_hits 落空時的說明（呼叫端前面接「新線」「補充道路」）。"""
+    wd, mid, hits, _segs = _section_crossings(line, s)
+    return (f"沒有近乎垂直地穿過、離路面中心 {mid:g} 超過 {_SHIFT_CENTER_TOL:g} 格、"
+            f"或路寬 {width:g} 的帶超出量到的 {wd} 格（交點 {[round(u, 2) for u in hits]}）")
+
+
+def _lanes_error(lanes: object, where: str) -> str | None:
+    """修前／修後靠右車身取樣：修後在路面上的比例 >= _SHIFT_MIN_ON_ROAD 且比修前高。"""
+    lanes = lanes if isinstance(lanes, dict) else {}
+    counts = []
+    for key in ("before", "after"):
+        c = lanes.get(key) if isinstance(lanes.get(key), dict) else {}
+        ns, on = c.get("samples"), c.get("onRoad")
+        if not (type(ns) is int and type(on) is int and ns >= _SPLIT_MIN_SAMPLES and 0 <= on <= ns):
+            return f"{where}.{key} 必填（靠右車身取樣數 samples >= {_SPLIT_MIN_SAMPLES}、其中在路面上的 onRoad）"
+        counts.append(on / ns)
+    if counts[1] < _SHIFT_MIN_ON_ROAD or counts[1] <= counts[0]:
+        return (f"{where} 修後靠右車身在路面上 {counts[1]:.1%}（下限 {_SHIFT_MIN_ON_ROAD:.0%}，"
+                f"且要比修前 {counts[0]:.1%} 高）")
+    return None
 
 
 def width_evidence_error(exp: list[float], new_width: int, ev: object) -> str | None:
@@ -321,7 +376,7 @@ def width_evidence_error(exp: list[float], new_width: int, ev: object) -> str | 
         got = _section_crossings(exp, s)
         if isinstance(got, str):
             return f"sections[{n}] {got}"
-        wd, mid, hits = got
+        wd, mid, hits, _segs = got
         if wd != new_width:
             return f"sections[{n}] 量到 {wd} 格，不等於 replacementWidth {new_width}"
         if not any(abs(u - mid) <= _WIDTH_MAX_OFFSET for u in hits):
@@ -352,26 +407,12 @@ def center_shift_error(exp: list[float], half: float, rep: list[float], new_widt
     if not isinstance(secs, list) or len(secs) < _WIDTH_MIN_SECTIONS:
         return f"centerShift.sections 至少要 {_WIDTH_MIN_SECTIONS} 個橫截面"
     for n, s in enumerate(secs):
-        got = _section_crossings(rep, s)
-        if isinstance(got, str):
-            return f"centerShift.sections[{n}] {got}"
-        wd, mid, hits = got
-        if not any(abs(u - mid) <= _SHIFT_CENTER_TOL and abs(u - mid) + new_width / 2 <= wd / 2 for u in hits):
-            return (f"centerShift.sections[{n}] 新線沒有近乎垂直地穿過、離路面中心 {mid:g} 超過 {_SHIFT_CENTER_TOL:g} 格、"
-                    f"或路寬 {new_width:g} 的帶超出量到的 {wd} 格（交點 {[round(u, 2) for u in hits]}）")
-    lanes = ev.get("lanes") if isinstance(ev.get("lanes"), dict) else {}
-    counts = []
-    for key in ("before", "after"):
-        c = lanes.get(key) if isinstance(lanes.get(key), dict) else {}
-        ns, on = c.get("samples"), c.get("onRoad")
-        if not (type(ns) is int and type(on) is int and ns >= _SPLIT_MIN_SAMPLES and 0 <= on <= ns):
-            return (f"centerShift.lanes.{key} 必填（靠右車身取樣數 samples >= {_SPLIT_MIN_SAMPLES}、"
-                    "其中在路面上的 onRoad）")
-        counts.append(on / ns)
-    if counts[1] < _SHIFT_MIN_ON_ROAD or counts[1] <= counts[0]:
-        return (f"centerShift.lanes 修後靠右車身在路面上 {counts[1]:.1%}（下限 {_SHIFT_MIN_ON_ROAD:.0%}，"
-                f"且要比修前 {counts[0]:.1%} 高）")
-    return None
+        good = _band_hits(rep, s, new_width)
+        if isinstance(good, str):
+            return f"centerShift.sections[{n}] {good}"
+        if not good:
+            return f"centerShift.sections[{n}] 新線{_band_miss(s, rep, new_width)}"
+    return _lanes_error(ev.get("lanes"), "centerShift.lanes")
 
 
 def signed_side(flat: list[float], ref: list[float]) -> float:
@@ -396,9 +437,10 @@ def signed_side(flat: list[float], ref: list[float]) -> float:
     return total / n if n else 0.0
 
 
-def carriageway_error(exp: list[float], half: float, line: list[float]) -> str | None:
+def carriageway_error(exp: list[float], half: float, line: list[float], *, side: bool = True) -> str | None:
     """median-split 的一條車道線（本筆 replacement 或 pair 補充道路）：每點在原路半寬內、
-    兩端各離原線某一端點 <= 半寬（頭尾可以反向畫）、平均橫向位置離原線 >= _SPLIT_MIN_SIDE。"""
+    兩端各離原線某一端點 <= 半寬（頭尾可以反向畫）、平均橫向位置離原線 >= _SPLIT_MIN_SIDE
+    （side=False：線在一側車道上的新線可能幾乎不動，改由 medianEvidence.sections 證明在車道中心）。"""
     far = [i // 2 for i in range(0, len(line), 2) if point_polyline_distance(line[i], line[i + 1], exp) > half]
     if far:
         return f"第 {far[:4]} 點離原線超過原路半寬 {half:g}"
@@ -406,8 +448,71 @@ def carriageway_error(exp: list[float], half: float, line: list[float]) -> str |
     near = [min(((line[k] - x) ** 2 + (line[k + 1] - y) ** 2) ** 0.5 for x, y in ends) for k in (0, len(line) - 2)]
     if max(near) > half:
         return f"兩端要各在原線端點 {half:g} 格內（路口吸附不變），得到 {[round(v, 2) for v in near]}"
-    if abs(signed_side(line, exp)) < _SPLIT_MIN_SIDE:
+    if side and abs(signed_side(line, exp)) < _SPLIT_MIN_SIDE:
         return f"平均橫向位置離原線不到 {_SPLIT_MIN_SIDE:g} 格（沒有移到單側車道）"
+    return None
+
+
+def _lane_sections(secs: object) -> list[tuple[dict, dict]] | str:
+    """medianSplit.onCarriageway 的 medianEvidence.sections → [(near, far)]：兩段在同一條截面線上、
+    中間隔 >= _SPLIT_LANE_MIN_MEDIAN 格分隔帶；不合法回錯誤字串。"""
+    if not isinstance(secs, list) or len(secs) < _SPLIT_LANE_MIN_SECTIONS:
+        return f"medianEvidence.sections 至少要 {_SPLIT_LANE_MIN_SECTIONS} 個橫截面（各帶 near／far 兩條車道）"
+    out = []
+    for n, s in enumerate(secs):
+        near, far = (s.get("near"), s.get("far")) if isinstance(s, dict) else (None, None)
+        a, b = _section_line(near), _section_line(far)
+        for key, got in (("near", a), ("far", b)):
+            if isinstance(got, str):
+                return f"medianEvidence.sections[{n}].{key} {got}"
+        if a[:2] != b[:2]:
+            return f"medianEvidence.sections[{n}] near 和 far 要在同一條截面線上"
+        gap = b[2] - a[3] - 1 if b[2] > a[3] else a[2] - b[3] - 1
+        if gap < _SPLIT_LANE_MIN_MEDIAN:
+            return f"medianEvidence.sections[{n}] near 和 far 之間的分隔帶不到 {_SPLIT_LANE_MIN_MEDIAN} 格（重疊或相鄰）"
+        out.append((near, far))
+    return out
+
+
+def lane_split_error(exp: list[float], rep: list[float], rw: int, ms: dict) -> str | None:
+    """median-split onCarriageway：每個截面原線落在 near 或分隔帶上（不在 far 那側）、新線在 near 車道中心；
+    medianSplit.lanes 同 center-shift。"""
+    ev = ms.get("medianEvidence") if isinstance(ms.get("medianEvidence"), dict) else {}
+    pairs = _lane_sections(ev.get("sections"))
+    if isinstance(pairs, str):
+        return pairs
+    for n, (near, far) in enumerate(pairs):
+        _h, _at, nlo, nhi = _section_line(near)
+        _h, _at, flo, fhi = _section_line(far)
+        _wd, _mid, hits, _segs = _section_crossings(exp, near)
+        inside = [u for u in hits if (nlo <= u < flo if flo > nhi else fhi + 1 < u <= nhi + 1)]
+        if not inside:
+            return (f"medianEvidence.sections[{n}] 原線沒有落在 near 車道或分隔帶上（交點 {[round(u, 2) for u in hits]}；"
+                    "線不在這一側，不能用 onCarriageway）")
+        if not _band_hits(rep, near, rw):
+            return f"medianEvidence.sections[{n}].near 新線{_band_miss(near, rep, rw)}"
+    return _lanes_error(ms.get("lanes"), "medianSplit.lanes")
+
+
+def lane_pair_error(o: "Op", pts: list[float], pw: object) -> str | None:
+    """median-split onCarriageway 的 pair：每點在原路寬內、平均橫向位置和新線差 >= 2×_SPLIT_MIN_SIDE 且離原線比新線遠、
+    兩端各在新線吸附距離內、每個截面的 far 車道被 pair 穿過（車道中心、路寬帶在車道內）。"""
+    if isinstance(pw, bool) or not isinstance(pw, (int, float)) or pw <= 0:
+        return "補充道路缺 width（要用路寬驗對向車道）"
+    exp, rep = o.expected_points, o.replacement_points
+    far = [i // 2 for i in range(0, len(pts), 2) if point_polyline_distance(pts[i], pts[i + 1], exp) > o.expected_width]
+    if far:
+        return f"第 {far[:4]} 點離原線超過原路寬 {o.expected_width:g}"
+    sp, sr = signed_side(pts, exp), signed_side(rep, exp)
+    if abs(sp - sr) < 2 * _SPLIT_MIN_SIDE or abs(sp) <= abs(sr):
+        return f"不在對向車道（平均橫向位置 {sp:.2f}，本筆車道線 {sr:.2f}）"
+    tol = o.replacement_width / 2 + pw / 2 + _DETACH_SLACK
+    gaps = [point_polyline_distance(pts[k], pts[k + 1], rep) for k in (0, len(pts) - 2)]
+    if max(gaps) > tol:
+        return f"兩端要各在本筆車道線的吸附距離 {tol:g} 格內（才接得回去），得到 {[round(v, 2) for v in gaps]}"
+    for n, (_near, far_s) in enumerate(o.split_lane):
+        if not _band_hits(pts, far_s, pw):
+            return f"medianEvidence.sections[{n}].far 補充道路{_band_miss(far_s, pts, pw)}"
     return None
 
 
@@ -575,6 +680,8 @@ class Op(NamedTuple):
     no_junction: tuple[int, ...] | None = None  # no-junction：不和這幾條同圖街建路口（進執行期）
     nav_cut: int | None = None  # median-cut：只從導航拿掉的段序（0-based，進執行期）
     center_shift: bool = False  # center-shift：replacementPoints 是逐點平移（證據不進執行期）
+    # median-split onCarriageway：medianEvidence.sections 的 (near, far)，verify 拿來驗 pair 在 far 車道（不進執行期）
+    split_lane: tuple | None = None
 
 
 KIND_RECT = "rect-centerline"
@@ -640,6 +747,8 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
     detach_from = None
     nav_cut = None
     center_shift = False
+    split_lane = None
+    lane_mode = False
     if "replacementPoints" in raw:
         rep = _flat_points(errors, f"{where}.replacementPoints", raw["replacementPoints"])
         if rep is not None and len(rep) // 2 > MAX_REPLACEMENT_POINTS:
@@ -688,7 +797,11 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
                 errors.append(f"{where}.bridgeTo 只用於 gap-bridge（這筆是 drop-vertex）")
         elif rep is not None and exp is not None and width is not None and "medianSplit" in raw:
             ms = raw["medianSplit"] if isinstance(raw["medianSplit"], dict) else {}
-            problem = carriageway_error(exp, width / 2, rep)
+            lane_mode = ms.get("onCarriageway", False)
+            if lane_mode is not True and lane_mode is not False:
+                errors.append(f"{where}.medianSplit.onCarriageway 只能是 true 或省略")
+                lane_mode = False
+            problem = carriageway_error(exp, width / 2, rep, side=not lane_mode)
             if problem:
                 errors.append(f"{where}.replacementPoints（median-split 車道線）{problem}")
             pair = ms.get("pair") if isinstance(ms.get("pair"), dict) else {}
@@ -705,18 +818,36 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
                     f"{where}.medianSplit.medianEvidence 必填（原中線取樣數 samples >= {_SPLIT_MIN_SAMPLES}"
                     "、其中不在車道鋪面上的 offCarriageway）"
                 )
-            elif off / ns < _SPLIT_MIN_OFF_ROAD:
+            elif not lane_mode and off / ns < _SPLIT_MIN_OFF_ROAD:
                 errors.append(
                     f"{where} 原中線只有 {off}/{ns} 不在車道鋪面上（下限 {_SPLIT_MIN_OFF_ROAD:.0%}），"
-                    "不是「線畫在分隔帶上」，不准拆線"
+                    "不是「線畫在分隔帶上」，不准拆線（線在一側車道上要寫 onCarriageway 並附 near／far 截面）"
                 )
+            elif lane_mode and off / ns >= _SPLIT_MIN_OFF_ROAD:
+                errors.append(
+                    f"{where} 原中線有 {off}/{ns} 不在車道鋪面上（>= {_SPLIT_MIN_OFF_ROAD:.0%}），線畫在分隔帶上，"
+                    "請用一般 median-split（不寫 onCarriageway）"
+                )
+            lane_problem = None
+            rw = raw.get("replacementWidth")
+            if lane_mode:
+                if type(rw) is int:
+                    lane_problem = lane_split_error(exp, rep, rw, ms)
+                    if lane_problem:
+                        errors.append(f"{where}.medianSplit（線在一側車道上）{lane_problem}")
+                if "widthEvidence" in raw:
+                    errors.append(f"{where}.widthEvidence 不能和 medianSplit.onCarriageway 並用（車道證據寫在 medianEvidence.sections）")
+            elif "lanes" in ms or "sections" in ev:
+                errors.append(f"{where}.medianSplit.lanes／medianEvidence.sections 只用於 onCarriageway（線在一側車道上）")
             if "replacementWidth" not in raw:
                 errors.append(f"{where}.medianSplit 必須搭配 replacementWidth（車道寬）")
             for key in ("bridgeTo", "detachFrom"):
                 if key in raw:
                     errors.append(f"{where}.{key} 不能和 medianSplit 並用")
-            if pair_ok and not problem:
+            if pair_ok and not problem and not lane_problem:
                 split_pair = (pds, pno)
+                if lane_mode and type(rw) is int:
+                    split_lane = tuple(_lane_sections(ev.get("sections")))
         elif rep is not None and exp is not None and width is not None and "detachFrom" in raw:
             cut = trim_detach(exp, rep)
             if cut is None:
@@ -803,6 +934,8 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
             errors.append(f"{where}.replacementWidth 要比原路寬 {width:g} 窄（median-split 是車道寬、center-shift 只准收窄）")
         elif "centerShift" in raw:
             new_width = rw if center_shift else None  # 證據在 centerShift.sections，上面已驗
+        elif lane_mode:
+            new_width = rw if split_lane is not None else None  # 證據在 medianEvidence.sections，上面已驗
         elif exp is not None:
             line = rep if "medianSplit" in raw else exp
             problem = width_evidence_error(line, rw, raw.get("widthEvidence")) if line else "車道線不合法"
@@ -890,6 +1023,7 @@ def _load_op(errors: list[str], warnings: list[str], where: str, raw: dict) -> O
         no_junction,
         nav_cut,
         center_shift,
+        split_lane,
     )
 
 
@@ -1080,12 +1214,14 @@ def survey_upstream(
     *,
     prefer: list[str],
     game_dir: Path | None,
+    supplements: dict[str, list[tuple[list[float], float]]] | None = None,
 ) -> tuple[list[str], list[str]]:
     """比對本機上游／vanilla 副本，回報 pin 已對不上的筆數。→ (warnings, errors)
 
     漂移只回報（warnings）。pin 是人工核准的資料，generator 不得覆蓋或抹掉——執行期本來就會逐值
-    比對後安全略過，漂移的代價是「該筆修正失效」，不是壞掉。只有 center-shift 讓原本相接的街斷開是
-    errors：那是這份資料自己錯（上游沒變也會斷）。
+    比對後安全略過，漂移的代價是「該筆修正失效」，不是壞掉。只有 center-shift／線在一側車道上的
+    median-split 讓原本相接的街斷開是 errors：那是這份資料自己錯（上游沒變也會斷）。
+    supplements：每份修正同一份地圖的補充道路 [(點列, 路寬)]，路口檢查時算進套用後的路網。
     """
     warnings: list[str] = []
     errors: list[str] = []
@@ -1178,13 +1314,14 @@ def survey_upstream(
                     f"{ds} {len(stuck)} 筆 trim-detach 原端點不在 detachFrom 街吸附距離內、或新端點仍在"
                     f"吸附距離＋{_DETACH_MARGIN:g} 格內、或新線碰到那條街（須人工覆核）：index {stuck[:8]}"
                 )
-            # center-shift：原本相接（相交或端點在吸附距離內）的街，套用本包全部修正後仍要相接。
-            # 刻意斷開的（trim-detach 退離它、noJunction 列了它）不算
+            # center-shift、線在一側車道上的 median-split：原本相接（相交或端點在吸附距離內）的街，套用本包全部修正
+            # 後仍要和本筆新線或同一份地圖的補充道路相接。刻意斷開的（trim-detach 退離它、noJunction 列了它）不算
+            sup_roads = (supplements or {}).get(ds, [])
             broken = []
             for o in p.ops:
-                if not o.center_shift or o.index in stale:
+                if not (o.center_shift or o.split_lane is not None) or o.index in stale:
                     continue
-                a, wa = applied(o)
+                partners = [applied(o), *sup_roads]
                 xs, ys = o.expected_points[0::2], o.expected_points[1::2]
                 for j, st in enumerate(up):
                     if j == o.index or len(st.flat) < 4 or not st.width or j in (o.no_junction or ()):
@@ -1196,12 +1333,13 @@ def survey_upstream(
                     if (max(st.flat[0::2]) < min(xs) - m or min(st.flat[0::2]) > max(xs) + m
                             or max(st.flat[1::2]) < min(ys) - m or min(st.flat[1::2]) > max(ys) + m):
                         continue
-                    if linked(o.expected_points, o.expected_width, st.flat, st.width) and not linked(a, wa, *street_now(j)):
+                    if linked(o.expected_points, o.expected_width, st.flat, st.width) and not any(
+                            linked(a, wa, *street_now(j)) for a, wa in partners):
                         broken.append((o.index, j))
             if broken:
                 errors.append(
-                    f"{ds} {len(broken)} 對 center-shift 平移後原本相接的街斷開了（路口要用 gap-bridge 接回或少移一點）"
-                    f"：{broken[:8]}"
+                    f"{ds} {len(broken)} 對 center-shift／median-split（線在一側車道上）套用後原本相接的街斷開了"
+                    f"（路口要用 gap-bridge、補充道路接回或少移一點）：{broken[:8]}"
                 )
             # no-junction：兩條街在 NavCore 本來真的相通（相交或某一端點在吸附距離內），否則這對是多餘的；
             # median-cut 拿掉的那段要穿過 noJunction 列的街。每對從序號小的那筆看一次，幾何用套用後的點列與路寬
@@ -1275,8 +1413,26 @@ def _load_all(project_root: Path) -> tuple[dict[str, Pins], list[str], list[str]
 SUPPLEMENTS_DIR_NAME = "road-supplements"
 
 
+def _supplement_roads(path: Path) -> tuple[dict, list[dict]] | None:
+    """road-supplements/<ds>.json → (source, roads)；讀不到或格式不對回 None（gen_road_supplements 另有完整驗證）。"""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8-sig"))
+        src = data.get("source") if isinstance(data.get("source"), dict) else {}
+        return src, [r for r in data.get("roads", []) if isinstance(r, dict)]
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return None
+
+
+def _flat_or_none(raw: object) -> list[float] | None:
+    if (not isinstance(raw, list) or len(raw) < 4 or len(raw) % 2
+            or not all(isinstance(v, (int, float)) and not isinstance(v, bool) for v in raw)):
+        return None
+    return [float(v) for v in raw]
+
+
 def split_pair_errors(project_root: Path, pins_by_ds: dict[str, Pins]) -> list[str]:
-    """median-split 的對向車道：pair 指到的補充道路要存在、符合車道線規則、和本筆分在原線兩側。"""
+    """median-split 的對向車道：pair 指到的補充道路要存在、符合車道線規則、和本筆分在原線兩側
+    （onCarriageway 改驗 lane_pair_error）。"""
     errors: list[str] = []
     cache: dict[str, dict | None] = {}
     for ds in sorted(pins_by_ds):
@@ -1286,24 +1442,43 @@ def split_pair_errors(project_root: Path, pins_by_ds: dict[str, Pins]) -> list[s
                 continue
             sds, no = o.split_pair
             if sds not in cache:
-                try:
-                    data = json.loads((project_root / SUPPLEMENTS_DIR_NAME / f"{sds}.json").read_text(encoding="utf-8-sig"))
-                    cache[sds] = {r.get("no"): r.get("points") for r in data.get("roads", []) if isinstance(r, dict)}
-                except (OSError, json.JSONDecodeError, AttributeError):
-                    cache[sds] = None
+                got = _supplement_roads(project_root / SUPPLEMENTS_DIR_NAME / f"{sds}.json")
+                cache[sds] = {r.get("no"): r for r in got[1]} if got else None
             where = f"{ds} #{o.index} median-split pair {sds} {no:02d}"
-            raw = (cache[sds] or {}).get(no)
-            if (not isinstance(raw, list) or len(raw) < 4 or len(raw) % 2
-                    or not all(isinstance(v, (int, float)) and not isinstance(v, bool) for v in raw)):
+            road = (cache[sds] or {}).get(no) or {}
+            pts = _flat_or_none(road.get("points"))
+            if pts is None:
                 errors.append(f"{where} 找不到這條補充道路（{SUPPLEMENTS_DIR_NAME}/{sds}.json）")
                 continue
-            pts = [float(v) for v in raw]
+            if o.split_lane is not None:
+                problem = lane_pair_error(o, pts, road.get("width"))
+                if problem:
+                    errors.append(f"{where}（線在一側車道上）{problem}")
+                continue
             problem = carriageway_error(o.expected_points, o.expected_width / 2, pts)
             if problem:
                 errors.append(f"{where} {problem}")
             elif signed_side(pts, o.expected_points) * signed_side(o.replacement_points, o.expected_points) >= 0:
                 errors.append(f"{where} 和本筆車道線在原線同一側（兩條車道線要分在原線兩側）")
     return errors
+
+
+def map_supplements(project_root: Path, pins_by_ds: dict[str, Pins]) -> dict[str, list[tuple[list[float], float]]]:
+    """每份道路修正對應的補充道路（同 dataset 名或同地圖資料夾）→ [(點列, 路寬)]：verify 檢查路口時算進套用後的路網。"""
+    out: dict[str, list[tuple[list[float], float]]] = {ds: [] for ds in pins_by_ds}
+    for f in sorted((project_root / SUPPLEMENTS_DIR_NAME).glob("*.json")):
+        got = _supplement_roads(f)
+        if got is None:
+            continue
+        src, roads = got
+        for ds, p in pins_by_ds.items():
+            if f.stem != ds and src.get("map_dir") != p.map_dir:
+                continue
+            for r in roads:
+                pts, w = _flat_or_none(r.get("points")), r.get("width")
+                if pts is not None and type(w) in (int, float) and w > 0:
+                    out[ds].append((pts, float(w)))
+    return out
 
 
 def gen(project_root: Path) -> tuple[Result, dict[str, Pins]]:
@@ -1323,7 +1498,8 @@ def verify(project_root: Path, *, prefer: list[str], game_dir: Path | None) -> R
         errors.append(f"缺生成檔 {REPAIR_TABLE_REL}（跑 gen）")
     elif path.read_bytes() != render_repair_table(pins_by_ds):
         errors.append(f"{REPAIR_TABLE_REL} 與 {REPAIRS_DIR_NAME}/ 不同步（跑 gen）")
-    warns, errs = survey_upstream(pins_by_ds, prefer=prefer, game_dir=game_dir)
+    warns, errs = survey_upstream(pins_by_ds, prefer=prefer, game_dir=game_dir,
+                                  supplements=map_supplements(project_root, pins_by_ds))
     return Result(errors + errs, warnings + warns)
 
 
@@ -1397,6 +1573,17 @@ _XML = (
     "    </street>\n"
     '    <street name="Side St" width="4">\n'
     '        <points><point x="980" y="150" /><point x="995" y="150" /></points>\n'
+    "    </street>\n"
+    # median-split onCarriageway：作者線 x 1200、寬 16；near 車道 x 1196–1201（中心 1199）、分隔帶 1202–1205、
+    # far 車道 x 1206–1211（中心 1209）。Lane Side 從 near 那側接進來，Far Side 從 far 那側（離原線 13、離新線 14）
+    '    <street name="Lane Pike" width="16">\n'
+    '        <points><point x="1200" y="100" /><point x="1200" y="300" /></points>\n'
+    "    </street>\n"
+    '    <street name="Lane Side" width="4">\n'
+    '        <points><point x="1180" y="200" /><point x="1193" y="200" /></points>\n'
+    "    </street>\n"
+    '    <street name="Far Side" width="4">\n'
+    '        <points><point x="1225" y="200" /><point x="1213" y="200" /></points>\n'
     "    </street>\n"
     "</streets>\n"
 )
@@ -1543,6 +1730,31 @@ def _pin_doc(**over: object) -> dict:
     return doc
 
 
+def _lane_sections_fixture(ys: tuple[int, ...] = (120, 160, 200, 240)) -> list[dict]:
+    return [{"near": {"from": [1196, y], "to": [1201, y]}, "far": {"from": [1206, y], "to": [1211, y]}} for y in ys]
+
+
+def _lane_doc() -> dict:
+    """_pin_doc 再加一筆 median-split onCarriageway（Lane Pike #15，pair 補充道路 11 號）。"""
+    doc = _pin_doc()
+    doc["operations"].append({
+        "index": 15,
+        "name": "Lane Pike",
+        "expectedWidth": 16,
+        "expectedPoints": [1200, 100, 1200, 300],
+        "replacementPoints": [1199, 100, 1199, 300],
+        "replacementWidth": 6,
+        "medianSplit": {
+            "onCarriageway": True,
+            "pair": {"supplement": "demo", "no": 11},
+            "medianEvidence": {"samples": 200, "offCarriageway": 0, "sections": _lane_sections_fixture()},
+            "lanes": {"before": {"samples": 400, "onRoad": 250}, "after": {"samples": 400, "onRoad": 396}},
+        },
+        "reason": "median-split（線在一側車道上）",
+    })
+    return doc
+
+
 def _fixture(root: Path, doc: dict | None, *, registry: bool = True) -> Path:
     (root / REPAIRS_DIR_NAME).mkdir(parents=True, exist_ok=True)
     if doc is not None:
@@ -1560,7 +1772,14 @@ def _fixture(root: Path, doc: dict | None, *, registry: bool = True) -> Path:
     sup.mkdir(parents=True, exist_ok=True)
     # median-split 的 pair：1 號在原線另一側（y 905）、2 號在同一側（y 897）
     (sup / "demo.json").write_text(json.dumps({"roads": [
-        {"no": 1, "points": [600, 905, 800, 905]}, {"no": 2, "points": [600, 897, 800, 897]}]}), encoding="utf-8")
+        {"no": 1, "points": [600, 905, 800, 905]}, {"no": 2, "points": [600, 897, 800, 897]},
+        # onCarriageway 的 pair：11 號在 far 車道中心；12–16 各壞一處（不在 far 中心、缺路寬、端點太遠、超過原路寬、同側）
+        {"no": 11, "width": 6, "points": [1209, 100, 1209, 300]},
+        {"no": 12, "width": 6, "points": [1207, 100, 1207, 300]},
+        {"no": 13, "points": [1209, 100, 1209, 300]},
+        {"no": 14, "width": 2, "points": [1209, 100, 1209, 300]},
+        {"no": 15, "width": 6, "points": [1209, 100, 1209, 300, 1230, 300]},
+        {"no": 16, "width": 6, "points": [1199.5, 100, 1199.5, 300]}]}), encoding="utf-8")
     game = root / "game" / "media" / "maps" / "Muldraugh, KY"
     game.mkdir(parents=True, exist_ok=True)
     (game / "streets.xml").write_text(_VAN_XML, encoding="utf-8")
@@ -1766,6 +1985,36 @@ def _reject_cases() -> list[tuple[str, dict, str]]:
     cases.append(("centerShift 缺 replacementPoints", doc, "必須搭配 replacementPoints"))
     doc = _pin_doc(); doc["operations"][shift].pop("centerShift"); doc["operations"][shift].pop("replacementWidth")
     cases.append(("平移點列沒寫 centerShift（手繪新幾何）", doc, "rect-outline 中心線"))
+    lane = 11
+    doc = _lane_doc(); doc["operations"][lane]["medianSplit"]["onCarriageway"] = "yes"
+    cases.append(("onCarriageway 不是布林", doc, "只能是 true 或省略"))
+    doc = _lane_doc(); doc["operations"][lane]["medianSplit"]["medianEvidence"]["offCarriageway"] = 150
+    cases.append(("onCarriageway 但原線多半在分隔帶上", doc, "請用一般 median-split"))
+    doc = _lane_doc(); doc["operations"][lane]["medianSplit"]["medianEvidence"]["sections"].pop()
+    cases.append(("onCarriageway 只有三個 near／far 截面", doc, "至少要 4 個"))
+    doc = _lane_doc(); doc["operations"][lane]["medianSplit"]["medianEvidence"]["sections"][0]["far"]["from"] = [1201, 120]
+    cases.append(("onCarriageway near／far 之間沒有分隔帶", doc, "分隔帶不到"))
+    doc = _lane_doc(); doc["operations"][lane]["medianSplit"]["medianEvidence"]["sections"][0]["far"] = {
+        "from": [1206, 121], "to": [1211, 121]}
+    cases.append(("onCarriageway near／far 不在同一條截面線", doc, "同一條截面線"))
+    doc = _lane_doc(); doc["operations"][lane]["expectedPoints"] = [1207, 100, 1207, 300]
+    cases.append(("onCarriageway 原線其實在 far 車道上", doc, "原線沒有落在 near"))
+    doc = _lane_doc(); doc["operations"][lane]["replacementPoints"] = [1197, 100, 1197, 300]
+    cases.append(("onCarriageway 新線不在 near 車道中心", doc, "near 新線沒有"))
+    doc = _lane_doc(); doc["operations"][lane]["replacementPoints"] = [1199, 100, 1199, 300, 1190, 300]
+    cases.append(("onCarriageway 新線點離原線超過半寬", doc, "超過原路半寬"))
+    doc = _lane_doc(); doc["operations"][lane]["medianSplit"]["lanes"]["after"]["onRoad"] = 300
+    cases.append(("onCarriageway 修後靠右車身仍常出路面", doc, "下限 90%"))
+    doc = _lane_doc(); doc["operations"][lane]["medianSplit"].pop("lanes")
+    cases.append(("onCarriageway 缺靠右取樣", doc, "medianSplit.lanes.before 必填"))
+    doc = _lane_doc(); doc["operations"][lane]["widthEvidence"] = {"source": "x", "sections": []}
+    cases.append(("onCarriageway 另帶 widthEvidence", doc, "不能和 medianSplit.onCarriageway"))
+    doc = _pin_doc(); doc["operations"][split]["medianSplit"]["medianEvidence"]["sections"] = _lane_sections_fixture()
+    cases.append(("一般 median-split 帶 near／far 截面", doc, "只用於 onCarriageway"))
+    for no, needle in ((12, "far 補充道路沒有"), (13, "缺 width"), (14, "吸附距離"), (15, "超過原路寬 16"),
+                       (16, "不在對向車道")):
+        doc = _lane_doc(); doc["operations"][lane]["medianSplit"]["pair"]["no"] = no
+        cases.append((f"onCarriageway pair 補充道路 {no} 號", doc, needle))
     return cases
 
 
@@ -2003,6 +2252,32 @@ def cmd_selftest() -> int:
         res = _verify(root)
         check("gap-bridge 接到平移後的線：路口接回、接線端點照套用後的幾何（離原線 2 格不警告）",
               res.ok and not any("gap-bridge" in w for w in res.warnings), str(res.errors + res.warnings))
+
+    # median-split onCarriageway：合法資料生成；Far Side 只靠 pair 補充道路接回
+    with tempfile.TemporaryDirectory() as td:
+        root = _fixture(Path(td) / "l", _lane_doc())
+        res, _ = gen(root)
+        pins, _e, _w = load_pins(root / REPAIRS_DIR_NAME / "demo.json")
+        op = pins.ops[-1] if pins else None
+        check("median-split onCarriageway 合法、分類仍是 median-split、車道寬落表",
+              res.ok and op is not None and classify_op(op) == KIND_SPLIT and op.replacement_width == 6
+              and op.split_lane is not None and len(op.split_lane) == 4, str(res.errors))
+        res = _verify(root)
+        check("onCarriageway：Far Side 離新線 14 格（吸附 9.5）但接到 pair 補充道路＝路口仍在",
+              res.ok and not any("斷開" in e for e in res.errors), str(res.errors + res.warnings))
+        doc = _lane_doc()
+        ms = doc["operations"][-1]["medianSplit"]
+        ms["pair"]["no"] = 17
+        ms["medianEvidence"]["sections"] = _lane_sections_fixture((110, 130, 150, 170))
+        _fixture(root, doc)
+        (root / SUPPLEMENTS_DIR_NAME / "demo.json").write_text(json.dumps({"roads": [
+            {"no": 1, "points": [600, 905, 800, 905]}, {"no": 17, "width": 6, "points": [1209, 100, 1209, 180]}]}),
+            encoding="utf-8")
+        res, _ = gen(root)
+        check("onCarriageway pair 只蓋 y 100–180 的分隔段也合法", res.ok, str(res.errors))
+        res = _verify(root)
+        check("onCarriageway pair 沒蓋到 Far Side 那段：原本相接的街斷開＝錯誤",
+              not res.ok and any("斷開" in e and "(15, 17)" in e for e in res.errors), str(res.errors + res.warnings))
 
     print(f"\n{'✅' if n_ok == n_all else '❌'} selftest {n_ok}/{n_all}")
     return 0 if n_ok == n_all else 1
