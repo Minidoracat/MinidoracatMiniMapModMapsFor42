@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-26T11:36:05Z",
+  "generated_at": "2026-10-27T11:01:24Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -390,6 +390,13 @@
       "time_updated": 1771407023,
       "title": "SafeWayHamlet"
     },
+    "3535422434": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1789177986,
+      "title": "Oakshire [B42]"
+    },
     "3537326669": {
       "last_result": 1,
       "removed": false,
@@ -445,6 +452,20 @@
       "removed_at": null,
       "time_updated": 1785371812,
       "title": "Path of Zenith, Louisville B41/B42.19 [BROKEN 42.20]"
+    },
+    "3595453862": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1761870017,
+      "title": "JIB - Peanut Butter Factory"
+    },
+    "3599769747": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1762356019,
+      "title": "Basement 06  [B42]"
     },
     "3600377019": {
       "last_result": 1,
@@ -769,9 +790,9 @@
       "title": "Dirkerdam Integrated B42"
     },
     "3821109144": {
-      "last_result": 1,
-      "removed": false,
-      "removed_at": null,
+      "last_result": 9,
+      "removed": true,
+      "removed_at": "2026-10-27T11:00:04Z",
       "time_updated": 1792348357,
       "title": "Dirkerdam Map Fix"
     },
@@ -786,7 +807,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1792914057,
+      "time_updated": 1793029638,
       "title": "Bedford Falls 贝德福德瀑布 [B42]"
     }
   }

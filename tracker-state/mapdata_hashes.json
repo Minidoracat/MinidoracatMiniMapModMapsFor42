@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T11:36:05Z",
+  "generated_at": "2026-10-27T11:01:24Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -991,6 +991,25 @@
         ]
       }
     },
+    "3535422434": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Oakshire42": {
+          "bounds": [
+            7936,
+            7424,
+            9216,
+            8448
+          ],
+          "hash": "f2df160049183979c31414c058b1631f080f31b9a88c49a3e8088e71bf10a780"
+        }
+      },
+      "mods": {
+        "Oakshire42": [
+          "Oakshire42"
+        ]
+      }
+    },
     "3537326669": {
       "assets": "42ad0dbac8d9719217cf8c8073d6117a542fc4609c879ba5edaa9391664c5c6b",
       "maps": {
@@ -1164,6 +1183,44 @@
       "mods": {
         "PZ_ACSM_LV": [
           "Path of Zenith, Louisville"
+        ]
+      }
+    },
+    "3595453862": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "jibs": {
+          "bounds": [
+            14080,
+            3072,
+            14592,
+            3840
+          ],
+          "hash": "68d86ff641ff9b398f2cb7db9ee1239bc8c57b8c31545c6bcdb9d80524db0420"
+        }
+      },
+      "mods": {
+        "jibsMap": [
+          "jibs"
+        ]
+      }
+    },
+    "3599769747": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Basement06": {
+          "bounds": [
+            4864,
+            11520,
+            5632,
+            12032
+          ],
+          "hash": "a3784f7f81a58516a11020b072cdecfdf678eb3f465eef0f129a6cd58ca326d5"
+        }
+      },
+      "mods": {
+        "Basement06": [
+          "Basement06"
         ]
       }
     },
@@ -2197,7 +2254,7 @@
             14592,
             13312
           ],
-          "hash": "66272edd493944c11c51d32032604beb4c5afea4471df90fa6a84eb02f2c72c1"
+          "hash": "fcec07812614ebb278b84cb1849facb10cfebadc14187940f91bc692c7829041"
         }
       },
       "mods": {
