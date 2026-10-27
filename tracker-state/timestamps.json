@@ -791,8 +791,8 @@
     },
     "3821109144": {
       "last_result": 9,
-      "removed": true,
-      "removed_at": "2026-10-27T11:00:04Z",
+      "removed": false,
+      "removed_at": null,
       "time_updated": 1792348357,
       "title": "Dirkerdam Map Fix"
     },

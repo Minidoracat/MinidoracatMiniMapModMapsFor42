@@ -13,7 +13,8 @@ MOD 軸（time_updated 變動）→ steamcmd 下載該項 → hash 圖資（medi
   tile pack 不在其中——材質包單獨更新時原本零 issue、圖靜默停在舊材質（2026-08-12
   Tikitown＋Drazion's Tilepack 同批更新實案）。清單由本機 `deps-scan` 由註冊表推導成
   tracker-state/tile_deps.json（進版控），命中者 issue 改標「需重渲受影響地圖（N 張）」。
-  下架（API result=9）→ 開「[地圖下架]」issue 一次；自下輪起不再查詢（tombstone 保留），
+  下架（API result=9，且更新紀錄頁讀不到；不公開項目 API 也回 9，見 probe_unlisted）→
+  開「[地圖下架]」issue 一次；自下輪起不再查詢（tombstone 保留），
   重新上架要恢復追蹤＝手動把 state 該項 removed 改回 false。
   首次見到（含 --bootstrap 首建）→ 靜默記基準，零 issue。
   道路資料（同一次下載）：掃 streets.xml／worldmap.xml → 本包 pin（街名翻譯／道路修正／
@@ -50,6 +51,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import json
 import os
 import random
@@ -78,7 +80,10 @@ OWN_CREATOR = "76561198033176898"
 COLLECTION_API = "https://api.steampowered.com/ISteamRemoteStorage/GetCollectionDetails/v1/"
 DETAILS_API = "https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/"
 RESULT_OK = 1
-RESULT_NOT_FOUND = 9  # 已下架 / 隱藏 / 無效 ID
+RESULT_NOT_FOUND = 9  # 已下架 / 隱藏 / 不公開（unlisted）/ 無效 ID
+CHANGELOG_URL = "https://steamcommunity.com/sharedfiles/filedetails/changelog/{}"
+_CHANGELOG_TS_RE = re.compile(r'<p id="(\d{9,})"')
+_ITEM_TITLE_RE = re.compile(r'<div class="workshopItemTitle">([^<]*)</div>')
 
 # 圖資判定：只 hash 會影響 pyramid 渲染的檔案
 RENDER_EXTS = {".lotheader", ".lotpack", ".bin"}  # media/maps/<dir>/ 底下的 cell 圖資
@@ -169,19 +174,18 @@ def _post_form(url: str, params: list[tuple[str, str]], timeout: float = 30.0) -
         return json.loads(resp.read().decode("utf-8"))
 
 
-def _post_with_retry(
-    url: str,
-    params: list[tuple[str, str]],
+def _with_retry(
+    call: Callable[[], object],
     *,
     max_retries: int = 5,
     base_delay: float = 1.0,
     jitter: float = 0.5,
     sleep: Callable[[float], None] = time.sleep,
-) -> dict:
+):
     """429/5xx 用 Retry-After + 指數退避 + jitter 重試；其他錯誤直接拋。"""
     for attempt in range(max_retries + 1):
         try:
-            return _post_form(url, params)
+            return call()
         except urllib.error.HTTPError as exc:
             retryable = exc.code == 429 or 500 <= exc.code < 600
             if not retryable or attempt >= max_retries:
@@ -202,7 +206,7 @@ def _post_with_retry(
 def fetch_collection_children() -> list[str]:
     """查收藏子項目 ID（依 sortorder；只收一般項目 filetype=0）。失敗/空清單即中止。"""
     params = [("collectioncount", "1"), ("publishedfileids[0]", COLLECTION_ID)]
-    resp = _post_with_retry(COLLECTION_API, params)
+    resp = _with_retry(lambda: _post_form(COLLECTION_API, params))
     colls = resp.get("response", {}).get("collectiondetails", [])
     if not colls or int(colls[0].get("result", 0)) != RESULT_OK:
         print("❌ 收藏查詢失敗（result != 1），中止。", file=sys.stderr)
@@ -232,7 +236,7 @@ def _fetch_batch(ids: list[str]) -> dict[str, dict]:
     params: list[tuple[str, str]] = [("itemcount", str(len(ids)))]
     for i, wid in enumerate(ids):
         params.append((f"publishedfileids[{i}]", wid))
-    return _details_from_response(_post_with_retry(DETAILS_API, params))
+    return _details_from_response(_with_retry(lambda: _post_form(DETAILS_API, params)))
 
 
 def fetch_details(ids: list[str], *, batch: int = 18) -> dict[str, dict]:
@@ -246,6 +250,43 @@ def fetch_details(ids: list[str], *, batch: int = 18) -> dict[str, dict]:
         except OSError as exc:  # 含 HTTPError/URLError/TimeoutError
             print(f"  ⚠️ 缺漏重試失敗 {wid}: {exc}", file=sys.stderr)
     return result
+
+
+def _get_text(url: str, timeout: float = 30.0) -> str:
+    """GET 一頁（steamcommunity 常回 429，走同一套退避重試）。"""
+    def call() -> str:
+        req = urllib.request.Request(url, headers={"User-Agent": "minimap-map-tracker/1"})
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return resp.read().decode("utf-8", errors="replace")
+    return _with_retry(call)
+
+
+def probe_unlisted(
+    details: dict[str, dict], *, get: Callable[[str], str] = _get_text
+) -> dict[str, dict]:
+    """API result=9 不一定是下架：不公開（unlisted）的項目 GetPublishedFileDetails 也回 9，
+    但頁面、更新紀錄與匿名 steamcmd 下載都照常（Dirkerdam Map Fix #62，2026-10-27）。
+    對 result=9 的項目讀更新紀錄頁：有紀錄＝還拿得到，換成 result=1＋最新一筆的時間
+    （公開項目的這個值等於 API 的 time_updated）照常追蹤；錯誤頁或認不出的頁面維持 9，
+    照舊開下架 issue。讀取失敗（429、逾時）＝本輪不判，從 details 拿掉（state 不推進、
+    下輪再試）：下架會 tombstone、從此不再查詢，一次 429 不該留下永久結果。"""
+    out = dict(details)
+    for wid, detail in details.items():
+        if int(detail.get("result", 0)) != RESULT_NOT_FOUND:
+            continue
+        try:
+            text = get(CHANGELOG_URL.format(wid))
+        except OSError as exc:  # 含 HTTPError（429）/URLError/TimeoutError
+            warn(f"id={wid} API result=9，更新紀錄頁讀不到（{exc}），本輪不判")
+            del out[wid]
+            continue
+        stamps = [int(s) for s in _CHANGELOG_TS_RE.findall(text)]
+        title = _ITEM_TITLE_RE.search(text)
+        if stamps and title:
+            out[wid] = {"publishedfileid": wid, "result": RESULT_OK, "time_updated": max(stamps),
+                        "title": html.unescape(title.group(1)).strip()}
+            print(f"  ℹ️ {wid} 不公開（API result=9、更新紀錄頁可讀），照常追蹤")
+    return out
 
 
 def coverage_guard(ids: list[str], details: dict[str, dict]) -> None:
@@ -921,11 +962,13 @@ def build_removed_plan(wid: str, title: str, *, tilepack_used_by: list | None = 
         head = [
             f"## 地圖下架：`{label}`（Workshop {wid}）",
             "",
-            "每日檢查發現此 Workshop 項目已無法存取（Steam API result=9），",
+            "每日檢查發現此 Workshop 項目已無法存取（Steam API result=9，更新紀錄頁也讀不到），",
             "可能為作者隱藏／移除，或遭 Steam 下架。",
             "",
             "**處置**（現行政策：下架即移除支援，見 README「已下架地圖」表）：",
             "",
+            f"- [ ] 先確認真的拿不到：Workshop 頁開得起來、或匿名 `steamcmd +login anonymous +workshop_download_item {GAME_APPID} {wid}` 成功＝"
+            "只是不公開（更新紀錄頁版面可能改了，`probe_unlisted` 認不出），不要移除支援，把 `tracker-state/timestamps.json` 該項 `removed` 改回 `false` 後關閉本 issue",
             "- [ ] 自 `media/minimap/` 刪 pyramid zip、刪 Lua 註冊條目與四語翻譯鍵",
             "- [ ] README 收錄表移除該列、補進「已下架地圖」表；三語 Steam 描述與許願串數字同步",
             f"- [ ] 自[支援地圖收藏](https://steamcommunity.com/sharedfiles/filedetails/?id={COLLECTION_ID})移除該項目",
@@ -1190,7 +1233,7 @@ def collect() -> dict:
         print(f"  ℹ️ 已下架、不查詢：{', '.join(skipped_removed)}")
     query_ids = [wid for wid in children if wid not in skipped_removed]
     tile_ids = [wid for wid in tracked if wid not in children and wid not in skipped_removed]
-    details = fetch_details(query_ids + tile_ids)
+    details = probe_unlisted(fetch_details(query_ids + tile_ids))
 
     # creator 缺失（下架項目不回 creator）→ 當作外人保留追蹤：第三方地圖要下架 issue；
     # 自家項目誤中只是可關閉的噪音，方向刻意 fail-open
@@ -1705,6 +1748,25 @@ def cmd_self_test() -> int:
     # 已標記下架者再次 result=9 → 不再開新 plan
     plans2, _meta2, _ = classify(["3"], {"3": {"result": 9}}, {"3": dict(meta["3"])})
     assert plans2 == []
+    # probe_unlisted：result=9 但更新紀錄頁可讀＝不公開，照常追蹤；錯誤頁維持 9；讀取失敗本輪不判
+    page = '<div class="workshopItemTitle">A &amp; B</div><p id="1792348357"></p><p id="1792236999">x</p>'
+
+    def fake_get(url):
+        if url.endswith("/91"):
+            return page
+        if url.endswith("/92"):
+            return '<div class="error_ctn">There was a problem accessing the item.</div>'
+        raise urllib.error.URLError("boom")
+
+    probed = probe_unlisted({"90": {"result": 1, "time_updated": 5}, "91": {"result": 9},
+                             "92": {"result": 9}, "93": {"result": 9}}, get=fake_get)
+    assert probed["90"] == {"result": 1, "time_updated": 5}
+    assert probed["91"]["result"] == 1 and probed["91"]["time_updated"] == 1792348357
+    assert probed["91"]["title"] == "A & B"
+    assert probed["92"]["result"] == 9 and "93" not in probed  # 讀取失敗＝本輪不判
+    plans_p, meta_p, _ = classify(["91", "92"], probed, {"91": {"time_updated": 1792348357, "title": "A"},
+                                                        "92": {"time_updated": 1, "title": "B"}})
+    assert [p["workshop_id"] for p in plans_p] == ["92"] and not meta_p["91"]["removed"]
     # 首見＋查無回應 → 不入 state（下輪仍視為首見，避免假「更新」issue）
     plans3, meta3, base3 = classify(["5"], {}, {})
     assert plans3 == [] and meta3 == {} and base3 == 0
