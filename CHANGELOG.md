@@ -4,6 +4,7 @@
 
 ### 修正
 
+- **遊戲內 MOD 清單看不到本 MOD 的封面圖**：從 0.9.0 起，MOD 清單裡本 MOD 的封面一直是空白。現在 MOD 清單會正常顯示封面。MOD 功能沒有受影響，更新後不用做任何設定。
 - **德克丹（Dirkerdam Map Fix 的道路資料）導航修正**：
   - 東南一帶約 55 條街（Lincoln Ave、Locust Lane、Beachway Ave、Hawthorn Ave、Garfield Ave 一帶）和主要路網之間有兩處斷點，從城裡導航不過去、在那一帶也導航不出來。本包沿實際路面補上 River Road 南端接 Lincoln Ave 的路段（「德克丹 02 號路（小地圖補）」，路口中間堆滿廢棄物，只留一條窄道）與 Garfield Ave 接 Mack Dr 的路段（「德克丹 03 號路（小地圖補）」，中間約 30 格是土地）。
   - Stephen Ave 一處原作者多畫一段往回折的線，路線在那裡折成髮夾彎、自動駕駛會原地反覆調頭；River Road 西端多畫一小段越過 State Road，同樣會調頭。兩處都拿掉多出來的點。
