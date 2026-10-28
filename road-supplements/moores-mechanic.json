@@ -1,0 +1,37 @@
+{
+  "dataset": "moores-mechanic",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3699636604",
+    "map_mod": "MooresMechanicPlus",
+    "map_dir": "Moores Mechanic Plus",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "c08bb83e9a3aeb6909c0a49bc2aa8bdf3c04e0944089b42cecfe61a56fd80471",
+    "captured": "2026-10-28",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Moores Mechanic",
+    "ch": "摩爾修車廠",
+    "cn": "摩尔修车厂",
+    "jp": "ムーアズ整備工場"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 8,
+      "points": [
+        11000,
+        8328,
+        11500,
+        8328
+      ],
+      "evidence": {
+        "samples": 501,
+        "on_road": 501
+      }
+    }
+  ],
+  "retired": []
+}

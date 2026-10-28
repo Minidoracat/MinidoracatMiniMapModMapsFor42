@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 11 個 dataset／231 條補充道路
+-- 12 個 dataset／232 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -201,6 +201,15 @@ Supplements["jib-factory"] = {
         ["JIB Peanut Butter Factory Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_jib-factory_02",
         ["JIB Peanut Butter Factory Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_jib-factory_03",
         ["JIB Peanut Butter Factory Rd 04 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_jib-factory_04",
+    },
+}
+
+-- ==== moores-mechanic (MooresMechanicPlus / Moores Mechanic Plus) ====
+Supplements["moores-mechanic"] = {
+    schemaVersion = 1, mapMod = "MooresMechanicPlus", mapDir = "Moores Mechanic Plus",
+    file = "media/minimap/streets/moores-mechanic.xml", upstreamStreetCount = 0, roadCount = 1,
+    names = {
+        ["Moores Mechanic Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_moores-mechanic_01",
     },
 }
 

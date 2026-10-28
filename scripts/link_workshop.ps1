@@ -115,7 +115,10 @@ $MapModExclude = @(
     'BedfordFallsB42',
     # Oakshire：和已在 maptest 的亞特蘭大安全區（9 cell）、綠港（6）、艾德汽車回收場、小鎮區、楓木林鎮整格重疊。
     # 掛載與補充道路用 E2E 情境驗。
-    'Oakshire42'
+    'Oakshire42',
+    # Moores Mechanic：和已在 maptest 的艾莉卡家具店（44_31、44_32）、唐人街擴張區（43_32）整格重疊，
+    # 院區跨四格、哪張排前面另一張都會缺一塊。掛載與補充道路用 E2E 單圖情境 moores-mp 驗。
+    'MooresMechanicPlus'
 )
 
 # 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）

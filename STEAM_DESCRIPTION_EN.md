@@ -23,7 +23,7 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 
 [h2]✨ Features[/h2]
 [list]
-[*] [b]Supported maps[/b]: 95 map mods (127 maps), shown automatically when enabled
+[*] [b]Supported maps[/b]: 96 map mods (128 maps), shown automatically when enabled
 [*] [b]Outlines & map names[/b]: map names in 12 languages; outlines can be toggled and recoloured
 [*] [b]Street-name translations[/b]: street names on 25 maps in Traditional/Simplified Chinese and Japanese; original and translated names are both searchable
 [*] [b]Road data fixes[/b]: roads added or fixed on some maps for more complete street names and navigation

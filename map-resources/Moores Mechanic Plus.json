@@ -1,0 +1,28 @@
+{
+  "zip": "Moores Mechanic Plus.pyramid.zip",
+  "mapDir": "Moores Mechanic Plus",
+  "rawRecords": 32,
+  "aliases": {},
+  "cells300": [[37, 27]],
+  "entries": [
+    {"cat": "books", "rects": [[11217, 8204, 25, 12], [11227, 8194, 6, 10]], "bbox": [11217, 8194, 25, 22], "underground": false},
+    {"cat": "food", "rects": [[11128, 8286, 8, 9], [11128, 8300, 6, 4], [11128, 8295, 3, 5], [11131, 8295, 5, 3]], "bbox": [11128, 8286, 8, 18], "underground": false},
+    {"cat": "food", "rects": [[11350, 8265, 15, 7], [11354, 8260, 8, 4], [11350, 8260, 4, 5], [11354, 8264, 11, 1], [11362, 8263, 3, 1]], "bbox": [11350, 8260, 15, 12], "underground": false},
+    {"cat": "grocery", "rects": [[11182, 8232, 13, 8]], "bbox": [11182, 8232, 13, 8], "underground": false},
+    {"cat": "grocery", "rects": [[11349, 8318, 8, 4]], "bbox": [11349, 8318, 8, 4], "underground": false},
+    {"cat": "gunstore", "rects": [[11279, 8268, 9, 4], [11279, 8272, 7, 5], [11279, 8267, 7, 1], [11277, 8270, 2, 3]], "bbox": [11277, 8267, 11, 10], "underground": false},
+    {"cat": "military", "rects": [[11121, 8344, 12, 16]], "bbox": [11121, 8344, 12, 16], "underground": false},
+    {"cat": "military", "rects": [[11155, 8312, 7, 10]], "bbox": [11155, 8312, 7, 10], "underground": false},
+    {"cat": "military", "rects": [[11157, 8339, 7, 10]], "bbox": [11157, 8339, 7, 10], "underground": false},
+    {"cat": "military", "rects": [[11166, 8312, 7, 10]], "bbox": [11166, 8312, 7, 10], "underground": false},
+    {"cat": "military", "rects": [[11168, 8339, 7, 10]], "bbox": [11168, 8339, 7, 10], "underground": false},
+    {"cat": "military", "rects": [[11180, 8339, 7, 10]], "bbox": [11180, 8339, 7, 10], "underground": false},
+    {"cat": "tools", "rects": [[11149, 8123, 14, 15], [11149, 8114, 15, 3], [11153, 8117, 11, 4], [11158, 8105, 4, 9], [11153, 8121, 10, 2]], "bbox": [11149, 8105, 38, 33], "underground": false}
+  ],
+  "parking": [
+    {"rects": [[11134, 8348, 5, 12], [11142, 8351, 5, 9]], "box": [11134, 8348, 11146, 8359], "icon": true},
+    {"rects": [[11162, 8107, 6, 4]], "box": [11162, 8107, 11167, 8110], "icon": true},
+    {"rects": [[11164, 8139, 21, 4]], "box": [11164, 8139, 11184, 8142], "icon": true},
+    {"rects": [[11245, 8206, 12, 4], [11245, 8211, 12, 4]], "box": [11245, 8206, 11256, 8214], "icon": true}
+  ]
+}

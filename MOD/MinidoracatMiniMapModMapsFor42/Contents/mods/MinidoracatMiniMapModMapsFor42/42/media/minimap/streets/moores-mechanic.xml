@@ -1,0 +1,8 @@
+<streets version="1">
+    <street name="Moores Mechanic Rd 01 (MiniMap)" width="8">
+        <points>
+            <point x="11000.0" y="8328.0"/>
+            <point x="11500.0" y="8328.0"/>
+        </points>
+    </street>
+</streets>

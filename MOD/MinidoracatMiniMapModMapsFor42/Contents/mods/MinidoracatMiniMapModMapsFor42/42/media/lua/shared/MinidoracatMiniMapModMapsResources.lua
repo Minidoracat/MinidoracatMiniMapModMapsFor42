@@ -2,7 +2,7 @@
 -- 由 scripts/gen_map_resources.py render 從 map-resources/*.json＋註冊清單產生；
 -- 資料用 bake 重烘，房名別名改 room-aliases.json。分類規則在主 MOD scripts/gen_poi_data.py，
 -- 停車場判定在主 MOD scripts/gen_parking_data.py（只重算停車場用 parking 子命令）。
--- 129 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
+-- 130 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
 -- parking 條目格式同 MinidoracatMiniMapParkingData（resourceApiVersion 3 起才讀，舊版主 MOD 不讀）。
 
 local R = MinidoracatMiniMapResourceAPI
@@ -7208,6 +7208,36 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
         ["mcstorageunit"] = "storageunit",
         ["trainingcamp"] = "firearmtraining",
         ["vigtower"] = "armystorage",
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "MooresMechanicPlus", mapDir = "Moores Mechanic Plus",
+    cells300 = {
+        37, 27,
+    },
+    poi = {
+        { cat = "books", rn = 2, r = { { x = 11217, y = 8204, w = 25, h = 12 }, { x = 11227, y = 8194, w = 6, h = 10 } }, b = { x = 11217, y = 8194, w = 25, h = 22 } },
+        { cat = "food", rn = 4, r = { { x = 11128, y = 8286, w = 8, h = 9 }, { x = 11128, y = 8300, w = 6, h = 4 }, { x = 11128, y = 8295, w = 3, h = 5 }, { x = 11131, y = 8295, w = 5, h = 3 } }, b = { x = 11128, y = 8286, w = 8, h = 18 } },
+        { cat = "food", rn = 5, r = { { x = 11350, y = 8265, w = 15, h = 7 }, { x = 11354, y = 8260, w = 8, h = 4 }, { x = 11350, y = 8260, w = 4, h = 5 }, { x = 11354, y = 8264, w = 11, h = 1 }, { x = 11362, y = 8263, w = 3, h = 1 } }, b = { x = 11350, y = 8260, w = 15, h = 12 } },
+        { cat = "grocery", rn = 1, r = { { x = 11182, y = 8232, w = 13, h = 8 } }, b = { x = 11182, y = 8232, w = 13, h = 8 } },
+        { cat = "grocery", rn = 1, r = { { x = 11349, y = 8318, w = 8, h = 4 } }, b = { x = 11349, y = 8318, w = 8, h = 4 } },
+        { cat = "gunstore", rn = 4, r = { { x = 11279, y = 8268, w = 9, h = 4 }, { x = 11279, y = 8272, w = 7, h = 5 }, { x = 11279, y = 8267, w = 7, h = 1 }, { x = 11277, y = 8270, w = 2, h = 3 } }, b = { x = 11277, y = 8267, w = 11, h = 10 } },
+        { cat = "military", rn = 1, r = { { x = 11121, y = 8344, w = 12, h = 16 } }, b = { x = 11121, y = 8344, w = 12, h = 16 } },
+        { cat = "military", rn = 1, r = { { x = 11155, y = 8312, w = 7, h = 10 } }, b = { x = 11155, y = 8312, w = 7, h = 10 } },
+        { cat = "military", rn = 1, r = { { x = 11157, y = 8339, w = 7, h = 10 } }, b = { x = 11157, y = 8339, w = 7, h = 10 } },
+        { cat = "military", rn = 1, r = { { x = 11166, y = 8312, w = 7, h = 10 } }, b = { x = 11166, y = 8312, w = 7, h = 10 } },
+        { cat = "military", rn = 1, r = { { x = 11168, y = 8339, w = 7, h = 10 } }, b = { x = 11168, y = 8339, w = 7, h = 10 } },
+        { cat = "military", rn = 1, r = { { x = 11180, y = 8339, w = 7, h = 10 } }, b = { x = 11180, y = 8339, w = 7, h = 10 } },
+        { cat = "tools", rn = 5, r = { { x = 11149, y = 8123, w = 14, h = 15 }, { x = 11149, y = 8114, w = 15, h = 3 }, { x = 11153, y = 8117, w = 11, h = 4 }, { x = 11158, y = 8105, w = 4, h = 9 }, { x = 11153, y = 8121, w = 10, h = 2 } }, b = { x = 11149, y = 8105, w = 38, h = 33 } },
+        count = 13,
+    },
+    parking = {
+        { rn = 2, r = { { x = 11134, y = 8348, w = 5, h = 12 }, { x = 11142, y = 8351, w = 5, h = 9 } }, b = { x = 11134, y = 8348, w = 13, h = 12 }, i = 1 },
+        { rn = 1, r = { { x = 11162, y = 8107, w = 6, h = 4 } }, b = { x = 11162, y = 8107, w = 6, h = 4 }, i = 1 },
+        { rn = 1, r = { { x = 11164, y = 8139, w = 21, h = 4 } }, b = { x = 11164, y = 8139, w = 21, h = 4 }, i = 1 },
+        { rn = 2, r = { { x = 11245, y = 8206, w = 12, h = 4 }, { x = 11245, y = 8211, w = 12, h = 4 } }, b = { x = 11245, y = 8206, w = 12, h = 9 }, i = 1 },
+        count = 4,
     },
 })
 

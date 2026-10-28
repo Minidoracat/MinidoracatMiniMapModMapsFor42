@@ -1,5 +1,18 @@
 # Changelog
 
+## [Unreleased]
+
+### 新增
+
+- **新增支援摩爾修車廠（Moores Mechanic [B42]，玩家許願）**：唐人街北邊一處有圍牆的修車廠院區，院區裡有修車廠、幾棟住家與一座池塘。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點與停車場。這張圖和唐人街擴張區（1 格）、艾莉卡家具店（2 格）重疊，請擇一：院區跨這幾格，伺服器地圖順序（`Map=`）排在後面的那張，重疊格的內容會不見。唐人街本體只相鄰、不重疊。
+- **補上摩爾修車廠門前的導航資料**：院區蓋住原版 Riverside Road 約 300 格，那段原本沒有導航資料，沿 Riverside Road 走要繞一大圈（約 700 格變成約 5,800 格）。本包沿原版路線補上，搜尋名稱是「摩爾修車廠 01 號路（小地圖補）」（英文「Moores Mechanic Rd 01 (MiniMap)」）。院區內的車道沒有補。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：Moores Mechanic [B42] 3699636604（作者 Auxhu，mod id `MooresMechanicPlus`、地圖資料夾 `Moores Mechanic Plus`，4 cell x 43–44 × y 31–32，`lots=Muldraugh, KY`，`require=Erikas_Tiles,melos_tiles_for_miles_pack`，兩個材質包都已在追蹤），沒有 `streets.xml`；bounds 與輸出 `pyramid.txt` 一致，渲染沒有 sprites skipped。實際 cell 重疊：唐人街擴張區 43_32、艾莉卡家具店 44_31／44_32。補充道路 `road-supplements/moores-mechanic.json` 1 條 vanilla-continuation（本圖佔滿 300 格 (37,27)；y 8328、x 11000–11500、寬 8，取樣 501/501 在路面）；同一格的原版 Northwestern Railroad 鐵軌被作者拿掉，不補。資源點 13 處、停車場 4 區，沒有要審的房名。不加入 maptest（`link_workshop.ps1` 排除），掛載與補充道路用 E2E 單圖情境 `moores-mp` 驗。
+
 ## [42.21.0-0.25.1] - 2026-10-28
 
 ### 更新

@@ -440,6 +440,12 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "Oakshire42.pyramid.zip", mapMod = "Oakshire42", mapDir = "Oakshire42",
             streetSupplement = StreetSupplements["oakshire"],
             bounds = { 7936, 7424, 9216, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_Oakshire" },
+        -- Moores Mechanic [B42]（3699636604）：4 cell（x 43–44、y 31–32），和唐人街擴張區（43_32）、
+        -- 艾莉卡家具店（44_31、44_32）重疊；唐人街本體只在 y 8448 相鄰。作者沒有 streets.xml，
+        -- 佔滿 300 格 (37,27)：補充道路沿原版補回被裁的 Riverside Road（鐵道在這格被作者拿掉，不補）
+        { zip = "Moores Mechanic Plus.pyramid.zip", mapMod = "MooresMechanicPlus", mapDir = "Moores Mechanic Plus",
+            streetSupplement = StreetSupplements["moores-mechanic"],
+            bounds = { 11008, 7936, 11520, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_MooresMechanic" },
     })
 else
     print("[MinidoracatMiniMapModMaps] main MOD API (MinidoracatMiniMapAPI) not found -- install and enable the Minidoracat MiniMap for B42 main MOD")

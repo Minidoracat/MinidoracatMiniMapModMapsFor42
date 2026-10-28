@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T16:35:51Z",
+  "generated_at": "2026-10-28T10:55:15Z",
   "items": {
     "2384329562": {
       "mod_ids": [
@@ -142,6 +142,11 @@
           "zip": "Floatopia.pyramid.zip"
         },
         {
+          "map_mod": "MooresMechanicPlus",
+          "workshop_id": "3699636604",
+          "zip": "Moores Mechanic Plus.pyramid.zip"
+        },
+        {
           "map_mod": "muldraugh1993b42",
           "workshop_id": "3701834205",
           "zip": "Muldraugh 1993 B42.pyramid.zip"
@@ -206,6 +211,11 @@
           "map_mod": "Erikas_Furniture_Store",
           "workshop_id": "3363546437",
           "zip": "Erikas_Furniture_Store.pyramid.zip"
+        },
+        {
+          "map_mod": "MooresMechanicPlus",
+          "workshop_id": "3699636604",
+          "zip": "Moores Mechanic Plus.pyramid.zip"
         },
         {
           "map_mod": "PZ_ACSM_LV",

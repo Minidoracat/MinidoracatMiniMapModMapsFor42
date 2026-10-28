@@ -244,6 +244,10 @@
       "map_dir": "MilitaryComplex",
       "workshop_id": "3800233932"
     },
+    "Moores Mechanic Plus.pyramid.zip": {
+      "map_dir": "Moores Mechanic Plus",
+      "workshop_id": "3699636604"
+    },
     "Mount Crow City.pyramid.zip": {
       "map_dir": "Mount Crow City",
       "workshop_id": "3500846812"
@@ -509,7 +513,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-26T16:22:10Z",
+  "generated_at": "2026-10-28T10:55:18Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1308,6 +1312,16 @@
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": "e674adf9327f1e8792a9d2a86a937e5fe997543fe18c59ede631c09d629f33dd"
+        }
+      }
+    },
+    "3699636604": {
+      "checked": "2026-10-28T10:55:18Z",
+      "maps": {
+        "Moores Mechanic Plus": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "c08bb83e9a3aeb6909c0a49bc2aa8bdf3c04e0944089b42cecfe61a56fd80471"
         }
       }
     },

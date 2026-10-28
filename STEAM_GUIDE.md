@@ -2,7 +2,7 @@
 <!-- Steam 指南稿源（繁中）：MOD 的完整說明以本指南為準，簡介只放摘要。格式與同步方式見 pz-family-docs/release.md「完整說明：Steam 指南」 -->
 <!-- 支援地圖表來自 docs/road-data.md（road-scan 產生）；新增／移除地圖或道路資料變動時，同步更新本檔與 STEAM_GUIDE_EN.md -->
 <!-- 標題：📖 小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突 -->
-<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 95 個地圖 MOD（127 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
+<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 96 個地圖 MOD（128 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
 === 🚀 快速上手
 [b]English version:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide[/url]
 
@@ -24,7 +24,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/olist]
 {{img:01-mod-map-outlines-zh.jpg}}
 === 🧰 支援地圖（A–M）
-共 95 個地圖 MOD、127 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
+共 96 個地圖 MOD、128 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] [b]✅[/b]：原作者附有道路資料，地圖上有路名，可以搜尋與導航（數字是街道數）。
 [*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包修正或補上的道路」。
@@ -91,6 +91,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Macon (TWD)[/td][td]梅肯（陰屍路）[/td][td][/td][/tr]
 [tr][td]Maplewood[/td][td]楓木林鎮[/td][td]✅ 12 條[/td][/tr]
 [tr][td]Megurigaoka, Kanagawa[/td][td]巡之丘市（學園孤島）[/td][td]✅ 2 條[/td][/tr]
+[tr][td]Moores Mechanic[/td][td]摩爾修車廠[/td][td]🛠️[/td][/tr]
 [tr][td]Mount Crow City[/td][td]烏鴉山市[/td][td]✅ 87 條[/td][/tr]
 [tr][td]Muldraugh 1993[/td][td]馬爾德勞 1993[/td][td]✅ 1092 條 🛠️[/td][/tr]
 [tr][td]Muldraugh Checkpoint - Overpass[/td][td]馬爾德勞軍事檢查站－天橋[/td][td][/td][/tr]
@@ -208,6 +209,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 66 條原作者標的路寬比實際路面寬，改成實際寬度，自動駕駛靠右時不再壓出路面；US Highway 13、Newport Road、Colonial Dr 原作者畫的中線偏到路的一邊，線移到路面中間、路寬改成實際寬度（需要小地圖主 MOD 0.47.0 以上）。
 [/list]
 [*] [b]JIB Peanut Butter Factory（JIB 花生醬工廠）[/b]：這張地圖蓋住工廠前原版 KY-841（雙向兩條）與 One Horse Road 約 300 格，那幾段沒有導航資料、沿 KY-841 走要繞路（約 600 格變成約 1,500 格）；本包沿原版路線補上，搜尋名稱是「JIB 花生醬工廠 01 號路（小地圖補）」這種格式。
+[*] [b]Moores Mechanic（摩爾修車廠）[/b]：這張地圖蓋住院區前原版 Riverside Road 約 300 格，那段沒有導航資料，沿 Riverside Road 走要繞一大圈（約 700 格變成約 5,800 格）；本包沿原版路線補上，搜尋名稱是「摩爾修車廠 01 號路（小地圖補）」。院區內的車道沒有補。
 [*] [b]Raven Creek（渡鴉溪）[/b]：
 [list]
 [*] 原版 KY-79 轉進渡鴉溪的彎道沒有導航資料，導航會繞一大圈；本包補上這段，路名「渡鴉溪 01 號路（小地圖補）」。
@@ -236,6 +238,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Snake's ModPack Build 42[/b]：作者目前只支援單人。Military Complex 整張落在 DuoDuo City 裡；SnakeVille 與 Hunter's Base 兩版整格重疊，也和 Tikitown、SecretZ 六號檢查站、SecretZ 河畔鎮二號檢查站部分重疊；Factory 與 SafeWayHamlet 整格重疊，也和 AnruisiTown、Camden County、Safeharbor Garrison 部分重疊；Numark Complex 與 Blackmaze、Snake Mansion 與 Ashenwood／Muldraugh 1993／SecretZ 五號檢查站、Barco Abandonado 與 West Point Expansion、修車廠（路易斯維爾）與 SecretZ 路易斯維爾軍事複合區／VaultTec Vault - Louisville、修車廠（三月嶺）與 Atlas Underground Complex／SecretZ 三月嶺研究設施各有部分重疊，請擇一。SnakeVille 兩區彼此重疊兩個地塊，以地圖順序在前的為準。
 [*] [b]Bedford Falls[/b]：大部分地塊與 Camden County 重疊，另與 Mount Crow City、Nekomata Ridge、AnruisiTown、Atlanta、SafeWayHamlet、Safeharbor Garrison、Snake's Factory、West Point Expansion、SecretZ 一號檢查站、VaultTec Vault - Muldraugh 部分重疊，請擇一。範圍框西側兩欄（x 12032–12544）大多沒有本圖地塊，小地圖在那裡畫的是原版影像：和 The Walking Dead Prison、Begonia Town、VaultTec Road 一起用時，把 Bedford Falls 排在伺服器地圖順序（Map=）的後面，那幾格才會顯示它們的圖。
 [*] [b]Oakshire[/b]：與 Atlanta Safe Zone、Greenport、Ed's Auto Salvage、LittleTownship、Maplewood 部分地塊重疊，請擇一。
+[*] [b]Moores Mechanic[/b]：與 Chinatown Expansion 重疊一個地塊、與 Erika's Furniture Store 重疊兩個地塊，請擇一；院區跨這幾個地塊，伺服器地圖順序（Map=）排在後面的那張，在重疊地塊的內容會不見。Chinatown 只相鄰、不重疊。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。
 [/list]
 === ❓ 常見問題
