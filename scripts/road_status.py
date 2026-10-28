@@ -29,7 +29,8 @@ import gen_streets_i18n as gsi  # noqa: E402
 
 STATUS_REL = Path("tracker-state") / "road_status.json"
 DOC_REL = Path("docs") / "road-data.md"
-DOC_COMMAND = "uv run scripts/map_tracker.py road-scan --prefer <steamcmd content 根> --write"
+DOC_COMMAND = ("uv run scripts/map_tracker.py road-scan --prefer <steamcmd content 根> "
+               "--write --only <該圖 Workshop ID>")
 
 _STREET_RE = re.compile(rb"<street\b")
 _ENTRY_RE = re.compile(r'\{\s*zip\s*=\s*"')
@@ -176,7 +177,7 @@ def judge(wid: str, old_maps: dict | None, new_maps: dict, pins: dict,
         sha, count = cur.get("streets_sha256"), int(cur.get("street_count") or 0)
         wm = cur.get("worldmap_sha256")
         p = pins.get((wid, d)) or {}
-        base = {"map_dir": d, "street_count": count, "has_streets": sha is not None}
+        base = {"map_dir": d, "workshop_id": wid, "street_count": count, "has_streets": sha is not None}
         for ds, pin in p.get("names", []):
             if pin != sha:
                 out.append({**base, "level": ACTION, "kind": "names", "dataset": ds})
@@ -237,7 +238,7 @@ def describe(f: dict, quote) -> str:
     return (f"🛣️ **路名沒有翻譯，評估補譯**：{d} 作者{what}，本包沒有這張圖的路名翻譯，"
             "中文／日文介面會顯示英文 → 作者自己取的路名就建 `street-names/<dataset>/names.json`"
             "並在註冊清單加 `streetNames`，再 `uv run scripts/gen_streets_i18n.py gen`；"
-            "只是照抄官方路網可不翻。處理完跑 `road-scan --write`")
+            f"只是照抄官方路網可不翻。處理完跑 `road-scan --write --only {f.get('workshop_id', '<Workshop ID>')}`")
 
 
 # ============================================================

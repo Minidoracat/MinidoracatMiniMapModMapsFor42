@@ -37,9 +37,10 @@ CI 三 job（權限逐 job 最小化；diff 下載第三方內容故無 GitHub �
                       給 --client-root 時同時報告新舊副本 drift（渲染來源過期偵測）
   deps-scan [--prefer <dir>]
                       掃註冊地圖的材質包依賴 → tile_deps.json（新增/移除地圖後要重跑）
-  road-scan [--prefer <dir>] [--write]
+  road-scan [--prefer <dir>] [--write --only <id>… | --write --all]
                       掃全部註冊地圖的作者道路資料，比對 road_status.json 與本包 pin；
-                      --write 更新 road_status.json＋重新生成 docs/road-data.md
+                      --write 更新 road_status.json＋重新生成 docs/road-data.md，必須指定範圍：
+                      --only 只寫這幾項（其他項目原樣保留）、--all 整份重建
                       （有註冊地圖缺本機副本就拒寫）
   self-test           零網路自我測試
 
@@ -1463,7 +1464,7 @@ def cmd_issue(args) -> int:
         paths.append(str(MAPDATA_JSON.relative_to(PROJECT_ROOT)).replace("\\", "/"))
     if road_items != road_state["items"]:
         if road_err or not road_state["entries"]:
-            warn("road_status.json 無法解析或缺 entries（本機跑 road-scan --write 重建並 commit）"
+            warn("road_status.json 無法解析或缺 entries（本機跑 road-scan --write --all 重建並 commit）"
                  "——道路狀態與公開清單本輪不更新")
         else:
             new_road_state = {**road_state, "items": road_items, "generated_at": now_iso()}
@@ -1586,13 +1587,34 @@ def cmd_deps_scan(args) -> int:
     return 0
 
 
+def scope_road_status(old: dict, new: dict, only: set[str] | None) -> dict:
+    """road-scan --write 的寫入範圍。only=None（--all）＝整份換成新掃描；否則只換 only 項目的
+    items 與解析到 only 項目的 entries，其他項目原樣保留（已不在註冊清單的 zip 照樣移除）。
+    整份重寫會把別張圖還沒處理的上游變更寫成基準，CI 就不再為它開 issue
+    （2026-10-26 Nekomata Ridge、2026-10-28 收錄摩爾修車廠時帶進德克丹 Map Fix）。"""
+    if only is None:
+        return new
+    entries = {z: e if e["workshop_id"] in only else old["entries"][z]
+               for z, e in new["entries"].items()
+               if e["workshop_id"] in only or z in old["entries"]}
+    items = {**old["items"], **{w: v for w, v in new["items"].items() if w in only}}
+    return {"entries": entries, "items": items}
+
+
 def cmd_road_scan(args) -> int:
     """本機：掃全部註冊地圖的作者道路資料（streets.xml／worldmap.xml），與
     tracker-state/road_status.json 及本包 pin（街名翻譯／道路修正／補充道路）比對。
 
     zip → workshop item／地圖目錄的解析與 deps-scan／rebuild_pyramids 同一套。--write 更新
-    road_status.json（內容沒變不重寫）並重新生成 docs/road-data.md；有註冊地圖在本機找不到
-    副本時拒寫——缺副本的機器掃出來的狀態會少項，覆寫等於砍掉清單覆蓋（同 deps-scan）。"""
+    road_status.json（內容沒變不重寫）並重新生成 docs/road-data.md，範圍必須明講：--only 只寫
+    指定項目（scope_road_status）、--all 整份重建。有註冊地圖在本機找不到副本時拒寫——缺副本的
+    機器掃出來的狀態會少項，覆寫等於砍掉清單覆蓋（同 deps-scan）。"""
+    only = set(args.only) or None
+    if args.write and only is None and not args.all:
+        print("❌ road-scan --write 要指定範圍：`--only <Workshop ID>`（可重複）只寫你處理的項目。"
+              "整份重寫會把別張圖還沒處理的上游變更寫成基準，CI 就不再為它開 issue；"
+              "road_status.json 損毀或改格式、要整批重建時才用 `--all`。", file=sys.stderr)
+        return 2
     import gen_streets_i18n as gsi
     import rebuild_pyramids as rp
     import road_status as rs
@@ -1635,9 +1657,15 @@ def cmd_road_scan(args) -> int:
         print(f"❌ {err}", file=sys.stderr)
         return 1
     scanned = {wid: rs.scan_roads(_mod_content_bases(root)) for wid, root in sorted(item_roots.items())}
+    if only and (unknown := sorted(only - set(scanned))):
+        print(f"❌ --only {', '.join(unknown)} 不是註冊地圖或道路資料 pin 的 Workshop 項目"
+              "（或本機沒有副本）。", file=sys.stderr)
+        return 1
     registered = rs.registered_dirs({"entries": resolved})
     actions = 0
     for wid, maps in scanned.items():
+        if only and wid not in only:
+            continue
         prev = old["items"].get(wid)
         for f in rs.judge(wid, prev.get("maps") if isinstance(prev, dict) else None, maps, pins,
                           registered.get(wid, set())):
@@ -1646,7 +1674,11 @@ def cmd_road_scan(args) -> int:
 
     now = now_iso()
     merged = rs.merge_items(old["items"], scanned, now)
-    new = {"entries": resolved, "items": {w: merged[w] for w in scanned}}
+    if only and (held := sorted(w for w in scanned
+                                if w not in only and merged[w] != old["items"].get(w))):
+        print(f"  ℹ️ 範圍外 {len(held)} 項的作者道路資料有變更，不寫入（上游更新留給追蹤器開 issue）"
+              f"：{', '.join(held)}")
+    new = scope_road_status(old, {"entries": resolved, "items": {w: merged[w] for w in scanned}}, only)
     for label, before, after in (("註冊地圖", old["entries"], new["entries"]),
                                  ("Workshop 項目", old["items"], new["items"])):
         added = sorted(set(after) - set(before))
@@ -1684,7 +1716,8 @@ def cmd_road_scan(args) -> int:
         if status_changed or doc_stale:
             pending = [p for p, flag in ((rs.STATUS_REL.as_posix(), status_changed),
                                          (doc_rel, doc_stale)) if flag]
-            print(f"ℹ️ 有變更待寫入（{'、'.join(pending)}）：加 --write 更新")
+            print(f"ℹ️ 有變更待寫入（{'、'.join(pending)}）：加 `--write --only <Workshop ID>` 只寫你處理的項目"
+                  "（整批重建才用 `--write --all`）")
         else:
             print("✅ 道路資料狀態與公開清單無變更。")
     if actions:
@@ -2193,6 +2226,34 @@ def cmd_self_test() -> int:
     _lines, same = road_judgments({"51": {"maps": {"Fix Town": roads(sa, 3)}}}, status_r, pins_r, "t2")
     assert same == status_r["items"]  # 現況沒變 → 不製造只有時間戳的 diff
 
+    # 18) road-scan --write 只寫指定項目：範圍外項目的上游變更不得寫進基準（2026-10-26 Nekomata Ridge；
+    #     2026-10-28 收錄摩爾修車廠時德克丹 Map Fix 的更新被一起寫進去）
+    old_s = {"entries": {"A.zip": {"workshop_id": "61", "map_dir": "A"},
+                         "B.zip": {"workshop_id": "62", "map_dir": "B"},
+                         "Gone.zip": {"workshop_id": "63", "map_dir": "G"}},
+             "items": {"61": {"checked": "t0", "maps": {"A": roads(sa, 1)}},
+                       "62": {"checked": "t0", "maps": {"B": roads(sa, 1)}}}}
+    scan_s = {"entries": {"A.zip": {"workshop_id": "61", "map_dir": "A"},
+                          "B.zip": {"workshop_id": "62", "map_dir": "B2"},
+                          "New.zip": {"workshop_id": "64", "map_dir": "N"},
+                          "Other.zip": {"workshop_id": "65", "map_dir": "O"}},
+              "items": {"61": {"checked": "t1", "maps": {"A": roads(sb, 2)}},
+                        "62": {"checked": "t1", "maps": {"B": roads(sb, 2)}},
+                        "64": {"checked": "t1", "maps": {"N": roads(sa, 3)}}}}
+    scoped = scope_road_status(old_s, scan_s, {"61", "64"})
+    assert scoped["items"]["62"] == old_s["items"]["62"]              # 範圍外的上游變更不寫
+    assert scoped["entries"]["B.zip"] == old_s["entries"]["B.zip"]
+    assert scoped["items"]["61"] == scan_s["items"]["61"] and scoped["items"]["64"] == scan_s["items"]["64"]
+    assert set(scoped["entries"]) == {"A.zip", "B.zip", "New.zip"}   # 退出註冊的移除、範圍外新 zip 不加
+    assert scope_road_status(old_s, scan_s, None) == scan_s           # --all＝整份重建
+    # 不帶範圍的 --write 要在掃描前擋下。刻意不給 prefer：擋不住時在讀 args.prefer 就炸，不會寫到真檔
+    import contextlib
+    import io
+    err_buf = io.StringIO()
+    with contextlib.redirect_stderr(err_buf):
+        assert cmd_road_scan(argparse.Namespace(write=True, only=[], all=False)) == 2
+    assert "--only <Workshop ID>" in err_buf.getvalue()
+
     print("✅ self-test 全數通過")
     return 0
 
@@ -2223,7 +2284,12 @@ def main() -> None:
     rs_.add_argument("--prefer", action="append", default=[],
                      help="額外的 workshop content 根目錄（例：steamcmd 下載處；同一項目多份副本取 acf 最新者）")
     rs_.add_argument("--write", action="store_true",
-                     help="更新 tracker-state/road_status.json 並重新生成 docs/road-data.md")
+                     help="更新 tracker-state/road_status.json 並重新生成 docs/road-data.md（要配 --only 或 --all）")
+    scope = rs_.add_mutually_exclusive_group()
+    scope.add_argument("--only", action="append", default=[], metavar="WORKSHOP_ID",
+                       help="只寫這個 Workshop 項目（可重複）；其他項目的基準原樣保留")
+    scope.add_argument("--all", action="store_true",
+                       help="整份重建（會把每張圖還沒處理的上游變更一起寫成基準；只在狀態檔損毀／改格式時用）")
     sub.add_parser("self-test", help="零網路自我測試")
     args = parser.parse_args()
     dispatch = {

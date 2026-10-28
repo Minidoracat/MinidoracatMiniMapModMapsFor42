@@ -1,4 +1,4 @@
-<!-- 生成檔，請勿手改。重新生成：uv run scripts/map_tracker.py road-scan --prefer <steamcmd content 根> --write（每日追蹤器也會在作者更新後自動更新） -->
+<!-- 生成檔，請勿手改。重新生成：uv run scripts/map_tracker.py road-scan --prefer <steamcmd content 根> --write --only <該圖 Workshop ID>（每日追蹤器也會在作者更新後自動更新） -->
 
 # 道路資料清單（Road data）
 
