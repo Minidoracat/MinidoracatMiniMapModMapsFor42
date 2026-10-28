@@ -171,23 +171,23 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] [b]Constown, KY[/b]: the author ships no road data, so this pack adds 38 roads; they are searchable and routable.
 [list]
 [*] They are named like "Constown Rd 01 (MiniMap)".
-[*] The game switches to the author's roads automatically if the author adds road data later.
+[*] The game switches to the author's roads if the author adds road data later.
 [*] The vanilla Deer Trail Road stretch the map covers (the gravel road north of KY-60) follows the vanilla route with its real 5-tile width, searchable as "Constown Rd 38 (MiniMap)".
 [/list]
 [*] [b]Bedford Falls[/b]: the author ships no road data, so this pack adds 74 town roads from the author's world map; they are searchable and routable.
 [list]
 [*] They are named like "Bedford Falls Rd 01 (MiniMap)".
-[*] The game switches to the author's roads automatically if the author adds road data later.
+[*] The game switches to the author's roads if the author adds road data later.
 [*] The map covers the last roughly 300 tiles of the vanilla KY-60 at its east end; this pack adds them along the vanilla route, searchable as "Bedford Falls Rd 75 (MiniMap)", so you can navigate from KY-60 straight into town.
 [*] The two long roads leading north and south out of town are not on the author's world map, so they are not added.
 [/list]
 [*] [b]Oakshire[/b]: the author ships no road data, so this pack adds 84 town roads from the author's world map; they are searchable and routable.
 [list]
 [*] They are named like "Oakshire Rd 01 (MiniMap)".
-[*] The game switches to the author's roads automatically if the author adds road data later.
+[*] The game switches to the author's roads if the author adds road data later.
 [*] The map covers stretches of the vanilla River Walk Road, Riverside Road (two stretches) and Riverside Link Road next to town, which therefore had no navigation data and needed long detours (e.g. a trip of about 1,200 tiles along River Walk Road north of town took about 9,200); this pack adds them along the vanilla routes (roads 01, 42, 76 and 88), so you can navigate into town from outside. One bend of the vanilla Riverside Road was turned into a lake and woods by the author and is not added.
 [/list]
-[*] [b]Big Bear Lake[/b]: the author marked Lakeview Dr and Deerhead Road wider than the actual road surface, so AutoDrive keeping right ran its wheels into the roadside bushes; they now have their real width. KY-38's line was drawn off to the side of the road (one stretch entirely off the road) and marked too wide, so AutoDrive keeping right often drove off the road; the line now runs down the middle of the road with the real width, and the ends of Standfield Cutoff, Steinbach Rd and Green Valley Lake Dr are extended onto it so they still connect (needs MiniMap 0.47.0 or later). The west part of KY-18 has a median, but the author drew one very wide line, mostly on the north carriageway, so AutoDrive keeping right ran onto the median on one side and into oncoming traffic on the other; it now has one line on the north carriageway, the south carriageway is searchable as "Big Bear Lake Rd 01 (MiniMap)", short links cross the median openings and join the north end of Standfield Cutoff (02–06), and the end of Tofu Rd is extended onto the new line.
+[*] [b]Big Bear Lake[/b]: the author marked Lakeview Dr and Deerhead Road wider than the actual road surface, so AutoDrive keeping right ran its wheels into the roadside bushes; they now have their real width. KY-38's line was drawn off to the side of the road (one stretch entirely off the road) and marked too wide, so AutoDrive keeping right often drove off the road; the line now runs down the middle with the real width, and the ends of Standfield Cutoff, Steinbach Rd and Green Valley Lake Dr are extended onto it so they still connect (needs MiniMap 0.47.0 or later). The west part of KY-18 has a median, but the author drew one very wide line, mostly on the north carriageway, so AutoDrive keeping right ran onto the median on one side and into oncoming traffic on the other; it now has one line on the north carriageway, the south carriageway is searchable as "Big Bear Lake Rd 01 (MiniMap)", short links cross the median openings and join the north end of Standfield Cutoff (02–06), and the end of Tofu Rd is extended onto the new line.
 [*] [b]Camden County[/b]:
 [list]
 [*] 3 author roads stopped short of junctions; they now connect, so navigation can reach them.
@@ -215,8 +215,8 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] The KY-79 bend where the vanilla highway enters Raven Creek had no navigation data, so routes took a long detour; this pack adds it as "Raven Creek Rd 01 (MiniMap)".
 [*] Westbound routes from the east entrance no longer cut through the median trees.
 [/list]
-[*] [b]Snake's Factory[/b]: the map covers the last roughly 300 tiles of the vanilla KY-60 at its east end, the stretch that leads to the factory, and that stretch had no navigation data, so routes stopped about 300 tiles short of the factory; this pack adds it along the vanilla route, searchable as "Snake's Factory Rd 01 (MiniMap)".
-[*] [b]The Walking Dead Prison[/b]: the map covers a stretch each of the vanilla Tioga Road and Magazine Road beside the prison, and those stretches had no navigation data, so routes along Tioga Road took a long detour (about 950 tiles became about 5,300) and could not reach the prison's east gate; this pack adds both along the vanilla route, searchable as "The Walking Dead Prison Rd 01 (MiniMap)" and "The Walking Dead Prison Rd 02 (MiniMap)".
+[*] [b]Snake's Factory[/b]: the map covers the last roughly 300 tiles of the vanilla KY-60 at its east end, the stretch that leads to the factory, which had no navigation data, so routes stopped about 300 tiles short of the factory; this pack adds it along the vanilla route, searchable as "Snake's Factory Rd 01 (MiniMap)".
+[*] [b]The Walking Dead Prison[/b]: the map covers a stretch each of the vanilla Tioga Road and Magazine Road beside the prison, which had no navigation data, so routes along Tioga Road took a long detour (about 950 tiles became about 5,300) and could not reach the prison's east gate; this pack adds both along the vanilla route, searchable as "The Walking Dead Prison Rd 01 (MiniMap)" and "The Walking Dead Prison Rd 02 (MiniMap)".
 [*] [b]Muldraugh 1993[/b]: 913 street labels that exactly duplicate the vanilla map are hidden on display only; navigation is unaffected.
 [/list]
 === ⚠️ Conflicts and overlaps
