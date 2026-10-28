@@ -42,6 +42,9 @@ CI 三 job（權限逐 job 最小化；diff 下載第三方內容故無 GitHub �
                       --write 更新 road_status.json＋重新生成 docs/road-data.md，必須指定範圍：
                       --only 只寫這幾項（其他項目原樣保留）、--all 整份重建
                       （有註冊地圖缺本機副本就拒寫）
+  accept <id> --steamcmd <exe> [--time-updated <epoch>]
+                      CI 還沒開 issue 就先處理掉的上游更新：一次推進該項的
+                      timestamps／mapdata_hashes／road_status 三份基準（本機副本過期就拒絕）
   self-test           零網路自我測試
 
 state（tracker-state/timestamps.json＋mapdata_hashes.json＋road_status.json）進版控；
@@ -1676,8 +1679,8 @@ def cmd_road_scan(args) -> int:
     merged = rs.merge_items(old["items"], scanned, now)
     if only and (held := sorted(w for w in scanned
                                 if w not in only and merged[w] != old["items"].get(w))):
-        print(f"  ℹ️ 範圍外 {len(held)} 項的作者道路資料有變更，不寫入（上游更新留給追蹤器開 issue）"
-              f"：{', '.join(held)}")
+        print(f"  ℹ️ 範圍外 {len(held)} 項的作者道路資料有變更，不寫入（上游更新留給追蹤器開 issue；"
+              f"CI 開 issue 前就處理完的用 `accept <id>`）：{', '.join(held)}")
     new = scope_road_status(old, {"entries": resolved, "items": {w: merged[w] for w in scanned}}, only)
     for label, before, after in (("註冊地圖", old["entries"], new["entries"]),
                                  ("Workshop 項目", old["items"], new["items"])):
@@ -1723,6 +1726,113 @@ def cmd_road_scan(args) -> int:
     if actions:
         print(f"❌ 有 {actions} 項道路資料待處理（見上方 🛣️），請依指示處理。")
         return 1
+    return 0
+
+
+# 沒有本包 pin 的地圖作者改了道路：一定會出 🛣️（評估補譯），accept＝已評估，只列出不擋
+_UNPINNED_ROAD_KINDS = {"author_added", "author_changed"}
+
+
+def accept_item(wid: str, root: Path, detail: dict, local_ts: int | None, state_items: dict,
+                mapdata_items: dict, road_state: dict, pins: dict, now: str):
+    """CI 還沒開 issue 就先處理掉的上游更新：等同 CI 對這一項跑完 diff＋issue（不開 issue），
+    一次推進這一項的 timestamps／mapdata_hashes／road_status items，其他項目原樣回傳——只推進
+    其中一份，CI 照樣會為已處理的更新開 issue（2026-10-28 德克丹 Map Fix 手動推進三份）。
+    拒絕（raise ValueError）：不在 state、time_updated 無效、本機副本比 Steam 舊（拿過期副本寫基準
+    ＝把舊資料當現況，追蹤器從此不再提醒；2026-09-27 SecretZ）、本包道路 pin 還對不上作者現況。
+    → (state items, mapdata items, road items, 圖資判定, 道路判定)。"""
+    import road_status as rs
+
+    if wid not in state_items:
+        raise ValueError(f"{wid} 不在 timestamps.json：新收錄的項目由 CI 首見時自動建基準，不用 accept")
+    tu = detail.get("time_updated")
+    if int(detail.get("result", 0)) != RESULT_OK or not isinstance(tu, int) or tu <= 0:
+        raise ValueError(f"{wid} 查不到有效的 time_updated（result={detail.get('result')}）")
+    if local_ts is None or local_ts < tu:
+        raise ValueError(
+            f"本機副本（acf timeupdated {fmt_ts(local_ts)}）比 Steam（{fmt_ts(tu)}）舊：先 "
+            f"`<steamcmd.exe> +login anonymous +workshop_download_item {GAME_APPID} {wid} +quit` 再 accept")
+    new_hash = hash_mod_mapdata(root)
+    maps = rs.scan_roads(_mod_content_bases(root))
+    registered = rs.registered_dirs(road_state).get(wid, set())
+    prev = road_state["items"].get(wid)
+    found = rs.judge(wid, prev.get("maps") if isinstance(prev, dict) else None, maps, pins, registered)
+    pending = [f for f in found if f["level"] == rs.ACTION and f["kind"] not in _UNPINNED_ROAD_KINDS]
+    if pending:
+        raise ValueError("本包道路資料 pin 還對不上作者現況，處理完再 accept：\n" + "\n".join(
+            f"  {rs.describe(f, lambda s: f'`{s}`')}" for f in pending))
+    _plans, meta, _n = classify([wid], {wid: detail}, state_items)
+    road_items = road_state["items"]
+    if registered or any(w == wid for w, _d in pins):  # 同 road_judgments：只記本包相關項目
+        road_items = rs.merge_items(road_items, {wid: maps}, now)
+    return ({**state_items, **meta}, {**mapdata_items, wid: new_hash}, road_items,
+            build_verdict(mapdata_items.get(wid), new_hash), found)
+
+
+def cmd_accept(args) -> int:
+    """本機：一次推進單一項目的三份基準（accept_item）。time_updated 取 Steam API（不公開項目
+    經 probe_unlisted 讀更新紀錄頁）；限流時用 --time-updated 直接給。副本取 --steamcmd 同層。"""
+    import gen_streets_i18n as gsi
+    import road_status as rs
+
+    wid = args.workshop_id
+    if not wid.isdigit():
+        print(f"❌ Workshop ID 必須是數字：{wid!r}", file=sys.stderr)
+        return 2
+    root = find_workshop_item(args.steamcmd, wid)
+    if root is None:
+        print(f"❌ steamcmd 沒有 {wid} 的副本：先 `{args.steamcmd} +login anonymous "
+              f"+workshop_download_item {GAME_APPID} {wid} +quit`", file=sys.stderr)
+        return 1
+    if args.time_updated:
+        detail = {"result": RESULT_OK, "time_updated": args.time_updated}
+    else:
+        try:
+            detail = probe_unlisted(fetch_details([wid])).get(wid)
+        except (OSError, ValueError) as exc:
+            warn(f"Steam 查詢失敗：{exc}")
+            detail = None
+        if detail is None:
+            print("❌ 查不到 Steam 的 time_updated；限流（429）時改用 `--time-updated <epoch>`"
+                  f"（更新紀錄頁 {CHANGELOG_URL.format(wid)} 最新一筆 `<p id>`）", file=sys.stderr)
+            return 1
+    road_path = PROJECT_ROOT / rs.STATUS_REL
+    road_state, err = rs.load_status(road_path)
+    road_data, road_errs = rs.load_road_data(PROJECT_ROOT)
+    if err or road_errs:  # pin 讀不到就判不出道路處理完沒，不推進
+        for e in ([err] if err else []) + road_errs:
+            print(f"❌ {e}", file=sys.stderr)
+        return 1
+    state, mapdata = load_json(STATE_JSON), load_json(MAPDATA_JSON)
+    now = now_iso()
+    try:
+        items, md_items, road_items, verdict, found = accept_item(
+            wid, root, detail, gsi._acf_timeupdated(root.parent).get(wid), state["items"],
+            mapdata["items"], road_state, rs.pin_index(road_data), now)
+    except ValueError as exc:
+        print(f"❌ {exc}", file=sys.stderr)
+        return 1
+    print(f"  {wid}  time_updated {fmt_ts(state['items'][wid].get('time_updated'))}"
+          f" → {fmt_ts(items[wid]['time_updated'])}")
+    print(f"  圖資判定：{verdict['status']}"
+          + (f"（{'、'.join(verdict['changed_maps'])}）" if verdict["changed_maps"] else ""))
+    for f in found:
+        print(f"  {rs.describe(f, lambda s: f'`{s}`')}")
+    written = []
+    if items != state["items"]:
+        write_json(STATE_JSON, {**state, "items": items, "generated_at": now})
+        written.append(STATE_JSON.name)
+    if md_items != mapdata["items"]:
+        write_json(MAPDATA_JSON, {**mapdata, "items": md_items, "generated_at": now})
+        written.append(MAPDATA_JSON.name)
+    if road_items != road_state["items"]:
+        new_road = {**road_state, "items": road_items, "generated_at": now}
+        write_json(road_path, new_road)
+        written.append(rs.STATUS_REL.name)
+        if write_road_doc(new_road):
+            written.append(rs.DOC_REL.as_posix())
+    print(f"✅ 已推進 {wid}：{'、'.join(written)}（請 commit）" if written
+          else f"✅ {wid} 的三份基準已是最新，未改檔。")
     return 0
 
 
@@ -2254,6 +2364,42 @@ def cmd_self_test() -> int:
         assert cmd_road_scan(argparse.Namespace(write=True, only=[], all=False)) == 2
     assert "--only <Workshop ID>" in err_buf.getvalue()
 
+    # 19) accept：一次推進單一項目的三份基準、其他項目不動；本機副本比 Steam 舊或道路 pin 沒處理就拒絕
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td) / "71"
+        town = root / "mods" / "M" / "42" / "media" / "maps" / "Town"
+        town.mkdir(parents=True)
+        (town / "1_1.lotheader").write_bytes(b"H")
+        (town / "streets.xml").write_bytes(b'<streets><street name="A"/></streets>')
+        st = {"71": {"title": "T", "time_updated": 100, "last_result": 9, "removed": False, "removed_at": None},
+              "72": {"title": "U", "time_updated": 100, "last_result": 1, "removed": False, "removed_at": None}}
+        md = {"71": {"maps": {}, "assets": None}, "72": {"maps": {}, "assets": "x"}}
+        rst = {"entries": {"T.zip": {"workshop_id": "71", "map_dir": "Town"},
+                           "U.zip": {"workshop_id": "72", "map_dir": "U"}},
+               "items": {"71": {"checked": "t0", "maps": {"Town": roads(None, 0)}},
+                         "72": {"checked": "t0", "maps": {"U": roads(sa, 1)}}}}
+        fresh = {"result": RESULT_OK, "time_updated": 200}
+        got_st, got_md, got_rd, _verdict, found_a = accept_item(
+            "71", root, fresh, 200, st, md, rst, {}, "t1")
+        assert got_st["71"]["time_updated"] == 200 and got_st["71"]["last_result"] == RESULT_OK
+        assert got_md["71"] == hash_mod_mapdata(root)
+        assert got_rd["71"] == {"checked": "t1", "maps": rs.scan_roads(_mod_content_bases(root))}
+        assert got_st["72"] == st["72"] and got_md["72"] == md["72"] and got_rd["72"] == rst["items"]["72"]
+        assert st["71"]["time_updated"] == 100 and rst["items"]["71"]["checked"] == "t0"  # 輸入不被改
+        assert [f["kind"] for f in found_a] == ["author_added"]  # 沒 pin 的作者新增道路：列出、不擋
+        for local_ts in (150, None):  # 副本比 Steam 舊／acf 沒紀錄
+            try:
+                accept_item("71", root, fresh, local_ts, st, md, rst, {}, "t1")
+                raise AssertionError("過期副本沒被 accept 拒絕")
+            except ValueError as exc:
+                assert "workshop_download_item" in str(exc)
+        stale_pin = {("71", "Town"): {"names": [("town", sa)], "repairs": [], "supplements": []}}
+        try:
+            accept_item("71", root, fresh, 200, st, md, rst, stale_pin, "t1")
+            raise AssertionError("道路 pin 沒處理就被 accept")
+        except ValueError as exc:
+            assert "街名翻譯需補譯" in str(exc)
+
     print("✅ self-test 全數通過")
     return 0
 
@@ -2290,6 +2436,11 @@ def main() -> None:
                        help="只寫這個 Workshop 項目（可重複）；其他項目的基準原樣保留")
     scope.add_argument("--all", action="store_true",
                        help="整份重建（會把每張圖還沒處理的上游變更一起寫成基準；只在狀態檔損毀／改格式時用）")
+    ac = sub.add_parser("accept", help="本機：CI 還沒開 issue 就處理掉的上游更新 → 推進該項三份基準")
+    ac.add_argument("workshop_id")
+    ac.add_argument("--steamcmd", required=True, help="steamcmd 執行檔（副本在它同層的 steamapps，同 hash-baseline）")
+    ac.add_argument("--time-updated", type=int, default=0,
+                    help="Steam 限流（429）時直接給 time_updated（epoch 秒；更新紀錄頁最新一筆 <p id>）")
     sub.add_parser("self-test", help="零網路自我測試")
     args = parser.parse_args()
     dispatch = {
@@ -2300,6 +2451,7 @@ def main() -> None:
         "hash-baseline": cmd_hash_baseline,
         "deps-scan": cmd_deps_scan,
         "road-scan": cmd_road_scan,
+        "accept": cmd_accept,
     }
     if args.cmd == "self-test":
         sys.exit(cmd_self_test())
