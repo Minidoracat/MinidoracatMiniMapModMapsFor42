@@ -2216,12 +2216,17 @@
       "maps": {
         "Dirkerdam Integrated B42 Fix": {
           "bounds": null,
-          "hash": "6c84cf7926998936dd9f851a6cb5ff5f34614776698fce30eb1e359cc0ab591a"
+          "hash": "cc69ab64184495322db8e1aafa9a0293bdbd0db3bc9ef56378b7fc464b5a4e7d"
+        },
+        "Dirkerdam Integrated B42 Forest": {
+          "bounds": null,
+          "hash": "b517025ad4bab324915a38f4b1ad9e1b7904aacf21f0b1a087336703ca5ac6b3"
         }
       },
       "mods": {
         "DirkerdamMapFix": [
-          "Dirkerdam Integrated B42 Fix"
+          "Dirkerdam Integrated B42 Fix",
+          "Dirkerdam Integrated B42 Forest"
         ]
       }
     },

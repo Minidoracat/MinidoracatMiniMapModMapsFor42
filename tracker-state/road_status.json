@@ -513,7 +513,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-28T10:55:18Z",
+  "generated_at": "2026-10-28T11:33:55Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1661,12 +1661,17 @@
       }
     },
     "3821109144": {
-      "checked": "2026-10-23T13:56:46Z",
+      "checked": "2026-10-28T11:33:55Z",
       "maps": {
         "Dirkerdam Integrated B42 Fix": {
           "street_count": 696,
-          "streets_sha256": "9a619079639d0e99e0712eb323d1dfc1b54385ecb5976fddca4b791e078b6758",
+          "streets_sha256": "a26e73a59762ecdcc36e2ff0368eaf0e307d46fcc77870fbf00b0633c024a497",
           "worldmap_sha256": "df63b5693ac531e18869d70a0bcff6972bcc39e7c34fb696316619e35a0f64be"
+        },
+        "Dirkerdam Integrated B42 Forest": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "9005dfcbda44c46e207ba44138a5605eb483a05d6302bb6b59e2b76868995409"
         }
       }
     },
