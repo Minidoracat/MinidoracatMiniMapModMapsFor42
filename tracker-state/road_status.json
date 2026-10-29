@@ -529,7 +529,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-29T10:36:50Z",
+  "generated_at": "2026-10-29T11:47:03Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1362,12 +1362,12 @@
       }
     },
     "3699636604": {
-      "checked": "2026-10-28T10:55:18Z",
+      "checked": "2026-10-29T11:47:02Z",
       "maps": {
         "Moores Mechanic Plus": {
           "street_count": 0,
           "streets_sha256": null,
-          "worldmap_sha256": "c08bb83e9a3aeb6909c0a49bc2aa8bdf3c04e0944089b42cecfe61a56fd80471"
+          "worldmap_sha256": "7bc251ca51296eb6403979136b448aa9f0293fe19fdebe0a210195798108ce60"
         }
       }
     },

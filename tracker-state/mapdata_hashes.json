@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T11:01:24Z",
+  "generated_at": "2026-10-29T11:47:03Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -1563,6 +1563,25 @@
           "VaultTec_Muldraugh",
           "VaultTec_Rosewood",
           "VaultTec_road"
+        ]
+      }
+    },
+    "3699636604": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "Moores Mechanic Plus": {
+          "bounds": [
+            11008,
+            7936,
+            11520,
+            8448
+          ],
+          "hash": "fc8fb70b2717f8687ac8151fa0a8a4ae531fcbf12dabd6f1e33ccb5ccbef6c1d"
+        }
+      },
+      "mods": {
+        "MooresMechanicPlus": [
+          "Moores Mechanic Plus"
         ]
       }
     },

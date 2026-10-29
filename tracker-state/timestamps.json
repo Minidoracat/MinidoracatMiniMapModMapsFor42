@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-27T11:01:24Z",
+  "generated_at": "2026-10-29T11:47:03Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -592,6 +592,13 @@
       "removed_at": null,
       "time_updated": 1785332000,
       "title": "VaultTec B42 version"
+    },
+    "3699636604": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1793269276,
+      "title": "Moores Mechanic [B42]"
     },
     "3701164856": {
       "last_result": 1,
