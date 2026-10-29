@@ -1,5 +1,21 @@
 # Changelog
 
+## [Unreleased]
+
+### 新增
+
+- **新增支援路易斯維爾國際機場（LV International Airport [B41/B42]，玩家許願）**：原作者 Simon MD 的路易斯維爾國際機場，有航廈、停機坪與兩條跑道。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點與停車場。原作者附了 22 條路（跑道、滑行道與機場聯絡道路），路名有繁中／簡中／日文翻譯，可以搜尋與導航。原版 Louisville Road 經過機場的那段被原作者改成跑道，本包不補。和已支援的地圖都不重疊。
+- **新增支援最後一刻末日地堡（Bunker: Last Minute Prepper (B42)，玩家許願）**：路易斯維爾國際機場北邊、Louisville Road 旁的一座大型末日地堡。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點。和已支援的地圖都不重疊。
+- **新增支援德爾塔溪軍火庫（Delta-Creek-Munitions-B42 Alpha，玩家許願）**：被河流圍起來的工業研究與物流園區。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點與停車場。這張圖整張落在多多市範圍內，另和大熊湖重疊 2 格，請擇一。
+- **新增支援馬爾德勞軍事基地（Muldraugh Military Base B42，玩家許願）**：馬爾德勞西邊一處有圍牆的軍事基地。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點。這張圖和浣熊市（3 格）、柳溪堡壘兩版（1 格）重疊，請擇一。
+- **補上兩張新地圖蓋住的原版道路**：最後一刻末日地堡蓋住原版 Louisville Road、Corn Road、Cob Road 各一段，德爾塔溪軍火庫蓋住原版 Trinca Road、Jasper Road 各一段，那幾段原本沒有導航資料、要繞路（沿 Louisville Road 約 700 格變成約 1,600 格，沿 Trinca Road 約 600 格變成約 1,400 格）。本包沿原版路線補上，搜尋名稱是「最後一刻末日地堡 01 號路（小地圖補）」「德爾塔溪軍火庫 01 號路（小地圖補）」這種格式。兩張圖內部的車道沒有補。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：四張都用 steamcmd 匿名下載（Steam 客戶端沒訂閱），地圖都是 `lots=Muldraugh, KY`，bounds＝lotheader cell min/max＝輸出 `pyramid.txt`。Delta-Creek-Munitions-B42 Alpha 3665994726（mod id `Delta-Creek-Munitions`、資料夾 `DeltaCreek`，6 cell x 23–25 × y 32–33，沒有 `require=`）渲染有 306 個 sprites skipped（Dylan's、throttlekitty、Diederiks 等 B41 材質包，加掛 melos／Perts 只差 14 像素，照宣告渲染）；佔滿 300 格 (20,28)(21,28)，補充道路 `road-supplements/delta-creek.json` 2 條 vanilla-continuation（Trinca 寬 8 取樣 440/440、Jasper 寬 5 取樣 316/333）。Bunker: Last Minute Prepper (B42) 3428165477（`LastMinutePrepperReloadedB42`、`LastMinutePrepperReloaded`，4 cell x 51–52 × y 14–15，沒有 `require=`、沒有 `worldmap.xml`）佔滿 300 格 (44,12)，`road-supplements/last-minute-prepper.json` 3 條（Louisville Road 寬 6 605/605、Corn Road 寬 7 192/192、Cob Road 寬 4 121/121）。LV International Airport 3045726312（`SimonMDLVInternationalAirport`、`lvinternationalairport`，B42 讀 `42/mod.info` 與 `common/` 的 11 cell x 49–52 × y 16–18、缺 49_16）有 `streets.xml` 22 條、19 個名稱，街名 dataset `lv-international-airport`；渲染只有原版缺圖的 `camping_04_*` skipped。Muldraugh Military Base B42 3783856502（`MMB_B42`、`MMB B42`，6 cell x 37–38 × y 39–41）沒有佔滿任何 300 格、不補路。離線 NavCore：Louisville Road (13272,3400)→(13424,4100) 補前 1601、補後 707；Trinca (6508,8250)→(6699,8700) 1410／594；Jasper (6440.5,8900)→(6508,8250) 2811／683。資源點：德爾塔溪 10 處／停車場 1 區、地堡 2／0、機場 11／12、軍事基地 8／0，沒有要審的房名。`rebuild_pyramids.index_workshop` 改成同一 mod 根目錄多份 `mod.info` 的 `require=` 取聯集：LV 根目錄（B41）那份沒列、`42/` 才列的 Community Tile Pack 原本不渲也不追蹤（map_tracker self-test 7 加案例）；其他已收錄地圖的依賴不變。deps-scan 讓 LV 加進 6 個材質包的 `used_by`。肯塔基中央莊園（#65）照 2026-10-28 裁定維持暫緩。
+
 ## [42.21.0-0.26.0] - 2026-10-28
 
 ### 新增

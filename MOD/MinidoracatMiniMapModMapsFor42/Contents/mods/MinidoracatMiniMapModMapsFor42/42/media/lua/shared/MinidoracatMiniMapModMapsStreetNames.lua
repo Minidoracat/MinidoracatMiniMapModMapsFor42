@@ -7,7 +7,7 @@
 --
 -- 空白折疊後與原名不同者會多掛一個別名鍵，讓引擎索引裡的髒名（連續空白）
 -- 也查得到；兩者指向同一個 UI 鍵。
--- 共 25 個 dataset／835 條街名。
+-- 共 26 個 dataset／854 條街名。
 MinidoracatMiniMapModMapsStreetNames = {
     ["anruisi-town"] = {
         ["Agriculture Boulevard"] = "UI_MinidoracatMiniMapModMaps_Street_anruisi-town_f5e46c6a35",
@@ -501,6 +501,27 @@ MinidoracatMiniMapModMapsStreetNames = {
         ["Lt Saltamontes Blvd"] = "UI_MinidoracatMiniMapModMaps_Street_little-township_00c8bb7e93",
         ["Pony Trot Rd"] = "UI_MinidoracatMiniMapModMaps_Street_little-township_184d3199a4",
         ["Street"] = "UI_MinidoracatMiniMapModMaps_Street_little-township_b454109993",
+    },
+    ["lv-international-airport"] = {
+        ["Airport Street"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_25ec799d0c",
+        ["Farmer Street"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_5125cd4a07",
+        ["Frontier Road"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_b0eec103d1",
+        ["International Avenue"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_0e3972eac0",
+        ["Irvington Street"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_54686e1a7f",
+        ["Kingston Street"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_984a03eae0",
+        ["Konrad-Adenauer Road"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_c1d9b6117f",
+        ["Northern Railroad (Louisville Airport)"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_126c5ac11b",
+        ["Northern Railroad (Muldraugh - Doe Valley)"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_d0ce16b08b",
+        ["Parker Road"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_3cd7339e81",
+        ["Runway 1"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_2259646c88",
+        ["Runway 2"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_ecc8785d96",
+        ["Service Road 1"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_b2cc645c32",
+        ["Service Road 2"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_f1a4b49a13",
+        ["Service Road 3"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_645ecb7c71",
+        ["Taxiway 1"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_33caa9f574",
+        ["Taxiway 2"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_7a7b7514ac",
+        ["Taxiway 3"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_844224280b",
+        ["Tinsley Road"] = "UI_MinidoracatMiniMapModMaps_Street_lv-international-airport_0c96efe395",
     },
     ["maplewood"] = {
         ["Maplewood Avenue"] = "UI_MinidoracatMiniMapModMaps_Street_maplewood_d74235a0a9",

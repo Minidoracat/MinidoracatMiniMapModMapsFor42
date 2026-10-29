@@ -1,0 +1,24 @@
+<streets version="1">
+    <street name="Last Minute Prepper Rd 01 (MiniMap)" width="6">
+        <points>
+            <point x="13272.0" y="3458.0"/>
+            <point x="13272.0" y="3608.0"/>
+            <point x="13424.0" y="3760.0"/>
+            <point x="13424.0" y="4000.0"/>
+        </points>
+    </street>
+    <street name="Last Minute Prepper Rd 02 (MiniMap)" width="7">
+        <points>
+            <point x="13618.5" y="3757.5"/>
+            <point x="13427.0" y="3757.5"/>
+        </points>
+    </street>
+    <street name="Last Minute Prepper Rd 03 (MiniMap)" width="4">
+        <points>
+            <point x="13466.0" y="3681.0"/>
+            <point x="13466.0" y="3699.0"/>
+            <point x="13481.0" y="3714.0"/>
+            <point x="13562.0" y="3714.0"/>
+        </points>
+    </street>
+</streets>

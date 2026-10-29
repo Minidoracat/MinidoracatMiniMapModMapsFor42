@@ -1,0 +1,22 @@
+{
+  "zip": "DeltaCreek.pyramid.zip",
+  "mapDir": "DeltaCreek",
+  "rawRecords": 11,
+  "aliases": {},
+  "cells300": [[20, 28], [21, 28]],
+  "entries": [
+    {"cat": "books", "rects": [[6405, 8284, 14, 3], [6405, 8282, 13, 2], [6407, 8281, 10, 1], [6414, 8290, 3, 3], [6408, 8280, 8, 1], [6414, 8288, 4, 2], [6414, 8287, 5, 1], [6410, 8279, 4, 1]], "bbox": [6382, 8279, 37, 35], "underground": false},
+    {"cat": "electronics", "rects": [[6406, 8358, 9, 9]], "bbox": [6406, 8355, 9, 12], "underground": false},
+    {"cat": "fire", "rects": [[6243, 8327, 5, 7]], "bbox": [6243, 8323, 20, 11], "underground": false},
+    {"cat": "fire", "rects": [[6291, 8327, 5, 7]], "bbox": [6276, 8322, 20, 12], "underground": false},
+    {"cat": "medical", "rects": [[6326, 8516, 5, 6], [6314, 8526, 6, 4], [6320, 8510, 6, 4]], "bbox": [6314, 8497, 79, 53], "underground": false},
+    {"cat": "military", "rects": [[6250, 8449, 4, 20], [6258, 8449, 4, 20]], "bbox": [6241, 8405, 31, 85], "underground": false},
+    {"cat": "military", "rects": [[6326, 8352, 5, 9], [6326, 8349, 10, 3]], "bbox": [6324, 8321, 34, 73], "underground": false},
+    {"cat": "military", "rects": [[6416, 8502, 10, 3], [6410, 8499, 4, 6]], "bbox": [6402, 8408, 68, 136], "underground": false},
+    {"cat": "police", "rects": [[6338, 8229, 9, 9]], "bbox": [6337, 8229, 16, 30], "underground": false},
+    {"cat": "tools", "rects": [[6313, 8569, 15, 14], [6313, 8583, 7, 2]], "bbox": [6312, 8569, 16, 42], "underground": false}
+  ],
+  "parking": [
+    {"rects": [[6427, 8426, 9, 4], [6427, 8436, 4, 18], [6427, 8456, 4, 15], [6443, 8425, 6, 4]], "box": [6427, 8425, 6448, 8470], "icon": true}
+  ]
+}

@@ -2,7 +2,7 @@
 <!-- Steam 指南稿源（繁中）：MOD 的完整說明以本指南為準，簡介只放摘要。格式與同步方式見 pz-family-docs/release.md「完整說明：Steam 指南」 -->
 <!-- 支援地圖表來自 docs/road-data.md（road-scan 產生）；新增／移除地圖或道路資料變動時，同步更新本檔與 STEAM_GUIDE_EN.md -->
 <!-- 標題：📖 小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突 -->
-<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 96 個地圖 MOD（128 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
+<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 100 個地圖 MOD（132 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
 === 🚀 快速上手
 [b]English version:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide[/url]
 
@@ -24,10 +24,10 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/olist]
 {{img:01-mod-map-outlines-zh.jpg}}
 === 🧰 支援地圖（A–M）
-共 96 個地圖 MOD、128 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
+共 100 個地圖 MOD、132 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] [b]✅[/b]：原作者附有道路資料，地圖上有路名，可以搜尋與導航（數字是街道數）。
-[*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包修正或補上的道路」。
+[*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包補上的鎮內道路」與「本包修正或補上的道路」。
 [*] [b]沒有標記[/b]：只有地圖圖片，沒有路名、搜尋與導航。
 [/list]
 [table]
@@ -46,6 +46,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]BlackMaze[/td][td]黑迷宮[/td][td]✅ 4 條[/td][/tr]
 [tr][td]Blackpine County[/td][td]黑松郡[/td][td][/td][/tr]
 [tr][td]Bunker 42[/td][td]42 號地堡[/td][td][/td][/tr]
+[tr][td]Bunker: Last Minute Prepper[/td][td]最後一刻末日地堡[/td][td]🛠️[/td][/tr]
 [tr][td]Camden County[/td][td]卡姆登郡[/td][td]✅ 40 條 🛠️[/td][/tr]
 [tr][td]Cathaya Valley 2.0[/td][td]銀杉谷 2.0[/td][td][/td][/tr]
 [tr][td]Cathaya Valley 2.0 Highway[/td][td]銀杉谷 2.0－公路[/td][td][/td][/tr]
@@ -59,6 +60,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Coryerdon (2026 port)[/td][td]科里爾登（2026 移植版）[/td][td]🛠️[/td][/tr]
 [tr][td]Daisy County[/td][td]雛菊郡[/td][td]✅ 44 條 🛠️[/td][/tr]
 [tr][td]Dawn Town[/td][td]拂曉鎮[/td][td][/td][/tr]
+[tr][td]Delta Creek Munitions[/td][td]德爾塔溪軍火庫[/td][td]🛠️[/td][/tr]
 [tr][td]Dirkerdam[/td][td]德克丹[/td][td]✅ 696 條（路名來自 Dirkerdam Map Fix）🛠️[/td][/tr]
 [tr][td]DuoDuo City[/td][td]多多市[/td][td][/td][/tr]
 [tr][td]EchoCreek Military Base[/td][td]迴音河軍事基地[/td][td][/td][/tr]
@@ -88,6 +90,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Kingsmouth North[/td][td]金斯茅斯北區[/td][td][/td][/tr]
 [tr][td]LittleTownship[/td][td]小鎮區[/td][td]✅ 4 條[/td][/tr]
 [tr][td]Louisville Riverboat[/td][td]路易斯維爾河船[/td][td][/td][/tr]
+[tr][td]LV International Airport[/td][td]路易斯維爾國際機場[/td][td]✅ 22 條[/td][/tr]
 [tr][td]Macon (TWD)[/td][td]梅肯（陰屍路）[/td][td][/td][/tr]
 [tr][td]Maplewood[/td][td]楓木林鎮[/td][td]✅ 12 條[/td][/tr]
 [tr][td]Megurigaoka, Kanagawa[/td][td]巡之丘市（學園孤島）[/td][td]✅ 2 條[/td][/tr]
@@ -96,6 +99,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Muldraugh 1993[/td][td]馬爾德勞 1993[/td][td]✅ 1092 條 🛠️[/td][/tr]
 [tr][td]Muldraugh Checkpoint - Overpass[/td][td]馬爾德勞軍事檢查站－天橋[/td][td][/td][/tr]
 [tr][td]Muldraugh Fire Dept[/td][td]馬爾德勞消防局[/td][td][/td][/tr]
+[tr][td]Muldraugh Military Base[/td][td]馬爾德勞軍事基地[/td][td][/td][/tr]
 [/table]
 === 🧰 支援地圖（N–Z）
 標記的意思見「支援地圖（A–M）」。
@@ -166,7 +170,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Xixi's Serene Cottage[/td][td]汐汐的靜謐小屋[/td][td][/td][/tr]
 [tr][td]Yanghu Town[/td][td]楊湖鎮[/td][td][/td][/tr]
 [/table]
-=== 🧰 本包修正或補上的道路
+=== 🧰 本包補上的鎮內道路
 [list]
 [*] [b]Constown, KY（康斯鎮）[/b]：原作者沒附道路資料，本包補上 38 條路，可以搜尋與導航。
 [list]
@@ -187,7 +191,11 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 原作者日後提供道路資料時，自動改用原作者的。
 [*] 地圖蓋住鎮旁原版 River Walk Road、Riverside Road（兩段）與 Riverside Link Road，那幾段沒有導航資料、要繞一大圈（例：沿 River Walk Road 穿過鎮北約 1,200 格的路要繞約 9,200 格）；本包沿原版路線補上（01、42、76、88 號），從鎮外可以一路導航進鎮。原版 Riverside Road 有一段彎路被原作者改成湖與樹林，那段沒有補。
 [/list]
+[/list]
+=== 🧰 本包修正或補上的道路
+[list]
 [*] [b]Big Bear Lake（大熊湖）[/b]：Lakeview Dr、Deerhead Road 原作者標的路寬比實際路面寬，自動駕駛靠右時車身會壓進路邊樹叢；路寬改成實際寬度。KY-38 原作者畫的中線偏到路邊、有一段整條畫在路外，自動駕駛靠右時常開出路面；線移到路面中間、路寬改成實際寬度，旁邊的 Standfield Cutoff、Steinbach Rd、Green Valley Lake Dr 路尾跟著延伸到 KY-38 上，照樣接得上（需要小地圖主 MOD 0.47.0 以上）。KY-18 西段中間有分隔帶，原作者只畫一條很寬的線、多半畫在北側車道上，自動駕駛靠右時一邊壓到分隔帶、一邊壓到對向車道；改成北側車道一條線，南側車道的搜尋名稱是「大熊湖 01 號路（小地圖補）」，分隔帶的缺口與 Standfield Cutoff 北端補上短接線（02～06 號），Tofu Rd 路尾延伸到新線上。
+[*] [b]Bunker: Last Minute Prepper（最後一刻末日地堡）[/b]：這張地圖蓋住地堡旁原版 Louisville Road、Corn Road、Cob Road 各一段，那幾段沒有導航資料，沿 Louisville Road 南北走要繞路（約 700 格變成約 1,600 格）；本包沿原版路線補上，搜尋名稱是「最後一刻末日地堡 01 號路（小地圖補）」這種格式。
 [*] [b]Camden County（卡姆登郡）[/b]：
 [list]
 [*] 3 處原作者的路停在路口前，接上後可以導航到達。
@@ -199,6 +207,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 2026 移植版：同上兩條，另加 River Walk Road（03 號）、Prewitt Dr（04 號）、Kiss Road（05 號）、Lipstick Road（06 號）。
 [/list]
 [*] [b]Daisy County（雛菊郡）[/b]：44 條畫成外框的路改成中心線，路名不再上下各顯示一次。
+[*] [b]Delta Creek Munitions（德爾塔溪軍火庫）[/b]：這張地圖蓋住園區東側原版 Trinca Road、Jasper Road 各一段，那兩段沒有導航資料，沿 Trinca Road 走要繞路（約 600 格變成約 1,400 格），從 Jasper Road 往北更遠（約 700 格變成約 2,800 格）；本包沿原版路線補上，搜尋名稱是「德爾塔溪軍火庫 01 號路（小地圖補）」「德爾塔溪軍火庫 02 號路（小地圖補）」。園區內的道路沒有補。
 [*] [b]Dirkerdam（德克丹）[/b]：路名與道路資料來自 Dirkerdam Map Fix，本包補上與修正：
 [list]
 [*] Brandenburg 北邊那座接橋：Map Fix 的道路停在橋北端，到原版橋段之間約 290 格沒有導航資料；本包沿實際路面補上（「德克丹 01 號路（小地圖補）」）。
@@ -239,6 +248,8 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Bedford Falls[/b]：大部分地塊與 Camden County 重疊，另與 Mount Crow City、Nekomata Ridge、AnruisiTown、Atlanta、SafeWayHamlet、Safeharbor Garrison、Snake's Factory、West Point Expansion、SecretZ 一號檢查站、VaultTec Vault - Muldraugh 部分重疊，請擇一。範圍框西側兩欄（x 12032–12544）大多沒有本圖地塊，小地圖在那裡畫的是原版影像：和 The Walking Dead Prison、Begonia Town、VaultTec Road 一起用時，把 Bedford Falls 排在伺服器地圖順序（Map=）的後面，那幾格才會顯示它們的圖。
 [*] [b]Oakshire[/b]：與 Atlanta Safe Zone、Greenport、Ed's Auto Salvage、LittleTownship、Maplewood 部分地塊重疊，請擇一。
 [*] [b]Moores Mechanic[/b]：與 Chinatown Expansion 重疊一個地塊、與 Erika's Furniture Store 重疊兩個地塊，請擇一；院區跨這幾個地塊，伺服器地圖順序（Map=）排在後面的那張，在重疊地塊的內容會不見。Chinatown 只相鄰、不重疊。
+[*] [b]Delta Creek Munitions[/b]：整張落在 DuoDuo City 範圍內，另與 Big Bear Lake 重疊兩個地塊，請擇一。
+[*] [b]Muldraugh Military Base[/b]：與 Raccoon City 重疊三個地塊、與 Willowbrook Bastion（原版與 2026 版）重疊一個地塊，請擇一。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。
 [/list]
 === ❓ 常見問題

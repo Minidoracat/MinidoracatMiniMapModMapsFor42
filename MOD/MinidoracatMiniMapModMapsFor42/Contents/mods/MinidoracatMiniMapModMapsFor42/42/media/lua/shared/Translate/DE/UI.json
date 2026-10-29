@@ -126,5 +126,9 @@
     "UI_MinidoracatMiniMapModMaps_JIBPeanutButterFactory": "JIB Peanut Butter Factory",
     "UI_MinidoracatMiniMapModMaps_Basement06": "Basement 06",
     "UI_MinidoracatMiniMapModMaps_Oakshire": "Oakshire",
-    "UI_MinidoracatMiniMapModMaps_MooresMechanic": "Moores Mechanic"
+    "UI_MinidoracatMiniMapModMaps_MooresMechanic": "Moores Mechanic",
+    "UI_MinidoracatMiniMapModMaps_DeltaCreek": "Delta Creek Munitions",
+    "UI_MinidoracatMiniMapModMaps_LastMinutePrepper": "Bunker: Last Minute Prepper",
+    "UI_MinidoracatMiniMapModMaps_LVInternationalAirport": "LV International Airport",
+    "UI_MinidoracatMiniMapModMaps_MuldraughMilitaryBase": "Muldraugh Military Base"
 }

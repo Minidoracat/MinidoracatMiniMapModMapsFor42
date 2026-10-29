@@ -446,6 +446,26 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "Moores Mechanic Plus.pyramid.zip", mapMod = "MooresMechanicPlus", mapDir = "Moores Mechanic Plus",
             streetSupplement = StreetSupplements["moores-mechanic"],
             bounds = { 11008, 7936, 11520, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_MooresMechanic" },
+        -- Delta-Creek-Munitions-B42 Alpha（3665994726）：6 cell（x 23–25、y 32–33），整張落在多多市範圍內，
+        -- 另和大熊湖重疊 2 個 cell（23_32、23_33）。作者沒有 streets.xml，佔滿 300 格 (20,28)(21,28)：
+        -- 補充道路沿原版補回被裁的 Trinca Road、Jasper Road，園區內道路不補
+        { zip = "DeltaCreek.pyramid.zip", mapMod = "Delta-Creek-Munitions", mapDir = "DeltaCreek",
+            streetSupplement = StreetSupplements["delta-creek"],
+            bounds = { 5888, 8192, 6656, 8704 }, nameKey = "UI_MinidoracatMiniMapModMaps_DeltaCreek" },
+        -- Bunker: Last Minute Prepper (B42)（3428165477）：4 cell（x 51–52、y 14–15），南緣和 LV 國際機場相鄰、不重疊。
+        -- 作者沒有 streets.xml，佔滿 300 格 (44,12)：補充道路沿原版補回被裁的 Louisville Road、Corn Road、Cob Road
+        { zip = "LastMinutePrepperReloaded.pyramid.zip", mapMod = "LastMinutePrepperReloadedB42",
+            mapDir = "LastMinutePrepperReloaded", streetSupplement = StreetSupplements["last-minute-prepper"],
+            bounds = { 13056, 3584, 13568, 4096 }, nameKey = "UI_MinidoracatMiniMapModMaps_LastMinutePrepper" },
+        -- LV International Airport [B41/B42]（3045726312）：B42 讀 42/mod.info（require 四個 B42 材質包）與
+        -- common/ 的 11 cell（x 49–52、y 16–18，缺 49_16）；外框內缺的 49_16 照原版畫進 zip，和已支援地圖都不重疊
+        { zip = "lvinternationalairport.pyramid.zip", mapMod = "SimonMDLVInternationalAirport",
+            mapDir = "lvinternationalairport", streetNames = StreetNames["lv-international-airport"],
+            bounds = { 12544, 4096, 13568, 4864 }, nameKey = "UI_MinidoracatMiniMapModMaps_LVInternationalAirport" },
+        -- Muldraugh Military Base B42（3783856502）：6 cell（x 37–38、y 39–41），和浣熊市（38_39–38_41）、
+        -- 柳溪堡壘兩版（37_39）重疊；沒有佔滿任何 300 格，基地內道路不補
+        { zip = "MMB B42.pyramid.zip", mapMod = "MMB_B42",
+            bounds = { 9472, 9984, 9984, 10752 }, nameKey = "UI_MinidoracatMiniMapModMaps_MuldraughMilitaryBase" },
     })
 else
     print("[MinidoracatMiniMapModMaps] main MOD API (MinidoracatMiniMapAPI) not found -- install and enable the Minidoracat MiniMap for B42 main MOD")

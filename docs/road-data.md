@@ -25,11 +25,11 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**128** 張
-- 作者附道路資料（Author road data）：**33** 張；沒有 **95** 張
-- 本包路名翻譯（Translated names）：**25** 張
+- 收錄地圖（Maps）：**132** 張
+- 作者附道路資料（Author road data）：**34** 張；沒有 **98** 張
+- 本包路名翻譯（Translated names）：**26** 張
 - 本包道路修正（Fixes）：**6** 張
-- 本包補充道路（Added roads）：**12** 張
+- 本包補充道路（Added roads）：**14** 張
 
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
 
@@ -76,6 +76,10 @@
   - 補充道路 88 條：作者沒放進道路資料的路由本包補上，路名 `奧克郡 01 號路（小地圖補）`～`奧克郡 88 號路（小地圖補）`（英文 `Oakshire Rd 01 (MiniMap)`～`Oakshire Rd 88 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **摩爾修車廠（Moores Mechanic）**
   - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `摩爾修車廠 01 號路（小地圖補）`（英文 `Moores Mechanic Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **德爾塔溪軍火庫（Delta Creek Munitions）**
+  - 補充道路 2 條：作者沒放進道路資料的路由本包補上，路名 `德爾塔溪軍火庫 01 號路（小地圖補）`～`德爾塔溪軍火庫 02 號路（小地圖補）`（英文 `Delta Creek Munitions Rd 01 (MiniMap)`～`Delta Creek Munitions Rd 02 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **最後一刻末日地堡（Bunker: Last Minute Prepper）**
+  - 補充道路 3 條：作者沒放進道路資料的路由本包補上，路名 `最後一刻末日地堡 01 號路（小地圖補）`～`最後一刻末日地堡 03 號路（小地圖補）`（英文 `Last Minute Prepper Rd 01 (MiniMap)`～`Last Minute Prepper Rd 03 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 
 ## 全部地圖（All maps）
 
@@ -209,3 +213,7 @@
 | 地下室 06<br>Basement 06 | [3599769747](https://steamcommunity.com/sharedfiles/filedetails/?id=3599769747) | ❌ 無 | — | — | — |
 | 奧克郡<br>Oakshire | [3535422434](https://steamcommunity.com/sharedfiles/filedetails/?id=3535422434) | ❌ 無 | — | — | ✅ 88 條 |
 | 摩爾修車廠<br>Moores Mechanic | [3699636604](https://steamcommunity.com/sharedfiles/filedetails/?id=3699636604) | ❌ 無 | — | — | ✅ 1 條 |
+| 德爾塔溪軍火庫<br>Delta Creek Munitions | [3665994726](https://steamcommunity.com/sharedfiles/filedetails/?id=3665994726) | ❌ 無 | — | — | ✅ 2 條 |
+| 最後一刻末日地堡<br>Bunker: Last Minute Prepper | [3428165477](https://steamcommunity.com/sharedfiles/filedetails/?id=3428165477) | ❌ 無 | — | — | ✅ 3 條 |
+| 路易斯維爾國際機場<br>LV International Airport | [3045726312](https://steamcommunity.com/sharedfiles/filedetails/?id=3045726312) | ✅ 22 條 | ✅ 19 條 | — | — |
+| 馬爾德勞軍事基地<br>Muldraugh Military Base | [3783856502](https://steamcommunity.com/sharedfiles/filedetails/?id=3783856502) | ❌ 無 | — | — | — |

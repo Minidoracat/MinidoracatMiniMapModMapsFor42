@@ -112,6 +112,10 @@
       "map_dir": "DawnTown",
       "workshop_id": "3666180085"
     },
+    "DeltaCreek.pyramid.zip": {
+      "map_dir": "DeltaCreek",
+      "workshop_id": "3665994726"
+    },
     "Dirkerdam Integrated B42.pyramid.zip": {
       "map_dir": "Dirkerdam Integrated B42",
       "workshop_id": "3818766091"
@@ -220,6 +224,10 @@
       "map_dir": "Kingsmouth North B42",
       "workshop_id": "3498573050"
     },
+    "LastMinutePrepperReloaded.pyramid.zip": {
+      "map_dir": "LastMinutePrepperReloaded",
+      "workshop_id": "3428165477"
+    },
     "LittleTownshipB42.pyramid.zip": {
       "map_dir": "LittleTownshipB42",
       "workshop_id": "3477336014"
@@ -227,6 +235,10 @@
     "Louisville_Riverboat.pyramid.zip": {
       "map_dir": "Louisville_Riverboat",
       "workshop_id": "2963883586"
+    },
+    "MMB B42.pyramid.zip": {
+      "map_dir": "MMB B42",
+      "workshop_id": "3783856502"
     },
     "Macon.pyramid.zip": {
       "map_dir": "Macon",
@@ -468,6 +480,10 @@
       "map_dir": "linzi",
       "workshop_id": "3519054686"
     },
+    "lvinternationalairport.pyramid.zip": {
+      "map_dir": "lvinternationalairport",
+      "workshop_id": "3045726312"
+    },
     "muldraughmilitarybaseas24.pyramid.zip": {
       "map_dir": "muldraughmilitarybaseas24",
       "workshop_id": "3496507146"
@@ -513,7 +529,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-28T11:33:55Z",
+  "generated_at": "2026-10-29T10:36:50Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -552,6 +568,16 @@
           "street_count": 105,
           "streets_sha256": "d2437fbdc2ad319ce9728d2f49d0c754c5bc3f0f68121a9415283d639026c39d",
           "worldmap_sha256": "37763f0e6a92ee70bdc26a23ced2755c2984f562f3ec0243d38ce11b9489c470"
+        }
+      }
+    },
+    "3045726312": {
+      "checked": "2026-10-29T10:36:50Z",
+      "maps": {
+        "lvinternationalairport": {
+          "street_count": 22,
+          "streets_sha256": "9d93aa23da7fd0d837d2bfc1e0f18e0d036cede9b2003741e28322ad8544acd7",
+          "worldmap_sha256": "3d27bdc198965d9a74edba72f0abd705510521c82cad8cca6c37502c731fac1c"
         }
       }
     },
@@ -644,6 +670,16 @@
           "worldmap_sha256": "dcc2e9371a9ffc9b41146a3a460c9a58f237f7296a7c204092f6acd63ae96dff"
         },
         "taibeiroad_spawns": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": null
+        }
+      }
+    },
+    "3428165477": {
+      "checked": "2026-10-29T10:36:50Z",
+      "maps": {
+        "LastMinutePrepperReloaded": {
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": null
@@ -1230,6 +1266,16 @@
         }
       }
     },
+    "3665994726": {
+      "checked": "2026-10-29T10:36:50Z",
+      "maps": {
+        "DeltaCreek": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "77a73f034bef5bbe4a479709cd15332beec437d788f08f4270ec19e55c16a9f4"
+        }
+      }
+    },
     "3666180085": {
       "checked": "2026-09-27T14:48:47Z",
       "maps": {
@@ -1572,6 +1618,16 @@
           "street_count": 0,
           "streets_sha256": null,
           "worldmap_sha256": "de2a461171a69dcc5fb1dc26dc07e931e27bf9830ad2260f28d75a310ef96c6c"
+        }
+      }
+    },
+    "3783856502": {
+      "checked": "2026-10-29T10:36:50Z",
+      "maps": {
+        "MMB B42": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "edfd693385c42cb4f9e18b7b3027cd9db86481ac3ed8745d0ae3c19f87cbea39"
         }
       }
     },

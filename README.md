@@ -18,14 +18,14 @@
 
 ## 收錄地圖
 
-共 **128 張**（96 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **132 張**（100 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
-**街名翻譯**：下列 **25 組**地圖資料提供繁中／簡中／
-日文翻譯，共 835 條——提基鎮、安瑞斯鎮、渡鴉溪（本體與 Kardinal 移植版各一套）、雛菊郡、
+**街名翻譯**：下列 **26 組**地圖資料提供繁中／簡中／
+日文翻譯，共 854 條——提基鎮、安瑞斯鎮、渡鴉溪（本體與 Kardinal 移植版各一套）、雛菊郡、
 坎登郡、西點擴張、綠港、小鎮、狂鋼、黑迷宮橋頭堡、艾德汽車回收場、三葉湖、目黑丘城、
 馬爾德勞 1993 重製版、楓木林鎮、烏鴉山市、大熊湖、黑迷宮、新哈特堡、社區中心、四葉草湖 316 號公路、
-德克丹（路名來自 Dirkerdam Map Fix）、SnakeVille 兩區。英文與其他語言維持地圖作者原本的英文路名。
+德克丹（路名來自 Dirkerdam Map Fix）、SnakeVille 兩區、路易斯維爾國際機場。英文與其他語言維持地圖作者原本的英文路名。
 與官方地圖同名的路直接沿用官方譯名，跨地圖用詞一致。
 其餘地圖多半**上游本來就沒有路名資料**（如浣熊市），不是翻譯缺漏——每張地圖有沒有作者道路資料、
 本包有沒有翻譯／修正／補充道路，見 [道路資料清單](docs/road-data.md)（追蹤器每日隨作者更新自動維護）。
@@ -46,7 +46,8 @@
   （KY-38 旁 3 條、KY-18 旁 1 條支路路尾延伸到新線上、照樣相接）（路寬需主 MOD 0.47.0 以上）。顯示與導航共用修正；原始點列或路寬改變就略過該筆，避免對新版上游盲套舊補丁。
 - **補充道路**：作者沒放進道路資料的路由本包依作者自己的世界地圖補上（目前康斯鎮 37 條、貝德福德瀑布 74 條、奧克郡 84 條）；
   地圖蓋住原版道路、導航被截斷的路段則沿原版路線補上（渡鴉溪 1 條、陰屍路監獄 2 條、康斯鎮 1 條、
-  科里爾登 2 條、科里爾登 2026 移植版 6 條、Snake 工廠 1 條、貝德福德瀑布 1 條、JIB 花生醬工廠 4 條、奧克郡 4 條、摩爾修車廠 1 條）；德克丹 Map Fix 的道路資料漏掉的
+  科里爾登 2 條、科里爾登 2026 移植版 6 條、Snake 工廠 1 條、貝德福德瀑布 1 條、JIB 花生醬工廠 4 條、奧克郡 4 條、摩爾修車廠 1 條、
+  德爾塔溪軍火庫 2 條、最後一刻末日地堡 3 條）；德克丹 Map Fix 的道路資料漏掉的
   Brandenburg 接橋與東南兩處斷點沿實際路面補上 3 條，分隔路拆線的對向車道 5 條；大熊湖 KY-18 的南側車道、
   分隔帶缺口與 Standfield Cutoff 北端接線 6 條。
   路名固定帶「(MiniMap)」／「（小地圖補）」，一看就知道不是作者取的名字；可搜尋、可導航。
@@ -188,6 +189,10 @@
 | 地下室 06 | `Basement06` | 4864,11520 – 5632,12032 |
 | 奧克郡 | `Oakshire42` | 7936,7424 – 9216,8448 |
 | 摩爾修車廠 | `MooresMechanicPlus` | 11008,7936 – 11520,8448 |
+| 德爾塔溪軍火庫 | `Delta-Creek-Munitions` | 5888,8192 – 6656,8704 |
+| 最後一刻末日地堡 | `LastMinutePrepperReloadedB42` | 13056,3584 – 13568,4096 |
+| 路易斯維爾國際機場 | `SimonMDLVInternationalAirport` | 12544,4096 – 13568,4864 |
+| 馬爾德勞軍事基地 | `MMB_B42` | 9472,9984 – 9984,10752 |
 
 ### 新增地圖的限制與衝突
 
@@ -198,6 +203,10 @@
 - [Bedford Falls 贝德福德瀑布 [B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3824438499)（原作者 MX145，B41 舊圖的 B42 移植）：大部分地塊與卡姆登郡重疊，另與烏鴉山市、貓又嶺、安瑞斯鎮、亞特蘭大、途安里、安泊戍鎮、Snake 工廠、西點擴張區、SecretZ 一號檢查站、VaultTec 避難所－馬爾德勞部分重疊，請擇一。範圍框西側兩欄（x 12032–12544）大多沒有本圖地塊，小地圖在那裡畫原版影像：和陰屍路監獄、海棠鎮、VaultTec 聯絡道路一起用時，`Map=` 要把它排在這幾張後面。作者沒附 `streets.xml`，鎮內 74 條路由本包依作者世界地圖補上，另沿原版補回被裁的 KY-60 東端。不加入全地圖測試組合，掛載與補充道路用 E2E 單圖情境 `bedford-mp` 驗。
 - [Oakshire [B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3535422434)（原作者 Txoba）：和亞特蘭大安全區、綠港、艾德汽車回收場、小鎮區、楓木林鎮部分重疊，請擇一。作者沒附 `streets.xml`，鎮內 84 條路由本包依作者世界地圖補上，另沿原版補回被裁的 River Walk Road、Riverside Road 兩段與 Riverside Link Road。不加入全地圖測試組合，掛載與補充道路用 E2E 情境 `oakshire-jib-mp` 驗。
 - [Moores Mechanic [B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3699636604)（原作者 Auxhu）：和唐人街擴張區（1 格）、艾莉卡家具店（2 格）重疊，請擇一；院區跨這幾格，哪張排在 `Map=` 前面，另一張在重疊格的內容就不見。唐人街本體只相鄰、不重疊。作者沒附 `streets.xml`，沿原版補回被裁的 Riverside Road 一段；院區內車道不補，被作者拿掉的鐵道也不補。不加入全地圖測試組合，掛載與補充道路用 E2E 單圖情境 `moores-mp` 驗。
+- [Delta-Creek-Munitions-B42 Alpha](https://steamcommunity.com/sharedfiles/filedetails/?id=3665994726)：整張落在多多市範圍內，另和大熊湖重疊 2 格，請擇一。作者沒附 `streets.xml`，沿原版補回被裁的 Trinca Road、Jasper Road；園區內道路不補。不加入全地圖測試組合，掛載與補充道路用 E2E 情境 `lv-delta-bunker-mmb-mp` 驗。
+- [Bunker: Last Minute Prepper (B42)](https://steamcommunity.com/sharedfiles/filedetails/?id=3428165477)：和已收錄地圖都不重疊，南緣緊鄰路易斯維爾國際機場。作者沒附 `streets.xml`，沿原版補回被裁的 Louisville Road、Corn Road、Cob Road。
+- [LV International Airport [B41/B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3045726312)（原作者 Simon MD）：和已收錄地圖都不重疊。作者有附道路資料（22 條，本包翻譯 19 個路名）；原版 Louisville Road 經過機場的一段被作者改成跑道，本包不補。範圍框西北角一格（49_16）不是本圖地塊，小地圖在那裡畫原版影像。
+- [Muldraugh Military Base B42](https://steamcommunity.com/sharedfiles/filedetails/?id=3783856502)（Sector_Jazza 原作、B42 重新上傳）：和浣熊市（3 格）、柳溪堡壘兩版（1 格）重疊，請擇一。作者沒附 `streets.xml`，基地內道路不補。不加入全地圖測試組合。
 
 ### 已下架地圖（記錄保留、每日追蹤不含）
 

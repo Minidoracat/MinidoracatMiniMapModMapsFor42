@@ -1,0 +1,107 @@
+{
+  "dataset": "lv-international-airport",
+  "source": {
+    "workshop_id": "3045726312",
+    "map_mod": "SimonMDLVInternationalAirport",
+    "map_dir": "lvinternationalairport",
+    "streets_xml_sha256": "9d93aa23da7fd0d837d2bfc1e0f18e0d036cede9b2003741e28322ad8544acd7",
+    "captured": "2026-10-29"
+  },
+  "names": {
+    "Airport Street": {
+      "ch": "機場街",
+      "cn": "机场街",
+      "jp": "エアポート・ストリート"
+    },
+    "Farmer Street": {
+      "ch": "農夫街",
+      "cn": "农夫街",
+      "jp": "ファーマー・ストリート"
+    },
+    "Frontier Road": {
+      "ch": "邊疆路",
+      "cn": "边疆路",
+      "jp": "フロンティア・ロード"
+    },
+    "International Avenue": {
+      "ch": "國際大道",
+      "cn": "国际大道",
+      "jp": "インターナショナル・アベニュー"
+    },
+    "Irvington Street": {
+      "ch": "歐文頓街",
+      "cn": "欧文顿街",
+      "jp": "アーヴィントン・ストリート"
+    },
+    "Kingston Street": {
+      "ch": "金斯頓街",
+      "cn": "金斯敦街",
+      "jp": "キングストン・ストリート"
+    },
+    "Konrad-Adenauer Road": {
+      "ch": "艾德諾路",
+      "cn": "阿登纳路",
+      "jp": "コンラート・アデナウアー・ロード"
+    },
+    "Northern Railroad (Louisville Airport)": {
+      "ch": "北方鐵路 (路易斯維爾機場)",
+      "cn": "北方铁路 (路易斯维尔机场)",
+      "jp": "ノーザン鉄道（ルイビル空港）"
+    },
+    "Northern Railroad (Muldraugh - Doe Valley)": {
+      "ch": "北方鐵路 (馬爾德勞 - 雌鹿谷)",
+      "cn": "北方铁路 (马尔德劳 - 雌鹿谷)",
+      "jp": "ノーザン鉄道（マルドロー - ドウバレー）"
+    },
+    "Parker Road": {
+      "ch": "帕克路",
+      "cn": "帕克路",
+      "jp": "パーカー・ロード"
+    },
+    "Runway 1": {
+      "ch": "1 號跑道",
+      "cn": "1 号跑道",
+      "jp": "第1滑走路"
+    },
+    "Runway 2": {
+      "ch": "2 號跑道",
+      "cn": "2 号跑道",
+      "jp": "第2滑走路"
+    },
+    "Service Road 1": {
+      "ch": "1 號勤務道路",
+      "cn": "1 号勤务道路",
+      "jp": "第1管理道路"
+    },
+    "Service Road 2": {
+      "ch": "2 號勤務道路",
+      "cn": "2 号勤务道路",
+      "jp": "第2管理道路"
+    },
+    "Service Road 3": {
+      "ch": "3 號勤務道路",
+      "cn": "3 号勤务道路",
+      "jp": "第3管理道路"
+    },
+    "Taxiway 1": {
+      "ch": "1 號滑行道",
+      "cn": "1 号滑行道",
+      "jp": "第1誘導路"
+    },
+    "Taxiway 2": {
+      "ch": "2 號滑行道",
+      "cn": "2 号滑行道",
+      "jp": "第2誘導路"
+    },
+    "Taxiway 3": {
+      "ch": "3 號滑行道",
+      "cn": "3 号滑行道",
+      "jp": "第3誘導路"
+    },
+    "Tinsley Road": {
+      "ch": "廷斯利路",
+      "cn": "廷斯利路",
+      "jp": "ティンズリー・ロード"
+    }
+  }
+}

@@ -118,7 +118,10 @@ $MapModExclude = @(
     'Oakshire42',
     # Moores Mechanic：和已在 maptest 的艾莉卡家具店（44_31、44_32）、唐人街擴張區（43_32）整格重疊，
     # 院區跨四格、哪張排前面另一張都會缺一塊。掛載與補充道路用 E2E 單圖情境 moores-mp 驗。
-    'MooresMechanicPlus'
+    'MooresMechanicPlus',
+    # Delta Creek Munitions：6 個 cell 全落在已在 maptest 的多多市裡，另和大熊湖重疊 2 格；
+    # Muldraugh Military Base：和浣熊市（3 格）、柳溪堡壘兩版（1 格）整格重疊。掛載與補充道路用 E2E 情境驗。
+    'Delta-Creek-Munitions', 'MMB_B42'
 )
 
 # 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）

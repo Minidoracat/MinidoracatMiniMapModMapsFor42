@@ -72,7 +72,9 @@ VERSION_DIR = re.compile(r"^42(\.\d+)*$")  # B42 版本資料夾：42、42.0、4
 def index_workshop(extra_roots=()):
     """id -> mod 根目錄（mods/<name>/）。同一 Workshop 項目在多個 content 根都有副本時只看
     最新那份（item_dirs：acf timeupdated，同分照 extra_roots 在前）。不同項目宣告同一 id 時首見進 idx，
-    其餘進 alts（Coryerdon 舊移植與 2026 移植版都是 CoryerdonB42）；地圖條目一律經 entry_root 依 mapDir 挑。"""
+    其餘進 alts（Coryerdon 舊移植與 2026 移植版都是 CoryerdonB42）；地圖條目一律經 entry_root 依 mapDir 挑。
+    同一 mod 根目錄有多份 mod.info（根目錄、common、42*）時 require= 取聯集：根目錄先、只出現在 B42 那份的
+    材質包接在後面（later wins）。LV 國際機場根目錄（B41）沒列、42/ 才列 Community Tile Pack。"""
     idx, requires, alts = {}, {}, {}
     roots = [*extra_roots, WORKSHOP]
     chosen = {}
@@ -110,8 +112,14 @@ def _index_info(info, root, idx, requires, alts):
     if mid not in idx:
         idx[mid] = root
         requires[mid] = req or []
-    elif root != idx[mid] and all(r != root for r, _ in alts.get(mid, [])):
-        alts.setdefault(mid, []).append((root, req or []))
+    elif root == idx[mid]:
+        requires[mid] += [r for r in req or [] if r not in requires[mid]]
+    else:
+        alt = next((a for a in alts.get(mid, []) if a[0] == root), None)
+        if alt:
+            alt[1].extend(r for r in req or [] if r not in alt[1])
+        else:
+            alts.setdefault(mid, []).append((root, list(req or [])))
 
 
 def entry_root(idx, requires, alts, e):

@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 12 個 dataset／232 條補充道路
+-- 14 個 dataset／237 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -176,6 +176,16 @@ Supplements["coryerdon-2026"] = {
     },
 }
 
+-- ==== delta-creek (Delta-Creek-Munitions / DeltaCreek) ====
+Supplements["delta-creek"] = {
+    schemaVersion = 1, mapMod = "Delta-Creek-Munitions", mapDir = "DeltaCreek",
+    file = "media/minimap/streets/delta-creek.xml", upstreamStreetCount = 0, roadCount = 2,
+    names = {
+        ["Delta Creek Munitions Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_delta-creek_01",
+        ["Delta Creek Munitions Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_delta-creek_02",
+    },
+}
+
 -- ==== dirkerdam (DirkerdamIntegratedB42 / Dirkerdam Integrated B42) ====
 Supplements["dirkerdam"] = {
     schemaVersion = 1, mapMod = "DirkerdamIntegratedB42", mapDir = "Dirkerdam Integrated B42",
@@ -201,6 +211,17 @@ Supplements["jib-factory"] = {
         ["JIB Peanut Butter Factory Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_jib-factory_02",
         ["JIB Peanut Butter Factory Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_jib-factory_03",
         ["JIB Peanut Butter Factory Rd 04 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_jib-factory_04",
+    },
+}
+
+-- ==== last-minute-prepper (LastMinutePrepperReloadedB42 / LastMinutePrepperReloaded) ====
+Supplements["last-minute-prepper"] = {
+    schemaVersion = 1, mapMod = "LastMinutePrepperReloadedB42", mapDir = "LastMinutePrepperReloaded",
+    file = "media/minimap/streets/last-minute-prepper.xml", upstreamStreetCount = 0, roadCount = 3,
+    names = {
+        ["Last Minute Prepper Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_last-minute-prepper_01",
+        ["Last Minute Prepper Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_last-minute-prepper_02",
+        ["Last Minute Prepper Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_last-minute-prepper_03",
     },
 }
 

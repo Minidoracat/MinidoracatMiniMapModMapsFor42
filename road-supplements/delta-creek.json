@@ -1,0 +1,65 @@
+{
+  "dataset": "delta-creek",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3665994726",
+    "map_mod": "Delta-Creek-Munitions",
+    "map_dir": "DeltaCreek",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "77a73f034bef5bbe4a479709cd15332beec437d788f08f4270ec19e55c16a9f4",
+    "captured": "2026-10-29",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Delta Creek Munitions",
+    "ch": "德爾塔溪軍火庫",
+    "cn": "德尔塔溪军火库",
+    "jp": "デルタクリーク弾薬庫"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 8,
+      "points": [
+        6508,
+        8203,
+        6508,
+        8473,
+        6518.5,
+        8493.5,
+        6534,
+        8508,
+        6552,
+        8517,
+        6657,
+        8517
+      ],
+      "evidence": {
+        "samples": 440,
+        "on_road": 440
+      }
+    },
+    {
+      "no": 2,
+      "width": 5,
+      "points": [
+        6518,
+        8497,
+        6506.5,
+        8520.5,
+        6506.5,
+        8569,
+        6440.5,
+        8635,
+        6440.5,
+        8800
+      ],
+      "evidence": {
+        "samples": 333,
+        "on_road": 316
+      }
+    }
+  ],
+  "retired": []
+}

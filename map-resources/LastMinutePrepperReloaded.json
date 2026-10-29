@@ -1,0 +1,12 @@
+{
+  "zip": "LastMinutePrepperReloaded.pyramid.zip",
+  "mapDir": "LastMinutePrepperReloaded",
+  "rawRecords": 6,
+  "aliases": {},
+  "cells300": [[44, 12]],
+  "entries": [
+    {"cat": "farm", "rects": [[13418, 3690, 6, 7]], "bbox": [13418, 3690, 6, 7], "underground": false},
+    {"cat": "industry", "rects": [[13361, 3835, 8, 3]], "bbox": [13361, 3835, 8, 3], "underground": false}
+  ],
+  "parking": []
+}

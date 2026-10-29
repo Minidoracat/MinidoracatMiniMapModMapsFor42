@@ -2075,8 +2075,14 @@ def cmd_self_test() -> int:
             (mod_dir / "common" / "media" / "maps" / folder).mkdir(parents=True)
             (mod_dir / "42").mkdir()
             (mod_dir / "42" / "mod.info").write_text(f"id=DupIdTestMod\n{req}", encoding="utf-8")
+        # 根目錄（B41）與 42/ 各有一份 mod.info：只在 42/ 列的材質包也要渲、要追蹤（LV 國際機場的 Community Tile Pack）
+        both = roots[1] / "990005" / "mods" / "Both"
+        (both / "42").mkdir(parents=True)
+        (both / "mod.info").write_text("id=B41B42TestMod\nrequire=B41Tiles\n", encoding="utf-8")
+        (both / "42" / "mod.info").write_text("id=B41B42TestMod\nrequire=\\B42Tiles\n", encoding="utf-8")
         idx_f, req_f, alts_f = rp.index_workshop(roots)  # 舊副本排在前面（同 --prefer 先列）
         assert Path(td) / "new" in idx_f["FreshCopyTestMod"].parents
+        assert req_f["B41B42TestMod"] == ["B41Tiles", "B42Tiles"], req_f["B41B42TestMod"]
         for folder, wid, want_req in (("New Port", "990004", ["TilesX"]), ("Old Port", "990003", [])):
             got = rp.entry_root(idx_f, req_f, alts_f, {"zip": f"{folder}.pyramid.zip",
                                                          "mapMod": "DupIdTestMod", "mapDir": folder})

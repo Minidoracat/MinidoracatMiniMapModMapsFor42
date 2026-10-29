@@ -1,0 +1,73 @@
+{
+  "dataset": "last-minute-prepper",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3428165477",
+    "map_mod": "LastMinutePrepperReloadedB42",
+    "map_dir": "LastMinutePrepperReloaded",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": null,
+    "captured": "2026-10-29",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Last Minute Prepper",
+    "ch": "最後一刻末日地堡",
+    "cn": "最后一刻末日地堡",
+    "jp": "ラストミニット・プレッパー"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 6,
+      "points": [
+        13272,
+        3458,
+        13272,
+        3608,
+        13424,
+        3760,
+        13424,
+        4000
+      ],
+      "evidence": {
+        "samples": 605,
+        "on_road": 605
+      }
+    },
+    {
+      "no": 2,
+      "width": 7,
+      "points": [
+        13618.5,
+        3757.5,
+        13427,
+        3757.5
+      ],
+      "evidence": {
+        "samples": 192,
+        "on_road": 192
+      }
+    },
+    {
+      "no": 3,
+      "width": 4,
+      "points": [
+        13466,
+        3681,
+        13466,
+        3699,
+        13481,
+        3714,
+        13562,
+        3714
+      ],
+      "evidence": {
+        "samples": 121,
+        "on_road": 121
+      }
+    }
+  ],
+  "retired": []
+}

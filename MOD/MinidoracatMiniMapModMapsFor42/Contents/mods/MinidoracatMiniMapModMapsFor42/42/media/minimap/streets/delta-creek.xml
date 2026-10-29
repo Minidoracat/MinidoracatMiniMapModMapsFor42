@@ -1,0 +1,21 @@
+<streets version="1">
+    <street name="Delta Creek Munitions Rd 01 (MiniMap)" width="8">
+        <points>
+            <point x="6508.0" y="8203.0"/>
+            <point x="6508.0" y="8473.0"/>
+            <point x="6518.5" y="8493.5"/>
+            <point x="6534.0" y="8508.0"/>
+            <point x="6552.0" y="8517.0"/>
+            <point x="6657.0" y="8517.0"/>
+        </points>
+    </street>
+    <street name="Delta Creek Munitions Rd 02 (MiniMap)" width="5">
+        <points>
+            <point x="6518.0" y="8497.0"/>
+            <point x="6506.5" y="8520.5"/>
+            <point x="6506.5" y="8569.0"/>
+            <point x="6440.5" y="8635.0"/>
+            <point x="6440.5" y="8800.0"/>
+        </points>
+    </street>
+</streets>
