@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-29T11:47:03Z",
+  "generated_at": "2026-10-30T11:40:46Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -81,6 +81,13 @@
       "removed_at": null,
       "time_updated": 1791837756,
       "title": "[B42.2/B41] Tikitown & Powerplant"
+    },
+    "3045726312": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1775590553,
+      "title": "LV International Airport [B41/B42]"
     },
     "3046728955": {
       "last_result": 1,
@@ -165,6 +172,13 @@
       "removed_at": null,
       "time_updated": 1786238367,
       "title": "[B42] School's Out: Anime-Style Student Uniforms"
+    },
+    "3428165477": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1739663534,
+      "title": "Bunker: Last Minute Prepper (B42)"
     },
     "3436499337": {
       "last_result": 1,
@@ -530,6 +544,13 @@
       "time_updated": 1771573187,
       "title": "Hunter's Base B42"
     },
+    "3665994726": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1771066799,
+      "title": "Delta-Creek-Munitions-B42 Alpha"
+    },
     "3666137359": {
       "last_result": 1,
       "removed": false,
@@ -767,6 +788,13 @@
       "removed_at": null,
       "time_updated": 1787438368,
       "title": "[B42] Nellis Air Force Base"
+    },
+    "3783856502": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1786801419,
+      "title": "Muldraugh Military Base B42"
     },
     "3800233932": {
       "last_result": 1,
