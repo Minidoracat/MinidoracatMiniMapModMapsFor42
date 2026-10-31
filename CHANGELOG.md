@@ -1,5 +1,19 @@
 # Changelog
 
+## [Unreleased]
+
+### 更新
+
+- **Snake Numark 複合區小地圖圖像更新**：原作者 10-31 更新 Snake's ModPack，在 Numark 複合區的池塘東邊新增一處地下醫療設施的入口。小地圖圖像已依最新資料重新產生，資源點多一處醫療（地下）。範圍、名稱與導航資料不變；合集裡其他地圖的小地圖圖像與資源點沒有變化。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：#69 Snake's ModPack Build 42 3800233932 10-31 05:14 UTC 更新。steamcmd 與 Steam 客戶端副本 timeupdated＝Steam API；10 個地圖資料夾的 lotheader cell 範圍＝註冊 bounds，沒有新 mod ID 或地圖目錄，道路資料沒變。`rebuild_pyramids.py` 重渲 10 顆 zip，只有 `NumarkComplex` 不同（6 個檔 5 個，第 0 層 8,836 像素，都在 300 格 (53,12) 內）；`SnakeMansion` 圖資 hash 變了但重渲逐檔相同，追蹤器報的 MOD 自帶材質變更也沒讓其他 zip 改變。資源點：Numark 原始紀錄 8→10，多 1 處地下 medical，其他 9 顆不變。
+
+> 技術要點：Moores Mechanic [B42] 3699636604 在 10-29 10:21 UTC 更新；0.26.0 收錄時用的是 08 月的副本，追蹤器第一次看到它就把新版記成基準，沒開 issue。重渲與舊 zip 逐檔相同，資源點不變；`worldmap.xml` 改了。補充道路 01 號沿原版 Riverside Road，不取自 worldmap；新版 worldmap 重跑 derive 推出的是院區車道與同一段 Riverside Road，照 10-28 裁定不改，只更新來源 sha（c08bb8…→7bc251…）。
+
 ## [42.21.0-0.27.0] - 2026-10-29
 
 ### 新增
