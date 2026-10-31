@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T11:40:46Z",
+  "generated_at": "2026-10-31T11:16:16Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -2129,7 +2129,7 @@
       }
     },
     "3800233932": {
-      "assets": "b41be47565c86668122cce0ac0da370e27e18b233c9e43f2c503069569dd4238",
+      "assets": "e0a5f656b398c3555f2bc47b00522b65fabd5d05071895fc50b46ec550245af4",
       "maps": {
         "BarcoAbandonado": {
           "bounds": [
@@ -2165,7 +2165,7 @@
             16384,
             4096
           ],
-          "hash": "d4b7ce9fe7664a71d3cc7709ecb6f8a0e49eb3ac521a72be913c052fe70dfb33"
+          "hash": "b19b09ae12acf0e1148c2174bf343f931de211bec0810b8f26c8191e3075eb7e"
         },
         "SnakeMansion": {
           "bounds": [
@@ -2174,7 +2174,7 @@
             11520,
             11264
           ],
-          "hash": "03bc3aed321a8f2ae86d29d6ce949a64ca2e8f2d68fe113a4bac60f3f927fb81"
+          "hash": "efe5eeb6257952e21ba1ed14620d0025e66e94582ebcec383713afc07f8f3c34"
         },
         "snakeville_0": {
           "bounds": [
