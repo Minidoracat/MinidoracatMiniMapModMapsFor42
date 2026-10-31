@@ -433,8 +433,14 @@ def render_doc(root: Path, status: dict) -> str:
     return "\n".join(out)
 
 
+def untracked_ids(status: dict, ts_items: dict) -> list[str]:
+    """註冊地圖用到、但 tracker-state/timestamps.json 沒有基準的 Workshop 項目。沒基準的項目
+    CI 首見時會把當下版本靜默記成基準，收錄後的上游更新就此吞掉（2026-10-29 摩爾修車廠）。"""
+    return sorted(set(registered_dirs(status)) - set(ts_items))
+
+
 def verify(root: Path) -> list[str]:
-    """發版閘門：狀態檔涵蓋每個註冊 zip、公開清單與 render 逐位元組一致。"""
+    """發版閘門：狀態檔涵蓋每個註冊 zip、註冊項目都有追蹤基準、公開清單與 render 逐位元組一致。"""
     status, err = load_status(root / STATUS_REL)
     if err:
         return [err]
@@ -443,6 +449,12 @@ def verify(root: Path) -> list[str]:
     if missing:
         problems.append(f"{STATUS_REL.as_posix()} 缺 {len(missing)} 張註冊地圖："
                         + "、".join(missing) + f" → 跑 `{DOC_COMMAND}`")
+    ts_path = root / "tracker-state" / "timestamps.json"
+    ts_items = json.loads(ts_path.read_text(encoding="utf-8-sig")).get("items", {}) if ts_path.is_file() else {}
+    untracked = untracked_ids(status, ts_items)
+    if untracked:
+        problems.append(f"tracker-state/timestamps.json 缺 {len(untracked)} 個註冊項目：" + "、".join(untracked)
+                        + " → 逐一跑 `uv run scripts/map_tracker.py accept <id> --steamcmd <steamcmd.exe>`")
     _data, errors = load_road_data(root)
     problems += errors
     doc = root / DOC_REL

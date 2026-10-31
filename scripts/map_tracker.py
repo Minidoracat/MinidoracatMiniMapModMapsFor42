@@ -16,7 +16,11 @@ MOD 軸（time_updated 變動）→ steamcmd 下載該項 → hash 圖資（medi
   下架（API result=9，且更新紀錄頁讀不到；不公開項目 API 也回 9，見 probe_unlisted）→
   開「[地圖下架]」issue 一次；自下輪起不再查詢（tombstone 保留），
   重新上架要恢復追蹤＝手動把 state 該項 removed 改回 false。
-  首次見到（含 --bootstrap 首建）→ 靜默記基準，零 issue。
+  不公開項目的更新紀錄頁連續 PROBE_FAIL_ISSUE 輪讀不到（429 等）→ 開「[追蹤失敗]」issue
+  （計數記在 state 該項 probe_fail；讀到就歸零），提示本機用 steamcmd acf 補判。
+  首次見到（含 --bootstrap 首建）→ 靜默記基準，零 issue。收錄的地圖要在收錄時本機
+  `accept` 先記基準：CI 首見時記的是當下版本，收錄到加進收藏之間的上游更新會被吞掉
+  （2026-10-29 摩爾修車廠；verify_mod 擋註冊項目不在 timestamps.json）。
   道路資料（同一次下載）：掃 streets.xml／worldmap.xml → 本包 pin（街名翻譯／道路修正／
   補充道路）對不上作者現況、或本包沒翻路名的地圖作者新增／變更道路 → issue 加「🛣️」
   待處理行（關閉前累積保留）；本包沒資料的地圖作者移除道路 → 「ℹ️」行。
@@ -43,8 +47,8 @@ CI 三 job（權限逐 job 最小化；diff 下載第三方內容故無 GitHub �
                       --only 只寫這幾項（其他項目原樣保留）、--all 整份重建
                       （有註冊地圖缺本機副本就拒寫）
   accept <id> --steamcmd <exe> [--time-updated <epoch>]
-                      CI 還沒開 issue 就先處理掉的上游更新：一次推進該項的
-                      timestamps／mapdata_hashes／road_status 三份基準（本機副本過期就拒絕）
+                      收錄新地圖時建基準，或 CI 還沒開 issue 就先處理掉的上游更新：一次寫入／推進
+                      該項的 timestamps／mapdata_hashes／road_status 三份基準（本機副本過期就拒絕）
   self-test           零網路自我測試
 
 state（tracker-state/timestamps.json＋mapdata_hashes.json＋road_status.json）進版控；
@@ -99,6 +103,8 @@ ISSUE_LABEL = "tracker"
 TYPE_UPDATE = "update"
 TYPE_REMOVED = "removed"
 TYPE_GAME = "game"
+TYPE_PROBE = "probe"  # 不公開項目連續讀不到更新紀錄頁（追蹤失敗）
+PROBE_FAIL_ISSUE = 2  # 連續失敗幾輪開 issue：一輪 429 很常見（10-28～10-31 四輪三輪），兩輪才升級
 _MARKER_RE = re.compile(
     r"<!--\s*map-tracker:type=(?P<type>[^;]+);id=(?P<id>[^;]+);hash=(?P<hash>[^;\s]+)\s*-->"
 )
@@ -266,14 +272,16 @@ def _get_text(url: str, timeout: float = 30.0) -> str:
 
 
 def probe_unlisted(
-    details: dict[str, dict], *, get: Callable[[str], str] = _get_text
+    details: dict[str, dict], *, get: Callable[[str], str] = _get_text,
+    failed: set[str] | None = None,
 ) -> dict[str, dict]:
     """API result=9 不一定是下架：不公開（unlisted）的項目 GetPublishedFileDetails 也回 9，
     但頁面、更新紀錄與匿名 steamcmd 下載都照常（Dirkerdam Map Fix #62，2026-10-27）。
     對 result=9 的項目讀更新紀錄頁：有紀錄＝還拿得到，換成 result=1＋最新一筆的時間
     （公開項目的這個值等於 API 的 time_updated）照常追蹤；錯誤頁或認不出的頁面維持 9，
     照舊開下架 issue。讀取失敗（429、逾時）＝本輪不判，從 details 拿掉（state 不推進、
-    下輪再試）：下架會 tombstone、從此不再查詢，一次 429 不該留下永久結果。"""
+    下輪再試）：下架會 tombstone、從此不再查詢，一次 429 不該留下永久結果。
+    給 failed 時把讀取失敗的 id 加進去：classify 據此累計連續失敗輪數（追蹤失敗 issue）。"""
     out = dict(details)
     for wid, detail in details.items():
         if int(detail.get("result", 0)) != RESULT_NOT_FOUND:
@@ -283,6 +291,8 @@ def probe_unlisted(
         except OSError as exc:  # 含 HTTPError（429）/URLError/TimeoutError
             warn(f"id={wid} API result=9，更新紀錄頁讀不到（{exc}），本輪不判")
             del out[wid]
+            if failed is not None:
+                failed.add(wid)
             continue
         stamps = [int(s) for s in _CHANGELOG_TS_RE.findall(text)]
         title = _ITEM_TITLE_RE.search(text)
@@ -781,12 +791,15 @@ def fetch_game_build(exe: str) -> str | None:
 def classify(
     map_ids: list[str], details: dict[str, dict], state_items: dict,
     *, tilepack_deps: dict[str, dict] | None = None,
+    probe_failed: set[str] | frozenset[str] = frozenset(),
 ) -> tuple[list[dict], dict[str, dict], int]:
     """回傳 (issue plans, 每 id 的新 state entry, 本輪新基準數)。
-    首次見到的 id（不在 state）一律靜默記基準、零 issue——--bootstrap 首建與日後
-    收藏新增地圖走同一條路。
+    首次見到的 id（不在 state）一律靜默記基準、零 issue——--bootstrap 首建與 CI 首見
+    走同一條路；收錄的地圖改由本機 accept 先記基準（見檔頭）。
     tilepack_deps＝{材質包 workshop id: {mod_ids, used_by}}：命中的 id 改走材質包
-    plan（時間戳追蹤邏輯完全相同，只有 issue 用語與處置不同）。不給＝行為與原本一致。"""
+    plan（時間戳追蹤邏輯完全相同，只有 issue 用語與處置不同）。不給＝行為與原本一致。
+    probe_failed＝本輪讀不到更新紀錄頁的 id（probe_unlisted 的 failed）：累計進 entry 的
+    probe_fail，連續 PROBE_FAIL_ISSUE 輪起開追蹤失敗 plan；API 回 1／9 就歸零。"""
     plans: list[dict] = []
     meta: dict[str, dict] = {}
     baselined = 0
@@ -805,14 +818,22 @@ def classify(
             "removed": prev.get("removed", False),
             "removed_at": prev.get("removed_at"),
         }
+        if prev.get("probe_fail"):  # 只在 >0 時存在：既有項目不因新欄位產生噪音 diff
+            entry["probe_fail"] = prev["probe_fail"]
         if detail is None:
             if first_seen:
                 continue  # 首見＋查無回應：不入 state，下輪仍視為首見（避免假「更新」issue）
+            if wid in probe_failed:
+                entry["probe_fail"] = entry.get("probe_fail", 0) + 1
+                if entry["probe_fail"] >= PROBE_FAIL_ISSUE:
+                    plans.append(build_probe_plan(wid, title, entry["probe_fail"], entry["time_updated"]))
             meta[wid] = entry
             continue  # 查無回應：state 不推進，下輪再試
         meta[wid] = entry
         result = int(detail.get("result", 0))
         entry["last_result"] = result
+        if result in (RESULT_OK, RESULT_NOT_FOUND):
+            entry.pop("probe_fail", None)  # 讀到了（API 或更新紀錄頁）＝連續失敗中斷
         if result == RESULT_NOT_FOUND:
             # 材質包首見即不可存取＝「現行必要依賴取不到」，不是「新收錄了一張已下架的圖」——
             # 套地圖的靜默 baseline 會零 issue 直接 tombstone、次輪起永不再查，盲區換個地方復活
@@ -987,6 +1008,42 @@ def build_removed_plan(wid: str, title: str, *, tilepack_used_by: list | None = 
         "title": issue_title,
         "body": "\n".join([make_marker(TYPE_REMOVED, wid, content_hash), *head]),
         "comment": "追蹤器再次確認此項目仍不可存取。",
+    }
+
+
+def build_probe_plan(wid: str, title: str, fails: int, last_tu) -> dict:
+    """不公開項目連續 fails 輪讀不到更新紀錄頁（probe_unlisted 失敗，多半 429）→「追蹤失敗」plan。
+    這幾輪都沒判更新，作者若有更新就漏開 issue（2026-10-30 德克丹 Map Fix）。hash 綁輪數：
+    issue 開著時每輪 comment＋換 body，輪數停在最新；讀到後計數歸零、不再產 plan，issue 手動關。"""
+    label = neutralize(title)
+    content_hash = hashlib.sha256(f"probe|{wid}|{fails}".encode("utf-8")).hexdigest()
+    body = "\n".join([
+        make_marker(TYPE_PROBE, wid, content_hash),
+        f"## 追蹤失敗：`{label}`（Workshop {wid}）",
+        "",
+        f"這個項目的 Steam API 回 result=9（不公開），追蹤器靠讀[更新紀錄頁]({CHANGELOG_URL.format(wid)})"
+        f"判斷有沒有更新，已**連續 {fails} 輪**讀不到（429 限流或逾時，見 run log 的 warning）。",
+        "讀不到的這幾輪都沒判更新：作者這段時間若有更新，不會開「地圖更新」issue。",
+        "",
+        f"- 最後一次成功判定的版本：{fmt_ts(last_tu)}（time_updated `{last_tu}`）",
+        f"- [Workshop 頁面](https://steamcommunity.com/sharedfiles/filedetails/?id={wid})",
+        "",
+        "**本機補救**：",
+        "",
+        f"- [ ] 匿名下載：`<steamcmd.exe> +login anonymous +workshop_download_item {GAME_APPID} {wid} +quit`",
+        f"- [ ] 看 steamcmd 同層 `steamapps/workshop/appworkshop_{GAME_APPID}.acf` 裡 `{wid}` 的 `timeupdated`",
+        "- [ ] 比上面記錄的 time_updated 新＝有更新：照知識庫 `maps.md`「追蹤器 issue 處置」處置，"
+        f"處置完 `uv run scripts/map_tracker.py accept {wid} --steamcmd <steamcmd.exe> --time-updated <acf 的 timeupdated>` 推進基準",
+        "- [ ] 相同＝沒更新：直接關閉",
+        "- 之後哪一輪讀到更新紀錄頁，計數自動歸零（state 該項 `probe_fail`）。",
+    ])
+    return {
+        "type": TYPE_PROBE,
+        "workshop_id": wid,
+        "content_hash": content_hash,
+        "title": f"[追蹤失敗] {label} 讀不到更新紀錄（{wid}）",
+        "body": body,
+        "comment": f"仍讀不到更新紀錄頁：已連續 {fails} 輪。",
     }
 
 
@@ -1237,7 +1294,8 @@ def collect() -> dict:
         print(f"  ℹ️ 已下架、不查詢：{', '.join(skipped_removed)}")
     query_ids = [wid for wid in children if wid not in skipped_removed]
     tile_ids = [wid for wid in tracked if wid not in children and wid not in skipped_removed]
-    details = probe_unlisted(fetch_details(query_ids + tile_ids))
+    probe_failed: set[str] = set()
+    details = probe_unlisted(fetch_details(query_ids + tile_ids), failed=probe_failed)
 
     # creator 缺失（下架項目不回 creator）→ 當作外人保留追蹤：第三方地圖要下架 issue；
     # 自家項目誤中只是可關閉的噪音，方向刻意 fail-open
@@ -1268,10 +1326,12 @@ def collect() -> dict:
     plans, meta, baselined = classify(
         track_ids, details, old_items,
         tilepack_deps={k: v for k, v in tile_deps.items() if k not in set(map_ids)},
+        probe_failed=probe_failed,
     )
     plans.sort(key=lambda p: (p["type"], int(p["workshop_id"])))
     print(f"  計畫：更新 {sum(1 for p in plans if p['type'] == TYPE_UPDATE)} 筆、"
-          f"下架 {sum(1 for p in plans if p['type'] == TYPE_REMOVED)} 筆、新基準 {baselined} 筆")
+          f"下架 {sum(1 for p in plans if p['type'] == TYPE_REMOVED)} 筆、"
+          f"追蹤失敗 {sum(1 for p in plans if p['type'] == TYPE_PROBE)} 筆、新基準 {baselined} 筆")
     for plan in plans:
         print(f"    - {plan['title']}")
     # 首見且非下架的 id → diff job 建圖資基準（零 issue）
@@ -1735,16 +1795,16 @@ _UNPINNED_ROAD_KINDS = {"author_added", "author_changed"}
 
 def accept_item(wid: str, root: Path, detail: dict, local_ts: int | None, state_items: dict,
                 mapdata_items: dict, road_state: dict, pins: dict, now: str):
-    """CI 還沒開 issue 就先處理掉的上游更新：等同 CI 對這一項跑完 diff＋issue（不開 issue），
-    一次推進這一項的 timestamps／mapdata_hashes／road_status items，其他項目原樣回傳——只推進
-    其中一份，CI 照樣會為已處理的更新開 issue（2026-10-28 德克丹 Map Fix 手動推進三份）。
-    拒絕（raise ValueError）：不在 state、time_updated 無效、本機副本比 Steam 舊（拿過期副本寫基準
+    """收錄新地圖時建基準，或 CI 還沒開 issue 就先處理掉的上游更新：等同 CI 對這一項跑完
+    diff＋issue（不開 issue），一次寫入／推進這一項的 timestamps／mapdata_hashes／road_status
+    items，其他項目原樣回傳——只推進其中一份，CI 照樣會為已處理的更新開 issue（2026-10-28
+    德克丹 Map Fix 手動推進三份）。新項目不能等 CI 首見：首見會把當下版本靜默記成基準，收錄後
+    的上游更新就此吞掉（2026-10-29 摩爾修車廠）。
+    拒絕（raise ValueError）：time_updated 無效、本機副本比 Steam 舊（拿過期副本寫基準
     ＝把舊資料當現況，追蹤器從此不再提醒；2026-09-27 SecretZ）、本包道路 pin 還對不上作者現況。
     → (state items, mapdata items, road items, 圖資判定, 道路判定)。"""
     import road_status as rs
 
-    if wid not in state_items:
-        raise ValueError(f"{wid} 不在 timestamps.json：新收錄的項目由 CI 首見時自動建基準，不用 accept")
     tu = detail.get("time_updated")
     if int(detail.get("result", 0)) != RESULT_OK or not isinstance(tu, int) or tu <= 0:
         raise ValueError(f"{wid} 查不到有效的 time_updated（result={detail.get('result')}）")
@@ -1812,7 +1872,7 @@ def cmd_accept(args) -> int:
     except ValueError as exc:
         print(f"❌ {exc}", file=sys.stderr)
         return 1
-    print(f"  {wid}  time_updated {fmt_ts(state['items'][wid].get('time_updated'))}"
+    print(f"  {wid}  time_updated {fmt_ts(state['items'].get(wid, {}).get('time_updated'))}"
           f" → {fmt_ts(items[wid]['time_updated'])}")
     print(f"  圖資判定：{verdict['status']}"
           + (f"（{'、'.join(verdict['changed_maps'])}）" if verdict["changed_maps"] else ""))
@@ -2413,6 +2473,64 @@ def cmd_self_test() -> int:
             raise AssertionError("道路 pin 沒處理就被 accept")
         except ValueError as exc:
             assert "街名翻譯需補譯" in str(exc)
+        # 19b) 新收錄項目（不在 timestamps.json）也要能 accept 建三份基準，副本過期照樣拒
+        #      （2026-10-29 摩爾修車廠：CI 首見把收錄後的新版靜默記成基準）
+        st_n, md_n = {"72": st["72"]}, {"72": md["72"]}
+        rst_n = {"entries": rst["entries"], "items": {"72": rst["items"]["72"]}}
+        got_st_n, got_md_n, got_rd_n, verdict_n, _ = accept_item(
+            "71", root, fresh, 200, st_n, md_n, rst_n, {}, "t1")
+        assert got_st_n["71"]["time_updated"] == 200 and got_st_n["71"]["last_result"] == RESULT_OK
+        assert got_md_n["71"] == hash_mod_mapdata(root) and verdict_n["status"] == "no_baseline"
+        assert got_rd_n["71"] == {"checked": "t1", "maps": rs.scan_roads(_mod_content_bases(root))}
+        for local_ts in (150, None):
+            try:
+                accept_item("71", root, fresh, local_ts, st_n, md_n, rst_n, {}, "t1")
+                raise AssertionError("新項目的過期副本沒被 accept 拒絕")
+            except ValueError as exc:
+                assert "workshop_download_item" in str(exc)
+        # 20) accept 過的新項目，之後上游更新 → CI 的 classify 開更新 issue（不再走首見靜默基準）
+        plans_n, _, base_n = classify(["71"], {"71": {"result": 1, "time_updated": 300, "title": "T"}}, got_st_n)
+        assert [(p["type"], p["workshop_id"]) for p in plans_n] == [(TYPE_UPDATE, "71")] and base_n == 0
+    # 20b) verify_mod 閘門：註冊項目缺 timestamps 基準要列出
+    st_gate = {"entries": {"A.zip": {"workshop_id": "81", "map_dir": "A"},
+                           "B.zip": {"workshop_id": "82", "map_dir": "B"},
+                           "B2.zip": {"workshop_id": "82", "map_dir": "B2"}}}
+    assert rs.untracked_ids(st_gate, {"81": {}}) == ["82"] and rs.untracked_ids(st_gate, {"81": {}, "82": {}}) == []
+
+    # 21) 不公開項目連續讀不到更新紀錄頁：第 1 輪只記數、第 2 輪起開「追蹤失敗」、讀到就歸零、
+    #     開著的 issue 不重複開（2026-10-30 德克丹 Map Fix：429 只留 warning，更新漏開 issue）
+    failed: set[str] = set()
+    probed21 = probe_unlisted({"93": {"result": 9}, "91": {"result": 9}}, get=fake_get, failed=failed)
+    assert failed == {"93"} and "93" not in probed21
+    st21 = {"93": {"title": "X", "time_updated": 500, "last_result": 1, "removed": False, "removed_at": None}}
+    p1, m1, _ = classify(["93"], probed21, st21, probe_failed=failed)
+    assert p1 == [] and m1["93"]["probe_fail"] == 1 and m1["93"]["time_updated"] == 500
+    # 計數經 artifact（check→diff→issue 的 meta）到 issue job 寫進 timestamps.json
+    with tempfile.TemporaryDirectory() as td:
+        art = Path(td) / "changed.json"
+        write_json(art, {"meta": m1})
+        rt = apply_verdict_state(st21, load_json(art)["meta"], {})
+    assert {**st21, **rt}["93"]["probe_fail"] == 1
+    p2, m2, _ = classify(["93"], probed21, {**st21, **rt}, probe_failed=failed)
+    assert [(p["type"], p["workshop_id"]) for p in p2] == [(TYPE_PROBE, "93")] and m2["93"]["probe_fail"] == 2
+    assert "連續 2 輪" in p2[0]["body"] and fmt_ts(500) in p2[0]["body"]
+    assert "--time-updated <acf 的 timeupdated>" in p2[0]["body"]
+    assert parse_marker(p2[0]["body"])[:2] == (TYPE_PROBE, "93")
+    p_api, m_api, _ = classify(["93"], {}, m2)  # API 漏項（不是 probe 失敗）：不計數、不開
+    assert p_api == [] and m_api["93"]["probe_fail"] == 2
+    for ok_detail in ({"result": 1, "time_updated": 500}, {"result": 9}):  # 讀到（API 1／頁面可讀但仍 9）＝歸零
+        p_ok, m_ok, _ = classify(["93"], {"93": ok_detail}, m2)
+        assert "probe_fail" not in m_ok["93"] and not [p for p in p_ok if p["type"] == TYPE_PROBE]
+    _p0, m0, _ = classify(["93"], {}, {"93": m_ok["93"]}, probe_failed={"93"})  # 歸零後重新從 1 起算
+    assert m0["93"]["probe_fail"] == 1 and _p0 == []
+    gh21, idx21 = _FakeGh(), {}
+    assert apply_issue_plan(p2[0], idx21, gh21, dry_run=False) == "new"
+    p3, _m3, _ = classify(["93"], {}, m2, probe_failed={"93"})
+    assert apply_issue_plan(p3[0], idx21, gh21, dry_run=False) == "comment"  # 第 3 輪：留言＋換 body
+    assert apply_issue_plan(p3[0], idx21, gh21, dry_run=False) == "skip"
+    assert len(gh21.created) == 1 and gh21.comments[0][1] == "仍讀不到更新紀錄頁：已連續 3 輪。"
+    # accept（本機補判後推進）也把計數歸零
+    assert "probe_fail" not in classify(["93"], {"93": {"result": 1, "time_updated": 600}}, m2)[1]["93"]
 
     print("✅ self-test 全數通過")
     return 0
@@ -2450,7 +2568,7 @@ def main() -> None:
                        help="只寫這個 Workshop 項目（可重複）；其他項目的基準原樣保留")
     scope.add_argument("--all", action="store_true",
                        help="整份重建（會把每張圖還沒處理的上游變更一起寫成基準；只在狀態檔損毀／改格式時用）")
-    ac = sub.add_parser("accept", help="本機：CI 還沒開 issue 就處理掉的上游更新 → 推進該項三份基準")
+    ac = sub.add_parser("accept", help="本機：收錄新地圖建基準，或 CI 還沒開 issue 就處理掉的上游更新 → 寫入／推進該項三份基準")
     ac.add_argument("workshop_id")
     ac.add_argument("--steamcmd", required=True, help="steamcmd 執行檔（副本在它同層的 steamapps，同 hash-baseline）")
     ac.add_argument("--time-updated", type=int, default=0,
