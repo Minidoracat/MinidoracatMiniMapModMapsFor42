@@ -252,7 +252,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Moores Mechanic[/b]：與 Chinatown Expansion 重疊一個地塊、與 Erika's Furniture Store 重疊兩個地塊，請擇一；院區跨這幾個地塊，伺服器地圖順序（Map=）排在後面的那張，在重疊地塊的內容會不見。Chinatown 只相鄰、不重疊。
 [*] [b]Delta Creek Munitions[/b]：整張落在 DuoDuo City 範圍內，另與 Big Bear Lake 重疊兩個地塊，請擇一。
 [*] [b]Muldraugh Military Base[/b]：與 Raccoon City 重疊三個地塊、與 Willowbrook Bastion（原版與 2026 版）重疊一個地塊，請擇一。
-[*] [b]Kentucky Center Manor[/b]：與 Estate 39 重疊一個地塊，請擇一。必要項目 Dylan's Tile Pack 只有 B41 版、B42 載不入，要改訂閱 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754850359][B42] Dylan's tiles[/url]，遊戲才會載入這張圖。
+[*] [b]Kentucky Center Manor[/b]：與 Estate 39 重疊一個地塊，請擇一。必要項目 Dylan's Tile Pack 只有 B41 版、B42 載不入，要改訂閱 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754850359]B42 移植版 Dylan's tiles[/url]，遊戲才會載入這張圖。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。
 [/list]
 === ❓ 常見問題

@@ -252,7 +252,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] [b]Moores Mechanic[/b]: overlaps one cell of Chinatown Expansion and two cells of Erika's Furniture Store; choose one. The compound spans these cells, so whichever map comes later in the server map order (Map=) loses its part of the shared cells. Chinatown only borders it and does not overlap.
 [*] [b]Delta Creek Munitions[/b]: lies entirely inside DuoDuo City and overlaps two cells of Big Bear Lake; choose one.
 [*] [b]Muldraugh Military Base[/b]: overlaps three cells of Raccoon City and one cell of Willowbrook Bastion (original and 2026); choose one.
-[*] [b]Kentucky Center Manor[/b]: overlaps Estate 39 on one cell; choose one. Its required Dylan's Tile Pack is B41-only and does not load in B42; subscribe to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754850359][B42] Dylan's tiles[/url] instead, or the game will not load this map.
+[*] [b]Kentucky Center Manor[/b]: overlaps Estate 39 on one cell; choose one. Its required Dylan's Tile Pack is B41-only and does not load in B42; subscribe to the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754850359]B42 port of Dylan's tiles[/url] instead, or the game will not load this map.
 [*] [b]Atlas Underground Complex[/b]: surface imagery only (no underground floors); it partly overlaps several nearby maps, and using them together is not guaranteed.
 [/list]
 === ❓ FAQ
