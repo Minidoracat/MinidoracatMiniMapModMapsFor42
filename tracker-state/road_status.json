@@ -216,6 +216,10 @@
       "map_dir": "Raven Creek B42",
       "workshop_id": "3769577696"
     },
+    "Kentucky Center Manor_Renovation_B42.pyramid.zip": {
+      "map_dir": "Kentucky Center Manor_Renovation_B42",
+      "workshop_id": "3494693499"
+    },
     "KillMingLake.pyramid.zip": {
       "map_dir": "KillMingLake",
       "workshop_id": "3446958402"
@@ -529,7 +533,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-10-29T11:47:03Z",
+  "generated_at": "2026-10-31T14:32:32Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -938,6 +942,16 @@
           "street_count": 4,
           "streets_sha256": "770716591791c059873e662354b30b36794a57c687946e2b1f5c5a24946afeae",
           "worldmap_sha256": "0294e5ded268d3f36b34700751cb4ffd0fb29565a0c00c12305cd7d6d4eceed4"
+        }
+      }
+    },
+    "3494693499": {
+      "checked": "2026-10-31T14:32:32Z",
+      "maps": {
+        "Kentucky Center Manor_Renovation_B42": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "636836f966a92a8dc1c1089af812388dcacd48ff74094d1293f700e140ad765b"
         }
       }
     },
@@ -1717,17 +1731,17 @@
       }
     },
     "3821109144": {
-      "checked": "2026-10-28T11:33:55Z",
+      "checked": "2026-10-31T14:32:13Z",
       "maps": {
         "Dirkerdam Integrated B42 Fix": {
           "street_count": 696,
-          "streets_sha256": "a26e73a59762ecdcc36e2ff0368eaf0e307d46fcc77870fbf00b0633c024a497",
+          "streets_sha256": "9a619079639d0e99e0712eb323d1dfc1b54385ecb5976fddca4b791e078b6758",
           "worldmap_sha256": "df63b5693ac531e18869d70a0bcff6972bcc39e7c34fb696316619e35a0f64be"
         },
         "Dirkerdam Integrated B42 Forest": {
           "street_count": 0,
           "streets_sha256": null,
-          "worldmap_sha256": "9005dfcbda44c46e207ba44138a5605eb483a05d6302bb6b59e2b76868995409"
+          "worldmap_sha256": null
         }
       }
     },

@@ -188,6 +188,11 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             bounds = { 8448, 11008, 8704, 11264 }, nameKey = "UI_MinidoracatMiniMapModMaps_RosewoodCompound" },
         { zip = "IrisEyot.pyramid.zip", mapMod = "IrisEyot",
             bounds = { 4096, 11008, 4864, 11520 }, nameKey = "UI_MinidoracatMiniMapModMaps_IrisEyot" },
+        -- 肯塔基中央莊園（3494693499）：4 cell（x 31–32、y 37–38），佔滿 300 格 (27,32)；作者沒有 streets.xml，
+        -- 補充道路沿原版補回被裁的 KY-163、Old Logging Road 南段與 Angler Road
+        { zip = "Kentucky Center Manor_Renovation_B42.pyramid.zip", mapMod = "Kentucky Center Manor_Renovation",
+            mapDir = "Kentucky Center Manor_Renovation_B42", streetSupplement = StreetSupplements["kentucky-center-manor"],
+            bounds = { 7936, 9472, 8448, 9984 }, nameKey = "UI_MinidoracatMiniMapModMaps_KentuckyCenterManor" },
         { zip = "KillMingLake.pyramid.zip", mapMod = "KillMingLake",
             bounds = { 8192, 11776, 8704, 12544 }, nameKey = "UI_MinidoracatMiniMapModMaps_KillMingLake" },
         { zip = "Kingsmouth North B42.pyramid.zip", mapMod = "KingsmouthNorthB42",

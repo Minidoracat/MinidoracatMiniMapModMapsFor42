@@ -2,7 +2,7 @@
 -- 由 scripts/gen_map_resources.py render 從 map-resources/*.json＋註冊清單產生；
 -- 資料用 bake 重烘，房名別名改 room-aliases.json。分類規則在主 MOD scripts/gen_poi_data.py，
 -- 停車場判定在主 MOD scripts/gen_parking_data.py（只重算停車場用 parking 子命令）。
--- 134 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
+-- 135 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
 -- parking 條目格式同 MinidoracatMiniMapParkingData（resourceApiVersion 3 起才讀，舊版主 MOD 不讀）。
 
 local R = MinidoracatMiniMapResourceAPI
@@ -6826,6 +6826,24 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
         { rn = 1, r = { { x = 5822, y = 16215, w = 4, h = 15 } }, b = { x = 5822, y = 16215, w = 4, h = 15 }, i = 1 },
         { rn = 4, r = { { x = 5885, y = 15652, w = 4, h = 12 }, { x = 5892, y = 15667, w = 4, h = 15 }, { x = 5901, y = 15655, w = 4, h = 12 }, { x = 5908, y = 15670, w = 4, h = 12 } }, b = { x = 5885, y = 15652, w = 27, h = 30 }, i = 1 },
         count = 98,
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "Kentucky Center Manor_Renovation", mapDir = "Kentucky Center Manor_Renovation_B42",
+    cells300 = {
+        27, 32,
+    },
+    poi = {
+        { cat = "church", rn = 3, r = { { x = 8158, y = 9704, w = 14, h = 4 }, { x = 8158, y = 9710, w = 14, h = 4 }, { x = 8158, y = 9708, w = 15, h = 2 } }, b = { x = 8158, y = 9704, w = 15, h = 10 } },
+        { cat = "farm", rn = 1, r = { { x = 8114, y = 9679, w = 5, h = 4 } }, b = { x = 8114, y = 9670, w = 16, h = 18 } },
+        count = 2,
+    },
+    parking = {
+        { rn = 44, r = { { x = 8192, y = 9703, w = 3, h = 4 }, { x = 8192, y = 9709, w = 3, h = 4 }, { x = 8192, y = 9721, w = 3, h = 4 }, { x = 8192, y = 9727, w = 3, h = 4 }, { x = 8192, y = 9738, w = 3, h = 4 }, { x = 8192, y = 9744, w = 3, h = 4 }, { x = 8196, y = 9703, w = 3, h = 4 }, { x = 8196, y = 9709, w = 3, h = 4 }, { x = 8196, y = 9721, w = 3, h = 4 }, { x = 8196, y = 9727, w = 3, h = 4 }, { x = 8196, y = 9738, w = 3, h = 4 }, { x = 8196, y = 9744, w = 3, h = 4 }, { x = 8200, y = 9703, w = 3, h = 4 }, { x = 8200, y = 9709, w = 3, h = 4 }, { x = 8200, y = 9721, w = 3, h = 4 }, { x = 8200, y = 9727, w = 3, h = 4 }, { x = 8200, y = 9738, w = 3, h = 4 }, { x = 8200, y = 9744, w = 3, h = 4 }, { x = 8204, y = 9703, w = 3, h = 4 }, { x = 8204, y = 9709, w = 3, h = 4 }, { x = 8204, y = 9738, w = 3, h = 4 }, { x = 8204, y = 9744, w = 3, h = 4 }, { x = 8208, y = 9703, w = 3, h = 4 }, { x = 8208, y = 9709, w = 3, h = 4 }, { x = 8208, y = 9738, w = 3, h = 4 }, { x = 8208, y = 9744, w = 3, h = 4 }, { x = 8212, y = 9703, w = 3, h = 4 }, { x = 8212, y = 9709, w = 3, h = 4 }, { x = 8212, y = 9721, w = 3, h = 4 }, { x = 8212, y = 9727, w = 3, h = 4 }, { x = 8212, y = 9738, w = 3, h = 4 }, { x = 8212, y = 9744, w = 3, h = 4 }, { x = 8216, y = 9703, w = 3, h = 4 }, { x = 8216, y = 9709, w = 3, h = 4 }, { x = 8216, y = 9721, w = 3, h = 4 }, { x = 8216, y = 9727, w = 3, h = 4 }, { x = 8216, y = 9738, w = 3, h = 4 }, { x = 8216, y = 9744, w = 3, h = 4 }, { x = 8220, y = 9703, w = 3, h = 4 }, { x = 8220, y = 9709, w = 3, h = 4 }, { x = 8220, y = 9721, w = 3, h = 4 }, { x = 8220, y = 9727, w = 3, h = 4 }, { x = 8220, y = 9738, w = 3, h = 4 }, { x = 8220, y = 9744, w = 3, h = 4 } }, b = { x = 8192, y = 9703, w = 31, h = 45 }, i = 1 },
+        { rn = 1, r = { { x = 8236, y = 9679, w = 12, h = 4 } }, b = { x = 8236, y = 9679, w = 12, h = 4 }, i = 1 },
+        { rn = 2, r = { { x = 8266, y = 9717, w = 4, h = 9 }, { x = 8266, y = 9727, w = 4, h = 9 } }, b = { x = 8266, y = 9717, w = 4, h = 19 }, i = 1 },
+        count = 3,
     },
 })
 

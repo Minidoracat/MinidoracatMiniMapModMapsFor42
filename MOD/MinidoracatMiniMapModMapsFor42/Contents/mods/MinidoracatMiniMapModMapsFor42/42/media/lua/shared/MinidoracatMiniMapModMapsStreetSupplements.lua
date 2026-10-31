@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 14 個 dataset／237 條補充道路
+-- 15 個 dataset／240 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -211,6 +211,17 @@ Supplements["jib-factory"] = {
         ["JIB Peanut Butter Factory Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_jib-factory_02",
         ["JIB Peanut Butter Factory Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_jib-factory_03",
         ["JIB Peanut Butter Factory Rd 04 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_jib-factory_04",
+    },
+}
+
+-- ==== kentucky-center-manor (Kentucky Center Manor_Renovation / Kentucky Center Manor_Renovation_B42) ====
+Supplements["kentucky-center-manor"] = {
+    schemaVersion = 1, mapMod = "Kentucky Center Manor_Renovation", mapDir = "Kentucky Center Manor_Renovation_B42",
+    file = "media/minimap/streets/kentucky-center-manor.xml", upstreamStreetCount = 0, roadCount = 3,
+    names = {
+        ["Kentucky Center Manor Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_kentucky-center-manor_01",
+        ["Kentucky Center Manor Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_kentucky-center-manor_02",
+        ["Kentucky Center Manor Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_kentucky-center-manor_03",
     },
 }
 

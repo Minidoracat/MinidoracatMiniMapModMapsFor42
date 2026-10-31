@@ -2,7 +2,7 @@
 <!-- Steam 指南稿源（繁中）：MOD 的完整說明以本指南為準，簡介只放摘要。格式與同步方式見 pz-family-docs/release.md「完整說明：Steam 指南」 -->
 <!-- 支援地圖表來自 docs/road-data.md（road-scan 產生）；新增／移除地圖或道路資料變動時，同步更新本檔與 STEAM_GUIDE_EN.md -->
 <!-- 標題：📖 小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突 -->
-<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 100 個地圖 MOD（132 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
+<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 101 個地圖 MOD（133 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
 === 🚀 快速上手
 [b]English version:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide[/url]
 
@@ -24,7 +24,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/olist]
 {{img:01-mod-map-outlines-zh.jpg}}
 === 🧰 支援地圖（A–M）
-共 100 個地圖 MOD、132 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
+共 101 個地圖 MOD、133 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] [b]✅[/b]：原作者附有道路資料，地圖上有路名，可以搜尋與導航（數字是街道數）。
 [*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包補上的鎮內道路」與「本包修正或補上的道路」。
@@ -86,6 +86,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Hunter's Base (Small)[/td][td]獵人基地（小型版）[/td][td][/td][/tr]
 [tr][td]Iris Eyot[/td][td]鳶尾島[/td][td][/td][/tr]
 [tr][td]JIB Peanut Butter Factory[/td][td]JIB 花生醬工廠[/td][td]🛠️[/td][/tr]
+[tr][td]Kentucky Center Manor (Renovation)[/td][td]肯塔基中央莊園（翻新）[/td][td]🛠️[/td][/tr]
 [tr][td]KillMingLake[/td][td]落明湖[/td][td][/td][/tr]
 [tr][td]Kingsmouth North[/td][td]金斯茅斯北區[/td][td][/td][/tr]
 [tr][td]LittleTownship[/td][td]小鎮區[/td][td]✅ 4 條[/td][/tr]
@@ -218,6 +219,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 66 條原作者標的路寬比實際路面寬，改成實際寬度，自動駕駛靠右時不再壓出路面；US Highway 13、Newport Road、Colonial Dr 原作者畫的中線偏到路的一邊，線移到路面中間、路寬改成實際寬度（需要小地圖主 MOD 0.47.0 以上）。
 [/list]
 [*] [b]JIB Peanut Butter Factory（JIB 花生醬工廠）[/b]：這張地圖蓋住工廠前原版 KY-841（雙向兩條）與 One Horse Road 約 300 格，那幾段沒有導航資料、沿 KY-841 走要繞路（約 600 格變成約 1,500 格）；本包沿原版路線補上，搜尋名稱是「JIB 花生醬工廠 01 號路（小地圖補）」這種格式。
+[*] [b]Kentucky Center Manor（肯塔基中央莊園）[/b]：這張地圖蓋住莊園前原版 KY-163 約 300 格，以及 Old Logging Road 南段與 Angler Road，那幾段沒有導航資料，沿 KY-163 走要繞一大圈（約 700 格變成約 4,700 格）；本包沿原版路線補上，搜尋名稱是「肯塔基中央莊園 01 號路（小地圖補）」這種格式。
 [*] [b]Moores Mechanic（摩爾修車廠）[/b]：這張地圖蓋住院區前原版 Riverside Road 約 300 格，那段沒有導航資料，沿 Riverside Road 走要繞一大圈（約 700 格變成約 5,800 格）；本包沿原版路線補上，搜尋名稱是「摩爾修車廠 01 號路（小地圖補）」。院區內的車道沒有補。
 [*] [b]Raven Creek（渡鴉溪）[/b]：
 [list]
@@ -250,6 +252,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Moores Mechanic[/b]：與 Chinatown Expansion 重疊一個地塊、與 Erika's Furniture Store 重疊兩個地塊，請擇一；院區跨這幾個地塊，伺服器地圖順序（Map=）排在後面的那張，在重疊地塊的內容會不見。Chinatown 只相鄰、不重疊。
 [*] [b]Delta Creek Munitions[/b]：整張落在 DuoDuo City 範圍內，另與 Big Bear Lake 重疊兩個地塊，請擇一。
 [*] [b]Muldraugh Military Base[/b]：與 Raccoon City 重疊三個地塊、與 Willowbrook Bastion（原版與 2026 版）重疊一個地塊，請擇一。
+[*] [b]Kentucky Center Manor[/b]：與 Estate 39 重疊一個地塊，請擇一。必要項目 Dylan's Tile Pack 只有 B41 版、B42 載不入，要改訂閱 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754850359][B42] Dylan's tiles[/url]，遊戲才會載入這張圖。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。
 [/list]
 === ❓ 常見問題

@@ -72,7 +72,8 @@ VERSION_DIR = re.compile(r"^42(\.\d+)*$")  # B42 版本資料夾：42、42.0、4
 def index_workshop(extra_roots=()):
     """id -> mod 根目錄（mods/<name>/）。同一 Workshop 項目在多個 content 根都有副本時只看
     最新那份（item_dirs：acf timeupdated，同分照 extra_roots 在前）。不同項目宣告同一 id 時首見進 idx，
-    其餘進 alts（Coryerdon 舊移植與 2026 移植版都是 CoryerdonB42）；地圖條目一律經 entry_root 依 mapDir 挑。
+    其餘進 alts（Coryerdon 舊移植與 2026 移植版都是 CoryerdonB42），但只有根目錄 mod.info 的 B41 項目讓位給
+    B42 那份（材質包依賴照 idx 取）；地圖條目一律經 entry_root 依 mapDir 挑。
     同一 mod 根目錄有多份 mod.info（根目錄、common、42*）時 require= 取聯集：根目錄先、只出現在 B42 那份的
     材質包接在後面（later wins）。LV 國際機場根目錄（B41）沒列、42/ 才列 Community Tile Pack。"""
     idx, requires, alts = {}, {}, {}
@@ -119,7 +120,19 @@ def _index_info(info, root, idx, requires, alts):
         if alt:
             alt[1].extend(r for r in req or [] if r not in alt[1])
         else:
-            alts.setdefault(mid, []).append((root, list(req or [])))
+            alt = (root, list(req or []))
+            alts.setdefault(mid, []).append(alt)
+        # B42 只列有 common／版本資料夾 mod.info 的 MOD（ZomboidFileSystem.getAllModFoldersAux）：同一 id 有
+        # B41 原版與 B42 移植版（Dylan's Tile Pack 2599752664 與 [B42] Dylan's tiles 3754850359）時，以 B42 那份為主
+        if _is_b42(root) and not _is_b42(idx[mid]):
+            alts[mid].remove(alt)
+            alts[mid].insert(0, (idx[mid], requires[mid]))
+            idx[mid], requires[mid] = alt
+
+
+def _is_b42(root):
+    return any((p / "mod.info").is_file() for p in root.iterdir()
+               if p.is_dir() and (p.name.lower() == "common" or VERSION_DIR.match(p.name)))
 
 
 def entry_root(idx, requires, alts, e):

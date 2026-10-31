@@ -2,17 +2,27 @@
 
 ## [Unreleased]
 
+### 新增
+
+- **重新支援肯塔基中央莊園（Kentucky Center Manor_Renovation_B42，玩家許願）**：馬爾德勞西邊、KY-163 旁一座有湖的莊園。0.10.1 時原地圖無法從 Workshop 公開存取而移除支援；之後地圖恢復公開，但它的必要項目 Dylan's Tile Pack 只有 B41 格式，B42 載不入這張圖。現在有了 B42 移植版 [B42] Dylan's tiles，重新收錄。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點與停車場。**要讓遊戲載入這張圖，請訂閱並啟用 [B42] Dylan's tiles（Workshop 3754850359）**；原本的 Dylan's Tile Pack 在 B42 不會載入。這張圖和 Estate 39 莊園重疊一個地塊，請擇一。
+- **補上肯塔基中央莊園周圍的導航資料**：莊園蓋住原版 KY-163 約 300 格，以及 Old Logging Road 南段與 Angler Road，那幾段原本沒有導航資料，沿 KY-163 經過這裡要繞一大圈（約 700 格變成約 4,700 格），Old Logging Road 南段也到不了。本包沿原版路線補上，搜尋名稱是「肯塔基中央莊園 01 號路（小地圖補）」這種格式（英文「Kentucky Center Manor Rd 01 (MiniMap)」）。原作者日後提供道路資料時，自動改用原作者的。
+
 ### 更新
 
 - **Snake Numark 複合區小地圖圖像更新**：原作者 10-31 更新 Snake's ModPack，在 Numark 複合區的池塘東邊新增一處地下醫療設施的入口。小地圖圖像已依最新資料重新產生，資源點多一處醫療（地下）。範圍、名稱與導航資料不變；合集裡其他地圖的小地圖圖像與資源點沒有變化。
+- **德克丹（Dirkerdam Map Fix 10-30 更新）**：原作者因為森林圖層讓小地圖 FPS 明顯下降，把 10-28 的改動退回：Mack Dr 恢復原本的長度，`Dirkerdam Integrated B42 Forest` 只剩一個相容用的空資料夾（仍要留在 `Map=`，順序照舊）。已核對，本包的路名翻譯、道路修正與補充道路都照常套用，導航不受影響。
 
 ### 備註
 
 - 更新後請重新啟動遊戲。
 
+> 技術要點：#65 Kentucky Center Manor_Renovation_B42 3494693499（10-27 06:26 UTC 版；mod id `Kentucky Center Manor_Renovation`、地圖資料夾 `Kentucky Center Manor_Renovation_B42`；`42/`、`common/` 兩份 mod.info 的 `require=` 都列 9 個材質包、第一個是 `DylansTiles`），沒有 `streets.xml`。`DylansTiles` 有兩個 Workshop 項目：原版 Dylan's Tile Pack 2599752664 只有根目錄 mod.info（B41 格式，`ZomboidFileSystem.getAllModFoldersAux` 不列入，10-28 E2E 因此 `required mod "DylansTiles" not found`）；[B42] Dylan's tiles 3754850359 是第三方移植（`42/mod.info` id 同為 `DylansTiles`，`42/media` 有 `DTilesPack.pack` 與 `dylanstiles.tiles`）。`rebuild_pyramids.index_workshop` 同一 id 同時有只含根目錄 mod.info 的項目與 B42 項目時，改以 B42 那份為主（map_tracker self-test 加案例；目前只影響 `DylansTiles`），`deps-scan --allow-drop` 把它的追蹤從 2599752664 換到 3754850359（used_by：肯塔基、Path of Zenith、LV 國際機場）。4 個 lotheader（x 31–32 × y 37–38），bounds 7936,9472 – 8448,9984 與輸出 `pyramid.txt` 一致；加掛 B42 Dylan 包與 B41 包渲出的 zip 逐檔相同（頂視看不到 Dylan 圖磚），31 個 sprites skipped 都不是 Dylan 的（`crafted_03_*` 是原版缺圖，另有 `bzm_fixtures_counters_01_7` 與 `recolor_melos_tiles_roofs_04b_*` 等 melos 名稱）。佔滿 300 格 (27,32)，補充道路 `road-supplements/kentucky-center-manor.json` 3 條 vanilla-continuation（10-28 使用者核准只補原版）：01 KY-163 x 8000–8500（路面 501/501）、02 Old Logging Road 最後一段（250/250）、03 Angler Road（135/138）；`offline_nav` KY-163 4661→700、Old Logging Road 南段到不了→415、Angler Road 尾 4861→406。和 Estate 39 重疊 cell 32_38，maptest 排除。資源點 2 個、停車場 3 區。
+
 > 技術要點：#69 Snake's ModPack Build 42 3800233932 10-31 05:14 UTC 更新。steamcmd 與 Steam 客戶端副本 timeupdated＝Steam API；10 個地圖資料夾的 lotheader cell 範圍＝註冊 bounds，沒有新 mod ID 或地圖目錄，道路資料沒變。`rebuild_pyramids.py` 重渲 10 顆 zip，只有 `NumarkComplex` 不同（6 個檔 5 個，第 0 層 8,836 像素，都在 300 格 (53,12) 內）；`SnakeMansion` 圖資 hash 變了但重渲逐檔相同，追蹤器報的 MOD 自帶材質變更也沒讓其他 zip 改變。資源點：Numark 原始紀錄 8→10，多 1 處地下 medical，其他 9 顆不變。
 
 > 技術要點：Moores Mechanic [B42] 3699636604 在 10-29 10:21 UTC 更新；0.26.0 收錄時用的是 08 月的副本，追蹤器第一次看到它就把新版記成基準，沒開 issue。重渲與舊 zip 逐檔相同，資源點不變；`worldmap.xml` 改了。補充道路 01 號沿原版 Riverside Road，不取自 worldmap；新版 worldmap 重跑 derive 推出的是院區車道與同一段 Riverside Road，照 10-28 裁定不改，只更新來源 sha（c08bb8…→7bc251…）。
+
+> 技術要點：Dirkerdam Map Fix 3821109144（不公開項目）10-30 18:48 與 23:00 UTC 兩次更新（第一次說明「Temporary switch due to performance issues.」）。`Fix/streets.xml` 退回 10-28 之前的版本（sha 9a6190…，第 220 條 Mack Dr 回到 3 點、南端 y 5372.5），696 條、221 個名稱不變；Forest 只剩 `map.info`。`road-repairs/dirkerdam.json` 83 筆 pin 逐點相符，補充道路 01–08 端點不變，`offline_nav` ND1 5052、ND2 131 與 10-28 相同；`street-names/dirkerdam` 與 `road-repairs/dirkerdam.json` 只把來源 sha 改回 9a6190…，生成的 Lua 不變。圖像來自本體（3818766091，未更新），不重渲；資源點不變。CI 10-31 那輪讀更新紀錄頁被 429、本輪不判，沒開 issue；本機 `map_tracker.py accept --time-updated 1793401228` 推進三份基準。
 
 ## [42.21.0-0.27.0] - 2026-10-29
 

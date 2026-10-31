@@ -18,7 +18,7 @@
 
 ## 收錄地圖
 
-共 **132 張**（100 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **133 張**（101 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯**：下列 **26 組**地圖資料提供繁中／簡中／
@@ -47,7 +47,7 @@
 - **補充道路**：作者沒放進道路資料的路由本包依作者自己的世界地圖補上（目前康斯鎮 37 條、貝德福德瀑布 74 條、奧克郡 84 條）；
   地圖蓋住原版道路、導航被截斷的路段則沿原版路線補上（渡鴉溪 1 條、陰屍路監獄 2 條、康斯鎮 1 條、
   科里爾登 2 條、科里爾登 2026 移植版 6 條、Snake 工廠 1 條、貝德福德瀑布 1 條、JIB 花生醬工廠 4 條、奧克郡 4 條、摩爾修車廠 1 條、
-  德爾塔溪軍火庫 2 條、最後一刻末日地堡 3 條）；德克丹 Map Fix 的道路資料漏掉的
+  德爾塔溪軍火庫 2 條、最後一刻末日地堡 3 條、肯塔基中央莊園 3 條）；德克丹 Map Fix 的道路資料漏掉的
   Brandenburg 接橋與東南兩處斷點沿實際路面補上 3 條，分隔路拆線的對向車道 5 條；大熊湖 KY-18 的南側車道、
   分隔帶缺口與 Standfield Cutoff 北端接線 6 條。
   路名固定帶「(MiniMap)」／「（小地圖補）」，一看就知道不是作者取的名字；可搜尋、可導航。
@@ -104,6 +104,7 @@
 | 榛果莊園（簡樸版） | `HazelnutManor[Poor Version]` | 12544,5888 – 13056,6400 |
 | 羅斯伍德宅院 | `ICFCompound` | 8448,11008 – 8704,11264 |
 | 鳶尾島 | `IrisEyot` | 4096,11008 – 4864,11520 |
+| 肯塔基中央莊園（翻新） | `Kentucky Center Manor_Renovation` | 7936,9472 – 8448,9984 |
 | 落明湖 | `KillMingLake` | 8192,11776 – 8704,12544 |
 | 金斯茅斯北區 | `KingsmouthNorthB42` | 0,3840 – 1280,5120 |
 | 白森林 | `linzimod` | 8960,11008 – 9728,11776 |
@@ -207,6 +208,7 @@
 - [Bunker: Last Minute Prepper (B42)](https://steamcommunity.com/sharedfiles/filedetails/?id=3428165477)：和已收錄地圖都不重疊，南緣緊鄰路易斯維爾國際機場。作者沒附 `streets.xml`，沿原版補回被裁的 Louisville Road、Corn Road、Cob Road。
 - [LV International Airport [B41/B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3045726312)（原作者 Simon MD）：和已收錄地圖都不重疊。作者有附道路資料（22 條，本包翻譯 19 個路名）；原版 Louisville Road 經過機場的一段被作者改成跑道，本包不補。範圍框西北角一格（49_16）不是本圖地塊，小地圖在那裡畫原版影像。
 - [Muldraugh Military Base B42](https://steamcommunity.com/sharedfiles/filedetails/?id=3783856502)（Sector_Jazza 原作、B42 重新上傳）：和浣熊市（3 格）、柳溪堡壘兩版（1 格）重疊，請擇一。作者沒附 `streets.xml`，基地內道路不補。不加入全地圖測試組合。
+- [Kentucky Center Manor_Renovation_B42](https://steamcommunity.com/sharedfiles/filedetails/?id=3494693499)：和 Estate 39 有 1 個地塊重疊（x 8192–8448、y 9728–9984），請擇一。作者沒附 `streets.xml`，地圖又蓋住原版 KY-163、Old Logging Road 南段與 Angler Road，本包沿原版補回這 3 段。必要項目 Dylan's Tile Pack（2599752664）只有 B41 格式、B42 載不入，要改訂閱 B42 移植版 [B42] Dylan's tiles（3754850359），否則遊戲不載入這張圖。曾在 v0.10.1 因無法公開存取移除，2026-10-28 恢復公開，等到 Dylan's 有 B42 版後重新收錄。不加入全地圖測試組合（maptest 已有 Estate 39），掛載與補充道路用 E2E 情境驗。
 
 ### 已下架地圖（記錄保留、每日追蹤不含）
 
@@ -217,7 +219,6 @@
 | 美雅鎮（Meiya'sTownB42） | 3478788261 | 2026-07 | v0.4.1 移除支援 |
 | 7號淪陷區（Sector-7 Breach，含 Highway） | 3513107552 | 2026-07-21 | v0.4.1 移除支援；正式伺服器移除（下架項目會讓開服崩潰） |
 | White Wolf Ridge | 3499861271 | 收藏建立前 | 未收錄（無圖） |
-| 肯塔基中央莊園（翻新） | 3494693499 | 2026-09-22 | 再次無法公開存取；v0.10.1 移除支援 |
 
 ## 本機地圖測試
 

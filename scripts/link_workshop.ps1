@@ -1,4 +1,4 @@
-﻿# MinidoracatMiniMapModMapsFor42 開發同步管理（本 repo 專屬版：含地圖 MOD 全量掛載）
+# MinidoracatMiniMapModMapsFor42 開發同步管理（本 repo 專屬版：含地圖 MOD 全量掛載）
 # 用途：本包（與主 MOD）以「實體副本」同步到 Zomboid\Workshop 與 Zomboid\mods，方便本地測試和 Workshop 上傳
 # 為什麼本包不再建符號連結：PZ 會把 Workshop/mods 路徑反解成真實路徑再映射 MOD 來源，
 #   link 會讓 A MOD 的來源被串成別的 repo 的內容（已用真 jar 驗證）——家族自身 MOD 一律走 sync_mod.ps1。
@@ -121,7 +121,9 @@ $MapModExclude = @(
     'MooresMechanicPlus',
     # Delta Creek Munitions：6 個 cell 全落在已在 maptest 的多多市裡，另和大熊湖重疊 2 格；
     # Muldraugh Military Base：和浣熊市（3 格）、柳溪堡壘兩版（1 格）整格重疊。掛載與補充道路用 E2E 情境驗。
-    'Delta-Creek-Munitions', 'MMB_B42'
+    'Delta-Creek-Munitions', 'MMB_B42',
+    # 肯塔基中央莊園：和已在 maptest 的 Estate 39 整格重疊 1 個 cell（32_38）。掛載與補充道路用 E2E 情境驗。
+    'Kentucky Center Manor_Renovation'
 )
 
 # 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）

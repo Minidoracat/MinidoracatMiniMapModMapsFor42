@@ -2080,9 +2080,17 @@ def cmd_self_test() -> int:
         (both / "42").mkdir(parents=True)
         (both / "mod.info").write_text("id=B41B42TestMod\nrequire=B41Tiles\n", encoding="utf-8")
         (both / "42" / "mod.info").write_text("id=B41B42TestMod\nrequire=\\B42Tiles\n", encoding="utf-8")
+        # 同一 id 有 B41 原版（只有根目錄 mod.info）與 B42 移植版：B41 先被掃到也以 B42 那份為主，B41 進 alts
+        # （Dylan's Tile Pack 2599752664 與 [B42] Dylan's tiles 3754850359；肯塔基中央莊園要的是後者）
+        for wid, sub in (("990006", None), ("990007", "42")):
+            tiles = roots[1] / wid / "mods" / "DupTiles"
+            (tiles / (sub or "")).mkdir(parents=True, exist_ok=True)
+            (tiles / (sub or "") / "mod.info").write_text("id=DupTilesTestMod\n", encoding="utf-8")
         idx_f, req_f, alts_f = rp.index_workshop(roots)  # 舊副本排在前面（同 --prefer 先列）
         assert Path(td) / "new" in idx_f["FreshCopyTestMod"].parents
         assert req_f["B41B42TestMod"] == ["B41Tiles", "B42Tiles"], req_f["B41B42TestMod"]
+        assert idx_f["DupTilesTestMod"].parent.parent.name == "990007", idx_f["DupTilesTestMod"]
+        assert [a[0].parent.parent.name for a in alts_f["DupTilesTestMod"]] == ["990006"], alts_f["DupTilesTestMod"]
         for folder, wid, want_req in (("New Port", "990004", ["TilesX"]), ("Old Port", "990003", [])):
             got = rp.entry_root(idx_f, req_f, alts_f, {"zip": f"{folder}.pyramid.zip",
                                                          "mapMod": "DupIdTestMod", "mapDir": folder})

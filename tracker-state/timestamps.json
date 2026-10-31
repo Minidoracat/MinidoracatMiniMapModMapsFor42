@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-10-31T11:16:16Z",
+  "generated_at": "2026-10-31T14:32:13Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -307,10 +307,10 @@
       "title": "[B42] SecretZ Pandemic (Alpha)"
     },
     "3494693499": {
-      "last_result": 9,
-      "removed": true,
-      "removed_at": "2026-09-22T10:20:28Z",
-      "time_updated": 1789875184,
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1793082409,
       "title": "Kentucky Center Manor_Renovation_B42"
     },
     "3495993590": {
@@ -828,7 +828,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1793170170,
+      "time_updated": 1793401228,
       "title": "Dirkerdam Map Fix"
     },
     "3821470553": {

@@ -1,26 +1,9 @@
 {
-  "generated_at": "2026-10-29T10:36:36Z",
+  "generated_at": "2026-10-31T14:32:24Z",
   "items": {
     "2384329562": {
       "mod_ids": [
         "tkTiles_01"
-      ],
-      "used_by": [
-        {
-          "map_mod": "PZ_ACSM_LV",
-          "workshop_id": "3589905072",
-          "zip": "Path of Zenith, Louisville.pyramid.zip"
-        },
-        {
-          "map_mod": "SimonMDLVInternationalAirport",
-          "workshop_id": "3045726312",
-          "zip": "lvinternationalairport.pyramid.zip"
-        }
-      ]
-    },
-    "2599752664": {
-      "mod_ids": [
-        "DylansTiles"
       ],
       "used_by": [
         {
@@ -61,6 +44,11 @@
           "zip": "Fort JadeLake.pyramid.zip"
         },
         {
+          "map_mod": "Kentucky Center Manor_Renovation",
+          "workshop_id": "3494693499",
+          "zip": "Kentucky Center Manor_Renovation_B42.pyramid.zip"
+        },
+        {
           "map_mod": "muldraugh1993b42",
           "workshop_id": "3701834205",
           "zip": "Muldraugh 1993 B42.pyramid.zip"
@@ -98,6 +86,11 @@
           "zip": "Chinatown Expansion B42 version.pyramid.zip"
         },
         {
+          "map_mod": "Kentucky Center Manor_Renovation",
+          "workshop_id": "3494693499",
+          "zip": "Kentucky Center Manor_Renovation_B42.pyramid.zip"
+        },
+        {
           "map_mod": "Sunset Lake Town B42 version",
           "workshop_id": "3752069346",
           "zip": "Sunset Lake Town B42 version.pyramid.zip"
@@ -113,6 +106,11 @@
           "map_mod": "Floatopia",
           "workshop_id": "3693913206",
           "zip": "Floatopia.pyramid.zip"
+        },
+        {
+          "map_mod": "Kentucky Center Manor_Renovation",
+          "workshop_id": "3494693499",
+          "zip": "Kentucky Center Manor_Renovation_B42.pyramid.zip"
         },
         {
           "map_mod": "muldraugh1993b42",
@@ -160,6 +158,11 @@
           "map_mod": "Floatopia",
           "workshop_id": "3693913206",
           "zip": "Floatopia.pyramid.zip"
+        },
+        {
+          "map_mod": "Kentucky Center Manor_Renovation",
+          "workshop_id": "3494693499",
+          "zip": "Kentucky Center Manor_Renovation_B42.pyramid.zip"
         },
         {
           "map_mod": "MooresMechanicPlus",
@@ -236,6 +239,11 @@
           "map_mod": "Erikas_Furniture_Store",
           "workshop_id": "3363546437",
           "zip": "Erikas_Furniture_Store.pyramid.zip"
+        },
+        {
+          "map_mod": "Kentucky Center Manor_Renovation",
+          "workshop_id": "3494693499",
+          "zip": "Kentucky Center Manor_Renovation_B42.pyramid.zip"
         },
         {
           "map_mod": "MooresMechanicPlus",
@@ -381,6 +389,11 @@
           "zip": "Floatopia.pyramid.zip"
         },
         {
+          "map_mod": "Kentucky Center Manor_Renovation",
+          "workshop_id": "3494693499",
+          "zip": "Kentucky Center Manor_Renovation_B42.pyramid.zip"
+        },
+        {
           "map_mod": "muldraugh1993b42",
           "workshop_id": "3701834205",
           "zip": "Muldraugh 1993 B42.pyramid.zip"
@@ -481,6 +494,16 @@
           "zip": "Chinatown Expansion B42 version.pyramid.zip"
         },
         {
+          "map_mod": "Kentucky Center Manor_Renovation",
+          "workshop_id": "3494693499",
+          "zip": "Kentucky Center Manor_Renovation_B42.pyramid.zip"
+        },
+        {
+          "map_mod": "Kentucky Center Manor_Renovation",
+          "workshop_id": "3494693499",
+          "zip": "Kentucky Center Manor_Renovation_B42.pyramid.zip"
+        },
+        {
           "map_mod": "Nettle Township B42 version",
           "workshop_id": "3391349130",
           "zip": "Nettle Township.pyramid.zip"
@@ -526,6 +549,28 @@
           "map_mod": "Begonia_Town",
           "workshop_id": "3736155379",
           "zip": "Begonia_Town.pyramid.zip"
+        }
+      ]
+    },
+    "3754850359": {
+      "mod_ids": [
+        "DylansTiles"
+      ],
+      "used_by": [
+        {
+          "map_mod": "Kentucky Center Manor_Renovation",
+          "workshop_id": "3494693499",
+          "zip": "Kentucky Center Manor_Renovation_B42.pyramid.zip"
+        },
+        {
+          "map_mod": "PZ_ACSM_LV",
+          "workshop_id": "3589905072",
+          "zip": "Path of Zenith, Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "SimonMDLVInternationalAirport",
+          "workshop_id": "3045726312",
+          "zip": "lvinternationalairport.pyramid.zip"
         }
       ]
     }

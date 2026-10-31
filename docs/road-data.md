@@ -25,11 +25,11 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**132** 張
-- 作者附道路資料（Author road data）：**34** 張；沒有 **98** 張
+- 收錄地圖（Maps）：**133** 張
+- 作者附道路資料（Author road data）：**34** 張；沒有 **99** 張
 - 本包路名翻譯（Translated names）：**26** 張
 - 本包道路修正（Fixes）：**6** 張
-- 本包補充道路（Added roads）：**14** 張
+- 本包補充道路（Added roads）：**15** 張
 
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
 
@@ -61,6 +61,8 @@
   - 補充道路 8 條：作者沒放進道路資料的路由本包補上，路名 `德克丹 01 號路（小地圖補）`～`德克丹 08 號路（小地圖補）`（英文 `Dirkerdam Rd 01 (MiniMap)`～`Dirkerdam Rd 08 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **陰屍路監獄（The Walking Dead Prison）**
   - 補充道路 2 條：作者沒放進道路資料的路由本包補上，路名 `陰屍路監獄 01 號路（小地圖補）`～`陰屍路監獄 02 號路（小地圖補）`（英文 `The Walking Dead Prison Rd 01 (MiniMap)`～`The Walking Dead Prison Rd 02 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **肯塔基中央莊園（翻新）（Kentucky Center Manor (Renovation)）**
+  - 補充道路 3 條：作者沒放進道路資料的路由本包補上，路名 `肯塔基中央莊園 01 號路（小地圖補）`～`肯塔基中央莊園 03 號路（小地圖補）`（英文 `Kentucky Center Manor Rd 01 (MiniMap)`～`Kentucky Center Manor Rd 03 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **馬爾德勞 1993（Muldraugh 1993）**
   - 重複路名隱藏 913 筆：與官方地圖逐點相同的複本，只藏玩家地圖上重疊的路名，導航不受影響
 - **渡鴉溪（Raven Creek）**
@@ -128,6 +130,7 @@
 | 榛果莊園（簡樸版）<br>Hazelnut Manor (Poor) | [3495993590](https://steamcommunity.com/sharedfiles/filedetails/?id=3495993590) | ❌ 無 | — | — | — |
 | 羅斯伍德宅院<br>Rosewood Compound | [3818580211](https://steamcommunity.com/sharedfiles/filedetails/?id=3818580211) | ❌ 無 | — | — | — |
 | 鳶尾島<br>Iris Eyot | [3545473388](https://steamcommunity.com/sharedfiles/filedetails/?id=3545473388) | ❌ 無 | — | — | — |
+| 肯塔基中央莊園（翻新）<br>Kentucky Center Manor (Renovation) | [3494693499](https://steamcommunity.com/sharedfiles/filedetails/?id=3494693499) | ❌ 無 | — | — | ✅ 3 條 |
 | 落明湖<br>KillMingLake | [3446958402](https://steamcommunity.com/sharedfiles/filedetails/?id=3446958402) | ❌ 無 | — | — | — |
 | 金斯茅斯北區<br>Kingsmouth North | [3498573050](https://steamcommunity.com/sharedfiles/filedetails/?id=3498573050) | ❌ 無 | — | — | — |
 | 白森林<br>White Forest | [3519054686](https://steamcommunity.com/sharedfiles/filedetails/?id=3519054686) | ❌ 無 | — | — | — |

@@ -1,0 +1,22 @@
+<streets version="1">
+    <street name="Kentucky Center Manor Rd 01 (MiniMap)" width="8">
+        <points>
+            <point x="8000.0" y="9789.0"/>
+            <point x="8500.0" y="9789.0"/>
+        </points>
+    </street>
+    <street name="Kentucky Center Manor Rd 02 (MiniMap)" width="7">
+        <points>
+            <point x="8299.5" y="9536.0"/>
+            <point x="8299.5" y="9785.0"/>
+        </points>
+    </street>
+    <street name="Kentucky Center Manor Rd 03 (MiniMap)" width="6">
+        <points>
+            <point x="8335.5" y="9793.0"/>
+            <point x="8335.5" y="9819.5"/>
+            <point x="8304.5" y="9851.0"/>
+            <point x="8237.0" y="9851.0"/>
+        </points>
+    </street>
+</streets>

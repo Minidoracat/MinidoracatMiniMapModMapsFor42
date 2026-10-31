@@ -1,0 +1,69 @@
+{
+  "dataset": "kentucky-center-manor",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3494693499",
+    "map_mod": "Kentucky Center Manor_Renovation",
+    "map_dir": "Kentucky Center Manor_Renovation_B42",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "636836f966a92a8dc1c1089af812388dcacd48ff74094d1293f700e140ad765b",
+    "captured": "2026-10-28",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Kentucky Center Manor",
+    "ch": "肯塔基中央莊園",
+    "cn": "肯塔基中央庄园",
+    "jp": "ケンタッキー中央マナー"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 8,
+      "points": [
+        8000,
+        9789,
+        8500,
+        9789
+      ],
+      "evidence": {
+        "samples": 501,
+        "on_road": 501
+      }
+    },
+    {
+      "no": 2,
+      "width": 7,
+      "points": [
+        8299.5,
+        9536,
+        8299.5,
+        9785
+      ],
+      "evidence": {
+        "samples": 250,
+        "on_road": 250
+      }
+    },
+    {
+      "no": 3,
+      "width": 6,
+      "points": [
+        8335.5,
+        9793,
+        8335.5,
+        9819.5,
+        8304.5,
+        9851,
+        8237,
+        9851
+      ],
+      "evidence": {
+        "samples": 138,
+        "on_road": 135
+      }
+    }
+  ],
+  "retired": []
+}
