@@ -268,8 +268,9 @@ For what the marks mean, see "Supported maps (A–M)".
 [/list]
 [h3]Can I turn off the outlines or map images?[/h3]
 [list]
-[*] Yes, in the minimap gear settings or the ESC mod options.
-[*] The outline colour can be changed too.
+[*] Yes, in the "Mod maps" category of the minimap gear settings or the ESC mod options; the outlines have separate switches for the minimap and the world map.
+[*] Outlines are white by default, and the colour can be changed.
+[*] Servers can turn the outlines off for everyone with the sandbox option "Allow MOD map outlines".
 [/list]
 === 💬 Feedback
 [list]
