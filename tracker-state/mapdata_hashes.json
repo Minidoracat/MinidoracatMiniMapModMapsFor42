@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T14:32:13Z",
+  "generated_at": "2026-11-01T12:02:52Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -1969,6 +1969,11 @@
         ]
       }
     },
+    "3754850359": {
+      "assets": "c6ce584023e69d806caa84c70ce0d93078f9b667366c696802f3a6c57d0a4524",
+      "maps": {},
+      "mods": {}
+    },
     "3759558202": {
       "assets": "cc70fe705b9851ce4fe084f67a75ba270d29c4da9500e0558ce248998000bed6",
       "maps": {
@@ -2283,7 +2288,7 @@
             8704,
             11264
           ],
-          "hash": "e87182ab63a70e107d15ae3b33363868cbf575a4a810ff0474f831f8175a331d"
+          "hash": "2a97df0bcf0da43aae9cd77ebed47d8aa9acbfcc1fa21cbe2533d0ca1934087e"
         }
       },
       "mods": {
