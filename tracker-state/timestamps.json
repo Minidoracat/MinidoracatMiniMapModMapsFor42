@@ -3,7 +3,7 @@
     "build": "25485521",
     "detected_at": "2026-09-29T11:35:57Z"
   },
-  "generated_at": "2026-11-01T12:02:52Z",
+  "generated_at": "2026-11-02T13:52:23Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -786,7 +786,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1793001134,
+      "time_updated": 1793585589,
       "title": "Nekomata Ridge"
     },
     "3783433804": {
@@ -833,6 +833,7 @@
     },
     "3821109144": {
       "last_result": 1,
+      "probe_fail": 1,
       "removed": false,
       "removed_at": null,
       "time_updated": 1793401228,
