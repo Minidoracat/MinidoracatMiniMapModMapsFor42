@@ -1,18 +1,20 @@
-[h1]Minidoracat MiniMap - MOD Maps for B42 42.21.0-0.28.0[/h1]
-[i]2026-10-31[/i]
+[h1]Minidoracat MiniMap - MOD Maps for B42 42.21.0-0.28.1[/h1]
+[i]2026-11-08[/i]
 
-[h3]✨ 重新支援：肯塔基中央莊園（Kentucky Center Manor_Renovation_B42，玩家許願）[/h3]
+[b]English summary[/b]
 [list]
-[*] 馬爾德勞西邊、KY-163 旁一座有湖的莊園。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點與停車場。
-[*] [b]要讓遊戲載入這張圖，請訂閱並啟用 B42 移植版 Dylan's tiles（Workshop 3754850359）[/b]。地圖頁列的原版 Dylan's Tile Pack 只有 B41 格式，B42 不會載入，整張圖會被跳過。
-[*] 莊園蓋住原版 KY-163、Old Logging Road 南段與 Angler Road，那幾段原本沒有導航資料、要繞一大圈。本包沿原版路線補上，搜尋名稱是「肯塔基中央莊園 01 號路（小地圖補）」這種格式。
-[*] 這張圖和 Estate 39 莊園重疊一個地塊，請擇一。
+[*] Nekomata Ridge: the author rebuilt several parts of the town; the mini-map image, resource points and parking areas now match the new layout.
+[*] Floatopia and Muldraugh Checkpoint - Overpass: redrawn with the updated Simon MDs Tiles tile pack, so the changed tiles now match the game.
+[*] Rosewood Compound: refreshed for the author's latest update (the image barely changes).
+[*] Restart the game after updating.
 [/list]
 
 [h3]🔄 地圖更新[/h3]
 [list]
-[*] [b]Snake Numark 複合區[/b]：原作者在池塘東邊新增一處地下醫療設施的入口，小地圖圖像與資源點已跟著更新。合集裡其他地圖不變。
-[*] [b]德克丹（Dirkerdam Map Fix 10-30 更新）[/b]：原作者因為效能問題退回 10-28 的改動，Mack Dr 恢復原本長度，森林資料夾只剩相容用的空資料夾（仍要留在 Map=，順序照舊）。已核對，本包的路名翻譯與導航修正照常套用。
+[*] [b]貓又嶺[/b]：原作者重新配置了鎮上好幾處建築，小地圖圖像、資源點與停車場都已跟上新配置。
+[*] [b]漂浮烏托邦、馬爾德勞軍事檢查站－天橋[/b]：材質包 Simon MDs Tiles 換了部分圖磚的外觀，小地圖圖像已用新版材質重新產生。
+[*] [b]羅斯伍德宅院[/b]：跟上原作者的最新版本（圖像幾乎沒變，工具類資源點的範圍有更新）。
+[*] 範圍、名稱與導航都沒變；其他用到 Simon MDs Tiles 的地圖重新產生後和上一版相同。
 [/list]
 
 [h3]📝 備註[/h3]

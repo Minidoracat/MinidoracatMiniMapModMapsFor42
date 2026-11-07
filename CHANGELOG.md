@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [42.21.0-0.28.1] - 2026-11-08
 
 ### 更新
 
@@ -12,7 +12,7 @@
 
 - 更新後請重新啟動遊戲。
 
-> 技術要點：#71 Nekomata Ridge 3782173659（11-02 02:13、11-04 10:21 UTC）、#70 Rosewood Compound 3818580211（11-01 00:35 UTC）、#73 Simon MDs Tiles 2852704777（11-04 16:35 UTC），Steam 客戶端副本 timeupdated 都＝Steam API。兩張地圖的 lotheader cell 範圍＝註冊 bounds（貓又嶺 24 格、ICF Compound 1 格），沒有新 mod ID、地圖目錄或道路項目。`rebuild_pyramids.py` 重渲後和已發布版（訂閱副本 3763914102）逐檔比 sha256：`Nekomata Ridge` 34 檔 27 個不同（第 0 層 30,620 像素）、`ICF Compound` 2 檔 1 個（2 像素）、`Floatopia` 6 檔 3 個（2,730 像素）、`Muldraugh-SouthernCheckpoint` 10 檔 4 個（1,465 像素）；Simon MDs Tiles 的其他 5 張相同。資源點 bake：貓又嶺 rawRecords 258→254、條目 109→107、停車場 43→42；ICF Compound rawRecords 5→1、條目仍 1 筆（bbox 變大）。
+> 技術要點：#71 Nekomata Ridge 3782173659（11-02 02:13、11-04 10:21 UTC）、#70 Rosewood Compound 3818580211（11-01 00:35 UTC）、#73 Simon MDs Tiles 2852704777（11-04 16:35 UTC），Steam 客戶端副本 timeupdated 都＝Steam API。兩張地圖的 lotheader cell 範圍＝註冊 bounds（貓又嶺 24 格、ICF Compound 1 格），沒有新 mod ID、地圖目錄或道路項目。`rebuild_pyramids.py` 重渲後和已發布版（訂閱副本 3763914102）逐檔比 sha256：`Nekomata Ridge` 34 檔 27 個不同（第 0 層 30,620 像素）、`ICF Compound` 2 檔 1 個（2 像素）、`Floatopia` 6 檔 3 個（2,730 像素）、`Muldraugh-SouthernCheckpoint` 10 檔 4 個（1,465 像素）；Simon MDs Tiles 的其他 5 張相同。資源點 bake：貓又嶺 rawRecords 258→254、條目 109→107、停車場 43→42；ICF Compound rawRecords 5→1、條目仍 1 筆（bbox 變大）。實機 E2E（9950X3D，一次性 SP 情境 `modmaps-changed-1107b`）PASS：4 個目錄載入、4 個圖層掛上且沒有其他本包圖層、名稱鍵解析成繁中，資源點載入數＝新 bake（ICF Compound 1、Nekomata Ridge 107）。
 
 > 技術要點：#72 Snake's ModPack Build 42（11-03 17:22 UTC）與 #74 Asian Style Builds（11-07 05:39 UTC，用於巡之丘市）追蹤器判免重渲；重渲 Snake 10 顆與巡之丘市都和已發布版逐檔相同、Snake 10 顆 bake 不變，免發版已關閉。
 
