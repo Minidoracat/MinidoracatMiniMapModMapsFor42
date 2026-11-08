@@ -33,15 +33,8 @@
 [/list]
 📖 [b]完整支援清單（含每張地圖有沒有道路資料）、衝突提醒與許願：[/b][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840347]小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突[/url]
 
-[h2]🔗 Minidoracat 小地圖系列[/h2]
-[list]
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763913359]MiniMap[/url]（主 MOD，必裝）——圖片化世界地圖與小地圖、搜尋、導航
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102]MOD Maps[/url]——地圖 MOD 的地圖圖片與路名翻譯
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3792675881]AutoDrive[/url]——GPS 導航與自動駕駛
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3768276209]Zones[/url]——伺服器自訂區域
-[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3765182411]MOD Compatibility[/url]——狗、馬等第三方動物圖標
-[/list]
-其他作品：[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3809297109]Minidoracat 全系列收藏[/url]
+[h2]🔗 Minidoracat 全系列[/h2]
+其他作品都在[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3809297109]Minidoracat 全系列收藏[/url]，依需求自選訂閱。
 
 [h2]💬 回報與交流[/h2]
 [list]
