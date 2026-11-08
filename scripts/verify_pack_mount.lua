@@ -118,6 +118,13 @@ local function getWorld()
     if mapStr == nil then return nil end
     return { getMap = function(_) return mapStr end }
 end
+-- 主 MOD 2026-11-08 起 getLoadedMapDirs 讀引擎 getLotDirectories()；缺這個 stub 會拋錯→fail-open，mapDir 閘門案例全失效。
+-- 只照分號拆：引擎另外會 trim、去重，沒分號時循 map.info 的 lots= 展開，這裡當成單一目錄
+local function getLotDirectories()
+    local list = {}
+    for dir in string.gmatch(mapStr or "", "[^;]+") do list[#list + 1] = dir end
+    return { size = function(_) return #list end, get = function(_, i) return list[i + 1] end }
+end
 local function getActivatedMods()
     return { size = function(_) return #activeMods end, get = function(_, i) return activeMods[i + 1] end }
 end
