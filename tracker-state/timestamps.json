@@ -1,9 +1,9 @@
 {
   "game": {
-    "build": "25485521",
-    "detected_at": "2026-09-29T11:35:57Z"
+    "build": "26486631",
+    "detected_at": "2026-11-09T14:22:17Z"
   },
-  "generated_at": "2026-11-08T12:13:26Z",
+  "generated_at": "2026-11-09T14:22:19Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -35,7 +35,6 @@
     },
     "2844685624": {
       "last_result": 1,
-      "probe_fail": 1,
       "removed": false,
       "removed_at": null,
       "time_updated": 1785336695,
