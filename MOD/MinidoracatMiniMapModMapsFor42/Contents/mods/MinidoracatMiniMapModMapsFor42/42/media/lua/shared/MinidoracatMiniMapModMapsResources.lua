@@ -645,6 +645,10 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
         { cat = "tools", rn = 1, r = { { x = 10231, y = 11589, w = 3, h = 6 } }, b = { x = 10231, y = 11589, w = 6, h = 6 } },
         count = 67,
     },
+    parking = {
+        { rn = 1, r = { { x = 10270, y = 11516, w = 5, h = 9 } }, b = { x = 10270, y = 11516, w = 5, h = 9 }, i = 1 },
+        count = 1,
+    },
 })
 
 R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
@@ -5240,6 +5244,10 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
         { cat = "retail", rn = 1, r = { { x = 10751, y = 13407, w = 9, h = 6 } }, b = { x = 10751, y = 13407, w = 9, h = 6 } },
         { cat = "tools", rn = 1, r = { { x = 10609, y = 13352, w = 6, h = 3 } }, b = { x = 10609, y = 13352, w = 6, h = 6 } },
         count = 39,
+    },
+    parking = {
+        { rn = 4, r = { { x = 10679, y = 13453, w = 8, h = 7 }, { x = 10688, y = 13453, w = 4, h = 7 }, { x = 10693, y = 13453, w = 5, h = 7 }, { x = 10699, y = 13453, w = 4, h = 7 } }, b = { x = 10679, y = 13453, w = 24, h = 7 }, i = 1 },
+        count = 1,
     },
 })
 

@@ -53,6 +53,14 @@ Map=AnruisiTown;Taylorsville;RaccoonCity;Camden County B42;<其餘任意序>;Mul
 - 注意：把某圖提前會改變重疊 cell 的擁有權，可能冒出新的肇事對——**改完必重跑偵測器
   迭代至歸零**（本次 AnruisiTown 就是第二輪迭代加進來的）。
 
+## 42.22.2 複查（2026-11-10）
+
+- `LotHeader`、`MapFiles` 兩版反編譯內容相同：雷照舊在，排序解法不變。42.22.2 快照行號：
+  `LotHeader.getZombieIntensityForChunk` 在 LotHeader.java:64-84（`lotHeader2` 取值在 :75，仍無 null 檢查），
+  `MapFiles.bgHasCell300` 在 MapFiles.java:124-131。上面症狀段的 `:81` 是遊戲 stack trace 的行號，和反編譯行號不同。
+- `IsoMetaGrid.addRoomsToAdjacentCells` 改成把建築登記到它跨到的每個 cell（原本只到 2×2 個 cell），
+  跨 3 個 cell 以上的大建築會多觸發幾次。偵測器本來就逐 chunk 掃整棟建築範圍，判定不用改。
+
 ## 工具
 
 - `scripts/check_map_conflicts.ps1`：離線完整模擬引擎判定（讀 lotheader 檔名重建

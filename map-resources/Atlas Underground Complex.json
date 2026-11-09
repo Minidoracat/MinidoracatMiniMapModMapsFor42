@@ -72,5 +72,8 @@
     {"cat": "police", "rects": [[10374, 11502, 6, 3]], "bbox": [10374, 11502, 6, 3], "underground": false},
     {"cat": "retail", "rects": [[10389, 11471, 9, 6]], "bbox": [10389, 11471, 9, 6], "underground": false},
     {"cat": "tools", "rects": [[10231, 11589, 3, 6]], "bbox": [10231, 11589, 6, 6], "underground": false}
+  ],
+  "parking": [
+    {"rects": [[10270, 11516, 5, 9]], "box": [10270, 11516, 10274, 11524], "icon": true}
   ]
 }

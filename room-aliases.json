@@ -52,6 +52,12 @@
       "toolck"
     ]
   },
+  "AshenwoodNewB42.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "all"
+    ]
+  },
   "BBL_b42.pyramid.zip": {
     "aliases": {},
     "ignored": [
@@ -93,6 +99,12 @@
     },
     "ignored": [
       "1"
+    ]
+  },
+  "Chinatown Expansion B42 version.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "all"
     ]
   },
   "Coryerdon B42.pyramid.zip": {
@@ -203,6 +215,12 @@
       "FrogtownFrogInfestation"
     ]
   },
+  "Grapeseed.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "all"
+    ]
+  },
   "Greenleaf.pyramid.zip": {
     "aliases": {},
     "ignored": [
@@ -216,6 +234,7 @@
       "greenportleroystorebutcher": "butcher"
     },
     "ignored": [
+      "all",
       "greenportanimalcentre",
       "greenportarcade",
       "greenportatm",
@@ -246,6 +265,12 @@
     "ignored": [
       "abby",
       "liveshow"
+    ]
+  },
+  "Kardinal Raven Creek B42.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "all"
     ]
   },
   "KillMingLake.pyramid.zip": {
@@ -280,6 +305,12 @@
     },
     "ignored": []
   },
+  "Megurigaoka City, Kanagawa.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "all"
+    ]
+  },
   "MilitaryComplex.pyramid.zip": {
     "aliases": {
       "DiningRoom": "restaurant",
@@ -306,7 +337,8 @@
   "Mount Crow City.pyramid.zip": {
     "aliases": {},
     "ignored": [
-      "1"
+      "1",
+      "all"
     ]
   },
   "Nekomata Ridge.pyramid.zip": {
@@ -327,6 +359,12 @@
     },
     "ignored": [
       "Bianpao"
+    ]
+  },
+  "Oakshire42.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "all"
     ]
   },
   "RaccoonCity.pyramid.zip": {
@@ -502,7 +540,8 @@
       "SSLDupin": "medicalstorage"
     },
     "ignored": [
-      "Bar"
+      "Bar",
+      "all"
     ]
   },
   "Taylorsville.pyramid.zip": {
@@ -599,6 +638,7 @@
       "Stadium",
       "StoryNote",
       "Warehouse",
+      "all",
       "boysdorm",
       "treasurechest",
       "vault2"
@@ -621,6 +661,7 @@
       "Ash",
       "Maiduo",
       "Niumabao",
+      "all",
       "anpeiyao",
       "chaye",
       "dachui",
@@ -656,6 +697,7 @@
     "ignored": [
       "Ash",
       "Maiduo",
+      "all",
       "anpeiyao",
       "chaye",
       "dachui",
@@ -758,6 +800,12 @@
       "Church"
     ]
   },
+  "lvinternationalairport.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "all"
+    ]
+  },
   "snakeville_0.pyramid.zip": {
     "aliases": {
       "beerbottling": "brewery",
@@ -823,6 +871,7 @@
       "zhongbaistore": "grocery"
     },
     "ignored": [
+      "all",
       "bagroom",
       "handgun",
       "jinye",
