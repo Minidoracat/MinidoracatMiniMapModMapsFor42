@@ -235,6 +235,9 @@ def main():
             bad.append((p["zip"], (r.stderr or r.stdout).strip()[-300:]))
             print(f"  [失敗] exit {r.returncode}")
             continue
+        for line in (r.stderr or "").splitlines():  # pzmap 的 warn 區塊（含缺圖名稱；maps.md「已知坑」42.22 那條）
+            if line.startswith(("warn:", "  ")):
+                print(f"  {line}")
         got = zip_bounds(out)
         if got != p["bounds"]:
             bad.append((p["zip"], f"bounds 不符：註冊 {p['bounds']} vs 輸出 {got}（Lua 註冊表需更新）"))
