@@ -11,6 +11,10 @@
 
 - 更新後請重新啟動遊戲。
 
+> 技術要點：#75（PZ build 25485521→26486631）。本包 Lua 只呼叫主 MOD 的 `registerMaps`／`registerMapResources`；引擎讀圖與註冊用到的 `ImagePyramid`、`WorldMapStreets`、`LotHeader`、`MapFiles`、`Translator` 兩版反編譯內容相同。原版 Muldraugh cell 數不變（4065 個；882 個 lotheader、277 個 lotpack 有改），原版 `streets.xml` 沒改；補充道路 15 個 dataset、240 條用 42.22.2 資料重新取樣，沒有一條的路面比例下降。133 顆 zip 和上一版逐檔相同（sha256）。全量重渲沒有採用：42.22.2 的材質包裡 `floors_exterior_natural_01_*` 只剩 8–11、16、17，其他編號遊戲自己也畫不出來，重渲會把這些格子畫成透明（1,199 萬個、95 顆 zip），所以維持上一版的圖。資源點 bake：`all` 不再是原版房名，加進 14 張圖的 `ignored`（資源點不變）；Atlas Underground Complex、FoxtrotWarehouse 各多 1 區停車場；pzmap `b9c3e9a`（非 fixed2x 地圖照引擎 `Fix2x` 改名）之後停車場全量重算，133 份都沒變。實機 E2E（9950X3D，42.22.2＋主 MOD 0.57.2）：`register-mp`（4 步 11 項）、`dirkerdam-mp`（21 步 43 項）、`mount-tikitown-sp`（4 步 7 項）PASS。
+
+> 技術要點（工具，不隨 Workshop 發佈）：`scripts/check_map_conflicts.ps1` 的結論改成「危險組合非 0 就會崩」並以 exit 1 結束，拿掉建築掃描（不再需要 pzmap）。實機（42.22.2 專用伺服器）`Map=Coryerdon B42;Taylorsville;Muldraugh, KY`（危險 2、沒有建築踩到）崩在 `MapCollisionData.init`，兩張圖對調就正常開服。全部註冊地圖兩兩枚舉共 10 對會崩的先後關係（`docs/server-map-order-npe.md`），`link_workshop.ps1` 的 `$MapOrderFirst` 補上原本沒涵蓋的 `Coryerdon`、`pzkNewCoalfield`（全新的 `maptest` 照字母序會把 `BBL_b42` 排在 `pzkNewCoalfield` 前面）。`scripts/server/reset_map_mod_chunks.sh`：`isoregiondata/datachunk_X_Y.bin` 改照 chunk 座標搬（之前照 cell 座標，範圍內的檔沒搬到）、檔名不是標準格式的不動、中途失敗時印還原指令；`test_reset_script.sh` 補對應案例。`rebuild_pyramids.py` 渲染成功時也印 pzmap 的 `warn:` 區塊。
+
 ## [42.21.0-0.28.1] - 2026-11-08
 
 ### 更新
