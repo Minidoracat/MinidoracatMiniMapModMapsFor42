@@ -1,11 +1,14 @@
-# check_map_conflicts.ps1 — 離線偵測 B42 伺服器多地圖 NPE 崩服條件
+# check_map_conflicts.ps1 — 離線偵測 B42 多地圖 NPE 崩服條件
 #
-# 引擎 bug（42.19 反編譯查證）：LotHeader.getZombieIntensityForChunk（LotHeader.java:63-83）
-# 用 B41 的 300 格網格（MapFiles.bgHasCell300，MapFiles.java:120-135）檢查「哪個地圖目錄
+# 引擎 bug（42.22.2 反編譯查證）：LotHeader.getZombieIntensityForChunk（LotHeader.java:64-84）
+# 用 B41 的 300 格網格（MapFiles.bgHasCell300，MapFiles.java:120-134）檢查「哪個地圖目錄
 # 涵蓋此處」，命中後卻用 B42 的 256 格座標拿 lotheader——兩網格對不齊時拿到 null 直接 NPE：
 #   java.lang.NullPointerException: ... "lotHeader2" is null at LotHeader.getZombieIntensityForChunk
-# 觸發時機：IsoMetaGrid.CreateStep2 建房間（含跨 cell 建築的 addRoomsToAdjacentCells），
-# vanilla 建築跨進 MOD 擁有的 cell 也會觸發。
+# 觸發時機：世界初始化。MapCollisionData.init（MapCollisionData.java:117-135，客戶端以外都跑）對每個
+# cell 的全部 chunk 各問一次，所以只要有一個「危險組合」就崩，不需要有建築踩在上面；有建築跨在
+# 危險 chunk 上時更早崩在 IsoMetaGrid.CreateStep2 建房間（vanilla 建築跨進 MOD 擁有的 cell 也算）。
+# 2026-11-10 實機（42.22.2 專用伺服器）：Map=Coryerdon B42;Taylorsville;Muldraugh, KY（危險 2、沒有建築
+# 踩到）崩在 MapCollisionData.init，兩張圖對調就正常開服。單機照程式也會中，沒有實測。
 #
 # 修法：查詢從 cell 擁有者的 priority 只往「低優先」掃——把肇事圖排在 Map= 最前面
 # （優先序最高），掃描就永遠不會經過它們（見 link_workshop.ps1 的 $MapOrderFirst）。
@@ -15,15 +18,10 @@
 param(
     [string]$ServerIni = "$env:USERPROFILE\Zomboid\Server\servertest.ini",
     [string]$GamePath = 'D:\SteamLibrary\steamapps\common\ProjectZomboid',
-    [string]$PoiExe = 'D:\github\MinidoracatMapRendering\target\release\pzmap.exe',
     [string]$ModsDir = "$env:USERPROFILE\Zomboid\mods"
 )
 $ErrorActionPreference = 'Stop'
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-
-if (-not (Test-Path -LiteralPath $PoiExe)) { throw "找不到 pzmap.exe（$PoiExe）——MapRendering repo cargo build --release" }
-$tmpDir = Join-Path $env:TEMP 'pz_map_conflict_poi'
-New-Item -ItemType Directory -Force $tmpDir | Out-Null
 
 # 1) Map= 順序（= MapFiles priority：先者為大）
 $mapLine = (Get-Content -LiteralPath $ServerIni | Where-Object { $_ -match '^\s*Map\s*=' }) -replace '^\s*Map\s*=', ''
@@ -110,40 +108,11 @@ foreach ($cellKey in $ownerIdx.Keys) {
 }
 "危險 (cell,c300) 組合: $($dangerous.Count)"
 foreach ($k in $dangerous) { "  $k  $($dangerInfo[$k])" }
-
-# 5) poi 建築掃描（vanilla 也掃：原版建築跨進 MOD cell 一樣觸發）
-$hits = @{}
-$n = 0
-foreach ($e in $entries) {
-    if (-not $folderPath.ContainsKey($e)) { continue }
-    $n++
-    $poiOut = Join-Path $tmpDir "poi_$n.json"
-    & $PoiExe poi --maps-dir $folderPath[$e] --out $poiOut 2>$null | Out-Null
-    if (-not (Test-Path -LiteralPath $poiOut)) { continue }
-    $blds = Get-Content -LiteralPath $poiOut -Raw | ConvertFrom-Json
-    foreach ($b in $blds) {
-        $chX0 = [int][Math]::Floor($b.x / 8); $chX1 = [int][Math]::Floor(($b.x + $b.width - 1) / 8)
-        $chY0 = [int][Math]::Floor($b.y / 8); $chY1 = [int][Math]::Floor(($b.y + $b.height - 1) / 8)
-        for ($chy = $chY0; $chy -le $chY1; $chy++) {
-            for ($chx = $chX0; $chx -le $chX1; $chx++) {
-                $cx = [int][Math]::Floor($chx / 32.0); $cy = [int][Math]::Floor($chy / 32.0)
-                $c3x = [int][Math]::Floor(($chx * 8) / 300.0); $c3y = [int][Math]::Floor(($chy * 8) / 300.0)
-                $k = "$cx,$cy|$c3x,$c3y"
-                if ($dangerous.Contains($k)) {
-                    $tag = "$e :: $($b.building_id) @cell($cx,$cy) [$($dangerInfo[$k])]"
-                    if (-not $hits.ContainsKey($tag)) { $hits[$tag] = $true }
-                }
-            }
-        }
-    }
-}
 ""
 if ($dangerous.Count -eq 0) {
     "[OK] 無危險組合——此 Map= 順序可安全開服"
 } else {
-    "=== 會實際觸發 NPE 的建築 ==="
-    if ($hits.Count -eq 0) { "  （目前無建築踩到——屬潛在雷，仍建議把 culprit 提前排除）" }
-    $hits.Keys | Sort-Object | ForEach-Object { "  $_" }
-    ""
+    "[危險] 照這個 Map= 順序載入世界會在初始化時 NPE 崩潰（不需要有建築踩到危險組合）"
     "[修法] 把上列 culprit 圖加入 link_workshop.ps1 的 `$MapOrderFirst（culprit 必須排在 owner 之前），重寫 Map= 後重跑本腳本驗證歸零"
+    exit 1
 }

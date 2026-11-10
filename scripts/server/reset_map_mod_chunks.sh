@@ -3,9 +3,16 @@
 #
 # 用途：地圖 MOD 加入「已生成過的世界」時，已生成的 chunk 不會重生地圖內容；
 #       刪除該區域的存檔檔案可強制引擎依新地圖資料重生。也可用於定期重置。
-# 依據：/home/github/MinidoracatBuildingResetFor42 的 area reset 實證——
-#       chunk = square//8（map/{x//8}/{y//8}.bin）、cell = square//256，
-#       cell 級動 chunkdata_/metacell_/datachunk_/apop_ 四類，zpop 不動。
+# 換算：chunk = square//8，map/<chunkX>/<chunkY>.bin 與 isoregiondata/datachunk_<chunkX>_<chunkY>.bin
+#       都是 chunk 座標（IsoRegions.getChunkFile(chunkX, chunkY)）；cell = square//256，
+#       cell 級動 chunkdata_/metacell_/apop_ 三類，zpop 不動。
+#       isoregiondata/RegionHeader.bin 不動：它還記著被搬走的 chunk。重置後開服，console 會有一行 WARN
+#       「IsoRegion: N previously discovered chunks have not been loaded」和同一句的 ERROR（IsoRegionException，
+#       附 stack trace；42.22.2 IsoRegionWorker.java:527-532 在同一個方法裡接住），伺服器照常啟動（實機開服紀錄
+#       看過）；RegionHeader 重寫（:266-283）之前每次開服都會再出現。被搬走的 chunk 回到沒算過的狀態，附近有
+#       方格變更時由已載入的 chunk 重算（IsoRegions.squareChanged → addSquareChangedJob／readSurroundingChunks，
+#       :378-437），和新世界一樣；沒算過的 chunk 自己只認新增類的變更（蓋牆），單純拆除不算（:389-392）。
+#       重算這段是讀程式確認，沒有實機驗。
 # 範圍：內嵌 bounds 表（來源：MinidoracatMiniMapModMaps.lua 註冊表，右/下排他）
 #       ∩ 伺服器 ini 的 Map= 啟用清單——未啟用的地圖不會被動到。
 # 用法：先停伺服器 → ./reset_map_mod_chunks.sh 看 dry-run 統計
@@ -52,6 +59,8 @@ done
 
 TS=$(date +%Y%m%d-%H%M%S)
 BK="$BACKUP_ROOT/map_reset_$TS"
+# execute 中途失敗（權限、磁碟滿）時 set -e 直接結束，走不到最後的還原指令：在這裡印
+trap 'rc=$?; if [ "$rc" -ne 0 ] && [ -d "$BK" ]; then echo "[中斷] exit $rc：已搬走的檔案在 $BK，還原指令：cp -a \"$BK\"/. \"$SAVE\"/" >&2; fi' EXIT
 echo "模式：$MODE（Map= 啟用 ${#ENABLED[@]} 條目）"
 total=0
 skipped=0
@@ -68,29 +77,30 @@ while IFS='|' read -r folder x1 y1 x2 y2; do
     gx1=$((x1 / 256)); gx2=$(((x2 - 1) / 256))
     gy1=$((y1 / 256)); gy2=$(((y2 - 1) / 256))
     n=0
-    # map/<chunkX>/<chunkY>.bin
+    # chunk 級（8）：map/<chunkX>/<chunkY>.bin、isoregiondata/datachunk_<chunkX>_<chunkY>.bin
+    # ponytail: 每個 chunkX 對 isoregiondata 展開一次 glob（6.2 萬檔時約 10 ms，30 cell 寬的圖約 10 秒）；
+    #           目錄大到嫌慢再改成整個目錄只列一次
     for cx in $(seq "$cx1" "$cx2"); do
-        d="$SAVE/map/$cx"
-        [ -d "$d" ] || continue
-        for f in "$d"/*.bin; do
+        for f in "$SAVE/map/$cx"/*.bin "$SAVE/isoregiondata/datachunk_${cx}_"*.bin; do
             [ -e "$f" ] || continue
-            cy="${f##*/}"; cy="${cy%.bin}"
+            cy="${f##*/}"; cy="${cy%.bin}"                # map：整個檔名就是 chunkY
+            case "$f" in "$SAVE/isoregiondata/"*) cy="${cy#"datachunk_${cx}_"}" ;; esac
             [[ "$cy" =~ ^-?[0-9]+$ ]] || continue
             if [ "$cy" -ge "$cy1" ] && [ "$cy" -le "$cy2" ]; then
                 if [ "$MODE" = "execute" ]; then
-                    mkdir -p "$BK/map/$cx"
-                    mv "$f" "$BK/map/$cx/"
+                    rel="${f#"$SAVE"/}"
+                    mkdir -p "$BK/${rel%/*}"
+                    mv "$f" "$BK/$rel"
                 fi
                 n=$((n + 1))
             fi
         done
     done
-    # cell 級（256）：chunkdata / metagrid / isoregiondata / apop
+    # cell 級（256）：chunkdata / metagrid / apop
     for gx in $(seq "$gx1" "$gx2"); do
         for gy in $(seq "$gy1" "$gy2"); do
             for spec in "chunkdata/chunkdata_${gx}_${gy}.bin" \
                         "metagrid/metacell_${gx}_${gy}.bin" \
-                        "isoregiondata/datachunk_${gx}_${gy}.bin" \
                         "apop/apop_${gx}_${gy}.bin"; do
                 f="$SAVE/$spec"
                 [ -e "$f" ] || continue

@@ -54,8 +54,11 @@ $LuaRegistry = Join-Path $ModContent "42\media\lua\client\MinidoracatMiniMapModM
 # getZombieIntensityForChunk 混用 300/256 兩種 cell 網格，這幾張圖的 bg300 覆蓋圖會
 # 「聲稱」蓋到鄰圖的 cell 卻拿不出 lotheader → NPE 崩服。排在最前面＝優先序最高，
 # 掃描（只往低優先方向走）就永遠不會經過它們。新增地圖後重跑 check_map_conflicts.ps1 驗證。
-# Coryerdon 需在 Taylorsville 後（作者聲明）、Greenport 前（bg300 潛在雷）——列表順序即滿足
-$MapOrderFirst = @('AnruisiTown', 'Taylorsville', 'Coryerdon B42', 'RaccoonCity', 'Camden County B42', 'Clover Lake')  # Clover Lake：作者要求優先（歷史：曾因 Sector-7 公路 basement 衝突；Sector-7 已下架移除）
+# 這份清單要涵蓋 check_map_conflicts 找得到的每一對（culprit 排在 owner 前）：危險組合一個就崩，不必有建築踩到，
+# 其餘地圖照加入先後或字母序排，哪一對沒列到就看運氣。2026-11-10 兩兩枚舉全部註冊地圖共 10 對：
+# Taylorsville 在科里爾登兩版與 Daisy County 前、科里爾登兩版在 Greenport 前、AnruisiTown 在 Camden 與 Mount Crow 前、
+# Camden 在 Atlanta 前、RaccoonCity 在 Muldraugh 1993 前、pzkNewCoalfield 在 BBL_b42 前——列表順序即滿足
+$MapOrderFirst = @('AnruisiTown', 'Taylorsville', 'Coryerdon B42', 'Coryerdon', 'RaccoonCity', 'Camden County B42', 'pzkNewCoalfield', 'Clover Lake')  # Clover Lake：作者要求優先（歷史：曾因 Sector-7 公路 basement 衝突；Sector-7 已下架移除）
 
 # 翻譯 MOD 必須排在 Mods= 最後：PZ 的 Mods= 順序＝載入序，**後載入者覆蓋先載入者**
 # （log 的 mod "X" overrides ... 就是這個機制）。翻譯包排前面會被後面的 MOD 蓋掉。
