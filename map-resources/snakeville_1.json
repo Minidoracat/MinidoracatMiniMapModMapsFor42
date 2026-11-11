@@ -1,7 +1,7 @@
 {
   "zip": "snakeville_1.pyramid.zip",
   "mapDir": "snakeville_1",
-  "rawRecords": 37,
+  "rawRecords": 40,
   "aliases": {"apicultureshop": "grocery", "displayfishingstore": "outdoorsupply", "fishingstore": "outdoorsupply", "fishingstorestorage": "fishingstorage", "honeylovekitchen": "kitchen_crepe", "huntingstore": "hunting", "ninkasibasement": "brewery", "ninkasibasementstorage": "brewerystorage", "ninkasigarage": "brewerystorage", "riversidegunstore": "gunstore", "riversidegunstorestorage": "gunstorestorage", "riversidepolicestorage": "policestorage"},
   "cells300": [[21, 19]],
   "entries": [
