@@ -533,7 +533,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-11-10T13:48:02Z",
+  "generated_at": "2026-11-11T12:59:14Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1256,12 +1256,12 @@
       }
     },
     "3659676359": {
-      "checked": "2026-09-27T14:48:47Z",
+      "checked": "2026-11-11T12:59:06Z",
       "maps": {
         "AnruisiTown": {
           "street_count": 59,
           "streets_sha256": "1874b5881a8d30bf32ca5d4c96aabcd794a9c8cf778bc7b1897381c4e3756ed6",
-          "worldmap_sha256": "2777ac0cd45ac17d491108376e10805640bf0222e9f0617ad42d0e3953e309d1"
+          "worldmap_sha256": "7ee13562b25aa2cbd0e00347bc6573d6614fc378d801ddfa6b1baef014bbada5"
         }
       }
     },
