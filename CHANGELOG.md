@@ -1,5 +1,21 @@
 # Changelog
 
+## [42.22.2-0.28.3] - 2026-11-12
+
+### 更新
+
+- **安瑞斯鎮（軍事堡壘）小地圖圖像更新**：原作者 11-11 更新安瑞斯鎮，鎮中心與北側多處建築重新配置。小地圖圖像已依最新資料重新產生；資源點從 56 處變成 63 處（五金多 2 處，軍事、警察、藥局、消防、槍店、倉儲各多 1 處，農場少 1 處），其中多處在地下室；兩處停車場位置跟著移動。範圍、名稱、街名與導航資料不變。
+- **Snake 工廠、SnakeVille 零號區與一號區小地圖圖像更新**：原作者 11-11 更新 Snake's ModPack，工廠周圍的地面與水池、SnakeVille 的部分建築與空地有變動。小地圖圖像已依最新資料重新產生。範圍、名稱、資源點、停車場與導航資料不變；合集裡其他地圖沒有變化。
+- **汐汐的靜謐小屋小地圖圖像更新**：原作者 11-10 更新小屋與旁邊的菜園。小地圖圖像已依最新資料重新產生。範圍、名稱與資源點不變。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：#79 AnruisiTown 3659676359（11-11 10:48 UTC）、#78 Snake's ModPack Build 42 3800233932（11-11 01:13 UTC）、#76 [B42]Xixi's Serene Cottage 3685508479（11-10 17:16 UTC），SteamCMD 副本 timeupdated 都＝Steam API。lotheader cell 範圍＝註冊 bounds，沒有新 mod ID、地圖目錄或道路項目（四個項目 `road-scan` 無變更）。`rebuild_pyramids.py` 重渲後和上一版比第 0 層差 >2 的像素：`AnruisiTown` 19,353、`Factory` 19,676、`snakeville_0` 1,455、`snakeville_1` 2,265、`Xixi's Serene Cottage` 1,320；五顆都沒有「舊圖不透明、新圖透明」的像素（汐汐小屋 x190 一排 17 格舊圖 alpha 只有 26）。Snake 這版改掉了 42.22 缺的舊地面圖磚：`floors_exterior_natural_01_*` 被跳過的數量 Factory 4,281→0、snakeville_0 113→0、snakeville_1 124→26。資源點 bake：安瑞斯鎮 rawRecords 111→126、條目 56→63，新房名 `SSSWW`（技能書房）→ `bookstore`、`cell`（Lua 變數名）→ ignored；其餘四顆條目不變。實機 E2E（9950X3D，42.22.2＋主 MOD 0.57.2）：`snake-sp`（7 步 11 項）、`mount-maptest-mp` 汐汐小屋與安瑞斯鎮單圖變體（各 4 步 5 項）PASS。
+
+> 技術要點：#77 Moores Mechanic [B42] 3699636604（11-10 03:20 UTC）不換圖、免發版已關閉：重渲只差 27 個像素，其中 20 個是 42.22 缺圖（`floors_exterior_natural_01_14`／`_18`）造成的透明破洞，維持上一版的圖。補充道路 `moores-mechanic` 01 號在新版地圖重新取樣 501/501 在路面，只更新來源 `worldmap_xml_sha256`，點列不動；`moores-mp`（7 步 13 項）PASS。
+
 ## [42.22.2-0.28.2] - 2026-11-10
 
 ### 更新
