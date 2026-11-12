@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T12:59:14Z",
+  "generated_at": "2026-11-12T14:00:26Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -461,7 +461,7 @@
       }
     },
     "3479667649": {
-      "assets": "806bb4213fd8aabefd1a4b98625ad0cbc1bd50b696bdeb65dfe4dba8d8444136",
+      "assets": "be2f0d0c5f1584c445d579b584a426822452274ce12910e6c214c1182dfb4e1c",
       "maps": {
         "Willowbrook Bastion!": {
           "bounds": [
@@ -479,7 +479,7 @@
             9728,
             10240
           ],
-          "hash": "c009b43b1514a403645790468e5180959b6280df167697d2c3e53c9e59aeea18"
+          "hash": "65b2cec5e3a52c2c4683728f9a18044094df609dc5aaf8f4d446e824a95c3ac7"
         }
       },
       "mods": {
@@ -1499,7 +1499,7 @@
       }
     },
     "3685508479": {
-      "assets": "0cf56d2a7f8394280bed07e5781ae3f926ca2c08f940bb68e454e3ccb853fc1f",
+      "assets": "9f04ed638a0510cd9ddf1c1c6c45b8fa19a93e098b907e4d34ab926cca519bb8",
       "maps": {
         "Xixi's Serene Cottage": {
           "bounds": [
@@ -1508,7 +1508,7 @@
             7936,
             8448
           ],
-          "hash": "a3a9314f61a7032afd28ad038ec8125edeab91754bdb3eddcdf58885271b29a7"
+          "hash": "73a04ebfa66e047da9778e8ae1c2f8c2245fd890ac3c4ebb62e342cd9a6215e6"
         }
       },
       "mods": {
