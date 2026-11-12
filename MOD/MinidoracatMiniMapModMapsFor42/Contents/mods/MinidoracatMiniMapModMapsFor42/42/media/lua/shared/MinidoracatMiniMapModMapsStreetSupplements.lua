@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 15 個 dataset／240 條補充道路
+-- 19 個 dataset／250 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -103,6 +103,15 @@ Supplements["big-bear-lake"] = {
         ["Big Bear Lake Rd 04 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_big-bear-lake_04",
         ["Big Bear Lake Rd 05 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_big-bear-lake_05",
         ["Big Bear Lake Rd 06 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_big-bear-lake_06",
+    },
+}
+
+-- ==== clover-lake (Clover Lake / Clover Lake) ====
+Supplements["clover-lake"] = {
+    schemaVersion = 1, mapMod = "Clover Lake", mapDir = "Clover Lake",
+    file = "media/minimap/streets/clover-lake.xml", upstreamStreetCount = 1, roadCount = 1,
+    names = {
+        ["Clover Lake Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_clover-lake_01",
     },
 }
 
@@ -366,5 +375,38 @@ Supplements["twd-prison"] = {
     names = {
         ["The Walking Dead Prison Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_twd-prison_01",
         ["The Walking Dead Prison Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_twd-prison_02",
+    },
+}
+
+-- ==== willowbrook-bastion (Willowbrook Bastion! / Willowbrook Bastion!) ====
+Supplements["willowbrook-bastion"] = {
+    schemaVersion = 1, mapMod = "Willowbrook Bastion!", mapDir = "Willowbrook Bastion!",
+    file = "media/minimap/streets/willowbrook-bastion.xml", upstreamStreetCount = 0, roadCount = 3,
+    names = {
+        ["Willowbrook Bastion Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_willowbrook-bastion_01",
+        ["Willowbrook Bastion Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_willowbrook-bastion_02",
+        ["Willowbrook Bastion Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_willowbrook-bastion_03",
+    },
+}
+
+-- ==== willowbrook-bastion-2026 (Willowbrook Bastion! 2 / Willowbrook Bastion! 2026) ====
+Supplements["willowbrook-bastion-2026"] = {
+    schemaVersion = 1, mapMod = "Willowbrook Bastion! 2", mapDir = "Willowbrook Bastion! 2026",
+    file = "media/minimap/streets/willowbrook-bastion-2026.xml", upstreamStreetCount = 0, roadCount = 3,
+    names = {
+        ["Willowbrook Bastion 2026 Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_willowbrook-bastion-2026_01",
+        ["Willowbrook Bastion 2026 Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_willowbrook-bastion-2026_02",
+        ["Willowbrook Bastion 2026 Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_willowbrook-bastion-2026_03",
+    },
+}
+
+-- ==== willowbrook-bastion-mo (Willowbrook Bastion! MO / Willowbrook Bastion! 2026) ====
+Supplements["willowbrook-bastion-mo"] = {
+    schemaVersion = 1, mapMod = "Willowbrook Bastion! MO", mapDir = "Willowbrook Bastion! 2026",
+    file = "media/minimap/streets/willowbrook-bastion-mo.xml", upstreamStreetCount = 0, roadCount = 3,
+    names = {
+        ["Willowbrook Bastion 2026 Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_willowbrook-bastion-mo_01",
+        ["Willowbrook Bastion 2026 Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_willowbrook-bastion-mo_02",
+        ["Willowbrook Bastion 2026 Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_willowbrook-bastion-mo_03",
     },
 }

@@ -1,0 +1,65 @@
+{
+  "dataset": "willowbrook-bastion",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3479667649",
+    "map_mod": "Willowbrook Bastion!",
+    "map_dir": "Willowbrook Bastion!",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "ff1b970c2522106ee0760616ff46ff9c0d93051a12f12ee26edb9ddf0f17fbd4",
+    "captured": "2026-11-12",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Willowbrook Bastion",
+    "ch": "柳溪堡壘",
+    "cn": "柳溪堡垒",
+    "jp": "ウィローブルック要塞"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 8,
+      "points": [
+        8600,
+        9789,
+        9700,
+        9789
+      ],
+      "evidence": {
+        "samples": 1101,
+        "on_road": 1101
+      }
+    },
+    {
+      "no": 2,
+      "width": 8,
+      "points": [
+        8756,
+        9500,
+        8756,
+        9785
+      ],
+      "evidence": {
+        "samples": 286,
+        "on_road": 286
+      }
+    },
+    {
+      "no": 3,
+      "width": 6,
+      "points": [
+        9440,
+        9500,
+        9440,
+        9785
+      ],
+      "evidence": {
+        "samples": 286,
+        "on_road": 286
+      }
+    }
+  ],
+  "retired": []
+}

@@ -1,0 +1,69 @@
+{
+  "dataset": "willowbrook-bastion-mo",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3479667649",
+    "map_mod": "Willowbrook Bastion! MO",
+    "map_dir": "Willowbrook Bastion! 2026",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "1844e949dc58e35a5412e0d1e090578e7de79cc633904143b67fb1432027160f",
+    "captured": "2026-11-12",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Willowbrook Bastion 2026",
+    "ch": "柳溪堡壘 2026",
+    "cn": "柳溪堡垒 2026",
+    "jp": "ウィローブルック要塞 2026"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 8,
+      "points": [
+        8600,
+        9789,
+        9700,
+        9789
+      ],
+      "evidence": {
+        "samples": 1101,
+        "on_road": 1101
+      }
+    },
+    {
+      "no": 2,
+      "width": 8,
+      "points": [
+        8756,
+        9500,
+        8756,
+        9785
+      ],
+      "evidence": {
+        "samples": 286,
+        "on_road": 286
+      }
+    },
+    {
+      "no": 3,
+      "width": 5,
+      "points": [
+        9440,
+        9500,
+        9440,
+        9610,
+        9432.5,
+        9619,
+        9432.5,
+        9785
+      ],
+      "evidence": {
+        "samples": 288,
+        "on_road": 288
+      }
+    }
+  ],
+  "retired": []
+}

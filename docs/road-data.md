@@ -29,7 +29,7 @@
 - 作者附道路資料（Author road data）：**34** 張；沒有 **99** 張
 - 本包路名翻譯（Translated names）：**26** 張
 - 本包道路修正（Fixes）：**6** 張
-- 本包補充道路（Added roads）：**15** 張
+- 本包補充道路（Added roads）：**18** 張
 
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
 
@@ -68,6 +68,12 @@
 - **渡鴉溪（Raven Creek）**
   - 移除多餘轉折點 1 處：作者的路在路口旁多畫了轉折點或尾巴，導航會把路線拉到隔壁路上或走成 Z 字而偏離路面；拿掉這些點後沿實際路面走
   - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `渡鴉溪 01 號路（小地圖補）`（英文 `Raven Creek Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **柳溪堡壘（Willowbrook Bastion）**
+  - 補充道路 3 條：作者沒放進道路資料的路由本包補上，路名 `柳溪堡壘 01 號路（小地圖補）`～`柳溪堡壘 03 號路（小地圖補）`（英文 `Willowbrook Bastion Rd 01 (MiniMap)`～`Willowbrook Bastion Rd 03 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **柳溪堡壘 2026（Willowbrook Bastion 2026）**
+  - 補充道路 3 條：作者沒放進道路資料的路由本包補上，路名 `柳溪堡壘 2026 01 號路（小地圖補）`～`柳溪堡壘 2026 03 號路（小地圖補）`（英文 `Willowbrook Bastion 2026 Rd 01 (MiniMap)`～`Willowbrook Bastion 2026 Rd 03 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **四葉草湖畔農莊（Clover Lake Farmhouse）**
+  - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `四葉草湖畔 01 號路（小地圖補）`（英文 `Clover Lake Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **Snake 工廠（Snake's Factory）**
   - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `Snake 工廠 01 號路（小地圖補）`（英文 `Snake's Factory Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **貝德福德瀑布（Bedford Falls）**
@@ -181,9 +187,9 @@
 | Z 村<br>Vila Z | [3524981481](https://steamcommunity.com/sharedfiles/filedetails/?id=3524981481) | ❌ 無 | — | — | — |
 | 西點擴張區<br>West Point Expansion | [3475754603](https://steamcommunity.com/sharedfiles/filedetails/?id=3475754603) | ✅ 18 條 | ✅ 18 條 | — | — |
 | 斯皮福堡（WILDSTEEL）<br>WILDSTEEL - Fort Spiffo | [3691773420](https://steamcommunity.com/sharedfiles/filedetails/?id=3691773420) | ✅ 4 條 | ✅ 4 條 | — | — |
-| 柳溪堡壘<br>Willowbrook Bastion | [3479667649](https://steamcommunity.com/sharedfiles/filedetails/?id=3479667649) | ❌ 無 | — | — | — |
-| 柳溪堡壘 2026<br>Willowbrook Bastion 2026 | [3479667649](https://steamcommunity.com/sharedfiles/filedetails/?id=3479667649) | ❌ 無 | — | — | — |
-| 四葉草湖畔農莊<br>Clover Lake Farmhouse | [3759558202](https://steamcommunity.com/sharedfiles/filedetails/?id=3759558202) | ✅ 1 條 | ✅ 1 條 | — | — |
+| 柳溪堡壘<br>Willowbrook Bastion | [3479667649](https://steamcommunity.com/sharedfiles/filedetails/?id=3479667649) | ❌ 無 | — | — | ✅ 3 條 |
+| 柳溪堡壘 2026<br>Willowbrook Bastion 2026 | [3479667649](https://steamcommunity.com/sharedfiles/filedetails/?id=3479667649) | ❌ 無 | — | — | ✅ 3 條 |
+| 四葉草湖畔農莊<br>Clover Lake Farmhouse | [3759558202](https://steamcommunity.com/sharedfiles/filedetails/?id=3759558202) | ✅ 1 條 | ✅ 1 條 | — | ✅ 1 條 |
 | 四葉草湖 316 號公路<br>Clover Lake Highway KY-316 | [3759558202](https://steamcommunity.com/sharedfiles/filedetails/?id=3759558202) | ✅ 1 條 | ✅ 1 條 | — | — |
 | 42 號地堡<br>Bunker 42 | [3762184916](https://steamcommunity.com/sharedfiles/filedetails/?id=3762184916) | ❌ 無 | — | — | — |
 | 綠港<br>Greenport, KY | [3747595202](https://steamcommunity.com/sharedfiles/filedetails/?id=3747595202) | ✅ 15 條 | ✅ 15 條 | — | — |

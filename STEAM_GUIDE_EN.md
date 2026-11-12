@@ -52,7 +52,7 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 [tr][td]Cathaya Valley 2.0 Highway[/td][td][/td][/tr]
 [tr][td]Chinatown[/td][td][/td][/tr]
 [tr][td]Chinatown Expansion[/td][td][/td][/tr]
-[tr][td]Clover Lake Farmhouse[/td][td]✅ 1 street[/td][/tr]
+[tr][td]Clover Lake Farmhouse[/td][td]✅ 1 street 🛠️[/td][/tr]
 [tr][td]Clover Lake Highway KY-316[/td][td]✅ 1 street[/td][/tr]
 [tr][td]Community Center[/td][td]✅ 10 streets[/td][/tr]
 [tr][td]Constown, KY[/td][td]🛠️[/td][/tr]
@@ -166,8 +166,8 @@ For what the marks mean, see "Supported maps (A–M)".
 [tr][td]White Forest[/td][td][/td][/tr]
 [tr][td]White Forest Ridge[/td][td][/td][/tr]
 [tr][td]WILDSTEEL - Fort Spiffo[/td][td]✅ 4 streets[/td][/tr]
-[tr][td]Willowbrook Bastion[/td][td][/td][/tr]
-[tr][td]Willowbrook Bastion 2026[/td][td][/td][/tr]
+[tr][td]Willowbrook Bastion[/td][td]🛠️[/td][/tr]
+[tr][td]Willowbrook Bastion 2026[/td][td]🛠️[/td][/tr]
 [tr][td]Xixi's Serene Cottage[/td][td][/td][/tr]
 [tr][td]Yanghu Town[/td][td][/td][/tr]
 [/table]
@@ -202,6 +202,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] 3 author roads stopped short of junctions; they now connect, so navigation can reach them.
 [*] Brooklawn Blvd is a two-way boulevard with a planted median, but the author marked it one lane wide; it now has its real width, so AutoDrive no longer runs onto the median planters (needs MiniMap 0.47.0 or later).
 [/list]
+[*] [b]Clover Lake Farmhouse[/b]: the map covers about 300 tiles at the east end of the vanilla KY-163, which therefore had no navigation data, so routes heading east from the lake took a long detour (about 600 tiles became about 9,800); this pack adds it along the vanilla route as "Clover Lake Rd 01 (MiniMap)".
 [*] [b]Coryerdon[/b]: the author ships no road data, and the map covers a few stretches of vanilla road, which therefore had no navigation data and needed long detours (e.g. a trip of about 600 tiles along Rock Ridge Road took about 2,300); this pack adds them along the vanilla route, searchable as names like "Coryerdon Rd 01 (MiniMap)".
 [list]
 [*] Older port: Rock Ridge Road (01) and Crowbar Road (02).
@@ -228,6 +229,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [/list]
 [*] [b]Snake's Factory[/b]: the map covers the last roughly 300 tiles of the vanilla KY-60 at its east end, the stretch that leads to the factory, which had no navigation data, so routes stopped about 300 tiles short of the factory; this pack adds it along the vanilla route, searchable as "Snake's Factory Rd 01 (MiniMap)".
 [*] [b]The Walking Dead Prison[/b]: the map covers a stretch each of the vanilla Tioga Road and Magazine Road beside the prison, which had no navigation data, so routes along Tioga Road took a long detour (about 950 tiles became about 5,300) and could not reach the prison's east gate; this pack adds both along the vanilla route, searchable as "The Walking Dead Prison Rd 01 (MiniMap)" and "The Walking Dead Prison Rd 02 (MiniMap)".
+[*] [b]Willowbrook Bastion (original, 2026 and Map Only)[/b]: the map covers about 900 tiles of the vanilla KY-163 south of the town, plus the south ends of Pony Trot Road and Buck Road where they meet KY-163, which therefore had no navigation data, so routes along KY-163 took a long detour (about 1,700 tiles became about 5,900); this pack adds them along the vanilla routes, searchable as names like "Willowbrook Bastion Rd 01 (MiniMap)". In the 2026 version the author moved Buck Road west, and the added road follows the actual road surface. Roads inside the town are not added.
 [*] [b]Muldraugh 1993[/b]: 913 street labels that exactly duplicate the vanilla map are hidden on display only; navigation is unaffected.
 [/list]
 === ⚠️ Conflicts and overlaps

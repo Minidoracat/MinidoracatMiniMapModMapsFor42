@@ -1,0 +1,8 @@
+<streets version="1">
+    <street name="Clover Lake Rd 01 (MiniMap)" width="8">
+        <points>
+            <point x="9500.0" y="9789.0"/>
+            <point x="9900.0" y="9789.0"/>
+        </points>
+    </street>
+</streets>

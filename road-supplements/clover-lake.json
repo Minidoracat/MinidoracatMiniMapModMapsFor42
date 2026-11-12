@@ -1,0 +1,37 @@
+{
+  "dataset": "clover-lake",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3759558202",
+    "map_mod": "Clover Lake",
+    "map_dir": "Clover Lake",
+    "streets_xml_sha256": "3a5dd2b1e26afd9f408d5cfb6a9a9b0e28df5cd85264bd0407e9ac7e45dd0be1",
+    "upstream_street_count": 1,
+    "worldmap_xml_sha256": "0ea2985b950f425ec5b348963ba2e1b0128a1ea2eb6d5b1bb49d0303e41f24cc",
+    "captured": "2026-11-12",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Clover Lake",
+    "ch": "四葉草湖畔",
+    "cn": "四叶草湖畔",
+    "jp": "クローバー湖"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 8,
+      "points": [
+        9500,
+        9789,
+        9900,
+        9789
+      ],
+      "evidence": {
+        "samples": 401,
+        "on_road": 401
+      }
+    }
+  ],
+  "retired": []
+}

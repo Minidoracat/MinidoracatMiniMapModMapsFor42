@@ -52,7 +52,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Cathaya Valley 2.0 Highway[/td][td]銀杉谷 2.0－公路[/td][td][/td][/tr]
 [tr][td]Chinatown[/td][td]唐人街[/td][td][/td][/tr]
 [tr][td]Chinatown Expansion[/td][td]唐人街擴張區[/td][td][/td][/tr]
-[tr][td]Clover Lake Farmhouse[/td][td]四葉草湖畔農莊[/td][td]✅ 1 條[/td][/tr]
+[tr][td]Clover Lake Farmhouse[/td][td]四葉草湖畔農莊[/td][td]✅ 1 條 🛠️[/td][/tr]
 [tr][td]Clover Lake Highway KY-316[/td][td]四葉草湖 316 號公路[/td][td]✅ 1 條[/td][/tr]
 [tr][td]Community Center[/td][td]社區中心[/td][td]✅ 10 條[/td][/tr]
 [tr][td]Constown, KY[/td][td]康斯鎮[/td][td]🛠️[/td][/tr]
@@ -166,8 +166,8 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]White Forest[/td][td]白森林[/td][td][/td][/tr]
 [tr][td]White Forest Ridge[/td][td]白森嶺[/td][td][/td][/tr]
 [tr][td]WILDSTEEL - Fort Spiffo[/td][td]斯皮福堡（WILDSTEEL）[/td][td]✅ 4 條[/td][/tr]
-[tr][td]Willowbrook Bastion[/td][td]柳溪堡壘[/td][td][/td][/tr]
-[tr][td]Willowbrook Bastion 2026[/td][td]柳溪堡壘 2026[/td][td][/td][/tr]
+[tr][td]Willowbrook Bastion[/td][td]柳溪堡壘[/td][td]🛠️[/td][/tr]
+[tr][td]Willowbrook Bastion 2026[/td][td]柳溪堡壘 2026[/td][td]🛠️[/td][/tr]
 [tr][td]Xixi's Serene Cottage[/td][td]汐汐的靜謐小屋[/td][td][/td][/tr]
 [tr][td]Yanghu Town[/td][td]楊湖鎮[/td][td][/td][/tr]
 [/table]
@@ -202,6 +202,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 3 處原作者的路停在路口前，接上後可以導航到達。
 [*] Brooklawn Blvd 是中間有花台分隔島的雙向林蔭大道，原作者只標了一條車道寬；路寬改成實際寬度，自動駕駛不再壓上中間的花台（需要小地圖主 MOD 0.47.0 以上）。
 [/list]
+[*] [b]Clover Lake Farmhouse（四葉草湖畔農莊）[/b]：這張地圖蓋住原版 KY-163 東端約 300 格，那段沒有導航資料，從湖畔往東要繞一大圈（約 600 格變成約 9,800 格）；本包沿原版路線補上，搜尋名稱是「四葉草湖畔 01 號路（小地圖補）」。
 [*] [b]Coryerdon（科里爾登）[/b]：原作者沒附道路資料，地圖又蓋住幾段原版的路，那幾段沒有導航資料、要繞一大圈（例：沿 Rock Ridge Road 約 600 格的路要繞約 2,300 格）；本包沿原版路線補上，搜尋名稱是「科里爾登 01 號路（小地圖補）」這種格式。
 [list]
 [*] 舊移植版：Rock Ridge Road（01 號）、Crowbar Road（02 號）。
@@ -228,6 +229,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/list]
 [*] [b]Snake's Factory（Snake 工廠）[/b]：這張地圖蓋住原版 KY-60 東端通往工廠的最後約 300 格，那段沒有導航資料，導航會停在工廠前約 300 格；本包沿原版路線補上，搜尋名稱是「Snake 工廠 01 號路（小地圖補）」。
 [*] [b]The Walking Dead Prison（陰屍路監獄）[/b]：這張地圖蓋住監獄旁原版 Tioga Road 與 Magazine Road 各一段，那兩段沒有導航資料，沿 Tioga Road 南北走要繞一大圈（約 950 格變成約 5,300 格），也到不了監獄東門；本包沿原版路線補上，搜尋名稱是「陰屍路監獄 01 號路（小地圖補）」「陰屍路監獄 02 號路（小地圖補）」。
+[*] [b]Willowbrook Bastion（柳溪堡壘，原版、2026 版與純地圖版）[/b]：這張地圖蓋住鎮南原版 KY-163 約 900 格，以及 Pony Trot Road、Buck Road 接上 KY-163 的南段，那幾段沒有導航資料，沿 KY-163 橫越要繞一大圈（約 1,700 格變成約 5,900 格）；本包沿原版路線補上，搜尋名稱是「柳溪堡壘 01 號路（小地圖補）」這種格式。2026 版的 Buck Road 被原作者往西移，補的路跟著實際路面走。鎮內的道路沒有補。
 [*] [b]Muldraugh 1993（馬爾德勞 1993）[/b]：和官方地圖完全相同的 913 個重複路名只隱藏顯示，導航不受影響。
 [/list]
 === ⚠️ 衝突與重疊

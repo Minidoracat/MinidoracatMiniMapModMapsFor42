@@ -1,0 +1,22 @@
+<streets version="1">
+    <street name="Willowbrook Bastion 2026 Rd 01 (MiniMap)" width="8">
+        <points>
+            <point x="8600.0" y="9789.0"/>
+            <point x="9700.0" y="9789.0"/>
+        </points>
+    </street>
+    <street name="Willowbrook Bastion 2026 Rd 02 (MiniMap)" width="8">
+        <points>
+            <point x="8756.0" y="9500.0"/>
+            <point x="8756.0" y="9785.0"/>
+        </points>
+    </street>
+    <street name="Willowbrook Bastion 2026 Rd 03 (MiniMap)" width="5">
+        <points>
+            <point x="9440.0" y="9500.0"/>
+            <point x="9440.0" y="9610.0"/>
+            <point x="9432.5" y="9619.0"/>
+            <point x="9432.5" y="9785.0"/>
+        </points>
+    </street>
+</streets>

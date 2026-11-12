@@ -338,19 +338,22 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             streetNames = StreetNames["wildsteel"],
             bounds = { 14336, 5632, 14848, 6144 }, nameKey = "UI_MinidoracatMiniMapModMaps_FortSpiffo" },
         { zip = "Willowbrook Bastion!.pyramid.zip", mapMod = "Willowbrook Bastion!",
+            mapDir = "Willowbrook Bastion!", streetSupplement = StreetSupplements["willowbrook-bastion"],
             bounds = { 8448, 9472, 9728, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_WillowbrookBastion" },
         -- 同 Workshop 互斥變體（雙向 incompatible=），但 2026 版是重製圖（59 個 cell
         -- 檔 50 個不同、作者描述 2x2→3x2）＝圖像不同，不能作同 zip alias（那會讓啟用
         -- 2026 版的玩家看到舊城鎮的圖）：各自一顆 zip、各自 nameKey，bounds 恰好相同
         { zip = "Willowbrook Bastion! 2026.pyramid.zip", mapMod = "Willowbrook Bastion! 2",
+            mapDir = "Willowbrook Bastion! 2026", streetSupplement = StreetSupplements["willowbrook-bastion-2026"],
             bounds = { 8448, 9472, 9728, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_WillowbrookBastion2026" },
         -- 2026 Map Only 版（同 Workshop 第三個互斥變體，mod 資料夾 "Willowbrook Bastion! 2026 map only"，
         -- id 以 42/mod.info 為準；common/mod.info 照抄 2026 版的 id）：media 下地圖目錄、材質包、
         -- tiles 與 2026 版逐檔 sha256 相同，只差 loot 分配 lua ⇒ 圖像相同，作 2026 zip 的 ID alias
         { zip = "Willowbrook Bastion! 2026.pyramid.zip", mapMod = "Willowbrook Bastion! MO",
+            mapDir = "Willowbrook Bastion! 2026", streetSupplement = StreetSupplements["willowbrook-bastion-mo"],
             bounds = { 8448, 9472, 9728, 10240 }, nameKey = "UI_MinidoracatMiniMapModMaps_WillowbrookBastion2026" },
-        { zip = "Clover Lake.pyramid.zip", mapMod = "Clover Lake", mapDir = "Clover Lake",
-            streetNames = StreetNames["clover-lake"],
+        { zip = "Clover Lake.pyramid.zip", mapMod = "Clover Lake", streetNames = StreetNames["clover-lake"],
+            mapDir = "Clover Lake", streetSupplement = StreetSupplements["clover-lake"],
             bounds = { 9472, 8960, 9984, 9984 }, nameKey = "UI_MinidoracatMiniMapModMaps_CloverLake" },
         { zip = "Clover Lake Highway KY-316.pyramid.zip", mapMod = "Clover Lake Highway KY-316",
             mapDir = "Clover Lake Highway KY-316", streetNames = StreetNames["clover-lake-highway"],
