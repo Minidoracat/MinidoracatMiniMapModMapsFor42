@@ -3,7 +3,7 @@
     "build": "26486631",
     "detected_at": "2026-11-09T14:22:17Z"
   },
-  "generated_at": "2026-11-12T14:00:26Z",
+  "generated_at": "2026-11-13T13:27:28Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -247,8 +247,8 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1794476284,
-      "title": "Willowbrook Bastion!"
+      "time_updated": 1794564114,
+      "title": "Willowbrook Bastion!Please take a minute to read this page!"
     },
     "3480990544": {
       "last_result": 1,
@@ -534,7 +534,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1794473651,
+      "time_updated": 1794510704,
       "title": "AnruisiTown (Military Bastion)"
     },
     "3664225685": {
@@ -576,7 +576,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1794413819,
+      "time_updated": 1794500423,
       "title": "[B42]Xixi's Serene Cottage"
     },
     "3691773420": {
