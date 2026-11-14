@@ -533,7 +533,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-11-11T12:59:14Z",
+  "generated_at": "2026-11-14T15:18:38Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1551,12 +1551,17 @@
       }
     },
     "3759558202": {
-      "checked": "2026-09-27T14:48:47Z",
+      "checked": "2026-11-14T15:18:38Z",
       "maps": {
         "Clover Lake": {
           "street_count": 1,
-          "streets_sha256": "3a5dd2b1e26afd9f408d5cfb6a9a9b0e28df5cd85264bd0407e9ac7e45dd0be1",
-          "worldmap_sha256": "0ea2985b950f425ec5b348963ba2e1b0128a1ea2eb6d5b1bb49d0303e41f24cc"
+          "streets_sha256": "f5259e5447f06a2ea1b394ccf0bd2c8bd02cb2c890afacb5fcccefdbadbf510f",
+          "worldmap_sha256": "7647114b2fd30d5120c4f6fe0a71742478b0cff83a2c8546a86eb3fd0a0be8cc"
+        },
+        "Clover Lake Cottage Spawn Point": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": null
         },
         "Clover Lake Highway KY-316": {
           "street_count": 1,

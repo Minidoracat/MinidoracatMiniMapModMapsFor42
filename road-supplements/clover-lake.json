@@ -5,10 +5,10 @@
     "workshop_id": "3759558202",
     "map_mod": "Clover Lake",
     "map_dir": "Clover Lake",
-    "streets_xml_sha256": "3a5dd2b1e26afd9f408d5cfb6a9a9b0e28df5cd85264bd0407e9ac7e45dd0be1",
+    "streets_xml_sha256": "f5259e5447f06a2ea1b394ccf0bd2c8bd02cb2c890afacb5fcccefdbadbf510f",
     "upstream_street_count": 1,
-    "worldmap_xml_sha256": "0ea2985b950f425ec5b348963ba2e1b0128a1ea2eb6d5b1bb49d0303e41f24cc",
-    "captured": "2026-11-12",
+    "worldmap_xml_sha256": "7647114b2fd30d5120c4f6fe0a71742478b0cff83a2c8546a86eb3fd0a0be8cc",
+    "captured": "2026-11-14",
     "method": "vanilla-continuation-v1"
   },
   "label": {

@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### 更新
+
+- **四葉草湖畔小地圖圖像更新**：原作者 11-14 更新四葉草湖畔，湖岸與溪流的形狀、兩處建物周邊與東側的植被有變動。小地圖圖像已依最新資料重新產生。資源點跟著更新：地面一處雜貨店移除（地下那處保留），兩區停車場範圍調整。範圍、名稱、街名、導航與補上的 163 號公路不變；KY-316 公路段沒有變動，維持原圖。
+
+> 技術要點：四葉草湖畔 Clover Lake 3759558202（11-14 14:36 UTC，CI 還沒開 issue，本機先處理後 `accept`）。副本 timeupdated＝Steam API。`Clover Lake` 圖資 hash 變、`Clover Lake Highway KY-316` 不變。`rebuild_pyramids.py` 重渲後和已發布版比第 0 層差 >2 的像素 9,018（1.72%），沒有新破洞、沒有 `not in atlas`。作者 `streets.xml` 仍只有 Alfalfa Road（已翻），只更新 pin；補充道路 01（`vanilla-continuation-v1`）在新版路面重新取樣 401/401，作者街道數仍 1、lotheader 範圍不變，只更新 `source` 的 sha256 與 `captured`。同批 #83 柳溪堡壘、#84 安瑞斯鎮、#85 汐汐小屋都免重渲、資源點不變，已免發版關閉。
+
 ## [42.22.2-0.28.5] - 2026-11-13
 
 ### 更新
