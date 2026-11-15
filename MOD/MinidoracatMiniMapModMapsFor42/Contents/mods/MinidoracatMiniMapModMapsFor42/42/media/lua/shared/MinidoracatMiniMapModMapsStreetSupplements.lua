@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 19 個 dataset／250 條補充道路
+-- 20 個 dataset／251 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -242,6 +242,15 @@ Supplements["last-minute-prepper"] = {
         ["Last Minute Prepper Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_last-minute-prepper_01",
         ["Last Minute Prepper Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_last-minute-prepper_02",
         ["Last Minute Prepper Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_last-minute-prepper_03",
+    },
+}
+
+-- ==== lishiya-safehouse (modid(李诗雅的安全屋) / LiShiya SafeHouse) ====
+Supplements["lishiya-safehouse"] = {
+    schemaVersion = 1, mapMod = "modid(\230\157\142\232\175\151\233\155\133\231\154\132\229\174\137\229\133\168\229\177\139)", mapDir = "LiShiya SafeHouse",
+    file = "media/minimap/streets/lishiya-safehouse.xml", upstreamStreetCount = 0, roadCount = 1,
+    names = {
+        ["Li Shiya's Safehouse Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_lishiya-safehouse_01",
     },
 }
 

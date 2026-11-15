@@ -126,7 +126,10 @@ $MapModExclude = @(
     # Muldraugh Military Base：和浣熊市（3 格）、柳溪堡壘兩版（1 格）整格重疊。掛載與補充道路用 E2E 情境驗。
     'Delta-Creek-Munitions', 'MMB_B42',
     # 肯塔基中央莊園：和已在 maptest 的 Estate 39 整格重疊 1 個 cell（32_38）。掛載與補充道路用 E2E 情境驗。
-    'Kentucky Center Manor_Renovation'
+    'Kentucky Center Manor_Renovation',
+    # 李詩雅的安全屋：4 個 cell 都和已在 maptest 的艾莉卡家具店（45_31、45_32）、SecretZ 一號檢查站（46_31、46_32）
+    # 整格重疊，安全屋院區跨 45_32／46_32。掛載與補充道路用 E2E 單圖情境 lishiya-mp 驗。
+    'modid(李诗雅的安全屋)'
 )
 
 # 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）

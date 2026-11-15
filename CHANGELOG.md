@@ -1,5 +1,18 @@
 # Changelog
 
+## [Unreleased]
+
+### 新增
+
+- **新增支援李詩雅的安全屋（Li Shiya's Safehouse & Jefferson Foothills Villa District，玩家許願）**：馬爾德勞與西點之間、Tioga Road 旁並排的兩棟多層安全屋，往東是一片蓋到一半的別墅區。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點。這張圖和艾莉卡家具店（2 格）、SecretZ 一號檢查站（2 格）、貓又嶺（1 格）重疊，請擇一：伺服器地圖順序（`Map=`）排在後面的那張，重疊格的內容會不見。少數地面圖磚在目前的遊戲版本（42.22）沒有圖片，小地圖上那幾處（約全圖的 0.2%，主要是池塘外圍的細線與東側一棟建物的地板）是透明的，會露出原版底圖。
+- **補上李詩雅的安全屋門前的導航資料**：這張圖蓋住原版 Tioga Road 約 300 格，那段原本沒有導航資料，沿 Tioga Road 走要繞一大圈（約 500 格變成約 4,100 格）。本包沿原版路線補上，搜尋名稱是「李詩雅的安全屋 01 號路（小地圖補）」（英文「Li Shiya's Safehouse Rd 01 (MiniMap)」）。安全屋與別墅區內的道路沒有補。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：Li Shiya's Safehouse & Jefferson Foothills Villa District 3761618628（作者 走路也要卖萌，mod id `modid(李诗雅的安全屋)`，註冊表寫 UTF-8 十進位跳脫；地圖資料夾 `LiShiya SafeHouse`，4 cell x 45–46 × y 31–32，`lots=Muldraugh, KY`，沒有 `require=`），沒有 `streets.xml`；bounds 與輸出 `pyramid.txt` 一致。42.22.2 材質渲染 sprites skipped 5,635 個（95 種名稱：42.22 的 `floors_exterior_natural_01_*` 與舊名 `TileFloorInt`、`TileRoadMarkings`、`TileTrees`、`TileFarmhouse` 等，42.22.2 tiledef 與反編譯都查不到改名對照），第 0 層 262,144 像素有 518 個透明；使用者 2026-11-15 核准照現況出貨（42.22 後第一張新收錄，沒有舊圖可留）。作者用了沒宣告的 Rocco's Tiles（3666137359），加掛後第 0 層只差 55 像素、破洞數不變，照宣告渲染、不加追蹤。實際 cell 重疊：艾莉卡家具店 45_31／45_32、SecretZ 一號檢查站 46_31／46_32、貓又嶺 46_32。補充道路 `road-supplements/lishiya-safehouse.json` 1 條 vanilla-continuation（本圖佔滿 300 格 (39,27)；原版 Tioga Road 只有 x 11651／12209.5 兩個頂點，y 8328、x 11660–12100、寬 8，取樣 441/441 在路面）；同格原版 Northwestern Railroad 不補。資源點 2 處（雜貨、五金）、沒有停車場，沒有要審的房名（作者沒有 Lua loot 表）。
+
 ## [42.22.2-0.28.6] - 2026-11-14
 
 ### 更新

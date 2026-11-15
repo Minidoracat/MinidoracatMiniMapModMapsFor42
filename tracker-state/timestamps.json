@@ -3,7 +3,7 @@
     "build": "26486631",
     "detected_at": "2026-11-09T14:22:17Z"
   },
-  "generated_at": "2026-11-14T15:18:38Z",
+  "generated_at": "2026-11-15T13:55:04Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -753,6 +753,13 @@
       "removed_at": null,
       "time_updated": 1794667016,
       "title": "Clover Lake (Homestead & Cottage)"
+    },
+    "3761618628": {
+      "last_result": 1,
+      "removed": false,
+      "removed_at": null,
+      "time_updated": 1783666238,
+      "title": "Li Shiya's Safehouse & Jefferson Foothills Villa District"
     },
     "3762184916": {
       "last_result": 1,

@@ -2,7 +2,7 @@
 -- 由 scripts/gen_map_resources.py render 從 map-resources/*.json＋註冊清單產生；
 -- 資料用 bake 重烘，房名別名改 room-aliases.json。分類規則在主 MOD scripts/gen_poi_data.py，
 -- 停車場判定在主 MOD scripts/gen_parking_data.py（只重算停車場用 parking 子命令）。
--- 135 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
+-- 136 個註冊（zip＋mapMod）；poi 條目格式同 MinidoracatMiniMapPOIData，
 -- parking 條目格式同 MinidoracatMiniMapParkingData（resourceApiVersion 3 起才讀，舊版主 MOD 不讀）。
 
 local R = MinidoracatMiniMapResourceAPI
@@ -7009,6 +7009,18 @@ R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
     poi = {
         { cat = "farm", rn = 1, r = { { x = 13418, y = 3690, w = 6, h = 7 } }, b = { x = 13418, y = 3690, w = 6, h = 7 } },
         { cat = "industry", rn = 1, r = { { x = 13361, y = 3835, w = 8, h = 3 } }, b = { x = 13361, y = 3835, w = 8, h = 3 } },
+        count = 2,
+    },
+})
+
+R.registerMapResources("MinidoracatMiniMapModMapsFor42", {
+    mapMod = "modid(\230\157\142\232\175\151\233\155\133\231\154\132\229\174\137\229\133\168\229\177\139)", mapDir = "LiShiya SafeHouse",
+    cells300 = {
+        39, 27,
+    },
+    poi = {
+        { cat = "grocery", rn = 1, r = { { x = 11714, y = 8207, w = 4, h = 2 } }, b = { x = 11711, y = 8207, w = 13, h = 7 } },
+        { cat = "tools", rn = 1, r = { { x = 11962, y = 8303, w = 3, h = 6 } }, b = { x = 11962, y = 8303, w = 6, h = 6 } },
         count = 2,
     },
 })

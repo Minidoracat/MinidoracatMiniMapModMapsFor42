@@ -1,0 +1,12 @@
+{
+  "zip": "LiShiya SafeHouse.pyramid.zip",
+  "mapDir": "LiShiya SafeHouse",
+  "rawRecords": 26,
+  "aliases": {},
+  "cells300": [[39, 27]],
+  "entries": [
+    {"cat": "grocery", "rects": [[11714, 8207, 4, 2]], "bbox": [11711, 8207, 13, 7], "underground": false},
+    {"cat": "tools", "rects": [[11962, 8303, 3, 6]], "bbox": [11962, 8303, 6, 6], "underground": false}
+  ],
+  "parking": []
+}

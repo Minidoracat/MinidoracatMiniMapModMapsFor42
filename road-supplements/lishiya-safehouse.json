@@ -1,0 +1,37 @@
+{
+  "dataset": "lishiya-safehouse",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3761618628",
+    "map_mod": "modid(李诗雅的安全屋)",
+    "map_dir": "LiShiya SafeHouse",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "855ccc65bc6bbdf4a092636aa1eda1eabbeb24319d43c44797dc34e4678b486a",
+    "captured": "2026-11-15",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Li Shiya's Safehouse",
+    "ch": "李詩雅的安全屋",
+    "cn": "李诗雅的安全屋",
+    "jp": "李詩雅のセーフハウス"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 8,
+      "points": [
+        11660,
+        8328,
+        12100,
+        8328
+      ],
+      "evidence": {
+        "samples": 441,
+        "on_road": 441
+      }
+    }
+  ],
+  "retired": []
+}

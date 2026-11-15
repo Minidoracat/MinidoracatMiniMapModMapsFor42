@@ -232,6 +232,10 @@
       "map_dir": "LastMinutePrepperReloaded",
       "workshop_id": "3428165477"
     },
+    "LiShiya SafeHouse.pyramid.zip": {
+      "map_dir": "LiShiya SafeHouse",
+      "workshop_id": "3761618628"
+    },
     "LittleTownshipB42.pyramid.zip": {
       "map_dir": "LittleTownshipB42",
       "workshop_id": "3477336014"
@@ -533,7 +537,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-11-14T15:18:38Z",
+  "generated_at": "2026-11-15T13:54:57Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1567,6 +1571,16 @@
           "street_count": 1,
           "streets_sha256": "19cb484d56e8c0109b117931a210461a61fca1a3222619a1bcf63dc70774bda9",
           "worldmap_sha256": "92c17d1eae4f61dd833d452cf67d0f697dda82ceaa34ba9d6cb30653bb87f05f"
+        }
+      }
+    },
+    "3761618628": {
+      "checked": "2026-11-15T13:54:57Z",
+      "maps": {
+        "LiShiya SafeHouse": {
+          "street_count": 0,
+          "streets_sha256": null,
+          "worldmap_sha256": "855ccc65bc6bbdf4a092636aa1eda1eabbeb24319d43c44797dc34e4678b486a"
         }
       }
     },

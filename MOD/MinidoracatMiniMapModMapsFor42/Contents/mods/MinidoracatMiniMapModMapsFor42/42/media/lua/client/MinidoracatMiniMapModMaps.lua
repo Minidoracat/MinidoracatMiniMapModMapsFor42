@@ -474,6 +474,14 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         -- 柳溪堡壘兩版（37_39）重疊；沒有佔滿任何 300 格，基地內道路不補
         { zip = "MMB B42.pyramid.zip", mapMod = "MMB_B42",
             bounds = { 9472, 9984, 9984, 10752 }, nameKey = "UI_MinidoracatMiniMapModMaps_MuldraughMilitaryBase" },
+        -- Li Shiya's Safehouse & Jefferson Foothills Villa District（3761618628）：mod ID 原文「modid(李诗雅的安全屋)」，
+        -- 中文寫成 UTF-8 位元組跳脫。4 cell（x 45–46、y 31–32），和艾莉卡家具店（45_31、45_32）、SecretZ 一號檢查站
+        -- （46_31、46_32）、貓又嶺（46_32）重疊。作者沒有 streets.xml，佔滿 300 格 (39,27)：補充道路沿原版補回被裁的
+        -- Tioga Road（同格的鐵道與院內道路不補）
+        { zip = "LiShiya SafeHouse.pyramid.zip",
+            mapMod = "modid(\230\157\142\232\175\151\233\155\133\231\154\132\229\174\137\229\133\168\229\177\139)",
+            mapDir = "LiShiya SafeHouse", streetSupplement = StreetSupplements["lishiya-safehouse"],
+            bounds = { 11520, 7936, 12032, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_LiShiyaSafehouse" },
     })
 else
     print("[MinidoracatMiniMapModMaps] main MOD API (MinidoracatMiniMapAPI) not found -- install and enable the Minidoracat MiniMap for B42 main MOD")
