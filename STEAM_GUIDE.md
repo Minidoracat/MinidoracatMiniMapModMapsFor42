@@ -27,7 +27,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 共 102 個地圖 MOD、134 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] [b]✅[/b]：原作者附有道路資料，地圖上有路名，可以搜尋與導航（數字是街道數）。
-[*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包補上的鎮內道路」與「本包修正或補上的道路」。
+[*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包補上的鎮內道路」與兩章「本包修正或補上的道路」。
 [*] [b]沒有標記[/b]：只有地圖圖片，沒有路名、搜尋與導航。
 [/list]
 [table]
@@ -194,7 +194,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 地圖蓋住鎮旁原版 River Walk Road、Riverside Road（兩段）與 Riverside Link Road，那幾段沒有導航資料、要繞一大圈（例：沿 River Walk Road 穿過鎮北約 1,200 格的路要繞約 9,200 格）；本包沿原版路線補上（01、42、76、88 號），從鎮外可以一路導航進鎮。原版 Riverside Road 有一段彎路被原作者改成湖與樹林，那段沒有補。
 [/list]
 [/list]
-=== 🧰 本包修正或補上的道路
+=== 🧰 本包修正或補上的道路（A–J）
 [list]
 [*] [b]Big Bear Lake（大熊湖）[/b]：Lakeview Dr、Deerhead Road 原作者標的路寬比實際路面寬，自動駕駛靠右時車身會壓進路邊樹叢；路寬改成實際寬度。KY-38 原作者畫的中線偏到路邊、有一段整條畫在路外，自動駕駛靠右時常開出路面；線移到路面中間、路寬改成實際寬度，旁邊的 Standfield Cutoff、Steinbach Rd、Green Valley Lake Dr 路尾跟著延伸到 KY-38 上，照樣接得上（需要小地圖主 MOD 0.47.0 以上）。KY-18 西段中間有分隔帶，原作者只畫一條很寬的線、多半畫在北側車道上，自動駕駛靠右時一邊壓到分隔帶、一邊壓到對向車道；改成北側車道一條線，南側車道的搜尋名稱是「大熊湖 01 號路（小地圖補）」，分隔帶的缺口與 Standfield Cutoff 北端補上短接線（02～06 號），Tofu Rd 路尾延伸到新線上。
 [*] [b]Bunker: Last Minute Prepper（最後一刻末日地堡）[/b]：這張地圖蓋住地堡旁原版 Louisville Road、Corn Road、Cob Road 各一段，那幾段沒有導航資料，沿 Louisville Road 南北走要繞路（約 700 格變成約 1,600 格）；本包沿原版路線補上，搜尋名稱是「最後一刻末日地堡 01 號路（小地圖補）」這種格式。
@@ -221,6 +221,9 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] 66 條原作者標的路寬比實際路面寬，改成實際寬度，自動駕駛靠右時不再壓出路面；US Highway 13、Newport Road、Colonial Dr 原作者畫的中線偏到路的一邊，線移到路面中間、路寬改成實際寬度（需要小地圖主 MOD 0.47.0 以上）。
 [/list]
 [*] [b]JIB Peanut Butter Factory（JIB 花生醬工廠）[/b]：這張地圖蓋住工廠前原版 KY-841（雙向兩條）與 One Horse Road 約 300 格，那幾段沒有導航資料、沿 KY-841 走要繞路（約 600 格變成約 1,500 格）；本包沿原版路線補上，搜尋名稱是「JIB 花生醬工廠 01 號路（小地圖補）」這種格式。
+[/list]
+=== 🧰 本包修正或補上的道路（K–Z）
+[list]
 [*] [b]Kentucky Center Manor（肯塔基中央莊園）[/b]：這張地圖蓋住莊園前原版 KY-163 約 300 格，以及 Old Logging Road 南段與 Angler Road，那幾段沒有導航資料，沿 KY-163 走要繞一大圈（約 700 格變成約 4,700 格）；本包沿原版路線補上，搜尋名稱是「肯塔基中央莊園 01 號路（小地圖補）」這種格式。
 [*] [b]Li Shiya's Safehouse（李詩雅的安全屋）[/b]：這張地圖蓋住原版 Tioga Road 約 300 格，那段沒有導航資料，沿 Tioga Road 走要繞一大圈（約 500 格變成約 4,100 格）；本包沿原版路線補上，搜尋名稱是「李詩雅的安全屋 01 號路（小地圖補）」。安全屋與別墅區內的道路沒有補。
 [*] [b]Moores Mechanic（摩爾修車廠）[/b]：這張地圖蓋住院區前原版 Riverside Road 約 300 格，那段沒有導航資料，沿 Riverside Road 走要繞一大圈（約 700 格變成約 5,800 格）；本包沿原版路線補上，搜尋名稱是「摩爾修車廠 01 號路（小地圖補）」。院區內的車道沒有補。

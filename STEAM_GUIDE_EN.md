@@ -27,7 +27,7 @@ Keep every Minidoracat MiniMap series mod up to date and restart the game after 
 102 map mods, 134 maps. To subscribe to them all at once, use the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]supported maps collection[/url].
 [list]
 [*] [b]✅[/b]: the author ships road data: street names, search and navigation work (number = street count).
-[*] [b]🛠️[/b]: road data fixed or added by this pack; see "Town roads added by this pack" and "Roads fixed or added by this pack".
+[*] [b]🛠️[/b]: road data fixed or added by this pack; see "Town roads added by this pack" and the two "Roads fixed or added by this pack" chapters.
 [*] [b]No mark[/b]: map image only, no street names, search or navigation.
 [/list]
 [table]
@@ -194,7 +194,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] The map covers stretches of the vanilla River Walk Road, Riverside Road (two stretches) and Riverside Link Road next to town, which therefore had no navigation data and needed long detours (e.g. a trip of about 1,200 tiles along River Walk Road north of town took about 9,200); this pack adds them along the vanilla routes (roads 01, 42, 76 and 88), so you can navigate into town from outside. One bend of the vanilla Riverside Road was turned into a lake and woods by the author and is not added.
 [/list]
 [/list]
-=== 🧰 Roads fixed or added by this pack
+=== 🧰 Roads fixed or added by this pack (A–J)
 [list]
 [*] [b]Big Bear Lake[/b]: the author marked Lakeview Dr and Deerhead Road wider than the actual road surface, so AutoDrive keeping right ran its wheels into the roadside bushes; they now have their real width. KY-38's line was drawn off to the side of the road (one stretch entirely off the road) and marked too wide, so AutoDrive keeping right often drove off the road; the line now runs down the middle with the real width, and the ends of Standfield Cutoff, Steinbach Rd and Green Valley Lake Dr are extended onto it so they still connect (needs MiniMap 0.47.0 or later). The west part of KY-18 has a median, but the author drew one very wide line, mostly on the north carriageway, so AutoDrive keeping right ran onto the median on one side and into oncoming traffic on the other; it now has one line on the north carriageway, the south carriageway is searchable as "Big Bear Lake Rd 01 (MiniMap)", short links cross the median openings and join the north end of Standfield Cutoff (02–06), and the end of Tofu Rd is extended onto the new line.
 [*] [b]Bunker: Last Minute Prepper[/b]: the map covers a stretch each of the vanilla Louisville Road, Corn Road and Cob Road beside the bunker, which therefore had no navigation data, so routes along Louisville Road took a detour (about 700 tiles became about 1,600); this pack adds them along the vanilla routes, searchable as names like "Last Minute Prepper Rd 01 (MiniMap)".
@@ -221,6 +221,9 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] 66 roads the author marked wider than the actual road surface now have their real width, so AutoDrive keeping right stays on the road; on US Highway 13, Newport Road and Colonial Dr the author's line was drawn off to one side of the road, and now runs down the middle with the real width (needs MiniMap 0.47.0 or later).
 [/list]
 [*] [b]JIB Peanut Butter Factory[/b]: the map covers about 300 tiles of the vanilla KY-841 (both carriageways) and One Horse Road in front of the factory, which therefore had no navigation data, so routes along KY-841 took a detour (about 600 tiles became about 1,500); this pack adds them along the vanilla routes, searchable as names like "JIB Peanut Butter Factory Rd 01 (MiniMap)".
+[/list]
+=== 🧰 Roads fixed or added by this pack (K–Z)
+[list]
 [*] [b]Kentucky Center Manor[/b]: the map covers about 300 tiles of the vanilla KY-163 in front of the manor, plus the south end of Old Logging Road and Angler Road, which therefore had no navigation data, so routes along KY-163 took a long detour (about 700 tiles became about 4,700); this pack adds them along the vanilla routes, searchable as names like "Kentucky Center Manor Rd 01 (MiniMap)".
 [*] [b]Li Shiya's Safehouse[/b]: the map covers about 300 tiles of the vanilla Tioga Road, which therefore had no navigation data, so routes along Tioga Road took a long detour (about 500 tiles became about 4,100); this pack adds it along the vanilla route as "Li Shiya's Safehouse Rd 01 (MiniMap)". The roads inside the safehouse and villa compound are not added.
 [*] [b]Moores Mechanic[/b]: the map covers about 300 tiles of the vanilla Riverside Road in front of the compound, which therefore had no navigation data, so routes along Riverside Road took a long detour (about 700 tiles became about 5,800); this pack adds it along the vanilla route as "Moores Mechanic Rd 01 (MiniMap)". The driveways inside the compound are not added.
