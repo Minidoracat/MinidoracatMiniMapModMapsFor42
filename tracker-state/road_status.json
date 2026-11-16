@@ -537,7 +537,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-11-15T13:54:57Z",
+  "generated_at": "2026-11-16T14:02:48Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -1665,7 +1665,7 @@
       }
     },
     "3800233932": {
-      "checked": "2026-10-24T16:21:59Z",
+      "checked": "2026-11-16T14:02:44Z",
       "maps": {
         "BarcoAbandonado": {
           "street_count": 0,
@@ -1700,7 +1700,7 @@
         "snakeville_1": {
           "street_count": 7,
           "streets_sha256": "7a3ac0f4c19a2e13d0de1b3be5288c85ac06955e9fc1640225f8e2622f61e5c5",
-          "worldmap_sha256": "a9a564ab23210656fc7a7a57d83cc1c342de0914a3da9d46da3ae021c68b7c8d"
+          "worldmap_sha256": "2f93b0ba6b177c8d5d29f2dd4c97877f36e8d923b47368f1b07e83db1dcbbc84"
         },
         "tlv": {
           "street_count": 0,
