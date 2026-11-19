@@ -3,7 +3,7 @@
     "build": "26486631",
     "detected_at": "2026-11-09T14:22:17Z"
   },
-  "generated_at": "2026-11-18T14:36:08Z",
+  "generated_at": "2026-11-19T14:43:04Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -35,7 +35,6 @@
     },
     "2844685624": {
       "last_result": 1,
-      "probe_fail": 1,
       "removed": false,
       "removed_at": null,
       "time_updated": 1785336695,
@@ -150,14 +149,14 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1785331868,
+      "time_updated": 1795013473,
       "title": "Daisy County B42 version"
     },
     "3391349130": {
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1785331932,
+      "time_updated": 1795012654,
       "title": "Nettle Township B42 version"
     },
     "3401261192": {
@@ -437,7 +436,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1785331727,
+      "time_updated": 1795012616,
       "title": "Cathaya Valley 2.0 B42 version"
     },
     "3576750203": {
@@ -535,7 +534,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1794844936,
+      "time_updated": 1795025697,
       "title": "AnruisiTown (Military Bastion)"
     },
     "3664225685": {
@@ -841,7 +840,6 @@
     },
     "3821109144": {
       "last_result": 1,
-      "probe_fail": 1,
       "removed": false,
       "removed_at": null,
       "time_updated": 1793401228,

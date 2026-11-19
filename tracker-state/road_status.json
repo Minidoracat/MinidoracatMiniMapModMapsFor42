@@ -537,7 +537,7 @@
       "workshop_id": "3524981481"
     }
   },
-  "generated_at": "2026-11-17T14:55:27Z",
+  "generated_at": "2026-11-19T14:43:04Z",
   "items": {
     "2463499011": {
       "checked": "2026-09-27T14:48:47Z",
@@ -650,12 +650,12 @@
       }
     },
     "3390753141": {
-      "checked": "2026-09-27T14:48:47Z",
+      "checked": "2026-11-19T14:42:52Z",
       "maps": {
         "Daisy County": {
           "street_count": 44,
           "streets_sha256": "23fe5b4da09a93730c43a7081b31207c93f289462e746c0e3c162bb579aadb00",
-          "worldmap_sha256": "b62955a1cfbea735675262ade74f301464d796d0f14d540ce3596e0eb7fb794f"
+          "worldmap_sha256": "960557adce62ed99490510bfef527468a86ec7b9856091949047c76f89256d9b"
         }
       }
     },
@@ -1115,7 +1115,7 @@
       }
     },
     "3576150391": {
-      "checked": "2026-09-27T14:48:47Z",
+      "checked": "2026-11-19T14:42:52Z",
       "maps": {
         "Cathaya Valley2.0": {
           "street_count": 0,
@@ -1125,7 +1125,7 @@
         "Cathaya Valley2.0 highway": {
           "street_count": 0,
           "streets_sha256": null,
-          "worldmap_sha256": "7c5b356ff70effc1454522eb7eadfa29891af8eae23378c493b5f9f5031965eb"
+          "worldmap_sha256": "751cafb625c52c2e76294bcf92f1682872e8d79a8b23d71ad2160c5247581a9a"
         }
       }
     },
