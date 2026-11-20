@@ -3,7 +3,7 @@
     "build": "26486631",
     "detected_at": "2026-11-09T14:22:17Z"
   },
-  "generated_at": "2026-11-19T14:43:04Z",
+  "generated_at": "2026-11-20T14:24:04Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -492,7 +492,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1785331904,
+      "time_updated": 1795181407,
       "title": "Greenleaf B42 version"
     },
     "3606927986": {
@@ -534,7 +534,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1795025697,
+      "time_updated": 1795173824,
       "title": "AnruisiTown (Military Bastion)"
     },
     "3664225685": {
@@ -611,7 +611,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1785332000,
+      "time_updated": 1795181441,
       "title": "VaultTec B42 version"
     },
     "3699636604": {
@@ -639,14 +639,14 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1785331758,
+      "time_updated": 1795181471,
       "title": "Chinatown B42 version"
     },
     "3703704638": {
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1785504384,
+      "time_updated": 1795181510,
       "title": "Chinatown Expansion B42 version"
     },
     "3710155331": {
@@ -737,7 +737,7 @@
       "last_result": 1,
       "removed": false,
       "removed_at": null,
-      "time_updated": 1785331971,
+      "time_updated": 1795181537,
       "title": "Sunset Lake Town B42 version"
     },
     "3754850359": {
