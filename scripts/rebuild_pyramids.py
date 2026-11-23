@@ -13,6 +13,7 @@ pzmap render-minimap 重渲到 42/media/minimap/。
   - mod.info require= 一層解析成額外 --mod（tile packs），map mod 放最後（later wins）
   - 同 zip 的 alias 條目（互斥變體）只渲一次
 渲後驗證：輸出 zip 的 pyramid.txt bounds 必須與註冊 bounds 一致（不一致=Lua 要跟著改，列警告）。
+渲後處理：CLEAR 列的 zip 把指定範圍改成透明（內容互補的鄰圖）；不重渲只補做用 --clear-only。
 """
 import argparse, json, re, subprocess, sys, time, zipfile
 from pathlib import Path
@@ -25,6 +26,15 @@ OUT_DIR = REPO / "MOD/MinidoracatMiniMapModMapsFor42/Contents/mods/MinidoracatMi
 PZMAP = Path(r"D:\github\MinidoracatMapRendering\target\release\pzmap.exe")
 GAME = Path(r"D:\SteamLibrary\steamapps\common\ProjectZomboid")
 WORKSHOP = Path(r"D:\SteamLibrary\steamapps\workshop\content\108600")
+
+# 內容互補的鄰圖：兩張圖的 256 格外框重疊、內容各佔不同的 300 格（重疊 0）。pzmap 在本圖沒有內容的格畫原版，
+# 疊在上面的那顆會用原版影像蓋掉鄰圖。這裡列「本圖沒有內容、鄰圖有內容」的範圍（世界座標，右下排他），
+# 渲完改成透明讓下層（鄰圖或原版底圖）露出來。加一筆前先用 lotpack 確認本圖在範圍內 0 格有內容。
+CLEAR = {
+    # 路易斯維爾貨運港 × LV 國際機場（共用 49_17、49_18、50_18；港口的外框還含它沒有的 50_17）
+    "lvharbor.pyramid.zip": [(12600, 4352, 13056, 4800)],
+    "lvinternationalairport.pyramid.zip": [(12544, 4352, 12600, 4864), (12600, 4800, 13056, 4864)],
+}
 
 
 def lua_unescape(s):
@@ -177,6 +187,44 @@ def zip_bounds(path):
     return None
 
 
+def clear_rects(path, rects):
+    """把 rects 在每一層的像素改成透明（像素中心落在範圍內才清），回傳改寫的 tile 數；已透明的不重寫，可重複執行。"""
+    import io
+    from PIL import Image  # 只有這一步要 pillow；gen_map_resources 匯入本檔時不需要
+
+    bx, by = zip_bounds(path)[:2]
+    with zipfile.ZipFile(path) as z:
+        files = [(i, z.read(i.filename)) for i in z.infolist()]
+    changed = 0
+    for n, (info, data) in enumerate(files):
+        m = re.fullmatch(r"(\d+)/tile(\d+)x(\d+)\.png", info.filename)
+        if not m:
+            continue
+        scale, tx, ty = 2 ** int(m[1]), int(m[2]) * 256, int(m[3]) * 256
+        im = Image.open(io.BytesIO(data)).convert("RGBA")
+        dirty = False
+        for x0, y0, x1, y1 in rects:
+            # 像素 i 的中心是世界座標 b + (i + 0.5) * scale；第一個中心 ≥ v 的像素 = ceil((v - b) / scale - 0.5)
+            box = [max(0, -((scale - 2 * (v - b)) // (2 * scale)) - t)
+                   for v, b, t in ((x0, bx, tx), (y0, by, ty), (x1, bx, tx), (y1, by, ty))]
+            box[2], box[3] = min(box[2], im.width), min(box[3], im.height)
+            if box[0] < box[2] and box[1] < box[3] and im.crop(box).getchannel("A").getextrema() != (0, 0):
+                im.paste((0, 0, 0, 0), tuple(box))
+                dirty = True
+        if dirty:
+            buf = io.BytesIO()
+            im.save(buf, "PNG")
+            files[n] = (info, buf.getvalue())
+            changed += 1
+    if changed:
+        tmp = path.with_suffix(".tmp")
+        with zipfile.ZipFile(tmp, "w", zipfile.ZIP_STORED) as z:
+            for info, data in files:
+                z.writestr(info.filename, data)
+        tmp.replace(path)
+    return changed
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
@@ -185,7 +233,15 @@ def main():
                     help="額外的 workshop content 根目錄（例：steamcmd 下載處；同一項目多份副本取 acf 最新者）")
     ap.add_argument("--skip-fresh-min", type=int, default=0,
                     help="輸出 zip 在 N 分鐘內已更新者跳過（批次中斷後續跑用）")
+    ap.add_argument("--clear-only", action="store_true",
+                    help="不渲染，只對現有 zip 補做 CLEAR 的透明範圍（可配 --only）")
     args = ap.parse_args()
+
+    if args.clear_only:
+        for name, rects in CLEAR.items():
+            if args.only.lower() in name.lower():
+                print(f"{name}: 改寫 {clear_rects(OUT_DIR / name, rects)} 個 tile（0＝已經是透明）")
+        return
 
     entries = parse_registrations(LUA.read_text(encoding="utf-8"))
     idx, requires, alts = index_workshop([Path(p) for p in args.prefer])
@@ -243,6 +299,8 @@ def main():
             bad.append((p["zip"], f"bounds 不符：註冊 {p['bounds']} vs 輸出 {got}（Lua 註冊表需更新）"))
             print("  [警告] bounds 不符")
         ok += 1
+        if p["zip"] in CLEAR:
+            print(f"  清成透明 {CLEAR[p['zip']]}：{clear_rects(out, CLEAR[p['zip']])} 個 tile")
     print(f"\n完成 {ok}/{len(plan)}；問題 {len(bad)} 張；缺 mod {len(missing)} 張")
     for z, why in bad:
         print(f"  [問題] {z}: {why}")

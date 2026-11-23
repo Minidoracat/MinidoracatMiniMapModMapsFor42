@@ -653,11 +653,10 @@
     ]
   },
   "WheatfieldTown.pyramid.zip": {
-    "aliases": {
-      "dzbt_bullets": "armystorage"
-    },
+    "aliases": {},
     "ignored": [
       "AdventureBackpackLocker",
+      "dzbt_bullets",
       "dzbt_coffee",
       "dzbt_muxue",
       "dzbt_office",

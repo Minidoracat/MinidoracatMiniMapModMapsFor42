@@ -494,8 +494,9 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
         { zip = "ResearchFacilityB42Test.pyramid.zip", mapMod = "ResearchFacilityB42Test",
             bounds = { 5376, 12288, 6144, 13056 }, nameKey = "UI_MinidoracatMiniMapModMaps_ResearchFacility" },
         -- Louisville Shipping Port [B41/B42]（3149613879）：B42 讀 42/mod.info（require 四個 B42 材質包）與 common/ 的 8 cell
-        -- （x 48–50、y 17–19，缺 50_17）。和同作者的 LV 國際機場共用 49_17、49_18、50_18：機場那份含港口東側，港口那份
-        -- 沒有航廈西半，Map= 要把機場排在港口前面；港口排前時，外框內缺的 50_17 照原版畫進 zip，會蓋住機場的 50_17。
+        -- （x 48–50、y 17–19，缺 50_17）。和同作者的 LV 國際機場共用 49_17、49_18、50_18：內容照 300 格切開、逐格重疊 0，
+        -- 引擎逐格合併，兩種順序地塊都完整；兩顆 zip 在對方有內容的範圍是透明的（rebuild_pyramids.py CLEAR）。
+        -- Map= 仍要機場排前：港口排前時引擎丟掉機場 4 棟建築的房間定義，300 格 (42,15) 的機場街道也被裁。
         -- 作者的 streets.xml 是空的，蓋住 300 格 (41,15)、(41,16)、(42,15)、(42,16)：補充道路沿原版補回被裁的 Dixie Highway、
         -- Bearcamp Road、Tinsley Road、Oliver Road、Appletree Lane（同格的鐵道與港區道路不補）
         { zip = "lvharbor.pyramid.zip", mapMod = "SimonMDLVHarbor",

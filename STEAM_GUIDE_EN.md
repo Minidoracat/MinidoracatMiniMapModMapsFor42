@@ -267,7 +267,7 @@ For what the marks mean, see "Supported maps (A–M)".
 [*] [b]Kentucky Center Manor[/b]: overlaps Estate 39 on one cell and Wheatfield Town on two cells; choose one. Its required Dylan's Tile Pack is B41-only and does not load in B42; subscribe to the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754850359]B42 port of Dylan's tiles[/url] instead, or the game will not load this map.
 [*] [b]Li Shiya's Safehouse[/b]: overlaps two cells each of Erika's Furniture Store and SecretZ Checkpoint 1, and one cell of Nekomata Ridge; choose one. Whichever map comes later in the server map order (Map=) loses its part of the shared cells.
 [*] [b]Wheatfield Town[/b]: overlaps two cells of Kentucky Center Manor; choose one. Whichever map comes later in the server map order (Map=) loses its part of the shared cells.
-[*] [b]Louisville Shipping Port[/b]: shares three cells with LV International Airport by the same author. The two can be used together, but list the airport (lvinternationalairport) before the port (lvharbor) in the server map order (Map=); with the port first, the west half of the airport terminal disappears.
+[*] [b]Louisville Shipping Port[/b]: shares three cells with LV International Airport by the same author. The two can be used together, and the mini-map stitches them where they meet. List the airport (lvinternationalairport) before the port (lvharbor) in the server map order (Map=); with the port first, the game skips the room data of four buildings on the airport's west side.
 [*] [b]Atlas Underground Complex[/b]: surface imagery only (no underground floors); it partly overlaps several nearby maps, and using them together is not guaranteed.
 [/list]
 === ❓ FAQ
