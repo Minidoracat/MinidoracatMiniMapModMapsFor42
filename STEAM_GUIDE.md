@@ -2,7 +2,7 @@
 <!-- Steam 指南稿源（繁中）：MOD 的完整說明以本指南為準，簡介只放摘要。格式與同步方式見 pz-family-docs/release.md「完整說明：Steam 指南」 -->
 <!-- 支援地圖表來自 docs/road-data.md（road-scan 產生）；新增／移除地圖或道路資料變動時，同步更新本檔與 STEAM_GUIDE_EN.md -->
 <!-- 標題：📖 小地圖 - MOD 地圖擴充 完整說明：支援地圖、道路修正與衝突 -->
-<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 102 個地圖 MOD（134 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
+<!-- 摘要：Minidoracat 小地圖 MOD 地圖擴充的說明：怎麼開始用、支援的 105 個地圖 MOD（137 張地圖）與道路資料、本包修正或補上的道路、地圖衝突與重疊，以及常見問題。 -->
 === 🚀 快速上手
 [b]English version:[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3817840392]MiniMap - MOD Maps Guide[/url]
 
@@ -24,7 +24,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/olist]
 {{img:01-mod-map-outlines-zh.jpg}}
 === 🧰 支援地圖（A–M）
-共 102 個地圖 MOD、134 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
+共 105 個地圖 MOD、137 張地圖。想一次訂閱可以用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352]支援地圖收藏[/url]。
 [list]
 [*] [b]✅[/b]：原作者附有道路資料，地圖上有路名，可以搜尋與導航（數字是街道數）。
 [*] [b]🛠️[/b]：本包修正或補上了道路資料，見「本包補上的鎮內道路」與兩章「本包修正或補上的道路」。
@@ -92,6 +92,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Li Shiya's Safehouse[/td][td]李詩雅的安全屋[/td][td]🛠️[/td][/tr]
 [tr][td]LittleTownship[/td][td]小鎮區[/td][td]✅ 4 條[/td][/tr]
 [tr][td]Louisville Riverboat[/td][td]路易斯維爾河船[/td][td][/td][/tr]
+[tr][td]Louisville Shipping Port[/td][td]路易斯維爾貨運港[/td][td]🛠️[/td][/tr]
 [tr][td]LV International Airport[/td][td]路易斯維爾國際機場[/td][td]✅ 22 條[/td][/tr]
 [tr][td]Macon (TWD)[/td][td]梅肯（陰屍路）[/td][td][/td][/tr]
 [tr][td]Maplewood[/td][td]楓木林鎮[/td][td]✅ 12 條[/td][/tr]
@@ -118,6 +119,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Raccoon City[/td][td]浣熊市[/td][td][/td][/tr]
 [tr][td]Raven Creek[/td][td]渡鴉溪[/td][td]✅ 45 條 🛠️[/td][/tr]
 [tr][td]Raven Creek (Kardinal port)[/td][td]渡鴉溪（Kardinal 移植版）[/td][td]✅ 45 條[/td][/tr]
+[tr][td]Research Facility[/td][td]研究設施[/td][td][/td][/tr]
 [tr][td]Riverside Mansion (Unofficial)[/td][td]河畔豪宅（非官方修改版）[/td][td][/td][/tr]
 [tr][td]Rosewood Compound[/td][td]羅斯伍德宅院[/td][td][/td][/tr]
 [tr][td]RustBury[/td][td]鏽堡鎮[/td][td][/td][/tr]
@@ -164,6 +166,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [tr][td]Vila Z[/td][td]Z 村[/td][td][/td][/tr]
 [tr][td]West Point Expansion[/td][td]西點擴張區[/td][td]✅ 18 條[/td][/tr]
 [tr][td]West Point: The Bridge Citadel[/td][td]西點橋城[/td][td]✅ 4 條[/td][/tr]
+[tr][td]Wheatfield Town[/td][td]麥田鎮[/td][td]🛠️[/td][/tr]
 [tr][td]White Forest[/td][td]白森林[/td][td][/td][/tr]
 [tr][td]White Forest Ridge[/td][td]白森嶺[/td][td][/td][/tr]
 [tr][td]WILDSTEEL - Fort Spiffo[/td][td]斯皮福堡（WILDSTEEL）[/td][td]✅ 4 條[/td][/tr]
@@ -226,6 +229,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [list]
 [*] [b]Kentucky Center Manor（肯塔基中央莊園）[/b]：這張地圖蓋住莊園前原版 KY-163 約 300 格，以及 Old Logging Road 南段與 Angler Road，那幾段沒有導航資料，沿 KY-163 走要繞一大圈（約 700 格變成約 4,700 格）；本包沿原版路線補上，搜尋名稱是「肯塔基中央莊園 01 號路（小地圖補）」這種格式。
 [*] [b]Li Shiya's Safehouse（李詩雅的安全屋）[/b]：這張地圖蓋住原版 Tioga Road 約 300 格，那段沒有導航資料，沿 Tioga Road 走要繞一大圈（約 500 格變成約 4,100 格）；本包沿原版路線補上，搜尋名稱是「李詩雅的安全屋 01 號路（小地圖補）」。安全屋與別墅區內的道路沒有補。
+[*] [b]Louisville Shipping Port（路易斯維爾貨運港）[/b]：這張地圖蓋住原版 Dixie Highway（Route 31W）約 700 格，以及 Bearcamp Road、Tinsley Road、Oliver Road、Appletree Lane 各一段，那幾段沒有導航資料，沿 Dixie Highway 南北走要繞一大圈（約 1,100 格變成約 6,400 格）；本包沿原版路線補上，搜尋名稱是「路易斯維爾貨運港 01 號路（小地圖補）」這種格式。港區內的道路與鐵道沒有補。
 [*] [b]Moores Mechanic（摩爾修車廠）[/b]：這張地圖蓋住院區前原版 Riverside Road 約 300 格，那段沒有導航資料，沿 Riverside Road 走要繞一大圈（約 700 格變成約 5,800 格）；本包沿原版路線補上，搜尋名稱是「摩爾修車廠 01 號路（小地圖補）」。院區內的車道沒有補。
 [*] [b]Raven Creek（渡鴉溪）[/b]：
 [list]
@@ -234,6 +238,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [/list]
 [*] [b]Snake's Factory（Snake 工廠）[/b]：這張地圖蓋住原版 KY-60 東端通往工廠的最後約 300 格，那段沒有導航資料，導航會停在工廠前約 300 格；本包沿原版路線補上，搜尋名稱是「Snake 工廠 01 號路（小地圖補）」。
 [*] [b]The Walking Dead Prison（陰屍路監獄）[/b]：這張地圖蓋住監獄旁原版 Tioga Road 與 Magazine Road 各一段，那兩段沒有導航資料，沿 Tioga Road 南北走要繞一大圈（約 950 格變成約 5,300 格），也到不了監獄東門；本包沿原版路線補上，搜尋名稱是「陰屍路監獄 01 號路（小地圖補）」「陰屍路監獄 02 號路（小地圖補）」。
+[*] [b]Wheatfield Town（麥田鎮）[/b]：這張地圖蓋住鎮南原版 Old Logging Road 約 300 格，那段沒有導航資料，沿 Old Logging Road 走要繞一大圈（約 400 格變成約 4,100 格）；本包沿原版路線補上，搜尋名稱是「麥田鎮 01 號路（小地圖補）」。鎮內的道路沒有補。
 [*] [b]Willowbrook Bastion（柳溪堡壘，原版、2026 版與純地圖版）[/b]：這張地圖蓋住鎮南原版 KY-163 約 900 格，以及 Pony Trot Road、Buck Road 接上 KY-163 的南段，那幾段沒有導航資料，沿 KY-163 橫越要繞一大圈（約 1,700 格變成約 5,900 格）；本包沿原版路線補上，搜尋名稱是「柳溪堡壘 01 號路（小地圖補）」這種格式。2026 版的 Buck Road 被原作者往西移，補的路跟著實際路面走。鎮內的道路沒有補。
 [*] [b]Muldraugh 1993（馬爾德勞 1993）[/b]：和官方地圖完全相同的 913 個重複路名只隱藏顯示，導航不受影響。
 [/list]
@@ -259,8 +264,10 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3763914102
 [*] [b]Moores Mechanic[/b]：與 Chinatown Expansion 重疊一個地塊、與 Erika's Furniture Store 重疊兩個地塊，請擇一；院區跨這幾個地塊，伺服器地圖順序（Map=）排在後面的那張，在重疊地塊的內容會不見。Chinatown 只相鄰、不重疊。
 [*] [b]Delta Creek Munitions[/b]：整張落在 DuoDuo City 範圍內，另與 Big Bear Lake 重疊兩個地塊，請擇一。
 [*] [b]Muldraugh Military Base[/b]：與 Raccoon City 重疊三個地塊、與 Willowbrook Bastion（原版與 2026 版）重疊一個地塊，請擇一。
-[*] [b]Kentucky Center Manor[/b]：與 Estate 39 重疊一個地塊，請擇一。必要項目 Dylan's Tile Pack 只有 B41 版、B42 載不入，要改訂閱 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754850359]B42 移植版 Dylan's tiles[/url]，遊戲才會載入這張圖。
+[*] [b]Kentucky Center Manor[/b]：與 Estate 39 重疊一個地塊、與 Wheatfield Town 重疊兩個地塊，請擇一。必要項目 Dylan's Tile Pack 只有 B41 版、B42 載不入，要改訂閱 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3754850359]B42 移植版 Dylan's tiles[/url]，遊戲才會載入這張圖。
 [*] [b]Li Shiya's Safehouse[/b]：與 Erika's Furniture Store、SecretZ Checkpoint 1 各重疊兩個地塊、與 Nekomata Ridge 重疊一個地塊，請擇一；伺服器地圖順序（Map=）排在後面的那張，在重疊地塊的內容會不見。
+[*] [b]Wheatfield Town[/b]：與 Kentucky Center Manor 重疊兩個地塊，請擇一；伺服器地圖順序（Map=）排在後面的那張，在重疊地塊的內容會不見。
+[*] [b]Louisville Shipping Port[/b]：與同作者的 LV International Airport 共用三個地塊，兩張可以一起用，但伺服器地圖順序（Map=）要把機場（lvinternationalairport）排在港口（lvharbor）前面；港口排前面時，機場航廈的西半會不見。
 [*] [b]Atlas Underground Complex[/b]：只有地表圖、沒有地下樓層；和附近多張地圖部分重疊，不保證能一起用。
 [/list]
 === ❓ 常見問題

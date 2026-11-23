@@ -19,7 +19,7 @@
 
 ## 收錄地圖
 
-共 **134 張**（102 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
+共 **137 張**（105 個 Workshop 項目；亦見 [Steam 收藏](https://steamcommunity.com/sharedfiles/filedetails/?id=3766382352)）。
 支援新地圖申請與圖像問題回報請走 [GitHub Issue 表單](https://github.com/Minidoracat/MinidoracatMiniMapModMapsFor42/issues/new/choose)。
 
 **街名翻譯**：下列 **26 組**地圖資料提供繁中／簡中／
@@ -48,7 +48,8 @@
 - **補充道路**：作者沒放進道路資料的路由本包依作者自己的世界地圖補上（目前康斯鎮 37 條、貝德福德瀑布 74 條、奧克郡 84 條）；
   地圖蓋住原版道路、導航被截斷的路段則沿原版路線補上（渡鴉溪 1 條、陰屍路監獄 2 條、康斯鎮 1 條、
   科里爾登 2 條、科里爾登 2026 移植版 6 條、Snake 工廠 1 條、貝德福德瀑布 1 條、JIB 花生醬工廠 4 條、奧克郡 4 條、摩爾修車廠 1 條、
-  德爾塔溪軍火庫 2 條、最後一刻末日地堡 3 條、肯塔基中央莊園 3 條、柳溪堡壘三個版本各 3 條、四葉草湖畔農莊 1 條、李詩雅的安全屋 1 條）；德克丹 Map Fix 的道路資料漏掉的
+  德爾塔溪軍火庫 2 條、最後一刻末日地堡 3 條、肯塔基中央莊園 3 條、柳溪堡壘三個版本各 3 條、四葉草湖畔農莊 1 條、李詩雅的安全屋 1 條、
+  麥田鎮 1 條、路易斯維爾貨運港 5 條）；德克丹 Map Fix 的道路資料漏掉的
   Brandenburg 接橋與東南兩處斷點沿實際路面補上 3 條，分隔路拆線的對向車道 5 條；大熊湖 KY-18 的南側車道、
   分隔帶缺口與 Standfield Cutoff 北端接線 6 條。
   路名固定帶「(MiniMap)」／「（小地圖補）」，一看就知道不是作者取的名字；可搜尋、可導航。
@@ -196,6 +197,9 @@
 | 路易斯維爾國際機場 | `SimonMDLVInternationalAirport` | 12544,4096 – 13568,4864 |
 | 馬爾德勞軍事基地 | `MMB_B42` | 9472,9984 – 9984,10752 |
 | 李詩雅的安全屋 | `modid(李诗雅的安全屋)` | 11520,7936 – 12032,8448 |
+| 麥田鎮 | `WheatfieldTown` | 7936,9216 – 8448,9728 |
+| 研究設施 | `ResearchFacilityB42Test` | 5376,12288 – 6144,13056 |
+| 路易斯維爾貨運港 | `SimonMDLVHarbor` | 12288,4352 – 13056,5120 |
 
 ### 新增地圖的限制與衝突
 
@@ -208,10 +212,13 @@
 - [Moores Mechanic [B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3699636604)（原作者 Auxhu）：和唐人街擴張區（1 格）、艾莉卡家具店（2 格）重疊，請擇一；院區跨這幾格，哪張排在 `Map=` 前面，另一張在重疊格的內容就不見。唐人街本體只相鄰、不重疊。作者沒附 `streets.xml`，沿原版補回被裁的 Riverside Road 一段；院區內車道不補，被作者拿掉的鐵道也不補。不加入全地圖測試組合，掛載與補充道路用 E2E 單圖情境 `moores-mp` 驗。
 - [Delta-Creek-Munitions-B42 Alpha](https://steamcommunity.com/sharedfiles/filedetails/?id=3665994726)：整張落在多多市範圍內，另和大熊湖重疊 2 格，請擇一。作者沒附 `streets.xml`，沿原版補回被裁的 Trinca Road、Jasper Road；園區內道路不補。不加入全地圖測試組合，掛載與補充道路用 E2E 情境 `lv-delta-bunker-mmb-mp` 驗。
 - [Bunker: Last Minute Prepper (B42)](https://steamcommunity.com/sharedfiles/filedetails/?id=3428165477)：和已收錄地圖都不重疊，南緣緊鄰路易斯維爾國際機場。作者沒附 `streets.xml`，沿原版補回被裁的 Louisville Road、Corn Road、Cob Road。
-- [LV International Airport [B41/B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3045726312)（原作者 Simon MD）：和已收錄地圖都不重疊。作者有附道路資料（22 條，本包翻譯 19 個路名）；原版 Louisville Road 經過機場的一段被作者改成跑道，本包不補。範圍框西北角一格（49_16）不是本圖地塊，小地圖在那裡畫原版影像。
+- [LV International Airport [B41/B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3045726312)（原作者 Simon MD）：和同作者的路易斯維爾貨運港共用 3 個地塊，兩張一起用時 `Map=` 要把機場排在港口前面（見下方貨運港那條）；和其他已收錄地圖都不重疊。作者有附道路資料（22 條，本包翻譯 19 個路名）；原版 Louisville Road 經過機場的一段被作者改成跑道，本包不補。範圍框西北角一格（49_16）不是本圖地塊，小地圖在那裡畫原版影像。
 - [Muldraugh Military Base B42](https://steamcommunity.com/sharedfiles/filedetails/?id=3783856502)（Sector_Jazza 原作、B42 重新上傳）：和浣熊市（3 格）、柳溪堡壘兩版（1 格）重疊，請擇一。作者沒附 `streets.xml`，基地內道路不補。不加入全地圖測試組合。
-- [Kentucky Center Manor_Renovation_B42](https://steamcommunity.com/sharedfiles/filedetails/?id=3494693499)：和 Estate 39 有 1 個地塊重疊（x 8192–8448、y 9728–9984），請擇一。作者沒附 `streets.xml`，地圖又蓋住原版 KY-163、Old Logging Road 南段與 Angler Road，本包沿原版補回這 3 段。必要項目 Dylan's Tile Pack（2599752664）只有 B41 格式、B42 載不入，要改訂閱 B42 移植版 [B42] Dylan's tiles（3754850359），否則遊戲不載入這張圖。曾在 v0.10.1 因無法公開存取移除，2026-10-28 恢復公開，等到 Dylan's 有 B42 版後重新收錄。不加入全地圖測試組合（maptest 已有 Estate 39），掛載與補充道路用 E2E 情境驗。
+- [Kentucky Center Manor_Renovation_B42](https://steamcommunity.com/sharedfiles/filedetails/?id=3494693499)：和 Estate 39 有 1 個地塊重疊（x 8192–8448、y 9728–9984）、和麥田鎮有 2 個地塊重疊（x 7936–8448、y 9472–9728），請擇一。作者沒附 `streets.xml`，地圖又蓋住原版 KY-163、Old Logging Road 南段與 Angler Road，本包沿原版補回這 3 段。必要項目 Dylan's Tile Pack（2599752664）只有 B41 格式、B42 載不入，要改訂閱 B42 移植版 [B42] Dylan's tiles（3754850359），否則遊戲不載入這張圖。曾在 v0.10.1 因無法公開存取移除，2026-10-28 恢復公開，等到 Dylan's 有 B42 版後重新收錄。不加入全地圖測試組合（maptest 已有 Estate 39），掛載與補充道路用 E2E 情境驗。
 - [Li Shiya's Safehouse & Jefferson Foothills Villa District](https://steamcommunity.com/sharedfiles/filedetails/?id=3761618628)（原作者 走路也要卖萌）：和艾莉卡家具店（2 格）、SecretZ 一號檢查站（2 格）、貓又嶺（1 格）重疊，請擇一；哪張排在 `Map=` 前面，另一張在重疊格的內容就不見。作者沒附 `streets.xml`，沿原版補回被裁的 Tioga Road 一段；安全屋與別墅區內道路不補。42.22 少了部分地面圖磚，第 0 層約 0.2% 像素透明、露出原版底圖（使用者 2026-11-15 同意照現況收錄）。不加入全地圖測試組合，掛載與補充道路用 E2E 單圖情境 `lishiya-mp` 驗。
+- [WheatfieldTown](https://steamcommunity.com/sharedfiles/filedetails/?id=3835967037)（原作者 掉渣饼团）：和肯塔基中央莊園重疊 2 個地塊（x 7936–8448、y 9472–9728，兩邊都有建築），請擇一；哪張排在 `Map=` 前面，另一張在重疊格的內容就不見。作者沒附 `streets.xml`，沿原版補回被裁的 Old Logging Road 一段；鎮內道路不補。作者頁面的必要項目列了 Rocco's Tiles，但 mod.info 沒有 `require=`（作者說明材質已內建），本包照 mod.info 渲染、不追蹤它。掛載與補充道路用 E2E 情境 `wheat-rf-lvport-mp` 驗。
+- [Research Facility B42 Test](https://steamcommunity.com/sharedfiles/filedetails/?id=3826245228)（SCP-Vandelli 移植，原作 StormFather）：和已收錄地圖都不重疊。必要項目的 mod id `UnofficialMappersCommunityTilePack` 有兩個 Workshop 項目提供：Community Tile Pack（3628736763）與作者頁面列的 Community Tiles Pack B42 Redux Test（3827415627），2026-11-23 比對兩者的材質檔相同，本包追蹤前者。作者沒附 `streets.xml`，沒有原版道路被裁，園區內道路不補。42.22 少了部分地面圖磚，第 0 層 445 個像素（約 0.08%）透明、露出原版底圖（同李詩雅的安全屋，照現況收錄）。
+- [Louisville Shipping Port [B41/B42]](https://steamcommunity.com/sharedfiles/filedetails/?id=3149613879)（原作者 Simon MD）：和同作者的路易斯維爾國際機場共用 3 個地塊（x 12544–13056、y 4352–4864 裡的 49_17、49_18、50_18）。兩張可以一起用，`Map=` 要把機場（`lvinternationalairport`）排在港口（`lvharbor`）前面：機場那份地塊含港口東側，港口那份沒有機場航廈的西半；港口排前面時航廈西半會不見，小地圖還會在 50_17 那格用原版影像蓋住機場。作者的 `streets.xml` 是空的，沿原版補回被裁的 Dixie Highway（Route 31W）、Bearcamp Road、Tinsley Road、Oliver Road、Appletree Lane 共 5 條；港區內道路與鐵道不補。不加入全地圖測試組合，掛載、順序與補充道路用 E2E 情境 `wheat-rf-lvport-mp` 驗。
 
 ### 已下架地圖（記錄保留、每日追蹤不含）
 

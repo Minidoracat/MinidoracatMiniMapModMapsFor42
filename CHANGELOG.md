@@ -1,5 +1,26 @@
 # Changelog
 
+## [42.22.2-0.30.0] - 2026-11-23
+
+### 新增
+
+- **新增支援麥田鎮（WheatfieldTown，玩家許願）**：KY-163 公路北側、Old Logging Road 旁的一座小鎮，四周是農田，東邊有一條小河。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點。這張圖和肯塔基中央莊園重疊 2 格，請擇一：伺服器地圖順序（`Map=`）排在後面的那張，重疊格的內容會不見。
+- **補上麥田鎮南側的導航資料**：這張圖蓋住原版 Old Logging Road 約 300 格，那段原本沒有導航資料，沿 Old Logging Road 走要繞一大圈（約 400 格變成約 4,100 格）。本包沿原版路線補上，搜尋名稱是「麥田鎮 01 號路（小地圖補）」（英文「Wheatfield Town Rd 01 (MiniMap)」）。鎮內的道路沒有補。
+- **新增支援研究設施（Research Facility B42 Test，玩家許願）**：羅斯伍德西邊的一座研究園區，有研究大樓、衛星發射場、直升機停機坪、軍事哨站與員工住的小鎮。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點。和已收錄的地圖都不重疊。少數地面圖磚在目前的遊戲版本（42.22）沒有圖片，小地圖上那幾處（約全圖的 0.08%，主要是園區西側一棟建物的外緣）是透明的，會露出原版底圖。
+- **新增支援路易斯維爾貨運港（Louisville Shipping Port，玩家許願）**：路易斯維爾國際機場西邊、河岸上的貨運港，有碼頭、貨輪與倉庫。啟用後小地圖會顯示它的地圖圖片、框線與名稱，也會標出資源點。這張圖和同作者的路易斯維爾國際機場共用 3 格，兩張可以一起用，但伺服器地圖順序（`Map=`）要把機場（`lvinternationalairport`）排在港口（`lvharbor`）前面：港口排前面時，機場航廈的西半會不見。
+- **補上路易斯維爾貨運港一帶的導航資料**：這張圖蓋住原版 Dixie Highway（Route 31W）約 700 格，以及 Bearcamp Road、Tinsley Road、Oliver Road、Appletree Lane 各一段，那幾段原本沒有導航資料，沿 Dixie Highway 南北走要繞一大圈（約 1,100 格變成約 6,400 格）。本包沿原版路線補上 5 條，搜尋名稱是「路易斯維爾貨運港 01 號路（小地圖補）」這種格式（英文「Louisville Shipping Port Rd 01 (MiniMap)」）。港區內的道路與鐵道沒有補。
+
+### 更新
+
+- **8 個地圖 MOD 的小地圖圖像更新**：原作者 11-16 到 11-20 更新了 Snake's ModPack（軍事複合區、豪宅、SnakeVille 一號區、廢棄船與三處修車廠）、蕁麻鎮、銀杉谷 2.0（含公路段）、綠葉鎮、VaultTec 避難所三處、唐人街、唐人街擴張區、日落湖鎮，主要是植被與部分建築的變動。小地圖圖像已依最新資料重新產生，資源點跟著更新（唐人街、唐人街擴張區、綠葉鎮、日落湖鎮、VaultTec 避難所－羅斯伍德有增減或範圍調整）。範圍、名稱、街名與導航資料不變。
+- **雛菊郡、Snake Numark 複合區維持原圖**：原作者也更新了這兩張，但依最新資料重新產生後會多出透明的小洞（遊戲 42.22 缺的地面圖磚），所以留用原本的圖像。雛菊郡的資源點照最新資料更新（多一處雜貨）。
+
+### 備註
+
+- 更新後請重新啟動遊戲。
+
+> 技術要點：三張新圖都用 steamcmd 匿名下載、`rebuild_pyramids.py` 渲染，bounds＝lotheader cell min/max＝輸出 `pyramid.txt`。**WheatfieldTown** 3835967037（作者 掉渣饼团，mod id `WheatfieldTown`，沒有 `require=`；地圖資料夾 `WheatfieldTown`，4 cell x 31–32 × y 36–37）：sprites skipped 10（`floors_overlay_wood_01_*`），第 0 層透明 0；和肯塔基中央莊園共用 31_37、32_37。補充道路 `wheatfield-town` 01（`vanilla-continuation-v1`，寬 7，(8050,9508.5)→(8299.5,9700)，中線取樣 425/425）；離線 NavCore (8050,9508.5)→(8299.5,9700) 4,139→426。房名審查：`dzbt_bullets`→`armystorage`，其餘 5 個 ignored；資源點 26、停車場 8 區。**Research Facility B42 Test** 3826245228（SCP-Vandelli 移植，mod id `ResearchFacilityB42Test`，`require=UnofficialMappersCommunityTilePack`；9 cell x 21–23 × y 48–50）：sprites skipped 885（42.22 缺的 `floors_exterior_natural_01_0/1/2/18/19` 838 個、`location_business_office_generic_01_*` 47 個），第 0 層 589,824 像素有 445 個透明，照李詩雅的安全屋先例收錄；蓋住的 4 個 300 格裡沒有原版街道。作者頁面的必要項目是同 mod id 的 Community Tiles Pack B42 Redux Test（3827415627），`common/media` 141 個檔和 Community Tile Pack（3628736763）雜湊相同，追蹤後者。資源點 23、停車場 16 區。**Louisville Shipping Port** 3149613879（Simon MD，mod id `SimonMDLVHarbor`，B42 的 `42/mod.info` require simonMDsTiles、melos、Perts、Community 四個 B42 材質包；地圖資料夾 `lvharbor`，8 cell x 48–50 × y 17–19 缺 50_17）：sprites skipped 2，透明 0；和 LV 國際機場共用 49_17、49_18、50_18，兩邊檔案都不同。補充道路 `lv-shipping-port` 5 條（Dixie Highway 寬 14 取樣 886/905、Bearcamp 347/347、Tinsley 500/500、Oliver 268/268、Appletree 84/84）；離線 NavCore (12681,5300)→(12513,4300) 只開港口 6,381→1,106，機場排前一起開 8,048→1,105；機場的 Tinsley Road (12400,4637)→(12904,4655) 在港口也開時 5,825→359。被蓋住的 300 格照主 MOD `makeWinnerOf` 的規則算（原點 lot 與 (+1,+1) lot 都在）：港口是 (41,15)、(41,16)、(42,15)、(42,16)。資源點 40、停車場 14 區。`check_map_conflicts`：三張新圖和鄰圖兩兩各排前後共 44 條 `Map=` 都是 [OK]。追蹤器 #86–#95：#86 安瑞斯鎮免重渲、資源點不變；其餘重渲 20 顆，和上一版比第 0 層差 >2 的像素：銀杉谷 2.0－公路 33,651、蕁麻鎮 13,874、唐人街 11,718、唐人街擴張區 8,839、日落湖鎮 7,854、Snake 豪宅 4,549、銀杉谷 2.0 3,297、Snake 軍事複合區 3,285、三處修車廠 1,108／1,913／1,297、VaultTec 524／1,666／1,070、綠葉鎮 1,118、SnakeVille 一號區 222、廢棄船 4；Snake 工廠、SnakeVille 零號區、VaultTec 聯絡道路 0（留原檔）。新破洞（舊 alpha>0、新 alpha=0）：Numark 複合區 12 像素（`floors_exterior_natural_01_48`）、雛菊郡 1 像素，照 2026-11-10 的裁定留舊圖。街名、道路修正、補充道路的 verify 都沒有漂移。
+
 ## [42.22.2-0.29.0] - 2026-11-15
 
 ### 新增

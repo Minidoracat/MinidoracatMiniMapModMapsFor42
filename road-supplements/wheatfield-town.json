@@ -1,0 +1,45 @@
+{
+  "dataset": "wheatfield-town",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3835967037",
+    "map_mod": "WheatfieldTown",
+    "map_dir": "WheatfieldTown",
+    "streets_xml_sha256": null,
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "a7ac986b6e15926edae34eb8364a969b67979690d6c8665c17170d98ea495b43",
+    "captured": "2026-11-23",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Wheatfield Town",
+    "ch": "麥田鎮",
+    "cn": "麦田镇",
+    "jp": "ウィートフィールドタウン"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 7,
+      "points": [
+        8050,
+        9508.5,
+        8271.5,
+        9508.5,
+        8285.5,
+        9516,
+        8293,
+        9523,
+        8299.5,
+        9536,
+        8299.5,
+        9700
+      ],
+      "evidence": {
+        "samples": 425,
+        "on_road": 425
+      }
+    }
+  ],
+  "retired": []
+}

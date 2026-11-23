@@ -1,0 +1,50 @@
+<streets version="1">
+    <street name="Louisville Shipping Port Rd 01 (MiniMap)" width="14">
+        <points>
+            <point x="12681.0" y="5200.0"/>
+            <point x="12681.5" y="4862.5"/>
+            <point x="12666.0" y="4831.0"/>
+            <point x="12650.0" y="4815.0"/>
+            <point x="12620.5" y="4800.0"/>
+            <point x="12566.0" y="4800.0"/>
+            <point x="12546.0" y="4790.0"/>
+            <point x="12524.5" y="4768.5"/>
+            <point x="12513.0" y="4746.0"/>
+            <point x="12513.0" y="4400.0"/>
+        </points>
+    </street>
+    <street name="Louisville Shipping Port Rd 02 (MiniMap)" width="7">
+        <points>
+            <point x="12790.5" y="5200.0"/>
+            <point x="12790.5" y="5041.0"/>
+            <point x="12803.0" y="5016.0"/>
+            <point x="12807.0" y="5012.0"/>
+            <point x="12832.0" y="4999.5"/>
+            <point x="12960.0" y="4999.5"/>
+        </points>
+    </street>
+    <street name="Louisville Shipping Port Rd 03 (MiniMap)" width="6">
+        <points>
+            <point x="12557.0" y="4637.0"/>
+            <point x="12775.0" y="4637.0"/>
+            <point x="12840.5" y="4669.0"/>
+            <point x="12868.0" y="4696.0"/>
+            <point x="12900.0" y="4760.0"/>
+            <point x="12900.0" y="4860.0"/>
+        </points>
+    </street>
+    <street name="Louisville Shipping Port Rd 04 (MiniMap)" width="6">
+        <points>
+            <point x="12560.0" y="4468.0"/>
+            <point x="12554.0" y="4480.0"/>
+            <point x="12554.0" y="4734.0"/>
+        </points>
+    </street>
+    <street name="Louisville Shipping Port Rd 05 (MiniMap)" width="6">
+        <points>
+            <point x="12707.0" y="5112.0"/>
+            <point x="12733.0" y="5099.0"/>
+            <point x="12787.0" y="5099.0"/>
+        </points>
+    </street>
+</streets>

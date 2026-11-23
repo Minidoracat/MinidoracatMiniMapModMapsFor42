@@ -129,7 +129,10 @@ $MapModExclude = @(
     'Kentucky Center Manor_Renovation',
     # 李詩雅的安全屋：4 個 cell 都和已在 maptest 的艾莉卡家具店（45_31、45_32）、SecretZ 一號檢查站（46_31、46_32）
     # 整格重疊，安全屋院區跨 45_32／46_32。掛載與補充道路用 E2E 單圖情境 lishiya-mp 驗。
-    'modid(李诗雅的安全屋)'
+    'modid(李诗雅的安全屋)',
+    # Louisville Shipping Port：和已在 maptest 的 LV 國際機場共用 49_17、49_18、50_18，要機場排在前面才對
+    # （機場那份含港口東側）。掛載、順序與補充道路用 E2E 情境 wheat-rf-lvport-mp 驗。
+    'SimonMDLVHarbor'
 )
 
 # 資料夾層排除：個別 mod 內不該上 B42 伺服器的地圖資料夾（加入時過濾＋自癒拔除）

@@ -132,5 +132,8 @@
     "UI_MinidoracatMiniMapModMaps_LastMinutePrepper": "Bunker: Last Minute Prepper",
     "UI_MinidoracatMiniMapModMaps_LVInternationalAirport": "LV International Airport",
     "UI_MinidoracatMiniMapModMaps_MuldraughMilitaryBase": "Muldraugh Military Base",
-    "UI_MinidoracatMiniMapModMaps_LiShiyaSafehouse": "Li Shiya's Safehouse"
+    "UI_MinidoracatMiniMapModMaps_LiShiyaSafehouse": "Li Shiya's Safehouse",
+    "UI_MinidoracatMiniMapModMaps_WheatfieldTown": "Wheatfield Town",
+    "UI_MinidoracatMiniMapModMaps_ResearchFacility": "Research Facility",
+    "UI_MinidoracatMiniMapModMaps_LVShippingPort": "Louisville Shipping Port"
 }

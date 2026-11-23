@@ -1,7 +1,7 @@
 {
   "zip": "Daisy County.pyramid.zip",
   "mapDir": "Daisy County",
-  "rawRecords": 191,
+  "rawRecords": 185,
   "aliases": {"Dachui": "toolstore", "Daojudian": "knifestore", "Famugongju": "toolstore", "Feiche": "toolstore", "Feiliaogongchang": "farmstorage", "Guanzhuangshiwu": "grocery", "Matongchuaizidian": "departmentstore", "Shitou": "factory", "Sugarcane": "farmstorage", "Teshuyaopin": "pharmacy", "Tiaoweipin": "grocery", "Xianjing": "outdoorsupply", "Yangjichang": "farmstorage"},
   "cells300": [[33, 24], [34, 24], [33, 25], [34, 25], [33, 26], [34, 26]],
   "entries": [
@@ -34,6 +34,7 @@
     {"cat": "grocery", "rects": [[9997, 7394, 9, 5], [9997, 7391, 4, 3], [10001, 7391, 6, 2], [10003, 7399, 4, 2], [10001, 7393, 5, 1]], "bbox": [9997, 7372, 10, 38], "underground": false},
     {"cat": "grocery", "rects": [[10030, 7872, 20, 20], [10050, 7862, 10, 30], [10030, 7862, 13, 10]], "bbox": [10030, 7862, 30, 30], "underground": false},
     {"cat": "grocery", "rects": [[10031, 7421, 20, 20]], "bbox": [10031, 7421, 20, 20], "underground": false},
+    {"cat": "grocery", "rects": [[10136, 7685, 6, 9]], "bbox": [10136, 7685, 6, 9], "underground": false},
     {"cat": "grocery", "rects": [[10173, 7627, 8, 4]], "bbox": [10173, 7627, 8, 4], "underground": false},
     {"cat": "grocery", "rects": [[10173, 7672, 4, 5]], "bbox": [10173, 7672, 4, 5], "underground": false},
     {"cat": "grocery", "rects": [[10173, 7680, 4, 5]], "bbox": [10173, 7680, 4, 5], "underground": false},
@@ -83,7 +84,7 @@
     {"cat": "tools", "rects": [[9963, 7427, 21, 16], [9984, 7427, 19, 14], [9969, 7443, 15, 3]], "bbox": [9963, 7427, 40, 19], "underground": false},
     {"cat": "tools", "rects": [[10219, 7362, 10, 10], [10219, 7357, 5, 5]], "bbox": [10219, 7357, 10, 15], "underground": false},
     {"cat": "tools", "rects": [[10334, 7893, 4, 2]], "bbox": [10334, 7893, 20, 9], "underground": false},
-    {"cat": "tools", "rects": [[10372, 7978, 24, 5], [10372, 7983, 20, 4], [10372, 7973, 15, 5], [10372, 7987, 8, 4], [10386, 7987, 6, 4]], "bbox": [10372, 7973, 28, 18], "underground": false},
+    {"cat": "tools", "rects": [[10372, 7978, 24, 5], [10372, 7983, 20, 4], [10372, 7973, 15, 5], [10372, 7987, 8, 4], [10386, 7987, 6, 4]], "bbox": [10366, 7973, 34, 18], "underground": false},
     {"cat": "tools", "rects": [[10434, 8008, 12, 20]], "bbox": [10434, 8008, 12, 32], "underground": false},
     {"cat": "tools", "rects": [[10434, 8046, 12, 5], [10439, 8042, 7, 4]], "bbox": [10434, 8042, 12, 9], "underground": false}
   ],

@@ -1,0 +1,129 @@
+{
+  "dataset": "lv-shipping-port",
+  "schemaVersion": 1,
+  "source": {
+    "workshop_id": "3149613879",
+    "map_mod": "SimonMDLVHarbor",
+    "map_dir": "lvharbor",
+    "streets_xml_sha256": "9ec911cda8aff232daff614cf64789dc7a955a0252c8440ddca8d133066b0244",
+    "upstream_street_count": 0,
+    "worldmap_xml_sha256": "d8c89f6186503cef8a98840597758edf216fc937540c5ed7ea8b5bfcac9cf02f",
+    "captured": "2026-11-23",
+    "method": "vanilla-continuation-v1"
+  },
+  "label": {
+    "en": "Louisville Shipping Port",
+    "ch": "路易斯維爾貨運港",
+    "cn": "路易斯维尔货运港",
+    "jp": "ルイビル貨物港"
+  },
+  "roads": [
+    {
+      "no": 1,
+      "width": 14,
+      "points": [
+        12681,
+        5200,
+        12681.5,
+        4862.5,
+        12666,
+        4831,
+        12650,
+        4815,
+        12620.5,
+        4800,
+        12566,
+        4800,
+        12546,
+        4790,
+        12524.5,
+        4768.5,
+        12513,
+        4746,
+        12513,
+        4400
+      ],
+      "evidence": {
+        "samples": 905,
+        "on_road": 886
+      }
+    },
+    {
+      "no": 2,
+      "width": 7,
+      "points": [
+        12790.5,
+        5200,
+        12790.5,
+        5041,
+        12803,
+        5016,
+        12807,
+        5012,
+        12832,
+        4999.5,
+        12960,
+        4999.5
+      ],
+      "evidence": {
+        "samples": 347,
+        "on_road": 347
+      }
+    },
+    {
+      "no": 3,
+      "width": 6,
+      "points": [
+        12557,
+        4637,
+        12775,
+        4637,
+        12840.5,
+        4669,
+        12868,
+        4696,
+        12900,
+        4760,
+        12900,
+        4860
+      ],
+      "evidence": {
+        "samples": 500,
+        "on_road": 500
+      }
+    },
+    {
+      "no": 4,
+      "width": 6,
+      "points": [
+        12560,
+        4468,
+        12554,
+        4480,
+        12554,
+        4734
+      ],
+      "evidence": {
+        "samples": 268,
+        "on_road": 268
+      }
+    },
+    {
+      "no": 5,
+      "width": 6,
+      "points": [
+        12707,
+        5112,
+        12733,
+        5099,
+        12787,
+        5099
+      ],
+      "evidence": {
+        "samples": 84,
+        "on_road": 84
+      }
+    }
+  ],
+  "retired": []
+}

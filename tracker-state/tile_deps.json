@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T14:32:24Z",
+  "generated_at": "2026-11-23T04:07:57Z",
   "items": {
     "2384329562": {
       "mod_ids": [
@@ -10,6 +10,11 @@
           "map_mod": "PZ_ACSM_LV",
           "workshop_id": "3589905072",
           "zip": "Path of Zenith, Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "SimonMDLVHarbor",
+          "workshop_id": "3149613879",
+          "zip": "lvharbor.pyramid.zip"
         },
         {
           "map_mod": "SimonMDLVInternationalAirport",
@@ -67,6 +72,11 @@
           "map_mod": "Sunset Lake Town B42 version",
           "workshop_id": "3752069346",
           "zip": "Sunset Lake Town B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "SimonMDLVHarbor",
+          "workshop_id": "3149613879",
+          "zip": "lvharbor.pyramid.zip"
         },
         {
           "map_mod": "SimonMDLVInternationalAirport",
@@ -131,6 +141,11 @@
           "map_mod": "Sunset Lake Town B42 version",
           "workshop_id": "3752069346",
           "zip": "Sunset Lake Town B42 version.pyramid.zip"
+        },
+        {
+          "map_mod": "SimonMDLVHarbor",
+          "workshop_id": "3149613879",
+          "zip": "lvharbor.pyramid.zip"
         },
         {
           "map_mod": "SimonMDLVInternationalAirport",
@@ -198,6 +213,11 @@
           "map_mod": "tikitown",
           "workshop_id": "3037854728",
           "zip": "Tikitown.pyramid.zip"
+        },
+        {
+          "map_mod": "SimonMDLVHarbor",
+          "workshop_id": "3149613879",
+          "zip": "lvharbor.pyramid.zip"
         },
         {
           "map_mod": "SimonMDLVInternationalAirport",
@@ -419,6 +439,11 @@
           "zip": "Nettle Township.pyramid.zip"
         },
         {
+          "map_mod": "ResearchFacilityB42Test",
+          "workshop_id": "3826245228",
+          "zip": "ResearchFacilityB42Test.pyramid.zip"
+        },
+        {
           "map_mod": "Sunset Lake Town B42 version",
           "workshop_id": "3752069346",
           "zip": "Sunset Lake Town B42 version.pyramid.zip"
@@ -442,6 +467,11 @@
           "map_mod": "VaultTec B42 version",
           "workshop_id": "3697082724",
           "zip": "VaultTec_road.pyramid.zip"
+        },
+        {
+          "map_mod": "SimonMDLVHarbor",
+          "workshop_id": "3149613879",
+          "zip": "lvharbor.pyramid.zip"
         },
         {
           "map_mod": "SimonMDLVInternationalAirport",
@@ -566,6 +596,11 @@
           "map_mod": "PZ_ACSM_LV",
           "workshop_id": "3589905072",
           "zip": "Path of Zenith, Louisville.pyramid.zip"
+        },
+        {
+          "map_mod": "SimonMDLVHarbor",
+          "workshop_id": "3149613879",
+          "zip": "lvharbor.pyramid.zip"
         },
         {
           "map_mod": "SimonMDLVInternationalAirport",

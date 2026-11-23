@@ -132,5 +132,8 @@
     "UI_MinidoracatMiniMapModMaps_LastMinutePrepper": "벙커: 라스트 미닛 프레퍼",
     "UI_MinidoracatMiniMapModMaps_LVInternationalAirport": "루이빌 국제공항",
     "UI_MinidoracatMiniMapModMaps_MuldraughMilitaryBase": "멀드로 군사 기지",
-    "UI_MinidoracatMiniMapModMaps_LiShiyaSafehouse": "리스야의 안전가옥"
+    "UI_MinidoracatMiniMapModMaps_LiShiyaSafehouse": "리스야의 안전가옥",
+    "UI_MinidoracatMiniMapModMaps_WheatfieldTown": "휘트필드 타운",
+    "UI_MinidoracatMiniMapModMaps_ResearchFacility": "연구 시설",
+    "UI_MinidoracatMiniMapModMaps_LVShippingPort": "루이빌 화물항"
 }

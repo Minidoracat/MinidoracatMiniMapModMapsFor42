@@ -403,6 +403,12 @@
       "entry"
     ]
   },
+  "ResearchFacilityB42Test.pyramid.zip": {
+    "aliases": {},
+    "ignored": [
+      "all"
+    ]
+  },
   "SZ_Bunker_3.pyramid.zip": {
     "aliases": {
       "armyhanger": "armystorage"
@@ -644,6 +650,18 @@
       "boysdorm",
       "treasurechest",
       "vault2"
+    ]
+  },
+  "WheatfieldTown.pyramid.zip": {
+    "aliases": {
+      "dzbt_bullets": "armystorage"
+    },
+    "ignored": [
+      "AdventureBackpackLocker",
+      "dzbt_coffee",
+      "dzbt_muxue",
+      "dzbt_office",
+      "dzbt_stonewarehouse"
     ]
   },
   "Willowbrook Bastion! 2026.pyramid.zip": {

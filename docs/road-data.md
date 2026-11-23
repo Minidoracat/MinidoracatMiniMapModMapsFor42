@@ -25,11 +25,11 @@
 
 ## 統計（Summary）
 
-- 收錄地圖（Maps）：**134** 張
-- 作者附道路資料（Author road data）：**34** 張；沒有 **100** 張
+- 收錄地圖（Maps）：**137** 張
+- 作者附道路資料（Author road data）：**34** 張；沒有 **103** 張
 - 本包路名翻譯（Translated names）：**26** 張
 - 本包道路修正（Fixes）：**6** 張
-- 本包補充道路（Added roads）：**19** 張
+- 本包補充道路（Added roads）：**21** 張
 
 ## 本包補過道路資料的地圖（Maps we fixed or extended）
 
@@ -90,6 +90,10 @@
   - 補充道路 3 條：作者沒放進道路資料的路由本包補上，路名 `最後一刻末日地堡 01 號路（小地圖補）`～`最後一刻末日地堡 03 號路（小地圖補）`（英文 `Last Minute Prepper Rd 01 (MiniMap)`～`Last Minute Prepper Rd 03 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 - **李詩雅的安全屋（Li Shiya's Safehouse）**
   - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `李詩雅的安全屋 01 號路（小地圖補）`（英文 `Li Shiya's Safehouse Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **麥田鎮（Wheatfield Town）**
+  - 補充道路 1 條：作者沒放進道路資料的路由本包補上，路名 `麥田鎮 01 號路（小地圖補）`（英文 `Wheatfield Town Rd 01 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
+- **路易斯維爾貨運港（Louisville Shipping Port）**
+  - 補充道路 5 條：作者沒放進道路資料的路由本包補上，路名 `路易斯維爾貨運港 01 號路（小地圖補）`～`路易斯維爾貨運港 05 號路（小地圖補）`（英文 `Louisville Shipping Port Rd 01 (MiniMap)`～`Louisville Shipping Port Rd 05 (MiniMap)`）；作者日後提供道路資料時，遊戲內自動改用作者的
 
 ## 全部地圖（All maps）
 
@@ -229,3 +233,6 @@
 | 路易斯維爾國際機場<br>LV International Airport | [3045726312](https://steamcommunity.com/sharedfiles/filedetails/?id=3045726312) | ✅ 22 條 | ✅ 19 條 | — | — |
 | 馬爾德勞軍事基地<br>Muldraugh Military Base | [3783856502](https://steamcommunity.com/sharedfiles/filedetails/?id=3783856502) | ❌ 無 | — | — | — |
 | 李詩雅的安全屋<br>Li Shiya's Safehouse | [3761618628](https://steamcommunity.com/sharedfiles/filedetails/?id=3761618628) | ❌ 無 | — | — | ✅ 1 條 |
+| 麥田鎮<br>Wheatfield Town | [3835967037](https://steamcommunity.com/sharedfiles/filedetails/?id=3835967037) | ❌ 無 | — | — | ✅ 1 條 |
+| 研究設施<br>Research Facility | [3826245228](https://steamcommunity.com/sharedfiles/filedetails/?id=3826245228) | ❌ 無 | — | — | — |
+| 路易斯維爾貨運港<br>Louisville Shipping Port | [3149613879](https://steamcommunity.com/sharedfiles/filedetails/?id=3149613879) | ❌ 無 | — | — | ✅ 5 條 |

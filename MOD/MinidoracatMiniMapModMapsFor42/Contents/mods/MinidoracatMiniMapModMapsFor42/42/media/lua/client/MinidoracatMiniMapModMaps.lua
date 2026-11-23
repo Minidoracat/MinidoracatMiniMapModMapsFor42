@@ -466,7 +466,8 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             mapDir = "LastMinutePrepperReloaded", streetSupplement = StreetSupplements["last-minute-prepper"],
             bounds = { 13056, 3584, 13568, 4096 }, nameKey = "UI_MinidoracatMiniMapModMaps_LastMinutePrepper" },
         -- LV International Airport [B41/B42]（3045726312）：B42 讀 42/mod.info（require 四個 B42 材質包）與
-        -- common/ 的 11 cell（x 49–52、y 16–18，缺 49_16）；外框內缺的 49_16 照原版畫進 zip，和已支援地圖都不重疊
+        -- common/ 的 11 cell（x 49–52、y 16–18，缺 49_16）；外框內缺的 49_16 照原版畫進 zip。和同作者的 Louisville Shipping Port
+        -- 共用 49_17、49_18、50_18（見下方港口條目：Map= 機場排前）
         { zip = "lvinternationalairport.pyramid.zip", mapMod = "SimonMDLVInternationalAirport",
             mapDir = "lvinternationalairport", streetNames = StreetNames["lv-international-airport"],
             bounds = { 12544, 4096, 13568, 4864 }, nameKey = "UI_MinidoracatMiniMapModMaps_LVInternationalAirport" },
@@ -482,6 +483,24 @@ if MinidoracatMiniMapAPI and MinidoracatMiniMapAPI.registerMaps then
             mapMod = "modid(\230\157\142\232\175\151\233\155\133\231\154\132\229\174\137\229\133\168\229\177\139)",
             mapDir = "LiShiya SafeHouse", streetSupplement = StreetSupplements["lishiya-safehouse"],
             bounds = { 11520, 7936, 12032, 8448 }, nameKey = "UI_MinidoracatMiniMapModMaps_LiShiyaSafehouse" },
+        -- WheatfieldTown（3835967037）：4 cell（x 31–32、y 36–37），和肯塔基中央莊園重疊 2 個 cell（31_37、32_37，兩邊都有
+        -- 建築）。作者沒有 streets.xml，佔滿 300 格 (27,31)：補充道路沿原版補回被裁的 Old Logging Road，鎮內道路不補
+        { zip = "WheatfieldTown.pyramid.zip", mapMod = "WheatfieldTown",
+            mapDir = "WheatfieldTown", streetSupplement = StreetSupplements["wheatfield-town"],
+            bounds = { 7936, 9216, 8448, 9728 }, nameKey = "UI_MinidoracatMiniMapModMaps_WheatfieldTown" },
+        -- Research Facility B42 Test（3826245228）：9 cell（x 21–23、y 48–50），和已支援地圖都不重疊。require 的 mod id
+        -- UnofficialMappersCommunityTilePack 有兩個 Workshop 項目提供（3628736763、作者頁面列的 3827415627），材質檔相同。
+        -- 作者沒有 streets.xml，佔滿的 4 個 300 格裡沒有原版街道，不用補
+        { zip = "ResearchFacilityB42Test.pyramid.zip", mapMod = "ResearchFacilityB42Test",
+            bounds = { 5376, 12288, 6144, 13056 }, nameKey = "UI_MinidoracatMiniMapModMaps_ResearchFacility" },
+        -- Louisville Shipping Port [B41/B42]（3149613879）：B42 讀 42/mod.info（require 四個 B42 材質包）與 common/ 的 8 cell
+        -- （x 48–50、y 17–19，缺 50_17）。和同作者的 LV 國際機場共用 49_17、49_18、50_18：機場那份含港口東側，港口那份
+        -- 沒有航廈西半，Map= 要把機場排在港口前面；港口排前時，外框內缺的 50_17 照原版畫進 zip，會蓋住機場的 50_17。
+        -- 作者的 streets.xml 是空的，蓋住 300 格 (41,15)、(41,16)、(42,15)、(42,16)：補充道路沿原版補回被裁的 Dixie Highway、
+        -- Bearcamp Road、Tinsley Road、Oliver Road、Appletree Lane（同格的鐵道與港區道路不補）
+        { zip = "lvharbor.pyramid.zip", mapMod = "SimonMDLVHarbor",
+            mapDir = "lvharbor", streetSupplement = StreetSupplements["lv-shipping-port"],
+            bounds = { 12288, 4352, 13056, 5120 }, nameKey = "UI_MinidoracatMiniMapModMaps_LVShippingPort" },
     })
 else
     print("[MinidoracatMiniMapModMaps] main MOD API (MinidoracatMiniMapAPI) not found -- install and enable the Minidoracat MiniMap for B42 main MOD")

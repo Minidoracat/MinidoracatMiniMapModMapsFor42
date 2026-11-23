@@ -1,0 +1,12 @@
+<streets version="1">
+    <street name="Wheatfield Town Rd 01 (MiniMap)" width="7">
+        <points>
+            <point x="8050.0" y="9508.5"/>
+            <point x="8271.5" y="9508.5"/>
+            <point x="8285.5" y="9516.0"/>
+            <point x="8293.0" y="9523.0"/>
+            <point x="8299.5" y="9536.0"/>
+            <point x="8299.5" y="9700.0"/>
+        </points>
+    </street>
+</streets>

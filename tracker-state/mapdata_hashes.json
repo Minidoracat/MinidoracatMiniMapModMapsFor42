@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-20T14:24:04Z",
+  "generated_at": "2026-11-23T04:08:08Z",
   "items": {
     "2384329562": {
       "assets": "64012b95cae93375667707ef603dbf894ead7e8c7fa022aa100a1ac6c6675c4f",
@@ -152,6 +152,25 @@
       "mods": {
         "Taylorsville": [
           "Taylorsville"
+        ]
+      }
+    },
+    "3149613879": {
+      "assets": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "maps": {
+        "lvharbor": {
+          "bounds": [
+            12288,
+            4352,
+            13056,
+            5120
+          ],
+          "hash": "aad608e911b47ef1a50af6e1e3952fa4d6d96253db8242e752149502f781abb9"
+        }
+      },
+      "mods": {
+        "SimonMDLVHarbor": [
+          "lvharbor"
         ]
       }
     },
@@ -2384,6 +2403,44 @@
       "mods": {
         "BedfordFallsB42": [
           "BedfordFalls"
+        ]
+      }
+    },
+    "3826245228": {
+      "assets": "9c499993dea5859b3369c6f035a7d2b4b46e63e8ca7eb400289b02756c48b540",
+      "maps": {
+        "ResearchFacilityB42Test": {
+          "bounds": [
+            5376,
+            12288,
+            6144,
+            13056
+          ],
+          "hash": "f3344edc478e247e58382da89f3dd33547f8cd56754dcd5e5f3387d4ec83b2cf"
+        }
+      },
+      "mods": {
+        "ResearchFacilityB42Test": [
+          "ResearchFacilityB42Test"
+        ]
+      }
+    },
+    "3835967037": {
+      "assets": "a176c5dd87ea4f139561cc06cf59bd26ba5c90a97e654ad2af76f6a15bfbf7ca",
+      "maps": {
+        "WheatfieldTown": {
+          "bounds": [
+            7936,
+            9216,
+            8448,
+            9728
+          ],
+          "hash": "74d803420a533290fa372d22dc576314664050102c2ed7c1c543fd551ac3a25d"
+        }
+      },
+      "mods": {
+        "WheatfieldTown": [
+          "WheatfieldTown"
         ]
       }
     }

@@ -1,7 +1,7 @@
 {
   "zip": "Chinatown B42 version.pyramid.zip",
   "mapDir": "Chinatown B42 version",
-  "rawRecords": 105,
+  "rawRecords": 93,
   "aliases": {"hammer": "toolstore", "herb": "pharmacy", "katana": "knifestore", "mingshi": "grocery"},
   "cells300": [[37, 29], [37, 30]],
   "entries": [
@@ -17,7 +17,7 @@
     {"cat": "food", "rects": [[11225, 8791, 10, 6], [11228, 8797, 7, 6], [11225, 8803, 10, 2]], "bbox": [11225, 8791, 10, 14], "underground": false},
     {"cat": "food", "rects": [[11286, 8885, 47, 6]], "bbox": [11285, 8885, 52, 10], "underground": false},
     {"cat": "food", "rects": [[11294, 9270, 5, 7]], "bbox": [11287, 9270, 12, 9], "underground": false},
-    {"cat": "food", "rects": [[11300, 8918, 19, 17], [11308, 8903, 11, 15], [11296, 8903, 12, 11]], "bbox": [11296, 8903, 23, 32], "underground": false},
+    {"cat": "food", "rects": [[11300, 8918, 19, 17], [11308, 8903, 11, 15], [11296, 8903, 12, 11]], "bbox": [11296, 8903, 27, 32], "underground": false},
     {"cat": "gas", "rects": [[11108, 8736, 8, 4]], "bbox": [11101, 8726, 15, 14], "underground": false},
     {"cat": "gas", "rects": [[11117, 9183, 13, 5], [11117, 9176, 6, 7]], "bbox": [11117, 9176, 13, 12], "underground": false},
     {"cat": "grocery", "rects": [[11226, 8853, 11, 10]], "bbox": [11226, 8843, 12, 30], "underground": false},
@@ -35,9 +35,7 @@
     {"cat": "medical", "rects": [[11229, 8899, 8, 10]], "bbox": [11226, 8879, 11, 30], "underground": false},
     {"cat": "medical", "rects": [[11316, 8833, 6, 9]], "bbox": [11316, 8833, 13, 41], "underground": false},
     {"cat": "pharmacy", "rects": [[11248, 8795, 10, 3], [11248, 8798, 6, 2], [11254, 8793, 4, 2]], "bbox": [11248, 8788, 40, 12], "underground": false},
-    {"cat": "retail", "rects": [[11116, 9264, 13, 11], [11123, 9256, 6, 8]], "bbox": [11116, 9256, 13, 19], "underground": false},
-    {"cat": "retail", "rects": [[11130, 9256, 1, 1]], "bbox": [11130, 9256, 1, 1], "underground": false},
-    {"cat": "retail", "rects": [[11130, 9264, 1, 1]], "bbox": [11130, 9264, 1, 1], "underground": false},
+    {"cat": "retail", "rects": [[11116, 9264, 13, 11], [11123, 9256, 6, 8], [11130, 9256, 1, 1], [11130, 9264, 1, 1]], "bbox": [11116, 9256, 15, 19], "underground": false},
     {"cat": "retail", "rects": [[11166, 8896, 5, 23]], "bbox": [11166, 8883, 18, 50], "underground": false},
     {"cat": "retail", "rects": [[11190, 8792, 6, 12], [11190, 8804, 2, 1], [11194, 8804, 2, 1]], "bbox": [11190, 8792, 6, 13], "underground": false},
     {"cat": "retail", "rects": [[11204, 8792, 6, 12], [11204, 8804, 2, 1], [11208, 8804, 2, 1]], "bbox": [11204, 8792, 6, 13], "underground": false},

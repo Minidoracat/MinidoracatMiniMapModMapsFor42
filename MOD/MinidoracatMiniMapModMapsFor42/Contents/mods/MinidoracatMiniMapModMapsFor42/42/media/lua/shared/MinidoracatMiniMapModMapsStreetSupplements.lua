@@ -1,6 +1,6 @@
 -- MinidoracatMiniMapModMapsStreetSupplements.lua（生成檔，勿手編）
 -- 由 scripts/gen_road_supplements.py 從 road-supplements/*.json 編譯
--- 20 個 dataset／251 條補充道路
+-- 22 個 dataset／257 條補充道路
 --
 -- 作者沒放進 streets.xml 的路由本包補上；路名帶「(MiniMap)」＝不是作者取的名字。
 -- 執行期（主 MOD）：地圖目錄自己的 streets.xml 街道數 ≠ upstreamStreetCount 就整份停用，
@@ -254,6 +254,19 @@ Supplements["lishiya-safehouse"] = {
     },
 }
 
+-- ==== lv-shipping-port (SimonMDLVHarbor / lvharbor) ====
+Supplements["lv-shipping-port"] = {
+    schemaVersion = 1, mapMod = "SimonMDLVHarbor", mapDir = "lvharbor",
+    file = "media/minimap/streets/lv-shipping-port.xml", upstreamStreetCount = 0, roadCount = 5,
+    names = {
+        ["Louisville Shipping Port Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_lv-shipping-port_01",
+        ["Louisville Shipping Port Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_lv-shipping-port_02",
+        ["Louisville Shipping Port Rd 03 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_lv-shipping-port_03",
+        ["Louisville Shipping Port Rd 04 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_lv-shipping-port_04",
+        ["Louisville Shipping Port Rd 05 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_lv-shipping-port_05",
+    },
+}
+
 -- ==== moores-mechanic (MooresMechanicPlus / Moores Mechanic Plus) ====
 Supplements["moores-mechanic"] = {
     schemaVersion = 1, mapMod = "MooresMechanicPlus", mapDir = "Moores Mechanic Plus",
@@ -384,6 +397,15 @@ Supplements["twd-prison"] = {
     names = {
         ["The Walking Dead Prison Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_twd-prison_01",
         ["The Walking Dead Prison Rd 02 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_twd-prison_02",
+    },
+}
+
+-- ==== wheatfield-town (WheatfieldTown / WheatfieldTown) ====
+Supplements["wheatfield-town"] = {
+    schemaVersion = 1, mapMod = "WheatfieldTown", mapDir = "WheatfieldTown",
+    file = "media/minimap/streets/wheatfield-town.xml", upstreamStreetCount = 0, roadCount = 1,
+    names = {
+        ["Wheatfield Town Rd 01 (MiniMap)"] = "UI_MinidoracatMiniMapModMaps_Road_wheatfield-town_01",
     },
 }
 
