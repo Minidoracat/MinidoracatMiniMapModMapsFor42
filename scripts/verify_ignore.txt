@@ -1,0 +1,12 @@
+# 逐一查證後豁免的 finding（每行一個子字串樣式）。新增條目前必須先查證，並在上一行註明依據。
+
+# 模板第 3 項「翻譯鍵集一致」要求所有語系鍵集相同；本 repo 的街名／補路鍵（UI_MinidoracatMiniMapModMaps_Street_／_Road_）
+# 只寫在 EN/CH/CN/JP（gen_streets_i18n.py／gen_road_supplements.py 只產這四語；主 MOD 只在 CH/CN/JP 套用街名譯名，
+# 其他語言顯示上游英文原名），所以那一項對 UI.json 的這四語各報一筆。真正的鍵集檢查（這四語要完整、其他語系
+# 不得有街名鍵、各語系其餘的鍵要一致）在 scripts/verify_local.py「翻譯鍵集一致（街名版）」。
+# 2026-11-26 查證：Translate 下 16 語都只有 UI.json，「鍵集不一致」只有第 3 項會印；verify_local.py 失敗時
+# FAIL 那一行不含這些字樣，照樣擋。
+UI.json: CH 鍵集不一致
+UI.json: CN 鍵集不一致
+UI.json: EN 鍵集不一致
+UI.json: JP 鍵集不一致
