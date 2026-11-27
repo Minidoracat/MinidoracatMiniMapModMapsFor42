@@ -3,7 +3,7 @@
     "build": "26486631",
     "detected_at": "2026-11-09T14:22:17Z"
   },
-  "generated_at": "2026-11-26T15:49:13Z",
+  "generated_at": "2026-11-27T15:37:59Z",
   "items": {
     "2384329562": {
       "last_result": 1,
@@ -35,7 +35,7 @@
     },
     "2844685624": {
       "last_result": 1,
-      "probe_fail": 1,
+      "probe_fail": 2,
       "removed": false,
       "removed_at": null,
       "time_updated": 1785336695,
@@ -848,7 +848,7 @@
     },
     "3821109144": {
       "last_result": 1,
-      "probe_fail": 1,
+      "probe_fail": 2,
       "removed": false,
       "removed_at": null,
       "time_updated": 1793401228,
